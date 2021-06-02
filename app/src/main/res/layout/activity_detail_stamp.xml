@@ -1880,33 +1880,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <View-->
-            <!--                android:layout_width="@dimen/size_1"-->
-            <!--                android:layout_height="0dp"-->
-            <!--                android:layout_marginStart="@dimen/size_24"-->
-            <!--                android:layout_marginEnd="@dimen/size_24"-->
-            <!--                android:background="@color/white"-->
-            <!--                app:layout_constraintBottom_toBottomOf="@+id/btnChat"-->
-            <!--                app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"-->
-            <!--                app:layout_constraintStart_toEndOf="@+id/btnChat"-->
-            <!--                app:layout_constraintTop_toTopOf="@+id/btnChat" />-->
-
-            <!--            <androidx.appcompat.widget.AppCompatTextView-->
-            <!--                android:id="@+id/btnAddToCart"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="@dimen/size_6"-->
-            <!--                android:layout_marginEnd="@dimen/size_24"-->
-            <!--                android:layout_marginBottom="@dimen/size_3"-->
-            <!--                android:drawableTop="@drawable/ic_shop_white_24px"-->
-            <!--                android:drawablePadding="@dimen/size_3"-->
-            <!--                android:fontFamily="sans-serif-medium"-->
-            <!--                android:textColor="@color/white"-->
-            <!--                android:textSize="@dimen/font_12"-->
-            <!--                android:textStyle="normal"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

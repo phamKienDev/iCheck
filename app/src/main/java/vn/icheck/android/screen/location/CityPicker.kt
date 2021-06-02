@@ -6,7 +6,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
@@ -49,7 +48,7 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteRadiusTop16(it1) }
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteCornersTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         _binding = BottomNationDialogBinding.inflate(inflater, container, false)

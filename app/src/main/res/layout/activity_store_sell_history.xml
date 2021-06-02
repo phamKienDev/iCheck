@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context=".screen.user.store_sell_history.StoreSellHistoryActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -31,7 +30,7 @@
             android:singleLine="true"
             android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@id/swipe_layout"

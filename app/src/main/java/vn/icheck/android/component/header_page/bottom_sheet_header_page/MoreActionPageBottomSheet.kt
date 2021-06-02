@@ -10,7 +10,7 @@ import vn.icheck.android.network.models.ICPageOverview
 abstract class MoreActionPageBottomSheet(context: Context, val obj: ICPageOverview) : BaseBottomSheetDialog(context, R.layout.dialog_more_action_page, true) {
 
     fun show() {
-        dialog.linearLayout.background=ViewHelper.bgWhiteRadiusTop20(dialog.context)
+        dialog.linearLayout.background=ViewHelper.bgWhiteCornersTop20(dialog.context)
         if (obj.isFollow) {
             dialog.tvFollow.text = "Bỏ theo dõi Trang này"
             dialog.tvSubUnfollow.text = "Khi bỏ theo dõi, các bài viết của ${obj.name} này sẽ không hiển thị với bạn nữa."

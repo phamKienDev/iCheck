@@ -31,7 +31,6 @@ import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
@@ -111,7 +110,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
         initUpdateLocation()
         listener()
 
-        constraintLayout.background=ViewHelper.bgWhiteRadiusBottom10(this)
+        constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(this)
     }
 
     private fun initGps() {

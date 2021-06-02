@@ -30,7 +30,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
     private var listener: View.OnClickListener? = null
 
     override fun bind(obj: ICNotification) {
-        itemView.imgAvatar.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
+        itemView.imgAvatar.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         checkRead(obj.isReaded == true)
         if (obj.showTitle) {
             itemView.title.beVisible()

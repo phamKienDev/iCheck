@@ -7,11 +7,10 @@
     android:background="@color/colorBackgroundGray"
     android:orientation="vertical">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:paddingTop="@dimen/size_41">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -39,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
     <View
         android:layout_width="match_parent"

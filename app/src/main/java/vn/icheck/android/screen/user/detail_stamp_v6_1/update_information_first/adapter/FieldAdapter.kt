@@ -197,7 +197,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, R.layout.item_sp_select_field)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                itemView.spinner.background = ViewHelper.bgWhiteRadius40StrokeLineColor1(itemView.context)
+                itemView.spinner.background = ViewHelper.bgWhiteStrokeLineColor1Corners40(itemView.context)
                 itemView.spinner.adapter = adapter
                 itemView.spinner.setSelection(adapter.count)
                 itemView.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

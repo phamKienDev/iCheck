@@ -71,12 +71,11 @@
             tools:text="9+" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
         android:id="@id/layoutToolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -117,7 +116,7 @@
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgBack" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"

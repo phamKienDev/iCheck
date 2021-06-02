@@ -12,10 +12,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:elevation="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -134,7 +133,7 @@
                     app:srcCompat="@drawable/ic_dot_red_filter_coin" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
 
         <FrameLayout
             android:id="@+id/layoutData"
@@ -163,11 +162,10 @@
                 android:focusable="true"
                 android:visibility="invisible">
 
-                <LinearLayout
+                <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
                     android:id="@+id/layoutSort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -196,16 +194,15 @@
                         android:text="Cũ nhất"
                         android:textSize="@dimen/font_16" />
 
-                </LinearLayout>
+                </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
             </LinearLayout>
 
         </FrameLayout>
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
             android:id="@+id/containerGps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:gravity="center"
             android:visibility="gone"
             android:orientation="vertical">
@@ -234,6 +231,6 @@
                 android:text="@string/bat_gps_ngay"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
-        </LinearLayout>
+        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
     </LinearLayout>
 </LinearLayout>

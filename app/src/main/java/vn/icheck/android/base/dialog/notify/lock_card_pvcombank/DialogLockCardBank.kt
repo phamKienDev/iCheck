@@ -17,8 +17,8 @@ abstract class DialogLockCardBank( context: Context, val title: Int, val message
     override fun onInitView() {
         txtTitle.setText(title)
         txtMessage.setText(message)
-        btnDisagree.background=ViewHelper.bgWhitePressRadiusBottomLeft8(context)
-        btnAgree.background=ViewHelper.bgWhitePressRadiusBottomRight8(context)
+        btnDisagree.background=ViewHelper.btnWhiteCornersBottomLeft8(context)
+        btnAgree.background=ViewHelper.btnWhiteCornersBottomRight8(context)
 
         btnDisagree.setOnClickListener {
             dismiss()

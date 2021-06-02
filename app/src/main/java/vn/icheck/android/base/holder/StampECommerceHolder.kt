@@ -3,7 +3,6 @@ package vn.icheck.android.base.holder
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemProductEcommerceBinding
 import vn.icheck.android.helper.SizeHelper
@@ -20,7 +19,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
     override fun bind(obj: ICProductLink) {
         WidgetUtils.loadImageUrlRounded(binding.imgAvatar, obj.images, R.drawable.ic_business_v2, SizeHelper.size4)
 
-        binding.root.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5Pressed(binding.root.context)
+        binding.root.background=ViewHelper.btnWhiteStrokeLineColor0_5Corners4(binding.root.context)
 
         binding.tvName.text = obj.name
 

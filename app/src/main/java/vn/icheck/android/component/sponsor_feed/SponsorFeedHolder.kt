@@ -20,7 +20,7 @@ class SponsorFeedHolder(view: View) : BaseViewHolder<ICSponsorFeed>(view) {
 
 
     override fun bind(obj: ICSponsorFeed) {
-        itemView.container_comment.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
+        itemView.container_comment.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         itemView.tvNameEnterprise.text = if (obj.name != null) {
             obj.name
         } else {

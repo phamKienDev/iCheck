@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -23,7 +21,6 @@ import vn.icheck.android.screen.user.option_edit_information_public.EditInformat
 import vn.icheck.android.screen.user.option_manager_user_watching.ManagerUserWatchingActivity
 import vn.icheck.android.screen.user.option_manger_user_follow.ManagerUserFollowActivity
 import vn.icheck.android.screen.user.wall.EDIT_MY_PUBLIC_INFO
-import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.ick.simpleText
 
 class UserWallSettingFragment:BottomSheetDialogFragment() {
@@ -40,7 +37,7 @@ class UserWallSettingFragment:BottomSheetDialogFragment() {
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteRadiusTop16(it1) }
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteCornersTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         _binding = DialogBottomWallSettingBinding.inflate(inflater, container, false)

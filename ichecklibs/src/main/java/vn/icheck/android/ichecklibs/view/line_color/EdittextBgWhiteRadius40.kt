@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
 
 class EdittextBgWhiteRadius40:EditText {
     constructor(context: Context) : super(context) {
@@ -24,6 +23,6 @@ class EdittextBgWhiteRadius40:EditText {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius40StrokeLineColor1(context)
+        background=ViewHelper.bgWhiteStrokeLineColor1Corners40(context)
     }
 }

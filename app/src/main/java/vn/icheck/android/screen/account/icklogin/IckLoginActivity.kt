@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -94,7 +93,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
         binding = ActivityIckLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.viewBackground.background=ViewHelper.bgWhiteRadiusTop20(this)
+        binding.viewBackground.background=ViewHelper.bgWhiteCornersTop20(this)
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)

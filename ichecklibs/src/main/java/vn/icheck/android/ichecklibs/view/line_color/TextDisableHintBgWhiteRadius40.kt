@@ -3,7 +3,6 @@ package vn.icheck.android.ichecklibs.view.line_color
 import android.content.Context
 import android.util.AttributeSet
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
 import vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
 
 class TextDisableHintBgWhiteRadius40:TextDisableHint {
@@ -24,6 +23,6 @@ class TextDisableHintBgWhiteRadius40:TextDisableHint {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius40StrokeLineColor1(context)
+        background=ViewHelper.bgWhiteStrokeLineColor1Corners40(context)
     }
 }

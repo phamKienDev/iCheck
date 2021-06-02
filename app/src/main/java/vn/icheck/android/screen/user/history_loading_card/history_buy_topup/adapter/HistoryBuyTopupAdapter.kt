@@ -1,11 +1,9 @@
 package vn.icheck.android.screen.user.history_loading_card.history_buy_topup.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
 import kotlinx.android.synthetic.main.item_history_buy_topup.view.*
@@ -13,7 +11,6 @@ import kotlinx.android.synthetic.main.item_load_more.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
@@ -164,7 +161,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
-            itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayRadius8(itemView.context)
+            itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
 
             itemView.tvNameNetwork.text = "Thẻ ${item.provider}"
 

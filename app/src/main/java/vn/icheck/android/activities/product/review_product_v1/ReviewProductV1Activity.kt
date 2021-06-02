@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -97,9 +96,9 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
         presenter.getBarcodeProduct(intent)
         WidgetUtils.setClickListener(this, img_choose_image, tv_answer_actor, img_send, tv_answer_actor, imgBack, container_comment)
 
-        linearLayoutActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
-        tv_answer_actor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
-        view28.background=ViewHelper.bgWhiteRadiusTop16(this)
+        linearLayoutActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        view28.background=ViewHelper.bgWhiteCornersTop16(this)
     }
 
     private fun initSwipeLayout() {

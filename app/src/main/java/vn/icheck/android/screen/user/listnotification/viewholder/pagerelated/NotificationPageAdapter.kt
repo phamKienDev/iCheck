@@ -45,7 +45,7 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
         override fun bind(obj: ICNotificationPage) {
             (itemView as ViewGroup).apply {
                 binding.imgAvatar.apply {
-                    background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
+                    background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
                     WidgetUtils.loadImageUrlRounded(this, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
 
                     setOnClickListener {

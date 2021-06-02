@@ -210,7 +210,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
         return LinearLayout(context).also { layoutParams ->
             layoutParams.layoutParams = ViewHelper.createLayoutParams()
             layoutParams.orientation = LinearLayout.VERTICAL
-            layoutParams.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+            layoutParams.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParams.context))
             layoutParams.gravity = Gravity.CENTER_HORIZONTAL
 
             layoutParams.addView(AppCompatImageView(context).also { img ->

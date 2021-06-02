@@ -23,6 +23,6 @@ class EdittextDisableHintBgWhiteRadius40:EdittextDisableHint {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius40StrokeLineColor1(context)
+        background=ViewHelper.bgWhiteStrokeLineColor1Corners40(context)
     }
 }

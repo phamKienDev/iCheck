@@ -1,9 +1,7 @@
 package vn.icheck.android.screen.user.shopreview
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.widget.TableRow
 import androidx.appcompat.widget.AppCompatTextView
@@ -46,7 +44,7 @@ class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewVi
         setupToolbar()
         setupRecyclerView()
         setupListener()
-        edtNote.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        edtNote.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         presenter.getShopID(intent)
     }
 

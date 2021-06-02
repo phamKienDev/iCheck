@@ -39,7 +39,7 @@ class SuggestTopicActivity : BaseActivityMVVM(), ISuggestTopicView {
 
     private fun initView() {
         StatusBarUtils.setOverStatusBarDark(this)
-        textView25.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusTop16(this)
+        textView25.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCornersTop16(this)
         btn_skip.apply {
             background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
             setOnClickListener {

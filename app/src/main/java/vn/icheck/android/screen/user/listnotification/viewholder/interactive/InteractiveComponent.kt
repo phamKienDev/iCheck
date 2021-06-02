@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.screen.user.listnotification.interactive.ListInteractiveActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -60,7 +61,7 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also { layoutTitle ->

@@ -10,6 +10,7 @@ import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.component.product.horizontal_product.ListProductHorizontalHolder
 import vn.icheck.android.component.product.related_product.RelatedProductHolder
 import vn.icheck.android.component.product.related_product.RelatedProductModel
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
 
 class ProductOfPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -99,7 +100,7 @@ class ProductOfPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is RelatedProductHolder -> {
                 holder.bind(listData[position])
 
-                holder.itemView.setBackgroundColor(Color.WHITE)
+                holder.itemView.setBackgroundColor(Constant.getAppBackgroundWhiteColor(holder.itemView.context))
             }
             is LongMessageHolder -> {
                 if (errorMessage.isNullOrEmpty()) {

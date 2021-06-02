@@ -14,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
 
 
 class TabSegment : FrameLayout {
@@ -42,7 +43,7 @@ class TabSegment : FrameLayout {
         tabLayout.setSelectedTabIndicator(null)
         tabLayout.setSelectedTabIndicatorHeight(0)
         tabLayout.tabRippleColor = null
-        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), ContextCompat.getColor(context, R.color.white))
+        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), Constant.getAppBackgroundWhiteColor(context))
 
         addView(tabLayout)
     }

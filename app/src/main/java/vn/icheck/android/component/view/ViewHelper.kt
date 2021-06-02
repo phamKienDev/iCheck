@@ -686,7 +686,7 @@ object ViewHelper {
         layoutParams.setMargins(SizeHelper.size4, 0, SizeHelper.size4, SizeHelper.size8)
         imageButton.layoutParams = layoutParams
         imageButton.setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
-        imageButton.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius10StrokeSecondary1(context)
+        imageButton.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeSecondary1Corners10(context)
         return imageButton
     }
 
@@ -1197,7 +1197,7 @@ object ViewHelper {
             it.layoutParams = createLayoutParams(SizeHelper.size60, SizeHelper.size60).also { layoutParams ->
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL
             }
-            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius10StrokeSecondary1(context)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeSecondary1Corners10(context)
             it.setPadding(SizeHelper.size10, SizeHelper.size10, SizeHelper.size10, SizeHelper.size10)
             it.isClickable = false
             it.isFocusable = false
@@ -2444,7 +2444,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, SizeHelper.size12, 0)
             }
             it.orientation = LinearLayout.VERTICAL
-            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
+            it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(it.context)
             it.setPadding(SizeHelper.size10, 0, SizeHelper.size10, SizeHelper.size4)
 
             //edit text
@@ -2611,7 +2611,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(it.context)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(it.context)
                 it.includeFontPadding = false
             })
             layoutHeader.addView(TextSecondBarlowMedium(context).also {
@@ -2628,7 +2628,7 @@ object ViewHelper {
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_comment_12px, 0, 0, 0)
                 it.compoundDrawablePadding = SizeHelper.size4
-                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(context)
+                it.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(context)
                 it.includeFontPadding = false
             })
         })
@@ -2944,7 +2944,7 @@ object ViewHelper {
             }
             layoutParams.gravity = Gravity.CENTER_VERTICAL
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
+            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeLineColor0_5Corners4(context)
 
             layoutParams.addView(AppCompatImageView(context).also { img ->
                 img.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -3389,7 +3389,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, 0, 0, 0)
             }
             layoutParams.orientation = LinearLayout.HORIZONTAL
-            layoutParams.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(layoutParams.context)
+            layoutParams.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(layoutParams.context)
 
             layoutParams.addView(AppCompatImageView(context).also { params ->
                 params.layoutParams = createLayoutParams(SizeHelper.size40, SizeHelper.size40).also {
@@ -3542,7 +3542,7 @@ object ViewHelper {
                 it.setMargins(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0)
             }
             layoutParams.id = R.id.constraintLayout
-            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius4(context)
+            layoutParams.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCorners4(context)
             layoutParams.setPadding(SizeHelper.size12)
 
             val circleImageView = CircleImageView(context).also { params ->

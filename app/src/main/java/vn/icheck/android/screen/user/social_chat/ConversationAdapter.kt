@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ConversationHolderBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.util.ick.*
 
@@ -49,7 +50,7 @@ class ConversationAdapter(var data:List<ChatConversation>):RecyclerView.Adapter<
                 }
                 else -> {
                     binding.tvUnread.beGone()
-                    binding.root.setBackgroundColor(Color.WHITE)
+                    binding.root.setBackgroundColor(Constant.getAppBackgroundWhiteColor(binding.root.context))
                 }
             }
 //            if (conversation.isOnline) {

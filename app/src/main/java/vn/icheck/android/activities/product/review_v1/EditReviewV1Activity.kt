@@ -75,7 +75,7 @@ class EditReviewV1Activity : BaseICActivity(), TakePhotoHelper.TakePhotoListener
         intent.getStringExtra("name")?.let {
             tv_title.text = it
         }
-        edt_nrv_comment.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        edt_nrv_comment.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         criteria = intent.getSerializableExtra("criteria") as ICCriteria
         criteria?.let {
             if (it.customerEvaluation != null) {

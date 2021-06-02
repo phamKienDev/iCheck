@@ -23,6 +23,6 @@ class ICConstraintLayoutBgWhiteRadiusTop10 : ConstraintLayout {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadiusTop10(context)
+        background=ViewHelper.bgWhiteCornersTop10(context)
     }
 }

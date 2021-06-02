@@ -23,6 +23,6 @@ class ICViewBgWhiteRadius4 : View {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius4(context)
+        background=ViewHelper.bgWhiteCorners4(context)
     }
 }

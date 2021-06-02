@@ -3,7 +3,6 @@
     android:id="@+id/tv_all"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:fontFamily="sans-serif-medium"
     android:paddingStart="@dimen/size_12"
     android:paddingEnd="@dimen/size_0"

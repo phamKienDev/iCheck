@@ -41,7 +41,7 @@ class SelectCategoryActivity : BaseICActivity() {
 
         instance = this
 
-        txtSearch.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        txtSearch.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
 
         categoryAdapter = CategoryAdapter()
         rcv_category.adapter = categoryAdapter

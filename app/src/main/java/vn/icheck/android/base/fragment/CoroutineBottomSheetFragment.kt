@@ -41,7 +41,7 @@ abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogF
         dialog?.setOnShowListener {
             val bottomSheetDialog = it as BottomSheetDialog
             (bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?)?.let { bottomSheet ->
-                bottomSheet.background=ViewHelper.bgWhiteRadiusTop16(requireContext())
+                bottomSheet.background=ViewHelper.bgWhiteCornersTop16(requireContext())
                 BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             }
         }

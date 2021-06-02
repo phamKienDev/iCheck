@@ -23,6 +23,6 @@ class EdittextNormalHintDisableBgWhiteRadius4Stroke05 : EdittextNormalHintDisabl
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(context)
+        background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(context)
     }
 }

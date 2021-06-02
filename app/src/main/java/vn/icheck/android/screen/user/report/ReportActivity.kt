@@ -70,7 +70,7 @@ class ReportActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        edtContent.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        edtContent.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
         btnDone.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this)
     }
 

@@ -40,8 +40,8 @@ abstract class ConfirmDialog(
 
     @Suppress("DEPRECATION")
     private fun onInitView() {
-        binding.btnDisagree.background=ViewHelper.bgWhitePressRadiusBottomLeft8(context)
-        binding.btnAgree.background=ViewHelper.bgWhitePressRadiusBottomRight8(context)
+        binding.btnDisagree.background=ViewHelper.btnWhiteCornersBottomLeft8(context)
+        binding.btnAgree.background=ViewHelper.btnWhiteCornersBottomRight8(context)
 
         if (colorTitle != null)
             binding.txtTitle.setTextColor(getColor(colorTitle))

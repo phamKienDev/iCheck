@@ -14,7 +14,7 @@ class CheckoutAddAddressHolder(view: View, val listener: ICheckoutCartView) : Ba
         val user = SessionManager.session.user
         itemView.tvName.text = (user?.last_name + " " + user?.first_name)
         itemView.tvPhone.text = user?.phone
-        itemView.btnAdd.background = ViewHelper.bgWhitePressStroke1Radius36(itemView.context)
+        itemView.btnAdd.background = ViewHelper.btnWhiteStroke1Corners36(itemView.context)
 
         itemView.btnAdd.setOnClickListener {
             listener.onAddUserAddress()

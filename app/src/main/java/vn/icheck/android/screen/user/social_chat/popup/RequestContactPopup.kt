@@ -14,8 +14,8 @@ class RequestContactPopup(context: Context,val onAgree:()->Unit,val onTerm:() ->
         get() = false
 
     override fun onInitView() {
-        btnDisagree.background=ViewHelper.bgWhitePressRadiusBottomLeft8(context)
-        btnAgree.background=ViewHelper.bgWhitePressRadiusBottomRight8(context)
+        btnDisagree.background=ViewHelper.btnWhiteCornersBottomLeft8(context)
+        btnAgree.background=ViewHelper.btnWhiteCornersBottomRight8(context)
 
         btnDisagree.setOnClickListener {
             dismiss()

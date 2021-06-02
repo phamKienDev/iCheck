@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
 
-class ICButtonSecondaryBgWhiteUnpressStrokeSecondary1:ButtonSecondary {
+class ICButtonSecondaryBtnWhiteStrokeSecondary1:ButtonSecondary {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -23,6 +23,6 @@ class ICButtonSecondaryBgWhiteUnpressStrokeSecondary1:ButtonSecondary {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhitePressRadius4StrokeSecondary1(context)
+        background= ViewHelper.btnWhiteStrokeSecondary1Corners4(context)
     }
 }

@@ -19,7 +19,7 @@ abstract class BaseBottomSheetView(context: Context, isCancelable: Boolean) : Ba
     }
 
     private fun initView() {
-        dialog.linearLayout.background=ViewHelper.bgWhiteRadiusTop20(dialog.context)
+        dialog.linearLayout.background=ViewHelper.bgWhiteCornersTop20(dialog.context)
 
         if(!title.isNullOrEmpty()){
             dialog.tvTitle.text = title

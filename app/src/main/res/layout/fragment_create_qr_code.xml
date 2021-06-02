@@ -9,11 +9,10 @@
     android:clickable="true"
     android:focusable="true">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
         android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +45,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layoutText"

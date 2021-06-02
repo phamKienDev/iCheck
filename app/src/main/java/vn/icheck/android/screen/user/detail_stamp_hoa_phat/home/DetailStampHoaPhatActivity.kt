@@ -78,8 +78,8 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
         INSTANCE = this
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        btnRequestPermission.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        btnEnableLocation.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        btnRequestPermission.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        btnEnableLocation.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
 
         setupRecyclerView()
         setupSwipeLayout()

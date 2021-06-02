@@ -66,7 +66,7 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     private fun setupView() {
         btnSendRefuse.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(btnSendRefuse.context)
-        edtContent.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeGrayRadius4(btnSendRefuse.context)
+        edtContent.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeGrayD4Corners4(btnSendRefuse.context)
     }
 
     private fun initView() {

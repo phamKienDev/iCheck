@@ -68,7 +68,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
             return LinearLayout(context).also {layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also {layoutTitle ->

@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.search_home.result.holder
 
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +28,7 @@ class UserSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.Rec
                 itemView.tv_xem_them.beVisible()
             }
         }
-        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
 
         val listSecond = mutableListOf<ICSearchUser>()
         for (i in 0 until if (list.size > 3) {

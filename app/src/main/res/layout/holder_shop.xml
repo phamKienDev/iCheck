@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_5"
-    android:layout_marginBottom="@dimen/size_5"
-    android:background="@color/white">
+    android:layout_marginBottom="@dimen/size_5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vg_shop_top"
@@ -200,4 +199,4 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
-</FrameLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>

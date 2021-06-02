@@ -109,7 +109,7 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
         initUpdateLocation()
         listener()
 
-        constraintLayout.background=ViewHelper.bgWhiteRadiusBottom10(this)
+        constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(this)
     }
 
     private fun initGps() {

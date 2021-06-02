@@ -27,7 +27,7 @@ class SuccessBuyEpinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_again.background= ViewHelper.bgWhiteRadius40StrokeSecondary1(requireContext())
+        btn_again.background= ViewHelper.bgWhiteStrokeSecondary1Corners40(requireContext())
 
         arguments?.let {
             it.getSerializable("data")?.let { data ->

@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.scan_history.holder
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -113,7 +112,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.layoutShop.visibility = View.GONE
         }
 
-        binding.btnSearchNear.background=ViewHelper.bgAccentCyanRadiusTop8(binding.btnSearchNear.context)
+        binding.btnSearchNear.background=ViewHelper.bgAccentCyanCornersTop8(binding.btnSearchNear.context)
 
         if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE

@@ -22,7 +22,7 @@ class SharePostActivity : BaseActivityMVVM() {
         viewmodel.getDataIntent(intent)
 
         linearLayout.background=ViewHelper.bgTransparentStrokeLineColor1(this)
-        layoutBottom.background=ViewHelper.bgWhiteRadiusTop25(this)
+        layoutBottom.background=ViewHelper.bgWhiteCornersTop25(this)
 
         initView()
         listenerGetData()

@@ -6,11 +6,9 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import kotlinx.android.synthetic.main.fragment_create_qr_code_success.*
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -38,9 +36,9 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
         presenter.getData(intent)
         initListener()
 
-        imgCreate.background=ViewHelper.bgWhiteCirclePressRadius48(this)
-        imgSave.background=ViewHelper.bgWhiteCirclePressRadius48(this)
-        imgDownload.background=ViewHelper.bgWhiteCirclePressRadius48(this)
+        imgCreate.background=ViewHelper.btnWhiteCircle48dp(this)
+        imgSave.background=ViewHelper.btnWhiteCircle48dp(this)
+        imgDownload.background=ViewHelper.btnWhiteCircle48dp(this)
     }
 
     private fun initListener() {

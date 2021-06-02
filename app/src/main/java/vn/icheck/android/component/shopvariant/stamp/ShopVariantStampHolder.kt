@@ -53,7 +53,7 @@ class ShopVariantStampHolder(view: View) : BaseViewHolder<ICShopVariant>(view) {
         val rcvListService = itemView.rcvServiceShopVariant as RecyclerView
         val constraintLayout = itemView.constraintLayout as ConstraintLayout
 
-        constraintLayout.background=ViewHelper.bgWhiteRadiusBottom10(itemView.context)
+        constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(itemView.context)
 
         if (obj.shop?.is_online == true) {
             if (obj.is_active == true) {

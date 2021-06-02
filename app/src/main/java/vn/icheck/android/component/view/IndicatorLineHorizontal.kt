@@ -41,7 +41,7 @@ class IndicatorLineHorizontal : LinearLayout {
                 lm.marginEnd = DimensionUtil.convertDpToPixel(5f, context).toInt()
             }
             if (i == 0) {
-                v.background=ViewHelper.bgWhiteRadius14(v.context)
+                v.background=ViewHelper.bgWhiteCorners14(v.context)
             }
             v.layoutParams = lm
             addView(v)
@@ -63,7 +63,7 @@ class IndicatorLineHorizontal : LinearLayout {
             override fun onPageSelected(position: Int) {
                 if (position != current) {
                     getChildAt(current).setBackgroundResource(R.drawable.bg_indicator_not_select)
-                    getChildAt(position).background=ViewHelper.bgWhiteRadius14(context)
+                    getChildAt(position).background=ViewHelper.bgWhiteCorners14(context)
                     current = position
                 }
             }

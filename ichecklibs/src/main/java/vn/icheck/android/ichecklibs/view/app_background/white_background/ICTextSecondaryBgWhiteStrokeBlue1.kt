@@ -2,8 +2,6 @@ package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.LinearLayout
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary
 
@@ -25,6 +23,6 @@ class ICTextSecondaryBgWhiteStrokeBlue1: TextSecondary {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius8StrokeBlue1(context)
+        background=ViewHelper.bgWhiteStrokeBlue1Corners8(context)
     }
 }

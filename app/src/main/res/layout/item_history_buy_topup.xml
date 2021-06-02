@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_5"
     android:layout_marginBottom="@dimen/size_5"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -189,4 +188,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>

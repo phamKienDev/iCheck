@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@+id/containerShop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
@@ -45,12 +43,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_12"
             android:background="@color/colorBackgroundGray" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
@@ -87,6 +84,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_12"
             android:background="@color/colorBackgroundGray" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>

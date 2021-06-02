@@ -23,7 +23,6 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.net.URL
 
 class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<Any>(callback) {
 
@@ -94,7 +93,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
 
     inner class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder<String>(R.layout.item_header_gift_campaign, parent) {
         override fun bind(obj: String) {
-            itemView.textView.background=ViewHelper.bgWhiteRadiusTop20(itemView.context)
+            itemView.textView.background=ViewHelper.bgWhiteCornersTop20(itemView.context)
             WidgetUtils.loadImageUrl(itemView.imgBanner, obj, R.drawable.bg_error_campaign)
         }
     }

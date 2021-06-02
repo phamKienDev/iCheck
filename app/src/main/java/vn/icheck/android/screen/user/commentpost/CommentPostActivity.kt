@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Resources
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +15,6 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -146,8 +144,8 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
 
-        layoutInputContent.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
-        tvActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        layoutInputContent.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
 
         setupBottomSheet()
         setupRecyclerView()

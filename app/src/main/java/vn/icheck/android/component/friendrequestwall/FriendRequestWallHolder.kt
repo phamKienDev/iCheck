@@ -80,7 +80,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, 0, 0, 10.toPx())
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also { layoutTitle ->

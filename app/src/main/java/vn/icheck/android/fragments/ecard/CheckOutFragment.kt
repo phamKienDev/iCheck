@@ -18,7 +18,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICBuyEpin
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -45,7 +44,7 @@ class CheckOutFragment : Fragment() {
         }
         tv_icoin.text = String.format("Số dư hiện tại: %,d iCoin", SessionManager.getCoin())
 
-        img_icoin.background = ViewHelper.bgWhiteRadius4StrokeSecondary1(img_icoin.context)
+        img_icoin.background = ViewHelper.bgWhiteStrokeSecondary1Corners4(img_icoin.context)
 
         txtTitle.setText(R.string.thanh_toan)
         imgBack.setOnClickListener {

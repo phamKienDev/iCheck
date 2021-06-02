@@ -59,6 +59,7 @@ class MallFragment : BaseFragment<MallPresenter>(),
         get() = MallPresenter(this)
 
     override fun onInitView() {
+        txtCategory.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
         layoutContainer.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
     }
 

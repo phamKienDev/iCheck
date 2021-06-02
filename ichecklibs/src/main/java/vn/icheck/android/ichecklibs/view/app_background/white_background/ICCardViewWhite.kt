@@ -1,12 +1,11 @@
-package vn.icheck.android.ichecklibs.view.line_color
+package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
 import android.util.AttributeSet
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.EdittextSecondDisableHint
+import androidx.cardview.widget.CardView
+import vn.icheck.android.ichecklibs.Constant
 
-class EdittextSecondDisableHintBgAppRadius4 : EdittextSecondDisableHint {
-
+class ICCardViewWhite : CardView {
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -24,6 +23,6 @@ class EdittextSecondDisableHintBgAppRadius4 : EdittextSecondDisableHint {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteStrokeLineColor1Corners4(context)
+        setBackgroundColor(Constant.getAppBackgroundWhiteColor(context))
     }
 }

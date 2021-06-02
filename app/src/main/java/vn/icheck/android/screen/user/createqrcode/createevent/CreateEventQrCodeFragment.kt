@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.createqrcode.createevent
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_event_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.util.KeyboardUtils
@@ -76,60 +75,60 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
 
     override fun onInvalidEventNameSuccess() {
         tvMessageEvent.visibility = View.GONE
-        edtEvent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtEvent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
     }
 
     override fun onInvalidEventName(error: String) {
         tvMessageEvent.visibility = View.VISIBLE
         tvMessageEvent.text = error
-        edtEvent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtEvent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtEvent.requestFocus()
     }
 
     override fun onInvalidEventAddressSuccess() {
         tvMessageAddress.visibility = View.GONE
-        edtAddress.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtAddress.context)
+        edtAddress.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtAddress.context)
     }
 
     override fun onInvalidEventAddress(error: String) {
         tvMessageAddress.visibility = View.VISIBLE
         tvMessageAddress.text = error
-        edtAddress.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtAddress.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtAddress.requestFocus()
     }
 
     override fun onInvalidEventLinkSuccess() {
         tvMessageEventLink.visibility = View.GONE
-        edtEventLink.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEventLink.context)
+        edtEventLink.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEventLink.context)
     }
 
     override fun onInvalidEventLink(error: String) {
         tvMessageEventLink.visibility = View.VISIBLE
         tvMessageEventLink.text = error
-        edtEventLink.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtEventLink.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtEventLink.requestFocus()
     }
 
     override fun onInvalidStartDateSuccess() {
         tvMessageStartDate.visibility = View.GONE
-        edtStartDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtStartDate.context)
+        edtStartDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtStartDate.context)
     }
 
     override fun onInvalidStartDate(error: String) {
         tvMessageStartDate.visibility = View.VISIBLE
         tvMessageStartDate.text = error
-        edtStartDate.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtStartDate.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
     }
 
     override fun onInvalidEndDateSuccess() {
         tvMessageEndDate.visibility = View.GONE
-        edtEndDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEndDate.context)
+        edtEndDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEndDate.context)
     }
 
     override fun onInvalidEndDate(error: String) {
         tvMessageEndDate.visibility = View.VISIBLE
         tvMessageEndDate.text = error
-        edtEndDate.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtEndDate.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
     }
 
     override fun onValidSuccess(text: String) {
@@ -139,11 +138,11 @@ class CreateEventQrCodeFragment : BaseCreateQrCodeFragment<CreateEventQrCodePres
         tvMessageStartDate.visibility = View.GONE
         tvMessageEndDate.visibility = View.GONE
 
-        edtEvent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
-        edtAddress.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
-        edtEventLink.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
-        edtStartDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
-        edtEndDate.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtEvent.context)
+        edtEvent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
+        edtAddress.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
+        edtEventLink.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
+        edtStartDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
+        edtEndDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEvent.context)
 
         KeyboardUtils.hideSoftInput(edtEvent)
 

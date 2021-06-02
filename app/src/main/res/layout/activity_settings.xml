@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.setting.SettingsActivity"
     tools:viewBindingIgnore="true">
-
     <include layout="@layout/toolbar_blue_v2" />
 
     <View

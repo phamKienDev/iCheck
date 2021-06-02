@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.wall.updatephone
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -43,7 +42,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
     }
 
     private fun initViews() {
-        binding.constraintLayout.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
+        binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
 
         val text = String.format("<p>Mã xác nhận OTP đã được gửi đến\n" +
                 "số điện thoại <span style='color:${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}'>%s</span></p>", args.phone)

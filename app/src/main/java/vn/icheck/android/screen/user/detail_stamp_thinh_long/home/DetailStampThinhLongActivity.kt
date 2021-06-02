@@ -4,12 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -77,8 +75,8 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
         INSTANCE = this
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        btnRequestPermission.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        btnEnableLocation.background=ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
+        btnRequestPermission.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        btnEnableLocation.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
 
         setupRecyclerView()
         setupSwipeLayout()

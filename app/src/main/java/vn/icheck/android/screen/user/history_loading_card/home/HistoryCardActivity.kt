@@ -22,6 +22,8 @@ class HistoryCardActivity : BaseActivity<HistoryCardPresenter>(), IHistoryCardVi
     override fun onInitView() {
         TrackingAllHelper.trackTopupHistoryViewed()
         txtTitle.text = getString(R.string.lich_su_nap_the_va_dich_vu)
+        tabLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
+
         initTabLayout(intent?.getIntExtra(Constant.DATA_1, -1))
         listener()
     }

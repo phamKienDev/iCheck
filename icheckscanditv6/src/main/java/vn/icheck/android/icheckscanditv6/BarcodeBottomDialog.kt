@@ -1,7 +1,6 @@
 package vn.icheck.android.icheckscanditv6
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.icheckscanditv6.databinding.IckBarcodeBottomBinding
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
@@ -67,6 +67,7 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.background=ViewHelper.bgWhiteCornersTop16(requireContext())
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }

@@ -1,21 +1,18 @@
 package vn.icheck.android.chat.icheckchat.screen
 
-import android.os.Bundle
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.fragment.app.Fragment
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import kotlinx.android.synthetic.main.fragment_chat_social.*
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.recyclerview.adapter.ViewPagerAdapterChat
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
-import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 
 class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
@@ -101,6 +98,13 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
         } else {
             unCheckAll()
             view.isChecked = true
+            if(view.id==binding.tvMessage.id){
+                lineMessage.background=ViewHelper.bgPrimaryCornersTop4(requireContext())
+                lineContact.setBackgroundColor(Color.TRANSPARENT)
+            }else if(view.id == binding.tvContact.id){
+                lineContact.background=ViewHelper.bgPrimaryCornersTop4(requireContext())
+                lineMessage.setBackgroundColor(Color.TRANSPARENT)
+            }
             false
         }
     }

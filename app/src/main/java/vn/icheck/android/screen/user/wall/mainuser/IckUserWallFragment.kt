@@ -311,7 +311,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 if (pastVisibleItems > 1) {
                     if (!showToolbar) {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
-                        binding.toolbar.background = ColorDrawable(Color.WHITE)
+                        binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
                         binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_blue_24px_new)
                         if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
                             binding.notify.setImageResource(R.drawable.ic_home_blue_v2_24px)

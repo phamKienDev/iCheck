@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -82,7 +81,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
     private fun setupView() {
         binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
-        binding.tvAddress.background = ViewHelper.bgAccentCyanRadius4(this)
+        binding.tvAddress.background = ViewHelper.bgAccentCyanCorners4(this)
         ViewHelper.bgPrimaryCorners4(this).apply {
             binding.btnShare.background = this
             binding.btnAcceptDaLay.background = this

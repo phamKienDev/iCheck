@@ -14,8 +14,8 @@ abstract class PickCameraOptionDialog(val context: Context) {
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
 
-        dialog.txtDocument.background= ViewHelper.bgWhitePressRadiusBottom8(dialog.context)
-        dialog.txtCancel.background= ViewHelper.bgWhitePressRadius8(dialog.context)
+        dialog.txtDocument.background= ViewHelper.btnWhiteCornersBottom8(dialog.context)
+        dialog.txtCancel.background= ViewHelper.btnWhiteCorners8(dialog.context)
 
         dialog.txtCamera.setOnClickListener {
             dialog.dismiss()

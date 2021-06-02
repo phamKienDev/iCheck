@@ -36,7 +36,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_shop_search_result_holder, parent, false)) {
 
     fun bind(obj: ICShopQuery) {
-        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
 
 
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar)

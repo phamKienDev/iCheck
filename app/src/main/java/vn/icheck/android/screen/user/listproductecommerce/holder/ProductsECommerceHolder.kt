@@ -20,7 +20,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
     override fun bind(obj: ICProductECommerce) {
         WidgetUtils.loadImageUrlRounded(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
 
-        binding.root.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5Pressed(binding.root.context)
+        binding.root.background=ViewHelper.btnWhiteStrokeLineColor0_5Corners4(binding.root.context)
 
         binding.tvName.text = obj.name
 

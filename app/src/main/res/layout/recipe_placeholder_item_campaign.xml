@@ -31,13 +31,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
                 android:id="@id/linearLayout"
                 android:layout_width="@dimen/size_109"
                 android:layout_height="@dimen/size_25"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/imgBanner"
                 app:layout_constraintTop_toTopOf="@+id/imgBanner">
 
@@ -45,7 +44,7 @@
                     android:layout_width="@dimen/size_80"
                     android:layout_height="@dimen/size_10"
                     android:background="@color/colorLineView" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

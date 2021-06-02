@@ -2,9 +2,7 @@ package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.EditText
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
 
 class TextBgWhiteRadius40:androidx.appcompat.widget.AppCompatTextView {
     constructor(context: Context) : super(context) {
@@ -24,6 +22,6 @@ class TextBgWhiteRadius40:androidx.appcompat.widget.AppCompatTextView {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius40StrokeLineColor1(context)
+        background=ViewHelper.bgWhiteStrokeLineColor1Corners40(context)
     }
 }

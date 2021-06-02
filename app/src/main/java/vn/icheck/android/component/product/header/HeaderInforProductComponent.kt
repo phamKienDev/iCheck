@@ -3,7 +3,6 @@ package vn.icheck.android.component.product.header
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.header_infor_product_detail.view.*
 import org.greenrobot.eventbus.EventBus
@@ -22,7 +21,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
 
     fun bind(productHeaderModel: ProductHeaderModelV2) {
         itemView.img_fav.apply {
-            background=ViewHelper.bgTransparentRadius4StrokeLineColor0_5(itemView.img_fav.context)
+            background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
             if (productHeaderModel.icBarcodeProduct.isBookMark == true) {
                 setImageResource(R.drawable.ic_like_on_24dp)
             } else {

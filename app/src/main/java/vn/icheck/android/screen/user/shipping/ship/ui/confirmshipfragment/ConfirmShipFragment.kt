@@ -48,7 +48,7 @@ class ConfirmShipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvReport.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(requireContext())
+        binding.tvReport.background=ViewHelper.btnWhiteStrokePrimary1Corners4(requireContext())
 
         if (viewModel.arrayCart.isEmpty()) {
             binding.btnConfirm simpleText "Thanh toán"
@@ -303,7 +303,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.imgStatus.setImageResource(R.drawable.img_shipping)
                         binding.btnConfirm simpleText "Hủy đơn"
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
-                        binding.btnConfirm.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(binding.btnConfirm.context)
+                        binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
                         binding.btnConfirm.alpha = 0.7f
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener(null)
@@ -317,7 +317,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.imgStatus.setImageResource(R.drawable.img_shipped)
                         binding.btnConfirm simpleText "Đánh giá đơn hàng"
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
-                        binding.btnConfirm.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(binding.btnConfirm.context)
+                        binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
                         binding.textView91 simpleText "Thời gian nhận hàng"
                         binding.tvShipTime simpleText detailOrderResponse.completedAt?.getHourMinutesTime()
                     }

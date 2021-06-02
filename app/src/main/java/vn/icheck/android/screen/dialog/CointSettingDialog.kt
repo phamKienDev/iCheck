@@ -1,8 +1,6 @@
 package vn.icheck.android.screen.dialog
 
 import android.content.Context
-import android.graphics.Color
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_setting_point.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
@@ -18,13 +16,13 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             setButton(true)
         }
 
-        dialog.txtSettingAgain.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+        dialog.txtSettingAgain.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
 
         dialog.txtBegin.text = begin
         dialog.txtEnd.text = end
 
-        dialog.txtBegin.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
-        dialog.txtEnd.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+        dialog.txtBegin.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        dialog.txtEnd.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
 
         when (type) {
             1 -> {
@@ -111,7 +109,7 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             dialog.txtSettingAgain.isEnabled = true
         } else {
             dialog.txtSettingAgain.setTextColor(Constant.getDisableTextColor(dialog.context))
-            dialog.txtSettingAgain.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(dialog.context)
+            dialog.txtSettingAgain.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
             dialog.txtSettingAgain.isEnabled = false
         }
     }

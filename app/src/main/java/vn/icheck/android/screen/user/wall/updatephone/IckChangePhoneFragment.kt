@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.wall.updatephone
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentChangePhoneBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
@@ -34,8 +32,8 @@ class IckChangePhoneFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.scrollView.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
-        binding.constraintLayout.background=ViewHelper.bgWhiteRadiusTop20(requireContext())
+        binding.scrollView.background=ViewHelper.bgWhiteCornersTop20(requireContext())
+        binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
 
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {

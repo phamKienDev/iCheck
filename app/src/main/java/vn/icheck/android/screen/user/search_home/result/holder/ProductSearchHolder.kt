@@ -35,7 +35,7 @@ class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.
                 itemView.tv_xem_them.beVisible()
             }
         }
-        itemView.rootView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
 
         val adapter = ItemProductSearchAdapter(list)
         itemView.rcv_product_search.adapter = adapter

@@ -23,14 +23,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.network.models.ICPost
@@ -64,7 +62,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                 it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
             }
             itemView.setPadding(0, 0, 0, SizeHelper.size16)
-            itemView.background=ViewHelper.bgWhiteRadius4StrokeLineColor0_5(itemView.context)
+            itemView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
         } else {
             (itemView as ConstraintLayout).layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(0, SizeHelper.size1, 0, 0)
@@ -100,7 +98,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         itemView.tvTime.text = TimeHelper.convertDateTimeSvToCurrentDay2(obj.createdAt)
 
         checkLikeReview(obj)
-        itemView.tvComment.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
+        itemView.tvComment.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         itemView.tvComment.text = if (obj.commentCount > 100) {
             "100+"
         } else {
@@ -253,7 +251,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun checkLikeReview(objReview: ICPost) {
-        itemView.tvLike.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(itemView.context)
+        itemView.tvLike.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(if (objReview.expressive != null) {
             R.drawable.ic_like_12px
         } else {

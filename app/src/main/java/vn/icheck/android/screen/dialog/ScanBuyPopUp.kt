@@ -20,7 +20,7 @@ abstract class ScanBuyPopUp(context: Context, private val isCancelable: Boolean)
     override fun onInitView() {
 
         findViewById<LinearLayout>(R.id.linearLayout)?.run {
-            background=ViewHelper.bgWhiteRadius10(context)
+            background=ViewHelper.bgWhiteCorners10(context)
         }
         findViewById<AppCompatTextView>(R.id.txtContent)?.run {
             text = Html.fromHtml(context.getString(R.string.hay_tu_ban_nhung_san_pham_tot_nhat))

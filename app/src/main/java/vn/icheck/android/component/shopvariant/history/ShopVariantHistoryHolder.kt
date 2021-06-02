@@ -51,7 +51,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         initListener(obj)
         initRemove(obj)
 
-        itemView.linearLayoutContainer.background=ViewHelper.bgTransparentRadius4StrokeLineColor0_5(itemView.context)
+        itemView.linearLayoutContainer.background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.context)
 
         itemView.imgDelete.visibility = View.INVISIBLE
         itemView.progressHistory.visibility = View.INVISIBLE
@@ -134,7 +134,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvTime.visibility = View.GONE
         }
 
-        itemView.layoutShop.background=ViewHelper.bgGrayRadiusBottom4StrokeLineColor05(itemView.context)
+        itemView.layoutShop.background=ViewHelper.bgGrayF5StrokeLineColor0_5CornersBottom4(itemView.context)
 
         if (obj.shop?.id == null || obj.shop?.id == 0L) {
             itemView.layoutShop.visibility = View.GONE

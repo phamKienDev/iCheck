@@ -61,7 +61,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
     @SuppressLint("SetTextI18n")
     fun bind(productRow: ICShopVariantV2) {
-        vg_shop_top.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor0_5(context)
+        vg_shop_top.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
         tv_shop_name.text = productRow.name
 
         if (productRow.distance != null) {

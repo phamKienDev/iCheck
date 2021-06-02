@@ -34,7 +34,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
     var balloon: Balloon? = null
     var pasteBalloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
-        itemGroupBinding.edtInfo.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(itemGroupBinding.edtInfo.context)
+        itemGroupBinding.edtInfo.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemGroupBinding.edtInfo.context)
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)

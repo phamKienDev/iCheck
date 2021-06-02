@@ -23,6 +23,6 @@ class LinearLayoutBgWhiteRadius4 : LinearLayout {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius4StrokeLineColor1(context)
+        background = ViewHelper.bgWhiteStrokeLineColor1Corners4(context)
     }
 }

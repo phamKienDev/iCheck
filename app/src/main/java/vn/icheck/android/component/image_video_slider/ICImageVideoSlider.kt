@@ -90,7 +90,7 @@ class ICImageVideoSlider(val view: View) : RecyclerView.ViewHolder(view) {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     try {
                         val newSelect = view.indicator.getChildAt(p1)
-                        newSelect.background=ViewHelper.bgWhiteRadius14(view.context)
+                        newSelect.background=ViewHelper.bgWhiteCorners14(view.context)
                         posImage = p1
                     } catch (e: Exception) {
                     }
@@ -159,7 +159,7 @@ class ICImageVideoSlider(val view: View) : RecyclerView.ViewHolder(view) {
                 lm.marginEnd = DimensionUtil.convertDpToPixel(12f, view.context).toInt()
             }
             if (i == 0) {
-                v.background=ViewHelper.bgWhiteRadius14(v.context)
+                v.background=ViewHelper.bgWhiteCorners14(v.context)
             }
             v.layoutParams = lm
             view.indicator.addView(v)

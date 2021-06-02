@@ -44,7 +44,7 @@ class BottomReviewsAdapter(val data: List<ProductReviewsBottomDialog.BottomChild
 
     class XmbHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(listener: () -> Unit) {
-            view.btn_xall.background=ViewHelper.bgWhitePressStroke1Radius36(view.context)
+            view.btn_xall.background=ViewHelper.btnWhiteStroke1Corners36(view.context)
             view.btn_xall.setOnClickListener {
                 listener()
                 DetailStampHoaPhatActivity.INSTANCE?.showAllReviews()

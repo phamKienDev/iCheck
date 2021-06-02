@@ -37,7 +37,7 @@ class SearchLocationAdapter(private val listener: ICreateLocationQrCodeView) : R
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(result: ICPoints.Predictions) {
-            itemView.rootView.background=ViewHelper.bgWhitePress(itemView.context)
+            itemView.rootView.background=ViewHelper.btnWhite(itemView.context)
             itemView.txtTitle.text = result.mainText
             itemView.txtContent.text = result.secondaryText
 

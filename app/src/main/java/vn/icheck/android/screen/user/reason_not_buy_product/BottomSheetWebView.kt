@@ -69,8 +69,8 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     fun showWithUrl(url: String) {
         mBottomSheetDialog.show()
 
-        view.background=ViewHelper.bgWhiteRadius14(context)
-        linearLayout.background=ViewHelper.bgAccentRedRadiusTop16(context)
+        view.background=ViewHelper.bgWhiteCorners14(context)
+        linearLayout.background=ViewHelper.bgAccentRedCornersTop16(context)
 
         webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")

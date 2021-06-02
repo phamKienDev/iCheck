@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_wifi_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
@@ -88,25 +87,25 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
 
     override fun onInValidNameSuccess() {
         tvMessageName.visibility = View.GONE
-        edtName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
+        edtName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
     }
 
     override fun onInValidName(error: String) {
         tvMessageName.visibility = View.VISIBLE
         tvMessageName.text = error
-        edtName.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtName.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtName.requestFocus()
     }
 
     override fun onInValidPasswordSuccess() {
         tvMessagePassword.visibility = View.GONE
-        edtPassword.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtPassword.context)
+        edtPassword.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPassword.context)
     }
 
     override fun onInValidPassword(error: String) {
         tvMessagePassword.visibility = View.VISIBLE
         tvMessagePassword.text = error
-        edtPassword.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtPassword.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtPassword.requestFocus()
     }
 
@@ -114,8 +113,8 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
         tvMessageName.visibility = View.GONE
         tvMessagePassword.visibility = View.GONE
 
-        edtName.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
-        edtPassword.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtName.context)
+        edtName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
+        edtPassword.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
 
         KeyboardUtils.hideSoftInput(edtName)
 

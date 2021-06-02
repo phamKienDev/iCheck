@@ -43,7 +43,6 @@ import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.util.beGone
@@ -57,7 +56,6 @@ import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.screen.url_gift_detail.UrlGiftDetailActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.JsonHelper
@@ -223,10 +221,10 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     }
 
     private fun setupView() {
-        btnRequestPermission.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        btnEnableLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius40StrokeSecondary1(this)
-        constraintLayoutDiemBan.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusBottom10(this)
-        layoutheaderBaoHanh.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadiusTop10(this)
+        btnRequestPermission.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        btnEnableLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        constraintLayoutDiemBan.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCornersBottom10(this)
+        layoutheaderBaoHanh.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCornersTop10(this)
     }
 
     // Loyalty Campaign

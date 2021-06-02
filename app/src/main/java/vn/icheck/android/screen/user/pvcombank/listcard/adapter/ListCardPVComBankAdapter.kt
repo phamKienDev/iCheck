@@ -126,7 +126,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICListCardPVBank) {
             listener(obj)
-            binding.tvUsed.background = ViewHelper.bgWhiteRadius4StrokeGreen1(binding.tvUsed.context)
+            binding.tvUsed.background = ViewHelper.bgWhiteStrokeGreen1Corners4(binding.tvUsed.context)
 
             if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
                 val repYear = obj.expDate!!.substring(0, 4)

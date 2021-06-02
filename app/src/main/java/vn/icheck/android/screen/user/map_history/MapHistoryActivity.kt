@@ -41,7 +41,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(MapHistoryViewModel::class.java)
 
-        view.background = ViewHelper.bgWhiteRadiusTop20(this)
+        view.background = ViewHelper.bgWhiteCornersTop20(this)
         initToolbar()
         initSwipeLayout()
         initListener()

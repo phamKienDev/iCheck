@@ -141,7 +141,7 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class SearchMoreHolder(parent: ViewGroup) : BaseViewHolder<ICSearchResult>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_more_holder, parent, false)) {
         override fun bind(obj: ICSearchResult) {
-            itemView.rootView.background=ViewHelper.bgWhiteRadius4(itemView.context)
+            itemView.rootView.background=ViewHelper.bgWhiteCorners4(itemView.context)
             if (obj.data != null) {
                 Handler().post{
                     itemView.beVisible()

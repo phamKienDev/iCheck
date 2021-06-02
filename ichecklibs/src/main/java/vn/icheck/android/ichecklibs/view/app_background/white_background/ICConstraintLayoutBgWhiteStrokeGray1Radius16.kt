@@ -2,7 +2,6 @@ package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import vn.icheck.android.ichecklibs.ViewHelper
 
@@ -24,6 +23,6 @@ class ICConstraintLayoutBgWhiteStrokeGray1Radius16 : ConstraintLayout {
     }
 
     private fun setup() {
-        background= ViewHelper.bgWhiteRadius16StrokeGray1(context)
+        background= ViewHelper.bgWhiteStrokeGray1Corners16(context)
     }
 }

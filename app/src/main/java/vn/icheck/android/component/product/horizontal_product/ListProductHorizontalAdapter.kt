@@ -139,7 +139,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
             (itemView as ViewGroup).run {
                 layoutParams = ViewHelper.createLayoutParams(SizeHelper.size150, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size1, 0)
 
-                itemView.setBackgroundColor(Color.WHITE)
+                itemView.setBackgroundColor(Constant.getAppBackgroundWhiteColor(itemView.context))
                 (getChildAt(0) as AppCompatImageView).run {
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
                     setImageResource(R.drawable.group_more_product)

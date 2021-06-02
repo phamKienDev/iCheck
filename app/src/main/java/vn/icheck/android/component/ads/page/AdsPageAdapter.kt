@@ -110,7 +110,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
@@ -211,7 +211,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 }
 
             }
-            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
@@ -304,7 +304,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
-            binding.btnAction.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(binding.btnAction.context)
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {

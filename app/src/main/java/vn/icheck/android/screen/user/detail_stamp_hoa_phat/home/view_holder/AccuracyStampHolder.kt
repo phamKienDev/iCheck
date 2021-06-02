@@ -72,7 +72,7 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                     }
                     //Guarantee
                     2 -> {
-                        itemView.layoutheaderAccuracy.background = ViewHelper.bgWhiteRadiusTop10(itemView.context)
+                        itemView.layoutheaderAccuracy.background = ViewHelper.bgWhiteCornersTop10(itemView.context)
                         itemView.tvSubName.setTextColor(Color.parseColor("#434343"))
                         itemView.tvSubName.text = obj.scan_message?.text
                         itemView.imgAccuracy.setImageResource(R.drawable.ic_verified_stamp_36dp)

@@ -23,6 +23,6 @@ class ICLinearLayoutBgWhiteRadiusTop10 : LinearLayout {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadiusTop10(context)
+        background=ViewHelper.bgWhiteCornersTop10(context)
     }
 }

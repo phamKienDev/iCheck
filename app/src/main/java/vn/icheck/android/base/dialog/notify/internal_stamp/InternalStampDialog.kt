@@ -21,7 +21,7 @@ abstract class InternalStampDialog(val context: Context, val suggestApp: Mutable
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
 
-        dialog?.txtCancel?.background= dialog?.context?.let { ViewHelper.bgWhitePressRadius8(it) }
+        dialog?.txtCancel?.background= dialog?.context?.let { ViewHelper.btnWhiteCorners8(it) }
         dialog?.rcvInternalStamp?.layoutManager = LinearLayoutManager(dialog?.context)
         dialog?.rcvInternalStamp?.adapter = adapter
         adapter.setListData(suggestApp,code)

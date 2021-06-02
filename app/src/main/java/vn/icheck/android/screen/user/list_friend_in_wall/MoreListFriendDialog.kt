@@ -20,7 +20,7 @@ abstract class MoreListFriendDialog(context: Context, val item: ICUserFollowWall
         }
 
         dialog.tvUnfriend.text = "Hủy kết bạn ${item.getUserName()}"
-        dialog.view.background = ViewHelper.bgWhiteRadius4(dialog.context)
+        dialog.view.background = ViewHelper.bgWhiteCorners4(dialog.context)
         dialog.show()
         listener()
     }

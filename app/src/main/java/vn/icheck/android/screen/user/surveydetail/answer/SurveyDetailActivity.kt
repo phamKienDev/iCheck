@@ -49,7 +49,7 @@ class SurveyDetailActivity : BaseActivity<SurveyDetailPresenter>(), ISurveyDetai
 
     private fun setupView() {
         btnSend.background = ViewHelper.btnPrimaryCorners4(this)
-        btnSkip.background= ViewHelper.bgWhitePressRadius4StrokeSecondary1(this)
+        btnSkip.background= ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
     }
 
     /**

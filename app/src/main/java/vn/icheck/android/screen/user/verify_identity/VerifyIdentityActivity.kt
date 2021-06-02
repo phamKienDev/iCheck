@@ -121,11 +121,11 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         txtTitle.text = getString(R.string.xac_thuc_danh_tinh)
         txtTitle.typeface = ViewHelper.createTypeface(this, R.font.barlow_semi_bold)
 
-        tvErrorVerify.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedRadius6(this)
+        tvErrorVerify.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedCorners6(this)
 
         viewModel.typeCard = tvSelectPassport.text.toString()
 
-        tvSelectPassport.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
+        tvSelectPassport.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
 
         WidgetUtils.setClickListener(this, imgBack, tvSelectPassport, imgCameraFront, imgCameraAfter, tvComplete, tvGuide)
     }

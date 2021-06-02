@@ -104,9 +104,9 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     val coinTop2 = getChildAt(9) as AppCompatTextView
                     val coinTop3 = getChildAt(19) as AppCompatTextView
 
-                    viewTop1.background=ViewHelper.bgWhiteRadiusTop6(viewTop1.context)
-                    viewTop2.background=ViewHelper.bgWhiteRadiusTopLeft6(viewTop1.context)
-                    viewTop3.background=ViewHelper.bgWhiteRadiusTopRight6(viewTop1.context)
+                    viewTop1.background=ViewHelper.bgWhiteCornersTop6(viewTop1.context)
+                    viewTop2.background=ViewHelper.bgWhiteCornersTopLeft6(viewTop1.context)
+                    viewTop3.background=ViewHelper.bgWhiteCornersTopRight6(viewTop1.context)
 
                     //Top 1
                     WidgetUtils.loadImageUrl(avatarTop1, obj[0].avatar, R.drawable.ic_user_svg)

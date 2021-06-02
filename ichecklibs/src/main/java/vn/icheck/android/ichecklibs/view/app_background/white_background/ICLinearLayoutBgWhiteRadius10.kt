@@ -1,12 +1,8 @@
 package vn.icheck.android.ichecklibs.view.app_background.white_background
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 
 class ICLinearLayoutBgWhiteRadius10 : LinearLayout {
@@ -27,6 +23,6 @@ class ICLinearLayoutBgWhiteRadius10 : LinearLayout {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhiteRadius10(context)
+        background=ViewHelper.bgWhiteCorners10(context)
     }
 }

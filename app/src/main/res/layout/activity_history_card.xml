@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/size_2"
         app:tabIndicator="@drawable/ic_tab_indicator_24"

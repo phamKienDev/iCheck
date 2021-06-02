@@ -35,8 +35,8 @@ class GiftOfCampaignActivity : BaseActivityGame(), IRecyclerViewCallback {
         initSwipeLayout()
         initListener()
 
-        layoutNoData.background=ViewHelper.bgWhiteRadiusTop20(this)
-        recyclerView.background=ViewHelper.bgWhiteRadiusTop20(this)
+        layoutNoData.background=ViewHelper.bgWhiteCornersTop20(this)
+        recyclerView.background=ViewHelper.bgWhiteCornersTop20(this)
     }
 
     private fun initToolbar(){

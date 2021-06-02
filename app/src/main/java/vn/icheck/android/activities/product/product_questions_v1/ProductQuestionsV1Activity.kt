@@ -2,13 +2,11 @@ package vn.icheck.android.activities.product.product_questions_v1
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Color
 import android.os.Handler
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_product_questions_v1.*
 import kotlinx.android.synthetic.main.item_base_send_message_product.*
@@ -68,8 +66,8 @@ class ProductQuestionsV1Activity : BaseActivity<ProductQuestionsPresenter>(), IP
         container_comment.visibility = View.VISIBLE
         tv_answer_actor.visibility = View.GONE
 
-        linearLayoutActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
-        tv_answer_actor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        linearLayoutActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
 
         WidgetUtils.setClickListener(this, img_send, img_choose_image, tv_answer_actor)
     }

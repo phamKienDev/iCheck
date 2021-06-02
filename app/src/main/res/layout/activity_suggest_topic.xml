@@ -39,11 +39,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_bg"
         tools:text="@string/chon_it_nhat_3_chu_de" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
         android:id="@+id/rcv_suggest_topic"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
         android:paddingLeft="@dimen/size_10"
         android:paddingTop="@dimen/size_15"
         android:paddingRight="@dimen/size_10"
@@ -59,11 +58,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout7" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/size_12"
         android:paddingTop="@dimen/size_10"
@@ -101,5 +99,5 @@
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
 </androidx.constraintlayout.widget.ConstraintLayout>

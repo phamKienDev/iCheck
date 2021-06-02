@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.view.MotionEvent
 import android.view.View
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.edtContent
@@ -94,7 +93,7 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(requireContext())
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
         KeyboardUtils.hideSoftInput(edtContent)
 
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
@@ -106,7 +105,7 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
         super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 

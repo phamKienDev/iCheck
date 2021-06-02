@@ -48,7 +48,7 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
         WidgetUtils.setClickListener(this, btnActionOne, btnActionTwo)
         presenter.getID(intent)
 
-        btnActionTwo.background=ViewHelper.bgWhitePressStroke1Radius36(this)
+        btnActionTwo.background=ViewHelper.btnWhiteStroke1Corners36(this)
     }
 
     private fun setupToolbar() {

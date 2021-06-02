@@ -63,7 +63,7 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         initRecycleView()
         listener()
 
-        constraintLayout.background=ViewHelper.bgWhiteRadiusTop25(this)
+        constraintLayout.background=ViewHelper.bgWhiteCornersTop25(this)
 
         val campaign = intent?.getSerializableExtra(Constant.DATA_1)
         if (campaign != null) {
@@ -175,7 +175,7 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
             onBackPressed()
         }
 
-        tvAddMoreTurn.background=ViewHelper.bgAccentCyanRadius4(this)
+        tvAddMoreTurn.background=ViewHelper.bgAccentCyanCorners4(this)
 
         tvAddMoreTurn.setOnClickListener {
             viewModel.idCampaign?.let { id ->

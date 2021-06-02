@@ -50,7 +50,7 @@ class OrderHistoryActivity : BaseActivityMVVM() {
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setBackgroundColor(Color.WHITE)
+        layoutToolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
         txtTitle.setText(R.string.quan_ly_don_hang)
 
         imgBack.setOnClickListener {
@@ -65,7 +65,7 @@ class OrderHistoryActivity : BaseActivityMVVM() {
         adapter.setData(list)
         viewPager.adapter = adapter
 
-        tabLayout.setBackgroundColor(Color.WHITE)
+        tabLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
         tabLayout.setupWithViewPager(viewPager)
     }
 

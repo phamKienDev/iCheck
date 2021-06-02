@@ -24,6 +24,6 @@ class ICTextPrimaryBgWhitePressStrokeBlueRadius4 : TextPrimary {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhitePressRadius4StrokePrimary1(context)
+        background = ViewHelper.btnWhiteStrokePrimary1Corners4(context)
     }
 }

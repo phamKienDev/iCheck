@@ -111,6 +111,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         }
 
         listener()
+        setupView()
         presenter.getDataByIntent(intent)
     }
 
@@ -156,6 +157,10 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         }
 
         searchCustomer()
+    }
+
+    private fun setupView() {
+        root.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
     }
 
     private fun getBody(): HashMap<String, Any>? {

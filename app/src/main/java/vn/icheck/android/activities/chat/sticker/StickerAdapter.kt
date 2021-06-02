@@ -12,7 +12,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.network.feature.social.SocialRepository
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.util.ui.GlideUtil
@@ -68,7 +67,7 @@ class StickerAdapter(var listSticker: ArrayList<StickerView>, var size: Int) : R
         fun bind(stickerView: StickerView) {
             val rcv = getRcv(R.id.rcv_stickers)
             GlideUtil.loading(stickerView.image, getImg(R.id.img_sticker_pack))
-            getVg(R.id.root).background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteRadius12(getVg(R.id.root).context)
+            getVg(R.id.root).background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCorners12(getVg(R.id.root).context)
             getTv(R.id.tv_pack_name).text = stickerView.name
             getTv(R.id.tv_total).text = String.format("%d nhãn dán", stickerView.total)
             val button = view.findViewById<TextView>(R.id.btn_delete)

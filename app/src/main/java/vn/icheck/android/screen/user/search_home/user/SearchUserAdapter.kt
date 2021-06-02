@@ -59,7 +59,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         override fun bind(obj: ICSearchUser) {
             itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
-            itemView.tvMessage.background=ViewHelper.bgWhitePressRadius4StrokePrimary1(itemView.context)
+            itemView.tvMessage.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
             itemView.tvTitle.apply {
                 text = obj.getName

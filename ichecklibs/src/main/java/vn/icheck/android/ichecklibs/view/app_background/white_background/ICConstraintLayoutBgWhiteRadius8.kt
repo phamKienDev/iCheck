@@ -23,6 +23,6 @@ class ICConstraintLayoutBgWhiteRadius8 : ConstraintLayout {
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteRadius8(context)
+        background = ViewHelper.bgWhiteCorners8(context)
     }
 }

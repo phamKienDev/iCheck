@@ -2,12 +2,9 @@ package vn.icheck.android.screen.dialog
 
 import android.Manifest
 import android.content.Context
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.dialog_ask_permission.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 
@@ -103,7 +100,7 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
                 button = R.string.ask_permission_call_button
             }
         }
-        constraintLayout.background=ViewHelper.bgWhiteRadius10(constraintLayout.context)
+        constraintLayout.background=ViewHelper.bgWhiteCorners10(constraintLayout.context)
         imgIcon.setImageResource(icon)
         tvTitle.setText(title)
         tvMessage.setText(message)

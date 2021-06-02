@@ -60,7 +60,7 @@
                     android:layout_width="@dimen/size_2"
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/size_18"
-                    android:background="@color/white"
+                    android:background="@color/view_white"
                     app:layout_constraintBottom_toBottomOf="@+id/tvKmShopVariant"
                     app:layout_constraintEnd_toStartOf="@+id/tvRatingShopVariant"
                     app:layout_constraintStart_toEndOf="@+id/tvKmShopVariant"

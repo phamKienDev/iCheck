@@ -35,7 +35,7 @@ class ReportPostDialog(val listData: MutableList<ICReportForm>) : BaseBottomShee
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        edtContent.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentRadius4StrokeLineColor1(requireContext())
+        edtContent.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(requireContext())
         setupListener()
     }
 

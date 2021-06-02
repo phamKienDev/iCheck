@@ -13,6 +13,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICTheme
 import vn.icheck.android.screen.user.home_page.holder.secondfunction.HomeSecondaryFunctionAdapter
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
@@ -64,7 +65,7 @@ class UtilitiesAdapter(callbank: IRecyclerViewCallback) : RecyclerViewAdapter<IC
         return LinearLayout(context).also {
             it.layoutParams = ViewHelper.createLayoutParams()
             it.orientation = LinearLayout.VERTICAL
-            it.setBackgroundColor(Color.WHITE)
+            it.setBackgroundColor(Constant.getAppBackgroundWhiteColor(it.context))
 
             it.addView(View(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)

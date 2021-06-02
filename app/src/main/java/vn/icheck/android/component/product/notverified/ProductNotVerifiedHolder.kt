@@ -95,7 +95,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                 layoutParent.addView(LinearLayout(context).also { layoutBottom ->
                     layoutBottom.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size40)
                     layoutBottom.orientation = LinearLayout.HORIZONTAL
-                    layoutBottom.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                    layoutBottom.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutBottom.context))
                     layoutBottom.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
 
                     val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)

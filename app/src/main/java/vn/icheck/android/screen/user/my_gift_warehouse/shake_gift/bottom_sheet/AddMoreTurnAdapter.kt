@@ -72,7 +72,7 @@ class AddMoreTurnAdapter(val context: Context) : RecyclerView.Adapter<RecyclerVi
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: String) {
-            itemView.appCompatTextView43.background = ViewHelper.bgAccentCyanRadius4(itemView.context)
+            itemView.appCompatTextView43.background = ViewHelper.bgAccentCyanCorners4(itemView.context)
         }
     }
 

@@ -83,7 +83,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
     private fun initView() {
         ListShakeGridBoxActivity.numberGiftUser--
 
-        btnMyGift.background=ViewHelper.bgWhiteRadius4(this)
+        btnMyGift.background=ViewHelper.bgWhiteCorners4(this)
     }
 
     private fun setupStatusBar() {

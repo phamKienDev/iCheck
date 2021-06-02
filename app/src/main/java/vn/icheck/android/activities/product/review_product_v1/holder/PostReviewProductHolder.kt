@@ -22,7 +22,7 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
     val imgAdapter = PostImageCriteriaAdapter(listener)
 
     override fun bind(obj: ICCriteria) {
-        itemView.edt_comment_review.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(itemView.context)
+        itemView.edt_comment_review.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemView.context)
         val listCriteriaChild = mutableListOf<CriteriaChild>()
         for (item in obj.productCriteriaSet!!) {
             listCriteriaChild.add(CriteriaChild(

@@ -23,6 +23,6 @@ class ICTextViewBgWhiteUnpressGrayPress : AppCompatTextView {
     }
 
     private fun setup() {
-        background=ViewHelper.bgWhitePress(context)
+        background=ViewHelper.btnWhite(context)
     }
 }

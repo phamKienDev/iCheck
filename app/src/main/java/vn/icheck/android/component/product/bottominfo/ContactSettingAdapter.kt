@@ -39,7 +39,7 @@ class ContactSettingAdapter(val listener: ProductDetailListener) : RecyclerView.
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICClientSetting) {
-            itemView.tvName.background=ViewHelper.bgWhiteRadiusLeft20(itemView.context)
+            itemView.tvName.background=ViewHelper.bgWhiteCornersLeft20(itemView.context)
             when(item.key){
                 "product-detail.dang-ky-ma-vach" -> {
                     itemView.tvName.text = itemView.context.getString(R.string.dang_ky_ma_so_ma_vach)

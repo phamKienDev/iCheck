@@ -41,7 +41,7 @@ class GiftHistoryV2Activity : BaseActivityGame(), IRecyclerViewCallback {
             }
         }
 
-        layoutNoData.background=ViewHelper.bgWhiteRadiusTop20(this)
+        layoutNoData.background=ViewHelper.bgWhiteCornersTop20(this)
     }
 
     @SuppressLint("SetTextI18n")

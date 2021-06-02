@@ -3,8 +3,6 @@ package vn.icheck.android.ichecklibs.view.app_background.white_background
 import android.content.Context
 import android.util.AttributeSet
 import android.webkit.WebView
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.widget.NestedScrollView
 import vn.icheck.android.ichecklibs.Constant
 
 class ICWebViewWhite : WebView {

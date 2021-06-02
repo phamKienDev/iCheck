@@ -23,6 +23,6 @@ class ViewBgTransparentRadius10Stroke1 : View {
     }
 
     private fun setup() {
-        background=ViewHelper.bgTransparentRadius10StrokeLineColor1(context)
+        background=ViewHelper.bgTransparentStrokeLineColor1Corners10(context)
     }
 }

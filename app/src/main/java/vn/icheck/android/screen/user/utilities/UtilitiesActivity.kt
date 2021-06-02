@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class UtilitiesActivity : AppCompatActivity(), IRecyclerViewCallback {
@@ -29,7 +30,7 @@ class UtilitiesActivity : AppCompatActivity(), IRecyclerViewCallback {
     }
 
     private fun initView() {
-        toolbar.setBackgroundColor(Color.WHITE)
+        toolbar.setBackgroundColor(Constant.getAppBackgroundWhiteColor(this))
         imgBack.setOnClickListener {
             onBackPressed()
         }

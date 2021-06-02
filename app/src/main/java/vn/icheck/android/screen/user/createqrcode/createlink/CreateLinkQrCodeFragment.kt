@@ -3,14 +3,11 @@ package vn.icheck.android.screen.user.createqrcode.createlink
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.fragment_create_link_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.edtContent
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.imgBack
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.tvMessage
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.txtTitle
-import kotlinx.android.synthetic.main.fragment_create_text_qr_code.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -62,7 +59,7 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ViewHelper.bgWhiteRadius4StrokeLineColor0_5(edtContent.context)
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtContent.context)
         KeyboardUtils.hideSoftInput(edtContent)
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
         intent.putExtra(Constant.DATA_1,text)
@@ -73,7 +70,7 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
         super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ViewHelper.bgTransparentRadius4StrokeAccentRed05(requireContext())
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 

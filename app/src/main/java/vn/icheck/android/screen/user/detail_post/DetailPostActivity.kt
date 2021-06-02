@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.detail_post
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,12 +10,8 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -155,8 +150,8 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     private fun initView() {
-        containerEnter.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(this)
-        tvActor.background=ViewHelper.bgTransparentRadius10StrokeLineColor1(this)
+        containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

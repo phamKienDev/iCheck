@@ -19,7 +19,7 @@ class ReportUserAdapter(val listData: List<ReportUserViewModel>, val onUpdate:(I
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as TickHolder)
-        holder.itemTickReportBinding.edtReport.background=ViewHelper.bgTransparentRadius4StrokeLineColor1(holder.itemTickReportBinding.edtReport.context)
+        holder.itemTickReportBinding.edtReport.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(holder.itemTickReportBinding.edtReport.context)
         holder.itemTickReportBinding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 holder.itemTickReportBinding.checkBox.setTextColor(Constant.getNormalTextColor(holder.itemView.context))
