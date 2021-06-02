@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
@@ -180,7 +181,9 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.root.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
-                ICPageInfoDialog(activity).show(obj)
+                if (activity is FragmentActivity) {
+                    ICPageInfoDialog.show(activity.supportFragmentManager, obj)
+                }
             }
         }
     }

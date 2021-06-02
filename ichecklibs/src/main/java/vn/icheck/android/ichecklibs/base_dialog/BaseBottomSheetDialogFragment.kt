@@ -9,8 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.ichecklibs.R
 
-
-open class BaseBottomSheetDialogFragment: BottomSheetDialogFragment() {
+open class BaseBottomSheetDialogFragment(val state: Int = BottomSheetBehavior.STATE_COLLAPSED): BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
             BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme).also { dialog ->
@@ -18,7 +17,7 @@ open class BaseBottomSheetDialogFragment: BottomSheetDialogFragment() {
                 dialog.setOnShowListener {
                     val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
                     val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    bottomSheetBehavior.state = state
                 }
             }
 }
