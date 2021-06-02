@@ -49,12 +49,12 @@ import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.HistoryGuaranteeV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.adapter.BannerV6Adapter
-import vn.icheck.android.screen.user.detail_stamp_v6.home.adapter.ConfigErrorV6Adapter
 import vn.icheck.android.screen.user.detail_stamp_v6.home.presenter.DetailStampV6Presenter
 import vn.icheck.android.screen.user.detail_stamp_v6.home.view.IDetailStampV6View
 import vn.icheck.android.screen.user.detail_stamp_v6.more_business_v6.MoreBusinessV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.update_information_guarantee_v6.UpdateInformationStampV6Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.ICStampContactAdapter
 import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
@@ -101,7 +101,7 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
     private var qrm: String? = null
 
     private var bannerAdapter: BannerV6Adapter? = null
-    private lateinit var adapterConfigError: ConfigErrorV6Adapter
+    private lateinit var adapterConfigError: ICStampContactAdapter
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onInitView() {
@@ -243,7 +243,7 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
     }
 
     private fun initAdapterConfigError() {
-        adapterConfigError = ConfigErrorV6Adapter(this)
+        adapterConfigError = ICStampContactAdapter()
         rcvConfigError.layoutManager = LinearLayoutManager(this)
         rcvConfigError.adapter = adapterConfigError
     }
@@ -662,7 +662,7 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
         scrollViewError.visibility = View.VISIBLE
         if (!obj.data?.contacts.isNullOrEmpty()) {
             initAdapterConfigError()
-            adapterConfigError.setListData(obj.data?.contacts)
+            adapterConfigError.setListData(obj.data!!.contacts!!)
         }
     }
 

@@ -15,7 +15,7 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -99,7 +99,7 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
     }
 
     override fun onSaveQrCodeSuccess() {
-        showSimpleSuccessToast("Tải xuống thành công")
+        showShortSuccessToast("Tải xuống thành công")
     }
 
     override fun onShareQrCode(contentUri: Uri) {

@@ -58,7 +58,7 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     }
 
     private fun setupWebView() {
-        webView.onScrollChangedCallback = object : ObservableWebView.OnScrollChangeListener {
+        webViewUrl.onScrollChangedCallback = object : ObservableWebView.OnScrollChangeListener {
             override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
                 mCurrentWebViewScrollY = t
             }
@@ -69,26 +69,23 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     fun showWithUrl(url: String) {
         mBottomSheetDialog.show()
 
-        view.background=ViewHelper.bgWhiteCorners14(context)
-        linearLayout.background=ViewHelper.bgAccentRedCornersTop16(context)
-
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
-        webView.loadUrl(url)
+        webViewUrl.loadUrl(url)
 
         var loadingFinished = true
         var redirect = false
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (!loadingFinished) {
                     redirect = true;

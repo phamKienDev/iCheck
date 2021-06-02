@@ -52,6 +52,7 @@ import vn.icheck.android.ichecklibs.camera.utils.AutoFitSurfaceView
 import vn.icheck.android.ichecklibs.camera.utils.OrientationLiveData
 import vn.icheck.android.ichecklibs.camera.utils.computeExifOrientation
 import vn.icheck.android.ichecklibs.camera.utils.getPreviewOutputSize
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showSimpleErrorToast
 import java.io.Closeable
 import java.io.File
@@ -323,7 +324,7 @@ class CropCameraFragment : Fragment() {
             val flashAvailable = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE) ?: false
             if (!flashAvailable) {
                 captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF);
-                requireContext().showSimpleErrorToast("Không có đèn flash trên thiết bị của bạn")
+                requireContext().showShortErrorToast("Không có đèn flash trên thiết bị của bạn")
             } else {
                 if (isFlash) {
                     captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF)

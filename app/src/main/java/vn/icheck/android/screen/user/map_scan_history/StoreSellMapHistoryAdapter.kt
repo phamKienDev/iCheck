@@ -11,7 +11,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICStoreNear
-import vn.icheck.android.util.ick.dpToPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerViewAdapter<ICStoreNear>(view) {
@@ -58,7 +58,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
 
 
     private val sizeWidth = 301.dpToPx()
-    private val sizeMargin = 7.5F.dpToPx()
+    private val sizeMargin = 7.5f.dpToPx().toInt()
 
     inner class ViewHolder(parent: ViewGroup, val binding: ItemStoreSellInMapBinding = ItemStoreSellInMapBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(item: ICStoreNear) {

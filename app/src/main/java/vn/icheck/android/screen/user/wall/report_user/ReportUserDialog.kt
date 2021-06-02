@@ -18,7 +18,7 @@ import vn.icheck.android.databinding.DialogReportUserBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
     private var _binding: DialogReportUserBinding? = null

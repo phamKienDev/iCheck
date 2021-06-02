@@ -25,9 +25,11 @@ import vn.icheck.android.databinding.ItemGroupBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleText
 
 class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineViewHolder(itemGroupBinding.root) {
@@ -48,7 +50,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                         val clipboard = act.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText(null, itemGroupBinding.edtInfo.text.toString())
                         clipboard.setPrimaryClip(clip)
-                        it.context.showSimpleSuccessToast("Sao chép thành công")
+                        it.context.showShortSuccessToast("Sao chép thành công")
                         pasteBalloon?.dismiss()
                     }
                 }

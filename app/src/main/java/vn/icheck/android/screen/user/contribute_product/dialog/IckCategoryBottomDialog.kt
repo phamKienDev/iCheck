@@ -23,7 +23,7 @@ import vn.icheck.android.screen.user.contribute_product.IckContributeProductView
 import vn.icheck.android.screen.user.contribute_product.adapter.IckCategoryAdapter
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class IckCategoryBottomDialog : BottomSheetDialogFragment() {
 
@@ -127,7 +127,7 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
                 binding.edtSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_gray_24dp, 0, R.drawable.ic_delete_gray_vector, 0)
                 binding.edtSearch.setOnTouchListener { view, motionEvent ->
                     if (motionEvent.action == MotionEvent.ACTION_UP) {
-                        if (motionEvent.rawX > binding.edtSearch.right - 30.toPx()) {
+                        if (motionEvent.rawX > binding.edtSearch.right - 30.dpToPx()) {
                             binding.edtSearch.setText("")
                             return@setOnTouchListener true
                         }

@@ -26,7 +26,7 @@ class PrivacySettingsAdapter(val onSaveChangeListener: OnSaveChangeListener):Rec
             }
 
             else -> {
-                NullHolder.create(parent)
+                NullHolder(parent)
             }
         }
     }

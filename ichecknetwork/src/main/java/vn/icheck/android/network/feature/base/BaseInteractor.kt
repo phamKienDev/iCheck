@@ -1,7 +1,5 @@
 package vn.icheck.android.network.feature.base
 
-import android.text.TextUtils
-import com.google.gson.GsonBuilder
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -222,15 +220,16 @@ open class BaseInteractor {
         listener.onError(errorBody)
     }
 
-    fun <T> parseJson(json: String?, clazz: Class<T>): T? {
-        if (TextUtils.isEmpty(json))
-            return null
-
-        return try {
-            val gson = GsonBuilder().serializeNulls().excludeFieldsWithoutExposeAnnotation().create()
-            gson.fromJson(json, clazz)
-        } catch (e: Exception) {
-            null
-        }
-    }
+    fun <T> parseJson(json: String?, clazz: Class<T>) = JsonHelper.parseJson(json, clazz)
+//    {
+//        if (TextUtils.isEmpty(json))
+//            return null
+//
+//        return try {
+//            val gson = GsonBuilder().serializeNulls().excludeFieldsWithoutExposeAnnotation().create()
+//            gson.fromJson(json, clazz)
+//        } catch (e: Exception) {
+//            null
+//        }
+//    }
 }

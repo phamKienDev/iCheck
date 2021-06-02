@@ -45,6 +45,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -52,6 +53,7 @@ import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -68,7 +70,6 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showSimpleSuccessToast
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -591,7 +592,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             urlDistributor = it
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
-            showSimpleSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+            showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+        })
+        viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
+            DialogNotificationFirebaseAds.showPopupAds(this,it)
         })
     }
 
@@ -985,9 +989,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     val productID = data?.getLongExtra(Constant.DATA_1, -1)
                     val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
                     if (myContribute == 0) {
-                        showSimpleSuccessToast("Bạn đã đóng góp thông tin thành công")
+                        showShortSuccessToast("Bạn đã đóng góp thông tin thành công")
                     } else {
-                        showSimpleSuccessToast("Bạn đã chỉnh sửa đóng góp thành công")
+                        showShortSuccessToast("Bạn đã chỉnh sửa đóng góp thành công")
                     }
                     if (productID != -1L) {
                         viewModel.barcode = ""

@@ -16,6 +16,8 @@ object APIConstants {
     @JvmField
     var LONGITUDE = 0.0
 
+    val REQUEST_TIME = 3000L
+
     const val PATH = "social/api"
     const val PATH_CDN = "icheck-social-cdn/"
 
@@ -42,6 +44,7 @@ object APIConstants {
     external fun STAMPGETCONFIGERROR(): String
     external fun PRODUCTINFO(): String
     external fun VARIANTPRODUCT(): String
+    external fun getCustomerVariant(): String
     external fun GETFIELDLISTGUARANTEE(): String
     external fun USERSENDOTPCONFIRMPHONESTAMP(): String
     external fun USERCONFIRMPHONESTAMP(): String
@@ -311,6 +314,11 @@ object APIConstants {
         const val LIST_ICON_GRID = "${PATH}/loyalty/campaign/{id}/icon"
     }
 
+    object Popup {
+        const val GET_POPUP_BY_SCREEN = "social/api/popup-ads/find-by-target"
+        const val CLICK_POUP_ADS = "social/api/popup-ads/{id}/add-click"
+    }
+
     object Stamp {
         const val DETAIL_STAMP = "scan"
         const val MORE_PRODUCT_VERIFIED_DISTRIBUTOR = "products/distributor/{distributorId}"
@@ -541,6 +549,7 @@ object APIConstants {
     external fun trackingAppIdDev(): String
     external fun themeSetting(): String
     external fun productsECommerce(): String
+    external fun stampDetailV61(): String
 
     fun checkErrorString(code: String, default: String?): String {
         return when (code) {

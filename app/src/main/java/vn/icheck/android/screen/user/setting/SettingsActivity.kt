@@ -13,7 +13,7 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 class SettingsActivity : BaseActivityMVVM() {
 
@@ -270,7 +270,7 @@ class SettingsActivity : BaseActivityMVVM() {
                 size = 0
                 viewModel.deleteCache()
                 tvClearCache.text = viewModel.readableFileSize(size)
-                this@SettingsActivity.showSimpleSuccessToast("Bạn đã xóa cache thành công!")
+                this@SettingsActivity.showShortSuccessToast("Bạn đã xóa cache thành công!")
             }
         })
     }

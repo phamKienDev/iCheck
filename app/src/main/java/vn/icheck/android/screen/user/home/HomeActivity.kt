@@ -62,11 +62,9 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
-import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.network.base.TokenTimeoutCallback
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
@@ -94,7 +92,6 @@ import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity

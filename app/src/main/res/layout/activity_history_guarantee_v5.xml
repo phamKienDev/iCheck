@@ -18,6 +18,6 @@
         android:id="@+id/rcvHistoryGuarantee"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_history_guarantee"/>
+        tools:listitem="@layout/item_history_guarantee_v5"/>
 
 </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>

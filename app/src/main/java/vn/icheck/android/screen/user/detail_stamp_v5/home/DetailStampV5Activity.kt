@@ -49,12 +49,12 @@ import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.BannerV5Adapter
-import vn.icheck.android.screen.user.detail_stamp_v5.home.adapter.ConfigErrorV5Adapter
 import vn.icheck.android.screen.user.detail_stamp_v5.home.presenter.DetailStampV5Presenter
 import vn.icheck.android.screen.user.detail_stamp_v5.home.view.IDetailStampV5View
 import vn.icheck.android.screen.user.detail_stamp_v5.more_business_v5.MoreBusinessV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarantee_v5.UpdateInformationStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.holder.ICStampContactAdapter
 import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
@@ -82,8 +82,6 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     private var isShow = true
     private var currentPage = 0
     private var numberPage = 0
-    private var idDistributor: Long? = null
-    private var productCode: String? = null
     private var idStamp: String? = null
 
     private var url: String? = null
@@ -102,7 +100,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     private var qrm: String? = null
 
     private var bannerAdapter: BannerV5Adapter? = null
-    private lateinit var adapterConfigError: ConfigErrorV5Adapter
+    private lateinit var adapterConfigError: ICStampContactAdapter
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onInitView() {
@@ -244,7 +242,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     }
 
     private fun initAdapterConfigError() {
-        adapterConfigError = ConfigErrorV5Adapter(this)
+        adapterConfigError = ICStampContactAdapter()
         rcvConfigError.layoutManager = LinearLayoutManager(this)
         rcvConfigError.adapter = adapterConfigError
     }
@@ -658,7 +656,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
         scrollViewError.visibility = View.VISIBLE
         if (!obj.data?.contacts.isNullOrEmpty()) {
             initAdapterConfigError()
-            adapterConfigError.setListData(obj.data?.contacts)
+            adapterConfigError.setListData(obj.data?.contacts!!)
         }
     }
 

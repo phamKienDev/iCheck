@@ -43,7 +43,6 @@ import com.scandit.datacapture.core.source.*
 import com.scandit.datacapture.core.ui.DataCaptureView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -53,7 +52,6 @@ import vn.icheck.android.icheckscanditv6.*
 import vn.icheck.android.icheckscanditv6.databinding.IckScanCustomViewBinding
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
-import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
@@ -339,16 +337,17 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
+        takeImageDialog = TakeMediaDialog()
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
     }
 
     private fun initBarcodeCapture() {
         if (DataCaptureManager.barcodeCapture == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         if (DataCaptureManager.dataCaptureContext == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         barcodeCapture = DataCaptureManager.barcodeCapture!!
@@ -377,7 +376,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             dataCaptureView.post {
                 val lp = dataCaptureView.layoutParams
                 if (lp.height != getDeviceHeight()) {
-                    lp.height = getDeviceHeight() + 50.toPx(resources)
+                    lp.height = getDeviceHeight() + 50.dpToPx()
                     lp.width = getDeviceWidth()
                     dataCaptureView.layoutParams = lp
                 }
@@ -668,7 +667,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showSimpleErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
+            showShortErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
             enableCapture(barcodeCapture)
         })
         viewModel.stampFake.observe(this, {
@@ -818,7 +817,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showSimpleErrorToast("Không tìm thấy ứng dụng google map!")
+                        showShortErrorToast("Không tìm thấy ứng dụng google map!")
                         enableCapture(barcodeCapture)
                     }
                 }

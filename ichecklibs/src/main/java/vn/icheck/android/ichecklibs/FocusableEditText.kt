@@ -10,9 +10,9 @@ import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
-import vn.icheck.android.ichecklibs.util.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
-open class FocusableEditText : AppCompatEditText {
+class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
     var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint
@@ -58,16 +58,15 @@ open class FocusableEditText : AppCompatEditText {
         mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mErrorTextPaint.textSize = 12 * getResources().getDisplayMetrics().scaledDensity
+        mErrorTextPaint.textSize = 12f
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
         mLinePaint = Paint()
-        mLinePaint.strokeWidth = 1f.toPx(context.resources)
+        mLinePaint.strokeWidth = 1f.dpToPx()
 
         mErrorTextPaint.color = Color.parseColor("#FF0000")
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
-
 
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
@@ -163,7 +162,7 @@ open class FocusableEditText : AppCompatEditText {
         super.onDraw(canvas)
         canvas?.apply {
             canvas?.translate(scrollX.toFloat(), 0f)
-            val bottom = height - paddingBottom + 2.5f.toPx(context.resources)
+            val bottom = height - paddingBottom + 2.5f.dpToPx()
             if (!mError.isNullOrEmpty()) {
                 mLinePaint.setColor(Color.parseColor("#FF0000"))
                 drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
@@ -175,8 +174,8 @@ open class FocusableEditText : AppCompatEditText {
                 )
                 drawText(
                         mError.toString(),
-                        26.toPx(context.resources).toFloat(),
-                        (bottom + 15f.toPx(context.resources)).toFloat(),
+                        26.dpToPx().toFloat(),
+                        (bottom + 15f.dpToPx()).toFloat(),
                         mErrorTextPaint
                 )
             } else {
@@ -195,7 +194,7 @@ open class FocusableEditText : AppCompatEditText {
         mError = error
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx(resources))
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 
@@ -203,7 +202,7 @@ open class FocusableEditText : AppCompatEditText {
         mError = error
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.toPx(resources))
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
         requestLayout()
     }
 }

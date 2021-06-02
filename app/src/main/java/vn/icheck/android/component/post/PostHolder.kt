@@ -29,6 +29,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -529,54 +530,63 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun likePost(objPost: ICPost) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                ToastUtils.showLongError(activity, activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showLongError(
+                    activity,
+                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                )
                 return
             }
 
             DialogHelper.showLoading(activity)
 
-            postInteraction.likeOrDislikePost(objPost.id, null, object : ICNewApiListener<ICResponse<ICPost>> {
-                override fun onSuccess(obj: ICResponse<ICPost>) {
-                    DialogHelper.closeLoading(activity)
+            postInteraction.likeOrDislikePost(
+                objPost.id,
+                null,
+                object : ICNewApiListener<ICResponse<ICPost>> {
+                    override fun onSuccess(obj: ICResponse<ICPost>) {
+                        DialogHelper.closeLoading(activity)
 
-                    if (obj.data?.id == null || obj.data?.id == 0L) {
-                        objPost.expressive = null
-                        objPost.expressiveCount += -1
-                    } else {
-                        objPost.expressive = "like"
-                        objPost.expressiveCount += 1
-                    }
-
-                    checkLike(objPost)
-                }
-
-                override fun onError(error: ICResponseCode?) {
-                    DialogHelper.closeLoading(activity)
-                    if (error?.statusCode == "S402") {
-                        ICheckApplication.currentActivity()?.let { activity ->
-                            RewardLoginDialog.show((activity as AppCompatActivity).supportFragmentManager,
-                                object : RewardLoginCallback {
-                                    override fun onLogin() {
-                                        activity simpleStartActivity IckLoginActivity::class.java
-
-                                    }
-
-                                    override fun onRegister() {
-                                        activity.simpleStartForResultActivity(
-                                            IckLoginActivity::class.java,
-                                            1
-                                        )
-
-                                    }
-
-                                    override fun onDismiss() {
-                                    }
-                                })
+                        if (obj.data?.id == null || obj.data?.id == 0L) {
+                            objPost.expressive = null
+                            objPost.expressiveCount += -1
+                        } else {
+                            objPost.expressive = "like"
+                            objPost.expressiveCount += 1
                         }
-                    } else {
-                        itemView.context.showSimpleErrorToast(error?.message
-                                ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+
+                        checkLike(objPost)
                     }
+
+                    override fun onError(error: ICResponseCode?) {
+                        DialogHelper.closeLoading(activity)
+                        if (error?.statusCode == "S402") {
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                RewardLoginDialog.show(
+                                    (activity as AppCompatActivity).supportFragmentManager,
+                                    object : RewardLoginCallback {
+                                        override fun onLogin() {
+                                            activity simpleStartActivity IckLoginActivity::class.java
+
+                                        }
+
+                                        override fun onRegister() {
+                                            activity.simpleStartForResultActivity(
+                                                IckLoginActivity::class.java,
+                                                1
+                                            )
+
+                                    }
+
+                                        override fun onDismiss() {
+                                        }
+                                    })
+                            }
+                        } else {
+                            itemView.context.showShortErrorToast(
+                                error?.message
+                                    ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            )
+                        }
 
                 }
             })
@@ -587,31 +597,37 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun pinPost(objPost: ICPost, isPin: Boolean) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                ToastUtils.showLongError(activity, activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showLongError(
+                    activity,
+                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                )
                 return
             }
 
             DialogHelper.showLoading(activity)
 
-            interaction.pinPostOfPage(objPost.id, isPin, objPost.page?.id, object : ICNewApiListener<ICResponse<ICPost>> {
-                override fun onSuccess(obj: ICResponse<ICPost>) {
-                    DialogHelper.closeLoading(activity)
-                    objPost.pinned = obj.data?.pinned ?: false
-                    setUpPin(objPost)
+            interaction.pinPostOfPage(objPost.id, isPin, objPost.page?.id,
+                object : ICNewApiListener<ICResponse<ICPost>> {
+                    override fun onSuccess(obj: ICResponse<ICPost>) {
+                        DialogHelper.closeLoading(activity)
+                        objPost.pinned = obj.data?.pinned ?: false
+                        setUpPin(objPost)
 
-                    if (objPost.pinned)
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.PIN_POST, objPost.id))
-                    else
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UN_PIN_POST, objPost.id))
-                }
+                        if (objPost.pinned)
+                            EventBus.getDefault()
+                                .post(ICMessageEvent(ICMessageEvent.Type.PIN_POST, objPost.id))
+                        else
+                            EventBus.getDefault()
+                                .post(ICMessageEvent(ICMessageEvent.Type.UN_PIN_POST, objPost.id))
+                    }
 
-                override fun onError(error: ICResponseCode?) {
-                    DialogHelper.closeLoading(activity)
-                    val message = error?.message
+                    override fun onError(error: ICResponseCode?) {
+                        DialogHelper.closeLoading(activity)
+                        val message = error?.message
                             ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    ToastUtils.showLongError(activity, message)
-                }
-            })
+                        ToastUtils.showLongError(activity, message)
+                    }
+                })
         }
     }
 }

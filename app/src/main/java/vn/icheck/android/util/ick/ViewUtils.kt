@@ -189,7 +189,7 @@ fun ImageView.loadSimpleFile(src: File?, corner: Int) {
     circularProgressDrawable.start()
    Glide.with(this.context.applicationContext)
             .load(src)
-            .apply(RequestOptions().transform(RoundedCorners(corner.toPx())))
+            .apply(RequestOptions().transform(RoundedCorners(corner.dpToPx())))
             .placeholder(circularProgressDrawable)
             .error(R.drawable.error_load_image)
             .into(this)
@@ -244,15 +244,7 @@ fun Bitmap.centerCrop(newWidth: Int, newHeight: Int):Bitmap {
 }
 
 
-fun Int.toPx(): Int {
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), ICheckApplication.getInstance().resources.displayMetrics).toInt()
-}
-
 fun Int.dpToPx(): Int {
-    return (this * Resources.getSystem().displayMetrics.density).toInt()
-}
-
-fun Float.dpToPx(): Int {
     return (this * Resources.getSystem().displayMetrics.density).toInt()
 }
 
@@ -278,39 +270,6 @@ fun Float.toDp(): Float {
 }
 
 fun EditText.addPriceTextWatcher() {
-    this.addTextChangedListener(object : AfterTextWatcher() {
-        var current = ""
-
-        override fun afterTextChanged(s: Editable?) {
-            if (s.toString() != current) {
-                if (current.length <= s.toString().length) {
-                    this@addPriceTextWatcher.removeTextChangedListener(this)
-                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
-                    val formatted = String.format("%dđ", cleanString.toLong())
-                    current = formatted
-                    this@addPriceTextWatcher.setText(formatted)
-                    this@addPriceTextWatcher.setSelection(formatted.length)
-                    this@addPriceTextWatcher.addTextChangedListener(this)
-                } else {
-                    this@addPriceTextWatcher.removeTextChangedListener(this)
-                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
-                    if (cleanString.length > 1) {
-                        val formatted = String.format("%dđ", cleanString.substring(0, cleanString.length - 1).toLong())
-                        current = formatted
-                        this@addPriceTextWatcher.setText(formatted)
-                        this@addPriceTextWatcher.setSelection(formatted.length)
-                    } else {
-                        this@addPriceTextWatcher.setText("")
-                        current = ""
-                    }
-                    this@addPriceTextWatcher.addTextChangedListener(this)
-                }
-            }
-        }
-    })
-}
-
-fun AppCompatEditText.addPriceTextWatcher() {
     this.addTextChangedListener(object : AfterTextWatcher() {
         var current = ""
 

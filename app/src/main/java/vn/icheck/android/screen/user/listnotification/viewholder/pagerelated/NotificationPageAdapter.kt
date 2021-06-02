@@ -19,6 +19,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICNotificationPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
+import vn.icheck.android.ui.view.SquareImageView
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 

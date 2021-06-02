@@ -18,7 +18,7 @@ import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class BuyTopupSuccessActivity : AppCompatActivity() {
     lateinit var viewModel: PaymentViewModel
@@ -62,7 +62,7 @@ class BuyTopupSuccessActivity : AppCompatActivity() {
         })
 
         viewModel.errorMessage.observe(this, {
-            this.showSimpleErrorToast(it)
+            this.showShortErrorToast(it)
             onBackPressed()
         })
 

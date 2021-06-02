@@ -214,7 +214,7 @@
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginEnd="@dimen/size_8"
-                    android:drawableStart="@drawable/ic_barcode_blue_18px"
+                    android:drawableStart="@drawable/ic_barcode_gray_18px"
                     android:drawablePadding="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:textColor="#434343"

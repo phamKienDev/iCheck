@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import androidx.annotation.WorkerThread
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -122,14 +123,14 @@ class IcFcmService : FirebaseMessagingService() {
             }
             path.contains("level_up") -> {
                 ICheckApplication.currentActivity()?.let { act ->
-    //                    Alerter.create(act)
-    //                            .setBackgroundColorRes(R.color.green_popup_notifi)
-    //                            .setDuration(3000)
-    //                            .setText(body)
-    //                            .setOnClickListener {
-    //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
-    //                            }
-    //                            .show()
+                    //                    Alerter.create(act)
+                    //                            .setBackgroundColorRes(R.color.green_popup_notifi)
+                    //                            .setDuration(3000)
+                    //                            .setText(body)
+                    //                            .setOnClickListener {
+                    //                                FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                    //                            }
+                    //                            .show()
                     startActivity(Intent(act, RankUpActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     })
@@ -153,13 +154,13 @@ class IcFcmService : FirebaseMessagingService() {
 
                         Handler().postDelayed({
                             Alerter.create(act)
-                                    .setBackgroundColorRes(R.color.green_popup_notifi)
-                                    .setDuration(3000)
-                                    .setText(body)
-                                    .setOnClickListener {
-                                        FirebaseDynamicLinksActivity.startTargetPath(act, path)
-                                    }
-                                    .show()
+                                .setBackgroundColorRes(R.color.green_popup_notifi)
+                                .setDuration(3000)
+                                .setText(body)
+                                .setOnClickListener {
+                                    FirebaseDynamicLinksActivity.startTargetPath(act, path)
+                                }
+                                .show()
                         }, 1000)
                     }
                 }
@@ -170,12 +171,8 @@ class IcFcmService : FirebaseMessagingService() {
     @WorkerThread
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ICheckApplication.currentActivity()?.apply {
-            runOnUiThread {
-                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
-                    override fun onDismiss() {
-
-                    }
-                }.show()
+            if(this is AppCompatActivity){
+                DialogNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
             }
         }
     }

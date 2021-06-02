@@ -5,13 +5,8 @@ import android.content.res.Resources
 import android.graphics.Point
 import android.util.TypedValue
 import android.view.*
-import android.widget.Toast
-import androidx.annotation.MainThread
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
-import vn.icheck.android.ichecklibs.databinding.ToastSimpleErrorBinding
-import vn.icheck.android.ichecklibs.databinding.ToastSimpleSuccessBinding
-
 
 fun Context.getDeviceWidth() = this.resources.displayMetrics.widthPixels
 
@@ -45,9 +40,14 @@ fun View.visibleOrInvisible(logic: Boolean) {
     }
 }
 
-fun Int.toPx(res: Resources): Int {
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics).toInt()
+//TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, ICheckApplication.getInstance().resources.displayMetrics)
+
+fun Int.spToPx(): Int {
+    return (this * Resources.getSystem().displayMetrics.scaledDensity).toInt()
+}
+
+fun Float.spToPx(): Float {
+    return this * Resources.getSystem().displayMetrics.scaledDensity
 }
 
 fun Int.dpToPx(): Int {
@@ -55,87 +55,9 @@ fun Int.dpToPx(): Int {
 }
 
 fun Float.dpToPx(): Float {
-    return (this * Resources.getSystem().displayMetrics.density)
+    return this * Resources.getSystem().displayMetrics.density
 }
 
-
-fun Float.toPx(res: Resources): Float {
-//    return this * (res.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), res.displayMetrics)
-}
-
-
-infix fun Context.showSimpleSuccessToast(msg: String?) {
-    val binding = ToastSimpleSuccessBinding.inflate(LayoutInflater.from(this))
-    var toast: Toast? = null
-    toast?.cancel()
-    toast = Toast(this)
-    binding.tvContent.text = msg
-    toast.view = binding.root
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.duration = Toast.LENGTH_SHORT
-    toast.show()
-}
-
-fun Context.showSimpleSuccessToast(icon: Int, msg: String?) {
-    var toast: Toast? = null
-    val binding = ToastSimpleSuccessBinding.inflate(LayoutInflater.from(this))
-    toast?.cancel()
-    toast = Toast(this)
-    binding.imgIcon.setImageResource(icon)
-    binding.tvContent.text = msg
-    toast.view = binding.root
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.duration = Toast.LENGTH_SHORT
-    toast.show()
-}
-
-@MainThread
-infix fun Context.showSimpleErrorToast(msg: String?) {
-    var toast: Toast? = null
-    val binding = ToastSimpleErrorBinding.inflate(LayoutInflater.from(this))
-    toast?.cancel()
-    toast = Toast(this)
-    if (!msg.isNullOrEmpty()) {
-        binding.tvContent.text = msg
-    } else {
-        binding.tvContent.text = "Đã xảy ra lỗi, vui lòng thử lại sau!"
-    }
-    toast.view = binding.root
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.duration = Toast.LENGTH_SHORT
-    toast.show()
-}
-
-@MainThread
-infix fun Context.showSimpleErrorLongToast(msg: String?) {
-    var toast: Toast? = null
-    val binding = ToastSimpleErrorBinding.inflate(LayoutInflater.from(this))
-    toast?.cancel()
-    toast = Toast(this)
-    if (!msg.isNullOrEmpty()) {
-        binding.tvContent.text = msg
-    } else {
-        binding.tvContent.text = "Đã xảy ra lỗi, vui lòng thử lại sau!"
-    }
-    toast.view = binding.root
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.duration = Toast.LENGTH_LONG
-    toast.show()
-}
-
-@MainThread
-infix fun Context.showSimpleErrorToast(msg: Int) {
-    var toast: Toast? = null
-    val binding = ToastSimpleErrorBinding.inflate(LayoutInflater.from(this))
-    toast?.cancel()
-    toast = Toast(this)
-    binding.tvContent.text = this.getString(msg)
-    toast.view = binding.root
-    toast.setGravity(Gravity.CENTER, 0, 0)
-    toast.duration = Toast.LENGTH_SHORT
-    toast.show()
-}
 
 fun View.setAllEnabled(enabled: Boolean) {
     isEnabled = enabled

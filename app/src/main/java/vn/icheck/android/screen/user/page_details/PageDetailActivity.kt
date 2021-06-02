@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMediaPage
@@ -32,7 +33,6 @@ import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.PageDetailFragment
 import vn.icheck.android.screen.user.page_details.fragment.product.ProductOfPageFragment
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.*
 
@@ -346,7 +346,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                     viewPager.setCurrentItem(0, false)
                     showLayoutAction(isShowLayoutFollow)
                 } else {
-                    showSimpleErrorToast(this.getString(R.string.hien_chua_co_bai_viet_nao))
+                    showShortErrorToast(this.getString(R.string.hien_chua_co_bai_viet_nao))
                 }
             }
             ICMessageEvent.Type.CLICK_PRODUCT_OF_PAGE -> {

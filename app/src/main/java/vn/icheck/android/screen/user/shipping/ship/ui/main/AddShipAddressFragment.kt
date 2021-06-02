@@ -1,13 +1,9 @@
 package vn.icheck.android.screen.user.shipping.ship.ui.main
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -20,8 +16,8 @@ import vn.icheck.android.screen.location.DISTRICT
 import vn.icheck.android.screen.location.WARD
 import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 import vn.icheck.android.util.ick.isPhoneNumber
-import vn.icheck.android.util.ick.showSimpleErrorToast
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
 class AddShipAddressFragment : Fragment() {
 
@@ -100,7 +96,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getCurrentCity()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showSimpleErrorToast("Vui lòng chọn tỉnh/thành")
+                requireContext().showShortErrorToast("Vui lòng chọn tỉnh/thành")
             }
         }
         binding.edtPhuongXa.setOnClickListener {
@@ -114,7 +110,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getDistrict()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showSimpleErrorToast("Vui lòng chọn quận/huyện")
+                requireContext().showShortErrorToast("Vui lòng chọn quận/huyện")
             }
         }
         binding.edtAddress.addTextChangedListener {
@@ -134,41 +130,41 @@ class AddShipAddressFragment : Fragment() {
             setOnClickListener {
                 when {
                     binding.edtLastName.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng nhập họ")
+                        requireContext().showShortErrorToast("Vui lòng nhập họ")
                         binding.edtLastName.requestFocus()
                     }
                     binding.edtFirstName.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng nhập tên đệm và tên")
+                        requireContext().showShortErrorToast("Vui lòng nhập tên đệm và tên")
                         binding.edtFirstName.requestFocus()
                     }
                     binding.edtPhone.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng nhập số điện thoại")
+                        requireContext().showShortErrorToast("Vui lòng nhập số điện thoại")
                         binding.edtPhone.requestFocus()
                     }
                     !binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
-                        requireContext().showSimpleErrorToast("Số điện thoại không đúng định dạng")
+                        requireContext().showShortErrorToast("Số điện thoại không đúng định dạng")
                         binding.edtPhone.requestFocus()
                     }
                     binding.edtTinhThanh.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng chọn tỉnh/thành")
+                        requireContext().showShortErrorToast("Vui lòng chọn tỉnh/thành")
                         binding.edtTinhThanh.requestFocus()
                     }
                     binding.edtQuan.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng chọn quận/huyện")
+                        requireContext().showShortErrorToast("Vui lòng chọn quận/huyện")
                         binding.edtQuan.requestFocus()
                     }
                     binding.edtPhuongXa.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng chọn phường/xã")
+                        requireContext().showShortErrorToast("Vui lòng chọn phường/xã")
                         binding.edtPhuongXa.requestFocus()
                     }
                     binding.edtAddress.text?.trim().isNullOrEmpty() -> {
-                        requireContext().showSimpleErrorToast("Vui lòng nhập địa chỉ")
+                        requireContext().showShortErrorToast("Vui lòng nhập địa chỉ")
                         binding.edtAddress.requestFocus()
                     }
                     else -> {
                         viewModel.createShipAddress().observe(viewLifecycleOwner, {
                             if (it.statusCode == "200") {
-                                requireContext().showSimpleSuccessToast("Cập nhật địa chỉ thành công")
+                                requireContext().showShortSuccessToast("Cập nhật địa chỉ thành công")
 //                            if (!viewModel.isUpdate()) {
 //                                requireContext().showSimpleSuccessToast("Gửi địa chỉ thành công!")
 //                            } else {

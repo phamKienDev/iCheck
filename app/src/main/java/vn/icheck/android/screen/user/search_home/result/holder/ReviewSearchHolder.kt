@@ -40,7 +40,7 @@ import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.setRankUser
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -290,7 +290,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                     if (error?.statusCode == "S402") {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_REQUIRE_LOGIN))
                     } else {
-                        itemView.context.showSimpleErrorToast(error?.message)
+                        itemView.context.showShortErrorToast(error?.message)
                     }
                 }
             })

@@ -255,7 +255,8 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
+        takeImageDialog = TakeMediaDialog()
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
     }
 
     private fun initBarcodeCapture() {
@@ -274,11 +275,11 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 //
 //        barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings)
         if (DataCaptureManager.barcodeCapture == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         if (DataCaptureManager.dataCaptureContext == null) {
-            showSimpleErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
             finish()
         }
         barcodeCapture = DataCaptureManager.barcodeCapture!!
@@ -310,7 +311,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             dataCaptureView.post {
                 val lp = dataCaptureView.layoutParams
                 if (lp.height != getDeviceHeight()) {
-                    lp.height = getDeviceHeight() + 50.toPx(resources)
+                    lp.height = getDeviceHeight() + 50.dpToPx()
                     lp.width = getDeviceWidth()
                     dataCaptureView.layoutParams = lp
                 }
@@ -435,23 +436,23 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
                                         if (obj.data?.state == null || obj.data?.state == null) {
 
-                                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                            showShortErrorToast("Không tìm thấy sản phẩm")
                                             enableCapture(barcodeCapture)
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                                    showShortErrorToast("Không tìm thấy sản phẩm")
                                                     enableCapture(barcodeCapture)
                                                 }
                                                 else -> {
 
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            showSimpleErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
+                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
                                                             enableCapture(barcodeCapture)
                                                         }
                                                         "adminDeactive" -> {
-                                                            showSimpleErrorToast("Sản phẩm không cho quét")
+                                                            showShortErrorToast("Sản phẩm không cho quét")
                                                             enableCapture(barcodeCapture)
                                                         }
                                                         else -> {
@@ -465,13 +466,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                                         }
 
                                     } else {
-                                        showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                        showShortErrorToast("Không tìm thấy sản phẩm")
                                         enableCapture(barcodeCapture)
                                     }
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    showSimpleErrorToast(error?.message)
+                                    showShortErrorToast(error?.message)
                                 }
                             })
                         }
@@ -480,22 +481,22 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
                                         if (obj.data?.state == null || obj.data?.state == null) {
-                                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                            showShortErrorToast("Không tìm thấy sản phẩm")
                                             enableCapture(barcodeCapture)
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                                    showShortErrorToast("Không tìm thấy sản phẩm")
                                                     enableCapture(barcodeCapture)
                                                 }
                                                 else -> {
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            showSimpleErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
+                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
                                                             enableCapture(barcodeCapture)
                                                         }
                                                         "adminDeactive" -> {
-                                                            showSimpleErrorToast("Sản phẩm không cho quét")
+                                                            showShortErrorToast("Sản phẩm không cho quét")
                                                             enableCapture(barcodeCapture)
                                                         }
                                                         else -> {
@@ -509,13 +510,13 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
                                         }
                                     } else {
-                                        showSimpleErrorToast("Không tìm thấy sản phẩm")
+                                        showShortErrorToast("Không tìm thấy sản phẩm")
                                         enableCapture(barcodeCapture)
                                     }
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    showSimpleErrorToast(error?.message)
+                                    showShortErrorToast(error?.message)
                                     enableCapture(barcodeCapture)
                                 }
                             })
@@ -685,7 +686,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showSimpleErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
+            showShortErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
             enableCapture(barcodeCapture)
         })
         viewModel.stampFake.observe(this, {
@@ -752,7 +753,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
 //                it.startsWith("u-") || it.startsWith("U-") -> {
 //                    when {
 //                        viewModel.scanOnly || viewModel.reviewOnly -> {
-//                            showSimpleErrorToast("Không tìm thấy sản phẩm")
+//                            showShortErrorToast("Không tìm thấy sản phẩm")
 //                            enableCapture(barcodeCapture)
 //                        }
 //                        else -> {
@@ -925,7 +926,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showSimpleErrorToast("Không tìm thấy ứng dụng google map!")
+                        showShortErrorToast("Không tìm thấy ứng dụng google map!")
                         enableCapture(barcodeCapture)
                     }
                 }

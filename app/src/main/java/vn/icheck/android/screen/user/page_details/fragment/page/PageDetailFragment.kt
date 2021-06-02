@@ -35,6 +35,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
@@ -43,6 +44,7 @@ import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
@@ -53,7 +55,6 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
 
@@ -317,6 +318,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             DialogHelper.showDialogSuccessBlack(requireContext(), getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
             adapter.deletePost(it)
         })
+        viewModel.onPopupAds.observe(viewLifecycleOwner, {
+            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+        })
     }
 
 
@@ -376,12 +380,12 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (SessionManager.isUserLogged) {
             if (viewModel.isFollowPage) {
                 DialogHelper.showConfirm(requireContext(), getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, object : ConfirmDialogListener {
-                    override fun onDisagree() {}
+                        override fun onDisagree() {}
 
-                    override fun onAgree() {
-                        viewModel.unFollowPage(id)
-                    }
-                })
+                        override fun onAgree() {
+                            viewModel.unFollowPage(id)
+                        }
+                    })
             } else {
                 viewModel.followPage(id)
             }
@@ -417,7 +421,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         }
 
         if (positionPost != -1) {
-            (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(positionPost, 55.toPx())
+            (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(positionPost, 55.dpToPx())
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.CLICK_LISTPOST_OF_PAGE, true))
         } else {
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.CLICK_LISTPOST_OF_PAGE, false))
@@ -482,11 +486,13 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             }
             ICMessageEvent.Type.UPDATE_SUBCRIBE_STATUS -> {
                 adapter.updateSubcribeState(event.data as Boolean)
-                DialogHelper.showDialogSuccessBlack(requireContext(), if (event.data) {
-                    requireContext().getString(R.string.ban_da_bat_thong_bao_trang_nay)
-                } else {
-                    requireContext().getString(R.string.ban_da_tat_thong_bao_trang_nay)
-                })
+                DialogHelper.showDialogSuccessBlack(
+                    requireContext(), if (event.data) {
+                        requireContext().getString(R.string.ban_da_bat_thong_bao_trang_nay)
+                    } else {
+                        requireContext().getString(R.string.ban_da_tat_thong_bao_trang_nay)
+                    }
+                )
             }
             ICMessageEvent.Type.UPDATE_COUNT_CART -> {
                 val count = event.data as String?
@@ -521,7 +527,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
                     adapter.createPost(it)
                     val index = adapter.getListData.indexOfFirst { it.viewType == ICViewTypes.LIST_POST_TYPE }
                     if (index != -1)
-                        (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(index, 55.toPx())
+                        (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(index, 55.dpToPx())
 
                 }
             }

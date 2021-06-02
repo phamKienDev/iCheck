@@ -68,7 +68,7 @@ class ProductOfPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             ICViewTypes.HIGLIGHT_PRODUCTS_PAGE -> ListProductHorizontalHolder(parent, null)
             ICViewTypes.CATEGORIES_PRODUCTS_PAGE -> RelatedProductHolder(parent, null)
             ICViewTypes.MESSAGE_TYPE -> LongMessageHolder(parent)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

@@ -31,7 +31,7 @@ import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
 
@@ -164,7 +164,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
         fun updateStatusOrder(orderId: Long, status: Int) {
             if (NetworkHelper.isNotConnected(itemView.context)) {
-                itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
 
@@ -177,7 +177,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    itemView.context.showSimpleErrorToast(if (error?.message.isNullOrEmpty()) {
+                    itemView.context.showShortErrorToast(if (error?.message.isNullOrEmpty()) {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     } else {
                         error!!.message

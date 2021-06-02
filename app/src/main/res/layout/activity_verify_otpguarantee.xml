@@ -1,63 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical">
 
     <include
         android:id="@id/layoutToolbar"
-        layout="@layout/toolbar_blue" />
+        layout="@layout/toolbar_light_blue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <vn.icheck.android.ichecklibs.view.TextBody1
+        android:id="@id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_60"
+        android:layout_marginTop="@dimen/size_16"
+        android:gravity="center_horizontal"
+        android:textAlignment="gravity"
+        android:textColor="@color/colorSecondText"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        tools:text="@string/login_ma_xac_thuc_otp_da_duoc_gui_toi" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_40"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
-        <FrameLayout
+        <vn.icheck.android.ui.OtpEditText
+            android:id="@+id/edtOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_38"
-            android:layout_marginTop="@dimen/size_70"
-            android:layout_marginEnd="@dimen/size_38">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@id/txtOtp"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/size_42"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textColor="#66000000"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@id/layoutInputOtp"
-                style="@style/Account_TextInputLayout.Register"
-                android:layout_margin="@dimen/size_0"
-                android:background="@android:color/transparent"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <vn.icheck.android.ichecklibs.view.secondary.EditTextSecondary
-                    android:id="@id/edtOtp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_42"
-                    android:fontFamily="sans-serif"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:textSize="@dimen/font_36"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </FrameLayout>
+            android:layout_marginHorizontal="@dimen/size_66"
+            android:layout_marginBottom="@dimen/size_24"
+            android:cursorVisible="false"
+            android:digits="1234567890"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/font_24" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -81,7 +69,7 @@
                     android:theme="@style/Theme_Blue"
                     android:visibility="invisible" />
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,42 +79,38 @@
                     android:paddingTop="@dimen/size_4"
                     android:paddingEnd="@dimen/size_8"
                     android:paddingBottom="@dimen/size_4"
+                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextBody2
                 android:id="@id/txtTime"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="sans-serif"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:textAlignment="gravity"
-                android:textColor="#66000000"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:textColor="@color/colorSecondText" />
         </FrameLayout>
-
-        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
-            android:id="@id/txtContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_38"
-            android:layout_marginTop="@dimen/size_32"
-            android:layout_marginEnd="@dimen/size_38"
-            android:fontFamily="sans-serif"
-            android:textSize="@dimen/font_14"
-            android:textStyle="normal" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@id/btnConfirm"
-        style="@style/Button_Blue_Corners_26"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_40"
-        android:layout_marginStart="@dimen/size_38"
-        android:layout_marginTop="@dimen/size_32"
-        android:layout_marginEnd="@dimen/size_38"
-        android:layout_marginBottom="@dimen/size_32" />
-</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <vn.icheck.android.ichecklibs.view.TextSubheader2
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_36"
+        android:layout_margin="@dimen/size_12"
+        android:visibility="gone"
+        android:background="@drawable/btn_light_blue_corners_4"
+        android:gravity="center"
+        android:text="@string/xac_nhan"
+        android:textAlignment="gravity"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

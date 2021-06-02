@@ -1,6 +1,5 @@
 package vn.icheck.android.chat.icheckchat.screen.conversation
 
-import android.app.Activity
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,10 +12,8 @@ import com.google.firebase.database.DataSnapshot
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat
-import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.USER_ID
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.setGone
@@ -223,7 +220,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                             element.targetUserName = success.child("name").value.toString()
                             element.imageTargetUser = success.child("image").value.toString()
                             element.isVerified = success.child("is_verify").value.toString().toBoolean()
-                            element.kycStatus = success.child("kycStatus").value as Long? ?: 0L
+                            element.kycStatus = success.child("kyc_status").value as Long? ?: 0L
 
                             adapter.refreshItem(element)
                         }, {

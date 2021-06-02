@@ -67,6 +67,14 @@ object ImageHelper : BaseInteractor() {
      * @param size: kích thước của ảnh (tham khảo size ở trên)
      * @return
      */
+    fun getImageFromUrl(url: String?, size: String): String? {
+        return if (url?.startsWith("http") == true) {
+            url
+        } else {
+            "http://icheckcdn.net/images/$size/$url.jpg"
+        }
+    }
+
     fun getImageUrl(id: String?, url: String?, size: String): String? {
         return url ?: if (id?.startsWith("-TheHulk") == true) {
             "http://icheckcdn.net/images/${size}/${id}.jpg"

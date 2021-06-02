@@ -99,7 +99,7 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
             ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
             ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

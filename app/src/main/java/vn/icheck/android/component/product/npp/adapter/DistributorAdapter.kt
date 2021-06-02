@@ -225,10 +225,8 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             ICheckApplication.currentActivity()?.let { act ->
                 if (obj.pageId != null) {
                     ActivityUtils.startActivity<PageDetailActivity, Long>(act, Constant.DATA_1, obj.pageId!!)
-                } else {
-                    if (obj.owner?.pageId != null) {
-                        ActivityUtils.startActivity<PageDetailActivity, Long>(act, Constant.DATA_1, obj.owner?.pageId!!)
-                    }
+                } else if (obj.owner?.pageId != null) {
+                    ActivityUtils.startActivity<PageDetailActivity, Long>(act, Constant.DATA_1, obj.owner?.pageId!!)
                 }
             }
         }

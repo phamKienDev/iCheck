@@ -79,6 +79,6 @@ abstract class CoroutineBottomSheetFragment<VB : ViewBinding>:BottomSheetDialogF
     }
 
     fun showError(msg: String?) {
-        requireContext().showSimpleErrorToast(msg)
+        requireContext().showShortErrorToast(msg)
     }
 }

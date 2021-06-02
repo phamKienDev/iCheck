@@ -86,7 +86,7 @@
             app:layout_constraintTop_toTopOf="@id/containerEnter" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvArrow"
+            android:id="@id/tvArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_arrow_down_blue_24px"

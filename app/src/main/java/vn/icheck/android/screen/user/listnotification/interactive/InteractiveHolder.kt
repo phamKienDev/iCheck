@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.listnotification.interactive
 
 import android.graphics.Color
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,8 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -25,7 +25,6 @@ import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.network.models.ICReqMarkRead
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.util.ick.*
-import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(LayoutInflater.from(parent.context).inflate(R.layout.item_interactive, parent, false)) {
@@ -136,7 +135,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
                 if (isShowLoading) {
-                    itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
 //                    ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
 
@@ -153,7 +152,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                         DialogHelper.closeLoading(activity)
                     }
                     if (objNotification.isReaded == false && isShowLoading) {
-                        itemView.context.showSimpleSuccessToast("Bạn đã đọc thông báo này")
+                        itemView.context.showShortSuccessToast("Bạn đã đọc thông báo này")
                     }
                     objNotification.isReaded = true
                     objNotification.status = 1
@@ -163,7 +162,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                 override fun onError(error: ICResponseCode?) {
                     if (isShowLoading) {
                         DialogHelper.closeLoading(activity)
-                        itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        itemView.context.showShortErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
                 }
@@ -174,7 +173,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
     private fun unsubscribeNotification(objNotification: ICNotification) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
 //                ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
@@ -185,12 +184,12 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     objNotification.isTurnOff = true
-                    itemView.context.showSimpleSuccessToast("Bạn đã tắt thông báo cho đối tượng này")
+                    itemView.context.showShortSuccessToast("Bạn đã tắt thông báo cho đối tượng này")
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                    ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             })
@@ -201,7 +200,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
 //                ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
-                itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
 
@@ -211,12 +210,12 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     objNotification.isTurnOff = false
-                    itemView.context.showSimpleSuccessToast("Bạn đã bật thông báo cho đối tượng này")
+                    itemView.context.showShortSuccessToast("Bạn đã bật thông báo cho đối tượng này")
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //                    ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             })
@@ -226,7 +225,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
     private fun removeNotification(obj: ICNotification) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                itemView.context.showShortErrorToast(itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
 //                ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
@@ -238,13 +237,13 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                     DialogHelper.closeLoading(activity)
 
                     listener?.onClick(null)
-                    itemView.context.showSimpleSuccessToast("Xóa thông báo thành công")
+                    itemView.context.showShortSuccessToast("Xóa thông báo thành công")
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
 //                    ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
-                    itemView.context.showSimpleErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

@@ -145,7 +145,7 @@ open class KeyboardToggleListener(
     override fun onGlobalLayout() {
         root?.run {
             val heightDiff = rootView.height - height
-            val keyboardShown = heightDiff > 200.toPx()
+            val keyboardShown = heightDiff > 200.dpToPx()
             if (shown != keyboardShown) {
                 onKeyboardToggleAction.invoke(keyboardShown)
                 shown = keyboardShown

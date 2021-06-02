@@ -43,6 +43,8 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
@@ -351,7 +353,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         viewModel.onDeleteComment.observe(this, {
             try {
                 adapter.deleteComment(it)
-                showSimpleSuccessToast(getString(R.string.xoa_binh_luan_thanh_cong))
+                showShortSuccessToast(getString(R.string.xoa_binh_luan_thanh_cong))
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -384,7 +386,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         viewModel.onShowMessage.observe(this, {
             imgSend.isEnabled = true
-            showSimpleErrorToast(it)
+            showShortErrorToast(it)
         })
 
         viewModel.onStatus.observe(this, {

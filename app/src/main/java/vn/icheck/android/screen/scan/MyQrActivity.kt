@@ -26,6 +26,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentQrAndBarcodeOfMeBinding
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -41,11 +43,12 @@ class MyQrActivity : AppCompatActivity() {
     private var user: ICUser? = null
     private var setting: ICClientSetting? = null
     private val listKey = mutableListOf<String>()
-    var qrWidth = 200.toPx()
-    var qrHeight = 200.toPx()
+    var qrWidth = 200.dpToPx()
+    var qrHeight = 200.dpToPx()
     val viewModel by viewModels<V6ViewModel>()
 
-    companion object{
+
+    companion object {
         fun createOnly(context: Context) {
             context.startActivity(Intent(context, MyQrActivity::class.java).apply {
                 putExtra(Constant.DATA_1, 3)
@@ -111,7 +114,9 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_DESCRIPTION")
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
-            simpleStartActivity(V6ScanditActivity::class.java)
+            val intent = Intent(this, V6ScanditActivity::class.java)
+            intent.putExtra("fromMyQr", true)
+            ActivityHelper.startActivity(this, intent)
             finish()
         }
         viewModel.getMyID()
@@ -165,7 +170,7 @@ class MyQrActivity : AppCompatActivity() {
                                                             .load(newBmp)
 
                                                             .apply(RequestOptions().transform(
-                                                                    RoundedCornersTransformation(this@MyQrActivity, 18.toPx(), 0, RoundedCornersTransformation.CornerType.TOP)
+                                                                    RoundedCornersTransformation(this@MyQrActivity, 18.dpToPx(), 0, RoundedCornersTransformation.CornerType.TOP)
                                                             ))
                                                             .error(R.drawable.error_load_image)
                                                             .placeholder(R.drawable.error_load_image)
@@ -233,7 +238,7 @@ class MyQrActivity : AppCompatActivity() {
                 hints[EncodeHintType.MARGIN] = 0
                 hints[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
 
-                val bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 300.toPx(), 300.toPx(), hints)
+                val bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 300.dpToPx(), 300.dpToPx(), hints)
                 val width = bitMatrix.width
                 val height = bitMatrix.height
                 val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
@@ -244,7 +249,7 @@ class MyQrActivity : AppCompatActivity() {
                 }
                 val logo = BitmapFactory.decodeResource(resources, R.drawable.logo_icheck_qr)
                 dismissLoadingScreen()
-                bmp overlayBitmapToCenter logo.resizeBitmap(100.toPx(), 100.toPx())
+                bmp overlayBitmapToCenter logo.resizeBitmap(100.dpToPx(), 100.dpToPx())
             } else {
                 val bm = MultiFormatWriter().encode(text, BarcodeFormat.CODE_128, SizeHelper.size400, SizeHelper.size80)
 

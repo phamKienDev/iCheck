@@ -7,10 +7,9 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectDistributor
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectVendor
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreBusinessView
 
@@ -21,7 +20,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreB
  */
 class MoreBusinessPresenter(val view: IMoreBusinessView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     private var offset = 0
 

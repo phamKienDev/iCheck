@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="black_10">#1A000000</color>
@@ -10,7 +10,7 @@
     <color name="orange">#FBBB00</color>
     <color name="titleToolbar">#20336b</color>
     <color name="darkGray3">#828282</color>
-<!--    <color name="colorSecondary">#3C5A99</color>-->
+    <color name="colorSecondary">#3C5A99</color>
     <color name="colorAccentYellow">#FFB800</color>
 <!--    <color name="colorDisableText">#B4B4B4</color>-->
     <color name="grayLoyalty">#D8D8D8</color>

@@ -71,44 +71,44 @@ class ConfirmShipFragment : Fragment() {
             binding.btnConfirm.apply {
                 background = ViewHelper.bgPrimaryCorners4(context)
                 setOnClickListener {
-                    showLoadingTimeOut(10000)
-                    if (viewModel.arrayCart.isNotEmpty()) {
-                        viewModel.purchase(binding.edtNotes.text.trim().toString()).observe(viewLifecycleOwner, {
-                            dismissLoadingScreen()
-                            if (it.statusCode == "200") {
-                                requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
-                                    putExtra("id", it.data?.id)
-                                })
-                                SuccessConfirmShipDialog(it.data?.id ?: 0L).apply {
-                                    isCancelable = false
-                                    action = {
-                                        viewModel.moveToCart()
-                                    }
-                                }.show(childFragmentManager, null)
-                            } else {
-                                requireContext().showSimpleErrorToast(it.message)
-                            }
-                        })
-                    } else {
-                        viewModel.checkout().observe(viewLifecycleOwner, { checkout ->
-                            dismissLoadingScreen()
-                            if (checkout.statusCode == "200") {
+                showLoadingTimeOut(10000)
+                if (viewModel.arrayCart.isNotEmpty()) {
+                    viewModel.purchase(binding.edtNotes.text.trim().toString()).observe(viewLifecycleOwner, {
+                        dismissLoadingScreen()
+                        if (it.statusCode == "200") {
+                            requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
+                                putExtra("id", it.data?.id)
+                            })
+                            SuccessConfirmShipDialog(it.data?.id ?: 0L).apply {
+                                isCancelable = false
+                                action = {
+                                    viewModel.moveToCart()
+                                }
+                            }.show(childFragmentManager, null)
+                        } else {
+                            requireContext().showShortErrorToast(it.message)
+                        }
+                    })
+                } else {
+                    viewModel.checkout().observe(viewLifecycleOwner, { checkout ->
+                        dismissLoadingScreen()
+                        if (checkout.statusCode == "200") {
 //                                    SuccessConfirmShipDialog().show(childFragmentManager, null)
-                                requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
-                                    putExtra("id", viewModel.detailOrderId)
-                                })
+                            requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
+                                putExtra("id", viewModel.detailOrderId)
+                            })
 
-                                SuccessConfirmShipDialog(checkout?.data?.id ?: 0L).apply {
-                                    isCancelable = false
-                                    action = {
-                                        requireActivity().setResult(Activity.RESULT_OK)
-                                        requireActivity().finish()
-                                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_TO_SHAKE))
-                                    }
-                                }.show(childFragmentManager, null)
-                            } else {
-                                requireContext().showSimpleErrorToast(checkout.message)
-                            }
+                            SuccessConfirmShipDialog(checkout?.data?.id ?: 0L).apply {
+                                isCancelable = false
+                                action = {
+                                    requireActivity().setResult(Activity.RESULT_OK)
+                                    requireActivity().finish()
+                                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_TO_SHAKE))
+                                }
+                            }.show(childFragmentManager, null)
+                        } else {
+                            requireContext().showShortErrorToast(checkout.message)
+                        }
 
                         })
 //                    viewModel.confirmShip().observe(viewLifecycleOwner, {
@@ -125,7 +125,7 @@ class ConfirmShipFragment : Fragment() {
 //                                dismissLoadingScreen()
 //                            })
 //                        } else {
-//                            requireContext().showSimpleErrorToast(" Đã xảy ra lỗi vui lòng thử lại sau!")
+//                            requireContext().showShortErrorToast(" Đã xảy ra lỗi vui lòng thử lại sau!")
 //                            dismissLoadingScreen()
 //                        }
 //                    })

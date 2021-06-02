@@ -28,7 +28,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.util.ick.showSimpleErrorToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
 class ReportProductActivity : BaseActivityMVVM() {
     private lateinit var viewModel: ReportProductViewModel
@@ -208,7 +208,7 @@ class ReportProductActivity : BaseActivityMVVM() {
         val inputReason = layoutParent.getChildAt(1) as AppCompatEditText
 
         if (listReasonID.isEmpty() && !inputReason.isVisible) {
-            showSimpleErrorToast(getString(R.string.vui_long_chon_it_nhat_mot_ly_do))
+            showShortErrorToast(getString(R.string.vui_long_chon_it_nhat_mot_ly_do))
         } else {
             var input = inputReason.text.toString().trim()
             if (inputReason.isVisible && input.isEmpty()) {

@@ -29,7 +29,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -380,7 +380,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     PageRepository().unFollowPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
                         override fun onSuccess(obj: ICResponse<Boolean>) {
                             DialogHelper.closeLoading(activity)
-                            activity.showSimpleSuccessToast(activity.getString(R.string.ban_da_huy_theo_doi_trang_nay))
+                            activity.showShortSuccessToast(activity.getString(R.string.ban_da_huy_theo_doi_trang_nay))
                         }
 
                         override fun onError(error: ICResponseCode?) {
@@ -393,7 +393,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     PageRepository().followPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
                         override fun onSuccess(obj: ICResponse<Boolean>) {
                             DialogHelper.closeLoading(activity)
-                            activity.showSimpleSuccessToast(activity.getString(R.string.ban_da_theo_doi_trang_nay))
+                            activity.showShortSuccessToast(activity.getString(R.string.ban_da_theo_doi_trang_nay))
                         }
 
                         override fun onError(error: ICResponseCode?) {
@@ -428,9 +428,9 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     DialogHelper.closeLoading(activity)
                     obj.data?.let {
                         if (status == 2) {
-                            activity.showSimpleSuccessToast("Bạn đã bỏ theo dõi ${post.user?.getName}")
+                            activity.showShortSuccessToast("Bạn đã bỏ theo dõi ${post.user?.getName}")
                         } else {
-                            activity.showSimpleSuccessToast("Bạn đã theo dõi ${post.user?.getName}")
+                            activity.showShortSuccessToast("Bạn đã theo dõi ${post.user?.getName}")
                         }
                     }
                 }
@@ -456,7 +456,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     post.disableNotify = false
-                    dialog.context.showSimpleSuccessToast(dialog.context.getString(R.string.ban_da_bat_thong_bao_bai_viet_nay))
+                    dialog.context.showShortSuccessToast(dialog.context.getString(R.string.ban_da_bat_thong_bao_bai_viet_nay))
                 }
 
                 override fun onError(error: ICResponseCode?) {
@@ -481,7 +481,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     post.disableNotify = true
-                    dialog.context.showSimpleSuccessToast(dialog.context.getString(R.string.ban_da_tat_thong_bao_bai_viet_nay))
+                    dialog.context.showShortSuccessToast(dialog.context.getString(R.string.ban_da_tat_thong_bao_bai_viet_nay))
 
                 }
 

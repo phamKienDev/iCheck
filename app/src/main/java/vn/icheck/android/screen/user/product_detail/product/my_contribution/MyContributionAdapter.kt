@@ -55,7 +55,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                         holder.binding.tvData.beGone()
                         holder.binding.image1.beVisible()
 
-                        holder.binding.image1.loadRoundedImage((data.values as ArrayList<String>).firstOrNull(), R.drawable.error_load_image, corner = 4, width = 100.toPx())
+                        holder.binding.image1.loadRoundedImage((data.values as ArrayList<String>).firstOrNull(), R.drawable.error_load_image, corner = 4, width = 100.dpToPx())
                         holder.binding.image1.setOnClickListener {
                             DetailMediaActivity.start(it.context, data.values as ArrayList<String?>)
                         }
@@ -68,13 +68,13 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                         holder.binding.tvData.beGone()
                         holder.binding.image1.beVisible()
                         holder.binding.imgBlur.beGone()
-                        holder.binding.image1.loadRoundedImage((data.values as ArrayList<String>).firstOrNull(), R.drawable.error_load_image, corner = 4, width = 100.toPx())
+                        holder.binding.image1.loadRoundedImage((data.values as ArrayList<String>).firstOrNull(), R.drawable.error_load_image, corner = 4, width = 100.dpToPx())
                         if ((data.values as ArrayList<String>).size == 2) {
                             holder.binding.image2.beVisible()
-                            holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.toPx())
+                            holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.dpToPx())
                         } else if ((data.values as ArrayList<String>).size > 2) {
                             holder.binding.image2.beVisible()
-                            holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.toPx())
+                            holder.binding.image2.loadRoundedImage((data.values as ArrayList<String>).get(1), R.drawable.error_load_image, corner = 4, width = 100.dpToPx())
                             holder.binding.imgBlur.beVisible()
                             Glide.with(holder.binding.root.context)
                                     .load(ColorDrawable(ResourcesCompat.getColor(holder.binding.root.context.resources, R.color.colorBackgroundPopup, null)))

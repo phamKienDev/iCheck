@@ -159,23 +159,23 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 FirebaseDynamicLinksActivity.startDestinationUrl(this@NewDetailV2Activity, it.obj?.ctaUrl)
             }
 
-            webView.settings.javaScriptEnabled = true
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-            webView.settings.domStorageEnabled = true
-            webView.settings.allowFileAccessFromFileURLs = true
-            webView.settings.allowUniversalAccessFromFileURLs = true
+            webViewUrl.settings.javaScriptEnabled = true
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            webViewUrl.settings.domStorageEnabled = true
+            webViewUrl.settings.allowFileAccessFromFileURLs = true
+            webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
             } else {
-                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
+                webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
             }
 
             if (!it.obj?.fulltext.isNullOrEmpty()) {
-                webView.loadDataWithBaseURL(null, Constant.getHtmlData(it.obj?.fulltext!!), "text/html", "utf-8", "")
+                webViewUrl.loadDataWithBaseURL(null, Constant.getHtmlData(it.obj?.fulltext!!), "text/html", "utf-8", "")
             }
 
-            webView.webViewClient = object : WebViewClient() {
+            webViewUrl.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                     constraintLayout.visibility = View.GONE
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -259,23 +259,23 @@ class NewDetailV2Activity : BaseActivityMVVM() {
 
         WidgetUtils.loadImageUrl(imgBanner, imgCover.trim())
 
-        webView.settings.javaScriptEnabled = true
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.javaScriptEnabled = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         } else {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
         }
 
         if (!html.isNullOrEmpty()) {
-            webView.loadDataWithBaseURL(null, Constant.getHtmlData(html), "text/html", "utf-8", "")
+            webViewUrl.loadDataWithBaseURL(null, Constant.getHtmlData(html), "text/html", "utf-8", "")
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 constraintLayout.visibility = View.GONE
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

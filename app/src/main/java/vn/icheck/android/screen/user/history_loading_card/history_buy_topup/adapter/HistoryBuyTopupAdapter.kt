@@ -22,7 +22,8 @@ import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
 import vn.icheck.android.network.models.ICNone
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.history_buy_topup.view.IHistoryBuyTopupView
-import vn.icheck.android.util.ick.showSimpleSuccessToast
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -218,7 +219,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
             interactor.onTickUseTopup(id, object : ICNewApiListener<ICResponse<ICNone>> {
                 override fun onSuccess(obj: ICResponse<ICNone>) {
-                    itemView.context.showSimpleSuccessToast("Bạn đã đánh dấu đã nạp thẻ này!")
+                    itemView.context.showShortSuccessToast("Bạn đã đánh dấu đã nạp thẻ này!")
                     itemView.tvSelectUsed.visibility = View.GONE
                     itemView.view.visibility = View.GONE
                     itemView.tvLoadNow.visibility = View.GONE
@@ -226,7 +227,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    itemView.context.showSimpleSuccessToast(R.drawable.ic_waring_white_40_px, "Bạn đã đánh dấu đã nạp thẻ này!")
+                    itemView.context.showShortErrorToast( "Bạn đã đánh dấu đã nạp thẻ này!")
                 }
             })
         }

@@ -21,7 +21,7 @@ import vn.icheck.android.databinding.DialogReportUserSuccessBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.ichecklibs.util.dpToPx
 
 class ReportUserSuccessDialog:BottomSheetDialogFragment() {
     private var _binding:DialogReportUserSuccessBinding? = null
@@ -58,9 +58,9 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
                         background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
-                        setPadding(8.toPx())
+                        setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                            setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
+                            setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         setTextColor(Constant.getNormalTextColor(context))
@@ -69,9 +69,9 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
                         background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
-                        setPadding(8.toPx())
+                        setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                            setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
+                            setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         setTextColor(Constant.getNormalTextColor(context))
@@ -82,9 +82,9 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                 binding.linearLayout5.addView(TextView(requireContext()).apply {
                     setText(item.content)
                     background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
-                    setPadding(8.toPx())
+                    setPadding(8.dpToPx())
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                        setMargins(12.toPx(), 12.toPx(), 12.toPx(), 0)
+                        setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                     }
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                     setTextColor(Constant.getNormalTextColor(context))

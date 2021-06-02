@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,17 +8,21 @@
     tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.HistoryGuaranteeActivity">
 
     <include
-        layout="@layout/toolbar_blue"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@drawable/shadow_bottom" />
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvHistoryGuarantee"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_history_guarantee"/>
+        android:layout_height="@dimen/size_0"
+        android:background="@color/colorBackgroundGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        tools:listitem="@layout/item_history_guarantee_v61" />
 
-</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_4"
+        android:background="@drawable/shadow_bottom"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+</vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>

@@ -609,10 +609,10 @@ interface ICNetworkAPI {
     /*
      * End Cart
      * */
-/*
+
+    /*
      * Stamp V6.1
      * */
-//Stamp
     @GET
     fun scanBarcodeByStamp(@Url url: String): Observable<ICBarcodeProductV1>
 
@@ -621,6 +621,9 @@ interface ICNetworkAPI {
 
     @POST
     fun getDetailStamp(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICDetailStampV6_1>
+
+    @POST
+    suspend fun getStampDetail(@Url url: String, @Body body: HashMap<String, Any>): ICResponse<ICStampV61>
 
     @GET
     fun getListNoteHistoryGuarantee(@Url url: String, @QueryMap queries: HashMap<String, Any>): Observable<ICResp_Note_Guarantee>
@@ -636,6 +639,12 @@ interface ICNetworkAPI {
     fun getVariantProduct(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICVariantProductStampV6_1>
 
     @GET
+    suspend fun getProductVariant(@Url url: String, @QueryMap params: HashMap<String, Any>): ICResponse<ICVariantProductStampV6_1>
+
+    @GET
+    suspend fun getGuaranteeVariant(@Url url: String): ICResponse<MutableList<ICFieldGuarantee>>
+
+    @GET
     fun getFieldListGuarantee(@Url url: String): Observable<ICResponse<MutableList<ICFieldGuarantee>>>
 
     //More product verified vendor
@@ -646,6 +655,9 @@ interface ICNetworkAPI {
     @GET
     fun getListHistoryGuarantee(@Url url: String): Observable<ICHistoryGuarantee>
 
+    @GET
+    suspend fun getWarrantyHistory(@Url url: String): ICResponse<MutableList<ICListHistoryGuarantee>>
+
     //Verified Number Guarantee
     @GET
     fun getVerifiedNumberPhone(@Url url: String): Observable<ICVerifiedPhone>
@@ -653,6 +665,9 @@ interface ICNetworkAPI {
     //Get Detail Customer Guarantee
     @GET
     fun getDetailCustomerGuarantee(@Url url: String): Observable<ICDetailCustomerGuranteeVerified>
+
+    @GET
+    suspend fun getGuaranteeCustomerDetail(@Url url: String): ICResponse<ICGuaranteeCustomerDetail>
 
     //Get name city
     @GET
@@ -672,6 +687,9 @@ interface ICNetworkAPI {
 
     @GET
     fun configErrorStamp(@Url url: String): Call<IC_Config_Error>
+
+    @GET
+    suspend fun getStampConfig(@Url url: String): ICResponse<ICStampConfig>
 
     /*
      * End Stamp V6.1
@@ -1425,4 +1443,12 @@ interface ICNetworkAPI {
     fun getPointHistoryAll(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKPointHistory>>>
 
 
+    /**
+     * Popup quảng cáo
+     */
+    @GET(APIConstants.Popup.GET_POPUP_BY_SCREEN)
+    fun getPopupByScreen(@QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICPopup>>
+
+    @PATCH
+    fun clickPopupAds(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICResponse<Any>>
 }

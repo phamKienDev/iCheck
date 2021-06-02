@@ -5,7 +5,8 @@ import vn.icheck.android.component.ICViewTags
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.models.ICPage
 
-class VendorModel(val listVendor: MutableList<ICPage>, val icon: Int?) : ICViewModel {
+class VendorModel(val listVendor: MutableList<ICPage>) : ICViewModel {
+
     override fun getTag(): String {
         return ICViewTags.VENDOR
     }

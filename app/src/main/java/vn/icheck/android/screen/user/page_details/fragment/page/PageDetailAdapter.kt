@@ -236,7 +236,7 @@ class PageDetailAdapter(val view: IListReportView, listener: IRecyclerViewCallba
             ICViewTypes.MESSAGE_TYPE -> LongMessageHolder(parent)
             ICViewTypes.LIST_POST_TYPE -> PostHolder(parent, postListener)
             ICViewTypes.INVITE_FOLLOW_TYPE -> InviteFollowPageHolder(parent)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 
