@@ -13,8 +13,12 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_web_view_loyalty.*
+import kotlinx.android.synthetic.main.activity_web_view_loyalty.webView
+import kotlinx.android.synthetic.main.fragment_help_game.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import kotlinx.android.synthetic.main.toolbar_blue.imgBack
 import kotlinx.coroutines.launch
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -89,21 +93,22 @@ class WebViewActivity : BaseActivityGame() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
-        webViewUrl.settings.javaScriptEnabled = true
+        webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webViewUrl.settings.domStorageEnabled = true
-        webViewUrl.settings.allowFileAccessFromFileURLs = true
-        webViewUrl.settings.useWideViewPort = true
-        webViewUrl.settings.loadWithOverviewMode = true
-        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webView.settings.domStorageEnabled = true
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.useWideViewPort = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.defaultFontSize = 16.spToPx()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webViewUrl.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
         if (url.startsWith("http")) {
@@ -129,19 +134,19 @@ class WebViewActivity : BaseActivityGame() {
                         }
                     }
 
-                    webViewUrl.loadUrl(url, header)
+                    webView.loadUrl(url, header)
                 }
             } else {
-                webViewUrl.loadUrl(url)
+                webView.loadUrl(url)
             }
         } else {
-            webViewUrl.loadData(url, "text/html; charset=utf-8", "UTF-8")
+            webView.loadData(url, "text/html; charset=utf-8", "UTF-8")
         }
 
         var loadingFinished = true
         var redirect = false
 
-        webViewUrl.webViewClient = object : WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(webView: WebView, request: WebResourceRequest): Boolean {
                 if (!loadingFinished) {
                     redirect = true

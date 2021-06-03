@@ -9,6 +9,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.component.product.infor.ProductInformationHolder
+import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICStampConfig
@@ -65,7 +66,7 @@ class ICStampDetailAdapter(listener: IRecyclerViewCallback) : RecyclerViewCustom
             ICViewTypes.VENDOR_TYPE -> ICPageInfoHolder(parent)
             ICViewTypes.PRODUCT_INFO_TYPE -> ProductInformationHolder(parent)
             ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> ListStampECommerceHolder(parent)
-            ICViewTypes.CAMPAIGN_TYPE -> ICCampaignV61Holder(parent)
+            ICViewTypes.CAMPAIGN_TYPE -> LoyaltyViewHolder(parent)
             ICViewTypes.ERROR_STAMP_TYPE -> ICWrongStampHolder(parent)
             else -> NullHolder(parent)
         }
@@ -83,7 +84,7 @@ class ICStampDetailAdapter(listener: IRecyclerViewCallback) : RecyclerViewCustom
             is ICPageInfoHolder -> holder.bind(listData[position].data as ICWidgetData)
             is ProductInformationHolder -> holder.bind(listData[position].data as ICInfo)
             is ListStampECommerceHolder -> holder.bind(listData[position].data as MutableList<ICProductLink>)
-            is ICCampaignV61Holder -> {
+            is LoyaltyViewHolder -> {
                 holder.bind(listData[position].data as ICKLoyalty, {
                     bannerClicked?.invoke(it)
                 }, {

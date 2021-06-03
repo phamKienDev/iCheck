@@ -41,5 +41,6 @@
     <dimen name="size_50">50dp</dimen>
     <dimen name="size_60">60dp</dimen>
     <dimen name="size_70">70dp</dimen>
+    <dimen name="size_175">175dp</dimen>
 
 </resources>

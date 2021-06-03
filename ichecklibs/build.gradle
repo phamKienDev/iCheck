@@ -69,6 +69,8 @@ dependencies {
     /** MotionLayout **/
     api 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    implementation 'com.google.code.gson:gson:2.8.5'
+
     /** Retrofit **/
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'

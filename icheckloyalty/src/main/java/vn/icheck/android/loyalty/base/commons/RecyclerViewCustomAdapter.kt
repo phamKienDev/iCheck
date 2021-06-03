@@ -25,6 +25,7 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
     private var backgroundButton: Int? = null
     private var icon = 0
     private var colorButton = R.color.white
+    private var colorMessage = R.color.colorSecondText
 
     protected abstract fun getItemType(position: Int): Int
     protected abstract fun getViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
@@ -58,13 +59,14 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
      * @param textButton: Message cửa button nếu muốn ẩn button thì truyền null hoặc rỗng
      * @param backgroundButton: background của button
      */
-    fun setMessage(icon: Int, titleMsg: String?, contentMsg: String?, textButton: String?, backgroundButton: Int?, colorButton: Int = R.color.white) {
+    fun setMessage(icon: Int, titleMsg: String?, contentMsg: String?, textButton: String?, backgroundButton: Int?, colorButton: Int = R.color.white, colorMessage: Int) {
         this.icon = icon
         this.titleMsg = titleMsg ?: ""
         this.contentMsg = contentMsg
         this.textButton = textButton
         this.backgroundButton = backgroundButton
         this.colorButton = colorButton
+        this.colorMessage = colorMessage
     }
 
     fun setError(icon: Int, titleMsg: String?, contentMsg: String?, textButton: String?, backgroundButton: Int?, colorButton: Int) {
@@ -72,7 +74,7 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
         isLoadMore = false
         isLoading = false
 
-        setMessage(icon, titleMsg, contentMsg, textButton, backgroundButton, colorButton)
+        setMessage(icon, titleMsg, contentMsg, textButton, backgroundButton, colorButton, R.color.colorSecondText)
         notifyDataSetChanged()
     }
 
@@ -81,7 +83,7 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
         isLoadMore = false
         isLoading = false
 
-        setMessage(error.icon, error.title, error.message, error.textButton, error.backgroundButton, error.colorButton)
+        setMessage(error.icon, error.title, error.message, error.textButton, error.backgroundButton, error.colorButton, error.colorMessage ?: R.color.colorSecondText)
         notifyDataSetChanged()
     }
 
@@ -184,7 +186,7 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
                         textButton,
                         backgroundButton ?: 0,
                         colorButton,
-                        View.OnClickListener { listener?.onMessageClicked() })
+                        { listener?.onMessageClicked() }, colorMessage)
             }
             ICKViewType.SHORT_MESSAGE_TYPE -> {
                 (holder as ShortMessageHolder).bind(
@@ -193,8 +195,8 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
                         contentMsg,
                         textButton,
                         backgroundButton ?: 0,
-                        colorButton,
-                        View.OnClickListener { listener?.onMessageClicked() })
+                        colorButton
+                ) { listener?.onMessageClicked() }
             }
         }
     }
@@ -203,7 +205,7 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
 
     class MessageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_message_loyalty_point, parent, false)) {
 
-        fun bind(imgError: Int, msgError: String, msgErrorBottom: String?, msgButton: String?, bgButton: Int, colorButton: Int, callback: View.OnClickListener? = null) {
+        fun bind(imgError: Int, msgError: String, msgErrorBottom: String?, msgButton: String?, bgButton: Int, colorButton: Int, callback: View.OnClickListener? = null, colorMessage: Int? = null) {
             itemView.findViewById<AppCompatImageView>(R.id.imgDefault).setImageResource(imgError)
 
             itemView.findViewById<AppCompatTextView>(R.id.tvMessageTop).apply {
@@ -212,6 +214,8 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
                 } else {
                     msgError
                 }
+                setTextColor(ContextCompat.getColor(itemView.context, colorMessage
+                        ?: R.color.colorSecondText))
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.tvMessageBottom).apply {
@@ -221,6 +225,8 @@ internal abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecycle
                     setVisible()
                     text = msgErrorBottom
                 }
+                setTextColor(ContextCompat.getColor(itemView.context, colorMessage
+                        ?: R.color.colorSecondText))
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.btnDefault).apply {

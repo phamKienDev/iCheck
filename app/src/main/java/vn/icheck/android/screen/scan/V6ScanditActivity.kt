@@ -62,6 +62,7 @@ import vn.icheck.android.ichecklibs.util.getDeviceWidth
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.screen.gift_detail_voucher.GiftVoucherStaffActivity
 import vn.icheck.android.loyalty.sdk.ScanLoyaltyHelper
 import vn.icheck.android.network.base.*
@@ -309,8 +310,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog =
-            TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
+        takeImageDialog = TakeMediaDialog()
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
     }
 
     private fun initBarcodeCapture() {
@@ -785,7 +786,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             return@runOnUiThread
                         }
                         code.startsWith("icv") -> {
-                            startActivity<GiftVoucherStaffActivity, String>(ConstantsLoyalty.DATA_1, code.replace("icv", ""))
+                            offCamera()
+                            CampaignLoyaltyHelper.scanCheckVoucher(this@V6ScanditActivity, voucher = code.replace("icv", ""),
+                                    {
+                                        startActivity<GiftVoucherStaffActivity, String>(ConstantsLoyalty.DATA_1, code.replace("icv", ""))
+                                    },
+                                    { error ->
+                                        resetCamera()
+                                        showShortErrorToast(error)
+                                    })
                         }
                         else -> viewModel.checkQrStampSocial()
                     }
