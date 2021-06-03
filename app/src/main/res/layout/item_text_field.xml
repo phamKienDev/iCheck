@@ -13,12 +13,11 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorNormalText" />
 
-    <vn.icheck.android.ui.view.EditTextBody1
+    <vn.icheck.android.ichecklibs.view.EditTextBody1
         android:id="@+id/edtTextArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:background="@drawable/bg_transparent_corners_4"
         android:gravity="start|top"
         android:minLines="4"
         android:paddingStart="@dimen/size_10"

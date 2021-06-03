@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_product_information.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemProductInformationBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICInfo
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICProductInformations
@@ -27,7 +28,7 @@ class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInform
 
     fun bind(obj: ICProductInformations) {
         binding.tvTitle.text = obj.title
-        binding.viewBackground.background=ViewHelper.bgProductInfomation(itemView.context)
+        binding.viewBackground.background= ViewHelper.bgProductInfomation(itemView.context)
 
         if (!obj.shortContent.isNullOrEmpty()) {
             binding.tvContent.beVisible()

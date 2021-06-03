@@ -244,7 +244,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
@@ -281,7 +281,7 @@
                     android:text="Câu hỏi thường gặp"
                     android:textSize="@dimen/font_14" />
 
-            </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

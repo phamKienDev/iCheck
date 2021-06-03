@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.option_edit_information_public.EditInformationPublicActivity">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
@@ -30,7 +30,7 @@
             android:singleLine="true"
             android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
 
     <!--Layout Empty Information-->
     <LinearLayout
@@ -70,7 +70,7 @@
     </LinearLayout>
 
     <!--Layout Data-->
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@+id/layoutData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -261,5 +261,5 @@
 
         <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
-</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>

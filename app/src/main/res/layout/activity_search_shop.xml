@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -103,7 +103,7 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"

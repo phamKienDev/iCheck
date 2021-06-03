@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityUpdateInformationFirstBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
@@ -69,7 +70,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         StampDetailActivity.listActivities.add(this)
 
         setupToolbar()
-//        setupView()
+        setupView()
         setupListener()
         setupSearchCustomer()
         checkData()
@@ -81,6 +82,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
 
         binding.layoutToolbar.txtTitle.setText(R.string.thong_tin_khach_hang)
+    }
+
+    private fun setupView() {
+        binding.layoutSelectCity.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        binding.layoutSelectDistrict.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
     }
 
 //    private fun setupView() {

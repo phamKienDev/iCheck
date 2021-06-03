@@ -78,7 +78,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
                             holder.binding.imgBlur.beVisible()
                             Glide.with(holder.binding.root.context)
                                     .load(ColorDrawable(ResourcesCompat.getColor(holder.binding.root.context.resources, R.color.colorBackgroundPopup, null)))
-                                    .transform(CenterCrop(), RoundedCorners(4.toPx()))
+                                    .transform(CenterCrop(), RoundedCorners(4.dpToPx()))
                                     .into(holder.binding.imgBlur)
 
                             holder.binding.tvCountRemain simpleText "+${(data.values as ArrayList<String>).size - 2}"

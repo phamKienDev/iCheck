@@ -38,6 +38,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -292,7 +293,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             activity?.finish()
         }
 
-        binding.tvNotificationCount.background=ViewHelper.bgRedCircle22dp(requireContext())
+        binding.tvNotificationCount.background= ViewHelper.bgRedCircle22dp(requireContext())
         ickUserWallAdapter = IckUserWallAdapter(this)
         binding.rcvIckUserWall.adapter = ickUserWallAdapter
         binding.rcvIckUserWall.layoutManager = WrapContentLinearLayoutManager(requireContext())

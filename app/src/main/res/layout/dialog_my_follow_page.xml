@@ -6,12 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICViewBgWhiteRadius10
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICViewBgWhiteRadius10
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
         android:layout_gravity="center" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
@@ -116,5 +116,5 @@
                 app:layout_constraintStart_toStartOf="@id/tvReportTitle"
                 app:layout_constraintTop_toBottomOf="@id/tvReportTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
 </LinearLayout>

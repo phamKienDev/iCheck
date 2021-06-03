@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.confirmlockcard.ConfirmLockPVCardActivity">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
@@ -26,9 +26,9 @@
             android:gravity="center"
             android:text="Xác nhận khóa thẻ"
             android:textSize="@dimen/font_18" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -87,5 +87,5 @@
                 android:text="Xác nhận" />
 
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 </LinearLayout>

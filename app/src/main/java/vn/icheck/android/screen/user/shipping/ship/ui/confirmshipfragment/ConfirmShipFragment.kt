@@ -22,6 +22,7 @@ import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity

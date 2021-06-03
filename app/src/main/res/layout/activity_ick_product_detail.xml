@@ -51,7 +51,7 @@
             android:src="@drawable/ic_more_black_28dp" />
     </FrameLayout>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@id/layoutToolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="@dimen/size_8"
             android:src="@drawable/ic_more_light_blue_24dp" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 
     <FrameLayout
         android:id="@id/layoutLoading"
@@ -127,7 +127,7 @@
             app:lottie_rawRes="@raw/loading_short" />
     </FrameLayout>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@id/layoutStatus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
@@ -254,7 +254,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 
     <View
         android:id="@id/view"
@@ -265,7 +265,7 @@
         app:layout_constraintEnd_toEndOf="@id/layoutBottom"
         app:layout_constraintStart_toStartOf="@id/layoutBottom" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@+id/layoutBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -323,7 +323,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutAction"

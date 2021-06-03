@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_height="@dimen/size_30"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".screen.user.search_home.result.SearchResultActivity">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/size_8">
@@ -121,7 +121,7 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"

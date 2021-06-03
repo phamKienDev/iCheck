@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <!--Toolbar-->
-            <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
                 android:id="@id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_44"
@@ -78,7 +78,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_home_blue_24px" />
-            </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
             <!--Error Client-->
             <LinearLayout
@@ -103,7 +103,7 @@
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
-                <vn.icheck.android.ichecklibs.view.app_background.white_background.ICButtonSecondaryBgWhiteStrokeBlue1
+                <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICButtonSecondaryBgWhiteStrokeBlue1
                     android:id="@+id/btnAgainError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

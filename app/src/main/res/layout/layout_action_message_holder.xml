@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -49,4 +49,4 @@
         android:text="@string/xem_them_thu_thach"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
-</vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>

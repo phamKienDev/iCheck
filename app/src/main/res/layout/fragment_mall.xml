@@ -118,7 +118,7 @@
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/imgHideOrShow">
 
-        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
             android:id="@id/rvCategoryVertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

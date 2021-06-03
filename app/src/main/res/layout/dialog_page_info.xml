@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_corners_top_16"
     android:paddingStart="@dimen/size_12"
     android:paddingTop="@dimen/size_10"
     android:paddingEnd="@dimen/size_12"
+    android:id="@+id/root"
     android:paddingBottom="@dimen/size_10">
 
     <LinearLayout

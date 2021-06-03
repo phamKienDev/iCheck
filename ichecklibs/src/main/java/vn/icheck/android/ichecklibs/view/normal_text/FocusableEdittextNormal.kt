@@ -1,12 +1,9 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import androidx.core.content.ContextCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.FocusableEditText
-import vn.icheck.android.ichecklibs.R
 
 open class FocusableEdittextNormal:FocusableEditText {
 

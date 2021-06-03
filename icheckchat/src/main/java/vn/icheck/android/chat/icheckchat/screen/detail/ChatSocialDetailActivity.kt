@@ -55,6 +55,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
@@ -224,7 +225,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.imgSend.isEnabled = !s?.trim().isNullOrEmpty() || binding.layoutProduct.isVisible && product != null
 
                 if (s.isNullOrEmpty()) {
-                    binding.layoutEditText.background=ViewHelper.bgGrayF0Corners4()
+                    binding.layoutEditText.background= ViewHelper.bgGrayF0Corners4()
                 } else {
                     binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_no_solid_light_blue)
                 }

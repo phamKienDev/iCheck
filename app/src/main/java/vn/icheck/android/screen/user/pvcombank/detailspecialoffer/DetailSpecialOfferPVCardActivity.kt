@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import kotlinx.android.synthetic.main.activity_detail_special_offer_pvcard.imgBack
-import kotlinx.android.synthetic.main.activity_detail_special_offer_pvcard.txtTitle
-import kotlinx.android.synthetic.main.activity_detail_special_offer_pvcard.webViewUrl
+import kotlinx.android.synthetic.main.activity_detail_special_offer_pvcard.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent

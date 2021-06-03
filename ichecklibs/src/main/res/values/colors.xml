@@ -58,7 +58,6 @@
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
     <color name="lightGray">#F1F1F1</color>
-    <color name="white">#FFFFFF</color>
     <color name="green">#62AF58</color>
     <color name="green_v2">#49CA4E</color>
     <color name="errorColor">#EB5757</color>
@@ -110,7 +109,6 @@
     <color name="gray_stamp_hoa_phat">#F2F2F2</color>
     <color name="errorColorStamp">#ff1616</color>
     <color name="color_egg">#4D4D9DFF</color>
-    <color name="lightGray">#F1F1F1</color>
     <color name="gray_f0">#F0F0F0</color>
     <!--
         100% — FF

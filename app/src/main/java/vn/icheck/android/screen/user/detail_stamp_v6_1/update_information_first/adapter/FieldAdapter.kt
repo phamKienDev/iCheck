@@ -140,6 +140,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         override fun bind(obj: ICFieldGuarantee) {
+            itemView.edtInput.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+
             if (obj.require == 1) {
                 itemView.tvTitle.text = obj.name + " (*)"
             } else {
@@ -167,6 +169,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         override fun bind(obj: ICFieldGuarantee) {
+            itemView.edtTextArea.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+
             if (obj.require == 1) {
                 itemView.tvTitleTextArea.text = obj.name + " (*)"
             } else {
@@ -251,6 +255,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class DateFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
         override fun bind(obj: ICFieldGuarantee) {
+            itemView.edtInputDate.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
             if (obj.require == 1) {
                 itemView.tvTitleDate.text = obj.name + " (*)"
             } else {

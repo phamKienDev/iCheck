@@ -53,7 +53,7 @@ import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+import vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondSendOtpLogin
 import vn.icheck.android.ichecklibs.view.secondary.TextSecondary

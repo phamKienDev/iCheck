@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:id="@+id/view"/>
     
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -163,6 +163,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tvReportUser" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
     
 </LinearLayout>

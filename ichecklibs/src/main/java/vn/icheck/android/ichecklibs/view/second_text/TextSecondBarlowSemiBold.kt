@@ -2,10 +2,7 @@ package vn.icheck.android.ichecklibs.view.second_text
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 
 class TextSecondBarlowSemiBold : TextBarlowSemiBold {

@@ -8,7 +8,7 @@
     android:paddingEnd="@dimen/size_10"
     android:paddingBottom="@dimen/size_10">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadius8
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius8
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
             android:id="@+id/rcvInternalStamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadius8>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius8>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/txtCancel"

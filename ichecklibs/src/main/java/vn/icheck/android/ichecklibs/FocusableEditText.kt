@@ -12,7 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.ichecklibs.util.dpToPx
 
-class FocusableEditText : AppCompatEditText {
+open class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
     var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint

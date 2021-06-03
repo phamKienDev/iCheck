@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/layoutContainer"
@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
         android:id="@id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:layout_height="@dimen/size_30"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewShadow">
 
-        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -196,4 +196,4 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading_short" />
     </FrameLayout>
-</vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>

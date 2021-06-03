@@ -939,7 +939,6 @@
     <string name="canh_bao_uppercase_down_xxx">CẢNH BÁO!\n%s</string>
     <string name="so_lan_quet">Số lần quét</string>
     <string name="so_nguoi_quet">Số người quét</string>
-    <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
     <string name="thoi_gian_bao_hanh_v2">Thời gian bảo hành:</string>
     <string name="han_bao_hanh_v2">Hạn bảo hành:</string>
     <string name="so_ngay_bao_hanh_con_lai_v2">Số ngày bảo hành còn lại:</string>
@@ -949,7 +948,6 @@
     <string name="trang_thai_v2">Trạng thái:</string>
     <string name="tinh_trang_v2">Tình trạng:</string>
     <string name="tinh_trang_v2_xxx">Tình trạng: %s</string>
-    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
     <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
     <string name="ho_va_ten_v2">Họ và tên:</string>
     <string name="ho_va_ten">Họ và tên</string>

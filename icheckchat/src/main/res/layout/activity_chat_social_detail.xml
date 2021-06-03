@@ -273,7 +273,7 @@
             android:paddingEnd="12dp"
             android:paddingRight="12dp" />
 
-        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
             android:id="@+id/recyclerViewPackageSticker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

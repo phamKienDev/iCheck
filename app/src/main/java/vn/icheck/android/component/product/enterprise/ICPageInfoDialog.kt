@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.DialogPageInfoBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICWidgetData
 
 class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) {
@@ -18,6 +19,8 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
     fun show(obj: ICWidgetData) {
         val binding = DialogPageInfoBinding.inflate(dialog.layoutInflater)
         dialog.setContentView(binding.root)
+
+        binding.root.background=ViewHelper.bgWhiteCornersTop16(dialog.context)
 
         binding.tvName.text = obj.name
         binding.tvAddress.text = getSpannable(R.string.dia_chi_xxx_stamp_v61, getContent(obj.address), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))

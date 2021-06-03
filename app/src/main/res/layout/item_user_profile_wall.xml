@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/left_menu_bg" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16
         android:id="@+id/bg_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -283,7 +283,7 @@
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
             android:text="Xem thêm thông tin cá nhân" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"

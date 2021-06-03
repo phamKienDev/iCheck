@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:visibility="invisible" />
     </FrameLayout>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="invisible" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"

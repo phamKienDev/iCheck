@@ -7,7 +7,7 @@
     android:background="@color/gray_e5"
     tools:context="vn.icheck.android.screen.user.search_home.main.SearchHomeActivity">
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
         android:id="@+id/container_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="@id/container_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/container_search" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container_search" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
         android:id="@+id/container_recent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -139,9 +139,9 @@
             app:textPaddingRight="@dimen/size_10"
             app:textPaddingTop="@dimen/size_8" />
 
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
         android:id="@+id/container_popular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -195,9 +195,9 @@
             app:textPaddingLeft="@dimen/size_8"
             app:textPaddingRight="@dimen/size_8"
             app:textPaddingTop="@dimen/size_8" />
-    </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICRecylerViewWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
         android:id="@+id/rcv_search"
         android:layout_width="match_parent"
         android:layout_height="0dp"

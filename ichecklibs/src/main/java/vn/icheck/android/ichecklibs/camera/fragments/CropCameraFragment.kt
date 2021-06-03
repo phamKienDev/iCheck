@@ -53,7 +53,6 @@ import vn.icheck.android.ichecklibs.camera.utils.OrientationLiveData
 import vn.icheck.android.ichecklibs.camera.utils.computeExifOrientation
 import vn.icheck.android.ichecklibs.camera.utils.getPreviewOutputSize
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.ichecklibs.util.showSimpleErrorToast
 import java.io.Closeable
 import java.io.File
 import java.io.FileOutputStream

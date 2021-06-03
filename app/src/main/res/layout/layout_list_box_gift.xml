@@ -117,7 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutTextName" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -148,7 +148,7 @@
         app:layout_constraintStart_toEndOf="@+id/box1"
         app:layout_constraintTop_toTopOf="@+id/box1" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -179,7 +179,7 @@
         app:layout_constraintStart_toEndOf="@+id/box2"
         app:layout_constraintTop_toTopOf="@+id/box1" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -210,7 +210,7 @@
         app:layout_constraintStart_toEndOf="@+id/box3"
         app:layout_constraintTop_toTopOf="@+id/box1" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img4"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -338,7 +338,7 @@
         app:layout_constraintStart_toStartOf="@+id/box1"
         app:layout_constraintTop_toBottomOf="@+id/layoutTextName2" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img5"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -368,7 +368,7 @@
         app:layout_constraintStart_toStartOf="@+id/box2"
         app:layout_constraintTop_toTopOf="@+id/box5" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img6"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -398,7 +398,7 @@
         app:layout_constraintStart_toStartOf="@+id/box3"
         app:layout_constraintTop_toTopOf="@+id/box5" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img7"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -428,7 +428,7 @@
         app:layout_constraintStart_toStartOf="@+id/box4"
         app:layout_constraintTop_toTopOf="@+id/box5" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img8"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -555,7 +555,7 @@
         app:layout_constraintStart_toStartOf="@+id/box1"
         app:layout_constraintTop_toBottomOf="@+id/layoutTextName3" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img9"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -585,7 +585,7 @@
         app:layout_constraintStart_toStartOf="@+id/box6"
         app:layout_constraintTop_toTopOf="@+id/box9" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img10"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -615,7 +615,7 @@
         app:layout_constraintStart_toStartOf="@+id/box7"
         app:layout_constraintTop_toTopOf="@+id/box9" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img11"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -645,7 +645,7 @@
         app:layout_constraintStart_toStartOf="@+id/box8"
         app:layout_constraintTop_toTopOf="@+id/box9" />
 
-    <vn.icheck.android.ichecklibs.view.app_background.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
         android:id="@+id/img12"
         android:layout_width="0dp"
         android:layout_height="0dp"

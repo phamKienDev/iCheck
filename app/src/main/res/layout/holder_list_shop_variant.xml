@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
             android:id="@+id/vg_shop_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </vn.icheck.android.ichecklibs.view.app_background.white_background.ICConstraintLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
 
         <LinearLayout
             android:layout_width="wrap_content"

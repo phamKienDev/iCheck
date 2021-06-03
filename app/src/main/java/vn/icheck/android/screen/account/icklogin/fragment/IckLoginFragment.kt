@@ -21,6 +21,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -65,7 +66,7 @@ class IckLoginFragment : CoroutineFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.disable()
-        binding.btnLoginFacebook.background=ViewHelper.bgBtnFacebook(requireContext())
+        binding.btnLoginFacebook.background= ViewHelper.bgBtnFacebook(requireContext())
         TrackingAllHelper.trackLoginStart()
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
             override fun afterTextChanged(s: Editable?) {

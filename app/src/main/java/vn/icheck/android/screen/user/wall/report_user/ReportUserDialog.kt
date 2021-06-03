@@ -99,7 +99,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
                             dismiss()
                         })
                     } else {
-                        requireContext().showSimpleErrorToast("Vui lòng chọn ít nhất một lý do")
+                        requireContext().showShortErrorToast("Vui lòng chọn ít nhất một lý do")
                     }
                 })
             }
