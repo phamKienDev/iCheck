@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.dialog
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,14 +7,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.*
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.webkit.*
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
@@ -36,8 +34,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant.getHtmlData
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
@@ -366,8 +362,15 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    layoutText.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
-                    layoutText.beVisible()
+                    if (isAdded && layoutText!=null) {
+                        layoutText.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
+                        layoutText.beVisible()
+                    }
+                }
+
+                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                    super.onReceivedError(view, request, error)
+                    dismiss()
                 }
             }
 
@@ -431,8 +434,14 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    layoutWeb.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
-                    layoutWeb.beVisible()
+                    if (isAdded && layoutWeb!=null) {
+                        layoutWeb.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
+                        layoutWeb.beVisible()
+                    }
+                }
+                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                    super.onReceivedError(view, request, error)
+                    dismiss()
                 }
             }
 
