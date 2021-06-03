@@ -1129,16 +1129,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 }
             }
             Constant.TYPE_MAIL -> {
-                val mailTo = data.split("MAILTO:").get(1).split("?").get(0)
-                val subject = data.split("MAILTO:").get(1).split("?").get(1).split("subject=").get(1).split("&").get(0)
-                val body = data.split("MAILTO:").get(1).split("?").get(1).split("subject=").get(1).split("&").get(1).split("body=").get(1)
 
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.type = "text/html"
-                intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(mailTo))
-                intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-                intent.putExtra(Intent.EXTRA_TEXT, body)
-                startActivity(intent)
+                vn.icheck.android.ichecklibs.Constant.sendMail(this@V6ScanditActivity, data)
             }
             Constant.TYPE_PHONE_NUMBER -> {
                 val intent = Intent(Intent.ACTION_DIAL)
