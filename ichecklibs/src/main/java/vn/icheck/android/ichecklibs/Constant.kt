@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.net.MailTo
 import android.net.Uri
 import java.util.regex.Pattern
 
@@ -259,5 +260,27 @@ object Constant {
         }
 
         return stringBuilder.toString()
+    }
+
+    fun sendMail(context: Context, value: String?) {
+        if (!value.isNullOrEmpty()) {
+            var mail = when {
+                value.startsWith("MAILTO") -> {
+                    value.replace("MAILTO", "mailto")
+                }
+                else -> {
+                    value.replace("mailto:email", "mailto")
+                }
+            }
+            val mailTo = MailTo.parse(mail)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/html"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(mailTo.to))
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTo.subject)
+            intent.putExtra(Intent.EXTRA_CC, mailTo.cc)
+            intent.putExtra(Intent.EXTRA_TEXT, mailTo.body)
+            context.startActivity(intent)
+        }
     }
 }
