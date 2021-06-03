@@ -38,15 +38,9 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     private val adapter = ListNoteHistoryAdapter()
 
     override fun onInitView() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Details of warranty information"
-            tvCustomerInfor.text = "Customer Information"
-            tvWarrantyInfor.text = "Warranty Information"
-        } else {
-            txtTitle.text = "Chi tiết bảo hành"
-            tvCustomerInfor.text = "Thông tin khách hàng"
-            tvWarrantyInfor.text = "Thông tin bảo hành"
-        }
+        txtTitle.text = "Chi tiết bảo hành"
+        tvCustomerInfor.text = "Thông tin khách hàng"
+        tvWarrantyInfor.text = "Thông tin bảo hành"
 
         initRecyclerview()
         setupListener()
@@ -80,128 +74,18 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     }
 
     override fun getObjectIntentSuccess(item: ICListHistoryGuarantee, list: MutableList<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>?) {
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Name : </font>" + "<b>" + item.customer?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Name : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + item.customer?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvNameCustomer.text = item.customer?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Tel : </font>" + "<b>" + item.customer?.phone + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Tel : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + item.customer?.phone + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvPhoneCustomer.text = item.customer?.phone
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + item.customer?.email + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + item.customer?.email + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvMailCustomer.text = item.customer?.email
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + item.customer?.address + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + item.customer?.address + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvAddressCustomer.text = item.customer?.address
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Time : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Time : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time)
         } else {
             null
         }
 
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Warranty Center : </font>" + "<b>" + item.store?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Warranty Center : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + item.store?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvNameStoreGuarantee.text = item.store?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Warranty Status : </font>" + "<b>" + item.state?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Warranty Status : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Tình trạng : </font>" + "<b>" + item.state?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Tình trạng : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvStateGuarantee.text = item.state?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false){
-//            tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Date of return : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Date of return : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Ngày hẹn trả : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Ngày hẹn trả : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time)
         } else {
