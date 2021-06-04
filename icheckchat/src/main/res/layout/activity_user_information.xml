@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -50,11 +50,10 @@
                 android:textSize="18sp"
                 tools:text="Xuyến Đỗ ( tên giới hạn 2 dòng) giới hạn ccách lề trái phải 40" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorBackgroundGray" />
+                android:layout_marginTop="20dp" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/btnViewProfile"
@@ -70,10 +69,9 @@
                 android:paddingBottom="10dp"
                 tools:text="Xem trang cá nhân" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorBackgroundGray" />
+                android:layout_height="1dp"/>
 
             <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormal
                 android:id="@+id/btnCheckedNotification"
@@ -91,10 +89,9 @@
                 android:paddingBottom="8dp"
                 android:text="@string/thong_bao_tin_nhan_moi" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorBackgroundGray" />
+                android:layout_height="1dp"/>
 
             <vn.icheck.android.ichecklibs.view.normal_text.CheckedNormal
                 android:id="@+id/btnBlock"
@@ -109,10 +106,9 @@
                 android:paddingBottom="14dp"
                 android:text="@string/chan_tin_nhan_tu_nguoi_nay" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorBackgroundGray" />
+                android:layout_height="1dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnDeleteMessage"
@@ -127,12 +123,11 @@
                 android:text="@string/xoa_cuoc_tro_chuyen"
                 android:textColor="@color/colorAccentRed" />
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
                 android:id="@+id/layoutImage"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBackgroundGray"
                 android:orientation="vertical">
 
                 <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
@@ -153,7 +148,7 @@
                     android:paddingBottom="20dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

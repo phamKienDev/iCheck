@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_gray_f0_corners_4"
         android:paddingLeft="@dimen/size_16"
         android:paddingTop="@dimen/size_4"
         android:paddingRight="@dimen/size_16"

@@ -10,6 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemCartBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -44,6 +45,7 @@ class CartItemsAdapter(val listData: List<ItemCartItem>, val onAdd: (Int) -> Uni
                 IckProductDetailActivity.start(act, cartItem.product?.originId ?: 0L)
             }
         }
+        holder.binding.tvTotal.background=ViewHelper.bgGrayCorners4(holder.binding.tvTotal.context)
         holder.binding.tvTotal simpleText cartItem.quantity.toString()
         holder.binding.tvQuantityGift simpleText "${TextHelper.formatMoneyPhay(cartItem.price)} Xu"
         holder.binding.checkBox.isChecked = cartItem.isSelected

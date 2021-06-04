@@ -8,7 +8,7 @@
     android:layout_marginStart="@dimen/size_18"
     android:layout_marginEnd="@dimen/size_18">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius10
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10
         android:id="@+id/layoutTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius10>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnClose"

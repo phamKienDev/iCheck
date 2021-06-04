@@ -15,6 +15,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICCollection
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
@@ -83,7 +84,7 @@ class CollectionVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICCollection>
             val layoutParent = LinearLayout(context)
             layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size6, 0, SizeHelper.size6)
             layoutParent.orientation = LinearLayout.VERTICAL
-            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            layoutParent.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
 
             // Layout title
             layoutParent.addView(ViewHelper.createTitleWidthViewMore(context))

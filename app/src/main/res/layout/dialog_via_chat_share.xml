@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"/>
 
@@ -150,6 +150,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+        android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_34"
         android:layout_marginStart="@dimen/size_12"
@@ -159,8 +160,7 @@
         android:gravity="center|start"
         android:fontFamily="@font/barlow_medium"
         android:paddingStart="@dimen/size_8"
-        android:drawableStart="@drawable/ic_search_gray_24dp"
-        android:background="@drawable/bg_corner_gray_search_4"/>
+        android:drawableStart="@drawable/ic_search_gray_24dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"
@@ -168,4 +168,4 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_2"
         android:paddingBottom="@dimen/size_4" />
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

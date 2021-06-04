@@ -101,7 +101,7 @@
             android:lines="3"
             android:textSize="@dimen/font_14" />
 
-        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_12" />

@@ -51,11 +51,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:id="@id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#f0f0f0"
         android:clipToPadding="false"
         android:descendantFocusability="blocksDescendants"
         android:visibility="gone"
@@ -71,11 +70,10 @@
             tools:visibility="visible">
 
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
                 android:id="@+id/group_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorBackgroundGray"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:visibility="visible">
@@ -262,7 +260,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
 
             <LinearLayout
                 android:id="@+id/group_address"
@@ -282,7 +280,7 @@
                     android:text="Địa chỉ đến lấy quà"
                     android:textSize="@dimen/font_14" />
 
-                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
@@ -306,7 +304,7 @@
                     tools:text="34 Lê Văn Lương, Cầu Giấy, Hà Nội ( không giới hạn dòng)..." />
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:id="@+id/group_business"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -363,15 +361,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/appCompatTextView33"
                     tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
 
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@+id/group_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
@@ -382,7 +380,7 @@
                     android:text="Thông tin quà"
                     android:textSize="@dimen/font_14" />
 
-                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
@@ -403,13 +401,12 @@ Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng
 Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé.
  Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé." />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_12"
-                    android:background="@color/colorBackgroundGray" />
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+                    android:layout_height="@dimen/size_12" />
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgGift"
@@ -440,7 +437,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             app:srcCompat="@drawable/ic_back_black_28px" />
     </FrameLayout>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -479,7 +476,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:singleLine="true"
                 tools:text="Tiêu đề" />
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -488,7 +485,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/toolbarAlpha" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -553,7 +550,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             tools:text="@string/theo_doi_don_qua"
             tools:visibility="gone" />
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

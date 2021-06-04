@@ -448,6 +448,27 @@ object Constant {
             }
         }
 
+
+    /*
+    * Color background Popup
+    */
+    fun getBackgroundPopupColor(context: Context): Int {
+        return if (appBackgroundColor.isNotEmpty()) {
+            Color.parseColor(appBackgroundColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorBackgroundPopup)
+        }
+    }
+
+    val getBackgroundPopupColorCode: String
+        get() {
+            return if (appBackgroundColor.isNotEmpty()) {
+                appBackgroundColor
+            } else {
+                "#80000000"
+            }
+        }
+
     /*
     *Color accent blue
     * * */

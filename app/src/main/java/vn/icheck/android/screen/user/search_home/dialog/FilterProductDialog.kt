@@ -28,6 +28,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
 
         selectedReviews.addAll(reviews ?: mutableListOf())
 
+        product_verified_switch.trackDrawable=ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(requireContext())
         product_verified_switch.isChecked = selectedVerify
         setPrice(selectedPrice)
         setReview(selectedReviews)

@@ -55,27 +55,19 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         listenerData()
     }
 
-    private fun initSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
-        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
-        swipeLayout.setOnRefreshListener {
-            findListUser(edtSearch.text.toString())
-        }
-    }
-
     private fun initView() {
         img_back.setOnClickListener {
             onBackPressed()
         }
 
         dispose = RxTextView.textChangeEvents(edtSearch)
-                .skipInitialValue()
-                .distinctUntilChanged()
-                .debounce(600, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { key ->
-                    findListUser(key.text().toString())
-                }
+            .skipInitialValue()
+            .distinctUntilChanged()
+            .debounce(600, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { key ->
+                findListUser(key.text().toString())
+            }
 
         tvInvite.setOnClickListener {
             viewModel.inivitUserFollowPage(listSelected)
@@ -83,6 +75,16 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
 
         img_clear.setOnClickListener {
             edtSearch.setText("")
+        }
+
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+    }
+
+    private fun initSwipeLayout() {
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
+        swipeLayout.setOnRefreshListener {
+            findListUser(edtSearch.text.toString())
         }
     }
 

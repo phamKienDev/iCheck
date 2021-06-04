@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/containerSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,9 +84,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvSuggest"
             tools:text="Xem 1.884 đánh giá" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/layoutEmptyReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,5 +131,5 @@
             app:layout_constraintTop_toTopOf="@id/appCompatTextView7" />
 
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import vn.icheck.android.chat.icheckchat.base.recyclerview.holder.BaseViewHolder
 import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.databinding.ItemImageUploadBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.io.File
 
 class ImageAdapter : BaseRecyclerView<File>() {
@@ -53,6 +54,7 @@ class ImageAdapter : BaseRecyclerView<File>() {
 
     inner class ImageHolder(val binding: ItemImageUploadBinding) : BaseViewHolder<File>(binding) {
         override fun bind(obj: File) {
+            binding.imgVideo.background=ViewHelper.bgPopupCorners4(itemView.context)
             try {
                 binding.imgUpload.loadImageFromVideoFile(obj, null, dpToPx(4))
                 if (obj.absolutePath.contains(".mp4")) {

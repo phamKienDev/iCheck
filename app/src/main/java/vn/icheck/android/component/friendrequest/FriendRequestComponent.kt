@@ -16,6 +16,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.listnotification.friendrequest.ListFriendRequestActivity
@@ -51,7 +52,7 @@ class FriendRequestComponent(parent: ViewGroup): BaseViewHolder<ICListResponse<I
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.color = ContextCompat.getColor(context, R.color.colorBackgroundGray)
+                    paint.color = Constant.getAppBackgroundGrayColor(context)
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)

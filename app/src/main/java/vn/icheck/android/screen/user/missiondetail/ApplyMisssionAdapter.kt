@@ -83,7 +83,7 @@ class ApplyMisssionAdapter : RecyclerViewAdapter<Any>() {
 
             addView(CircleImageView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(SizeHelper.size50, SizeHelper.size50)
-                circleBackgroundColor = ContextCompat.getColor(context, R.color.colorLineView)
+                circleBackgroundColor = ContextCompat.getColor(context, R.color.grayD8)
                 setPadding(SizeHelper.size1, SizeHelper.size1, SizeHelper.size1, SizeHelper.size1)
             })
 

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundGray"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -38,4 +37,4 @@
         android:text="@string/tao_qrcode"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

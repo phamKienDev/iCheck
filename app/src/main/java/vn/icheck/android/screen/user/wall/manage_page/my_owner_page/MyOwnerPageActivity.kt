@@ -38,6 +38,8 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initView() {
+        edtSearch.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(this)
+
         img_back.setOnClickListener {
             onBackPressed()
         }

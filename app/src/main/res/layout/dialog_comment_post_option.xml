@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICViewBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewBgWhiteRadius4
         android:id="@id/viewTop"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
@@ -112,5 +112,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgDelete"
             app:layout_constraintTop_toTopOf="@id/imgDelete" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>
 </LinearLayout>

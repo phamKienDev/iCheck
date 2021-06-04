@@ -20,6 +20,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.screen.user.search_home.dialog.FilterPriceDialog
@@ -76,6 +77,8 @@ class SearchProductActivity : BaseActivityMVVM(), View.OnClickListener, IRecycle
                 false
             }
         }
+
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
 
         WidgetUtils.setClickListener(this, btn_product, btn_price, btn_verify, btn_review, imgClear, imgBack)
     }

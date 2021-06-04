@@ -43,7 +43,6 @@
             android:id="@id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_dark_gray_6_corners_4"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:padding="@dimen/size_8"

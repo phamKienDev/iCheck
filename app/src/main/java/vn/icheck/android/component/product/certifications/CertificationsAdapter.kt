@@ -10,6 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -46,7 +47,7 @@ class CertificationsAdapter(val listData: List<String>) : RecyclerView.Adapter<C
                     it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size100, SizeHelper.size140).also {params ->
                         params.setMargins(SizeHelper.size10,0,0,0)
                     }
-                    it.setBackgroundColor(Color.parseColor("#F0F0F0"))
+                    it.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
                 }
             }
         }

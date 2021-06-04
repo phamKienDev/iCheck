@@ -6,12 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICViewBgWhiteRadius10
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewBgWhiteRadius10
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
         android:layout_gravity="center_horizontal" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_12">
@@ -84,5 +84,5 @@
                 android:drawableLeft="@drawable/ic_unfollow_40dp"
                 android:text="@string/xoa_thong_bao_nay" />
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 </LinearLayout>

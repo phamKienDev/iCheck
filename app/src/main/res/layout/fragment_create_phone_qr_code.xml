@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
     android:focusable="true"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -103,4 +103,4 @@
         style="@style/Button_Blue_Corners_6"
         android:layout_margin="@dimen/size_12"
         android:text="@string/tao_ma_qr" />
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

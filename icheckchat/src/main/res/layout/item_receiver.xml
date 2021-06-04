@@ -36,7 +36,6 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_corner_10_gray_f0"
             android:includeFontPadding="false"
             android:lineHeight="20dp"
             android:padding="10dp"
@@ -51,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:visibility="gone"
-            android:background="@drawable/bg_corner_10_gray_f0"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -105,7 +103,6 @@
             android:layout_width="228dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
             android:paddingBottom="10dp"
             android:visibility="gone">
 
@@ -155,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
                 tools:text="03514364161461" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="0.5dp"
@@ -202,7 +199,6 @@
             android:layout_width="228dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
             android:paddingBottom="10dp"
             android:visibility="gone">
 
@@ -272,7 +268,6 @@
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_corner_10_gray_f0"
             android:paddingBottom="10dp"
             android:visibility="gone">
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <!--Toolbar-->
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
@@ -57,9 +57,9 @@
             app:layout_constraintBottom_toBottomOf="@id/txtTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/txtTitle" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -164,14 +164,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_10"
-        android:background="#f0f0f0" />
+        android:layout_height="@dimen/size_10"/>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -262,6 +261,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_again"
             app:layout_constraintTop_toTopOf="@id/btn_again" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

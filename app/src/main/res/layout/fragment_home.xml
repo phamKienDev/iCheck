@@ -146,7 +146,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutHeader"

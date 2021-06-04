@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
 
-        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -66,7 +66,7 @@
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
             android:src="@drawable/ic_box_shake_40"
-            app:civ_circle_background_color="@color/colorBackgroundGray" />
+            app:civ_circle_background_color="@color/grayF0" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -87,11 +87,10 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_history_reward_gift"
-            app:civ_circle_background_color="#f0f0f0" />
+            android:src="@drawable/ic_history_reward_gift" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -112,11 +111,10 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_rank_winner"
-            app:civ_circle_background_color="#f0f0f0" />
+            android:src="@drawable/ic_rank_winner" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -138,11 +136,10 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_information_event_shake"
-            app:civ_circle_background_color="#f0f0f0" />
+            android:src="@drawable/ic_information_event_shake"/>
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -153,4 +150,4 @@
 
     </LinearLayout>
 
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

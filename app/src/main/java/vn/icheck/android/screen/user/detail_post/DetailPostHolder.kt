@@ -23,6 +23,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -125,6 +126,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
     }
 
     private fun setupProduct(obj: ICPost) {
+        binding.layoutProduct.background=ViewHelper.bgGrayCorners4(binding.layoutProduct.context)
         if (obj.meta?.product != null) {
             binding.layoutProduct.visibility = View.VISIBLE
 

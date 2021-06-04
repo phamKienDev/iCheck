@@ -16,6 +16,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemIntegerBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -55,6 +56,7 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
         } else {
             binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
+        binding.tvValue.background=ViewHelper.bgGrayCorners4(binding.tvValue.context)
         if (categoryAttributesModel.values != null && categoryAttributesModel.values.toString().isNotEmpty()) {
             if (categoryAttributesModel.values is Double) {
                 binding.tvValue.setText((categoryAttributesModel.values as Double).toInt().toString())

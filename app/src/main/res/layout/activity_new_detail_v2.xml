@@ -13,11 +13,10 @@
         app:layout_constraintBottom_toTopOf="@id/viewShadowBottom"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/size_14"
-            android:background="@color/colorBackgroundGray"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/size_4">
 
-                <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageViewWhite
+                <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICImageViewWhite
                     android:id="@id/imgBanner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
@@ -33,7 +32,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:gravity="center_vertical"
@@ -55,7 +54,7 @@
                         android:layout_height="@dimen/size_36"
                         android:src="@drawable/ic_new_36dp" />
 
-                    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                         android:layout_width="@dimen/size_1"
                         android:layout_height="@dimen/size_12"
                         android:layout_marginStart="@dimen/size_10"
@@ -78,7 +77,7 @@
                         android:textSize="12sp"
                         tools:text="13:58, 17/4/2021" />
 
-                    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                         android:id="@+id/view"
                         android:layout_width="@dimen/size_1"
                         android:layout_height="@dimen/size_12"
@@ -98,7 +97,7 @@
                         android:textSize="14sp"
                         tools:text="# LOYALTY" />
                 </LinearLayout>
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
             <vn.icheck.android.ichecklibs.view.TextHeader
                 android:id="@id/tvTitle"
@@ -112,9 +111,9 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingRight="@dimen/size_12"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="@color/black_21_v2" />
+                android:textColor="@color/black_21" />
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICWebViewWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICWebViewWhite
                 android:id="@id/webViewUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +122,7 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingRight="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@+id/layoutBusiness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,9 +148,9 @@
                     android:layout_marginEnd="@dimen/size_12"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="6" />
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:id="@id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,8 +198,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitleNew" />
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
-        </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
     </androidx.core.widget.NestedScrollView>
 
     <FrameLayout
@@ -228,7 +227,7 @@
             android:src="@drawable/ic_home_black_28px" />
     </FrameLayout>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -266,7 +265,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_home_blue_v2_24px" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -275,7 +274,7 @@
         android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/toolbarAlpha" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -298,7 +297,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             tools:text="CTA ( không cố định)" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <View
         android:id="@+id/viewShadowBottom"

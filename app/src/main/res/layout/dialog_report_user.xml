@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         app:layout_constraintStart_toEndOf="@+id/img_cancel"
         app:layout_constraintTop_toTopOf="@+id/img_cancel" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider8"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
@@ -66,4 +66,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rcv_report_user_category" />
 
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

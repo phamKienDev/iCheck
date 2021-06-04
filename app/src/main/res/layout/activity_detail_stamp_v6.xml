@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRelativeLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICButtonSecondaryBgWhiteStrokeBlue1
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICButtonSecondaryBgWhiteStrokeBlue1
                 android:id="@+id/btnAgainError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -236,8 +236,8 @@
                         app:piv_interactiveAnimation="true"
                         app:piv_padding="@dimen/size_6"
                         app:piv_radius="@dimen/size_3"
-                        app:piv_selectedColor="@color/colorLineView"
-                        app:piv_unselectedColor="@color/colorLineView"
+                        app:piv_selectedColor="@color/grayD8"
+                        app:piv_unselectedColor="@color/grayD8"
                         app:piv_viewPager="@id/viewPagerImgProduct" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -399,7 +399,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/tvNameShopVariant"
                                 tools:text="5km" />
 
-                            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICViewWhite
+                            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewWhite
                                 android:id="@+id/view"
                                 android:layout_width="@dimen/size_2"
                                 android:layout_height="0dp"
@@ -512,7 +512,7 @@
                                             android:drawablePadding="@dimen/size_7"
                                             android:fontFamily="sans-serif"
                                             android:gravity="center"
-                                            android:textColor="@color/colorLineView"
+                                            android:textColor="@color/grayD8"
                                             android:textSize="@dimen/font_14"
                                             android:textStyle="normal"
                                             tools:text="130,000" />
@@ -740,7 +740,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_corner_top_dark_blue_10">
 
-                            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius10
+                            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10
                                 android:id="@+id/root"
                                 android:layout_width="@dimen/size_30"
                                 android:layout_height="@dimen/size_30"
@@ -755,7 +755,7 @@
                                     android:layout_margin="@dimen/size_4"
                                     android:src="@drawable/ic_warranty_blue_36px" />
 
-                            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadius10>
+                            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10>
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="0dp"
@@ -824,7 +824,7 @@
                             android:textStyle="normal"
                             tools:text="Ngày hẹn trả bảo hành: 20/11/2017" />
 
-                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
                             android:layout_marginStart="@dimen/size_12"
@@ -844,7 +844,7 @@
                             android:textSize="@dimen/font_14"
                             android:textStyle="normal" />
 
-                        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                             android:id="@+id/viewGuarantee"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_1"
@@ -1389,4 +1389,4 @@
             android:textStyle="normal" />
     </LinearLayout>
 
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRelativeLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>

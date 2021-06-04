@@ -114,7 +114,7 @@
                     tools:targetApi="lollipop" />
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0_5"
                 android:layout_marginStart="@dimen/size_12"

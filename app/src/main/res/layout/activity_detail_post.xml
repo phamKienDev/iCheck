@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_height="@dimen/size_44"
             android:padding="@dimen/size_6"
             android:src="@drawable/ic_more_blue_24px" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewShadow">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRecylerViewWhite
             android:id="@+id/rcvContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -72,7 +72,7 @@
         app:layout_constraintBottom_toTopOf="@id/containerSent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
@@ -386,4 +386,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

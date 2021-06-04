@@ -91,6 +91,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
             }
 
         btn_all.background = ViewHelper.bgPrimaryCorners4(this)
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
         WidgetUtils.setClickListener(this, btn_review, btn_product, btn_page, btn_shop, btn_user, imgBack, imgClear)
     }
 

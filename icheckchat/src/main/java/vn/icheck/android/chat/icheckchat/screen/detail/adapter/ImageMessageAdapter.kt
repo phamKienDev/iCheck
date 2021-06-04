@@ -9,6 +9,7 @@ import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.databinding.ItemMediaChatBinding
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.io.File
 
 class ImageMessageAdapter(val listData: MutableList<Any>) : RecyclerView.Adapter<ImageMessageAdapter.ImageMessageHolder>() {
@@ -37,6 +38,7 @@ class ImageMessageAdapter(val listData: MutableList<Any>) : RecyclerView.Adapter
 
         @SuppressLint("SetTextI18n")
         fun bind(obj: MCMedia) {
+            binding.root.background=ViewHelper.bgGrayCorners10(itemView.context)
             loadImageUrlRounded(binding.imgMessage, obj.content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             binding.imgView.visibleOrGone(obj.type?.contains("video") == true)
 

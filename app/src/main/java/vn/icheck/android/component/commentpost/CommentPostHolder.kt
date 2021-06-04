@@ -17,6 +17,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
@@ -38,6 +39,8 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
             setMargins(obj.marginStart, obj.marginTop, 0, 0)
         }
+
+        binding.linearLayout.background=ViewHelper.bgGrayCorners4(binding.linearLayout.context)
 
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)

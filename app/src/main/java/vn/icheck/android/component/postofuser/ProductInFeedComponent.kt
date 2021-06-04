@@ -35,7 +35,7 @@ class ProductInFeedComponent : LinearLayout {
     private fun createView() {
         if (childCount == 0) {
             orientation = HORIZONTAL
-            background = ContextCompat.getDrawable(context, R.drawable.bg_dark_gray_6_corners_4)
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
             setPadding(SizeHelper.size4, SizeHelper.size6, SizeHelper.size4, SizeHelper.size6)
 
             // Image logo

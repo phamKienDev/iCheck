@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/viewTop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"

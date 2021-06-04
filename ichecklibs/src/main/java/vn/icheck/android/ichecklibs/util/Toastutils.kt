@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.databinding.ToastSimpleErrorBinding
 
 
@@ -75,6 +76,7 @@ fun Context.showCustomToast(@DrawableRes id: Int, msg: String, duration: Int) {
     toast = Toast(this)
 
     val binding = ToastSimpleErrorBinding.inflate(LayoutInflater.from(this))
+    binding.root.background=ViewHelper.bgPopupCorners4(this)
     binding.tvMessage.text = msg
     binding.imgIcon.setImageResource(id)
 

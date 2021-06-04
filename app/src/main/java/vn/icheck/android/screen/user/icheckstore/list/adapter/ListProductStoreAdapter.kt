@@ -170,7 +170,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     btnAction.isEnabled = false
                     btnAction.setTextColor(Constant.getSecondTextColor(context))
                     btnAction.text = "Đã có trong giỏ hàng"
-                    btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
+                    btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                 } else {
                     btnAction.isEnabled = true
                     btnAction.setTextColor(ContextCompat.getColor(context, R.color.white))
@@ -197,7 +197,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                         obj.addToCart = true
                         btnAction.setTextColor(Constant.getSecondTextColor(context))
                         btnAction.text = "Đã có trong giỏ hàng"
-                        btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
+                        btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                         view.onExchangeGift(obj)
                     }
                 }
@@ -272,7 +272,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 nameProduct.includeFontPadding = false
                 nameProduct.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 nameProduct.textSize = 14f
-                nameProduct.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
+                nameProduct.setTextColor(ContextCompat.getColor(context, R.color.black_21))
             })
 
             layoutParams.addView(AppCompatTextView(context).also { btn ->

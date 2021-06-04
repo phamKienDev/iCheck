@@ -16,6 +16,7 @@ import vn.icheck.android.component.tag_view.Tag
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.search_home.result.SearchResultActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -61,6 +62,8 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         tag_view_popular.setOnTagClickListener { i, tagClick ->
             clickTagView(tagClick.text.toString())
         }
+
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
     }
 
 

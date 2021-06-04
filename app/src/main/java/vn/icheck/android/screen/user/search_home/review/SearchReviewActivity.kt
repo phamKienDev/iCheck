@@ -23,6 +23,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICPost
@@ -86,6 +87,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
                     refreshData()
                 }
 
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
         WidgetUtils.setClickListener(this, btn_filer, btn_filter_watched, btn_filer_time, btn_filer_from, imgBack, imgClear)
     }
 

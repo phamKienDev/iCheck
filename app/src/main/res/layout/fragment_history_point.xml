@@ -43,7 +43,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="Bạn chưa dùng điểm nào"
-                    android:textColor="@color/black_21_v2"
+                    android:textColor="@color/black_21"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>

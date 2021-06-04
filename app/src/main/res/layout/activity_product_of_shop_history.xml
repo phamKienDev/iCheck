@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0"
     android:orientation="vertical"
     tools:context=".screen.user.product_of_shop_history.ProductOfShopHistoryActivity">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
@@ -30,7 +29,7 @@
             android:gravity="center"
             android:singleLine="true"
             tools:text="Tiêu đề" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@id/swipe_layout"
@@ -44,4 +43,4 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

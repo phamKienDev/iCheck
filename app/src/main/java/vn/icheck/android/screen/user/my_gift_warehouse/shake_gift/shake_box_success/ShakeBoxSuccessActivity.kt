@@ -167,7 +167,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             tvThank.text =
                 Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
-                imgLogo.borderColor = ContextCompat.getColor(this, R.color.colorLineView)
+                imgLogo.borderColor = ContextCompat.getColor(this, R.color.grayD8)
                 imgLogo.borderWidth = SizeHelper.size2
             } else {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.white)

@@ -40,7 +40,7 @@ class LayoutFeedComment : FrameLayout {
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT).also {
                     it.setMargins(SizeHelper.size32, 0, 0, 0)
                 },
-                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.colorLineView), SizeHelper.size4.toFloat()),
+                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.grayD8), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
                 Constant.getSecondTextColor(context),
                 14f

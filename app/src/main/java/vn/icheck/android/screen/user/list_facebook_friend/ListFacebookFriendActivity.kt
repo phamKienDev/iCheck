@@ -51,6 +51,7 @@ class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         txtTitle.typeface = ViewHelper.createTypeface(this, R.font.barlow_semi_bold)
 
         edtFind.setText(edtFind.text.toString())
+        edtFind.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(this)
         dispose = RxTextView.afterTextChangeEvents(edtFind)
                 .skipInitialValue()
                 .debounce(600, TimeUnit.MILLISECONDS)

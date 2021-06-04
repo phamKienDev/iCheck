@@ -286,7 +286,7 @@
                     android:layout_height="@dimen/size_30"
                     android:padding="@dimen/size_1"
                     android:layout_marginStart="@dimen/size_12"
-                    app:civ_border_color="@color/colorDisableView"
+                    app:civ_border_color="@color/grayB4"
                     app:civ_border_width="@dimen/size_1"
                     android:layout_marginTop="@dimen/size_12"
                     android:src="@drawable/ic_business_v2"

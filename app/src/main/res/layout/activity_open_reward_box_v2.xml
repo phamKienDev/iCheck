@@ -84,7 +84,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
             android:id="@id/layoutBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
     </RelativeLayout>
 

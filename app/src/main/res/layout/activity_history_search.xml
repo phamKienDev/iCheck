@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,7 +26,6 @@
             android:layout_height="@dimen/size_40"
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_12"
-            android:background="@drawable/bg_corner_4_gray"
             android:drawablePadding="@dimen/size_12"
             android:fontFamily="@font/barlow_medium"
             android:hint="@string/tim_kiem_x"
@@ -65,7 +64,7 @@
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/imgCart"
             app:layout_constraintTop_toTopOf="@id/imgCart" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"
@@ -76,10 +75,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
             android:id="@+id/rcvContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorBackgroundGray" />
+            android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

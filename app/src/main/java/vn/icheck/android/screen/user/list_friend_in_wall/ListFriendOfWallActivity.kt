@@ -23,6 +23,7 @@ import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFra
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
@@ -66,6 +67,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     private fun initView() {
         txtTitle.text = "Danh sách bạn bè"
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
     }
 
     private fun listener() {

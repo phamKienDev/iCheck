@@ -25,13 +25,13 @@
                 android:id="@id/imgBanner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
-                android:background="@color/colorLineView"
+                android:background="@color/grayD8"
                 app:layout_constraintDimensionRatio="H, 351:140"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@id/linearLayout"
                 android:layout_width="@dimen/size_109"
                 android:layout_height="@dimen/size_25"
@@ -43,8 +43,8 @@
                 <View
                     android:layout_width="@dimen/size_80"
                     android:layout_height="@dimen/size_10"
-                    android:background="@color/colorLineView" />
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+                    android:background="@color/grayD8" />
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -76,7 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/colorLineView" />
+                android:background="@color/grayD8" />
 
             <View
                 android:id="@+id/tv1"
@@ -85,7 +85,7 @@
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_6"
-                android:background="@color/colorLineView"
+                android:background="@color/grayD8"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,7 +96,7 @@
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_marginTop="@dimen/size_4"
-                android:background="@color/colorLineView"
+                android:background="@color/grayD8"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
                 app:layout_constraintTop_toBottomOf="@id/tv1" />
         </androidx.constraintlayout.widget.ConstraintLayout>

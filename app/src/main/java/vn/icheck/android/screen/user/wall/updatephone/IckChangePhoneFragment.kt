@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import vn.icheck.android.databinding.FragmentChangePhoneBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.AfterTextWatcher
@@ -41,7 +42,7 @@ class IckChangePhoneFragment:Fragment() {
                 binding.divider20.background = ColorDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
             } else {
                 binding.imgClear.visibility = View.INVISIBLE
-                binding.divider20.background = ColorDrawable(Color.parseColor("#F0F0F0"))
+                binding.divider20.background = ColorDrawable(Constant.getAppBackgroundGrayColor(requireContext()))
             }
         }
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {

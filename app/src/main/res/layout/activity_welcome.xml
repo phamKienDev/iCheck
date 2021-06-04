@@ -41,7 +41,7 @@
         android:paddingBottom="@dimen/size_1"
         app:piv_radius="@dimen/size_3"
         app:piv_selectedColor="@color/white"
-        app:piv_unselectedColor="@color/colorLineView"
+        app:piv_unselectedColor="@color/grayD8"
         app:piv_viewPager="@id/viewPager" />
 
     <androidx.appcompat.widget.AppCompatTextView

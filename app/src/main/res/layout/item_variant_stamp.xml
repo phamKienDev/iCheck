@@ -34,7 +34,7 @@
 
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginStart="@dimen/size_12"/>

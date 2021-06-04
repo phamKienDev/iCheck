@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.CustomLayoutToastBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.io.File
 import java.io.FileInputStream
 import java.text.DecimalFormat
@@ -90,6 +91,7 @@ fun Context.showCustomIconToast(msg: String, @DrawableRes id: Int) {
     val binding = CustomLayoutToastBinding.inflate(LayoutInflater.from(this))
     toast?.cancel()
     toast = Toast(this)
+    binding.root.background=ViewHelper.bgPopupCorners4(this)
     binding.tvContent.text = msg
     binding.icCustom.setImageResource(id)
     toast?.view = binding.root

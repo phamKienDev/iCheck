@@ -60,7 +60,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@id/imgAvatar"
         android:layout_width="@dimen/size_40"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="@color/grayD8"
         app:civ_border_width="@dimen/size_0_5"
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_8"

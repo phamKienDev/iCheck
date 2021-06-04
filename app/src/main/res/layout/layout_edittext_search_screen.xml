@@ -22,7 +22,6 @@
         android:layout_height="@dimen/size_40"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/bg_corner_f0f0f0_4"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"

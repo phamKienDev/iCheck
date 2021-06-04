@@ -26,6 +26,8 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        switch_watched.trackDrawable=ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(requireContext())
+
         seletedTime.addAll(time ?: mutableListOf())
         seletedFrom.addAll(from ?: mutableListOf())
 

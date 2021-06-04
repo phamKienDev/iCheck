@@ -57,7 +57,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                 if (item.data?.name != "Khác") {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
-                        background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                        background = ViewHelper.bgGrayCorners32(requireContext())
                         setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
@@ -68,7 +68,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                 } else if(item.content.isNullOrEmpty()) {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
-                        background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                        background = ViewHelper.bgGrayCorners32(requireContext())
                         setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
@@ -81,7 +81,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
             if (item.content.isNotEmpty()) {
                 binding.linearLayout5.addView(TextView(requireContext()).apply {
                     setText(item.content)
-                    background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                    background = ViewHelper.bgGrayCorners32(requireContext())
                     setPadding(8.dpToPx())
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                         setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)

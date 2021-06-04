@@ -1,4 +1,4 @@
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bg_rv"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
         app:layout_constraintTop_toBottomOf="@+id/customer_rating" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider2"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
@@ -151,4 +151,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

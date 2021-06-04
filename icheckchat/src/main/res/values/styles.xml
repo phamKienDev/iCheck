@@ -26,8 +26,8 @@
     </style>
 
     <style name="AppTheme_Black" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorNormalView</item>
-        <item name="colorPrimaryDark">@color/colorNormalView</item>
+        <item name="colorPrimary">@color/black_21</item>
+        <item name="colorPrimaryDark">@color/black_21</item>
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 </resources>

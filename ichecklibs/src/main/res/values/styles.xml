@@ -49,7 +49,7 @@
 
     <!-- Line -->
     <style name="Line_Gray">
-        <item name="android:background">@color/gray</item>
+        <item name="android:background">@color/grayD8</item>
     </style>
 
     <style name="Line_Gray.Horizontal">

@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/size_10"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/containerPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_8"
                 android:src="@color/colorSecondary"
-                app:civ_border_color="@color/colorLineView"
+                app:civ_border_color="@color/grayD8"
                 app:civ_border_width="@dimen/size_0_5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgRank" />
@@ -165,7 +165,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
-            android:background="@drawable/bg_dark_gray_6_corners_4"
             android:padding="@dimen/size_4">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -291,7 +290,7 @@
                 android:layout_width="@dimen/size_30"
                 android:layout_height="@dimen/size_30"
                 android:layout_marginTop="@dimen/size_6"
-                app:civ_border_color="@color/colorLineView"
+                app:civ_border_color="@color/grayD8"
                 app:civ_border_width="@dimen/size_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -321,9 +320,9 @@
                 app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutNameComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_dark_gray_6_corners_4"
                     android:orientation="vertical"
                     android:padding="@dimen/size_8">
 
@@ -464,7 +463,7 @@
                 android:src="@drawable/ic_chat_send_gray_24_px" />
 
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@id/imgPin"

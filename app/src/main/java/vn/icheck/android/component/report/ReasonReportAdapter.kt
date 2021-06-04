@@ -34,7 +34,7 @@ class ReasonReportAdapter(val listData: MutableList<ICReportForm>) : RecyclerVie
             fun createView(context: Context): AppCompatTextView {
                 return ViewHelper.createText(context,
                         ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0, SizeHelper.size4, SizeHelper.size6, SizeHelper.size4),
-                            ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.colorBackgroundGray), SizeHelper.size32.toFloat()),
+                            ViewHelper.createShapeDrawable(Constant.getAppBackgroundGrayColor(context), SizeHelper.size32.toFloat()),
                         ViewHelper.createTypeface(context, R.font.barlow_medium),
                         Constant.getNormalTextColor(context),
                         14f).also {

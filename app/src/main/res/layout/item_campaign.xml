@@ -91,13 +91,12 @@
                     tools:text="Đến 31/12" />
             </LinearLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                 android:id="@id/view"
                 android:layout_width="@dimen/size_1"
                 android:layout_height="@dimen/size_20"
                 android:layout_marginStart="@dimen/size_24"
                 android:layout_marginLeft="@dimen/size_24"
-                android:background="@color/colorBackgroundGray"
                 app:layout_constraintBottom_toBottomOf="@id/containerTime"
                 app:layout_constraintStart_toEndOf="@+id/containerTime"
                 app:layout_constraintTop_toTopOf="@id/containerTime" />

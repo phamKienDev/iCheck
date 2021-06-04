@@ -145,7 +145,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     if (!obj.selected) {
                         itemView.tv_follow.setTextColor(Constant.getSecondTextColor(itemView.context))
                         itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
-                        itemView.tv_follow.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
+                        itemView.tv_follow.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                         listSelected.add(obj)
                     }
                 }

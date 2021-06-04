@@ -59,6 +59,9 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.edtSearch.background= ViewHelper.bgGrayCorners4(requireContext())
+
         ickContributeProductViewModel.listCategory.clear()
         ickContributeProductViewModel.listCategory.add(null)
         categoryHeadlineAdapter = CategoryHeadlineAdapter({

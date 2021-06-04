@@ -63,11 +63,10 @@
         </LinearLayout>
     </FrameLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorBackgroundGray"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -263,17 +262,16 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
             android:id="@+id/recyclerViewSticker"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@color/colorBackgroundGray"
             android:paddingStart="2dp"
             android:paddingLeft="2dp"
             android:paddingEnd="12dp"
             android:paddingRight="12dp" />
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICRecylerViewWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRecylerViewWhite
             android:id="@+id/recyclerViewPackageSticker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -3,7 +3,7 @@
     <item android:state_enabled="false">
         <shape>
             <corners android:radius="@dimen/size_26" />
-            <solid android:color="@color/colorLineView" />
+            <solid android:color="@color/grayD8" />
         </shape>
     </item>
     <item android:state_enabled="true">

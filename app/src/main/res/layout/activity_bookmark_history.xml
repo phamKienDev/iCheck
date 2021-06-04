@@ -24,7 +24,6 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_gray_f0_corners_4"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"
@@ -47,12 +46,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_search">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
             android:id="@+id/rcv_bookmark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_12"
-            android:background="#F0F0F0"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

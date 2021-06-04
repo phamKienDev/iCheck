@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <!--Toolbar-->
-            <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:id="@id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_44"
@@ -75,7 +75,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_home_blue_24px" />
-            </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
             <!--Error Client-->
             <LinearLayout

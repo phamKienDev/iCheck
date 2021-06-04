@@ -4,10 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGray" />
+        android:layout_height="@dimen/size_10" />
 
     <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"

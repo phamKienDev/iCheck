@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view1">
 
-        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/containerComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,5 +187,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/containerEnter"
             app:srcCompat="@drawable/ic_chat_send_gray_24_px" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -214,7 +214,7 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
             tvFollow.run {
                 if (isFollow) {
                     text = "Đang theo dõi"
-                    background = ContextCompat.getDrawable(context, R.drawable.bg_gray_f0_corners_4)
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                     setTextColor(Constant.getSecondTextColor(context))
                 } else {
                     text = "Theo dõi"

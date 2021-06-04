@@ -1,4 +1,4 @@
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,7 +6,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <fragment
         android:id="@+id/map"
@@ -144,4 +144,4 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCreate"
         app:layout_constraintTop_toBottomOf="@id/layoutHeader"
         tools:layout_editor_absoluteX="@dimen/size_12" />
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

@@ -311,7 +311,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
             productLayout.setPadding(SizeHelper.size4, SizeHelper.size6, SizeHelper.size26, SizeHelper.size6)
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.colorBackgroundGray), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getAppBackgroundGrayColor(this), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.basicInfo?.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name
@@ -339,7 +339,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             parent.tag = product.id
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.colorBackgroundGray), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getAppBackgroundGrayColor(this), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name

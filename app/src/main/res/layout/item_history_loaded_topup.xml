@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -101,4 +101,4 @@
             app:layout_constraintTop_toTopOf="@+id/appCompatTextView14"
             tools:text="0263 251 110" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

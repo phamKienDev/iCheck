@@ -46,7 +46,6 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginEnd="@dimen/size_8"
-        android:background="@drawable/bg_corner_f0f0f0_4"
         android:gravity="center"
         android:text="Đã gửi lời mời"
         android:textSize="@dimen/font_14"

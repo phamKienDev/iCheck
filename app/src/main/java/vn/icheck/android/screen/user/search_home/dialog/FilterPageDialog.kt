@@ -29,6 +29,8 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
         selectedCategory.addAll(category ?: mutableListOf())
         selectedVerified = verified
 
+        switch_verfied.trackDrawable=ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(requireContext())
+
         setLocation(selectedLocations)
         switch_verfied.isChecked = selectedVerified
         setFiltterCategory(selectedCategory)

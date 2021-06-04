@@ -118,7 +118,7 @@
         android:layout_marginStart="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_4"
         android:layout_height="@dimen/size_50" />
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_marginTop="@dimen/size_20"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1" />
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/div"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1" />
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1" />
     <TextView
@@ -179,7 +179,7 @@
         android:text="Xoá cuộc hội thoại"
         android:textColor="#EB5757"
         android:textSize="@dimen/font_14" />
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"/>
 </LinearLayout>

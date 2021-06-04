@@ -165,7 +165,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_gray_d8)
+                progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(this)
             }
             1 -> { // Đang tham gia
                 // Hiển thị thời gian còn lại
@@ -212,7 +212,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_gray_d8)
+                progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(this)
             }
         }
     }

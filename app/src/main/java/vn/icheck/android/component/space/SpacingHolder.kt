@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 
 class SpacingHolder(parent: ViewGroup): BaseViewHolder<Int>(createView(parent.context)) {
 
@@ -22,7 +23,7 @@ class SpacingHolder(parent: ViewGroup): BaseViewHolder<Int>(createView(parent.co
         private fun createView(context: Context) : View {
             return View(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+                it.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
             }
         }
     }

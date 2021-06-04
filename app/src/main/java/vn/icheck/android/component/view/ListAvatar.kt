@@ -51,7 +51,7 @@ class ListAvatar : LinearLayout {
                 for (i in 0 until mSize) {
                     addView(CircleImageView(context).also { avatar ->
                         avatar.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size28, SizeHelper.size28, marginStart, 0, 0, 0)
-                        avatar.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
+                        avatar.borderColor = ContextCompat.getColor(context, R.color.grayD8)
                         avatar.borderWidth = SizeHelper.size0_5
                         avatar.elevation = elevation
                         WidgetUtils.loadImageUrl(avatar, obj.user!![i], error)
@@ -65,7 +65,7 @@ class ListAvatar : LinearLayout {
 
                     frameLayout.addView(CircleImageView(context).also { avatar ->
                         avatar.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size28, SizeHelper.size28)
-                        avatar.borderColor = ContextCompat.getColor(context, R.color.colorLineView)
+                        avatar.borderColor = ContextCompat.getColor(context, R.color.grayD8)
                         avatar.borderWidth = SizeHelper.size0_5
                         WidgetUtils.loadImageUrl(avatar, obj.user!![mSize], error)
                     })

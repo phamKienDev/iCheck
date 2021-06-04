@@ -32,6 +32,7 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
     fun bind(obj: ICPageQuery) {
         itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
+        itemView.tv_following.background=ViewHelper.bgGrayCorners4(itemView.context)
 
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.ic_business_v2)
         itemView.tv_name.text = if (!obj.name.isNullOrEmpty()) {

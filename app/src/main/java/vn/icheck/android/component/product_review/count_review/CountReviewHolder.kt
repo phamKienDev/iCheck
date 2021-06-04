@@ -16,6 +16,7 @@ import vn.icheck.android.R
 
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
 
 class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(parent.context)) {
@@ -50,7 +51,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
             }
             layoutParent.orientation = LinearLayout.HORIZONTAL
             layoutParent.gravity = Gravity.CENTER_VERTICAL
-            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+            layoutParent.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
 
             val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
 

@@ -37,6 +37,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 
     fun bind(obj: ICShopQuery) {
         itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
+        itemView.tv_following.background=ViewHelper.bgGrayCorners4(itemView.context)
 
 
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar)

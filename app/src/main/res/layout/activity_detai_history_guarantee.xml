@@ -13,10 +13,9 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/colorBackgroundGray"
         android:descendantFocusability="blocksDescendants"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -331,7 +330,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
     <View
         android:layout_width="match_parent"

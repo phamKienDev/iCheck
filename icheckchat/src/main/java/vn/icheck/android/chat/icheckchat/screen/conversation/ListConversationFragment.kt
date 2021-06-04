@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import java.util.*
@@ -178,6 +179,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initEditText() {
+        binding.layoutSearch.background=ViewHelper.bgGrayCorners4(requireContext())
         binding.layoutSearch.visibleOrGone(ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN))
 
         binding.edtSearch.addTextChangedListener(textChangeListener)

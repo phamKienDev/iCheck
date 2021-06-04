@@ -14,6 +14,7 @@ import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentSocialMessagesBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.shipping.ship.ui.main.SuccessConfirmShipDialog
 import vn.icheck.android.util.ick.beGone
@@ -37,7 +38,10 @@ class SocialMessagesFragment : CoroutineFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         EventBus.getDefault().register(this)
+        binding.edtSearch.background=ViewHelper.bgGrayCorners4(requireContext())
+
         binding.rcvMessages.adapter = conversationAdapter
         binding.edtSearch.addTextChangedListener {
             delayAction({

@@ -11,5 +11,5 @@
     android:paddingRight="@dimen/size_12"
     android:fontFamily="@font/barlow_medium"
     tools:text="Là một trong những đơn vị cung cấp nguồn hàng rất rất nhiều kinh nghiệm trong ngành"
-    android:textColor="@color/black_21_v2"
+    android:textColor="@color/black_21"
     android:textSize="@dimen/font_14" />

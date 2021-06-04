@@ -33,7 +33,7 @@ class ButtonWhiteOutlinePrimaryBlueCorners4 : BaseButton {
         val primaryColor = Constant.getPrimaryColor(context)
         defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(primaryColor))
 
-        defaultDisableBackground = ContextCompat.getColor(context, R.color.colorLineView)
+        defaultDisableBackground = ContextCompat.getColor(context, R.color.grayD8)
         defaultEnableBackground = Color.WHITE
         defaultPressedBackground = ContextCompat.getColor(context, R.color.black_10)
 

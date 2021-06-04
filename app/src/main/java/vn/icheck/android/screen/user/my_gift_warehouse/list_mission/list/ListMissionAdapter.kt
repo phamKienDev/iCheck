@@ -108,11 +108,11 @@ class ListMissionAdapter(val listData: MutableList<ICMission>) : RecyclerView.Ad
             when (obj.finishState) {
                 3 -> {
                     binding.tvProgress.text = itemView.context.getString(R.string.da_ket_thuc)
-                    binding.progressBar.progressDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.progress_gray_d8)
+                    binding.progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(itemView.context)
                 }
                 0 -> {
                     binding.tvProgress.text = itemView.context.getString(R.string.chua_dien_ra)
-                    binding.progressBar.progressDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.progress_gray_d8)
+                    binding.progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(itemView.context)
                 }
                 else -> {
                     binding.tvProgress.text = (itemView.context.getString(R.string.tien_do_xxx, ((obj.currentEvent.toDouble() / obj.totalEvent.toDouble()) * 100).toInt()) + "%")

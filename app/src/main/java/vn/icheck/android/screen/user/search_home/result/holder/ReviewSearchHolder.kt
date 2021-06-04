@@ -157,6 +157,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun setupProduct(obj: ICPost) {
+        itemView.containerMeta.background=ViewHelper.bgGrayCorners4(itemView.context)
         if (obj.meta != null) {
             if (ICheckApplication.currentActivity() is IckProductDetailActivity) {
                 itemView.containerMeta.beGone()

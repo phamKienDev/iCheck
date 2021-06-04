@@ -17,7 +17,7 @@
         android:textSize="@dimen/font_16"
         tools:text="ha noi" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"

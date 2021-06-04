@@ -80,6 +80,8 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                     getData()
                 }
 
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+
         WidgetUtils.setClickListener(this, btn_filer, btn_filer_location, btn_filter_verified, btn_filer_categories, imgBack, imgClear)
     }
 

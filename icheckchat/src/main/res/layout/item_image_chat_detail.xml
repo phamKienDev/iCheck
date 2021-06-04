@@ -10,7 +10,6 @@
         android:id="@+id/layoutOneImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:background="@drawable/bg_corner_10_gray_f0"
         android:padding="1dp"
         android:visibility="gone">
 

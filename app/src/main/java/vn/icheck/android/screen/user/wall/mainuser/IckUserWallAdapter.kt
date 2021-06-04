@@ -164,6 +164,8 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         isMyFriend = null
         isFriendInvitationMeUser = null
 
+        binding.tvRequestSent.background=ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
+
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)
             .load(data?.avatar)

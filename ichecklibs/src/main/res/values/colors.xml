@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- màu colorPrimary, colorSecondary, colorAccent áp dụng cho tất cả các view   -->
     <color name="colorPrimary">#057DDA</color>
     <color name="colorSecondary">#3C5A99</color>
 
@@ -9,31 +11,28 @@
     <color name="colorAccentCyan">#CCF1FC</color>
     <color name="colorAccentYellow">#FFB800</color>
 
+    <color name="colorNormalText">#212121</color> <!-- chỉ áp dụng cho textColor  -->
+    <color name="black_21">#212121</color>
 
+    <color name="colorSecondText">#757575</color>  <!-- chỉ áp dụng cho textColor  -->
+    <color name="black_75">#757575</color>
 
-    <color name="colorSecondText">#757575</color> <!-- textview, editText, radioButton, checkBox -->
-    <color name="colorSecondViewGroup">#757575</color>
+    <color name="colorDisableText">#B4B4B4</color>  <!-- chỉ áp dụng cho textColor  -->
+    <color name="grayB4">#B4B4B4</color>
 
-    <color name="colorDisableText">#B4B4B4</color>
-    <color name="colorDisableView">#B4B4B4</color>
+    <color name="colorLine">#D8D8D8</color>  <!-- chỉ áp dụng cho view Line   -->
+    <color name="grayD8">#D8D8D8</color>
 
-    <color name="black_21">#B4B4B4</color>
+    <color name="colorBackgroundGray">#F0F0F0</color>   <!--chỉ áp dụng thay màu background-->
+    <color name="grayF0">#F0F0F0</color>
 
-    <color name="colorNormalText">#212121</color> <!-- textview, editText, radioButton, checkBox -->
-    <color name="colorNormalView">#212121</color>
-
-    <color name="colorLine">#D8D8D8</color>
-    <color name="colorLineIc">#D8D8D8</color>
-    <color name="colorLineView">#D8D8D8</color> <!-- textcolor, editText, background , civ_border_color-->
-
-    <color name="colorBackgroundGray">#F0F0F0</color>
-    <color name="colorBackgroundPopup">#80000000</color>
-
-    <color name="stroke_white">#FFFFFF</color>
-    <color name="view_white">#FFFFFF</color>   <!-- view line-->
-    <color name="colorBackgroundWhite">#FFFFFF</color>
-
+    <color name="colorBackgroundWhite">#FFFFFF</color>  <!--chỉ áp dụng thay màu background-->
     <color name="white">#FFFFFF</color>
+
+    <color name="colorBackgroundPopup">#80000000</color> <!--chỉ áp dụng thay màu background-->
+    <color name="black_50">#80000000</color>
+
+
     <color name="whiteOpacity30">#4DFFFFFF</color>
     <color name="white_alpha_50">#80ffffff</color>
 
@@ -47,14 +46,12 @@
     <color name="black_26">#26000000</color>
     <color name="black_25">#40000000</color>
     <color name="black_35">#66000000</color>
-    <color name="black_50">#80000000</color>
     <color name="black_60">#99000000</color>
     <color name="black2">#333333</color>
     <color name="darkGray1">#434343</color>
     <color name="darkGray3">#828282</color>
     <color name="darkGray4">#E0E0E0</color>
     <color name="darkGray7">#f4f4f4</color>
-    <color name="gray">#D8D8D8</color>
     <color name="red_05">#0Dff0000</color>
     <color name="gray_60">#99D8D8D8</color>
     <color name="lightGray">#F1F1F1</color>
@@ -98,7 +95,6 @@
     <color name="orange_nhat">#10FF9A24</color>
     <color name="orange_nhat_25">#40FF9A24</color>
 
-    <color name="black_21_v2">#212121</color>
     <color name="gray_ef">#efefef</color>
     <color name="gray_e5">#E5E5E5</color>
     <color name="unread_notification_color">#fff5ec</color>
@@ -109,7 +105,7 @@
     <color name="gray_stamp_hoa_phat">#F2F2F2</color>
     <color name="errorColorStamp">#ff1616</color>
     <color name="color_egg">#4D4D9DFF</color>
-    <color name="gray_f0">#F0F0F0</color>
+
     <!--
         100% — FF
         95% — F2

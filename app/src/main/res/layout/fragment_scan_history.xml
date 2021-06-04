@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/size_4">
@@ -78,7 +78,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgMenu">
 
-                <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -133,7 +133,7 @@
                     app:srcCompat="@drawable/ic_dot_red_filter_coin" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
         <FrameLayout
             android:id="@+id/layoutData"
@@ -146,11 +146,10 @@
                 android:layout_height="match_parent"
                 android:visibility="gone">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
                     android:id="@+id/rcvHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorBackgroundGray" />
+                    android:layout_height="match_parent" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <LinearLayout
@@ -162,7 +161,7 @@
                 android:focusable="true"
                 android:visibility="invisible">
 
-                <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+                <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                     android:id="@+id/layoutSort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -194,12 +193,12 @@
                         android:text="Cũ nhất"
                         android:textSize="@dimen/font_16" />
 
-                </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+                </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
             </LinearLayout>
 
         </FrameLayout>
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
             android:id="@+id/containerGps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -231,6 +230,6 @@
                 android:text="@string/bat_gps_ngay"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
-        </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
     </LinearLayout>
 </LinearLayout>

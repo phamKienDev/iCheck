@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:textSize="@dimen/font_18"
             android:text="@string/cai_dat_quyen_rieng_tu"
             android:textStyle="normal" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
 
     <View

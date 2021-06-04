@@ -432,7 +432,7 @@ object ViewHelper {
         context = context,
         enableColor = Constant.getPrimaryColor(context),
         pressedColor = Constant.getSecondaryColor(context),
-        disableColor = ContextCompat.getColor(context, R.color.gray),
+        disableColor = ContextCompat.getColor(context, R.color.grayD8),
         radius = 4f.dpToPx()
     )
 
@@ -1051,4 +1051,48 @@ object ViewHelper {
             progressDrawable = createScaleDrawable(createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), radius))
         )
     }
+
+    /*
+    *  END App Background White
+    * */
+
+
+    /*
+    *  App Background GRAY
+    * */
+
+    fun bgGrayCorners4(context: Context)= createShapeDrawable(Constant.getAppBackgroundGrayColor(context),SizeHelper.size4.toFloat())
+    fun bgGrayCorners10(context: Context)= createShapeDrawable(Constant.getAppBackgroundGrayColor(context),SizeHelper.size10.toFloat())
+    fun bgGrayCorners32(context: Context)= createShapeDrawable(Constant.getAppBackgroundGrayColor(context),SizeHelper.size32.toFloat())
+
+
+    fun bgGrayCornersTopRight12BottomRight12(context: Context)= createShapeDrawableRadius(
+        floatArrayOf(0f,0f,SizeHelper.size12.toFloat(),SizeHelper.size12.toFloat(),SizeHelper.size12.toFloat(),SizeHelper.size12.toFloat(),0f,0f),
+        Constant.getAppBackgroundGrayColor(context))
+
+    fun btnSwitchGrayUncheckedGreenCheckedWidth50Height30(context: Context): StateListDrawable {
+        val bgChecked = createShapeDrawable(ContextCompat.getColor(context, R.color.green3), 0, Color.TRANSPARENT, SizeHelper.size30.toFloat())
+        val bgUnchecked = createShapeDrawable(Constant.getAppBackgroundGrayColor(context), 0, Color.TRANSPARENT, SizeHelper.size30.toFloat())
+
+        return createCheckedDrawable(bgUnchecked, bgChecked)
+    }
+
+    fun progressGrayBackgroundColorLineCorners10(context: Context): LayerDrawable {
+        val radius = 10f.dpToPx()
+        val progressColor = ContextCompat.getColor(context,R.color.grayD8)
+        return createProgressStateListDrawable(
+            backgroundDrawable = createShapeDrawable(Constant.getAppBackgroundGrayColor(context), radius),
+            secondaryDrawable = createScaleDrawable(createShapeDrawable(progressColor, radius)),
+            progressDrawable = createScaleDrawable(createShapeDrawable(progressColor, radius))
+        )
+    }
+
+
+    /*
+    *  App Background Popup
+    * */
+
+    fun bgPopupCorners4(context: Context)= createShapeDrawable(Constant.getBackgroundPopupColor(context),SizeHelper.size4.toFloat())
+
+
 }

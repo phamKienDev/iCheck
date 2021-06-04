@@ -44,6 +44,7 @@ import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -167,9 +168,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
     inner class SenderHolder(val binding: ItemSenderBinding) : BaseViewHolder<MCDetailMessage>(binding) {
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
-            binding.layoutImageDetail.root.gravity = Gravity.RIGHT
-
-            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
+            setupView()
 
             if (!obj.content.isNullOrEmpty()) {
                 if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
@@ -196,6 +195,21 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             setupShowStatus(obj)
             setupStatus(obj)
             initClick(obj)
+        }
+
+        private fun setupView() {
+            binding.layoutImageDetail.root.gravity = Gravity.RIGHT
+            binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
+
+            setGoneView(
+                binding.layoutProduct,
+                binding.tvMessage,
+                binding.layoutImageDetail.layoutOneImage,
+                binding.layoutImageDetail.recyclerView,
+                binding.layoutImageDetail.imgView
+            )
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -355,9 +369,10 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
     inner class ReceiverHolder(val binding: ItemReceiverBinding) : BaseViewHolder<MCDetailMessage>(binding) {
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
+            setupView()
+
             loadImageUrl(binding.imgAvatarUser, obj.avatarSender, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
-            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
             if (!obj.content.isNullOrEmpty()) {
                 if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
@@ -380,6 +395,23 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             setupSticker(obj)
             setupShowStatus(obj)
             initClick(obj)
+        }
+
+        private fun setupView() {
+            binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.tvMessage.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutPage.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.layoutVoucher.background = ViewHelper.bgGrayCorners10(itemView.context)
+
+            setGoneView(
+                binding.layoutProduct,
+                binding.tvMessage,
+                binding.layoutImageDetail.layoutOneImage,
+                binding.layoutImageDetail.recyclerView,
+                binding.layoutImageDetail.imgView
+            )
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -508,7 +540,15 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
     }
 
-    private fun setUpLink(layoutLink: View, link: AppCompatTextView, image: AppCompatImageView?, title: AppCompatTextView, description: AppCompatTextView, content: String, context: Context) {
+    private fun setUpLink(
+        layoutLink: View,
+        link: AppCompatTextView,
+        image: AppCompatImageView?,
+        title: AppCompatTextView,
+        description: AppCompatTextView,
+        content: String,
+        context: Context
+    ) {
         layoutLink.apply {
             setVisible()
 

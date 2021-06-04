@@ -101,6 +101,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(R.layout.layout_gift_recevied_history_holder, parent) {
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICItemReward) {
+            itemView.imgGift.background=ViewHelper.bgGrayCorners4(itemView.context)
 
             WidgetUtils.loadImageUrl(itemView.imgLogoPage, obj.logo, R.drawable.ic_business_v2)
 

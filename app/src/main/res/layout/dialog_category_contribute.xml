@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.line_color.ViewLineColor
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view9"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_1"
@@ -53,7 +53,6 @@
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="@drawable/bg_gray_f0_corners_4"
             android:drawableStart="@drawable/ic_search_gray_24dp"
             android:drawableLeft="@drawable/ic_search_gray_24dp"
             android:drawablePadding="@dimen/size_8"
@@ -79,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_search"
             tools:listitem="@layout/item_category_title" />
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICConstraintLayoutBgWhiteRadiusTop16>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 
 
     <TextView
@@ -103,4 +102,4 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_ick_category" />
-</vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutBgWhiteRadiusTop16>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

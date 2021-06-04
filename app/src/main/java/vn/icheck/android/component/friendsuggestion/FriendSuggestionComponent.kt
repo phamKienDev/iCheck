@@ -16,6 +16,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -50,7 +51,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.setColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
+                    paint.setColor(Constant.getAppBackgroundGrayColor(context))
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)

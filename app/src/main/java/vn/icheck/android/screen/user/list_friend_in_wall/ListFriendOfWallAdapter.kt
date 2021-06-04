@@ -180,6 +180,10 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                 itemView.layoutAccept.background = this
             }
 
+            itemView.tvSendRequest.apply {
+                background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
+            }
+
             when (item.userRelationStatus) {
                 //Chưa là bạn bè
                 1 -> {

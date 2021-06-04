@@ -15,14 +15,16 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class CommentPostStickerHolder(parent: ViewGroup, val listener: ICommentPostView) : BaseViewHolder<ICCommentPost>(LayoutInflater.from(parent.context).inflate(R.layout.item_comment_post_sticker, parent, false)) {
-    private val interaction = PageRepository()
 
     override fun bind(obj: ICCommentPost) {
+        itemView.tvTitle.background=ViewHelper.bgGrayCorners4(itemView.context)
+
         itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
             setMargins(obj.marginStart, obj.marginTop, 0, 0)
         }

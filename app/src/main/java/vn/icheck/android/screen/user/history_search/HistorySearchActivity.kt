@@ -52,6 +52,7 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
         }
 
         tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(this)
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
 
         imgCart.setOnClickListener {
             if (SessionManager.isUserLogged) {

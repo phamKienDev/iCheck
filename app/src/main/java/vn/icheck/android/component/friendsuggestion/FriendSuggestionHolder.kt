@@ -71,6 +71,9 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 inviteFriend(obj)
             }
 
+            //  set background tvStatus
+            getChildAt(5).background = ViewHelper.bgGrayCorners4(context)
+
 
 
             checkSend(RelationshipManager.checkMyFriendInvitation(obj.id), obj)
@@ -78,7 +81,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
         }
     }
 
-    private fun checkSend(isSend: Boolean?, obj:ICUser) {
+    private fun checkSend(isSend: Boolean?, obj: ICUser) {
         (itemView as ViewGroup).apply {
             if (isSend == true) {
                 getChildAt(3).visibility = View.INVISIBLE
@@ -88,7 +91,6 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
                     ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
-//                    SocialChatActivity.createRoomChat(it.context, obj.id)
                 }
             } else {
                 getChildAt(3).visibility = View.VISIBLE
@@ -97,7 +99,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 (getChildAt(4) as TextView?)?.text = "Xóa"
                 // Text disagree
                 getChildAt(4).apply {
-                    background=ViewHelper.btnWhiteStrokePrimary1Corners4(context)
+                    background = ViewHelper.btnWhiteStrokePrimary1Corners4(context)
                     setOnClickListener {
                         removeSuggestion(obj)
                     }

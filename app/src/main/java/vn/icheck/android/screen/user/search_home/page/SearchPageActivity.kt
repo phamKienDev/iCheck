@@ -1,11 +1,9 @@
 package vn.icheck.android.screen.user.search_home.page
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,6 +19,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICCategorySearch
@@ -30,7 +30,6 @@ import vn.icheck.android.screen.user.search_home.dialog.FilterCategoryDialog
 import vn.icheck.android.screen.user.search_home.dialog.FilterLocationVnDialog
 import vn.icheck.android.screen.user.search_home.dialog.FilterPageDialog
 import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.util.ick.visibleOrGone
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -80,6 +79,8 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                 .subscribe { key ->
                     refeshData()
                 }
+
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
 
         WidgetUtils.setClickListener(this, btn_filer, btn_filer_location, btn_filter_verified, btn_filer_categories, imgBack, imgClear)
     }

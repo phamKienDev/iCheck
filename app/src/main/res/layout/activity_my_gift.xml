@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.mygift.MyGiftActivity">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
@@ -38,9 +38,9 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:orientation="horizontal"
@@ -99,17 +99,16 @@
                 android:checked="false"
                 android:gravity="center" />
         </LinearLayout>
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <!--    <vn.icheck.android.helper.ViewPagerNoScroll-->
     <!--        android:id="@+id/viewPager"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="match_parent" />-->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackgroundGray">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,5 +138,5 @@
                 android:text="Bạn chưa có quà tặng nào"
                 android:visibility="gone" />
         </LinearLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray>
 </LinearLayout>

@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.tracking.TrackingAllHelper
@@ -31,13 +32,18 @@ class BookmarkHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookmarkHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
         EventBus.getDefault().register(this)
+
         binding.header.tvTitle simpleText "Sản phẩm yêu thích"
         binding.header.icBack.setOnClickListener {
             finish()
         }
+
+        binding.edtSearch.background=ViewHelper.bgGrayCorners4(this)
+
         lifecycleScope.launch {
             bookmarkHistoryViewModel.getBookmarks().collectLatest {
                 bookmarkHistoryAdapter.submitData(it)

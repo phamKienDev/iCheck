@@ -16,7 +16,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        app:civ_border_color="@color/colorLineView"
+        app:civ_border_color="@color/grayD8"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_gray_f0_corners_4"
         android:paddingLeft="@dimen/size_12"
         android:paddingTop="@dimen/size_6"
         android:paddingRight="@dimen/size_12"

@@ -50,6 +50,9 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        edt_search.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(requireContext())
+
         rcv_category.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(500))
         rcv_category.adapter = adapter
         rcv_category.layoutManager = LinearLayoutManager(context)

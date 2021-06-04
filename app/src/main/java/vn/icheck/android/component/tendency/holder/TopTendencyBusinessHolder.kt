@@ -102,7 +102,7 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
         tvFollow.run {
             if (isFollow) {
                 text = "Đang theo dõi"
-                background = ContextCompat.getDrawable(context, R.drawable.bg_gray_f0_corners_4)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                 setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
             } else {
                 text = "Theo dõi"

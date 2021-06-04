@@ -293,7 +293,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
 
                             itemView.btnConfirm.isEnabled = false
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                            itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
+                            itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                             itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
                             itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
 

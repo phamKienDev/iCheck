@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
@@ -25,14 +25,14 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Xác nhận mở thẻ" />
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICFrameLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICNestedScrollViewWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -83,11 +83,11 @@
                 android:text="Gửi lại mã (60s)"
                 android:textSize="@dimen/font_14" />
 
-        </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICNestedScrollViewWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -105,5 +105,5 @@
             android:textSize="@dimen/font_16"
             android:text="Xác nhận" />
 
-    </vn.icheck.android.ichecklibs.view.appbackground.white_background.ICLinearLayoutWhite>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 </LinearLayout>

@@ -39,7 +39,7 @@
         android:includeFontPadding="false"
         android:paddingEnd="@dimen/size_5"
         android:paddingRight="@dimen/size_5"
-        android:textColor="@color/black_21_v2"
+        android:textColor="@color/black_21"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@id/imgBackground"
         app:layout_constraintStart_toStartOf="parent"

@@ -74,7 +74,7 @@
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICTextPrimaryBgWhitePressStrokeBlueRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICTextPrimaryBgWhitePressStrokeBlueRadius4
         android:id="@+id/btnDisagree"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_28"

@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.white_background.ICImageButtonBgWhiteRadius4
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICImageButtonBgWhiteRadius4
         android:id="@+id/imgBig1"
         android:layout_width="0dp"
         android:layout_height="0dp"

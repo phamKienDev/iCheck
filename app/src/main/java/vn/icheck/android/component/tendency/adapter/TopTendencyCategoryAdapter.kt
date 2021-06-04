@@ -46,9 +46,9 @@ class TopTendencyCategoryAdapter(val listener: ITopTendencyListener) : RecyclerV
                 } else {
                     background = ViewHelper.createStateListDrawable(
                             ContextCompat.getColor(context, R.color.colorAccentYellow), ContextCompat.getColor(context, R.color.colorAccentYellow),
-                            ContextCompat.getColor(context, R.color.black_21_v2), ContextCompat.getColor(context, R.color.black_21_v2),
+                            ContextCompat.getColor(context, R.color.black_21), ContextCompat.getColor(context, R.color.black_21),
                             SizeHelper.size1, SizeHelper.size16.toFloat())
-                    setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
+                    setTextColor(ContextCompat.getColor(context, R.color.black_21))
                 }
 
                 setOnClickListener {
