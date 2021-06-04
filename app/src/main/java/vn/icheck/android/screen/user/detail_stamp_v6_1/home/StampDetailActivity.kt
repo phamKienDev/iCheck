@@ -9,6 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -60,7 +61,6 @@ import kotlin.math.hypot
 class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
     private lateinit var binding: ActivityDetailStampBinding
     private val viewModel by viewModels<ICDetailStampViewModel>()
-    private val presenter = DetailStampPresenter(this)
 
     private val adapter = ICStampDetailAdapter(this)
 
@@ -738,11 +738,17 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     }
 
     override fun onClick(obj: Any) {
+        val position = binding.recyclerView.scrollY
+
         if (obj is ICKLoyalty) {
             adapter.addCampaign(ICLayout().apply {
                 viewType = ICViewTypes.CAMPAIGN_TYPE
                 data = obj
             })
+        }
+
+        if (position == 0) {
+            (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(0, 0)
         }
     }
 

@@ -1,7 +1,6 @@
 package vn.icheck.android.component.view
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
@@ -34,7 +33,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.marginBottom
 import androidx.core.view.setPadding
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,16 +50,13 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.ui.view.TextBarlowSemiBold
-import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.network.models.ICPopup
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
-import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
+import vn.icheck.android.ui.view.TextBarlowMedium
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.util.kotlin.WidgetUtils
 import kotlin.math.abs
 
@@ -1230,7 +1225,7 @@ object ViewHelper {
         val layoutParent = FrameLayout(context)
         layoutParent.layoutParams = createLayoutParams()
         layoutParent.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
-        layoutParent.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
 
         layoutParent.addView(View(context).also {
             it.layoutParams =
@@ -3302,7 +3297,7 @@ object ViewHelper {
                     }
                 it.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
                 it.text = context.getString(R.string.thong_tin_duoc_dong_gop_boi)
-                it.maxLines=2
+                it.maxLines = 2
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 it.includeFontPadding = false
@@ -5236,70 +5231,5 @@ object ViewHelper {
             }, timeOut)
             action()
         }
-    }
-
-    fun Activity.showPopupAds(popup: ICPopup) {
-        var dialog: DialogNotificationFirebaseAds? = null
-
-        when (popup.displayType) {
-            "url" -> {
-                if (!popup.url.isNullOrEmpty()) {
-                    dialog= object : DialogNotificationFirebaseAds(this, link = popup.url,htmlText = null,image = null,schema = null, idAds = popup.id) {
-                        override fun onDismiss() {
-
-                        }
-                    }
-                }
-            }
-            "image" -> {
-                if (!popup.image.isNullOrEmpty()) {
-                    val schema=if(popup.deeplink.isNullOrEmpty()){
-                        popup.path
-                    }else{
-                        popup.deeplink
-                    }
-                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = null,image = popup.image,schema = schema, schemaParams=popup.deeplinkParams, idAds = popup.id) {
-                        override fun onDismiss() {
-
-                        }
-                    }
-                }
-            }
-            else->{
-                if (!popup.document.isNullOrEmpty()) {
-                    dialog= object : DialogNotificationFirebaseAds(this, link = null,htmlText = popup.document,image = null,schema = null, idAds = popup.id) {
-                        override fun onDismiss() {
-
-                        }
-                    }
-                }
-            }
-        }
-
-        dialog?.show()
-
-
-        // when (popup.displayType) {
-        //            "url" -> {
-        //                if (!popup.url.isNullOrEmpty()) {
-        //                    DialogNotificationFirebaseAdsV2.show(this, link = popup.url,htmlText = null,image = null,schema = null, idAds = popup.id)
-        //                }
-        //            }
-        //            "image" -> {
-        //                if (!popup.image.isNullOrEmpty()) {
-        //                    val schema=if(popup.deeplink.isNullOrEmpty()){
-        //                        popup.path
-        //                    }else{
-        //                        popup.deeplink
-        //                    }
-        //                    DialogNotificationFirebaseAdsV2.show(this, link = null,htmlText = null,image = popup.image,schema = schema, schemaParams=popup.deeplinkParams, idAds = popup.id)
-        //                }
-        //            }
-        //            else->{
-        //                if (!popup.document.isNullOrEmpty()) {
-        //                    DialogNotificationFirebaseAdsV2.show(this, link = null,htmlText = popup.document,image = null,schema = null, idAds = popup.id)
-        //                }
-        //            }
-        //        }
     }
 }

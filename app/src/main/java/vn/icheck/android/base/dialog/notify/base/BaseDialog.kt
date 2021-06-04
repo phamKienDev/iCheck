@@ -3,9 +3,7 @@ package vn.icheck.android.base.dialog.notify.base
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.widget.FrameLayout
-import vn.icheck.android.R
 
 abstract class BaseDialog(context: Context, theme: Int) : Dialog(context, theme) {
 

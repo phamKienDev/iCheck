@@ -1,6 +1,7 @@
 package vn.icheck.android.component.product.infor
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,7 @@ class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInform
 
         if (!obj.shortContent.isNullOrEmpty()) {
             binding.tvContent.beVisible()
-            binding.tvContent.text = obj.shortContent
+            binding.tvContent.text = Html.fromHtml(obj.shortContent)
         } else {
             binding.tvContent.beGone()
         }

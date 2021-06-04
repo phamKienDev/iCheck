@@ -31,11 +31,11 @@ import vn.icheck.android.component.image_video_slider.ICMediaType
 import vn.icheck.android.component.image_video_slider.MediaLogic
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
-import vn.icheck.android.component.view.ViewHelper.showPopupAds
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
@@ -55,7 +55,6 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
 
@@ -323,7 +322,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             adapter.deletePost(it)
         })
         viewModel.onPopupAds.observe(viewLifecycleOwner, {
-            requireActivity().showPopupAds(it)
+            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
         })
     }
 

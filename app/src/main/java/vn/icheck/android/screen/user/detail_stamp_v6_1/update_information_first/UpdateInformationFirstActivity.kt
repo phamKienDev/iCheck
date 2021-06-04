@@ -189,7 +189,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                 .debounce(1000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    viewModel.updateType = if (binding.edtPhone.text.toString() != viewModel.phoneNumber) {
+                    viewModel.updateType = if (!viewModel.phoneNumber.isNullOrEmpty() && binding.edtPhone.text.toString() != viewModel.phoneNumber) {
                         2
                     } else {
                         1
