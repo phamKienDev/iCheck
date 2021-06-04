@@ -411,7 +411,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         customer.fields?.let { customerField ->
             for (field in customerVariantAdapter.listData) {
                 customerField.find { it.key == field.key }?.let { find ->
-                    if (field.type == "checkbox") {
+                    if (field.type == "checkbox" || field.type == "select") {
                         find.string_values?.split(",")?.let { listSelected ->
                             try {
                                 for (i in (field.valueF ?: mutableListOf()).indices) {
@@ -466,10 +466,8 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             }
 
             if (item.type == "date") {
-                if (item.require == 1) {
-                    if (item.string_values.isNullOrEmpty()) {
-                        return null
-                    }
+                if (item.require == 1 && item.string_values.isNullOrEmpty()) {
+                    return null
                 }
                 if (!item.string_values.isNullOrEmpty()) {
                     body[item.key] = item.string_values!!
@@ -477,40 +475,40 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             }
 
             if (item.type == "select") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        var value: String? = null
-                        for (select in item.valueF!!) {
-                            if (select.isChecked) {
-                                value = select.value
-                            }
-                        }
-                        if (value == null) {
-                            return null
-                        }
-                        body[item.key] = value
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
 
             if (item.type == "checkbox") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        val list = mutableListOf<String>()
-                        for (checkbox in item.valueF!!) {
-                            if (checkbox.isChecked) {
-                                list.add(checkbox.value!!)
-                            }
-                        }
-                        if (list.isNotEmpty()) {
-                            body[item.key] = list
-                        }
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
         }
 
         return body
+    }
+
+    private fun getInputValue(list: MutableList<ValueFItem>?): String {
+        val stringBuilder = StringBuilder()
+        for (item in list ?: mutableListOf()) {
+            if (item.isChecked) {
+                if (stringBuilder.isNotEmpty()) {
+                    stringBuilder.append(",")
+                }
+                stringBuilder.append(item.id)
+            }
+        }
+        return stringBuilder.toString()
     }
 
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {

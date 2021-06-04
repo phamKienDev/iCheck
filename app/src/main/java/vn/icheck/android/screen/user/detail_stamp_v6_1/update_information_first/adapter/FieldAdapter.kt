@@ -294,7 +294,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {
                         override fun onSelected(dateTime: String, milliseconds: Long) {
                             binding.edtInputDate.text = dateTime
-                            listData[adapterPosition].string_values = dateTime
+                            listData[adapterPosition].string_values = vn.icheck.android.ichecklibs.TimeHelper.convertMillisecondToDateTimeSv(milliseconds)
                         }
                     })
                 }
