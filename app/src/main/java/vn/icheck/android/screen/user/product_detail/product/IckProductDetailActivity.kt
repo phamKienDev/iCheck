@@ -28,6 +28,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.commentpost.ICCommentPostMore
 import vn.icheck.android.component.product.ProductDetailListener
@@ -320,7 +321,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 }, this@IckProductDetailActivity
             )
             if (it.verified == true) {
-                tvBuy.setText(R.string.dang_ky_mua_hang_chinh_hang)
+                tvBuy.setText(R.string.lien_he_n_doanh_nghiep)
             } else {
                 tvBuy.setText(R.string.mua_tai_nha_san_xuat)
             }
@@ -752,35 +753,18 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 )
         }
 
-        btnBuy.setOnClickListener {
+        tvBuy.setOnClickListener {
             if (!viewModel.verifyProduct) {
                 if (!viewModel.urlBuy.isNullOrEmpty()) {
                     val bottomSheetWebView = BottomSheetWebView(this)
                     bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
                 }
             } else {
-
-                DialogHelper.showConfirm(
-                    this,
-                    "Thông báo",
-                    "Bạn muốn Đăng ký mua hàng chính hãng? Hãy gửi yêu cầu cho chúng tôi, chúng tôi sẽ liên hệ lại khi nhận được thông tin.",
-                    "Hủy",
-                    "Gửi",
-                    true,
-                    object : ConfirmDialogListener {
-                        override fun onDisagree() {
-
-                        }
-
-                        override fun onAgree() {
-                            if (SessionManager.isUserLogged) {
-                                viewModel.registerBuyProduct()
-                            } else {
-                                onRequireLogin()
-                            }
-                        }
-                    })
-
+                ChatSocialDetailActivity.createRoomChat(
+                    it.context,
+                    viewModel.productDetail?.owner?.pageId ?: -1,
+                    "page"
+                )
             }
         }
 

@@ -137,7 +137,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             }
         }
 
-        itemView.tvChinh.setOnClickListener {
+        itemView.btnChinh.setOnClickListener {
             if (!itemView.tvChinh.text.contains("Theo dõi")) {
                 ListConversationFragment.finishAllChat()
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
