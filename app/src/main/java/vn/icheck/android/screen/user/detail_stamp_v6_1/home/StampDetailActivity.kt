@@ -280,6 +280,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 intent.putExtra(Constant.DATA_5, serial)
                 intent.putExtra(Constant.DATA_6, productId)
 //                intent.putExtra(Constant.DATA_7, objVariant)
+                intent.putExtra(Constant.DATA_8, viewModel.barcode)
                 ActivityUtils.startActivity(this, intent)
             }
         }
