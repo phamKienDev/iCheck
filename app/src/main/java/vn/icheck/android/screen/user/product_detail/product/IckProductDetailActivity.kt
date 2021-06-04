@@ -101,6 +101,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
+    private val requestEnterpriseContact = 9
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -755,17 +756,29 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            if (!viewModel.verifyProduct) {
-                if (!viewModel.urlBuy.isNullOrEmpty()) {
-                    val bottomSheetWebView = BottomSheetWebView(this)
-                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+            if (SessionManager.isUserLogged) {
+                if (!viewModel.verifyProduct) {
+                    if (!viewModel.urlBuy.isNullOrEmpty()) {
+                        val bottomSheetWebView = BottomSheetWebView(this)
+                        bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+                    }
+                } else {
+                    if (viewModel.productDetail?.owner?.verified == true) {
+                        ChatSocialDetailActivity.createRoomChat(
+                            it.context,
+                            viewModel.productDetail?.owner?.pageId ?: -1,
+                            "page"
+                        )
+                    } else {
+                        ChatSocialDetailActivity.createRoomChat(
+                            it.context,
+                            viewModel.productDetail?.manager?.id ?: -1,
+                            "page"
+                        )
+                    }
                 }
             } else {
-                ChatSocialDetailActivity.createRoomChat(
-                    it.context,
-                    viewModel.productDetail?.owner?.pageId ?: -1,
-                    "page"
-                )
+                onRequireLogin(requestEnterpriseContact)
             }
         }
 
@@ -1070,6 +1083,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                             }
                         }
                     }
+                }
+                requestEnterpriseContact -> {
+                    viewModel.getProductLayout()
                 }
                 CONTRIBUTION_PRODUCT -> {
                     val productID = data?.getLongExtra(Constant.DATA_1, -1)
