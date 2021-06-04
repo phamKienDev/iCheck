@@ -288,7 +288,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             binding.edtInputDate.apply {
-                text = TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
+                text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
 
                 setOnClickListener {
                     TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {

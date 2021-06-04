@@ -13,7 +13,7 @@ object TimeHelper {
             return sdfSv
         }
 
-    private fun simpleDateFormatSv(format: String = "yyyy-MM-dd'T'HH:mm:ss"): SimpleDateFormat {
+    private fun simpleDateFormat(format: String): SimpleDateFormat {
         val sdfSv = SimpleDateFormat(format, Locale.getDefault())
         sdfSv.timeZone = TimeZone.getTimeZone("GMT+0")
         return sdfSv
@@ -55,6 +55,20 @@ object TimeHelper {
 
         return try {
             simpleDateFormatSv.format(Date(millisecond))
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    fun convertDateTimeSvToDateVn(date: String?): String? {
+        if (date.isNullOrEmpty())
+            return null
+
+        val sdfSv = simpleDateFormatSv
+        val sdfVn = simpleDateFormat("dd/MM/yyyy")
+
+        return try {
+            sdfVn.format(sdfSv.parse(date))
         } catch (e: Exception) {
             null
         }

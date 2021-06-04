@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,8 +15,10 @@ import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ItemDetailHistoryGuaranteeBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
@@ -78,12 +81,22 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         tvPhoneCustomer.text = item.customer?.phone
         tvMailCustomer.text = item.customer?.email
         tvAddressCustomer.text = item.customer?.address
+        for (field in item.customer?.fields ?: mutableListOf()) {
+            val binding = ItemDetailHistoryGuaranteeBinding.inflate(LayoutInflater.from(this), layoutCustomer, false)
+            binding.tvTitle.text = field.name
+                if (field.type == "date") {
+                    binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
+                } else {
+                    binding.tvContent.text = field.value
+                }
+            layoutCustomer.addView(binding.root)
+        }
+
         tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time)
         } else {
             null
         }
-
         tvNameStoreGuarantee.text = item.store?.name
         tvStateGuarantee.text = item.state?.name
         tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
@@ -91,7 +104,6 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         } else {
             null
         }
-
         if (!item.note.isNullOrEmpty()) {
             if (StampDetailActivity.isVietNamLanguage == false) {
                 layoutContent.addView(createTableRow("Notes of Warranty return:", item.note))
