@@ -93,6 +93,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     companion object {
+        var isOpenFirst: Boolean = false
+
         fun create(context: Context, tab: Int = -1) {
             val i = Intent(context, V6ScanditActivity::class.java)
             i.putExtra(Constant.DATA_1, tab)
@@ -272,8 +274,9 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initViews()
         pushUpHeight()
 
-        if (intent.getIntExtra(Constant.DATA_1, 1) == -1) {
+        if (intent.getIntExtra(Constant.DATA_1, 1) == -1 && !isOpenFirst) {
             viewModel.getPopup()
+            isOpenFirst = true
         }
     }
 
@@ -668,7 +671,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
 
         viewModel.onPopupAds.observe(this, {
-            DialogNotificationFirebaseAds.showPopupAds(this,it)
+            DialogNotificationFirebaseAds.showPopupAds(this, it)
         })
         initListener()
     }
@@ -788,13 +791,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         code.startsWith("icv") -> {
                             offCamera()
                             CampaignLoyaltyHelper.scanCheckVoucher(this@V6ScanditActivity, voucher = code.replace("icv", ""),
-                                    {
-                                        startActivity<GiftVoucherStaffActivity, String>(ConstantsLoyalty.DATA_1, code.replace("icv", ""))
-                                    },
-                                    { error ->
-                                        resetCamera()
-                                        showShortErrorToast(error)
-                                    })
+                                {
+                                    startActivity<GiftVoucherStaffActivity, String>(ConstantsLoyalty.DATA_1, code.replace("icv", ""))
+                                },
+                                { error ->
+                                    resetCamera()
+                                    showShortErrorToast(error)
+                                })
                         }
                         else -> viewModel.checkQrStampSocial()
                     }

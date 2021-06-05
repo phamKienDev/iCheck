@@ -40,6 +40,8 @@ import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.util.ick.beInvisible
+import vn.icheck.android.util.ick.logDebug
 
 
 class DialogNotificationFirebaseAds : DialogFragment() {
@@ -49,6 +51,8 @@ class DialogNotificationFirebaseAds : DialogFragment() {
     private var bitmap: Bitmap? = null
     private var schema: String? = null
     private var popup: ICPopup? = null
+
+    private var isLoadFirst = false
 
 
     fun setData(document: String?, url: String?, bitmap: Bitmap?, schema: String?, popup: ICPopup?) {
@@ -346,6 +350,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
+                    isLoadFirst = true
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -362,10 +367,6 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    if (isAdded && layoutText!=null) {
-                        layoutText.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
-                        layoutText.beVisible()
-                    }
                 }
 
                 override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -378,6 +379,18 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     isPageLoaded = newProgress == 100
+
+                    if (isAdded && layoutText != null && newProgress >= 80) {
+                        if (isLoadFirst) {
+                            layoutText.beInvisible()
+                            Handler().postDelayed({
+                                layoutText.beVisible()
+                                layoutText.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
+                            }, 200)
+                            isLoadFirst = false
+
+                        }
+                    }
                 }
             }
         }
@@ -418,6 +431,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                     isPageLoaded = false
+                    isLoadFirst = true
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -434,11 +448,8 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    if (isAdded && layoutWeb!=null) {
-                        layoutWeb.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
-                        layoutWeb.beVisible()
-                    }
                 }
+
                 override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                     super.onReceivedError(view, request, error)
                     dismiss()
@@ -449,6 +460,17 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     isPageLoaded = newProgress == 100
+
+                    if (isAdded && layoutWeb != null && newProgress >= 80) {
+                        if (isLoadFirst) {
+                            layoutWeb.beInvisible()
+                            Handler().postDelayed({
+                                layoutWeb.beVisible()
+                                layoutWeb.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_white_corners_10)
+                            }, 200)
+                            isLoadFirst = false
+                        }
+                    }
                 }
             }
         }
