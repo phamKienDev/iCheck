@@ -26,9 +26,9 @@
         android:background="@color/colorLine" />
 
     <androidx.core.widget.NestedScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,10 +54,12 @@
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginTop="@dimen/size_1"
                     android:gravity="center_vertical"
+                    android:hint="@string/dang_cap_nhat"
                     android:includeFontPadding="false"
                     android:singleLine="false"
                     android:textAlignment="gravity"
                     android:textColor="@color/black2"
+                    android:textColorHint="@color/black2"
                     tools:text="Địa chỉ" />
             </LinearLayout>
 
@@ -68,8 +70,10 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_outline_phone_blue_18px"
                 android:drawablePadding="@dimen/size_8"
+                android:hint="@string/dang_cap_nhat"
                 android:textAlignment="gravity"
                 android:textColor="@color/black2"
+                android:textColorHint="@color/black2"
                 tools:text="Điện thoại" />
 
             <vn.icheck.android.ui.view.TextBody1
@@ -79,8 +83,10 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_outline_local_blue_18px"
                 android:drawablePadding="@dimen/size_8"
+                android:hint="@string/dang_cap_nhat"
                 android:textAlignment="gravity"
                 android:textColor="@color/black2"
+                android:textColorHint="@color/black2"
                 tools:text="Email" />
 
             <vn.icheck.android.ui.view.TextBody1
@@ -90,8 +96,10 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_website_blue_18px"
                 android:drawablePadding="@dimen/size_8"
+                android:hint="@string/dang_cap_nhat"
                 android:textAlignment="gravity"
                 android:textColor="@color/black2"
+                android:textColorHint="@color/black2"
                 tools:text="Website" />
 
             <vn.icheck.android.ui.view.TextBody1
@@ -101,8 +109,10 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_barcode_blue_18dp"
                 android:drawablePadding="@dimen/size_8"
+                android:hint="@string/dang_cap_nhat"
                 android:textAlignment="gravity"
                 android:textColor="@color/black2"
+                android:textColorHint="@color/black2"
                 tools:text="GLN" />
 
             <LinearLayout
@@ -123,9 +133,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginTop="@dimen/size_1"
+                    android:hint="@string/dang_cap_nhat"
                     android:includeFontPadding="false"
                     android:textAlignment="gravity"
                     android:textColor="@color/black2"
+                    android:textColorHint="@color/black2"
                     tools:text="Giới thiệu CÔNG TY TNHH L'ORÉAL VIỆT NAM\n\nNgười đại diện: Valery Gaucherand\n\nĐịa chỉ: Tầng 10, Tòa nhà Vincom, Số 45A đường Lý Tự Trọng và số 72 đường Lê Thánh Tôn, P. Bến Nghé, Q. 1, Tp. HCM\n\nĐiện thoại: 02839369142\n\nEmail: lorealvietnam@loreal.com\n\nMSDN: 0102289856 cấp ngày 23/05/2007 tại Hà Nội" />
             </LinearLayout>
         </LinearLayout>

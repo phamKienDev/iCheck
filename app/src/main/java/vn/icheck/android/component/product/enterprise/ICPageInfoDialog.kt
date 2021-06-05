@@ -42,12 +42,12 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvName.text = obj.name
-        binding.tvAddress.text = getSpannable(R.string.dia_chi_xxx_stamp_v61, getContent(obj.address), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
-        binding.tvPhone.text = getSpannable(R.string.dien_thoai_xxx_stamp_v61, getContent(obj.phone), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
-        binding.tvEmail.text = getSpannable(R.string.email_xxx_stamp_v61, getContent(obj.email), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
-        binding.tvWebsite.text = getSpannable(R.string.website_xxx_stamp_v61, getContent(obj.website), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
-        binding.tvGln.text = getSpannable(R.string.ma_gln_xxx_stamp_v61, getContent(obj.code), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
-        binding.tvDescription.text = getSpannable(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
+        binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district, obj.city, obj.country, null)
+        binding.tvPhone.text = obj.phone
+        binding.tvEmail.text = obj.email
+        binding.tvWebsite.text = obj.website
+        binding.tvGln.text = obj.code
+        binding.tvDescription.text = obj.description
 
         binding.tvPhone.setOnClickListener {
             Constant.callPhone(obj.phone)
