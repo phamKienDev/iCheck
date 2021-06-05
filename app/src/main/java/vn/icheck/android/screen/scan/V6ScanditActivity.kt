@@ -54,12 +54,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.constant.SCAN_REVIEW
 import vn.icheck.android.databinding.IckScanCustomViewBinding
-import vn.icheck.android.fragments.BarcodeBottomDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.getDeviceWidth
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.icheckscanditv6.BarcodeBottomDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper

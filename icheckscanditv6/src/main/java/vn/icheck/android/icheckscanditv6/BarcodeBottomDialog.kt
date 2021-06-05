@@ -1,7 +1,6 @@
 package vn.icheck.android.icheckscanditv6
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,7 @@ import vn.icheck.android.icheckscanditv6.databinding.IckBarcodeBottomBinding
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     private var onBarCodeDismiss: OnBarCodeDismiss? = null
-    private var _binding: IckBarcodeBottomBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: IckBarcodeBottomBinding
 
     companion object {
         fun show(fragmentManager: FragmentManager, isCancel: Boolean, listener: OnBarCodeDismiss) {
@@ -51,13 +49,8 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 //    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
+        binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     interface OnBarCodeDismiss {
