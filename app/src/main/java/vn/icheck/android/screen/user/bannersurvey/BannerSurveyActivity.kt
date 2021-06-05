@@ -44,10 +44,9 @@ class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurve
 
     override fun onInitView() {
         initToolbar()
+        setupView()
         presenter.getData(intent)
 
-        btnHome.background=ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
-        btnLeft.background=ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
     }
 
     private fun initToolbar() {
@@ -56,6 +55,13 @@ class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurve
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnRight.background = ViewHelper.btnSecondaryCorners6(this)
+        btnHome.background = ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        btnLeft.background = ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        linearLayout.background = ViewHelper.bgSecondaryCornersTop10(this)
     }
 
     private fun initQuestion() {

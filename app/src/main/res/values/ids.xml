@@ -33,6 +33,7 @@
     <item name="edtOldPassword" type="id" />
     <item name="edtRePassword" type="id" />
     <item name="tvRegister" type="id" />
+    <item name="circleImageView" type="id" />
     <item name="btnLogin" type="id" />
     <item name="btnFacebook" type="id" />
     <item name="imgShowOrHideOldPassword" type="id" />

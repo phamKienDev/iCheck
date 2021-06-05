@@ -31,6 +31,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityDetailStampBinding
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.visibleOrInvisible
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -117,6 +118,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 //        isVietNamLanguage = Locale.getDefault().displayLanguage.toLowerCase(Locale.getDefault()) == "vi"
+        binding.textFab.background=ViewHelper.btnPrimaryCorners4(this)
 
         runOnUiThread {
             if (isVietNamLanguage == false) {

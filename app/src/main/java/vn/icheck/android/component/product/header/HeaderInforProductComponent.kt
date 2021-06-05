@@ -19,7 +19,7 @@ import vn.icheck.android.util.ick.beVisible
 class HeaderInforProductComponent(view: View, val listener: ProductDetailListener) : BaseHolder(view) {
     private var toggle: Boolean = false
 
-    fun bind(productHeaderModel: ProductHeaderModelV2) {
+    fun bind(productHeaderModel: ProductHeaderModel) {
         itemView.img_fav.apply {
             background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
             if (productHeaderModel.icBarcodeProduct.isBookMark == true) {

@@ -56,7 +56,6 @@
                 android:id="@+id/tvLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_blue_corner_top_10dp"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:padding="@dimen/size_10"

@@ -87,6 +87,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     private fun setupView() {
         binding.layoutSelectCity.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
         binding.layoutSelectDistrict.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
     }
 
 //    private fun setupView() {

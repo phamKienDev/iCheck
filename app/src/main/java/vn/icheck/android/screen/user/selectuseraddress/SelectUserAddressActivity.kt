@@ -11,6 +11,7 @@ import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICAddress
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.createuseraddress.CreateUserAddressActivity
@@ -41,6 +42,7 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
 
     override fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupSwipeRefreshLayout()
         setupListener()
@@ -55,6 +57,10 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnDone.background=ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupRecyclerView() {

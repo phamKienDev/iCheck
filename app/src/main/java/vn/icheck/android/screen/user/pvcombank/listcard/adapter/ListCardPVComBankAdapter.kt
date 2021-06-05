@@ -245,6 +245,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
     ) : BaseViewHolder<Int>(binding.root) {
 
         override fun bind(obj: Int) {
+            binding.btnTryAgain.background=ViewHelper.bgOutlineSecondary1Corners6(itemView.context)
             when (obj) {
                 Constant.ERROR_EMPTY -> {
                     binding.btnTryAgain.visibility = View.INVISIBLE

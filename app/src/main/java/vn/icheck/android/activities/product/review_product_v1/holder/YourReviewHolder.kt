@@ -7,12 +7,15 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.base.adapter.HorizontalImageAdapter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
 import vn.icheck.android.util.text.ReviewPointText
 
 class YourReviewHolder(view: View, val listener: IReviewProductView) : BaseViewHolder<ICCriteria>(view) {
     override fun bind(obj: ICCriteria) {
+        itemView.btn_edit.background=ViewHelper.bgSecondaryCorners40(itemView.context)
+
         itemView.tv_your_score.text = String.format("%.1f %s", obj.customerEvaluation!!.averagePoint * 2,
                 ReviewPointText.getText(obj.customerEvaluation!!.averagePoint))
         itemView.customer_rating.rating = obj.customerEvaluation!!.averagePoint

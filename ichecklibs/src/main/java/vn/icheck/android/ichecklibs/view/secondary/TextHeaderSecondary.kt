@@ -2,13 +2,10 @@ package vn.icheck.android.ichecklibs.view.secondary
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextHeader
 
-open class TextHeaderSecondary : AppCompatTextView {
+open class TextHeaderSecondary : TextHeader {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }
@@ -16,8 +13,5 @@ open class TextHeaderSecondary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getSecondaryColor(context))
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
-        includeFontPadding = false
     }
 }

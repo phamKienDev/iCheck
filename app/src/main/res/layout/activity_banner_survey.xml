@@ -50,9 +50,9 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_blue_corners_top_10"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -193,7 +193,6 @@
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_weight="1"
-            android:background="@drawable/btn_blue_corners_6"
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/white"

@@ -13,6 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.createuseraddress.presenter.CreateUserAddressPresenter
 import vn.icheck.android.screen.user.createuseraddress.view.ICreateUserAddressView
 import vn.icheck.android.screen.user.selectdistrict.SelectDistrictActivity
@@ -39,6 +40,7 @@ class CreateUserAddressActivity : BaseActivity<CreateUserAddressPresenter>(), IC
 
     override fun onInitView() {
         setupToolbar()
+        setupView()
         setupListener()
     }
 
@@ -48,6 +50,10 @@ class CreateUserAddressActivity : BaseActivity<CreateUserAddressPresenter>(), IC
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background=ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupListener() {

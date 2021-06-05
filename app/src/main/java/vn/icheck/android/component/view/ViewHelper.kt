@@ -870,7 +870,7 @@ object ViewHelper {
         val layoutHeader = LinearLayout(context)
         layoutHeader.layoutParams = createLayoutParams()
         layoutHeader.orientation = LinearLayout.VERTICAL
-        layoutHeader.background = ContextCompat.getDrawable(context, R.drawable.bg_blue_corners_top_10)
+        layoutHeader.background = vn.icheck.android.ichecklibs.ViewHelper.bgSecondaryCornersTop10(context)
         layoutContent.addView(layoutHeader)
 
         val tvName = AppCompatTextView(context)
@@ -953,7 +953,7 @@ object ViewHelper {
         btnRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         btnRight.background = createStateListDrawable(
                 ContextCompat.getColor(context, R.color.grayD8),
-                ContextCompat.getColor(context, R.color.colorSecondary),
+                Constant.getSecondaryColor(context),
                 ContextCompat.getColor(context, R.color.darkBlue),
                 Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, 0, (SizeHelper.size16 + SizeHelper.size2).toFloat()
         )

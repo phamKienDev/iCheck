@@ -27,7 +27,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorSecondText" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@id/tvCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,8 +39,7 @@
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:text="@string/viet_nam"
-        android:textAlignment="gravity"
-        android:textColor="@color/colorPrimary" />
+        android:textAlignment="gravity" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,7 +89,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
         android:layout_margin="@dimen/size_12"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/xac_thuc"
         android:textAlignment="gravity"

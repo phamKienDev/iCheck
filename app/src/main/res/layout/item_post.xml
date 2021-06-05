@@ -27,7 +27,7 @@
                 android:layout_width="@dimen/size_40"
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_8"
-                android:src="@color/colorSecondary"
+                tools:src="@color/colorSecondary"
                 app:civ_border_color="@color/grayD8"
                 app:civ_border_width="@dimen/size_0_5"
                 app:layout_constraintStart_toStartOf="parent"

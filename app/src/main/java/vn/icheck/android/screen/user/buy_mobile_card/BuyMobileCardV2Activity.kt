@@ -65,7 +65,9 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_mobile_card_v2)
+
         viewModel = ViewModelProvider(this).get(RechargePhoneVIewModel::class.java)
+
         setupView()
         listenerGetData()
         initListNetworkOperator()
@@ -77,6 +79,7 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
 
     private fun setupView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
     }
 
     private fun listenerGetData() {

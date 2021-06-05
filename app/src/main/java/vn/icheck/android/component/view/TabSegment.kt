@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 
 class TabSegment : FrameLayout {
@@ -32,7 +33,7 @@ class TabSegment : FrameLayout {
         val view = View(context)
         view.layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT)
         view.id = R.id.indicator
-        view.setBackgroundResource(R.drawable.bg_blue_corners_40)
+        view.background=ViewHelper.bgSecondaryCorners40(context)
         addView(view)
 
         val tabLayout = TabLayout(context)

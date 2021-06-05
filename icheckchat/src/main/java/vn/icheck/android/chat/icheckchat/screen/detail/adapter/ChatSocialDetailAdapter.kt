@@ -202,6 +202,8 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
+            binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
 
             setGoneView(
                 binding.layoutProduct,
@@ -267,14 +269,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                     binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
 //                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
                 }
                 else -> {
                     binding.imgRetry.setVisible()
@@ -401,6 +403,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.tvMessage.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
+            binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
             binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.layoutPage.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.layoutVoucher.background = ViewHelper.bgGrayCorners10(itemView.context)

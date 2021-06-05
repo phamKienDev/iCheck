@@ -52,8 +52,10 @@ class ShopVariantStampHolder(view: View) : BaseViewHolder<ICShopVariant>(view) {
         val tvAddToCartInDiemBan = itemView.tvAddToCartInDiemBan as AppCompatTextView
         val rcvListService = itemView.rcvServiceShopVariant as RecyclerView
         val constraintLayout = itemView.constraintLayout as ConstraintLayout
+        val constraintLayout1 = itemView.constraintLayout1 as ConstraintLayout
 
         constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(itemView.context)
+        constraintLayout1.background=ViewHelper.bgSecondaryCornersTop10(itemView.context)
 
         if (obj.shop?.is_online == true) {
             if (obj.is_active == true) {

@@ -313,7 +313,6 @@
                 android:layout_marginTop="@dimen/size_37"
                 android:layout_marginEnd="@dimen/size_40"
                 android:layout_marginBottom="@dimen/size_12"
-                android:background="@drawable/bg_blue_corners_40"
                 android:fontFamily="sans-serif-medium"
                 android:text="Cập nhật"
                 android:textColor="@color/white"

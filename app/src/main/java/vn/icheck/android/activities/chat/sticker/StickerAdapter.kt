@@ -12,6 +12,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.feature.social.SocialRepository
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.util.ui.GlideUtil
@@ -77,13 +78,13 @@ class StickerAdapter(var listSticker: ArrayList<StickerView>, var size: Int) : R
                 button.setBackgroundResource(R.drawable.button_remove)
             } else {
                 button.text = "Thêm"
-                button.setBackgroundResource(R.drawable.button_add)
+                button.background=ViewHelper.bgPrimaryCorners4(itemView.context)
             }
 
 
             setOnClick(R.id.btn_delete, View.OnClickListener {
                 if (checkId(stickerView.id)) {
-                    button.setBackgroundResource(R.drawable.button_add)
+                    button.background=ViewHelper.bgPrimaryCorners4(itemView.context)
                     button.text = "Thêm"
                     stickerPackagesDao.deleteStickPackages(stickerView.id)
                 } else {

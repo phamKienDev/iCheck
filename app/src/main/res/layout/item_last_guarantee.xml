@@ -16,13 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
             android:id="@id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_span="2"
             android:text="@string/lich_su_bao_hanh_gan_nhat"
-            android:textColor="@color/colorSecondary"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
 
@@ -169,14 +168,13 @@
             android:layout_height="wrap_content"
             android:layout_span="2">
 
-            <vn.icheck.android.ichecklibs.view.TextBody2
+            <vn.icheck.android.ichecklibs.view.primary.TextBody2Primary
                 android:id="@id/tvViewMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="@dimen/font_12"
                 android:text="@string/xem_them"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_14" />
         </FrameLayout>
     </TableRow>

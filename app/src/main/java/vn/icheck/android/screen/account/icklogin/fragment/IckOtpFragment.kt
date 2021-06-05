@@ -93,7 +93,7 @@ class IckOtpFragment : Fragment() {
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
+        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=${Constant.getPrimaryColorCode}>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {

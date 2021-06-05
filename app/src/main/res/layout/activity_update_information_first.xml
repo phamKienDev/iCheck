@@ -59,13 +59,12 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ichecklibs.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:text="@string/thong_tin_khach_hang"
-                android:textColor="@color/colorSecondary" />
+                android:text="@string/thong_tin_khach_hang" />
 
             <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubPhone"
@@ -324,14 +323,13 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-            <vn.icheck.android.ichecklibs.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:text="@string/thong_tin_tiep_nhan"
-                android:textColor="@color/colorSecondary"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -349,7 +347,6 @@
                 android:layout_marginTop="@dimen/size_30"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginBottom="@dimen/size_30"
-                android:background="@drawable/btn_light_blue_corners_4"
                 android:padding="@dimen/size_8"
                 android:text="@string/cap_nhat"
                 android:textAlignment="center"

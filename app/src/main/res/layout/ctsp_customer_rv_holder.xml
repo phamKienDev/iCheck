@@ -100,7 +100,6 @@
             android:layout_marginStart="@dimen/size_24"
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_24"
-            android:background="@drawable/bg_blue_corners_40"
             android:text="Chỉnh sửa đánh giá"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

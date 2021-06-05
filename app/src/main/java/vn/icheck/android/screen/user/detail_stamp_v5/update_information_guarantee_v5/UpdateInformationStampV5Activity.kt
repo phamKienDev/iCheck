@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
@@ -38,6 +39,9 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
 
     override fun onInitView() {
         txtTitle.text = "Thông tin khách hàng"
+
+        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+
         presenter.getDataIntent(intent)
         listener()
     }
@@ -52,7 +56,14 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
         }
 
         btnUpdate.setOnClickListener {
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtShop.text.toString(),midStore)
+            presenter.validUpdateInformationGuarantee(
+                edtName.text.toString(),
+                edtPhone.text.toString(),
+                edtEmail.text.toString(),
+                edtAddress.text.toString(),
+                edtShop.text.toString(),
+                midStore
+            )
         }
 
         layoutSelectCity.setOnClickListener {
@@ -67,8 +78,8 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
 
         edtShop.setOnClickListener {
             val intent = Intent(this, SelectStoreStampV5Activity::class.java)
-            intent.putExtra(Constant.DATA_1,midStamp)
-            startActivityForResult(intent,REQUEST_CODE_STORE)
+            intent.putExtra(Constant.DATA_1, midStamp)
+            startActivityForResult(intent, REQUEST_CODE_STORE)
         }
     }
 
@@ -167,12 +178,12 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_STORE){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == REQUEST_CODE_STORE) {
+            if (resultCode == Activity.RESULT_OK) {
                 val store = data?.getStringExtra(Constant.DATA_5)
                 edtShop.setText(store)
 
-                val idStore = data?.getIntExtra(Constant.DATA_4,-1)
+                val idStore = data?.getIntExtra(Constant.DATA_4, -1)
                 midStore = idStore
             }
         }

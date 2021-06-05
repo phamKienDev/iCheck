@@ -107,7 +107,6 @@
         android:layout_height="@dimen/size_36"
         android:layout_margin="@dimen/size_12"
         android:visibility="gone"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/xac_nhan"
         android:textAlignment="gravity"

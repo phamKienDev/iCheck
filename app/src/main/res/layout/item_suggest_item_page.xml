@@ -11,7 +11,7 @@
         android:layout_width="@dimen/size_60"
         android:layout_height="@dimen/size_60"
         android:layout_marginTop="@dimen/size_18"
-        android:src="@color/colorPrimary"
+        tools:src="@color/colorPrimary"
         app:civ_border_color="@color/grayD8"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintEnd_toEndOf="parent"

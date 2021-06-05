@@ -44,11 +44,11 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
 
     override fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         WidgetUtils.setClickListener(this, btnActionOne, btnActionTwo)
         presenter.getID(intent)
 
-        btnActionTwo.background=ViewHelper.btnWhiteStroke1Corners36(this)
     }
 
     private fun setupToolbar() {
@@ -57,6 +57,11 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnActionOne.background = ViewHelper.btnSecondaryCorners26(this)
+        btnActionTwo.background = ViewHelper.btnWhiteStroke1Corners36(this)
     }
 
     private fun setupRecyclerView() {

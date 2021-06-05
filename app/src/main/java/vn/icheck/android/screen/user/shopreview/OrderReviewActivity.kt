@@ -42,9 +42,9 @@ class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewVi
 
     override fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupListener()
-        edtNote.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         presenter.getShopID(intent)
     }
 
@@ -56,6 +56,11 @@ class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewVi
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        edtNote.background = ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tvDone.background = ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupRecyclerView() {

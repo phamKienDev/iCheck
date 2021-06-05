@@ -10,6 +10,7 @@ import vn.icheck.android.network.models.ICCriteria
 
 class UserNoReviewStampHolder (parent:ViewGroup) : BaseViewHolder<ICCriteria>(LayoutInflater.from(parent.context).inflate(R.layout.stamp_product_not_rated_holder, parent, false))  {
     override fun bind(obj: ICCriteria) {
+        itemView.btn_nrv_send.background=ViewHelper.bgSecondaryCorners40(itemView.context)
         itemView.edt_nrv_comment.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemView.context)
     }
 }

@@ -274,7 +274,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_8"
             android:layout_weight="1"
-            android:background="@drawable/bg_blue_corners_40"
             android:text="Nạp ngay"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />

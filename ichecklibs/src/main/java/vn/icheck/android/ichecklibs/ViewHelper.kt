@@ -46,6 +46,11 @@ object ViewHelper {
         )
     }
 
+    fun createColorPressStateList(disableColor: Int, pressedColor: Int): ColorStateList {
+        return ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_pressed), intArrayOf(android.R.attr.state_pressed)),
+            intArrayOf(disableColor, pressedColor))
+    }
+
 
     fun createCheckedDrawable(uncheckedResource: Drawable?, checkedResource: Drawable?): StateListDrawable {
         val statesListDrawable = StateListDrawable()
@@ -115,12 +120,7 @@ object ViewHelper {
     @SuppressLint("NewApi")
     fun createRippleDrawable(context: Context, color: Int, radius: Float): RippleDrawable {
         return RippleDrawable(
-            ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    context,
-                    R.color.black_10
-                )
-            ), createShapeDrawable(color, radius), null
+            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black_10)), createShapeDrawable(color, radius), null
         )
     }
 
@@ -336,11 +336,11 @@ object ViewHelper {
             )
         } else {
             statesListDrawable.addState(
-                intArrayOf(android.R.attr.state_enabled),
+                intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
                 createShapeDrawable(enableColor, radius)
             )
             statesListDrawable.addState(
-                intArrayOf(android.R.attr.state_pressed),
+                intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed),
                 createShapeDrawable(pressedColor, radius)
             )
             statesListDrawable.addState(
@@ -437,7 +437,6 @@ object ViewHelper {
     )
 
 
-
     fun progressPrimaryBackgroundTransparentCorners8(context: Context): LayerDrawable {
         val radius = 8f.dpToPx()
         val primaryColor = Constant.getPrimaryColor(context)
@@ -446,6 +445,15 @@ object ViewHelper {
             secondaryDrawable = createScaleDrawable(createShapeDrawable(primaryColor, radius)),
             progressDrawable = createScaleDrawable(createShapeDrawable(primaryColor, radius))
         )
+    }
+
+    fun setPrimaryHtmlString(string: String):String{
+        return string.replace("#057DDA",Constant.getPrimaryColorCode)
+    }
+
+    fun textColorPrimaryUnpressedSecondaryPressed(context: Context):ColorStateList{
+        return createColorPressStateList(Constant.getPrimaryColor(context), Constant.getSecondaryColor(context))
+
     }
 
     /*
@@ -479,7 +487,52 @@ object ViewHelper {
         radius = 14f
     )
 
-    fun bgTransparentRadiusTop2(context: Context) = createShapeDrawableRadiusTop(Color.TRANSPARENT, 2f)
+    fun bgOutlineSecondary1Corners6(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getSecondaryColor(context),
+        radius = 6f
+    )
+
+    fun bgOutlineSecondary1Corners8(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getSecondaryColor(context),
+        radius = 8f
+    )
+
+    fun bgOutlineSecondary1Corners45(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getSecondaryColor(context),
+        radius = 45f
+    )
+
+
+    /*
+    * Secondary Color
+    * */
+    fun bgSecondaryCorners10(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size10.toFloat())
+    fun bgSecondaryCorners40(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size40.toFloat())
+    fun bgSecondaryCorners45(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size45.toFloat())
+
+    fun bgSecondaryCornersTop10(context: Context)= createShapeDrawableRadiusTop(Constant.getSecondaryColor(context),SizeHelper.size10.toFloat())
+
+    fun btnSecondaryCorners6(context: Context)= createButtonStateListDrawable(
+        context = context,
+        enableColor = Constant.getSecondaryColor(context),
+        pressedColor = ContextCompat.getColor(context, R.color.darkBlue),
+        disableColor = ContextCompat.getColor(context, R.color.grayD8),
+        radius = 6f.dpToPx()
+    )
+
+    fun btnSecondaryCorners26(context: Context)= createButtonStateListDrawable(
+        context = context,
+        enableColor = Constant.getSecondaryColor(context),
+        pressedColor = ContextCompat.getColor(context, R.color.darkBlue),
+        disableColor = ContextCompat.getColor(context, R.color.grayD8),
+        radius = 26f.dpToPx()
+    )
 
 
     /*

@@ -80,6 +80,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
 
         btnRequestPermission.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
         btnEnableLocation.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        textFab.background=ViewHelper.bgSecondaryCorners45(this)
 
         setupRecyclerView()
         setupSwipeLayout()

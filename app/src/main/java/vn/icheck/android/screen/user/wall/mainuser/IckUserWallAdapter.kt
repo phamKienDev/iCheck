@@ -333,7 +333,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                     binding.groupMainUser.beGone()
                     binding.groupFriend.beVisible()
                     ViewHelper.bgPrimaryCorners4(itemView.context)
-                    binding.btnSendMsg.setTextColor(Color.parseColor("#057DDA"))
+                    binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                     binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
                     binding.btnAddFriend.beVisible()
                 }

@@ -17,6 +17,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
@@ -38,6 +39,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         setContentView(binding.root)
 
         setupToolbar()
+        setupView()
 
         presenter.getDataByIntent(intent)
     }
@@ -48,6 +50,10 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         binding.layoutToolbar.imgBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun setupView() {
+        binding.btnConfirm.background=ViewHelper.btnPrimaryCorners4(this)
     }
 
     @SuppressLint("SetTextI18n")
@@ -123,7 +129,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)))
+        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat))))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
 

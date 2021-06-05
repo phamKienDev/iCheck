@@ -303,7 +303,6 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/size_68"
-            android:background="@drawable/bg_corner_dark_blue_45"
             android:drawableStart="@drawable/ic_update_user_info_white_24px"
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="sans-serif-medium"

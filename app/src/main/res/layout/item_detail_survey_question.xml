@@ -21,7 +21,6 @@
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
-            android:background="@drawable/bg_blue_corners_top_10"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:includeFontPadding="false"

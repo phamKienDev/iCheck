@@ -69,13 +69,16 @@ class EditReviewV1Activity : BaseICActivity(), TakePhotoHelper.TakePhotoListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_review_v1)
         instance = this
+
+        setupView()
+
         intent.getStringExtra("img")?.let {
             Glide.with(this.applicationContext).load(it).placeholder(R.drawable.error_load_image).into(img_product)
         }
         intent.getStringExtra("name")?.let {
             tv_title.text = it
         }
-        edt_nrv_comment.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+
         criteria = intent.getSerializableExtra("criteria") as ICCriteria
         criteria?.let {
             if (it.customerEvaluation != null) {
@@ -126,6 +129,11 @@ class EditReviewV1Activity : BaseICActivity(), TakePhotoHelper.TakePhotoListener
                 rcv_image.layoutManager = LinearLayoutManager(this@EditReviewV1Activity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
+    }
+
+    private fun setupView() {
+        edt_nrv_comment.background = ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        btn_nrv_send.background = ViewHelper.bgSecondaryCorners40(this)
     }
 
 

@@ -5,6 +5,9 @@ import android.os.Looper
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -15,7 +18,11 @@ abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     fun getColor(idColor: Int): Int{
-        return ContextCompat.getColor(itemView.context, idColor)
+        return if (idColor!= R.color.colorPrimary) {
+            ContextCompat.getColor(itemView.context, idColor)
+        } else {
+            Constant.getPrimaryColor(itemView.context)
+        }
     }
 
 //    fun click(view: View?, call: () -> Unit) {

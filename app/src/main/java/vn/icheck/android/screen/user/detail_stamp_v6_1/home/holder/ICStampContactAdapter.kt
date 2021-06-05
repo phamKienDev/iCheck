@@ -37,15 +37,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
 
             binding.tvHotline.apply {
                 text = obj.hotline
-                background = ViewHelper.createStateListDrawable(
-                        enableColor = Color.WHITE,
-                        pressedColor = getColor(R.color.black_10),
-                        enableStrokeColor = getColor(R.color.colorPrimary),
-                        pressedStrokeColor = getColor(R.color.colorPrimary),
-                        strokeWidth = SizeHelper.size1,
-                        SizeHelper.size4.toFloat()
-                )
-
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlineSecondary1Corners45(itemView.context)
                 setOnClickListener {
                     Constant.callPhone(obj.hotline)
                 }
@@ -53,15 +45,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
 
             binding.tvEmail.apply {
                 text = obj.email
-                background = ViewHelper.createStateListDrawable(
-                        enableColor = Color.WHITE,
-                        pressedColor = getColor(R.color.black_10),
-                        enableStrokeColor = getColor(R.color.colorPrimary),
-                        pressedStrokeColor = getColor(R.color.colorPrimary),
-                        strokeWidth = SizeHelper.size1,
-                        SizeHelper.size4.toFloat()
-                )
-
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlineSecondary1Corners45(itemView.context)
                 setOnClickListener {
                     Constant.sendEmail(obj.email)
                 }

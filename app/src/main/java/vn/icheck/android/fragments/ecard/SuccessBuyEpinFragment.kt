@@ -28,6 +28,7 @@ class SuccessBuyEpinFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_again.background= ViewHelper.bgWhiteStrokeSecondary1Corners40(requireContext())
+        btn_charge.background= ViewHelper.bgSecondaryCorners40(requireContext())
 
         arguments?.let {
             it.getSerializable("data")?.let { data ->

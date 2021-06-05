@@ -661,9 +661,6 @@
             android:name=".screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MapActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.product.contribute.SelectCategoryActivity"
             android:screenOrientation="portrait" />
         <activity

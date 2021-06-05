@@ -28,8 +28,8 @@ class EnableButton: AppCompatButton {
         includeFontPadding = false
     }
 
-    private val enableBackground =   ViewHelper.bgPrimaryCorners4(context)
-    private val disableBackground =   ViewHelper.bgDisableTextCorners4(context)
+    private val enableBackground = ViewHelper.bgPrimaryCorners4(context)
+    private val disableBackground =  ViewHelper.bgDisableTextCorners4(context)
 
     private var isButtonEnable = false
         set(value) {

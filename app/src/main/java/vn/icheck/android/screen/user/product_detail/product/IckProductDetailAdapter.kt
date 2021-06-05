@@ -32,7 +32,7 @@ import vn.icheck.android.component.product.emty_qa.EmptyQAModel
 import vn.icheck.android.component.product.emty_qa.ProductEmptyQaHolder
 import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.component.product.header.HeaderInforProductComponent
-import vn.icheck.android.component.product.header.ProductHeaderModelV2
+import vn.icheck.android.component.product.header.ProductHeaderModel
 import vn.icheck.android.component.product.horizontal_product.ListProductHorizontalHolder
 import vn.icheck.android.component.product.infor.ProductInformationHolder
 import vn.icheck.android.component.product.infor_contribution.EmptyContributionEnterpriseHolder
@@ -237,7 +237,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
     fun updateBookMark(isBookMark: Boolean) {
         for (i in listData.size - 1 downTo 0) {
             if (listData[i].viewType == ICViewTypes.HEADER_TYPE) {
-                (listData[i].data as ProductHeaderModelV2).icBarcodeProduct.isBookMark = isBookMark
+                (listData[i].data as ProductHeaderModel).icBarcodeProduct.isBookMark = isBookMark
                 notifyItemChanged(i)
                 return
             }
@@ -299,7 +299,7 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             ICViewTypes.IMAGE_VIDEO_SLIDER -> (holder as ICImageVideoSlider).bind(listData[position].data as ICImageVideoSliderModel)
-            ICViewTypes.HEADER_TYPE -> (holder as HeaderInforProductComponent).bind(listData[position].data as ProductHeaderModelV2)
+            ICViewTypes.HEADER_TYPE -> (holder as HeaderInforProductComponent).bind(listData[position].data as ProductHeaderModel)
             ICViewTypes.REVIEW_SUMMARY_TYPE -> (holder as ReviewSummaryHolder).bind(listData[position].data as IckReviewSummaryModel)
             ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ListShopHolder).bind((listData[position].data as ShopProductModel).listShop)
             ICViewTypes.TRANSPARENCY_TYPE -> (holder as MbttHolder).bind(listData[position].data as MbttModel)

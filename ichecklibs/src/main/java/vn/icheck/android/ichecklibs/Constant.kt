@@ -326,6 +326,113 @@ object Constant {
         }
 
     /*
+    *Color accent blue
+    * * */
+
+    fun getAccentBlueColor(context: Context): Int {
+        return if (accentBlueColor.isNotEmpty()) {
+            Color.parseColor(accentBlueColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentBlue)
+        }
+    }
+
+    val getAccentBlueCode: String
+        get() {
+            return if (accentBlueColor.isNotEmpty()) {
+                accentBlueColor
+            } else {
+                "#00BAF2"
+            }
+        }
+
+
+    /*
+    *Color accent green
+    * * */
+
+    fun getAccentGreenColor(context: Context): Int {
+        return if (accentGreenColor.isNotEmpty()) {
+            Color.parseColor(accentGreenColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentGreen)
+        }
+    }
+
+    val getAccentGreenCode: String
+        get() {
+            return if (accentGreenColor.isNotEmpty()) {
+                accentGreenColor
+            } else {
+                "#85c440"
+            }
+        }
+
+
+    /*
+    *Color accent red
+    * * */
+
+    fun getAccentRedColor(context: Context): Int {
+        return if (accentRedColor.isNotEmpty()) {
+            Color.parseColor(accentRedColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentRed)
+        }
+    }
+
+    val getAccentRedCode: String
+        get() {
+            return if (accentRedColor.isNotEmpty()) {
+                accentRedColor
+            } else {
+                "#ff0000"
+            }
+        }
+
+    /*
+    *Color accent yellow
+    * * */
+
+    fun getAccentYellowColor(context: Context): Int {
+        return if (accentYellowColor.isNotEmpty()) {
+            Color.parseColor(accentYellowColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentYellow)
+        }
+    }
+
+    val getAccentYellowCode: String
+        get() {
+            return if (accentYellowColor.isNotEmpty()) {
+                accentYellowColor
+            } else {
+                "#FFB800"
+            }
+        }
+
+    /*
+    *Color accent cyan
+    * * */
+
+    fun getAccentCyanColor(context: Context): Int {
+        return if (accentCyanColor.isNotEmpty()) {
+            Color.parseColor(accentCyanColor)
+        } else {
+            ContextCompat.getColor(context, R.color.colorAccentCyan)
+        }
+    }
+
+    val getAccentCyanCode: String
+        get() {
+            return if (accentCyanColor.isNotEmpty()) {
+                accentCyanColor
+            } else {
+                "#CCF1FC"
+            }
+        }
+
+    /*
     * Color normal text
     */
     fun getNormalTextColor(context: Context): Int {
@@ -469,111 +576,6 @@ object Constant {
             }
         }
 
-    /*
-    *Color accent blue
-    * * */
 
-    fun getAccentBlueColor(context: Context): Int {
-        return if (accentBlueColor.isNotEmpty()) {
-            Color.parseColor(accentBlueColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentBlue)
-        }
-    }
-
-    val getAccentBlueCode: String
-        get() {
-            return if (accentBlueColor.isNotEmpty()) {
-                accentBlueColor
-            } else {
-                "#00BAF2"
-            }
-        }
-
-
-    /*
-    *Color accent green
-    * * */
-
-    fun getAccentGreenColor(context: Context): Int {
-        return if (accentGreenColor.isNotEmpty()) {
-            Color.parseColor(accentGreenColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentGreen)
-        }
-    }
-
-    val getAccentGreenCode: String
-        get() {
-            return if (accentGreenColor.isNotEmpty()) {
-                accentGreenColor
-            } else {
-                "#85c440"
-            }
-        }
-
-
-    /*
-    *Color accent red
-    * * */
-
-    fun getAccentRedColor(context: Context): Int {
-        return if (accentRedColor.isNotEmpty()) {
-            Color.parseColor(accentRedColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentRed)
-        }
-    }
-
-    val getAccentRedCode: String
-        get() {
-            return if (accentRedColor.isNotEmpty()) {
-                accentRedColor
-            } else {
-                "#ff0000"
-            }
-        }
-
-    /*
-    *Color accent yellow
-    * * */
-
-    fun getAccentYellowColor(context: Context): Int {
-        return if (accentYellowColor.isNotEmpty()) {
-            Color.parseColor(accentYellowColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentYellow)
-        }
-    }
-
-    val getAccentYellowCode: String
-        get() {
-            return if (accentYellowColor.isNotEmpty()) {
-                accentYellowColor
-            } else {
-                "#FFB800"
-            }
-        }
-
-    /*
-    *Color accent cyan
-    * * */
-
-    fun getAccentCyanColor(context: Context): Int {
-        return if (accentCyanColor.isNotEmpty()) {
-            Color.parseColor(accentCyanColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentCyan)
-        }
-    }
-
-    val getAccentCyanCode: String
-        get() {
-            return if (accentCyanColor.isNotEmpty()) {
-                accentCyanColor
-            } else {
-                "#CCF1FC"
-            }
-        }
 
 }

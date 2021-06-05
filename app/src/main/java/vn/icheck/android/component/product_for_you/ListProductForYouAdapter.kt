@@ -34,6 +34,7 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
 
     inner class ItemProductForYouHolder(parent: ViewGroup) : BaseViewHolder<ICProductForYouMedia>(LayoutInflater.from(parent.context).inflate(R.layout.item_list_product_for_you, parent, false)) {
         override fun bind(obj: ICProductForYouMedia) {
+            itemView.btn_buy_now.background=vn.icheck.android.ichecklibs.ViewHelper.btnPrimaryCorners4(itemView.context)
             if (obj.product.media.type == Constant.VIDEO) {
                 itemView.texture_media.visibility = View.VISIBLE
                 if (obj.progressiveMediaSource != null) {

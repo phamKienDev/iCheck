@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.databinding.IckBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -58,12 +59,14 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.submitBarcode.background = ViewHelper.bgDisableTextCorners4(requireContext())
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }
         binding.edtBarcode.setOnKeyListener { v, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) &&
-                    (keyCode == KeyEvent.KEYCODE_ENTER) && !binding.edtBarcode.text.isNullOrEmpty()) {
+                (keyCode == KeyEvent.KEYCODE_ENTER) && !binding.edtBarcode.text.isNullOrEmpty()
+            ) {
                 submitBarcode()
             }
             false

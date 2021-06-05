@@ -27,13 +27,13 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
         itemView.tvAddress.text = productContact.find { it.key == "product-contact.address" }?.value ?: itemView.context.getString(R.string.dia_chi_icheck)
         itemView.tvMst.text = itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.tax-code" }?.value ?: "0106875900")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            itemView.tvPhone.text = Html.fromHtml(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
-            itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"), Html.FROM_HTML_MODE_COMPACT)
-            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"), Html.FROM_HTML_MODE_COMPACT)
+            itemView.tvPhone.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488")), Html.FROM_HTML_MODE_COMPACT)
+            itemView.tvEmail.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn")), Html.FROM_HTML_MODE_COMPACT)
+            itemView.tvHotline.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488")), Html.FROM_HTML_MODE_COMPACT)
         } else {
-            itemView.tvPhone.text = Html.fromHtml(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"))
-            itemView.tvEmail.text = Html.fromHtml(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"))
-            itemView.tvHotline.text = Html.fromHtml(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488"))
+            itemView.tvPhone.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488")))
+            itemView.tvEmail.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn")))
+            itemView.tvHotline.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.hotline_dang_ky, productContact.find { it.key == "product-contact.hot-line" }?.value ?: "0902195488")))
         }
 
         itemView.tvPhone.setOnClickListener {

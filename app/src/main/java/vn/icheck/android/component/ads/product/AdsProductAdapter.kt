@@ -471,7 +471,10 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
+
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
+            binding.btnAction.setTextColor(ViewHelper.textColorPrimaryUnpressedSecondaryPressed(itemView.context))
+
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,

@@ -141,7 +141,7 @@
             android:layout_marginTop="@dimen/size_8"
             tools:text="2.753.900 ₫" />
 
-        <vn.icheck.android.component.view.CustomButton
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_buy_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,8 +155,6 @@
             android:text="@string/mua"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
-            app:cb_enable_background_color="@color/colorPrimary"
-            app:cb_radius="@dimen/size_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name_enterprise" />
 

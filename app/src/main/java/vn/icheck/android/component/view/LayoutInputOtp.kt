@@ -205,11 +205,11 @@ class LayoutInputOtp : LinearLayout {
 
         when (receiveOtpType) {
             CALL_PHONE_TYPE -> {
-                sendToPhoneMessage = context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber))
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_sms)
             }
             SEND_SMS_TYPE -> {
-                sendToPhoneMessage = context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber))
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_cuoc_goi)
             }
             else -> {

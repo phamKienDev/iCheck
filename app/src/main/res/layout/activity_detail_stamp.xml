@@ -144,7 +144,6 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/size_24"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:drawableStart="@drawable/ic_update_user_info_white_24px"
         android:drawablePadding="@dimen/size_6"
         android:paddingStart="@dimen/size_12"

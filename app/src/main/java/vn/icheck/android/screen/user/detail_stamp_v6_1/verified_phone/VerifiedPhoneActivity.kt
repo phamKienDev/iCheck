@@ -64,6 +64,7 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
         binding.tvCountry.background=ViewHelper.lineUnderColorLine1(this)
         binding.tvCode.background=ViewHelper.lineUnderColorLine1(this)
         binding.edtPhone.background=ViewHelper.lineUnderColorLine1(this)
+        binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
     }
 
     private fun setupViewModel() {

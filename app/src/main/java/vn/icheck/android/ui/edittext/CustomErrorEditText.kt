@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.ichecklibs.util.dpToPx
 
@@ -74,7 +75,7 @@ open class CustomErrorEditText : AppCompatEditText {
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Color.parseColor("#057DDA"))
+                    mLinePaint.setColor(Constant.getPrimaryColor(context))
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

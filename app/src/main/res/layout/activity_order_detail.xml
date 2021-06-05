@@ -51,7 +51,6 @@
                 android:id="@id/btnActionOne"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/btn_blue_corners_26"
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="@dimen/size_24"

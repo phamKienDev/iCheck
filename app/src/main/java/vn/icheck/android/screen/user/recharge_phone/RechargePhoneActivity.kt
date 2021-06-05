@@ -73,6 +73,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recharge_phone)
+
         viewModel = ViewModelProvider(this).get(RechargePhoneVIewModel::class.java)
         initView()
         listenerGetData()
@@ -85,6 +86,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
 
     private fun initView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
 
         if (SessionManager.isUserLogged) {
             tv1.visibility = View.VISIBLE

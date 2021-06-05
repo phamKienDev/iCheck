@@ -25,11 +25,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/tvScanCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@id/tvScanCountTitle"
             app:layout_constraintStart_toStartOf="@id/tvScanCountTitle"
             app:layout_constraintTop_toTopOf="parent"
@@ -79,11 +78,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/tvPeopleCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@id/tvPeopleCountTitle"
             app:layout_constraintStart_toStartOf="@id/tvPeopleCountTitle"
             app:layout_constraintTop_toTopOf="parent"

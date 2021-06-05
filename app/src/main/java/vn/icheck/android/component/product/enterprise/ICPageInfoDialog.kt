@@ -20,7 +20,7 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
         val binding = DialogPageInfoBinding.inflate(dialog.layoutInflater)
         dialog.setContentView(binding.root)
 
-        binding.root.background=ViewHelper.bgWhiteCornersTop16(dialog.context)
+        binding.root.background = ViewHelper.bgWhiteCornersTop16(dialog.context)
 
         binding.tvName.text = obj.name
         binding.tvAddress.text = getSpannable(R.string.dia_chi_xxx_stamp_v61, getContent(obj.address), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
@@ -28,7 +28,8 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
         binding.tvEmail.text = getSpannable(R.string.email_xxx_stamp_v61, getContent(obj.email), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
         binding.tvWebsite.text = getSpannable(R.string.website_xxx_stamp_v61, getContent(obj.website), getColor(R.color.colorNormalText), getColor(R.color.colorPrimary))
         binding.tvGln.text = getSpannable(R.string.ma_gln_xxx_stamp_v61, getContent(obj.code), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
-        binding.tvDescription.text = getSpannable(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
+        binding.tvDescription.text =
+            getSpannable(R.string.gioi_thieu_xxx_stamp_v61, getContent(obj.description), getColor(R.color.colorNormalText), getColor(R.color.darkGray3))
 
         binding.tvPhone.setOnClickListener {
             Constant.callPhone(obj.phone)
@@ -63,6 +64,11 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
     }
 
     private fun getColor(colorID: Int): Int {
-        return ContextCompat.getColor(dialog.context, colorID)
+        return if (colorID == R.color.colorPrimary) {
+            vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context)
+        } else {
+            ContextCompat.getColor(dialog.context, colorID)
+
+        }
     }
 }

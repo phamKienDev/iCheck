@@ -7,8 +7,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextHeader
 
-open class TextHeaderPrimary : AppCompatTextView {
+open class TextHeaderPrimary : TextHeader {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }
@@ -16,8 +17,5 @@ open class TextHeaderPrimary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getPrimaryColor(context))
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_semi_bold)
-        includeFontPadding = false
     }
 }

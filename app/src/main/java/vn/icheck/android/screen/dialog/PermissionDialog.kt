@@ -62,6 +62,8 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
         val message: Int
         val button: Int
 
+        setupView()
+
         when (type) {
             LOCATION -> {
                 icon = R.drawable.ic_permission_location
@@ -100,7 +102,8 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
                 button = R.string.ask_permission_call_button
             }
         }
-        constraintLayout.background=ViewHelper.bgWhiteCorners10(constraintLayout.context)
+
+
         imgIcon.setImageResource(icon)
         tvTitle.setText(title)
         tvMessage.setText(message)
@@ -115,6 +118,11 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
             dismiss()
             listener.onPermissionNotAllow()
         }
+    }
+
+    private fun setupView() {
+        constraintLayout.background=ViewHelper.bgWhiteCorners10(constraintLayout.context)
+        tvAllow.background=ViewHelper.btnSecondaryCorners6(constraintLayout.context)
     }
 
     interface PermissionListener {

@@ -105,11 +105,23 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onInitView() {
+        setupView()
         initBanner()
         initUpdateLocation()
         listener()
 
-        constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(this)
+    }
+
+    private fun setupView() {
+        constraintLayout.background = ViewHelper.bgWhiteCornersBottom10(this)
+        textFab.background = ViewHelper.bgSecondaryCorners45(this)
+        tvMessageGuarantee.background = ViewHelper.bgOutlineSecondary1Corners8(this)
+
+        constraintLayout1.background = ViewHelper.bgSecondaryCornersTop10(this)
+        constraintLayout2.background = ViewHelper.bgSecondaryCornersTop10(this)
+        layoutMoreVendor.background = ViewHelper.bgSecondaryCornersTop10(this)
+        layoutMoreDistributor.background = ViewHelper.bgSecondaryCornersTop10(this)
+
     }
 
     private fun initGps() {

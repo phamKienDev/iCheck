@@ -30,6 +30,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rank_of_user)
+
         StatusBarUtils.setOverStatusBarLight(this)
         initView()
         initViewModel()
@@ -43,6 +44,8 @@ class RankOfUserActivity : BaseActivityMVVM() {
         seekBar.setOnTouchListener { view, motionEvent ->
             false
         }
+
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
     }
 
     @SuppressLint("SetTextI18n")

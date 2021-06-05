@@ -74,7 +74,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_16"
-            android:background="@drawable/btn_blue_corners_26"
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:text="@string/hoan_tat_dat_hang"
