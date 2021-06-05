@@ -21,7 +21,6 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -80,10 +79,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
             if (!isHomeActivity()) {
-                ActivityUtils.finishActivity(this)
-            }
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
                 ActivityUtils.finishActivity(this)
             }
         }
@@ -304,6 +299,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(requestCode: Int) {
         ActivityUtils.startActivityForResult<T>(this, requestCode)
+    }
+
+    inline fun startActivityForResult(activity: FragmentActivity, intent: Intent, requestCode: Int) {
+        ActivityUtils.startActivityForResult(activity, intent, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(key: String, value: String, requestCode: Int) {

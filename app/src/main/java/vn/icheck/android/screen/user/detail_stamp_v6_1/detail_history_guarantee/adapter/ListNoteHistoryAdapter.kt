@@ -1,7 +1,5 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +8,17 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_note_history_guarantee.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class ListNoteHistoryAdapter(val context: Context?) : RecyclerView.Adapter<ListNoteHistoryAdapter.ViewHolder>() {
+class ListNoteHistoryAdapter : RecyclerView.Adapter<ListNoteHistoryAdapter.ViewHolder>() {
 
     private val listData = mutableListOf<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>()
 
@@ -45,7 +45,7 @@ class ListNoteHistoryAdapter(val context: Context?) : RecyclerView.Adapter<ListN
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote) {
             itemView.tvDate.text = TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_at)
-            itemView.tvTitle.text = item.note
+            itemView.tvContent.text = item.note
 
             if (!item.images.isNullOrEmpty()) {
                 itemView.layoutImage.removeAllViews()
@@ -58,14 +58,17 @@ class ListNoteHistoryAdapter(val context: Context?) : RecyclerView.Adapter<ListN
                         WidgetUtils.loadImageUrlRounded(itemImage, i, SizeHelper.size4)
 
                         itemImage.setOnClickListener {
-                            val intent = Intent(itemView.context, ViewItemImageActivity::class.java)
-                            intent.putExtra(Constant.DATA_1, i)
-                            itemView.context.startActivity(intent)
+                            ICheckApplication.currentActivity()?.let { activity ->
+                                ActivityUtils.startActivity<ViewItemImageActivity>(activity, Constant.DATA_1, i)
+                            }
+
+//                            val intent = Intent(itemView.context, ViewItemImageActivity::class.java)
+//                            intent.putExtra(Constant.DATA_1, i)
+//                            itemView.context.startActivity(intent)
                         }
                     })
                 }
             }
-
         }
     }
 }

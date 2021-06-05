@@ -39,7 +39,7 @@ import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentManager: FragmentActivity, val callback: IListContributeListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentManager: FragmentActivity, val callback: IListContributeListener, val setOnClickListener: (Long) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICContribute>()
     private val itemType = 1
     private val itemLoadMore = 2
@@ -209,7 +209,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
             }
 
             itemView.setOnClickListener {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_PRODUCT_DETAIL, obj.productId))
+                setOnClickListener(obj.productId)
             }
 
             itemView.tvNameProduct.run {
@@ -217,7 +217,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                     text = obj.data?.name
                 }
                 setOnClickListener {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_PRODUCT_DETAIL, obj.productId))
+                    setOnClickListener(obj.productId)
                 }
             }
 

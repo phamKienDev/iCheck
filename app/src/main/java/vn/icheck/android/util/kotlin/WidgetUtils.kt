@@ -1,7 +1,5 @@
 package vn.icheck.android.util.kotlin
 
-//import vn.teko.android.vnshop.di.module.GlideApp
-
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator

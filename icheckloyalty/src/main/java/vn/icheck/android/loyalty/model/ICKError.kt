@@ -6,5 +6,6 @@ data class ICKError(
         val message: String,
         val textButton: String,
         val backgroundButton: Int = 0,
-        val colorButton: Int
+        val colorButton: Int,
+        val colorMessage: Int? = null
 )

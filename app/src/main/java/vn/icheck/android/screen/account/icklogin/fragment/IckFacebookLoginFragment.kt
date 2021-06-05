@@ -8,25 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentIckLoginFacebookBinding
-import vn.icheck.android.tracking.insider.InsiderHelper
-import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.screen.location.IckNationBottomDialog
+import vn.icheck.android.screen.location.ICNationBottomDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AfterTextWatcher
-import vn.icheck.android.util.ick.dismissLoadingScreen
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.showLoadingTimeOut
 
 class IckFacebookLoginFragment : Fragment() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
@@ -81,7 +72,7 @@ class IckFacebookLoginFragment : Fragment() {
             }
         }
         binding.tvNation.setOnClickListener {
-            IckNationBottomDialog().show(requireActivity().supportFragmentManager, null)
+            ICNationBottomDialog().show(requireActivity().supportFragmentManager, null)
         }
     }
 

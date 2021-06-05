@@ -22,6 +22,10 @@ import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode

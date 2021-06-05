@@ -39,7 +39,7 @@
         android:layout_height="700dp">
 
         <vn.icheck.android.screen.user.reason_not_buy_product.ObservableWebView
-            android:id="@id/webView"
+            android:id="@id/webViewUrl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,10 +50,10 @@
             layout="@layout/dialog_loading"
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_0"
-            app:layout_constraintBottom_toBottomOf="@id/webView"
-            app:layout_constraintEnd_toEndOf="@id/webView"
-            app:layout_constraintStart_toStartOf="@id/webView"
-            app:layout_constraintTop_toTopOf="@id/webView" />
+            app:layout_constraintBottom_toBottomOf="@id/webViewUrl"
+            app:layout_constraintEnd_toEndOf="@id/webViewUrl"
+            app:layout_constraintStart_toStartOf="@id/webViewUrl"
+            app:layout_constraintTop_toTopOf="@id/webViewUrl" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

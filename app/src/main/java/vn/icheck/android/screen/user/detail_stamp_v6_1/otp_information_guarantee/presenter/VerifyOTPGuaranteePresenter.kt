@@ -4,18 +4,17 @@ import android.content.Intent
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_UpdateCustomerGuarantee
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 
 /**
@@ -26,7 +25,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee
 class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActivityPresenter(view) {
 
     private val interaction = UserInteractor()
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     private var mSerial: String? = null
     private var obj: ICUpdateCustomerGuarantee? = null
@@ -154,10 +153,10 @@ class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActiv
 
         val deviceId = DeviceUtils.getUniqueDeviceId()
 
-        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, DetailStampActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
+        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, StampDetailActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
-                    view.updateInformationCusomterGuaranteeSuccess()
+                    view.updateInformationCusomterGuaranteeSuccess(this@VerifyOTPGuaranteePresenter.obj!!)
                 } else {
                     view.updateInformationCusomterGuaranteeFail()
                 }

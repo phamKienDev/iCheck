@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="9dp"
-        android:src="@drawable/ic_waring_1_white_40dp" />
+        app:srcCompat="@drawable/ic_waring_1_white_40dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_content"

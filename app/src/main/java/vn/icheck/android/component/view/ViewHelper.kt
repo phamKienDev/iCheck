@@ -33,7 +33,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.marginBottom
 import androidx.core.view.setPadding
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,14 +50,13 @@ import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.postofuser.ProductInFeedComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
-import vn.icheck.android.ui.view.TextBarlowSemiBold
-import vn.icheck.android.ui.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.ui.colorcardview.ColorCardView
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.ui.layout.HeightWrappingViewPager
 import vn.icheck.android.ui.view.SquareImageView
+import vn.icheck.android.ui.view.TextBarlowMedium
+import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.util.kotlin.WidgetUtils
 import kotlin.math.abs
 
@@ -402,9 +400,12 @@ object ViewHelper {
     }
 
     fun createStateListDrawable(
-        enableColor: Int, pressedColor: Int,
-        enableStrokeColor: Int, pressedStrokeColor: Int,
-        strokeWidth: Int, radius: Float
+        enableColor: Int,
+        pressedColor: Int,
+        enableStrokeColor: Int,
+        pressedStrokeColor: Int,
+        strokeWidth: Int,
+        radius: Float
     ): StateListDrawable {
         val statesListDrawable = StateListDrawable()
 
@@ -1224,7 +1225,7 @@ object ViewHelper {
         val layoutParent = FrameLayout(context)
         layoutParent.layoutParams = createLayoutParams()
         layoutParent.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
-        layoutParent.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackgroundGray))
+        layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBackgroundGray))
 
         layoutParent.addView(View(context).also {
             it.layoutParams =
@@ -3296,7 +3297,7 @@ object ViewHelper {
                     }
                 it.setTextColor(ContextCompat.getColor(context, R.color.black_21_v2))
                 it.text = context.getString(R.string.thong_tin_duoc_dong_gop_boi)
-                it.maxLines=2
+                it.maxLines = 2
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 it.includeFontPadding = false
@@ -4772,7 +4773,7 @@ object ViewHelper {
                     params.topMargin = SizeHelper.size20
                 },
                 null,
-                Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
+                createTypeface(context, R.font.barlow_medium),
                 ContextCompat.getColor(context, R.color.colorNormalText),
                 16f
             ).also {

@@ -98,12 +98,6 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
             WidgetHelper.loadImageUrl(itemView.imgGiftFromVendor, obj.gift?.image?.medium, R.drawable.emty_reward)
 
-            val data = ICKBoxGifts()
-            data.gift = obj.gift
-            data.points = obj.points
-            data.export_gift_from = obj.campaign?.export_gift_from
-            data.export_gift_to = obj.campaign?.export_gift_to
-
             if (obj.gift?.type == "ICOIN") {
                 itemView.tvState.setInvisible()
                 itemView.btnManagerPoint.setVisible()
@@ -124,98 +118,85 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                     itemView.tvState.run {
                         if (obj.voucher != null) {
 
-                            data.voucher = obj.voucher
-
-                            data.titleDate = "Hạn sử dụng"
+                            text = "Hạn sử dụng"
 
                             if (obj.voucher?.checked_condition?.status == false) {
-                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+                                when(obj.voucher?.checked_condition?.code){
+                                    "START_TIME_CAN_USE" -> {
+                                        text = "Chưa có hiệu lực"
 
-                                    data.titleDate = "Có hiệu lực từ"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
 
-                                    data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
+                                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                                    }
+                                    "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                        text = "Hết lượt sử dụng"
 
-                                    data.statusChange = "Chưa có hiệu lực"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.orange)
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                        text = "Đã bị khóa"
 
-                                    data.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
-                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    data.statusChange = "Hết lượt sử dụng"
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    else -> {
+                                        text = "Hết hạn sử dụng"
 
-                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
-                                } else {
-
-                                    data.dateChange = ""
-
-                                    data.statusChange = "Hết hạn sử dụng"
-
-                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
-
-                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
                                 }
                             } else {
 
-                                data.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
+                                if (TimeHelper.timeGiftVoucher(obj.voucher!!) == "Còn lại ") {
 
-                                if (data.dateChange == "Còn lại ") {
+                                    text = "Hết hạn sử dụng"
 
-                                    data.dateChange = ""
+                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
 
-                                    data.statusChange = "Hết hạn sử dụng"
-
-                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
-
-                                    data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                 } else {
-                                    data.statusChange = "Có thể sử dụng"
+                                    text = "Có thể sử dụng"
 
-                                    data.colorText = ContextCompat.getColor(itemView.context, R.color.green2)
+                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
 
-                                    data.colorBackground = R.drawable.bg_corner_30_green_opacity_02
+                                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                                 }
                             }
                         }
-
-                        text = data.statusChange
-                        setTextColor(data.colorText)
-                        setBackgroundResource(data.colorBackground)
                     }
                 } else {
                     itemView.tvState.run {
                         when (obj.winner?.status) {
                             "new" -> {
-                                data.state = 1
                                 text = "Chờ xác nhận"
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "waiting_receive_gift" -> {
-                                data.state = 2
                                 visibility = View.VISIBLE
                                 text = "Chờ giao"
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "received_gift" -> {
-                                data.state = 3
                                 visibility = View.VISIBLE
                                 text = "Đã nhận quà"
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                                 setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                             }
                             "refused_gift" -> {
-                                data.state = 4
                                 visibility = View.VISIBLE
                                 text = "Từ chối"
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             else -> {
-                                data.state = 5
                                 visibility = View.GONE
                             }
                         }
@@ -223,9 +204,8 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                 }
 
                 itemView.setOnClickListener {
-                    DetailGiftLoyaltyActivity.obj = data
                     itemView.context.startActivity(Intent(itemView.context, DetailGiftLoyaltyActivity::class.java).apply {
-//                        putExtra(ConstantsLoyalty.DATA_1, data)
+                        putExtra(ConstantsLoyalty.DATA_1, obj.winner_id)
                         putExtra(ConstantsLoyalty.DATA_2, HomeRedeemPointActivity.banner)
                         putExtra(ConstantsLoyalty.DATA_3, HomeRedeemPointActivity.campaignID)
                         putExtra(ConstantsLoyalty.DATA_7, 2)
@@ -259,21 +239,27 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                         itemView.tvState.run {
                             if (obj.voucher?.checked_condition?.status == false) {
 
-                                if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
-
-                                    text = "Chưa có hiệu lực"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                                } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
-
-                                    text = "Hết lượt sử dụng"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
-                                } else {
-
-                                    text = "Hết hạn sử dụng"
-                                    setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                                    setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                when(obj.voucher?.checked_condition?.code){
+                                    "START_TIME_CAN_USE" -> {
+                                        text = "Chưa có hiệu lực"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                        setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                                    }
+                                    "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                        text = "Hết lượt sử dụng"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                        text = "Đã bị khóa"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
+                                    else -> {
+                                        text = "Hết hạn sử dụng"
+                                        setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                        setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                                    }
                                 }
                             } else {
                                 text = "Có thể sử dụng"

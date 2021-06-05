@@ -58,7 +58,7 @@ class FocusableEditText : AppCompatEditText {
         mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mErrorTextPaint.textSize = 12 * getResources().getDisplayMetrics().scaledDensity
+        mErrorTextPaint.textSize = 12f
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.dpToPx()
@@ -67,7 +67,6 @@ class FocusableEditText : AppCompatEditText {
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
-
 
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect)

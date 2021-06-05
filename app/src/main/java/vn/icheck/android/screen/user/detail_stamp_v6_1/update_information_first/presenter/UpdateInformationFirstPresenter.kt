@@ -1,19 +1,21 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter
 
 import android.content.Intent
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.ValidHelper
-import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.ICApiListener
+import vn.icheck.android.network.base.ICBaseResponse
+import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICStatus
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.DeviceUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
 
 /**
@@ -23,161 +25,161 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
  */
 class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     private var city: CitiesItem? = null
     private var district: DistrictsItem? = null
-    private var mSerial: String? = null
+
+    //    private var mSerial: String? = null
     private var mId: String? = null
     var cityId: Int? = null
     var districtId: Int? = null
-    var codeStamp = ""
 
     private var totalRequest = 0
 
-    fun getDataByIntent(intent: Intent) {
-        val productId = intent.getLongExtra(Constant.DATA_6, -1)
-        getVariantProduct(productId)
-    }
+//    fun getDataByIntent(intent: Intent) {
+//        val productId = intent.getLongExtra(Constant.DATA_6, -1)
+//        getVariantProduct(productId)
+//    }
 
-    fun getDataByIntentSecond(intent: Intent) {
-        val typeShow = intent.getIntExtra(Constant.DATA_1, 0)
-        val idDistributor = intent.getLongExtra(Constant.DATA_2, 0)
-        val phoneNumber = intent.getStringExtra(Constant.DATA_3)
-        val productCode = intent.getStringExtra(Constant.DATA_4)
-        val serial:String? = intent.getStringExtra(Constant.DATA_5)
-        val objVariant = try {
-            intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant
-        } catch (e: Exception) {
-            null
-        }
+//    private fun getVariantProduct(productId: Long) {
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataError(Constant.ERROR_INTERNET)
+//            return
+//        }
+//
+//        interactor.getVariantProduct(productId, null, object : ICApiListener<ICVariantProductStampV6_1> {
+//            override fun onSuccess(obj: ICVariantProductStampV6_1) {
+//                if (obj.data != null) {
+//                    if (!obj.data?.products.isNullOrEmpty()) {
+//                        view.onGetProductVariantSuccess(obj.data?.products!!, productId)
+//                    } else {
+//                        view.onGetProductVariantError()
+//                    }
+//                } else {
+//                    view.onGetProductVariantError()
+//                }
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                error?.message?.let {
+//                    showError(it)
+//                    view.onGetProductVariantError()
+//                }
+//            }
+//        })
+//    }
 
-        codeStamp = intent.getStringExtra(Constant.DATA_8) ?: ""
+//    fun getDataByIntentSecond(intent: Intent) {
+//        val typeShow = intent.getIntExtra(Constant.DATA_1, 0)
+//        val distributorID = intent.getLongExtra(Constant.DATA_2, 0)
+//        val phoneNumber = intent.getStringExtra(Constant.DATA_3)
+//        val productCode = intent.getStringExtra(Constant.DATA_4)
+//        val serial:String? = intent.getStringExtra(Constant.DATA_5)
+//        val objVariant = try {
+//            intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant
+//        } catch (e: Exception) {
+//            null
+//        }
+//        val barcode = intent.getStringExtra(Constant.DATA_8) ?: ""
+//
+//        if (typeShow == 1 || typeShow == 2) {
+//            if (!serial.isNullOrEmpty())
+//                mSerial = serial.replace("Serial: ", "").replace(" ", "")
+//            if (NetworkHelper.isNotConnected(view.mContext)) {
+//                view.onGetDataError(Constant.ERROR_INTERNET)
+//                return
+//            }
+//
+//            view.onShowLoading(false)
+//
+//            totalRequest = 1
+//            getFieldListGuarantee(barcode)
+//        }
+//
+//        view.onGetDataIntentSuccess(objVariant)
+//    }
 
-        if (typeShow == 1 || typeShow == 2) {
-            if (!serial.isNullOrEmpty())
-                mSerial = serial.replace("Serial: ", "").replace(" ", "")
-            if (NetworkHelper.isNotConnected(view.mContext)) {
-                view.onGetDataError(Constant.ERROR_INTERNET)
-                return
-            }
+//    private fun getFieldListGuarantee(barcode: String) {
+//        interactor.getFieldListGuarantee(barcode, object : ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>> {
+//            override fun onSuccess(obj: ICResponse<MutableList<ICFieldGuarantee>>) {
+//                finishRequest()
+//                if (!obj.data.isNullOrEmpty()) {
+//                    view.onGetFieldListGuareanteeSuccess(obj.data!!)
+//                } else {
+//                    view.onGetFieldListGuareanteeFail()
+//                }
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                finishRequest()
+//                view.onGetFieldListGuareanteeFail()
+//            }
+//        })
+//    }
 
-            view.onShowLoading(false)
+//    fun getInforCustomer(id: Long, phoneNumber: String) {
+//        interactor.getDetailCustomerGurantee(id, phoneNumber, object : ICApiListener<ICDetailCustomerGuranteeVerified> {
+//            override fun onSuccess(obj: ICDetailCustomerGuranteeVerified) {
+//                finishRequest()
+//                if (obj.data != null) {
+//                    if (obj.data?.customer != null) {
+//                        view.onGetDataDetailCustomeSuccess(obj.data?.customer!!)
+//                    } else {
+//                        view.onGetDataDetailCustomeFail()
+//                    }
+//                } else {
+//                    view.onGetDataDetailCustomeFail()
+//                }
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                finishRequest()
+//                error?.message?.let {
+//                    showError(it)
+//                    view.onGetDataDetailCustomeFail()
+//                }
+//            }
+//        })
+//    }
 
-            totalRequest = 1
-            getFieldListGuarantee()
-        }
-        view.onGetDataIntentSuccess(typeShow, idDistributor, phoneNumber, productCode, objVariant)
-    }
+//    private fun finishRequest() {
+//        totalRequest--
+//        if (totalRequest == 0) {
+//            view.onShowLoading(false)
+//        }
+//    }
 
-    private fun getVariantProduct(productId: Long) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        interactor.getVariantProduct(productId, null, object : ICApiListener<ICVariantProductStampV6_1> {
-            override fun onSuccess(obj: ICVariantProductStampV6_1) {
-                if (obj.data != null) {
-                    if (!obj.data?.products.isNullOrEmpty()) {
-                        view.onGetDataVariantSuccess(obj.data?.products!!, productId)
-                    } else {
-                        view.onGetDataVariantFail()
-                    }
-                } else {
-                    view.onGetDataVariantFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                error?.message?.let {
-                    showError(it)
-                    view.onGetDataVariantFail()
-                }
-            }
-        })
-    }
-
-    private fun getFieldListGuarantee() {
-        interactor.getFieldListGuarantee(codeStamp, object : ICApiListener<ICResponse<MutableList<ICFieldGuarantee>>> {
-            override fun onSuccess(obj: ICResponse<MutableList<ICFieldGuarantee>>) {
-                finishRequest()
-                if (!obj.data.isNullOrEmpty()) {
-                    view.onGetFieldListGuareanteeSuccess(obj.data!!)
-                } else {
-                    view.onGetFieldListGuareanteeFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                finishRequest()
-                view.onGetFieldListGuareanteeFail()
-            }
-        })
-    }
-
-    fun getInforCustomer(id: Long, phoneNumber: String) {
-        interactor.getDetailCustomerGurantee(id, phoneNumber, object : ICApiListener<ICDetailCustomerGuranteeVerified> {
-            override fun onSuccess(obj: ICDetailCustomerGuranteeVerified) {
-                finishRequest()
-                if (obj.data != null) {
-                    if (obj.data?.customer != null) {
-                        view.onGetDataDetailCustomeSuccess(obj.data?.customer!!)
-                    } else {
-                        view.onGetDataDetailCustomeFail()
-                    }
-                } else {
-                    view.onGetDataDetailCustomeFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                finishRequest()
-                error?.message?.let {
-                    showError(it)
-                    view.onGetDataDetailCustomeFail()
-                }
-            }
-        })
-    }
-
-    private fun finishRequest() {
-        totalRequest--
-        if (totalRequest == 0) {
-            view.onShowLoading(false)
-        }
-    }
-
-    fun searchInforCustomer(id: Long, phoneNumber: String) {
-        if (NetworkHelper.isNotConnected(view.mContext)) {
-            view.onGetDataError(Constant.ERROR_INTERNET)
-            return
-        }
-
-        view.onShowLoading(true)
-
-        interactor.getDetailCustomerGurantee(id, phoneNumber, object : ICApiListener<ICDetailCustomerGuranteeVerified> {
-            override fun onSuccess(obj: ICDetailCustomerGuranteeVerified) {
-                view.onShowLoading(false)
-                if (obj.data != null) {
-                    if (obj.data?.customer != null) {
-                        view.onGetDataDetailCustomeSuccess(obj.data?.customer!!)
-                    } else {
-                        view.onGetDataDetailCustomeFail()
-                    }
-                } else {
-                    view.onGetDataDetailCustomeFail()
-                }
-            }
-
-            override fun onError(error: ICBaseResponse?) {
-                view.onShowLoading(false)
-                error?.message?.let {
-                    view.onSearchCustomerFail()
-                }
-            }
-        })
-    }
+//    fun searchInforCustomer(id: Long, phoneNumber: String) {
+//        if (NetworkHelper.isNotConnected(view.mContext)) {
+//            view.onGetDataError(Constant.ERROR_INTERNET)
+//            return
+//        }
+//
+//        view.onShowLoading(true)
+//
+//        interactor.getDetailCustomerGurantee(id, phoneNumber, object : ICApiListener<ICDetailCustomerGuranteeVerified> {
+//            override fun onSuccess(obj: ICDetailCustomerGuranteeVerified) {
+//                view.onShowLoading(false)
+//                if (obj.data != null) {
+//                    if (obj.data?.customer != null) {
+//                        view.onGetDataDetailCustomeSuccess(obj.data?.customer!!)
+//                    } else {
+//                        view.onGetDataDetailCustomeFail()
+//                    }
+//                } else {
+//                    view.onGetDataDetailCustomeFail()
+//                }
+//            }
+//
+//            override fun onError(error: ICBaseResponse?) {
+//                view.onShowLoading(false)
+//                error?.message?.let {
+//                    view.onSearchCustomerFail()
+//                }
+//            }
+//        })
+//    }
 
     fun onGetNameCity(city: Int?) {
         interactor.getNameCity(city, object : ICApiListener<ICNameCity> {
@@ -215,56 +217,59 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         })
     }
 
-    fun validUpdateInformationGuarantee(name: String, phone: String, email: String, address: String, productCode: String, variant: Long?, typeUpdateCustomer: Int?, body: HashMap<String, Any>) {
-        var isValidSuccess = true
-
-        val validPhone = ValidHelper.validPhoneNumber(view.mContext, phone)
-        if (validPhone != null) {
-            isValidSuccess = false
-            view.onErrorPhone(validPhone)
+    fun validUpdateInformationGuarantee(name: String, phone: String, email: String, address: String,
+                                        productCode: String, variant: Long?,
+                                        customerData: HashMap<String, Any>,
+                                        guaranteeData: HashMap<String, Any>,
+                                        barcode: String, updateType: Int?, serial: String) {
+        val validName = ValidHelper.validName(view.mContext, name)
+        if (validName != null) {
+            view.onShowError(validName)
             return
         }
 
-        if (isValidSuccess) {
-            when (typeUpdateCustomer) {
-                1 -> {
-                    val obj = ICUpdateCustomerGuarantee()
-                    if (name.isNotEmpty()) {
-                        obj.name = name
-                    }
-                    obj.phone = phone
-                    if (email.isNotEmpty()) {
-                        obj.email = email
-                    }
-                    if (address.isNotEmpty()) {
-                        obj.address = address
-                    }
-                    if (cityId != null) {
-                        obj.city = cityId
-                    }
-                    if (districtId != null) {
-                        obj.district = districtId
-                    }
-                    updateInformationVerifiedPhone(obj, productCode, mSerial, variant, body)
-                }
-                2 -> {
-                    sendOtpGuarantee(name, phone, email, cityId, districtId, address, productCode, mSerial, variant, body)
-                }
-                else -> {
-                    val obj = ICUpdateCustomerGuarantee()
-                    obj.name = name
-                    obj.phone = phone
-                    obj.email = email
-                    obj.address = address
-                    obj.city = cityId
-                    obj.district = districtId
-                    scanQrStamp(obj, codeStamp)
-                }
+        val validPhone = ValidHelper.validPhoneNumber(view.mContext, phone)
+        if (validPhone != null) {
+            view.onShowError(validPhone)
+            return
+        }
+
+        if (cityId ?: 0 <= 0) {
+            view.onShowError(view.mContext.getString(R.string.tinh_thanh_khong_duoc_de_trong))
+            return
+        }
+
+        if (districtId ?: 0 <= 0) {
+            view.onShowError(view.mContext.getString(R.string.quan_huyen_khong_duoc_de_trong))
+            return
+        }
+
+        if (address.isEmpty()) {
+            view.onShowError(view.mContext.getString(R.string.dia_chi_khong_duoc_de_trong))
+            return
+        }
+
+        when (updateType) {
+            1 -> {
+                updateInformationVerifiedPhone(name, phone, email, address, districtId, cityId, productCode, variant, customerData, guaranteeData, serial)
+            }
+            2 -> {
+                sendOtpGuarantee(name, phone, email, cityId, districtId, address, productCode, variant, customerData, guaranteeData)
+            }
+            else -> {
+                val obj = ICUpdateCustomerGuarantee()
+                obj.name = name
+                obj.phone = phone
+                obj.email = email
+                obj.address = address
+                obj.city = cityId
+                obj.district = districtId
+                scanQrStamp(obj, barcode)
             }
         }
     }
 
-    private fun scanQrStamp(obj: ICUpdateCustomerGuarantee, codeStamp: String) {
+    private fun scanQrStamp(obj: ICUpdateCustomerGuarantee, barcode: String) {
         if (NetworkHelper.isNotConnected(view.mContext)) {
             showError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
@@ -277,7 +282,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
         view.onShowLoading(true)
 
-        interactor.getDetailStampWhenUpdate(obj, null, mId, codeStamp, APIConstants.LATITUDE.toString(), APIConstants.LONGITUDE.toString(), object : ICApiListener<ICDetailStampV6_1> {
+        interactor.getDetailStampWhenUpdate(obj, null, mId, barcode, APIConstants.LATITUDE.toString(), APIConstants.LONGITUDE.toString(), object : ICApiListener<ICDetailStampV6_1> {
             override fun onSuccess(obj: ICDetailStampV6_1) {
                 view.onShowLoading(false)
                 view.onGetDetailStampSuccess(obj)
@@ -292,7 +297,10 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
         })
     }
 
-    private fun updateInformationVerifiedPhone(obj: ICUpdateCustomerGuarantee, productCode: String, serialStamp: String?, variant: Long?, body: HashMap<String, Any>) {
+    private fun updateInformationVerifiedPhone(name: String, phone: String, email: String, address: String,
+                                               district: Int?, city: Int?, productCode: String,
+                                               variant: Long?, customerData: HashMap<String, Any>,
+                                               guaranteeData: HashMap<String, Any>, serial: String) {
         if (NetworkHelper.isNotConnected(view.mContext)) {
             showError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
@@ -307,10 +315,10 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
         val deviceId = DeviceUtils.getUniqueDeviceId()
 
-        interactor.updateInfomationGuarantee(obj, deviceId, mId, productCode, DetailStampActivity.mSerial, variant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
+        interactor.updateInformationGuarantee(name, phone, email, address, district, city, deviceId, mId, productCode, variant, customerData, guaranteeData, serial, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
-                    view.updateInformationCusomterGuaranteeSuccess()
+                    view.updateInformationCusomterGuaranteeSuccess(ICUpdateCustomerGuarantee(name, phone, email, address, district, city))
                 } else {
                     view.updateInformationCusomterGuaranteeFail()
                 }
@@ -318,13 +326,16 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
             override fun onError(error: ICBaseResponse?) {
                 error?.message?.let {
-                    showError(view.mContext.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    showError(ICheckApplication.getError(error.message))
                 }
             }
         })
     }
 
-    private fun sendOtpGuarantee(name: String, phone: String, email: String, cityId: Int?, districtId: Int?, address: String, productCode: String, mSerial: String?, variant: Long?, body: HashMap<String, Any>) {
+    private fun sendOtpGuarantee(name: String, phone: String, email: String, cityId: Int?,
+                                 districtId: Int?, address: String, productCode: String,
+                                 variant: Long?, customerData: HashMap<String, Any>,
+                                 guaranteeData: HashMap<String, Any>) {
         if (NetworkHelper.isNotConnected(view.mContext)) {
             showError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
@@ -332,7 +343,7 @@ class UpdateInformationFirstPresenter(val view: IUpdateInformationFirstView) : B
 
         UserInteractor().sendOtpConfirmPhoneStamp(phone, object : ICApiListener<ICStatus> {
             override fun onSuccess(obj: ICStatus) {
-                view.onSendOtpGuaranteeSuccess(name, phone, email, cityId, districtId, address, productCode, mSerial, variant, body)
+                view.onSendOtpGuaranteeSuccess(name, phone, email, cityId, districtId, address, productCode, variant, customerData, guaranteeData)
             }
 
             override fun onError(error: ICBaseResponse?) {

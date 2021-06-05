@@ -1,11 +1,10 @@
  package vn.icheck.android.loyalty.helper
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.os.Handler
-import android.view.View
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -29,55 +28,57 @@ object CampaignLoyaltyHelper {
     const val REQUEST_CHECK_CODE = 20
 
     fun getCampaign(activity: FragmentActivity, barcode: String, listener: IClickListener, callback: ILoginListener) {
-        CampaignRepository().getCampaign(barcode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
-            override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
-                if (obj.data != null) {
-                    if (obj.data?.introduction_image != null) {
-                        DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
-                            override fun onDismiss() {
+        activity.lifecycleScope.launch {
+            CampaignRepository().getCampaign(barcode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
+                override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
+                    if (obj.data != null) {
+                        if (obj.data?.introduction_image != null) {
+                            DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
+                                override fun onDismiss() {
 
-                            }
-                        })
-                    }
+                                }
+                            })
+                        }
 
-                    if (obj.data?.has_chance_code == true) {
-                        listener.onClick(obj.data!!)
-                    } else {
-                        if (SessionManager.isLogged) {
-                            when (obj.data?.type) {
-                                "receive_gift" -> {
-                                    getReceiveGift(activity, barcode, null, obj.data?.name
-                                            ?: "", null)
-                                }
-                                "accumulate_point" -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, barcode, null)
-                                }
-                                "accumulation_long_term_point" -> {
-                                    getPointLongTime(activity, obj.data!!, null, barcode, null)
-                                }
-                                else -> {
-                                    getMiniGame(activity, obj.data!!, null, barcode, null)
-                                }
-                            }
+                        if (obj.data?.has_chance_code == true) {
+                            listener.onClick(obj.data!!)
                         } else {
-                            /**
-                             * Dialog Login
-                             */
-                            callback.showDialogLogin(obj.data!!, null)
+                            if (SessionManager.isLogged) {
+                                when (obj.data?.type) {
+                                    "receive_gift" -> {
+                                        getReceiveGift(activity, barcode, null, obj.data?.name ?: "", null)
+                                    }
+                                    "accumulate_point" -> {
+                                        getAccumulatePoint(activity, obj.data!!, null, barcode, null)
+                                    }
+                                    "accumulation_long_term_point" -> {
+                                        getPointLongTime(activity, obj.data!!, null, barcode, null)
+                                    }
+                                    else -> {
+                                        getMiniGame(activity, obj.data!!, null, barcode, null)
+                                    }
+                                }
+                            } else {
+                                /**
+                                 * Dialog Login
+                                 */
+                                callback.showDialogLogin(obj.data!!, null)
+                            }
                         }
                     }
                 }
-            }
 
-            override fun onError(error: ICKBaseResponse?) {
+                override fun onError(error: ICKBaseResponse?) {
 
-            }
-        })
+                }
+            })
+        }
+
     }
 
     fun checkCodeLoyalty(activity: FragmentActivity, data: ICKLoyalty, code: String, barcode: String, listener: IRemoveHolderInputLoyaltyListener?, callback: ILoginListener) {
         if (code.isEmpty()) {
-            showCustomErrorToast(activity, "Mã dự thưởng không được để trống\nVui lòng kiểm tra lại")
+            showCustomErrorToast(activity, activity.getString(R.string.ma_du_thuong_khong_duoc_de_trong_vui_long_kiem_tra_lai))
             return
         }
 
@@ -412,6 +413,27 @@ object CampaignLoyaltyHelper {
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
                         ?: "Mã $code không hợp lệ")
+            }
+        })
+    }
+
+    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit){
+        if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
+            error(activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            return
+        }
+
+        CampaignRepository().scanVoucher(voucher, object : ICApiListener<ICKResponse<ICKScanVoucher>> {
+            override fun onSuccess(obj: ICKResponse<ICKScanVoucher>) {
+                if (obj.statusCode != 200){
+                    error(obj.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                }else{
+                    success()
+                }
+            }
+
+            override fun onError(error: ICKBaseResponse?) {
+                error(error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
