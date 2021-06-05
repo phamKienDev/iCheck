@@ -19,5 +19,5 @@ data class ICObjectCustomerHistoryGurantee(
         @Expose var status: String? = null,
         @Expose var store_id: Long? = null,
         @Expose var user_id: Long? = null,
-        @Expose val fields: MutableList<ICFieldGuarantee>? = null
+        @Expose val fields: MutableList<ICCustomerField>? = null
 ) : Serializable
