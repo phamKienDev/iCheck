@@ -34,10 +34,6 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
             ActivityUtils.finishActivity(this)
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (ListConversationFragment.isOpenChat) {
-                ActivityUtils.finishActivity(this)
-            }
         }
     }
 
