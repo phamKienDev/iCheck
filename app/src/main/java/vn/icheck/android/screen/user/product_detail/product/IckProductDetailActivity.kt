@@ -188,12 +188,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         const val REQUEST_MMB = 1
 
         fun start(activity: Activity, barcode: String, isScan: Boolean? = null) {
-            val intent = Intent(activity, IckProductDetailActivity::class.java)
-
-            intent.putExtra(Constant.DATA_1, barcode)
-            if (isScan != null)
-                intent.putExtra(Constant.DATA_2, isScan)
-
+            val intent = Intent(activity, IckProductDetailActivity::class.java).apply {
+                putExtra(Constant.DATA_1, barcode)
+                if (isScan != null) putExtra(Constant.DATA_2, isScan)
+            }
             ActivityUtils.startActivity(activity, intent)
         }
 

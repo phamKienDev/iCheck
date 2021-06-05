@@ -67,6 +67,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         var isOpened = false
 
         fun createRoomChat(context: Context, userId: Long, type: String) {
+            finishAllChat()
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
                 putExtra(DATA_2, userId)
                 putExtra(DATA_3, type)
@@ -74,9 +75,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
 
         fun openRoomChatWithKey(context: Context, key: String) {
+            finishAllChat()
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
                 putExtra(KEY, key)
             })
+        }
+
+        fun finishAllChat() {
+            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
         }
 
         var toId = ""
@@ -126,7 +132,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onInitView() {
         isOpened = false
-        ListConversationFragment.isOpenChat = true
+//        ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
@@ -1144,11 +1150,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         super.onResume()
         inboxRoomID = keyRoom
         inboxUserID = toId
-
-        if (isOpened) {
-            finish()
-            overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
-        }
     }
 
     override fun onBackPressed() {
