@@ -31,9 +31,14 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
+abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback,
+    TokenTimeoutCallback, RequestChat {
+
+    var requestUserLoggedChatCode = 9999
+    var onRequestUserLoginSuccess: () -> Unit = {}
+
     var job: Job? = null
-    var confirmLogin:ConfirmDialog? = null
+    var confirmLogin: ConfirmDialog? = null
     open val getStatusBarHeight: Int
         get() {
             var result = 0
@@ -84,6 +89,18 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         }
     }
 
+    override fun onCheckSessionWhenChat(
+        onIsUserLogged: () -> Unit,
+        onRequestUserLoginSuccess: () -> Unit
+    ) {
+        if (SessionManager.isUserLogged) {
+            onIsUserLogged()
+        } else {
+            this.onRequestUserLoginSuccess = onRequestUserLoginSuccess
+            onRequireLogin(requestUserLoggedChatCode)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         confirmLogin = null
@@ -106,7 +123,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == requestLogin) {
             if (resultCode == Activity.RESULT_OK) {
                 onRequireLoginSuccess(requestLogin)
@@ -142,6 +158,9 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
 
     override fun onRequireLoginSuccess(requestCode: Int) {
+        if (requestCode == requestUserLoggedChatCode) {
+            onRequestUserLoginSuccess()
+        }
     }
 
     override fun onRequireLoginCancel() {
@@ -154,15 +173,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-
-
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it,
-                            "Thông báo",
-                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Để sau",
-                            "Đăng nhập ngay",
-                            false) {
+                    confirmLogin = object : ConfirmDialog(
+                        it,
+                        "Thông báo",
+                        "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                        "Để sau",
+                        "Đăng nhập ngay",
+                        false
+                    ) {
                         override fun onDisagree() {
 
                         }
@@ -289,11 +308,17 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivity<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity(key: String, value: String) {
+    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity(
+        key: String,
+        value: String
+    ) {
         ActivityUtils.startActivity<T>(this, key, value)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivity(key: String, value: O) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivity(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivity<T, O>(this, key, value)
     }
 
@@ -305,11 +330,19 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityForResult(activity, intent, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(key: String, value: String, requestCode: Int) {
+    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(
+        key: String,
+        value: String,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T>(this, key, value, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityForResult(key: String, value: O, requestCode: Int) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityForResult(
+        key: String,
+        value: O,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
@@ -321,7 +354,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityAndFinish<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityAndFinish(key: String, value: O) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityAndFinish(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivityAndFinish<T, O>(this, key, value)
     }
 
@@ -331,7 +367,11 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
     fun replaceFragment(fragment: Fragment) {
-        ActivityUtils.replaceFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        ActivityUtils.replaceFragment(
+            supportFragmentManager,
+            WidgetUtils.FRAME_FRAGMENT_ID,
+            fragment
+        )
     }
 
     fun removeFragments(fragment: Fragment) {
@@ -344,7 +384,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     fun hideSoftKeyboard() {
         if (currentFocus != null) {
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
         }
     }

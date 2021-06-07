@@ -70,6 +70,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.network.base.OnClickBtnChatListener
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -82,10 +83,10 @@ import java.io.File
  */
 class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener,
     ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
-    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
+    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener, OnClickBtnChatListener {
     private lateinit var viewModel: IckProductDetailViewModel
 
-    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
+    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this, this)
 
     private val permissionCamera = 98
     private var positionSubmit = -1
@@ -97,7 +98,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
-    private val requestEnterpriseContact = 9
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -651,13 +651,15 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     ContactBusinessDialog(this).show(
                         productDetail.owner?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
+                        this
                     )
                 } else {
                     ContactBusinessDialog(this).show(
                         productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
+                        this
                     )
                 }
             }
@@ -753,7 +755,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            if (SessionManager.isUserLogged) {
+            onCheckSessionWhenChat({
                 if (!viewModel.verifyProduct) {
                     if (!viewModel.urlBuy.isNullOrEmpty()) {
                         val bottomSheetWebView = BottomSheetWebView(this)
@@ -774,9 +776,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         )
                     }
                 }
-            } else {
-                onRequireLogin(requestEnterpriseContact)
-            }
+            }, {
+                viewModel.getProductLayout()
+            })
         }
 
         imgBack.setOnClickListener {
@@ -1081,9 +1083,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         }
                     }
                 }
-                requestEnterpriseContact -> {
-                    viewModel.getProductLayout()
-                }
                 CONTRIBUTION_PRODUCT -> {
                     val productID = data?.getLongExtra(Constant.DATA_1, -1)
                     val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
@@ -1166,5 +1165,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onClickReviewPermission() {
         viewModel.reloadMyReview(viewModel.urlMyReview)
+    }
+
+    override fun onClick(id: Long?) {
+        onCheckSessionWhenChat({
+            ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
+        }, {
+//            ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
+        })
     }
 }
