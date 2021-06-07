@@ -1,6 +1,8 @@
 package vn.icheck.android.network.feature.detail_stamp_v6_1
 
 import android.util.Base64
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
@@ -16,90 +18,95 @@ import vn.icheck.android.network.util.JsonHelper
 class DetailStampRepository : BaseRepository() {
 
     suspend fun getDetailStampV61(user: ICUpdateCustomerGuarantee?, barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
-        val body = hashMapOf<String, Any>()
+        val body = JsonObject()
 
         if (user != null) {
-//            if (user.id != 0L) {
-//                body["icheck_id"] = "i-${user.id}"
-//            }
+            body.add("customer", JsonObject().apply {
+                if (!user.name.isNullOrEmpty()) {
+                    addProperty("name", user.name!!)
+                }
+                if (!user.phone.isNullOrEmpty()) {
+                    addProperty("phone", user.phone!!)
+                }
+                if (!user.email.isNullOrEmpty()) {
+                    addProperty("email", user.email!!)
+                }
+                if (!user.address.isNullOrEmpty()) {
+                    addProperty("address", user.address!!)
+                }
+                if (user.district ?: 0 > 0)
+                    addProperty("district", user.district!!)
+                if (user.city ?: 0 > 0)
+                    addProperty("city", user.city!!)
 
-            if (!user.name.isNullOrEmpty()) {
-                body["name"] = user.name!!
-            }
+                if (!user.fields.isNullOrEmpty()) {
+                    add("fields", JsonObject().apply {
+                        for (obj in user.fields!!.entries) {
+                            when (obj.value) {
+                                is Int -> addProperty(obj.key, obj.value as Int)
+                                is Long -> addProperty(obj.key, obj.value as Long)
+                                else -> addProperty(obj.key, obj.value.toString())
+                            }
+                        }
+                    })
+                }
+            })
+        }
 
-            if (!user.phone.isNullOrEmpty()) {
-                body["phone"] = user.phone!!
-            }
-
-            if (!user.email.isNullOrEmpty()) {
-                body["email"] = user.email!!
-            }
-
-            if (!user.address.isNullOrEmpty()) {
-                body["address"] = user.address!!
-            }
-        } else {
-            SessionManager.session.user?.let { mUser ->
-                val name = if (mUser.last_name.isNullOrEmpty()) {
-                    mUser.first_name
+        SessionManager.session.user?.let { mUser ->
+            val name = if (mUser.last_name.isNullOrEmpty()) {
+                mUser.first_name
+            } else {
+                if (!mUser.first_name.isNullOrEmpty()) {
+                    mUser.last_name + " " + mUser.first_name
                 } else {
-                    if (!mUser.first_name.isNullOrEmpty()) {
-                        mUser.last_name + " " + mUser.first_name
-                    } else {
-                        mUser.last_name
-                    }
+                    mUser.last_name
                 }
+            }
 
-                if (mUser.id != 0L) {
-                    body["icheck_id"] = "i-${mUser.id}"
-                }
-
-                if (!name.isNullOrEmpty()) {
-                    body["name"] = name
-                }
-
-                if (!mUser.phone.isNullOrEmpty()) {
-                    body["phone"] = mUser.phone!!
-                }
-
-                if (!mUser.email.isNullOrEmpty()) {
-                    body["email"] = mUser.email!!
-                }
-
-                if (!mUser.address.isNullOrEmpty()) {
-                    body["address"] = mUser.address!!
-                }
+            if (mUser.id != 0L) {
+                body.addProperty("icheckId", "i-${mUser.id}")
+            }
+            if (!name.isNullOrEmpty()) {
+                body.addProperty("name", name)
+            }
+            if (!mUser.phone.isNullOrEmpty()) {
+                body.addProperty("phone", mUser.phone!!)
+            }
+            if (!mUser.email.isNullOrEmpty()) {
+                body.addProperty("email", mUser.email!!)
+            }
+            if (!mUser.address.isNullOrEmpty()) {
+                body.addProperty("address", mUser.address!!)
             }
         }
 
         val currentTime = System.currentTimeMillis()
         val sourceApp = Base64.encodeToString("isIcheck=true&time=$currentTime".toByteArray(Charsets.UTF_8), Base64.DEFAULT).toString().trim()
 
-        body["sourceTime"] = currentTime
-        body["sourceApp"] = sourceApp
-
-        body["code"] = barcode
-        body["device_id"] = DeviceUtils.getUniqueDeviceId()
+        body.addProperty("sourceTime", currentTime)
+        body.addProperty("sourceApp", sourceApp)
 
         val agent = DeviceUtils.getModel()
         if (!agent.isNullOrEmpty()) {
-            body["agent"] = agent
-            body["os"] = agent
+            body.addProperty("agent", agent)
+            body.addProperty("os", agent)
         }
 
         val userid = SessionManager.session.user?.id
         if (userid != null) {
-            body["user_id"] = userid
+            body.addProperty("userId", userid)
         }
 
-        val rank = SettingManager.getRankLevel
-        body["rank_level"] = rank
+        body.addProperty("code", barcode)
+        body.addProperty("deviceId", DeviceUtils.getUniqueDeviceId())
+        body.addProperty("rankLevel", SettingManager.getRankLevel)
 
         if (lat != null) {
-            body["lat"] = lat
+            body.addProperty("lat", lat)
         }
         if (lon != null) {
-            body["lon"] = lon
+            body.addProperty("lon", lon)
         }
 
         val url = APIConstants.DETAIL_STAMP_HOST + APIConstants.stampDetailV61()
@@ -711,26 +718,25 @@ class DetailStampRepository : BaseRepository() {
         composite.add(disposable)
     }
 
-    fun updateInformationGuarantee(name: String, phone: String, email: String, address: String,
-                                   district: Int?, city: Int?, deviceId: String?, mId: String?,
+    fun updateInformationGuarantee(user: ICUpdateCustomerGuarantee, deviceId: String?, mId: String?,
                                    productCode: String?, variant: Long?,
                                    customerData: HashMap<String, Any>, guaranteeData: HashMap<String, Any>,
                                    mSerial: String?,
                                    listener: ICApiListener<IC_RESP_UpdateCustomerGuarantee>) {
         val body = hashMapOf<String, Any>()
         body["customer"] = hashMapOf<String, Any>().apply {
-            if (name.isNotEmpty())
-                put("name", name)
-            if (phone.isNotEmpty())
-                put("phone", phone)
-            if (email.isNotEmpty())
-                put("email", email)
-            if (address.isNotEmpty())
-                put("address", address)
-            if (district != null)
-                put("district", district)
-            if (city != null)
-                put("city", city)
+            if (!user.name.isNullOrEmpty())
+                put("name", user.name!!)
+            if (user.phone.isNullOrEmpty())
+                put("phone", user.phone!!)
+            if (user.email.isNullOrEmpty())
+                put("email", user.email!!)
+            if (user.address.isNullOrEmpty())
+                put("address", user.address!!)
+            if (user.district ?: 0 > 0)
+                put("district", user.district!!)
+            if (user.city ?: 0 > 0)
+                put("city", user.city!!)
             if (!customerData.isNullOrEmpty()) {
                 put("fields", customerData)
             }
@@ -755,7 +761,8 @@ class DetailStampRepository : BaseRepository() {
         if (!guaranteeData.isNullOrEmpty())
             body["fields"] = guaranteeData
 
-        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPUPDATEINFORMATIONCUSTOMERGUARANTEE().replace("{serial}", mSerial ?: "")
+        val host = APIConstants.DETAIL_STAMP_HOST + APIConstants.STAMPUPDATEINFORMATIONCUSTOMERGUARANTEE().replace("{serial}", mSerial
+                ?: "")
         val disposable = ICNetworkClient.getStampClient().updateInformationCustomerGuarantee(host, body)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

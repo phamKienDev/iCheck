@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityUpdateInformationFirstBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.ValidHelper
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
@@ -105,24 +106,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
 
         binding.btnUpdate.setOnClickListener {
-            val customerData = getBody(customerVariantAdapter.listData)
-            if (customerData == null) {
-                showInputDataError()
-                return@setOnClickListener
-            }
-
-            val guaranteeData = getBody(guaranteeVariantAdapter.listData)
-            if (guaranteeData == null) {
-                showInputDataError()
-                return@setOnClickListener
-            }
-
-            presenter.validUpdateInformationGuarantee(name = binding.edtName.text.toString(),
-                    phone = binding.edtPhone.text.toString(), email = binding.edtEmail.text.toString(),
-                    address = binding.edtAddress.text.toString(), productCode = binding.edtProductCode.text.toString(),
-                    variant = viewModel.objVariant?.id, customerData = customerData,
-                    guaranteeData = guaranteeData, barcode = viewModel.barcode,
-                    updateType = viewModel.updateType, serial = viewModel.serial)
+            updateUserInfo()
         }
     }
 
@@ -145,6 +129,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                 }, {
                     logError(it)
                 })
+    }
+
+    private fun stopSerchCustomer() {
+        disposable?.dispose()
+        disposable = null
     }
 
     private fun checkData() {
@@ -277,56 +266,53 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     binding.rcvField.visibility = View.GONE
                 }
 
-                if (!viewModel.phoneNumber.isNullOrEmpty()) {
-                    binding.edtPhone.setText(viewModel.phoneNumber)
-                } else {
-                    val phone = SessionManager.session.user?.phone
-                    if (!phone.isNullOrEmpty()) {
-                        binding.edtPhone.setText(phone)
-                    }
-                }
-
                 when (viewModel.updateType) {
                     1 -> {
                         //show layout ForceUpdate
                         binding.tvViewForceUpdate.visibility = View.VISIBLE
                         binding.edtProductCode.setText(viewModel.productCode)
                         binding.edtVariant.setText(viewModel.objVariant?.extra)
-//                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
-//                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
-//                        } else {
-//                            val phone = SessionManager.session.user?.phone
-//                            if (!phone.isNullOrEmpty()) {
-//                                searchGuaranteeCustomerDetail(phone)
-//                            }
-//                        }
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            binding.edtPhone.setText(viewModel.phoneNumber)
+                        } else {
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                binding.edtPhone.setText(phone)
+                            }
+                        }
                     }
                     2 -> {
                         //getData customer ve va show len view
                         binding.tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
                         binding.edtProductCode.setText(viewModel.productCode)
                         binding.edtVariant.setText(viewModel.objVariant?.extra)
-//                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
-//                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
-//                        } else {
-//                            val phone = SessionManager.session.user?.phone
-//                            if (!phone.isNullOrEmpty()) {
-//                                searchGuaranteeCustomerDetail(phone)
-//                            }
-//                        }
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            binding.edtPhone.setText(viewModel.phoneNumber)
+                        } else {
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                binding.edtPhone.setText(phone)
+                            }
+                        }
                     }
                     else -> {
                         binding.tvSubProductCode.visibility = View.GONE
                         binding.edtProductCode.visibility = View.GONE
                         binding.tvSubProductVariant.visibility = View.GONE
                         binding.edtVariant.visibility = View.GONE
-                        binding.edtPhone.setText(SessionManager.session.user?.phone)
-                        binding.edtName.setText(SessionManager.session.user?.first_name + SessionManager.session.user?.last_name)
-                        binding.edtEmail.setText(SessionManager.session.user?.email)
-                        binding.tvCities.text = SessionManager.session.user?.city?.name
-                        binding.tvDistricts.text = SessionManager.session.user?.district?.name
-                        presenter.cityId = SessionManager.session.user?.city?.id?.toInt()
-                        presenter.districtId = SessionManager.session.user?.district?.id
+
+                        SessionManager.session.user?.let { user ->
+                            stopSerchCustomer()
+                            binding.edtPhone.setText(user.phone)
+                            setupSearchCustomer()
+
+                            binding.edtName.setText(user.first_name + user.last_name)
+                            binding.edtEmail.setText(user.email)
+                            binding.tvCities.text = user.city?.name
+                            binding.tvDistricts.text = user.district?.name
+                            presenter.cityId = user.city?.id?.toInt()
+                            presenter.districtId = user.district?.id
+                        }
                     }
                 }
             }
@@ -383,13 +369,10 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             binding.edtName.setText(customer.name)
         }
 
-        disposable?.dispose()
-        disposable = null
-
+        stopSerchCustomer()
         if (!customer.phone.isNullOrEmpty()) {
             binding.edtPhone.setText(customer.phone)
         }
-
         setupSearchCustomer()
 
         if (!customer.email.isNullOrEmpty()) {
@@ -511,6 +494,71 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         return stringBuilder.toString()
     }
 
+    private fun updateUserInfo() {
+        val customerData = getBody(customerVariantAdapter.listData)
+        if (customerData == null) {
+            showInputDataError()
+            return
+        }
+
+        val guaranteeData = getBody(guaranteeVariantAdapter.listData)
+        if (guaranteeData == null) {
+            showInputDataError()
+            return
+        }
+
+        val name = binding.edtName.text.toString().trim()
+        val phone = binding.edtPhone.text.toString().trim()
+        val email = binding.edtEmail.text.toString().trim()
+        val address = binding.edtAddress.text.toString().trim()
+
+        val validName = ValidHelper.validName(this, name)
+        if (validName != null) {
+            showLongError(validName)
+            return
+        }
+
+        val validPhone = ValidHelper.validPhoneNumber(this, phone)
+        if (validPhone != null) {
+            showLongError(validPhone)
+            return
+        }
+
+        if (presenter.cityId ?: 0 <= 0) {
+            showLongError(getString(R.string.tinh_thanh_khong_duoc_de_trong))
+            return
+        }
+
+        if (presenter.districtId ?: 0 <= 0) {
+            showLongError(getString(R.string.quan_huyen_khong_duoc_de_trong))
+            return
+        }
+
+        if (address.isEmpty()) {
+            showLongError(getString(R.string.dia_chi_khong_duoc_de_trong))
+            return
+        }
+
+        val user = ICUpdateCustomerGuarantee(name, phone, email, address, presenter.districtId, presenter.cityId, customerData)
+
+        if (viewModel.serial.isEmpty()) {
+            finishActivity(RESULT_OK, Intent().apply {
+                putExtra(Constant.DATA_1, user)
+            })
+            return
+        }
+
+        presenter.validUpdateInformationGuarantee(
+                user = user,
+                productCode = binding.edtProductCode.text.toString(),
+                variant = viewModel.objVariant?.id,
+                customerData = customerData,
+                guaranteeData = guaranteeData,
+                barcode = viewModel.barcode,
+                updateType = viewModel.updateType,
+                serial = viewModel.serial)
+    }
+
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {
         finish()
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
@@ -555,14 +603,12 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         presenter.districtId = id
     }
 
-    override fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?,
-                                           districtId: Int?, address: String, productCode: String,
+    override fun onSendOtpGuaranteeSuccess(user: ICUpdateCustomerGuarantee, productCode: String,
                                            variant: Long?, customerData: HashMap<String, Any>,
                                            guaranteeData: HashMap<String, Any>) {
-        val obj = ICUpdateCustomerGuarantee(name, phone, email, address, districtId, cityId, customerData)
 
         val intent = Intent(this, VerifyOTPGuaranteeActivity::class.java)
-        intent.putExtra(Constant.DATA_1, obj)
+        intent.putExtra(Constant.DATA_1, user)
         intent.putExtra(Constant.DATA_2, viewModel.serial)
         intent.putExtra(Constant.DATA_3, productCode)
         intent.putExtra(Constant.DATA_4, variant)
@@ -571,10 +617,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     override fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee) {
-        setResult(RESULT_OK, Intent().apply {
-            putExtra(Constant.DATA_1, user)
-        })
-
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
