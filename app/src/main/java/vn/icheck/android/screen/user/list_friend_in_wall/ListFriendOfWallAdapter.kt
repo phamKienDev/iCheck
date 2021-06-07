@@ -1,10 +1,8 @@
 package vn.icheck.android.screen.user.list_friend_in_wall
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
 import kotlinx.android.synthetic.main.item_list_friend_of_wall.view.*
@@ -171,7 +169,7 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
             itemView.btnRefuseFriend.apply {
-                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
             }
 
             vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {

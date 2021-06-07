@@ -22,6 +22,7 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.PermissionHelper
 import java.util.*
 
@@ -32,9 +33,9 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     companion object {
         const val REQUEST_CONTACT = 1
         private val projection = arrayOf(
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-                ContactsContract.Contacts.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Phone.NUMBER
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
         )
 
         fun newInstance(isUserLogged: Boolean): ContactFragment {
@@ -59,7 +60,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     override fun onInitView() {
+        setupView()
+    }
 
+    private fun setupView() {
+        binding.btnRequest.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     private fun initRecyclerView() {
@@ -107,7 +112,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     private fun syncContact() {
-        if (!requestContact()){
+        if (!requestContact()) {
             clickGetData = false
             return
         }

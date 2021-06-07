@@ -294,7 +294,7 @@ class IckUserInfoFragment : CoroutineFragment() {
             }
         }
         binding.btnSkip.apply {
-            background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
             setOnClickListener {
                 hideKeyboard()
                 ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)

@@ -20,6 +20,7 @@ import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
@@ -141,6 +142,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             itemView.edtInput.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+            itemView.edtInput.setHintTextColor(Constant.getSecondTextColor(itemView.context))
 
             if (obj.require == 1) {
                 itemView.tvTitle.text = obj.name + " (*)"
@@ -170,6 +172,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             itemView.edtTextArea.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+            itemView.edtTextArea.setHintTextColor(Constant.getSecondTextColor(itemView.context))
 
             if (obj.require == 1) {
                 itemView.tvTitleTextArea.text = obj.name + " (*)"
@@ -256,6 +259,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class DateFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
         override fun bind(obj: ICFieldGuarantee) {
             itemView.edtInputDate.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+            itemView.edtInputDate.setHintTextColor(Constant.getSecondTextColor(itemView.context))
+
             if (obj.require == 1) {
                 itemView.tvTitleDate.text = obj.name + " (*)"
             } else {

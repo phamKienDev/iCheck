@@ -59,7 +59,7 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.submitBarcode.background = ViewHelper.bgDisableTextCorners4(requireContext())
+        binding.submitBarcode.background = ViewHelper.bgGrayB4Corners4(requireContext())
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }

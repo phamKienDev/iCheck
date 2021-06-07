@@ -211,7 +211,6 @@
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_40"
             android:layout_marginBottom="@dimen/size_12"
-            android:background="@drawable/bg_blue_border_20"
             android:text="Xác nhận thanh toán"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

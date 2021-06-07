@@ -2,10 +2,10 @@ package vn.icheck.android.ichecklibs.view.primary
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.AppCompatButton
 import vn.icheck.android.ichecklibs.Constant
 
-class ButtonPrimary : AppCompatTextView {
+class ButtonPrimary : AppCompatButton {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }

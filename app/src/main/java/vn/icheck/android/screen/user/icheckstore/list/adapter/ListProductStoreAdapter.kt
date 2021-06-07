@@ -243,7 +243,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     poin.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                         it.leftMargin = SizeHelper.size4
                     }
-                    poin.setTextColor(ContextCompat.getColor(context, R.color.colorAccentYellow))
+                    poin.setTextColor(Constant.getAccentYellowColor(context))
                     poin.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
                     poin.textSize = 16f
                     poin.isSingleLine = true
@@ -272,7 +272,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 nameProduct.includeFontPadding = false
                 nameProduct.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 nameProduct.textSize = 14f
-                nameProduct.setTextColor(ContextCompat.getColor(context, R.color.black_21))
+                nameProduct.setTextColor(Constant.getNormalTextColor(context))
             })
 
             layoutParams.addView(AppCompatTextView(context).also { btn ->

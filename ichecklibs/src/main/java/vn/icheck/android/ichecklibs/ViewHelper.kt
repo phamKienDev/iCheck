@@ -410,11 +410,11 @@ object ViewHelper {
         )
     }
 
-    fun bgPrimaryCorners4(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), 4f)
+    fun bgPrimaryCorners4(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
-    fun bgPrimaryCorners16(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), 16f)
+    fun bgPrimaryCorners16(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size16.toFloat())
 
-    fun bgPrimaryCorners18(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), 18f)
+    fun bgPrimaryCorners18(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size18.toFloat())
 
     fun bgPrimaryCornersTop4(context: Context)=createShapeDrawableRadiusTop(Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
@@ -453,15 +453,14 @@ object ViewHelper {
 
     fun textColorPrimaryUnpressedSecondaryPressed(context: Context):ColorStateList{
         return createColorPressStateList(Constant.getPrimaryColor(context), Constant.getSecondaryColor(context))
-
     }
 
     /*
     * White
     * */
-    fun bgWhiteOutlinePrimary1Corners4(context: Context) = createShapeDrawable(Color.WHITE, SizeHelper.size1, Constant.getPrimaryColor(context), 4f)
+    fun bgWhiteStrokePrimary1Corners4(context: Context) = createShapeDrawable(Color.WHITE, SizeHelper.size1, Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
-    fun bgWhiteOutlinePrimary2Corners16(context: Context) = createShapeDrawable(Color.WHITE, SizeHelper.size2, Constant.getPrimaryColor(context), 16f)
+    fun bgWhiteStrokePrimary2Corners16(context: Context) = createShapeDrawable(Color.WHITE, SizeHelper.size2, Constant.getPrimaryColor(context), SizeHelper.size16.toFloat())
 
     /*
     * Transparent
@@ -470,49 +469,59 @@ object ViewHelper {
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getPrimaryColor(context),
-        radius = 4f
+        radius = SizeHelper.size4.toFloat()
     )
 
     fun bgOutlinePrimary1Corners6(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getPrimaryColor(context),
-        radius = 6f
+        radius = SizeHelper.size6.toFloat()
     )
 
     fun bgOutlinePrimary05Corners14(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size0_5,
         strokeColor = Constant.getPrimaryColor(context),
-        radius = 14f
+        radius = SizeHelper.size14.toFloat()
     )
 
     fun bgOutlineSecondary1Corners6(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getSecondaryColor(context),
-        radius = 6f
+        radius = SizeHelper.size6.toFloat()
     )
 
     fun bgOutlineSecondary1Corners8(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getSecondaryColor(context),
-        radius = 8f
+        radius = SizeHelper.size8.toFloat()
+    )
+
+    fun bgOutlineSecondary1Corners13(context: Context) = createShapeDrawable(
+        color = Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size1,
+        strokeColor = Constant.getSecondaryColor(context),
+        radius = SizeHelper.size13.toFloat()
     )
 
     fun bgOutlineSecondary1Corners45(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
         strokeColor = Constant.getSecondaryColor(context),
-        radius = 45f
+        radius = SizeHelper.size45.toFloat()
     )
 
 
     /*
     * Secondary Color
     * */
+    fun bgSecondaryCorners6(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size6.toFloat())
     fun bgSecondaryCorners10(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size10.toFloat())
+    fun bgSecondaryCorners20(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size20.toFloat())
+    fun bgSecondaryCorners35(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size35.toFloat())
     fun bgSecondaryCorners40(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size40.toFloat())
     fun bgSecondaryCorners45(context: Context)= createShapeDrawable(Constant.getSecondaryColor(context),SizeHelper.size45.toFloat())
 
@@ -534,11 +543,17 @@ object ViewHelper {
         radius = 26f.dpToPx()
     )
 
+    fun lineDottedHorizontalSecondary() = GradientDrawable().apply {
+        shape=GradientDrawable.LINE
+        setStroke(SizeHelper.size0_5, Color.parseColor("#D8D8D8"), SizeHelper.size4.toFloat(), SizeHelper.size6.toFloat())
+    }
 
-    /*
-    * Disable Text Color
-    * */
-    fun bgDisableTextCorners4(context: Context) = createShapeDrawable(ContextCompat.getColor(context, R.color.colorDisableText), 4f)
+    fun setSecondaryHtmlString(string: String):String{
+        return string.replace("#3c5a99",Constant.getSecondaryColorCode)
+    }
+
+
+    fun bgGrayB4Corners4(context: Context) = createShapeDrawable(ContextCompat.getColor(context, R.color.grayB4), SizeHelper.size4.toFloat())
 
     /*
     * View
@@ -547,7 +562,7 @@ object ViewHelper {
         context = context,
         enableColor = Constant.getPrimaryColor(context),
         pressedColor = Constant.getSecondaryColor(context),
-        disableColor = ContextCompat.getColor(context, R.color.colorDisableText),
+        disableColor = ContextCompat.getColor(context, R.color.grayB4),
         radius = 4f.dpToPx()
     )
 
@@ -790,13 +805,15 @@ object ViewHelper {
     fun bgProductItemTopLeft(context: Context) = bgProductItem(context, left = 0, top = 0, right = SizeHelper.size0_5, bottom = 0)
     fun bgProductItemTopRight(context: Context) = bgProductItem(context, left = SizeHelper.size0_5, top = 0, 0, bottom = 0)
 
-    /*
-    * End lineColor
-    * */
 
     /*
     * Accent Red
     * */
+
+    fun bgAccentRedCorners4(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size4.toFloat())
+    fun bgAccentRedCorners6(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size6.toFloat())
+    fun bgAccentRedCorners24(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size24.toFloat())
+
 
     fun bgTransparentStrokeAccentRed0_5Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
@@ -804,10 +821,6 @@ object ViewHelper {
         strokeWidth = SizeHelper.size0_5,
         radius = SizeHelper.size4.toFloat()
     )
-
-    fun bgAccentRedCorners6(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size6.toFloat())
-
-    fun bgAccentRedCornersTop16(context: Context)= createShapeDrawableRadiusTop(Constant.getAccentRedColor(context),SizeHelper.size16.toFloat())
 
     fun bgRedNotifyHome(context: Context): StateListDrawable {
         val notCheck = createShapeDrawable(
@@ -832,8 +845,47 @@ object ViewHelper {
     }
 
     /*
-    * End Accent Red
+    * Accent Green
     * */
+
+    fun bgAccentGreenCornersLeft45(context: Context)= createShapeDrawableRadiusLeft(Constant.getAccentGreenColor(context),SizeHelper.size45.toFloat())
+
+    fun bgAccentGreenCircleStrokeBlue1_5Size22(context: Context)= createShapeDrawable(
+        color=Constant.getAccentGreenColor(context),
+        strokeWidth = SizeHelper.size1_5,
+        strokeColor = Color.parseColor("#124998"),
+        radius = SizeHelper.size22.toFloat()
+    )
+
+    fun bgAccentGreenCircleStrokeWhite1_5Size22(context: Context)= createShapeDrawable(
+        color=Constant.getAccentGreenColor(context),
+        strokeWidth = SizeHelper.size1_5,
+        strokeColor = Color.parseColor("#FFFFFF"),
+        radius = SizeHelper.size22.toFloat()
+    )
+
+    fun bgAccentGreenNotificationHome(context: Context)= createCheckedDrawable(
+        bgAccentGreenCircleStrokeBlue1_5Size22(context), bgAccentGreenCircleStrokeWhite1_5Size22(context)
+    )
+
+    fun bgAccentGreenCornersTopLeft14(context: Context)= createShapeDrawableRadius(
+        floatArrayOf(SizeHelper.size14.toFloat(),SizeHelper.size14.toFloat(),0f,0f,0f,0f,0f,0f),
+        Constant.getAccentGreenColor(context)
+    )
+
+    fun bgAccentGreenStrokeWhite1Corners22(context: Context)= createShapeDrawable(
+        color=Constant.getAccentGreenColor(context),
+        strokeWidth = SizeHelper.size1,
+        strokeColor = ContextCompat.getColor(context,R.color.white),
+        radius = SizeHelper.size22.toFloat()
+    )
+
+    fun bgOutlineAccentGreen3Corners4(context: Context)= createShapeDrawable(
+        color=Color.TRANSPARENT,
+        strokeWidth = SizeHelper.size3,
+        strokeColor = Constant.getAccentGreenColor(context),
+        radius = SizeHelper.size4.toFloat()
+    )
 
 
     /*
@@ -868,9 +920,6 @@ object ViewHelper {
         )
     }
 
-    /*
-      * End Accent Yellow
-      * */
 
     /*
     *  Accent Cyan
@@ -879,10 +928,15 @@ object ViewHelper {
 
     fun bgAccentCyanCorners4(context: Context) = createShapeDrawable(Constant.getAccentCyanColor(context), SizeHelper.size4.toFloat())
 
+
     /*
-    * End Accent Cyan
+    *  Normal Text
     * */
 
+    fun textColorNormalCheckedSecondUnchecked(context: Context)= createColorStateList(
+        Constant.getSecondTextColor(context),
+        Constant.getNormalTextColor(context)
+    )
 
     /*
     *  App Background White
@@ -1146,6 +1200,7 @@ object ViewHelper {
     * */
 
     fun bgPopupCorners4(context: Context)= createShapeDrawable(Constant.getBackgroundPopupColor(context),SizeHelper.size4.toFloat())
+    fun bgPopupCorners10(context: Context)= createShapeDrawable(Constant.getBackgroundPopupColor(context),SizeHelper.size10.toFloat())
 
 
 }

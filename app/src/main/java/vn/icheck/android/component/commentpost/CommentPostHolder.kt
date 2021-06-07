@@ -154,7 +154,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         binding.tvLike.setTextColor(if (isLike != null) {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         } else {
-            ContextCompat.getColor(itemView.context, R.color.colorBackgroundPopup)
+            ContextCompat.getColor(itemView.context, R.color.black_50)
         })
     }
 

@@ -599,9 +599,9 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     override fun onAnswer(obj: ICCommentPost) {
         tvActor.visibility = View.VISIBLE
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(resources.getString(R.string.tra_loi_xxx, obj.page?.name))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name)))
         } else {
-            Html.fromHtml(resources.getString(R.string.tra_loi_xxx, obj.user?.getName))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName)))
         }
 
         edtEnter.tag = obj

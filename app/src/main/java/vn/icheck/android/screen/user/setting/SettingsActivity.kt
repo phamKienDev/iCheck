@@ -37,7 +37,7 @@ class SettingsActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        btnReset.background = ViewHelper.bgWhiteOutlinePrimary1Corners4(this)
+        btnReset.background = ViewHelper.bgWhiteStrokePrimary1Corners4(this)
     }
 
     private fun initView() {

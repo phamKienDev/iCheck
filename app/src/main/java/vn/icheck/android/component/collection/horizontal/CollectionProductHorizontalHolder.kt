@@ -112,7 +112,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                 // Text product name
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also { params ->
                     params.topMargin = SizeHelper.size10
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorNormalText), 14f, 2))
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getNormalTextColor(context), 14f, 2))
 
                 val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
 
@@ -142,7 +142,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                 // Text verified
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT).also { params ->
                     params.topMargin = SizeHelper.size4
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.green_text_verified_product), 14f).also {
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getAccentGreenColor(context), 14f).also {
                     it.compoundDrawablePadding = SizeHelper.size2
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     it.setText(R.string.verified)

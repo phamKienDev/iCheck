@@ -8,7 +8,7 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvVote"
         android:layout_width="0dp"
         android:layout_weight="4"
@@ -19,7 +19,6 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
-        android:textColor="@color/black_21"
         android:textSize="@dimen/font_14"
         tools:text="Chất lượng sản phẩm" />
 

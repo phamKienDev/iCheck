@@ -21,12 +21,9 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -65,8 +62,7 @@ class IckLoginFragment : CoroutineFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnLogin.disable()
-        binding.btnLoginFacebook.background= ViewHelper.bgBtnFacebook(requireContext())
+        setupView()
         TrackingAllHelper.trackLoginStart()
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
@@ -120,7 +116,7 @@ class IckLoginFragment : CoroutineFragment() {
             }
         }
         binding.btnLoginOtp.apply {
-            background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
             setOnSingleClickListener {
                 requireActivity().forceHideKeyboard()
                 val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(LOGIN_OTP)
@@ -153,6 +149,12 @@ class IckLoginFragment : CoroutineFragment() {
         })
 
         setupListener()
+    }
+
+    private fun setupView() {
+        binding.btnLogin.disable()
+        binding.btnLoginFacebook.background = ViewHelper.bgBtnFacebook(requireContext())
+        binding.edtPassword.setHintTextColor(Constant.getDisableTextColor(requireContext()))
     }
 
     private fun setupListener() {

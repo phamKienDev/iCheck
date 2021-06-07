@@ -174,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/textViewAbc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,10 +185,9 @@
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
             android:text="Xóa cache"
-            android:textColor="@color/black_21"
             android:textSize="@dimen/font_14" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvClearCache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -200,7 +199,6 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:textColor="@color/black_21"
             android:textSize="@dimen/font_14"
             tools:text="300Mb" />
 
@@ -212,7 +210,7 @@
         android:layout_marginTop="@dimen/size_7"
         android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -222,10 +220,9 @@
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
             android:text="Ngôn ngữ:"
-            android:textColor="@color/black_21"
             android:textSize="@dimen/font_14" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -235,7 +232,6 @@
             android:layout_toRightOf="@id/textView"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Tiếng Việt"
-            android:textColor="@color/black_21"
             android:textSize="@dimen/font_14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -274,7 +270,7 @@
             android:layout_marginBottom="@dimen/size_15"
             android:visibility="gone">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/appCompatTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -282,10 +278,9 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Language:"
-                android:textColor="@color/black_21"
                 android:textSize="@dimen/font_14" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvLanguageEN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -294,7 +289,6 @@
                 android:layout_toRightOf="@id/appCompatTextView"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="English"
-                android:textColor="@color/black_21"
                 android:textSize="@dimen/font_14" />
 
             <de.hdodenhof.circleimageview.CircleImageView

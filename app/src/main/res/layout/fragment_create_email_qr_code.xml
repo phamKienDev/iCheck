@@ -81,7 +81,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -51,9 +51,7 @@
                 android:inputType="numberPassword"
                 android:paddingStart="@dimen/size_64"
                 android:paddingBottom="@dimen/size_20"
-                android:textColorHint="@color/colorDisableText"
                 android:textAlignment="center"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +122,7 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/btn_forgot_pw" />
 
-            <vn.icheck.android.ichecklibs.view.primary.ButtonBarlowSemiBoldPrimary
+            <vn.icheck.android.ichecklibs.view.primary.ButtonPrimary
                 android:id="@+id/btn_login_otp"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
@@ -134,12 +132,14 @@
                 android:layout_marginTop="@dimen/size_50"
                 android:layout_marginEnd="@dimen/size_62"
                 android:layout_marginRight="@dimen/size_62"
+                android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/dang_nhap_bang_otp"
                 android:textAllCaps="false"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_problem" />
+
 
             <TextView
                 android:id="@+id/textView27"

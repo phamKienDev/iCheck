@@ -20,6 +20,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -45,6 +46,7 @@ import kotlinx.android.synthetic.main.right_menu_history.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.activity.BaseActivity
@@ -144,6 +146,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
+            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -157,6 +160,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
+            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -209,6 +213,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             tvChat.setTextColor(this)
         }
     }
+
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -484,17 +489,17 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             tv_user_rank.visibility = View.VISIBLE
             tv_user_rank.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng kí</u></font> hoặc <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
-                spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap), Html.FROM_HTML_MODE_COMPACT))
+                spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-                spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                tv_user_rank.text = spannableString
+                spannableString.setSpan(loginClickable, 22, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                tv_user_rank.setText(spannableString, TextView.BufferType.SPANNABLE)
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             } else {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng kí</u></font> hoặc <font color=${vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode}><u>Đăng nhập</u></font>"))
-                spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap)))
+                spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-                spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableString.setSpan(loginClickable, 22, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 tv_user_rank.text = spannableString
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             }
@@ -507,15 +512,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         val theme = SettingManager.themeSetting?.theme
 
         if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.grayB4), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
-            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
-        }.apply {
-            tvHome.setTextColor(this)
-            tvFeed.setTextColor(this)
-            tvHistory.setTextColor(this)
-            tvChat.setTextColor(this)
-        }
+            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this) }.apply {
+                tvHome.setTextColor(this)
+                tvFeed.setTextColor(this)
+                tvHistory.setTextColor(this)
+                tvChat.setTextColor(this)
+            }
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)

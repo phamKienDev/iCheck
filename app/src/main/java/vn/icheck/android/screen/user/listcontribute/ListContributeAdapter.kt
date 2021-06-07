@@ -172,6 +172,8 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
         override fun bind(obj: ICContribute) {
             unCheckAll()
 
+            itemView.tvName.setTextColor(Constant.getNormalTextColor(itemView.context))
+
             itemView.imgAvatar.run {
                 WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
 

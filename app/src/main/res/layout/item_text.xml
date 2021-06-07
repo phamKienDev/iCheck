@@ -15,7 +15,7 @@
         android:textSize="@dimen/font_12"
         tools:text="Tên sản phẩm (*)" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.EdittextSecondDisableHintBgAppRadius4
+    <vn.icheck.android.ichecklibs.view.line_color.EdittextSecondDisableHintBgAppRadius4Second
         android:id="@+id/edt_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -54,7 +54,7 @@
             android:visibility="visible"
             tools:text="25.900 ₫" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
             android:id="@+id/tv_verified"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,6 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/verified"
-            android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
 

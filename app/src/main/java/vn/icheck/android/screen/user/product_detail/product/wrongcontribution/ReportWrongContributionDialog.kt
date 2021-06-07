@@ -129,7 +129,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                 ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0),
                 ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(requireContext(), R.color.grayD8), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(requireContext(), R.font.barlow_medium),
-                ContextCompat.getColor(requireContext(), R.color.colorNormalText),
+                Constant.getNormalTextColor(requireContext()),
                 14f).also {
             it.setHintTextColor(Constant.getDisableTextColor(requireContext()))
             it.minLines = 3

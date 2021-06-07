@@ -199,11 +199,16 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         private fun setupView() {
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
-            binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
+
             binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
             binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
+            binding.btnProductDetail.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+
+            ViewHelper.bgGrayCorners10(itemView.context).apply {
+                binding.layoutLink.background=this
+                binding.layoutProduct.background=this
+                binding.layoutImageDetail.layoutOneImage.background=this
+            }
 
             setGoneView(
                 binding.layoutProduct,
@@ -280,7 +285,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
                 else -> {
                     binding.imgRetry.setVisible()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+                    binding.tvTime.setTextColor(Constant.getAccentRedColor(itemView.context))
                     binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
                     binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity)
                 }
@@ -401,12 +406,22 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
         private fun setupView() {
             binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.tvMessage.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.layoutLink.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
-            binding.layoutProduct.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.layoutPage.background = ViewHelper.bgGrayCorners10(itemView.context)
-            binding.layoutVoucher.background = ViewHelper.bgGrayCorners10(itemView.context)
+
+            ViewHelper.bgGrayCorners10(itemView.context).apply {
+                binding.layoutVoucher.background=this
+                binding.layoutPage.background=this
+                binding.layoutLink.background=this
+                binding.layoutVoucher.background=this
+                binding.tvMessage.background=this
+                binding.layoutImageDetail.imgView.background=this
+            }
+
+            ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                binding.btnProductDetail.background=this
+                binding.tvGheTham.background=this
+                binding.btnViewProductApply.background=this
+            }
 
             setGoneView(
                 binding.layoutProduct,

@@ -141,16 +141,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
+        setupView()
         initRecyclerView()
         initEditText()
-        setupView()
         getPackageSticker()
         listenMediaData()
-    }
-
-    private fun setupView() {
-        binding.layoutEditText.background=ViewHelper.bgGrayF0Corners4()
-        tvNewMessage.background=ViewHelper.bgWhiteStrokeLineColor1Corners4(this)
     }
 
     private fun initToolbar() {
@@ -181,6 +176,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutToolbar.imgAction.setVisible()
 
         binding.layoutToolbar.imgAction.setImageResource(R.drawable.ic_setting_blue_24dp_chat)
+    }
+
+    private fun setupView() {
+        binding.layoutEditText.background=ViewHelper.bgGrayF0Corners4()
+        binding.btnUnBlock.background=ViewHelper.bgPrimaryCorners4(this)
+        binding.tvNewMessage.background=ViewHelper.bgWhiteStrokeLineColor1Corners4(this)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -233,7 +234,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if (s.isNullOrEmpty()) {
                     binding.layoutEditText.background= ViewHelper.bgGrayF0Corners4()
                 } else {
-                    binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_no_solid_light_blue)
+                    binding.layoutEditText.background=ViewHelper.bgOutlinePrimary1Corners4(this@ChatSocialDetailActivity)
                 }
             }
 

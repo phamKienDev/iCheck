@@ -38,7 +38,16 @@ class ImageMessageAdapter(val listData: MutableList<Any>) : RecyclerView.Adapter
 
         @SuppressLint("SetTextI18n")
         fun bind(obj: MCMedia) {
-            binding.root.background=ViewHelper.bgGrayCorners10(itemView.context)
+            ViewHelper.bgGrayCorners10(itemView.context).apply {
+                binding.root.background=this
+            }
+
+            ViewHelper.bgPopupCorners10(itemView.context).apply {
+                binding.imgView.background=this
+                binding.tvCountImage.background=this
+            }
+
+
             loadImageUrlRounded(binding.imgMessage, obj.content, R.drawable.ic_default_image_upload_150_chat, dpToPx(10))
             binding.imgView.visibleOrGone(obj.type?.contains("video") == true)
 

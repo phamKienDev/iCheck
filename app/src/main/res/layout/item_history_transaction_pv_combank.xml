@@ -26,13 +26,12 @@
         app:layout_constraintStart_toEndOf="@id/imgType"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
             android:id="@+id/tvMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="2000"
-            android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_16" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormal

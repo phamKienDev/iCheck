@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormal
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
@@ -59,7 +60,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
                             }, SizeHelper.size12, 0)
                         }
                         it.gravity = Gravity.CENTER_VERTICAL
-                        it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
+                        it.setTextColor(Constant.getNormalTextColor(context))
                         it.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                         it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12px, 0, 0, 0)
                         it.text = missions[i].missionName

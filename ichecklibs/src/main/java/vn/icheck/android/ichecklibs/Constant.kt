@@ -22,7 +22,7 @@ object Constant {
     var disableTextColor: String = ""
     var lineColor: String = ""
     var appBackgroundColor: String = ""
-    var popupBackgroundColo: String = ""
+    var popupBackgroundColor: String = ""
 
     const val TYPE_URL = 1
     const val TYPE_DOCUMENT = 2

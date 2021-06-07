@@ -538,9 +538,6 @@
             android:name=".screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.product.ListDistributorActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".screen.user.voucher.VoucherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />

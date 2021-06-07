@@ -50,7 +50,7 @@ open class CustomErrorEditText : AppCompatEditText {
         mLinePaint.strokeWidth = 1f.toPx()
 
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
+        mErrorTextPaint.color = Constant.getAccentRedColor(context)
         setBackgroundResource(0)
     }
 
@@ -59,7 +59,7 @@ open class CustomErrorEditText : AppCompatEditText {
         canvas?.apply {
             val bottom = height - paddingBottom + 2.5f.toPx()
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+                mLinePaint.setColor(Constant.getAccentRedColor(context))
                 drawLine(0f + paddingStart, bottom.toFloat(), (width - paddingStart - paddingEnd).toFloat(), bottom.toFloat(), mLinePaint)
                 drawBitmap(
                         mErrorDrawable!!.toBitmap(),

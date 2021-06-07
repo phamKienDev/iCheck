@@ -47,7 +47,7 @@
             android:textSize="@dimen/font_14"
             tools:text="Tiki.vn" />
 
-        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextBarlowSemiBoldAccentRed
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextBarlowSemiBoldAccentRed
             android:id="@id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

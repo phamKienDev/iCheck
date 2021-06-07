@@ -212,7 +212,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutAction.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        btnBuy.background = ViewHelper.bgPrimaryCorners4(this)
+        tvBuy.background = ViewHelper.bgPrimaryCorners4(this)
 
         ViewHelper.bgOutlinePrimary1Corners4(this).apply {
             btn_contact_not_found.background = this

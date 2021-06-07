@@ -53,7 +53,7 @@
             app:layout_constraintTop_toTopOf="@id/ratingBar"
             tools:text="8,9 Tuyệt vời" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
             android:id="@id/tvSuggest"
             style="@style/barlow_text"
             android:layout_width="@dimen/size_0"
@@ -64,7 +64,6 @@
             android:layout_marginBottom="@dimen/size_14"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/green_text_verified_product"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvViewAll"

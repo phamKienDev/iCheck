@@ -17,8 +17,8 @@ abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         return itemView.context.getString(idString)
     }
 
-    fun getColor(idColor: Int): Int{
-        return if (idColor!= R.color.colorPrimary) {
+    fun getColor(idColor: Int): Int {
+        return if (idColor != R.color.colorPrimary) {
             ContextCompat.getColor(itemView.context, idColor)
         } else {
             Constant.getPrimaryColor(itemView.context)

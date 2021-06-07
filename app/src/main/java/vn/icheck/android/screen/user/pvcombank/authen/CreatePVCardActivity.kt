@@ -44,7 +44,7 @@ class CreatePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     }
 
     private fun setupView() {
-        tvSkip.background = ViewHelper.bgWhiteOutlinePrimary1Corners4(this)
+        tvSkip.background = ViewHelper.bgWhiteStrokePrimary1Corners4(this)
     }
 
     private fun initView() {

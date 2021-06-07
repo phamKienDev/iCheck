@@ -114,7 +114,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_corner_4_light_blue"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"

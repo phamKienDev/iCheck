@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_no_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Không có kết quả nào trong danh bạ"
-        android:textColor="@color/black_21"
         app:drawableTopCompat="@drawable/ic_no_campaign"
         app:layout_constraintBottom_toTopOf="@+id/tv_no_result_desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:visibility="gone" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_no_result_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +31,6 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:text="Đồng bộ danh bạ để trao đổi với những người bạn đang sử dụng app iCheck nhé!"
-        android:textColor="@color/black_21"
         app:layout_constraintBottom_toTopOf="@+id/tv_sync_phone_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

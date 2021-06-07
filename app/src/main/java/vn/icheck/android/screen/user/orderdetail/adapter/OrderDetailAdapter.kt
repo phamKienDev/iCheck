@@ -5,6 +5,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.item_order_detail_status.view.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
 import vn.icheck.android.screen.user.orderdetail.view.IOrderDetailView
@@ -246,6 +248,8 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
     private inner class ProductHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind() {
+            itemView.findViewById<AppCompatImageView>(R.id.viewBottom).background=ViewHelper.lineDottedHorizontalSecondary()
+
             itemView.findViewById<CircleImageView>(R.id.imgAvatar).run {
                 WidgetUtils.loadImageUrl(this, obj?.shop?.avatar_thumbnails?.small, R.drawable.img_shop_default, R.drawable.img_shop_default)
 
@@ -272,6 +276,7 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.tvNote).text = obj?.note
+
         }
     }
 }

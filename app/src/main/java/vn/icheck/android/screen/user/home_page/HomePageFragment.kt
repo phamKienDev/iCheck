@@ -72,6 +72,7 @@ import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
+import vn.icheck.android.screen.user.suggest_topic.SuggestTopicActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
@@ -139,6 +140,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         tvNotificationCount.background=vn.icheck.android.ichecklibs.ViewHelper.bgRedNotifyHome(requireContext())
         tv_count.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedCorners6(requireContext())
         layoutHeader.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+        tvCartCount.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentGreenNotificationHome(requireContext())
 
 //        txtSearch.background = ViewHelper.createDrawableStateList(
 //                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),

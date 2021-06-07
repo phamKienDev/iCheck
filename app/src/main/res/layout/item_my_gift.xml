@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="x999" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvProduct"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -73,7 +73,6 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="@color/black_21"
             app:layout_constraintEnd_toStartOf="@+id/tvCount"
             app:layout_constraintStart_toStartOf="@id/idTwo"
             app:layout_constraintTop_toTopOf="parent" />

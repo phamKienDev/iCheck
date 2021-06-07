@@ -287,6 +287,7 @@
     <string name="dang_tai_tep">Đang tải tệp…</string>
     <string name="verified">Verified</string>
     <string name="sponsor_feed_introtext"><![CDATA[%s… <font color="#3c5a99">Xem thêm</font>]]></string>
+    <string name="vui_long_dang_ky_hoac_dang_nhap">Vui lòng Đăng ký hoặc Đăng nhập</string>
     <string name="huong_dan_quet_san_pham_icheck">Hướng dẫn quét sản phẩm iCheck</string>
     <string name="buoc_1">Bước 1</string>
     <string name="buoc_2">Bước 2</string>

@@ -108,11 +108,10 @@
             android:descendantFocusability="blocksDescendants" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICFrameLayoutGray
         android:id="@id/bgCategoryVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackgroundPopup"
         android:clickable="true"
         android:focusable="true"
         android:visibility="invisible"
@@ -125,7 +124,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="4" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICFrameLayoutGray>
 
     <include
         android:id="@id/layoutLoading"

@@ -193,7 +193,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     it.topMargin = SizeHelper.size28
 
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
+                it.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(context))
                 it.gravity = Gravity.CENTER
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.textSize = 16f

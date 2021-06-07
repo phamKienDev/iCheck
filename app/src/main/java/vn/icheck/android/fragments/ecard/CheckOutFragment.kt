@@ -51,51 +51,56 @@ class CheckOutFragment : Fragment() {
             activity?.onBackPressed()
         }
 
-        btn_checkout.setOnClickListener {
-            btn_checkout.isEnabled = false
-            DialogHelper.showLoading(this@CheckOutFragment)
-            val requestBody = hashMapOf<String, Any>()
-            requestBody.put("service_id", mspId)
-            requestBody.put("denomination", fee)
-            ICNetworkClient.getApiClient().postBuyEpin(requestBody)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : SingleObserver<ICBuyEpin> {
-                    override fun onSuccess(t: ICBuyEpin) {
-                        DialogHelper.closeLoading(this@CheckOutFragment)
-                        btn_checkout.isEnabled = true
-                        if (t.statusCode != null && t.statusCode != 200 && t.message != null) {
-                            Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
-                        } else {
-                            t.epinData?.let {
-                                val successBuyEpinFragment = SuccessBuyEpinFragment()
-                                val bundle = Bundle()
-                                bundle.putSerializable("data", it)
-                                bundle.putString("msp", msp!!)
-                                successBuyEpinFragment.arguments = bundle
-                                activity!!.supportFragmentManager.beginTransaction()
-                                    .setCustomAnimations(
-                                        R.anim.right_to_left_enter,
-                                        R.anim.right_to_left_exit,
-                                        R.anim.left_to_right_pop_enter,
-                                        R.anim.left_to_right_pop_exit
-                                    )
-                                    .replace(R.id.content, successBuyEpinFragment)
-                                    .commit()
+        btn_checkout.apply {
+            background = ViewHelper.bgSecondaryCorners20(requireContext())
+
+            setOnClickListener {
+                btn_checkout.isEnabled = false
+                DialogHelper.showLoading(this@CheckOutFragment)
+                val requestBody = hashMapOf<String, Any>()
+                requestBody.put("service_id", mspId)
+                requestBody.put("denomination", fee)
+                ICNetworkClient.getApiClient().postBuyEpin(requestBody)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : SingleObserver<ICBuyEpin> {
+                        override fun onSuccess(t: ICBuyEpin) {
+                            DialogHelper.closeLoading(this@CheckOutFragment)
+                            btn_checkout.isEnabled = true
+                            if (t.statusCode != null && t.statusCode != 200 && t.message != null) {
+                                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                            } else {
+                                t.epinData?.let {
+                                    val successBuyEpinFragment = SuccessBuyEpinFragment()
+                                    val bundle = Bundle()
+                                    bundle.putSerializable("data", it)
+                                    bundle.putString("msp", msp!!)
+                                    successBuyEpinFragment.arguments = bundle
+                                    activity!!.supportFragmentManager.beginTransaction()
+                                        .setCustomAnimations(
+                                            R.anim.right_to_left_enter,
+                                            R.anim.right_to_left_exit,
+                                            R.anim.left_to_right_pop_enter,
+                                            R.anim.left_to_right_pop_exit
+                                        )
+                                        .replace(R.id.content, successBuyEpinFragment)
+                                        .commit()
+                                }
                             }
                         }
-                    }
 
-                    override fun onSubscribe(d: Disposable) {
-                    }
+                        override fun onSubscribe(d: Disposable) {
+                        }
 
-                    override fun onError(e: Throwable) {
-                        DialogHelper.closeLoading(this@CheckOutFragment)
-                        Log.e("e", "err", e)
-                        btn_checkout.isEnabled = true
-                        ToastUtils.showLongError(context, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                    }
-                })
+                        override fun onError(e: Throwable) {
+                            DialogHelper.closeLoading(this@CheckOutFragment)
+                            Log.e("e", "err", e)
+                            btn_checkout.isEnabled = true
+                            ToastUtils.showLongError(context, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        }
+                    })
+            }
+
         }
     }
 

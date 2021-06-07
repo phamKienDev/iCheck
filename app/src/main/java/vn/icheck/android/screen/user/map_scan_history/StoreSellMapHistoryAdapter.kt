@@ -86,7 +86,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
             )
 
             if (selectedPos == absoluteAdapterPosition) {
-                itemView.layoutParent.background = ViewHelper.bgWhiteOutlinePrimary2Corners16(itemView.context)
+                itemView.layoutParent.background = ViewHelper.bgWhiteStrokePrimary2Corners16(itemView.context)
             } else {
                 itemView.layoutParent.background= ViewHelper.bgWhiteCorners16(itemView.context)
             }

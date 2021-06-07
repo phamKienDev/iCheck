@@ -15,6 +15,7 @@ import vn.icheck.android.component.image.LayoutImageInPostComponent
 import vn.icheck.android.component.rating_star.RatingStarComponent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.post.ICImageInPost
 import vn.icheck.android.network.models.post.ICProductInPost
@@ -55,7 +56,7 @@ class ReviewInPostComponent : LinearLayout {
                         ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, 0, 1f),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorNormalText),
+                        Constant.getNormalTextColor(context),
                         16f,
                         1).also {
                     it.gravity = Gravity.CENTER_VERTICAL
@@ -69,7 +70,7 @@ class ReviewInPostComponent : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT),
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"),
-                ContextCompat.getColor(context, R.color.colorNormalText),
+                Constant.getNormalTextColor(context),
                 14f,
                 3).also {
             it.lineHeight = SizeHelper.size20
@@ -107,7 +108,7 @@ class ReviewInPostComponent : LinearLayout {
 
         (getChildAt(1) as AppCompatTextView).run {
             text = if (review.message.length > 135) {
-                Html.fromHtml(context.getString(R.string.sponsor_feed_introtext, review.message.substring(0, 135)))
+                Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(context.getString(R.string.sponsor_feed_introtext, review.message.substring(0, 135))))
             } else {
                 review.message
             }

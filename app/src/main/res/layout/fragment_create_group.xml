@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
+        <!-- sẽ set civ_border_color =colorPrimary trong code sau-->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_avatar"
             android:layout_width="@dimen/size_120"

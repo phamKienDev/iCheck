@@ -28,7 +28,7 @@
             android:layout_marginTop="@dimen/size_6"
             android:layout_gravity="center"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,6 @@
             android:minLines="2"
             android:paddingLeft="@dimen/font_12"
             android:paddingRight="@dimen/font_12"
-            android:textColor="@color/black_21"
             android:textSize="@dimen/font_14"
             android:visibility="visible"
             tools:text="Điện thoại iphone 11 - Chính hãng (tên 2 dòng)..." />

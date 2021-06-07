@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:hint="@string/dang_cap_nhat"
-        android:textColorHint="@color/colorNormalText"
         android:textSize="@dimen/font_16"
         app:layout_constraintTop_toBottomOf="@+id/tvPrice"
         tools:text="Điện thoại IPHONE 7 PLUS hàng nguyên hộp chưa active - 100% NEW (không giới hạn dòng)" />
@@ -58,7 +57,6 @@
         android:id="@id/tvCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvBarcode"
         app:layout_constraintEnd_toEndOf="parent"

@@ -29,7 +29,7 @@ class TextDisableUncheckYellowChecked  : AppCompatCheckedTextView {
     }
 
     private fun setup() {
-        setTextColor(ViewHelper.createColorStateList(Constant.getDisableTextColor(context),ContextCompat.getColor(context, R.color.colorAccentYellow)))
+        setTextColor(ViewHelper.createColorStateList(Constant.getDisableTextColor(context),Constant.getAccentYellowColor(context)))
         includeFontPadding = false
     }
 }

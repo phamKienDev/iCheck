@@ -77,7 +77,7 @@
             android:singleLine="true"
             android:textSize="@dimen/font_14" />
 
-        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

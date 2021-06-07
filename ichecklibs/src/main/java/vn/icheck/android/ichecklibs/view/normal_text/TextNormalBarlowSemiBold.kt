@@ -1,13 +1,8 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 
 class TextNormalBarlowSemiBold : TextBarlowSemiBold {
@@ -25,6 +20,5 @@ class TextNormalBarlowSemiBold : TextBarlowSemiBold {
 
     private fun setup() {
         setTextColor(Constant.getNormalTextColor(context))
-        includeFontPadding = false
     }
 }

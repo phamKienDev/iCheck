@@ -48,8 +48,8 @@ class HomeCategoryHorizontalAdapter(val listener: IExperienceNewProducts) : Recy
                         setTextColor(ContextCompat.getColor(context, R.color.white))
                     } else {
                         background = ViewHelper.createStateListDrawable(
-                                Color.WHITE, ContextCompat.getColor(context, R.color.colorSecondText),
-                                ContextCompat.getColor(context, R.color.colorSecondText), ContextCompat.getColor(context, R.color.colorSecondText),
+                                Color.WHITE, ContextCompat.getColor(context, R.color.black_75),
+                                ContextCompat.getColor(context, R.color.black_75), ContextCompat.getColor(context, R.color.black_75),
                                 SizeHelper.size1, SizeHelper.size16.toFloat())
                         setTextColor(Constant.getSecondTextColor(context))
                     }

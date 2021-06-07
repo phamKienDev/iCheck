@@ -64,11 +64,16 @@ class ICPageInfoDialog(context: Context) : BaseBottomSheetDialog(context, true) 
     }
 
     private fun getColor(colorID: Int): Int {
-        return if (colorID == R.color.colorPrimary) {
-            vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context)
-        } else {
-            ContextCompat.getColor(dialog.context, colorID)
-
+        return when (colorID) {
+            R.color.colorPrimary -> {
+                vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context)
+            }
+            R.color.colorNormalText -> {
+                vn.icheck.android.ichecklibs.Constant.getNormalTextColor(dialog.context)
+            }
+            else -> {
+                ContextCompat.getColor(dialog.context, colorID)
+            }
         }
     }
 }

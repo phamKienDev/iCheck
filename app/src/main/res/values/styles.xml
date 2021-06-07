@@ -562,7 +562,6 @@
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/barlow_medium</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorSecondText</item>
         <item name="android:layout_marginStart">@dimen/size_26</item>
         <item name="android:layout_marginLeft">@dimen/size_26</item>
         <item name="android:gravity">center_vertical</item>
@@ -579,7 +578,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorNormalText</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">@dimen/size_10</item>
@@ -600,6 +598,5 @@
 
     <style name="text_black_barlow">
         <item name="android:fontFamily">@font/barlow_medium</item>
-        <item name="android:textColor">@color/colorNormalText</item>
     </style>
 </resources>

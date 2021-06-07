@@ -81,7 +81,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageEventLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -243,7 +243,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

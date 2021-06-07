@@ -52,7 +52,7 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
             }
 
-            binding.imgDetail.setImageResource(if (obj.background == R.color.colorDisableText) {
+            binding.imgDetail.setImageResource(if (obj.background == R.color.grayB4) {
                 R.drawable.ic_arrow_right_gray_28px
             } else {
                 R.drawable.ic_arrow_right_white_bg_blue_28px

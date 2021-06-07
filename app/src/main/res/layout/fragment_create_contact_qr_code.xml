@@ -82,7 +82,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:drawableRight="@drawable/ic_phonebook_24px" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessagePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"/>
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageMiddleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"/>
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -282,7 +282,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -322,7 +322,7 @@
                 android:paddingEnd="@dimen/size_10"
                 android:textSize="@dimen/font_14" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvMessageNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

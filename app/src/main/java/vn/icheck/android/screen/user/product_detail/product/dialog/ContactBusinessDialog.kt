@@ -7,7 +7,6 @@ import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
 
 class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_contact_business, true) {
@@ -46,7 +45,7 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
         }
 
         dialog.btnChat.apply {
-            background = ViewHelper.bgWhiteOutlinePrimary1Corners4(context)
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
 
             setOnClickListener {
                 ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")

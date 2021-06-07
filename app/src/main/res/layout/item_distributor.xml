@@ -208,7 +208,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_seemore_right_36px" />
 
-        <vn.icheck.android.ichecklibs.view.accent.accent_blue.TextAccentBlue
+        <vn.icheck.android.ichecklibs.view.accent.accentblue.TextAccentBlue
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"

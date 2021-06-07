@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
 import vn.icheck.android.ichecklibs.util.dpToPx
 
@@ -29,7 +28,7 @@ class EnableButton: AppCompatButton {
     }
 
     private val enableBackground = ViewHelper.bgPrimaryCorners4(context)
-    private val disableBackground =  ViewHelper.bgDisableTextCorners4(context)
+    private val disableBackground =  ViewHelper.bgGrayB4Corners4(context)
 
     private var isButtonEnable = false
         set(value) {

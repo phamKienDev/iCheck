@@ -20,7 +20,7 @@ class TextSecond : AppCompatTextView {
     }
 
     private fun setup() {
-        Constant.getSecondTextColor(context)
+        setTextColor(Constant.getSecondTextColor(context))
         includeFontPadding = false
     }
 }

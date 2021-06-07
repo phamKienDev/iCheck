@@ -64,7 +64,7 @@ class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomS
                 ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size12, 0, SizeHelper.size12, 0),
                 null,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColor(context, R.color.colorNormalText),
+                Constant.getNormalTextColor(context),
                 14f).also {
             it.gravity = Gravity.CENTER
             it.text = data

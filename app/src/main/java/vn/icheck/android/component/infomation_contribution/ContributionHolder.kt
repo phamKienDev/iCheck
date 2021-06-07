@@ -170,7 +170,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
 
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_fc_30px, 0, 0)
-                    tvDownVote.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
+                    tvDownVote.setTextColor(Constant.getAccentYellowColor(itemView.context))
                 }
             }
             tvUpVote.text = if (contribution.contribution!!.upVotes > 0) {

@@ -11,7 +11,6 @@ import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICTypeHistory
-import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 
 class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: IScanHistoryView) : RecyclerView.Adapter<FilterTypeAdapter.ViewHolder>() {
@@ -59,7 +58,7 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
             itemView.tvName.text = item.name
 
             if (item.select) {
-                itemView.layoutContent.background = ViewHelper.bgWhiteOutlinePrimary1Corners4(itemView.context)
+                itemView.layoutContent.background = ViewHelper.bgWhiteStrokePrimary1Corners4(itemView.context)
                 itemView.img_tick.visibility = View.VISIBLE
                 itemView.tvName.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
             } else {

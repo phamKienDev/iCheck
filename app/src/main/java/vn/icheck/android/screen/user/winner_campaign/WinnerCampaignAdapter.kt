@@ -143,7 +143,7 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         private fun setReward(textView: AppCompatTextView, value: Long?) {
             if (value != null) {
                 textView.text = "${TextHelper.formatMoneyPhay(value)}"
-                textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentYellow))
+                textView.setTextColor(Constant.getAccentYellowColor(itemView.context))
                 textView.setTypeface(null, Typeface.NORMAL)
             } else {
                 textView.text = itemView.context.getString(R.string.dang_cap_nhat)

@@ -3,11 +3,12 @@ package vn.icheck.android.ichecklibs
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
-import android.text.InputType
+import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -21,7 +22,7 @@ open class FocusableEditText : AppCompatEditText {
 
     private val drawableClear = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_delete_gray_vector, null)
 
-    private val drawableEyeOff = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_24px, null)
+    private val drawableEyeOff = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_gray_24dp, null)
 
     private val drawableEye = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_on_vector, null)
 
@@ -31,6 +32,7 @@ open class FocusableEditText : AppCompatEditText {
     private var rightDrawable: Drawable? = null
     var originalPadding = 0
     var enableRightClick = true
+    private var isPassword: Boolean? = null
 
     constructor(context: Context) : super(context) {
         initFont()
@@ -40,30 +42,47 @@ open class FocusableEditText : AppCompatEditText {
         initFont()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, R.style.FocusableEditTextTheme) {
         context.theme.obtainStyledAttributes(attrs, R.styleable.AppCompatTextView, 0, 0)
         initFont()
     }
 
+    private val isSetDrawable: Boolean
+        get() {
+            if (isPassword == null) {
+                isPassword = when (inputType) {
+                    TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD -> true
+                    TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD -> true
+                    TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD -> true
+                    TYPE_TEXT_VARIATION_PASSWORD -> true
+                    else -> {
+                        false
+                    }
+                }
+            }
+
+            return isPassword ?: false
+        }
+
     private fun initFont() {
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        if (inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD || inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+        if (isSetDrawable) {
             if (transformationMethod == null) {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
             } else {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
             }
-
         }
+
         mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mErrorTextPaint.textSize = 12f
+        mErrorTextPaint.textSize = 12 * resources.displayMetrics.scaledDensity
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
         mLinePaint = Paint()
-        mLinePaint.strokeWidth = 1f.dpToPx()
+        mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = Color.parseColor("#FF0000")
+        mErrorTextPaint.color = Constant.getAccentRedColor(context)
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
@@ -101,9 +120,9 @@ open class FocusableEditText : AppCompatEditText {
     private fun setDrawableFocusable() {
         if (rightDrawable == null) {
             if (currentText.isNotEmpty() && isFocused) {
-                if (inputType != InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD && inputType != InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                if (!isSetDrawable) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable
-                            ?: drawableClear, null)
+                        ?: drawableClear, null)
                 } else {
                     if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
@@ -120,14 +139,14 @@ open class FocusableEditText : AppCompatEditText {
                 }
             }
         } else {
-            if (inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD || inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+            if (isSetDrawable) {
                 if (transformationMethod == null) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                 }
 
-            }else {
+            } else {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable, null)
             }
         }
@@ -136,7 +155,7 @@ open class FocusableEditText : AppCompatEditText {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
             if (event.rawX > right - totalPaddingRight) {
-                if (inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                if (isSetDrawable) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                         PasswordTransformationMethod()
@@ -162,25 +181,25 @@ open class FocusableEditText : AppCompatEditText {
         super.onDraw(canvas)
         canvas?.apply {
             canvas?.translate(scrollX.toFloat(), 0f)
-            val bottom = height - paddingBottom + 2.5f.dpToPx()
+            val bottom = height - paddingBottom + 2.5f.toPx()
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(Color.parseColor("#FF0000"))
+                mLinePaint.setColor(Constant.getAccentRedColor(context))
                 drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
                 drawBitmap(
-                        mErrorDrawable!!.toBitmap(),
-                        0f,
-                        bottom.toFloat(),
-                        mErrorPaint
+                    mErrorDrawable!!.toBitmap(),
+                    0f,
+                    bottom.toFloat(),
+                    mErrorPaint
                 )
                 drawText(
-                        mError.toString(),
-                        26.dpToPx().toFloat(),
-                        (bottom + 15f.dpToPx()).toFloat(),
-                        mErrorTextPaint
+                    mError.toString(),
+                    26.dpToPx().toFloat(),
+                    (bottom + 15f.toPx()).toFloat(),
+                    mErrorTextPaint
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Constant.getPrimaryColor(context))
+                    mLinePaint.setColor(Color.parseColor("#057DDA"))
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

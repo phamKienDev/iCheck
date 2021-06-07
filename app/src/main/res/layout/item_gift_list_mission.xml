@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             app:layout_constraintTop_toTopOf="@id/tvName"
             tools:text="5/5" />
 
-        <vn.icheck.android.ichecklibs.view.accent.accent_yellow.ProgressBarAccentYellowMission
+        <vn.icheck.android.ichecklibs.view.accent.accentyellow.ProgressBarAccentYellowMission
             android:id="@id/progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="@dimen/size_0"

@@ -52,7 +52,7 @@ class ProductInFeedComponent : LinearLayout {
                         ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0, 0, 0, SizeHelper.size6),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorNormalText),
+                        Constant.getNormalTextColor(context),
                         16f,
                         2))
 

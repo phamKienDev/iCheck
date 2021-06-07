@@ -303,7 +303,7 @@ object TextHelper {
         } else {
             setText(name)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_medium)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.black_21))
+            setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 

@@ -57,7 +57,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        btnActionBack.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteOutlinePrimary1Corners4(this)
+        btnActionBack.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(this)
     }
 
     private fun initRecyclerview() {

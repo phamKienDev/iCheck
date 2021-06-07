@@ -147,7 +147,6 @@
                         android:id="@+id/linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:background="@drawable/bg_corner_sub_price_green_stamp"
                         android:gravity="center|end"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -33,6 +33,7 @@ import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -113,6 +114,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupSwipeLayout()
         setupViewModel()
@@ -133,6 +135,10 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             requireContext().startClearTopActivity(HomeActivity::class.java)
         }
+    }
+
+    private fun setupView() {
+        tvCartCount.background=ViewHelper.bgAccentGreenStrokeWhite1Corners22(requireContext())
     }
 
     private fun setupRecyclerView() {

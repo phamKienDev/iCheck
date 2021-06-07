@@ -14,6 +14,7 @@ import vn.icheck.android.chat.icheckchat.databinding.ItemImageChatBinding
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class UserInformationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCMedia>(callback) {
 
@@ -55,6 +56,7 @@ class UserInformationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView
 
     inner class ImageInformationViewHolder(val binding: ItemImageChatBinding) : BaseViewHolder<MCMedia>(binding) {
         override fun bind(obj: MCMedia) {
+            binding.imgBackground.background=ViewHelper.bgGrayCorners10(itemView.context)
             binding.imgBackground.visibleOrGone(obj.type?.contains("video") == true)
             binding.imgPlay.visibleOrGone(obj.type?.contains("video") == true)
 

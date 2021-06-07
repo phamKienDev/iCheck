@@ -38,7 +38,6 @@
         android:textColor="@color/white"
         android:padding="@dimen/size_6"
         android:textSize="@dimen/font_16"
-        android:background="@drawable/bg_error_corners_26"
         app:layout_constraintBottom_toBottomOf="@id/videoView"
         app:layout_constraintEnd_toEndOf="@id/videoView"
         app:layout_constraintStart_toStartOf="@id/videoView"

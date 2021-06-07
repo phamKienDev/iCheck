@@ -278,7 +278,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                 it.topMargin = SizeHelper.size2
             }
             it.text = parent.context.getString(R.string.chup_anh)
-            it.setTextColor(ContextCompat.getColor(parent.context, R.color.colorDisableText))
+            it.setTextColor(Constant.getDisableTextColor(it.context))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         })

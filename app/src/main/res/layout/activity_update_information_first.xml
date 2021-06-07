@@ -66,16 +66,15 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:text="@string/thong_tin_khach_hang" />
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:id="@+id/tvSubPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/so_dien_thoai_bat_buoc"
-                android:textColor="@color/colorNormalText" />
+                android:text="@string/so_dien_thoai_bat_buoc" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,20 +85,17 @@
                 android:inputType="phone"
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
-                android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText" />
+                android:paddingBottom="@dimen/size_8" />
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:id="@+id/tvSubName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/ho_va_ten_bat_buoc"
-                android:textColor="@color/colorNormalText" />
+                android:text="@string/ho_va_ten_bat_buoc"/>
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,19 +105,16 @@
                 android:hint="@string/nhap_ho_va_ten"
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
-                android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText" />
+                android:paddingBottom="@dimen/size_8" />
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="Email"
-                android:textColor="@color/colorNormalText" />
+                android:text="Email" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,8 +125,6 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
                 android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText"
                 android:textStyle="normal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,24 +134,22 @@
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_marginEnd="@dimen/size_12">
 
-                <vn.icheck.android.ichecklibs.view.TextCaption
+                <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                     android:id="@+id/tvSubTinhThanh"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_6"
                     android:text="@string/tinh_thanh_bat_buoc"
-                    android:textColor="@color/colorNormalText"
                     app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.TextCaption
+                <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                     android:id="@+id/tvSubHuyen"
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_6"
                     android:text="@string/quan_huyen_bat_buoc"
-                    android:textColor="@color/colorNormalText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
                     app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
@@ -176,7 +165,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvCities"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -184,8 +173,6 @@
                         android:layout_marginTop="@dimen/size_8"
                         android:layout_marginBottom="@dimen/size_8"
                         android:hint="@string/tuy_chon"
-                        android:textColor="@color/colorNormalText"
-                        android:textColorHint="@color/colorSecondText"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -212,7 +199,7 @@
                     app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvDistricts"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -220,8 +207,6 @@
                         android:layout_marginTop="@dimen/size_8"
                         android:layout_marginBottom="@dimen/size_8"
                         android:hint="@string/tuy_chon"
-                        android:textColor="@color/colorNormalText"
-                        android:textColorHint="@color/colorSecondText"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -239,16 +224,15 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:id="@+id/tvSubAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/dia_chi_bat_buoc"
-                android:textColor="@color/colorNormalText" />
+                android:text="@string/dia_chi_bat_buoc"/>
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -258,22 +242,19 @@
                 android:hint="@string/nhap_dia_chi"
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
-                android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText" />
+                android:paddingBottom="@dimen/size_8" />
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:id="@+id/tvSubProductCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:text="@string/ma_hieu_san_pham"
-                android:textColor="@color/colorNormalText"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtProductCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -284,23 +265,20 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
                 android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ichecklibs.view.TextCaption
+            <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
                 android:id="@+id/tvSubProductVariant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:text="@string/ma_bien_the"
-                android:textColor="@color/colorNormalText"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextBody1BgTransparentStrokeLineColor1Corners4
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtVariant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,8 +290,6 @@
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_8"
                 android:paddingBottom="@dimen/size_8"
-                android:textColor="@color/colorNormalText"
-                android:textColorHint="@color/colorSecondText"
                 android:visibility="gone"
                 tools:visibility="visible" />
 

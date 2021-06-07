@@ -7,13 +7,12 @@
     android:layout_marginTop="@dimen/size_30"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.normal_text.TextHeaderNormal
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textAlignment="gravity"
-        android:textColor="@color/colorNormalText"
         tools:text="iCheck Cơ sở phía Bắc" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextBody2Primary

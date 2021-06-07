@@ -71,7 +71,6 @@ class NewDetailV2Activity : BaseActivityMVVM() {
         getDataIntent()
 
         btnCTA.background = ViewHelper.bgPrimaryCorners4(this)
-        tvTitle.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
     }
 
     fun getDataIntent() {

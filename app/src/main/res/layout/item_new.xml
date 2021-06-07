@@ -51,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="@id/imgNews"
             app:layout_constraintStart_toStartOf="@id/imgNews" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/tvName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_34"
@@ -64,7 +64,6 @@
             android:includeFontPadding="false"
             android:drawableLeft="@drawable/ic_new_36dp"
             android:maxLines="2"
-            android:textColor="@color/black_21"
             android:drawablePadding="@dimen/size_5"
             android:gravity="center_vertical"
             tools:text="asdjklaksj j lksajdklas j jsakld"

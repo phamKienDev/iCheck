@@ -37,6 +37,7 @@ object SizeHelper {
     val size28 = dpToPx(28)
     val size30 = dpToPx(30)
     val size32 = dpToPx(32)
+    val size35 = dpToPx(35)
     val size36 = dpToPx(36)
     val size37 = dpToPx(37)
     val size38 = dpToPx(38)

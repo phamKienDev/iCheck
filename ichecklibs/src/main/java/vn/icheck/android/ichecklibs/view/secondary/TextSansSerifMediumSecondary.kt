@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 
 class TextSansSerifMediumSecondary : AppCompatTextView {
 

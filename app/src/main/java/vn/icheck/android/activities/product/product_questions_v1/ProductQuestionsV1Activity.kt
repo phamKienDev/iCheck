@@ -189,12 +189,11 @@ class ProductQuestionsV1Activity : BaseActivity<ProductQuestionsPresenter>(), IP
         edt_enter_message.setText("")
     }
 
-
     override fun onClickCreateAnswer(questionId: Long, actorName: String, position: Int) {
         KeyboardUtils.showSoftInput(this)
         edt_enter_message.requestFocus()
         tv_answer_actor.visibility = View.VISIBLE
-        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.tra_loi_xxx, actorName))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, actorName)))
         this.questionId = questionId
         positionAnswer = position
     }

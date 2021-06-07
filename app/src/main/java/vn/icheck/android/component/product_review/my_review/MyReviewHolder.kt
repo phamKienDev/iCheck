@@ -67,7 +67,7 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
             } else {
                 tvDesReview.visibility = View.VISIBLE
                 tvDesReview.text = if (data.content!!.length > 130) {
-                    Html.fromHtml(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130)))
+                    Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130))))
                 } else {
                     data.content
                 }

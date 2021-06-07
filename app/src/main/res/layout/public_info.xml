@@ -216,7 +216,7 @@
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Họ" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/edt_first_name"
                     style="@style/text_black_barlow"
                     tools:text="Tran" />
@@ -236,7 +236,7 @@
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Tên" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/edt_last_name"
                     style="@style/text_black_barlow"
                     tools:text="Van tam"
@@ -258,7 +258,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/txtBirthday"
                     style="@style/text_black_barlow"
                     tools:text="24/10/2010"/>
@@ -278,7 +278,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/edtPhone"
                     style="@style/text_black_barlow"
                     tools:text="0989187893"/>
@@ -313,7 +313,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/edtEmail"
                     style="@style/text_black_barlow"
                     tools:text="donsogd@gmail.com"
@@ -347,7 +347,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/txtProvince"
                     style="@style/text_black_barlow"
                     tools:text="Ha noi" />
@@ -372,7 +372,7 @@
                     android:paddingRight="@dimen/size_32"
                     android:text="@string/quan_huyen" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/txtDistrict"
                     style="@style/text_black_barlow"
                     tools:text="Thanh xuan" />
@@ -393,7 +393,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/tvWard"
                     style="@style/text_black_barlow"
                     tools:text="Cau giay" />
@@ -414,7 +414,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@id/edtAddress"
                     style="@style/text_black_barlow"
                     tools:text="48 le van luong"
@@ -451,7 +451,7 @@
                         android:visibility="visible"
                         tools:visibility="gone" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
                         android:id="@+id/txtConfirmedDanhtinh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -461,7 +461,6 @@
                         android:paddingLeft="@dimen/size_8"
                         android:paddingTop="@dimen/size_3"
                         android:paddingRight="@dimen/size_8"
-                        android:textColor="@color/colorAccentGreen"
                         android:paddingBottom="@dimen/size_3"
                         android:text="Đã xác thực"
                         android:textSize="@dimen/font_14"
@@ -484,7 +483,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tai_khoan" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/id_user"
                     style="@style/text_black_barlow"
                     tools:text="IC-5u892"
@@ -496,7 +495,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/nguoi_theo_doi" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/total_follower"
                     style="@style/text_black_barlow"
                     tools:text="100.000"

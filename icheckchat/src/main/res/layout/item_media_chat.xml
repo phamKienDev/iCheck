@@ -16,7 +16,6 @@
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_black_opacity_50_corner_10"
         android:padding="30dp"
         android:visibility="gone"
         android:src="@drawable/ic_video_white_40dp_chat"/>
@@ -25,7 +24,6 @@
         android:id="@+id/tvCountImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_black_opacity_50_corner_10"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"

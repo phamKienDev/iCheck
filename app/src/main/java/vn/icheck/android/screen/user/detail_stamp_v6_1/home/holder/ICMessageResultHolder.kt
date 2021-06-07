@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemMessageResultBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICWidgetData
 
 class ICMessageResultHolder(parent: ViewGroup, val binding: ItemMessageResultBinding = ItemMessageResultBinding.inflate(LayoutInflater.from(parent.context), parent, false)): BaseViewHolder<ICWidgetData>(binding.root) {
@@ -17,7 +18,7 @@ class ICMessageResultHolder(parent: ViewGroup, val binding: ItemMessageResultBin
             binding.tvContent.text = obj.text
             binding.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_message_result_success, 0)
         } else {
-            binding.container.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+            binding.container.setBackgroundColor(Constant.getAccentRedColor(itemView.context))
             binding.tvTitle.setText(R.string.canh_bao_uppercase)
             binding.tvContent.text = obj.text
             binding.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_message_result_error, 0)

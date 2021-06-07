@@ -50,7 +50,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColor(context, R.color.colorNormalText),
+                    Constant.getNormalTextColor(context),
                     16f).also {
                 it.text = title
                         ?: context.getString(R.string.report_wrong_contribution_success_title)

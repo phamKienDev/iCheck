@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.util.dpToPx
 
@@ -33,7 +34,7 @@ open class CornerErrorEditText : AppCompatEditText {
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mErrorTextPaint.textSize = 12 * getResources().getDisplayMetrics().scaledDensity
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
+        mErrorTextPaint.color = Constant.getAccentRedColor(context)
         originalPadding = paddingBottom
         mBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mBackgroundPaint.strokeWidth = 1f.dpToPx()
@@ -79,7 +80,7 @@ open class CornerErrorEditText : AppCompatEditText {
     override fun setError(error: CharSequence?) {
         mError = error
 //        setBackgroundResource(R.drawable.red_stroke_corner_4)
-        mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+        mBackgroundPaint.setColor(Constant.getAccentRedColor(context))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
@@ -89,7 +90,7 @@ open class CornerErrorEditText : AppCompatEditText {
     override fun setError(error: CharSequence?, icon: Drawable?) {
         mError = error
 //        setBackgroundResource(R.drawable.red_stroke_corner_4)
-        mBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+        mBackgroundPaint.setColor(Constant.getAccentRedColor(context))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())

@@ -76,7 +76,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     private var showVendor: Int? = null
     private var showDistributor: Int? = null
 
-    private var objVendor : ICBarcodeProductV1.VendorPage? = null
+    private var objVendor: ICBarcodeProductV1.VendorPage? = null
     private var objUpdateCustomer: ICObjectCustomerHistoryGurantee? = null
 
     private var isShow = true
@@ -112,14 +112,17 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     }
 
     private fun setupView() {
-        constraintLayoutShop.background = ViewHelper.bgSecondaryCornersTop10(this)
-        constraintLayout1.background = ViewHelper.bgSecondaryCornersTop10(this)
-        layoutMoreDistributor.background = ViewHelper.bgSecondaryCornersTop10(this)
-        layoutMoreVendor.background = ViewHelper.bgSecondaryCornersTop10(this)
+        constraintLayoutShop.background = ViewHelper.bgSecondaryCornersTop10(this).apply {
+            constraintLayoutShop.background = this
+            constraintLayout1.background = this
+            layoutMoreDistributor.background = this
+            layoutMoreDistributor.background = this
+        }
 
         constraintLayout.background = ViewHelper.bgWhiteCornersBottom10(this)
         textFab.background = ViewHelper.bgSecondaryCorners45(this)
         tvMessageGuarantee.background = ViewHelper.bgOutlineSecondary1Corners8(this)
+        linearLayout.background = ViewHelper.bgAccentGreenCornersLeft45(this)
     }
 
     private fun initGps() {
@@ -205,7 +208,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
         }
 
         layoutMoreVendor.setOnClickListener {
-            PageDetailActivity.start(this,objVendor?.id!!,Constant.PAGE_ENTERPRISE_TYPE)
+            PageDetailActivity.start(this, objVendor?.id!!, Constant.PAGE_ENTERPRISE_TYPE)
         }
 
         layoutMoreDistributor.setOnClickListener {
@@ -220,7 +223,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
             val intent = Intent(this, UpdateInformationStampV5Activity::class.java)
             intent.putExtra(Constant.DATA_2, idStamp)
             intent.putExtra(Constant.DATA_3, objUpdateCustomer)
-            startActivityForResult(intent,requestUpdateCustomer)
+            startActivityForResult(intent, requestUpdateCustomer)
         }
 
         tvWebsiteDistributor.setOnClickListener {
@@ -289,7 +292,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
                 } else {
                     scrollView.visibility = View.VISIBLE
                 }
-            }else{
+            } else {
                 scrollView.visibility = View.VISIBLE
             }
         }
@@ -303,7 +306,7 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
             initScrollFab()
         }
 
-        if (obj.data?.stamp?.customer != null){
+        if (obj.data?.stamp?.customer != null) {
             objUpdateCustomer = obj.data?.stamp?.customer
         }
 
@@ -357,9 +360,9 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
         }
 
 // serial
-        tvSerial.text = if (!obj.data?.stamp?.serial.isNullOrEmpty()){
+        tvSerial.text = if (!obj.data?.stamp?.serial.isNullOrEmpty()) {
             "Serial: " + obj.data?.stamp?.serial
-        }else{
+        } else {
             getString(R.string.dang_cap_nhat)
         }
 
@@ -508,7 +511,11 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
 
             tvViewMore.visibleOrInvisible(adapter.getListData.size > 3)
             tvViewMore.setOnClickListener {
-                ActivityHelper.startActivity<ListProductsECommerceActivity>(this@DetailStampV5Activity, Constant.DATA_1, JsonHelper.toJson(obj.data?.product_link ?: mutableListOf()))
+                ActivityHelper.startActivity<ListProductsECommerceActivity>(
+                    this@DetailStampV5Activity,
+                    Constant.DATA_1,
+                    JsonHelper.toJson(obj.data?.product_link ?: mutableListOf())
+                )
             }
         }
 
@@ -680,14 +687,14 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
                     }
                     isShow = true
                     textFab.animate()
-                            .translationY(0f)
-                            .setDuration(300)
-                            .setListener(object : AnimatorListenerAdapter() {
-                                override fun onAnimationEnd(animation: Animator?) {
-                                    super.onAnimationEnd(animation)
-                                    textFab.visibility = View.VISIBLE
-                                }
-                            })
+                        .translationY(0f)
+                        .setDuration(300)
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator?) {
+                                super.onAnimationEnd(animation)
+                                textFab.visibility = View.VISIBLE
+                            }
+                        })
                 }
                 scrollY > oldScrollY -> {
                     if (!isShow) {
@@ -780,11 +787,15 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
                 presenter.onGetDataIntent(intent)
                 initGps()
             } else {
-                DialogHelper.showNotification(this@DetailStampV5Activity, R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi, false, object : NotificationDialogListener {
-                    override fun onDone() {
-                        onBackPressed()
-                    }
-                })
+                DialogHelper.showNotification(
+                    this@DetailStampV5Activity,
+                    R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi,
+                    false,
+                    object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
             }
         }
 

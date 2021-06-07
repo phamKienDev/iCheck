@@ -13,14 +13,13 @@
         android:background="@drawable/bg_white_corners_8"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="@string/chon_anh"
             android:visibility="gone"
-            android:textColor="#b4b4b4"
             android:textSize="14sp"
             android:textStyle="normal" />
 

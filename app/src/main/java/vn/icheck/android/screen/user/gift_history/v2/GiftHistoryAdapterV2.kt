@@ -102,6 +102,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICItemReward) {
             itemView.imgGift.background=ViewHelper.bgGrayCorners4(itemView.context)
+            itemView.tvAction.background=ViewHelper.bgAccentGreenCornersTopLeft14(itemView.context)
 
             WidgetUtils.loadImageUrl(itemView.imgLogoPage, obj.logo, R.drawable.ic_business_v2)
 

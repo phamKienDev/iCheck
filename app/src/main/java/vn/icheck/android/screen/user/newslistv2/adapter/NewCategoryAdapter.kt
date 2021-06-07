@@ -43,7 +43,7 @@ class NewCategoryAdapter(val listData: MutableList<ICArticleCategory>) : Recycle
         override fun bind(obj: ICArticleCategory) {
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvChecked.apply {
-                    background = ViewHelper.createDrawableStateList(vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context), ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_light_blue))
+                    background = ViewHelper.createDrawableStateList(vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context), vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context))
                     setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context, R.color.grayB4), ContextCompat.getColor(itemView.context, R.color.white)))
                     text = obj.name
 

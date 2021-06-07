@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:paddingStart="@dimen/size_12"
     android:paddingTop="@dimen/size_10"
+    android:background="@color/white"
     android:paddingEnd="@dimen/size_12"
     android:paddingBottom="@dimen/size_12">
 
@@ -88,6 +89,5 @@
         android:gravity="center_vertical"
         android:maxLines="3"
         android:minLines="1"
-        android:textColor="#757575"
         tools:text="Các thực phẩm nên bổ sung đầy đủ mùa dịch Covid. Câu mở đầu của bài tin tức \n(Tối đa 3 dòng)..." />
-</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
+</LinearLayout>

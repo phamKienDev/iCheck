@@ -53,7 +53,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                             text = "Đang diễn ra"
                         }
                         "finished" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.black_21))
+                            setTextColor(Constant.getNormalTextColor(context))
                             text = "Đã kết thúc"
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }

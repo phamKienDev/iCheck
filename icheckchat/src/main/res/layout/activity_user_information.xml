@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/btnDeleteMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,8 +120,7 @@
                 android:paddingTop="14dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="14dp"
-                android:text="@string/xoa_cuoc_tro_chuyen"
-                android:textColor="@color/colorAccentRed" />
+                android:text="@string/xoa_cuoc_tro_chuyen"/>
 
             <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
                 android:id="@+id/layoutImage"

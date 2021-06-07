@@ -85,8 +85,28 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     private fun setupView() {
-        binding.layoutSelectCity.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
-        binding.layoutSelectDistrict.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        ViewHelper.bgTransparentStrokeLineColor1Corners4(this).apply {
+            binding.layoutSelectCity.background=this
+            binding.layoutSelectDistrict.background=this
+            binding.edtPhone.background=this
+            binding.edtName.background=this
+            binding.edtEmail.background=this
+            binding.edtAddress.background=this
+            binding.edtProductCode.background=this
+            binding.edtVariant.background=this
+        }
+
+        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this).apply {
+            binding.edtPhone.setHintTextColor(this)
+            binding.edtName.setHintTextColor(this)
+            binding.edtEmail.setHintTextColor(this)
+            binding.tvCities.setHintTextColor(this)
+            binding.tvDistricts.setHintTextColor(this)
+            binding.edtAddress.setHintTextColor(this)
+            binding.edtProductCode.setHintTextColor(this)
+            binding.edtVariant.setHintTextColor(this)
+        }
+
         binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
     }
 

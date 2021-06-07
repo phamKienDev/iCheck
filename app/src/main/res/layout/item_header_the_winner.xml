@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@id/imgAvatarTop2"
             tools:text="Nguyễn Minh Châu Haha" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
             android:id="@+id/tviCoinTop2"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -138,7 +138,6 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top2"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop2"
@@ -200,7 +199,7 @@
             app:layout_constraintStart_toStartOf="@id/top1"
             tools:text="Nguyễn Thị Thành Haha" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
             android:id="@+id/tviCoinTop1"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -210,7 +209,6 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top1"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop1"
@@ -273,7 +271,7 @@
             app:layout_constraintTop_toBottomOf="@id/imgAvatarTop3"
             tools:text="Vũ Thị Mỹ Linh Haha" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
             android:id="@+id/tviCoinTop3"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -284,7 +282,6 @@
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/dang_cap_nhat"
-            android:textColor="@color/colorAccentYellow"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/top3"
             app:layout_constraintEnd_toEndOf="@id/tvNameTop3"

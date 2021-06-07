@@ -2,12 +2,10 @@ package vn.icheck.android.ichecklibs.view.secondary
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 
-class TextBarlowMediumSecondary : AppCompatTextView {
+class TextBarlowMediumSecondary : TextBarlowMedium {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }
@@ -15,7 +13,5 @@ class TextBarlowMediumSecondary : AppCompatTextView {
 
     private fun setup() {
         setTextColor(Constant.getSecondaryColor(context))
-        typeface = ResourcesCompat.getFont(context, R.font.barlow_medium)
-        includeFontPadding = false
     }
 }

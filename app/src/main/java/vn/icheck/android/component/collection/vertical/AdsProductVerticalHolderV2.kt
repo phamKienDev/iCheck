@@ -211,7 +211,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                 tvVerified.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 tvVerified.includeFontPadding = false
                 tvVerified.setText(R.string.verified)
-                tvVerified.setTextColor(ContextCompat.getColor(context, R.color.green_text_verified_product))
+                tvVerified.setTextColor(Constant.getAccentGreenColor(context))
                 tvVerified.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 tvVerified.gravity = Gravity.CENTER_VERTICAL
             })

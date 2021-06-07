@@ -300,7 +300,7 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
 
         KeyboardUtils.showSoftInput(edt_enter_message)
 
-        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.binh_luan_xxx, nameOwner))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_xxx, nameOwner)))
 
         img_send.setOnClickListener {
             if (edt_enter_message.text.toString().isNotEmpty()) {

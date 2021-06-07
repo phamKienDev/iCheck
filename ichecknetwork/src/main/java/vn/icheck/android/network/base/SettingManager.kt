@@ -1,6 +1,7 @@
 package vn.icheck.android.network.base
 
 import com.google.gson.Gson
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.network.models.ICConfigUpdateApp
@@ -82,10 +83,26 @@ object SettingManager {
         }
         set(value) {
             SPStaticUtils.put(TagConstants.SETTING_THEME, JsonHelper.toJson(value ?: ICThemeSetting()))
+            setAppTheme(value)
         }
 
     fun setDeviceID(deviceID: String) {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
+    }
+
+    fun setAppTheme(icThemeSetting: ICThemeSetting?){
+        icThemeSetting?.let {
+            Constant.appBackgroundColor=it.theme?.appBackgroundColor?:""
+
+            Constant.popupBackgroundColor=it.theme?.popupBackgroundColor ?: ""
+
+            Constant.primaryColor=it.theme?.primaryColor?:""
+            Constant.secondaryColor=it.theme?.secondaryColor?:""
+
+            Constant.normalTextColor=it.theme?.normalTextColor?:""
+            Constant.secondTextColor=it.theme?.secondTextColor?:""
+            Constant.disableTextColor=it.theme?.disableTextColor?:""
+        }
     }
 
     val getDeviceID: String

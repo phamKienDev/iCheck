@@ -659,7 +659,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                         } else {
                             EnterpriseModelV2(owner!!.apply {
                                 icon = R.drawable.ic_not_verified_24px
-                                background = R.color.colorDisableText
+                                background = R.color.grayB4
                             })
                         }
                     }
@@ -739,7 +739,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                 } else {
                     owner!!.apply {
                         icon = R.drawable.ic_not_verified_24px
-                        background = R.color.colorDisableText
+                        background = R.color.grayB4
                     }
                 }
             }
@@ -756,7 +756,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
                 newLayout.data = productDetail.unverifiedOwner?.apply {
                     icon = R.drawable.ic_not_verified_24px
-                    background = R.color.colorDisableText
+                    background = R.color.grayB4
                 }
                 onAddLayout.value = newLayout
             }

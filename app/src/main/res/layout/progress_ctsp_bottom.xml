@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="7.0" />
 
-    <vn.icheck.android.ichecklibs.view.accent.accent_blue.ProgressBarAccentBlue
+    <vn.icheck.android.ichecklibs.view.accent.accentblue.ProgressBarAccentBlue
         android:id="@+id/tv_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"

@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import java.lang.reflect.Field
 
@@ -17,9 +18,9 @@ class TabLayoutWidthIndicatorPrimary @JvmOverloads constructor(context: Context,
         isTabIndicatorFullWidth = false
         setIndicatorWidth(70)
 
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+        val primaryColor = Constant.getPrimaryColor(context)
         setSelectedTabIndicatorColor(primaryColor)
-        setTabTextColors(ContextCompat.getColor(context, R.color.colorDisableText), primaryColor)
+        setTabTextColors(Constant.getDisableTextColor(context), primaryColor)
     }
 
     private inner class DefPreDrawListener : ViewTreeObserver.OnPreDrawListener {

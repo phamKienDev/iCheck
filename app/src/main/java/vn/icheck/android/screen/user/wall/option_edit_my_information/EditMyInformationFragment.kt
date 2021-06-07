@@ -599,7 +599,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                 1 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_yellow_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.cho_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccentYellow))
+                    binding.txtConfirmedDanhtinh.setTextColor(Constant.getAccentYellowColor(requireContext()))
                     binding.txtConfirmedDanhtinh.setOnClickListener {
                         lifecycleScope.launch {
                             binding.txtConfirmedDanhtinh.isEnabled = false

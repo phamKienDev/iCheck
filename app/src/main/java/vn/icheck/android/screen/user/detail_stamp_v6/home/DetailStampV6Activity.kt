@@ -116,11 +116,14 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
         constraintLayout.background = ViewHelper.bgWhiteCornersBottom10(this)
         textFab.background = ViewHelper.bgSecondaryCorners45(this)
         tvMessageGuarantee.background = ViewHelper.bgOutlineSecondary1Corners8(this)
+        linearLayout.background = ViewHelper.bgAccentGreenCornersLeft45(this)
 
-        constraintLayout1.background = ViewHelper.bgSecondaryCornersTop10(this)
-        constraintLayout2.background = ViewHelper.bgSecondaryCornersTop10(this)
-        layoutMoreVendor.background = ViewHelper.bgSecondaryCornersTop10(this)
-        layoutMoreDistributor.background = ViewHelper.bgSecondaryCornersTop10(this)
+        ViewHelper.bgSecondaryCornersTop10(this).apply {
+            constraintLayout1.background = this
+            constraintLayout2.background = this
+            layoutMoreVendor.background = this
+            layoutMoreDistributor.background = this
+        }
 
     }
 
@@ -687,14 +690,14 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
                     }
                     isShow = true
                     textFab.animate()
-                            .translationY(0f)
-                            .setDuration(300)
-                            .setListener(object : AnimatorListenerAdapter() {
-                                override fun onAnimationEnd(animation: Animator?) {
-                                    super.onAnimationEnd(animation)
-                                    textFab.visibility = View.VISIBLE
-                                }
-                            })
+                        .translationY(0f)
+                        .setDuration(300)
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator?) {
+                                super.onAnimationEnd(animation)
+                                textFab.visibility = View.VISIBLE
+                            }
+                        })
                 }
                 scrollY > oldScrollY -> {
                     if (!isShow) {
@@ -795,11 +798,15 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
                 presenter.onGetDataIntent(intent)
                 initGps()
             } else {
-                DialogHelper.showNotification(this@DetailStampV6Activity, R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi, false, object : NotificationDialogListener {
-                    override fun onDone() {
-                        onBackPressed()
-                    }
-                })
+                DialogHelper.showNotification(
+                    this@DetailStampV6Activity,
+                    R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi,
+                    false,
+                    object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
             }
         }
 

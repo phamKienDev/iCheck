@@ -16,6 +16,7 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_CONVERSATION
 import vn.icheck.android.chat.icheckchat.databinding.ItemConversationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.util.*
 
 class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCConversation>(callback) {
@@ -89,6 +90,8 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: MCConversation) {
+            binding.tvCountMessage.background=ViewHelper.bgAccentRedCorners4(itemView.context)
+
             binding.imgMuteNotification.setGone()
 
             checkNullOrEmpty(binding.tvNameUser, obj.targetUserName)

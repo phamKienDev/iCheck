@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/txtMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +23,5 @@
         android:gravity="center"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/black_21"
         android:layout_marginBottom="@dimen/size_16"/>
 </LinearLayout>

@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_remider_36px" />
 
-            <vn.icheck.android.ichecklibs.view.accent.accent_red.TextAccentRed
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tv_show_all_reminders"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -146,11 +146,12 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
+    <FrameLayout
         android:id="@+id/toolbarBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
         android:alpha="0"
+        android:background="@color/white"
         android:clickable="false"
         android:focusable="false"
         app:layout_constraintBottom_toBottomOf="@id/layoutHeader"
@@ -161,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
-    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutHeader"
@@ -220,10 +221,9 @@
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@id/tvCartCount"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_22"
             android:layout_height="@dimen/size_22"
             android:layout_marginStart="@dimen/size_24"
-            android:background="@drawable/bg_home_notification"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"

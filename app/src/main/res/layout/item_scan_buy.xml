@@ -25,13 +25,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
+        android:background="@drawable/bg_white_corners_8"
         app:layout_constraintTop_toBottomOf="@id/tvExist"
         app:layout_goneMarginTop="@dimen/size_6">
 
@@ -187,7 +188,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutShop" />
-    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@id/imgClose"

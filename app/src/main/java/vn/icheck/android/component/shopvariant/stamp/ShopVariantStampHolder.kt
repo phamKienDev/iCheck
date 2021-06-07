@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -53,9 +54,11 @@ class ShopVariantStampHolder(view: View) : BaseViewHolder<ICShopVariant>(view) {
         val rcvListService = itemView.rcvServiceShopVariant as RecyclerView
         val constraintLayout = itemView.constraintLayout as ConstraintLayout
         val constraintLayout1 = itemView.constraintLayout1 as ConstraintLayout
+        val linearLayout = itemView.linearLayout as LinearLayout
 
         constraintLayout.background=ViewHelper.bgWhiteCornersBottom10(itemView.context)
         constraintLayout1.background=ViewHelper.bgSecondaryCornersTop10(itemView.context)
+        linearLayout.background=ViewHelper.bgAccentGreenCornersLeft45(itemView.context)
 
         if (obj.shop?.is_online == true) {
             if (obj.is_active == true) {

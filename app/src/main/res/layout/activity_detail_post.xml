@@ -350,7 +350,6 @@
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_7"
-            android:background="@drawable/bg_blue_border_6"
             android:orientation="vertical"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/size_4"
