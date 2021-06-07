@@ -204,7 +204,6 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 
         binding.btnSendMsg.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                ListConversationFragment.finishAllChat()
                 ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->

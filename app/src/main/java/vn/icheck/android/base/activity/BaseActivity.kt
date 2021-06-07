@@ -111,10 +111,6 @@ abstract class BaseActivity<P : BaseActivityPresenter> : AppCompatActivity(), Ba
             if (!isHomeActivity()) {
                 ActivityUtils.finishActivity(this)
             }
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
-                ActivityUtils.finishActivity(this)
-            }
         }
     }
 

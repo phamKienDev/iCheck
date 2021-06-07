@@ -945,21 +945,23 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 var isFiltered = false
 
                 for (item in adapterMenu.listData) {
-                    if (item.type == ICViewTypes.FILTER_TYPE_HISTORY) {
-                        for (child in (item.data as MutableList<ICTypeHistory>)) {
-                            if (child.select) {
-                                isFiltered = true
-                                ScanHistoryFragment.listType.add(child.type!!)
-                                adapterMenu.applyCode[child.type ?: ""] = true
-                            }
-                        }
-                    } else if (item.type == ICViewTypes.FILTER_SHOP_HISTORY) {
-                        (item.data as MutableList<ICTypeHistory>).apply {
-                            for (child in this) {
+                    if (item.data != null) {
+                        if (item.type == ICViewTypes.FILTER_TYPE_HISTORY) {
+                            for (child in (item.data as MutableList<ICTypeHistory>)) {
                                 if (child.select) {
                                     isFiltered = true
-                                    ScanHistoryFragment.listIdBigCorp.add(child.idShop!!)
-                                    adapterMenu.applyShop[child.idShop ?: 0] = true
+                                    ScanHistoryFragment.listType.add(child.type!!)
+                                    adapterMenu.applyCode[child.type ?: ""] = true
+                                }
+                            }
+                        } else if (item.type == ICViewTypes.FILTER_SHOP_HISTORY) {
+                            (item.data as MutableList<ICTypeHistory>).apply {
+                                for (child in this) {
+                                    if (child.select) {
+                                        isFiltered = true
+                                        ScanHistoryFragment.listIdBigCorp.add(child.idShop!!)
+                                        adapterMenu.applyShop[child.idShop ?: 0] = true
+                                    }
                                 }
                             }
                         }
@@ -1061,7 +1063,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 checkLoginOrLogoutChat(false)
 
                 FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-                    ickLoginViewModel.loginDevice(token).observe(this, Observer {  })
+                    ickLoginViewModel.loginDevice(token).observe(this, Observer { })
                 }
             }
             ICMessageEvent.Type.ON_LOG_IN -> {

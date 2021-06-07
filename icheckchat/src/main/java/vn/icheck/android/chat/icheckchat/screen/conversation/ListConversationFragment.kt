@@ -38,13 +38,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     private val listData = mutableListOf<MCConversation>()
 
     companion object {
-        var isOpenChat = false
-
         var isOpenConversation = false
-
-        fun finishAllChat() {
-            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
-        }
 
         interface ICountMessageListener {
             fun getCountMessage(count: Long)
@@ -374,7 +368,6 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
     override fun onResume() {
         super.onResume()
-        isOpenChat = false
         isOpenConversation = true
     }
 

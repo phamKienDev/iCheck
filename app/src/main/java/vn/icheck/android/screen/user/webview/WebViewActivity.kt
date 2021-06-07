@@ -33,6 +33,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
+import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
@@ -325,6 +326,8 @@ class WebViewActivity : BaseActivityMVVM() {
     private fun handleNewUrl(view: WebView?, uri: Uri) {
         if (uri.scheme.equals("http") || uri.scheme.equals("https")) {
             view?.loadUrl(uri.toString())
+        } else if (uri.toString().contains("icheck://")) {
+            FirebaseDynamicLinksActivity.startDestinationUrl(this@WebViewActivity, uri.toString().replace("unsafe:", ""))
         } else if (uri.scheme.equals("intent")) {
             val appPackage = getAppPackageFromUri(uri)
 

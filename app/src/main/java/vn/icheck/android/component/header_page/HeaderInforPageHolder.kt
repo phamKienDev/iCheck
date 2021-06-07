@@ -140,15 +140,11 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             }
         }
 
-        itemView.tvChinh.setOnClickListener {
-            if (!itemView.tvChinh.text.contains("Theo dõi")) {
-                ListConversationFragment.finishAllChat()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
-
-//                SocialChatActivity.createRoomChat(it.context, data.id)
-            } else {
+        itemView.btnChinh.setOnClickListener {
+            if (itemView.tvChinh.text.contains("Theo dõi")) {
                 listener.followAndUnFollowPage(data)
+            } else {
+                ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
             }
         }
 

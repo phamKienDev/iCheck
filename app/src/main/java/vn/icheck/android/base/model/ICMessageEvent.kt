@@ -101,7 +101,6 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         UNFRIEND,
         ON_KYC_SUCCESS,
         ON_DESTROY_PVCOMBANK,
-        ON_FINISH_ALL_CHAT,
         ON_DISMISS,
         TAKE_IMAGE,
         OPEN_SEARCH_REVIEW_OR_PAGE,
