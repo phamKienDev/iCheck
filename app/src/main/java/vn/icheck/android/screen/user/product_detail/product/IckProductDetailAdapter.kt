@@ -68,15 +68,24 @@ import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
+import vn.icheck.android.network.base.OnClickBtnChatListener
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.listproductecommerce.holder.ListProductsECommerceHolder
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
 import vn.icheck.android.util.KeyboardUtils
 
-class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val productListener: ProductDetailListener, private val submitReviewListener: ISubmitReviewListener, private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener, private val listenerLogin: CampaignLoyaltyHelper.ILoginListener, private val listenerMyReview: IMyReviewListener) : RecyclerViewCustomAdapter<ICLayout>(listener) {
+class IckProductDetailAdapter(
+    listener: IRecyclerViewCallback,
+    private val productListener: ProductDetailListener,
+    private val submitReviewListener: ISubmitReviewListener,
+    private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
+    private val listenerLogin: CampaignLoyaltyHelper.ILoginListener,
+    private val listenerMyReview: IMyReviewListener,
+    private val onClickBtnChatListener: OnClickBtnChatListener
+) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var sharedPool: RecyclerView.RecycledViewPool? = null
-    private var refeshTextReview=true
+    private var refeshTextReview = true
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)
 //        sharedPool = recyclerView.recycledViewPool
@@ -96,8 +105,8 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
         notifyItemRemoved(0)
     }
 
-    fun setRefeshTextReview(refesh:Boolean){
-        refeshTextReview=refesh
+    fun setRefeshTextReview(refesh: Boolean) {
+        refeshTextReview = refesh
     }
 
     fun removeContributionEnterprise() {
@@ -262,28 +271,50 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
 
     override fun getViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ICViewTypes.IMAGE_VIDEO_SLIDER -> ICImageVideoSlider.createAttachments(parent, sharedPool)
+            ICViewTypes.IMAGE_VIDEO_SLIDER -> ICImageVideoSlider.createAttachments(
+                parent,
+                sharedPool
+            )
             ICViewTypes.HEADER_TYPE -> HeaderInforProductComponent.create(parent, productListener)
             ICViewTypes.REVIEW_SUMMARY_TYPE -> ReviewSummaryHolder(parent)
             ICViewTypes.SHOP_VARIANT_TYPE -> ProductDetailShopHolder(parent)
             ICViewTypes.TRANSPARENCY_TYPE -> MbttHolder.create(parent)
             ICViewTypes.ENTERPRISE_TYPE -> EnterpriseComponentV2(parent, sharedPool)
-            ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> EmptyContributionEnterpriseHolder(parent, productListener)
-            ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent)
+            ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> EmptyContributionEnterpriseHolder(
+                parent,
+                productListener
+            )
+            ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent, onClickBtnChatListener)
             ICViewTypes.VENDOR_TYPE -> VendorHolder(parent, sharedPool)
             ICViewTypes.DISTRIBUTOR -> DistributorHolder(parent, sharedPool)
             ICViewTypes.LIST_REVIEWS_TYPE -> ProductListReviewHolder(parent, sharedPool)
-            ICViewTypes.SUBMIT_REVIEW_TYPE -> SubmitReviewHolder(parent, sharedPool, submitReviewListener)
+            ICViewTypes.SUBMIT_REVIEW_TYPE -> SubmitReviewHolder(
+                parent,
+                sharedPool,
+                submitReviewListener
+            )
             ICViewTypes.MY_REVIEW_TYPE -> MyReviewHolder(parent, listenerMyReview)
-            ICViewTypes.QUESTIONS_ANSWER_TYPE -> ProductQuestionHolder(parent, sharedPool, productListener)
+            ICViewTypes.QUESTIONS_ANSWER_TYPE -> ProductQuestionHolder(
+                parent,
+                sharedPool,
+                productListener
+            )
             ICViewTypes.EMPTY_QA_TYPE -> ProductEmptyQaHolder(parent)
             ICViewTypes.DESCRIPTION_TYPE -> ProductInformationHolder(parent)
             ICViewTypes.CONTRIBUTE_USER -> ContributionHolder(parent)
             ICViewTypes.EMPTY_CONTRIBUTE_USER -> NoContributionHolder(parent)
-            ICViewTypes.RELATED_PRODUCT_TYPE -> RelatedProductHolder(parent, sharedPool, Color.TRANSPARENT)
+            ICViewTypes.RELATED_PRODUCT_TYPE -> RelatedProductHolder(
+                parent,
+                sharedPool,
+                Color.TRANSPARENT
+            )
             ICViewTypes.CHUNG_CHI_TYPE -> CertificationsHolder(parent, sharedPool)
             ICViewTypes.VERIFIED_TYPE -> ProductVerifiedHolder(parent)
-            ICViewTypes.OWNER_PRODUCT_TYPE -> ListProductHorizontalHolder(parent, sharedPool, Color.TRANSPARENT)
+            ICViewTypes.OWNER_PRODUCT_TYPE -> ListProductHorizontalHolder(
+                parent,
+                sharedPool,
+                Color.TRANSPARENT
+            )
             ICViewTypes.TYPE_BOTTOM -> BottomInfoHolder(parent, productListener)
             ICViewTypes.ADS_NEWS -> AdsNewHolder(parent)
             ICViewTypes.ADS_PAGE -> AdsPageHolder(parent)
@@ -305,13 +336,21 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ProductDetailShopHolder).bind(listData[position].data as ShopProductModel)
             ICViewTypes.TRANSPARENCY_TYPE -> (holder as MbttHolder).bind(listData[position].data as MbttModel)
             ICViewTypes.ENTERPRISE_TYPE -> (holder as EnterpriseComponentV2).bind(listData[position].data as EnterpriseModelV2)
-            ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> (holder as EmptyContributionEnterpriseHolder).bind(listData[position].data as InformationContributionModel)
+            ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> (holder as EmptyContributionEnterpriseHolder).bind(
+                listData[position].data as InformationContributionModel
+            )
             ICViewTypes.VERIFIED_TYPE -> (holder as ProductVerifiedHolder).bind(listData[position].data as ICClientSetting)
             ICViewTypes.NOT_VERIFIED_TYPE -> (holder as ProductNotVerifiedHolder).bind(listData[position].data as ProductNotVerifiedModel)
             ICViewTypes.VENDOR_TYPE -> (holder as VendorHolder).bind(listData[position].data as VendorModel)
-            ICViewTypes.DISTRIBUTOR -> (holder as DistributorHolder).bind(listData[position].data as DistributorModel, IckProductDetailActivity.urlDistributor)
+            ICViewTypes.DISTRIBUTOR -> (holder as DistributorHolder).bind(
+                listData[position].data as DistributorModel,
+                IckProductDetailActivity.urlDistributor
+            )
             ICViewTypes.LIST_REVIEWS_TYPE -> (holder as ProductListReviewHolder).bind(listData[position].data as ProductListReviewModel)
-            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }
+            ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(
+                listData[position].data as SubmitReviewModel,
+                refeshTextReview
+            ).apply { refeshTextReview = false }
             ICViewTypes.MY_REVIEW_TYPE -> (holder as MyReviewHolder).bind(listData[position].data as MyReviewModel)
             ICViewTypes.QUESTIONS_ANSWER_TYPE -> (holder as ProductQuestionHolder).bind(listData[position].data as ProductQuestionModel)
             ICViewTypes.EMPTY_QA_TYPE -> (holder as ProductEmptyQaHolder).bind(listData[position].data as EmptyQAModel)
@@ -336,8 +375,17 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
                             ICheckApplication.currentActivity()?.let { activity ->
                                 if (activity is IckProductDetailActivity) {
                                     isEnabled = false
-                                    CampaignLoyaltyHelper.checkCodeLoyalty(activity, (listData[position].data as ICKLoyalty), itemView.findViewById<AppCompatEditText>(R.id.edittext).text.toString().trim(), IckProductDetailActivity.barcode, listenerLoyalty, listenerLogin)
-                                    itemView.findViewById<AppCompatEditText>(R.id.edittext).setText("")
+                                    CampaignLoyaltyHelper.checkCodeLoyalty(
+                                        activity,
+                                        (listData[position].data as ICKLoyalty),
+                                        itemView.findViewById<AppCompatEditText>(R.id.edittext).text.toString()
+                                            .trim(),
+                                        IckProductDetailActivity.barcode,
+                                        listenerLoyalty,
+                                        listenerLogin
+                                    )
+                                    itemView.findViewById<AppCompatEditText>(R.id.edittext)
+                                        .setText("")
                                     Handler().postDelayed({
                                         isEnabled = true
                                     }, 3000)
@@ -347,7 +395,9 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
                     }
                 }
             }
-            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(listData[position].data as MutableList<ICProductECommerce>)
+            ICViewTypes.PRODUCT_ECCOMMERCE_TYPE -> (holder as ListProductsECommerceHolder).bind(
+                listData[position].data as MutableList<ICProductECommerce>
+            )
             else -> super.onBindViewHolder(holder, position)
         }
     }
