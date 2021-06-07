@@ -1,22 +1,18 @@
 package vn.icheck.android.component.product.enterprise
 
-import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.DialogPageInfoBinding
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import vn.icheck.android.network.models.ICWidgetData
+import vn.icheck.android.util.kotlin.GlideImageGetter
 
 class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
     private lateinit var binding: DialogPageInfoBinding
@@ -24,7 +20,7 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
 
     companion object {
         fun show(fragmentManager: FragmentManager, obj: ICWidgetData) {
-            if (fragmentManager.findFragmentByTag(ICPageInfoDialog::class.java.simpleName)?.isInLayout != true) {
+            if (fragmentManager.findFragmentByTag(ICPageInfoDialog::class.java.simpleName)?.isAdded != true) {
                 ICPageInfoDialog().apply {
                     setData(obj)
                     show(fragmentManager, ICPageInfoDialog::class.java.simpleName)
@@ -47,7 +43,13 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
         binding.tvEmail.text = obj.email
         binding.tvWebsite.text = obj.website
         binding.tvGln.text = obj.code
-        binding.tvDescription.text = obj.description
+
+        val imageGetter = GlideImageGetter(binding.tvDescription)
+        binding.tvDescription.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(obj.description ?: "", Html.FROM_HTML_MODE_LEGACY, imageGetter, null) as Spannable
+        } else {
+            Html.fromHtml(obj.description ?: "", imageGetter, null)
+        }
 
         binding.tvPhone.setOnClickListener {
             Constant.callPhone(obj.phone)
@@ -62,28 +64,5 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
 
     fun setData(obj: ICWidgetData) {
         this.obj = obj
-    }
-
-    private fun getSpannable(title: Int, value: String?, firstColor: Int, secondColor: Int): SpannableString {
-        val mValue = getContent(value)
-
-        val spannable = SpannableString(getString(title, mValue))
-        spannable.setSpan(ForegroundColorSpan(firstColor), 0, spannable.length - mValue.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(StyleSpan(Typeface.BOLD), 0, spannable.length - mValue.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(ForegroundColorSpan(secondColor), spannable.length - mValue.length, spannable.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        return spannable
-    }
-
-    private fun getContent(text: String?): String {
-        return if (text.isNullOrEmpty()) {
-            getString(R.string.dang_cap_nhat)
-        } else {
-            text
-        }
-    }
-
-    private fun getColor(colorID: Int): Int {
-        return ContextCompat.getColor(requireContext(), colorID)
     }
 }
