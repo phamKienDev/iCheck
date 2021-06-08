@@ -468,11 +468,11 @@ object Constant {
         }
     }
 
-    fun getName(lastName: String?, firstName: String?): String {
+    fun getName(lastName: String?, firstName: String?, default: String = ICheckApplication.getString(R.string.dang_cap_nhat)): String {
         return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
             "${lastName ?: ""} ${firstName ?: ""}".trim()
         } else {
-            ICheckApplication.getString(R.string.dang_cap_nhat)
+            default
         }
     }
 

@@ -306,7 +306,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                             binding.edtPhone.setText(user.phone)
                             setupSearchCustomer()
 
-                            binding.edtName.setText(user.first_name + user.last_name)
+                            binding.edtName.setText(Constant.getName(user.last_name, user.first_name, ""))
                             binding.edtEmail.setText(user.email)
                             binding.tvCities.text = user.city?.name
                             binding.tvDistricts.text = user.district?.name
