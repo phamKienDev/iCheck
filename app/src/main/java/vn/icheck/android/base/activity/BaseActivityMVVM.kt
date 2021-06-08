@@ -35,7 +35,6 @@ import java.io.Serializable
 abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback,
     TokenTimeoutCallback, RequestChat {
 
-    var requestUserLoggedChatCode = 9999
     var onRequestUserLoginSuccess: () -> Unit = {}
 
     var job: Job? = null
@@ -91,18 +90,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
             if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
                 ActivityUtils.finishActivity(this)
             }
-        }
-    }
-
-    override fun onCheckSessionWhenChat(
-        onIsUserLogged: () -> Unit,
-        onRequestUserLoginSuccess: () -> Unit
-    ) {
-        if (SessionManager.isUserLogged) {
-            onIsUserLogged()
-        } else {
-            this.onRequestUserLoginSuccess = onRequestUserLoginSuccess
-            onRequireLogin(requestUserLoggedChatCode)
         }
     }
 
@@ -162,10 +149,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
 
-    override fun onRequireLoginSuccess(requestCode: Int) {
-        if (requestCode == requestUserLoggedChatCode) {
-            onRequestUserLoginSuccess()
-        }
+    override fun onRequireLoginSuccess(requestCode: Int){
+
     }
 
     override fun onRequireLoginCancel() {
