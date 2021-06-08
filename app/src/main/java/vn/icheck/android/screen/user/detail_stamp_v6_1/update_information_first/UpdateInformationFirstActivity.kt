@@ -334,7 +334,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     resetCustomerInfo()
                 }
                 Status.ERROR_REQUEST -> {
-                    showLongError(ICheckApplication.getError(it.message))
+                    showLongError(R.string.khong_tim_thay_tai_khoan)
                     resetCustomerInfo()
                 }
                 Status.SUCCESS -> {
