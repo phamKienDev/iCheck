@@ -9,7 +9,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.ichecklibs.R
 
-
 open class BaseBottomSheetDialogFragment: BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
@@ -18,7 +17,7 @@ open class BaseBottomSheetDialogFragment: BottomSheetDialogFragment() {
                 dialog.setOnShowListener {
                     val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
                     val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 }
             }
 }

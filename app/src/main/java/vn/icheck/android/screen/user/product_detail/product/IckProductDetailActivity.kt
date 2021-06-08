@@ -758,9 +758,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             onCheckSessionWhenChat({
                 if (!viewModel.verifyProduct) {
                     if (!viewModel.urlBuy.isNullOrEmpty()) {
-                        val bottomSheetWebView = BottomSheetWebView(this)
-                        bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
-                    }
+                        BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")                    }
                 } else {
                     if (viewModel.productDetail?.owner?.verified == true) {
                         ChatSocialDetailActivity.createRoomChat(
