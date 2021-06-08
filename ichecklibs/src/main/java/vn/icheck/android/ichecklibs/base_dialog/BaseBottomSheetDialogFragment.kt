@@ -17,7 +17,7 @@ open class BaseBottomSheetDialogFragment: BottomSheetDialogFragment() {
                 dialog.setOnShowListener {
                     val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
                     val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             }
 }
