@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICStampV61
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
@@ -19,6 +20,8 @@ class DetailStampRepository : BaseRepository() {
 
     suspend fun getDetailStampV61(user: ICUpdateCustomerGuarantee?, barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
         val body = JsonObject()
+
+        val loginUser = SessionManager.session.user
 
         if (user != null) {
             body.add("customer", JsonObject().apply {
@@ -51,40 +54,52 @@ class DetailStampRepository : BaseRepository() {
                     })
                 }
             })
+        } else if (loginUser != null) {
+            body.add("customer", JsonObject().apply {
+                val name = Constant.getName(loginUser.last_name, loginUser.first_name, "")
+                if (name.isNotEmpty()) {
+                    addProperty("name", name)
+                }
+                if (!loginUser.phone.isNullOrEmpty()) {
+                    addProperty("phone", loginUser.phone!!)
+                }
+                if (!loginUser.email.isNullOrEmpty()) {
+                    addProperty("email", loginUser.email!!)
+                }
+                if (!loginUser.address.isNullOrEmpty()) {
+                    addProperty("address", loginUser.address!!)
+                }
+                if (loginUser.district_id ?: 0 > 0) {
+                    addProperty("district", loginUser.district_id!!)
+                }
+                if (loginUser.city_id ?: 0 > 0) {
+                    addProperty("city", loginUser.city_id!!)
+                }
+            })
         }
 
-        SessionManager.session.user?.let { mUser ->
-            val name = if (mUser.last_name.isNullOrEmpty()) {
-                mUser.first_name
-            } else {
-                if (!mUser.first_name.isNullOrEmpty()) {
-                    mUser.last_name + " " + mUser.first_name
-                } else {
-                    mUser.last_name
-                }
+        if (loginUser != null) {
+            if (loginUser.id != 0L) {
+                body.addProperty("icheck_id", "i-${loginUser.id}")
             }
-
-            if (mUser.id != 0L) {
-                body.addProperty("icheckId", "i-${mUser.id}")
-            }
-            if (!name.isNullOrEmpty()) {
+            val name = Constant.getName(loginUser.last_name, loginUser.first_name, "")
+            if (name.isNotEmpty()) {
                 body.addProperty("name", name)
             }
-            if (!mUser.phone.isNullOrEmpty()) {
-                body.addProperty("phone", mUser.phone!!)
+            if (!loginUser.phone.isNullOrEmpty()) {
+                body.addProperty("phone", loginUser.phone!!)
             }
-            if (!mUser.email.isNullOrEmpty()) {
-                body.addProperty("email", mUser.email!!)
+            if (!loginUser.email.isNullOrEmpty()) {
+                body.addProperty("email", loginUser.email!!)
             }
-            if (!mUser.address.isNullOrEmpty()) {
-                body.addProperty("address", mUser.address!!)
+            if (!loginUser.address.isNullOrEmpty()) {
+                body.addProperty("address", loginUser.address!!)
             }
         }
 
         val currentTime = System.currentTimeMillis()
-        val sourceApp = Base64.encodeToString("isIcheck=true&time=$currentTime".toByteArray(Charsets.UTF_8), Base64.DEFAULT).toString().trim()
-
         body.addProperty("sourceTime", currentTime)
+        val sourceApp = Base64.encodeToString("isIcheck=true&time=$currentTime".toByteArray(Charsets.UTF_8), Base64.DEFAULT).toString().trim()
         body.addProperty("sourceApp", sourceApp)
 
         val agent = DeviceUtils.getModel()
@@ -95,11 +110,11 @@ class DetailStampRepository : BaseRepository() {
 
         val userid = SessionManager.session.user?.id
         if (userid != null) {
-            body.addProperty("userId", userid)
+            body.addProperty("user_id", userid)
         }
 
         body.addProperty("code", barcode)
-        body.addProperty("deviceId", DeviceUtils.getUniqueDeviceId())
+        body.addProperty("device_id", DeviceUtils.getUniqueDeviceId())
         body.addProperty("rankLevel", SettingManager.getRankLevel)
 
         if (lat != null) {
