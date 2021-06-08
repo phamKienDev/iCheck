@@ -64,6 +64,14 @@ class BottomSheetWebView : BaseBottomSheetDialogFragment() {
                 }
                 return true
             }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                
+                binding.viewCenter?.let { viewCenter ->
+                    binding.layoutContent.removeView(viewCenter)
+                }
+            }
         }
     }
 
