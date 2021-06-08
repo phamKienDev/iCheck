@@ -759,7 +759,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         tvBuy.setOnClickListener {
             if (!viewModel.verifyProduct) {
                 if (!viewModel.urlBuy.isNullOrEmpty()) {
-                    BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")
+                    BottomSheetWebView(this@IckProductDetailActivity).showWithUrl(viewModel.urlBuy ?: "")
+//                    BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")
                 }
             } else {
                 if (SessionManager.isUserLogged) {
