@@ -760,13 +760,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            if(SessionManager.isUserLogged){
-                if (!viewModel.verifyProduct) {
-                    if (!viewModel.urlBuy.isNullOrEmpty()) {
-                        val bottomSheetWebView = BottomSheetWebView(this)
-                        bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
-                    }
-                } else {
+            if (!viewModel.verifyProduct) {
+                if (!viewModel.urlBuy.isNullOrEmpty()) {
+                    val bottomSheetWebView = BottomSheetWebView(this)
+                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+                }
+            } else {
+                if (SessionManager.isUserLogged) {
                     if (viewModel.productDetail?.owner?.verified == true) {
                         ChatSocialDetailActivity.createRoomChat(
                             it.context,
@@ -780,9 +780,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                             "page"
                         )
                     }
+                } else {
+                    onRequireLogin(requestLoginProductDetail)
                 }
-            } else{
-                onRequireLogin(requestLoginProductDetail)
             }
         }
 
@@ -819,7 +819,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if(requestCode == requestLoginProductDetail){
+        if (requestCode == requestLoginProductDetail) {
             viewModel.getProductLayout()
         }
     }
@@ -1180,9 +1180,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     }
 
     override fun onClick(id: Long?) {
-        if(SessionManager.isUserLogged){
+        if (SessionManager.isUserLogged) {
             ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
-        } else{
+        } else {
             onRequireLogin(requestLoginScanCode)
         }
     }
