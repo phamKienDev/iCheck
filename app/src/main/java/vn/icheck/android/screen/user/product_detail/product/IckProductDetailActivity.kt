@@ -98,6 +98,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
+    private val requestLoginProductDetail = 9
+    private val requestLoginScanCode = 10
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -755,7 +757,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            onCheckSessionWhenChat({
+            if(SessionManager.isUserLogged){
                 if (!viewModel.verifyProduct) {
                     if (!viewModel.urlBuy.isNullOrEmpty()) {
                         BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")                    }
@@ -774,9 +776,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         )
                     }
                 }
-            }, {
-                viewModel.getProductLayout()
-            })
+            } else{
+                onRequireLogin(requestLoginProductDetail)
+            }
         }
 
         imgBack.setOnClickListener {
@@ -807,6 +809,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (type == adapter.getListData[i].viewType) {
                 recyclerView.smoothScrollToPosition(i)
             }
+        }
+    }
+
+    override fun onRequireLoginSuccess(requestCode: Int) {
+        super.onRequireLoginSuccess(requestCode)
+        if(requestCode == requestLoginProductDetail){
+            viewModel.getProductLayout()
         }
     }
 
@@ -1166,10 +1175,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     }
 
     override fun onClick(id: Long?) {
-        onCheckSessionWhenChat({
+        if(SessionManager.isUserLogged){
             ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
-        }, {
-//            ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
-        })
+        } else{
+            onRequireLogin(requestLoginScanCode)
+        }
     }
 }
