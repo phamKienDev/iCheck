@@ -13,40 +13,28 @@
         android:layout_marginBottom="@dimen/size_8"
         android:background="@drawable/bg_indicator_selected" />
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
-        android:id="@id/tvTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_red_corners_top_16"
-        android:drawableStart="@drawable/ic_warning_white_40px"
-        android:drawablePadding="@dimen/size_14"
-        android:gravity="start|center"
-        android:paddingStart="@dimen/size_15"
-        android:paddingTop="@dimen/size_16"
-        android:paddingEnd="@dimen/size_14"
-        android:paddingBottom="@dimen/size_12"
-        android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/font_14" />
+        android:background="@drawable/bg_red_corners_top_16">
 
-    <FrameLayout
-        android:id="@id/layoutContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="200dp"
+        <vn.icheck.android.ui.view.TextBarlowSemiBold
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="centerInside"
-            app:lottie_autoPlay="true"
-            app:lottie_enableMergePathsForKitKatAndAbove="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading_short" />
-    </FrameLayout>
+            android:layout_marginStart="@dimen/size_15"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_14"
+            android:layout_marginBottom="@dimen/size_12"
+            android:drawableStart="@drawable/ic_warning_white_40px"
+            android:drawablePadding="@dimen/size_14"
+            android:gravity="start|center"
+            android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_14" />
 
-    <androidx.core.widget.NestedScrollView
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -55,8 +43,19 @@
         <vn.icheck.android.screen.user.reason_not_buy_product.ObservableWebView
             android:id="@id/webView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@id/layoutCenter"
+            layout="@layout/dialog_loading"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="@dimen/size_0"
+            app:layout_constraintBottom_toBottomOf="@id/webView"
+            app:layout_constraintEnd_toEndOf="@id/webView"
+            app:layout_constraintStart_toStartOf="@id/webView"
+            app:layout_constraintTop_toTopOf="@id/webView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
