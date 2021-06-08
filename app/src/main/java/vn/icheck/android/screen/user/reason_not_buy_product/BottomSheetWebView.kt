@@ -1,98 +1,62 @@
 package vn.icheck.android.screen.user.reason_not_buy_product
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Bitmap
 import android.os.Build
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.FrameLayout
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_web_view.*
-import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.R
+import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.databinding.BottomSheetDialogReasonNotBuyProductBinding
+import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 
-class BottomSheetWebView (context: Context) : FrameLayout(context) {
+class BottomSheetWebView : BaseBottomSheetDialogFragment() {
+    private lateinit var binding: BottomSheetDialogReasonNotBuyProductBinding
 
-    private val mBottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context,R.style.BottomSheetDialog)
-    private var mCurrentWebViewScrollY = 0
+    private var url: String = ""
 
-    init {
-        inflateLayout(context)
-        setupBottomSheetBehaviour()
-        setupWebView()
-    }
-
-    private fun inflateLayout(context: Context) {
-        inflate(context, R.layout.bottom_sheet_dialog_reason_not_buy_product, this)
-
-        mBottomSheetDialog.setContentView(this)
-
-        mBottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                ?.setBackgroundResource(android.R.color.transparent);
-    }
-
-    private fun setupBottomSheetBehaviour() {
-        (parent as? View)?.let { view ->
-            BottomSheetBehavior.from(view).let { behaviour ->
-                behaviour.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-                    override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
-                    }
-
-                    override fun onStateChanged(bottomSheet: View, newState: Int) {
-                        if (newState == BottomSheetBehavior.STATE_DRAGGING && mCurrentWebViewScrollY > 0) {
-                            // this is where we check if webview can scroll up or not and based on that we let BottomSheet close on scroll down
-                            behaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        } else if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                            close()
-                        }
-                    }
-                })
+    companion object {
+        fun show(fragmentManager: FragmentManager, url: String) {
+            if (fragmentManager.findFragmentByTag(BottomSheetWebView::class.java.simpleName)?.isAdded != true) {
+                BottomSheetWebView().apply {
+                    setUrl(url)
+                    show(fragmentManager, BottomSheetWebView::class.java.simpleName)
+                }
             }
         }
     }
 
-    private fun setupWebView() {
-        webView.onScrollChangedCallback = object : ObservableWebView.OnScrollChangeListener {
-            override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
-                mCurrentWebViewScrollY = t
-            }
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = BottomSheetDialogReasonNotBuyProductBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    fun showWithUrl(url: String) {
-        mBottomSheetDialog.show()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        webView.settings.javaScriptEnabled = true
+        ICheckApplication.currentActivity()?.let { activity ->
+            binding.layoutContainer.minimumHeight = activity.findViewById<View>(android.R.id.content).rootView.height
+        }
+
+        binding.webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        binding.webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        binding.webView.settings.domStorageEnabled = true
+        binding.webView.settings.allowFileAccessFromFileURLs = true
+        binding.webView.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            binding.webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
-        webView.loadUrl(url)
+        binding.webView.loadUrl(url)
 
-        var loadingFinished = true
-        var redirect = false
-
-        webView.webViewClient = object : WebViewClient() {
+        binding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                if (!loadingFinished) {
-                    redirect = true;
-                }
-                loadingFinished = false;
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.url?.let { url ->
                         view?.loadUrl(url.toString())
@@ -100,28 +64,10 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
                 }
                 return true
             }
-
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-
-                loadingFinished = false
-            }
-
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-
-                if (!redirect) {
-                    loadingFinished = true
-                }
-
-                if (loadingFinished && !redirect) {
-                    layoutCenter.visibility = View.GONE
-                }
-            }
         }
     }
 
-    fun close() {
-        mBottomSheetDialog.dismiss()
+    fun setUrl(url: String) {
+        this.url = url
     }
 }

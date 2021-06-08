@@ -756,8 +756,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         btnBuy.setOnClickListener {
             if (!viewModel.verifyProduct) {
                 if (!viewModel.urlBuy.isNullOrEmpty()) {
-                    val bottomSheetWebView = BottomSheetWebView(this)
-                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+                    BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")
                 }
             } else {
 
