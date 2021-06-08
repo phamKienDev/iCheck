@@ -33,7 +33,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
 abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback,
-    TokenTimeoutCallback, RequestChat {
+    TokenTimeoutCallback {
 
     var onRequestUserLoginSuccess: () -> Unit = {}
 
