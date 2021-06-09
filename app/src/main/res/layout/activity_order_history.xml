@@ -10,7 +10,7 @@
         layout="@layout/toolbar_light_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.disable_text.TabLayoutDisableAndBlueColor
+    <vn.icheck.android.ichecklibs.view.disable_text.TabLayoutDisableAndPrimaryColor
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"

@@ -114,19 +114,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOther" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextSubheader2Primary
         android:id="@+id/tvClear"
         android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/light_blue"
-        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider30" />
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

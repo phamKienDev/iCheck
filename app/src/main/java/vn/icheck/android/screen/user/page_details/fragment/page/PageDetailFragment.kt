@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -124,8 +123,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        imgBack.setImageResource(R.drawable.ic_back_blue_v2_24px)
-        imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
+        imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_back_blue_v2_24px,requireContext()))
+        imgAction.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_home_blue_v2_24px,requireContext()))
 
         imgBack.setOnClickListener {
             activity?.onBackPressed()

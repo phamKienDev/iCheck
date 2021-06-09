@@ -59,7 +59,7 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             android:padding="@dimen/size_4"
             android:src="@drawable/ic_like_off_24dp" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

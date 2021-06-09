@@ -8,15 +8,16 @@
     android:paddingEnd="@dimen/size_10"
     android:paddingBottom="@dimen/size_10">
 
-    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius8
+    <LinearLayout
         android:layout_width="match_parent"
+        android:background="@drawable/bg_white_corners_8"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvInternalStamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius8>
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/txtCancel"

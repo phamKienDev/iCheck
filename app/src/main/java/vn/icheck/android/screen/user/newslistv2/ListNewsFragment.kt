@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.newslistv2
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.network.models.ICArticleCategory
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -57,7 +57,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
         viewModel.idCategory = arguments?.getLong(Constant.ID) ?: -1
 
         if (arguments?.getBoolean(Constant.DATA_1) == false) {
-            imgBack.setImageResource(R.drawable.ic_leftmenu_24_px)
+            imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
             imgBack.setOnClickListener {
@@ -68,7 +68,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
                 }
             }
         } else {
-            imgBack.setImageResource(R.drawable.ic_back_blue_v2_24px)
+            imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_back_blue_v2_24px,requireContext()))
 
             imgBack.setOnClickListener {
                 ActivityUtils.finishActivity(requireActivity())

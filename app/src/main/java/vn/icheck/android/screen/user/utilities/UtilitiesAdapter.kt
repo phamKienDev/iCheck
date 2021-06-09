@@ -69,7 +69,7 @@ class UtilitiesAdapter(callbank: IRecyclerViewCallback) : RecyclerViewAdapter<IC
 
             it.addView(View(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                it.setBackgroundColor(Color.parseColor("#EAEAEA"))
+                it.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
             })
 
             it.addView(AppCompatTextView(context).also {

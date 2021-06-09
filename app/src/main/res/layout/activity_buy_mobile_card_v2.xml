@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
@@ -98,8 +98,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -121,12 +122,13 @@
                     android:paddingEnd="@dimen/size_6"
                     android:paddingBottom="@dimen/size_5" />
 
-            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
+            </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
@@ -146,7 +148,7 @@
                     android:paddingEnd="@dimen/size_6"
                     android:paddingBottom="@dimen/size_5" />
 
-            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
+            </LinearLayout>
 
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondSubheader2
                 android:layout_width="wrap_content"
@@ -169,8 +171,9 @@
         </LinearLayout>
     </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
-    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout10"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -219,5 +222,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
-    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

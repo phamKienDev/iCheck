@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
-class TabLayoutDisableAndBlueColor  : TabLayout {
+class TabLayoutDisableAndPrimaryColor  : TabLayout {
 
     constructor(context: Context) : super(context) {
         setup()
@@ -26,6 +26,6 @@ class TabLayoutDisableAndBlueColor  : TabLayout {
     }
 
     private fun setup() {
-        setTabTextColors(Constant.getDisableTextColor(context),ContextCompat.getColor(context, R.color.light_blue))
+        setTabTextColors(Constant.getDisableTextColor(context),Constant.getPrimaryColor(context))
     }
 }

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_social_chat_scene">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/img_menu"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
-        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_leftmenu_24_px" />
+        android:background="@color/transparent"
+        android:src="@drawable/ic_leftmenu_24_px" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@+id/title"
@@ -25,15 +24,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/img_add"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
         android:scaleType="centerInside"
         android:visibility="gone"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_add_blue_2_24px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add_blue_2_24px" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/div"

@@ -51,7 +51,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.setColor(Constant.getAppBackgroundGrayColor(context))
+                    paint.setColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)

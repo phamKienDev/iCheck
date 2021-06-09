@@ -51,6 +51,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
 
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(0,0,0,ViewHelper.setImagePrimary(R.drawable.ic_phonebook_24px,requireContext()))
     }
 
     private fun initListener() {

@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/btnBack"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"

@@ -83,14 +83,14 @@ object SettingManager {
         }
         set(value) {
             SPStaticUtils.put(TagConstants.SETTING_THEME, JsonHelper.toJson(value ?: ICThemeSetting()))
-            setAppTheme(value)
+            setAppThemeColor(value)
         }
 
     fun setDeviceID(deviceID: String) {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
     }
 
-    fun setAppTheme(icThemeSetting: ICThemeSetting?){
+    fun setAppThemeColor(icThemeSetting: ICThemeSetting?){
         icThemeSetting?.let {
             Constant.appBackgroundColor=it.theme?.appBackgroundColor?:""
 
@@ -103,6 +103,19 @@ object SettingManager {
             Constant.secondTextColor=it.theme?.secondTextColor?:""
             Constant.disableTextColor=it.theme?.disableTextColor?:""
         }
+
+//            Constant.appBackgroundColor="#85c440"
+//
+//            Constant.popupBackgroundColor=""
+//
+//            Constant.primaryColor="#FFB800"
+//            Constant.secondaryColor="#bb6bd9"
+//
+//            Constant.normalTextColor="#CCF1FC"
+//            Constant.secondTextColor="#CCF1FC"
+//            Constant.disableTextColor="#EB5757"
+//
+//            Constant.lineColor="#ff1616"
     }
 
     val getDeviceID: String

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCardViewGray xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/grayF0"
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_10"
     android:layout_marginRight="@dimen/size_12"
@@ -124,4 +125,4 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvPage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCardViewGray>
+</androidx.cardview.widget.CardView>

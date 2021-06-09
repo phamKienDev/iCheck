@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.setting.SettingsActivity"
     tools:viewBindingIgnore="true">
@@ -323,4 +322,4 @@
         android:paddingBottom="@dimen/size_9"
         android:text="Đặt lại mặc định"
         android:textSize="@dimen/font_16" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

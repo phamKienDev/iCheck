@@ -7,6 +7,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -39,10 +40,10 @@ class IckChangePhoneFragment:Fragment() {
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.imgClear.visibility = View.VISIBLE
-                binding.divider20.background = ColorDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+                binding.divider20.background = ColorDrawable(Constant.getPrimaryColor(requireContext()))
             } else {
                 binding.imgClear.visibility = View.INVISIBLE
-                binding.divider20.background = ColorDrawable(Constant.getAppBackgroundGrayColor(requireContext()))
+                binding.divider20.background = ColorDrawable(ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.grayF0))
             }
         }
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {

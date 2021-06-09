@@ -530,7 +530,6 @@
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.chat.sticker.StickerStoreActivity" />
         <activity
             android:name=".screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity"
             android:screenOrientation="portrait" />

@@ -6,7 +6,7 @@
     android:id="@+id/constraintLayout"
     android:layout_height="match_parent">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_back"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"

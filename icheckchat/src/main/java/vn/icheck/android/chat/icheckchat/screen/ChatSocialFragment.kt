@@ -33,7 +33,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
         binding.layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
-        binding.toolbar.imgBack.setImageResource(R.drawable.ic_left_menu_blue_24dp_chat)
+        binding.toolbar.imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_left_menu_blue_24dp_chat,requireContext()))
 
         binding.toolbar.imgBack.setOnClickListener {
             callback?.onClickLeftMenu()

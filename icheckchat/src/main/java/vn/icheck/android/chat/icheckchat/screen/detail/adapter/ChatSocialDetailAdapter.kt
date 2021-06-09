@@ -204,12 +204,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
             binding.btnProductDetail.background = ViewHelper.bgPrimaryCorners4(itemView.context)
 
-            ViewHelper.bgGrayCorners10(itemView.context).apply {
-                binding.layoutLink.background=this
-                binding.layoutProduct.background=this
-                binding.layoutImageDetail.layoutOneImage.background=this
-            }
-
             setGoneView(
                 binding.layoutProduct,
                 binding.tvMessage,
@@ -405,17 +399,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         private fun setupView() {
-            binding.layoutImageDetail.layoutOneImage.background = ViewHelper.bgGrayCorners10(itemView.context)
             binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
-
-            ViewHelper.bgGrayCorners10(itemView.context).apply {
-                binding.layoutVoucher.background=this
-                binding.layoutPage.background=this
-                binding.layoutLink.background=this
-                binding.layoutVoucher.background=this
-                binding.tvMessage.background=this
-                binding.layoutImageDetail.imgView.background=this
-            }
 
             ViewHelper.bgPrimaryCorners4(itemView.context).apply {
                 binding.btnProductDetail.background=this

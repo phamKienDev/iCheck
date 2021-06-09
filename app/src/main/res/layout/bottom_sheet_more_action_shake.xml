@@ -11,15 +11,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/size_12"
             android:paddingLeft="@dimen/size_12"
+            android:paddingTop="@dimen/size_10"
             android:paddingEnd="@dimen/size_12"
             android:paddingRight="@dimen/size_12"
-            android:paddingTop="@dimen/size_10"
             android:src="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,14 +27,14 @@
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvTitleCampaign"
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/size_5"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Thử thách nhận thêm lượt mở quà"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
             android:paddingStart="@dimen/size_44"
+            android:paddingTop="@dimen/size_5"
             android:paddingEnd="@dimen/size_44"
+            android:text="Thử thách nhận thêm lượt mở quà"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,10 +87,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_history_reward_gift" />
+            android:src="@drawable/ic_history_reward_gift"
+            app:civ_circle_background_color="@color/grayF0" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -111,10 +112,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_rank_winner" />
+            android:src="@drawable/ic_rank_winner"
+            app:civ_circle_background_color="@color/grayF0" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
@@ -136,10 +138,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICCircleImageViewGray
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:src="@drawable/ic_information_event_shake"/>
+            android:src="@drawable/ic_information_event_shake"
+            app:civ_circle_background_color="@color/grayF0" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"

@@ -52,7 +52,7 @@ class FriendRequestComponent(parent: ViewGroup): BaseViewHolder<ICListResponse<I
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.color = Constant.getAppBackgroundGrayColor(context)
+                    paint.color = ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0)
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)

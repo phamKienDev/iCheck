@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="vn.icheck.android.screen.user.user_follow_page.UserFollowPageActivity">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/img_back"
         android:layout_width="@dimen/size_44"
         android:layout_height="@dimen/size_44"

@@ -31,24 +31,19 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setContentView(R.layout.activity_list_friend_suggestion)
 
         setupToolbar()
-        setupView()
         setupViewModel()
         setupRecyclerView()
         setupSwipeLayout()
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+//        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
         imgBack.setOnClickListener {
             onBackPressed()
         }
 
         txtTitle.setText(R.string.goi_y_ket_ban)
-    }
-
-    private fun setupView() {
-        edt_search.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(this)
     }
 
     private fun setupViewModel() {
@@ -77,7 +72,7 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         adapter.disableLoadMore()
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = Constant.getAppBackgroundGrayColor(this@ListFriendSuggestionActivity)
+            paint.color = ContextCompat.getColor(this@ListFriendSuggestionActivity, vn.icheck.android.ichecklibs.R.color.grayF0)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)

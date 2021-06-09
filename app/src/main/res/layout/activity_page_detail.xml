@@ -67,7 +67,7 @@
             android:paddingEnd="@dimen/size_23"
             android:paddingRight="@dimen/size_23" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgMenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

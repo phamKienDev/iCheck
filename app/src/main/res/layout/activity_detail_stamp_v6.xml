@@ -739,10 +739,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10
+                            <LinearLayout
                                 android:id="@+id/root"
                                 android:layout_width="@dimen/size_30"
                                 android:layout_height="@dimen/size_30"
+                                android:background="@drawable/bg_corner_white_10"
                                 android:layout_marginStart="@dimen/size_12"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -754,7 +755,7 @@
                                     android:layout_margin="@dimen/size_4"
                                     android:src="@drawable/ic_warranty_blue_36px" />
 
-                            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10>
+                            </LinearLayout>
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="0dp"

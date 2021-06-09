@@ -83,7 +83,7 @@ class CollectionHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICCollectio
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size6, 0, SizeHelper.size6)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+                layoutParent.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
                 layoutParent.setPadding(0, 0, 0, SizeHelper.size8)
 
                 // Layout title

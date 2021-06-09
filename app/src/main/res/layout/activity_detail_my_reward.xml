@@ -57,7 +57,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:descendantFocusability="blocksDescendants"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/layoutBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
             tools:visibility="visible">
 
 
-            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
+            <LinearLayout
                 android:id="@+id/group_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,6 +154,7 @@
                             android:textSize="@dimen/font_12"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                             app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
                             app:layout_constraintVertical_bias="0.0"
@@ -260,7 +261,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
-            </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/group_address"
@@ -269,7 +270,7 @@
                 android:layout_marginBottom="@dimen/size_20"
                 android:background="@android:color/white"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
@@ -401,7 +402,7 @@ Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng
 Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé.
  Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé." />
 
-                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_12" />
             </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
@@ -455,7 +456,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@id/imgBack"
                 android:layout_width="@dimen/size_44"
                 android:layout_height="match_parent"

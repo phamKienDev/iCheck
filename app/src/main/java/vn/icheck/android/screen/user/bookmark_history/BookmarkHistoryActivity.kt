@@ -37,12 +37,10 @@ class BookmarkHistoryActivity : AppCompatActivity() {
         DialogHelper.showLoading(this)
         EventBus.getDefault().register(this)
 
-        binding.header.tvTitle simpleText "Sản phẩm yêu thích"
-        binding.header.icBack.setOnClickListener {
+        binding.header.txtTitle simpleText "Sản phẩm yêu thích"
+        binding.header.imgBack.setOnClickListener {
             finish()
         }
-
-        binding.edtSearch.background=ViewHelper.bgGrayCorners4(this)
 
         lifecycleScope.launch {
             bookmarkHistoryViewModel.getBookmarks().collectLatest {

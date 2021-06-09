@@ -84,7 +84,7 @@ class CollectionListProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size6, 0, SizeHelper.size6)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundGrayColor(context))
+                layoutParent.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
                 layoutParent.setPadding(0, 0, 0, SizeHelper.size8)
 
                 // Layout title

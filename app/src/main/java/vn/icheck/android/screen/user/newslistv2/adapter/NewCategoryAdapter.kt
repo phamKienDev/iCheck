@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.databinding.ItemNewCategoryBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.network.models.ICArticleCategory
 
@@ -43,8 +44,8 @@ class NewCategoryAdapter(val listData: MutableList<ICArticleCategory>) : Recycle
         override fun bind(obj: ICArticleCategory) {
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvChecked.apply {
-                    background = ViewHelper.createDrawableStateList(vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context), vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context))
-                    setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context, R.color.grayB4), ContextCompat.getColor(itemView.context, R.color.white)))
+                    background = ViewHelper.createDrawableStateList(ContextCompat.getDrawable(itemView.context,R.drawable.bg_gray_f0_corners_4), vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context))
+                    setTextColor(ViewHelper.createColorStateList(Constant.getNormalTextColor(itemView.context), ContextCompat.getColor(itemView.context, R.color.white)))
                     text = obj.name
 
                     isChecked = obj.isChecked

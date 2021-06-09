@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/bg_gray_f0_corners_4"
         android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"

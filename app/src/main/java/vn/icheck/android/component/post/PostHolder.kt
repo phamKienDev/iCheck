@@ -197,7 +197,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     }
 
     private fun setupProduct(obj: ICProduct?) {
-        itemView.layoutProduct.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
         if (obj != null) {
             itemView.layoutProduct.beVisible()
             WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.media?.find { it.type == "image" }?.content, R.drawable.img_default_product_big, SizeHelper.size4)
@@ -295,7 +294,6 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 
     private fun setupComment(commentCount: Int, comments: ICCommentPost?) {
         itemView.edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
-        itemView.linearLayoutNameComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
         if (comments != null) {
             itemView.layoutComment.beVisible()
             itemView.divider39.beVisible()

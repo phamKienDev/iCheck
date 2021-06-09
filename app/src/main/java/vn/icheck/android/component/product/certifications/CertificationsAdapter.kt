@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -47,7 +48,7 @@ class CertificationsAdapter(val listData: List<String>) : RecyclerView.Adapter<C
                     it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size100, SizeHelper.size140).also {params ->
                         params.setMargins(SizeHelper.size10,0,0,0)
                     }
-                    it.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+                    it.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
                 }
             }
         }

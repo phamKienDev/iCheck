@@ -34,7 +34,7 @@ class ListInteractiveActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+//        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
         imgBack.setOnClickListener {
             onBackPressed()

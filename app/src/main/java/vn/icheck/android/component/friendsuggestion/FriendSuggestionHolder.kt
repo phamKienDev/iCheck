@@ -71,11 +71,6 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 inviteFriend(obj)
             }
 
-            //  set background tvStatus
-            getChildAt(5).background = ViewHelper.bgGrayCorners4(context)
-
-
-
             checkSend(RelationshipManager.checkMyFriendInvitation(obj.id), obj)
 
         }

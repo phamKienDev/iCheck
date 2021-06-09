@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import vn.icheck.android.R
@@ -15,7 +13,6 @@ import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentSocialChatBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.home.HomeActivity
-import vn.icheck.android.ui.OnSwipeTouchListener
 import vn.icheck.android.util.ick.getStatusBarHeight
 
 class SocialChatFragment:CoroutineFragment() {
@@ -30,6 +27,7 @@ class SocialChatFragment:CoroutineFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.root.setPadding(0, requireContext().getStatusBarHeight(), 0,0)
+        binding.imgMenu.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
         binding.divSelector.background=ViewHelper.bgPrimaryCornersTop4(requireContext())
         binding.tvMessage.setOnClickListener {
             binding.containerFramelayout.setCurrentItem(0, true)

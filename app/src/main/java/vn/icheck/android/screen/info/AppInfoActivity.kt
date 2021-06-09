@@ -16,8 +16,8 @@ class AppInfoActivity : AppCompatActivity() {
         binding = ActivityAppInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.header.tvTitle simpleText "Thông tin ứng dụng"
-        binding.header.icBack.setOnClickListener {
+        binding.header.txtTitle simpleText "Thông tin ứng dụng"
+        binding.header.imgBack.setOnClickListener {
             finish()
         }
 

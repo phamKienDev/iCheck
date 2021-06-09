@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:layout_height="@dimen/size_44">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@id/imgBack"
         android:layout_width="@dimen/size_44"
         android:layout_height="match_parent"

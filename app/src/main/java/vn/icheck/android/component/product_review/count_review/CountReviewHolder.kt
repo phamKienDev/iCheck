@@ -53,7 +53,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
             layoutParent.gravity = Gravity.CENTER_VERTICAL
             layoutParent.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
 
-            val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+            val secondaryColor = Constant.getSecondaryColor(context)
 
             layoutParent.addView(AppCompatTextView(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).also {

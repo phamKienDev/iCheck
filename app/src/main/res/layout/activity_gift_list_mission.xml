@@ -25,7 +25,7 @@
             android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgCloseSuccess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

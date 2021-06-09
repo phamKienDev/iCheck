@@ -85,7 +85,8 @@
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/viewLine"
         app:layout_constraintEnd_toEndOf="parent" />
-    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
+
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/viewLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"

@@ -40,8 +40,6 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
             setMargins(obj.marginStart, obj.marginTop, 0, 0)
         }
 
-        binding.linearLayout.background=ViewHelper.bgGrayCorners4(binding.linearLayout.context)
-
         if (obj.page != null) {
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.page?.avatar, R.drawable.ic_business_v2)
             binding.imgLevel.beGone()

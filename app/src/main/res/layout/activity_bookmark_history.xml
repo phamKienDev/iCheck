@@ -3,17 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:background="@android:color/white"
     tools:context=".screen.user.bookmark_history.BookmarkHistoryActivity">
 
     <include
         android:id="@+id/header"
-        layout="@layout/simple_toolbar"
+        layout="@layout/toolbar_blue_v2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        style="@style/Shadow_Bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edt_search"
@@ -24,6 +29,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
+        android:background="@drawable/bg_gray_f0_corners_4"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"

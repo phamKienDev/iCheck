@@ -12,6 +12,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -150,8 +151,8 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
 
     private fun initView() {
-        containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
         tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -421,7 +422,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
         if (show) {
-            imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
+            imgCamera.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_camera_on_24px,this))
             view2.beVisible()
             imgClearImage.beVisible()
             cardViewImage.beVisible()
@@ -456,10 +457,12 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun showBtnSend(enable: Boolean) {
         if (enable) {
             imgSend.isEnabled = true
-            imgSend.setImageResource(R.drawable.ic_chat_send_24px)
+            imgSend.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_chat_send_24px,this))
+            containerEnter.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {
             imgSend.isEnabled = false
             imgSend.setImageResource(R.drawable.ic_chat_send_gray_24_px)
+            containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
         }
     }
 

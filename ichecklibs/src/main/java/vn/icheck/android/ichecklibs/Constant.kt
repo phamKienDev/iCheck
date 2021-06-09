@@ -224,7 +224,8 @@ object Constant {
      * @return nội dung html đã chỉnh sửa
      */
     fun getHtmlData(bodyHTML: String): String {
-        val head = "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+        val head =
+            "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
         return "<html>$head<body>$bodyHTML</body></html>"
     }
 
@@ -355,108 +356,108 @@ object Constant {
     *Color accent blue
     * * */
 
-    fun getAccentBlueColor(context: Context): Int {
-        return if (accentBlueColor.isNotEmpty()) {
-            Color.parseColor(accentBlueColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentBlue)
-        }
-    }
+    fun getAccentBlueColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentBlue)
+//        return if (accentBlueColor.isNotEmpty()) {
+//            Color.parseColor(accentBlueColor)
+//        } else {
+//            ContextCompat.getColor(context, R.color.colorAccentBlue)
+//        }
+//    }
 
-    val getAccentBlueCode: String
-        get() {
-            return if (accentBlueColor.isNotEmpty()) {
-                accentBlueColor
-            } else {
-                "#00BAF2"
-            }
-        }
+    val getAccentBlueCode = "#00BAF2"
+//        get() {
+//            return if (accentBlueColor.isNotEmpty()) {
+//                accentBlueColor
+//            } else {
+//                "#00BAF2"
+//            }
+//        }
 
 
     /*
     *Color accent green
     * * */
 
-    fun getAccentGreenColor(context: Context): Int {
-        return if (accentGreenColor.isNotEmpty()) {
-            Color.parseColor(accentGreenColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentGreen)
-        }
-    }
+    fun getAccentGreenColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentGreen)
+//        return if (accentGreenColor.isNotEmpty()) {
+//            Color.parseColor(accentGreenColor)
+//        } else {
+//            ContextCompat.getColor(context, R.color.colorAccentGreen)
+//        }
+//    }
 
-    val getAccentGreenCode: String
-        get() {
-            return if (accentGreenColor.isNotEmpty()) {
-                accentGreenColor
-            } else {
-                "#85c440"
-            }
-        }
+    val getAccentGreenCode = "#85c440"
+//        get() {
+//            return if (accentGreenColor.isNotEmpty()) {
+//                accentGreenColor
+//            } else {
+//                "#85c440"
+//            }
+//        }
 
 
     /*
     *Color accent red
     * * */
 
-    fun getAccentRedColor(context: Context): Int {
-        return if (accentRedColor.isNotEmpty()) {
-            Color.parseColor(accentRedColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentRed)
-        }
-    }
+    fun getAccentRedColor(context: Context)=ContextCompat.getColor(context, R.color.colorAccentRed)
+//        return if (accentRedColor.isNotEmpty()) {
+//            Color.parseColor(accentRedColor)
+//        } else {
+//            ContextCompat.getColor(context, R.color.colorAccentRed)
+//        }
+//    }
 
-    val getAccentRedCode: String
-        get() {
-            return if (accentRedColor.isNotEmpty()) {
-                accentRedColor
-            } else {
-                "#ff0000"
-            }
-        }
+    val getAccentRedCode="#ff0000"
+//        get() {
+//            return if (accentRedColor.isNotEmpty()) {
+//                accentRedColor
+//            } else {
+//                "#ff0000"
+//            }
+//        }
 
     /*
     *Color accent yellow
     * * */
 
-    fun getAccentYellowColor(context: Context): Int {
-        return if (accentYellowColor.isNotEmpty()) {
-            Color.parseColor(accentYellowColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentYellow)
-        }
-    }
+    fun getAccentYellowColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentYellow)
+//        return if (accentYellowColor.isNotEmpty()) {
+//            Color.parseColor(accentYellowColor)
+//        } else {
+//            ContextCompat.getColor(context, R.color.colorAccentYellow)
+//        }
+//    }
 
-    val getAccentYellowCode: String
-        get() {
-            return if (accentYellowColor.isNotEmpty()) {
-                accentYellowColor
-            } else {
-                "#FFB800"
-            }
-        }
+    val getAccentYellowCode = "#FFB800"
+//        get() {
+//            return if (accentYellowColor.isNotEmpty()) {
+//                accentYellowColor
+//            } else {
+//                "#FFB800"
+//            }
+//        }
 
     /*
     *Color accent cyan
     * * */
 
-    fun getAccentCyanColor(context: Context): Int {
-        return if (accentCyanColor.isNotEmpty()) {
-            Color.parseColor(accentCyanColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorAccentCyan)
-        }
-    }
+    fun getAccentCyanColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentCyan)
+//        return if (accentCyanColor.isNotEmpty()) {
+//            Color.parseColor(accentCyanColor)
+//        } else {
+//            ContextCompat.getColor(context, R.color.colorAccentCyan)
+//        }
+//    }
 
-    val getAccentCyanCode: String
-        get() {
-            return if (accentCyanColor.isNotEmpty()) {
-                accentCyanColor
-            } else {
-                "#CCF1FC"
-            }
-        }
+    val getAccentCyanCode = "#CCF1FC"
+//        get() {
+//            return if (accentCyanColor.isNotEmpty()) {
+//                accentCyanColor
+//            } else {
+//                "#CCF1FC"
+//            }
+//        }
 
     /*
     * Color normal text
@@ -543,22 +544,22 @@ object Constant {
     /*
     * Color background White
     */
-    fun getAppBackgroundWhiteColor(context: Context): Int {
-        return if (appBackgroundColor.isNotEmpty()) {
-            Color.parseColor(appBackgroundColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorBackgroundWhite)
-        }
-    }
+    fun getAppBackgroundWhiteColor(context: Context) = ContextCompat.getColor(context, R.color.colorBackgroundWhite)
+//        return if (appBackgroundColor.isNotEmpty()) {
+//            Color.parseColor(appBackgroundColor)
+//        } else {
+//            return ContextCompat.getColor(context, R.color.colorBackgroundWhite)
+//        }
 
-    val getAppBackgroundWhiteColorCode: String
-        get() {
-            return if (appBackgroundColor.isNotEmpty()) {
-                appBackgroundColor
-            } else {
-                "#FFFFFF"
-            }
-        }
+
+    val getAppBackgroundWhiteColorCode=  "#FFFFFF"
+//        get() {
+//            return if (appBackgroundColor.isNotEmpty()) {
+//                appBackgroundColor
+//            } else {
+//                "#FFFFFF"
+//            }
+//        }
 
 
     /*
@@ -586,8 +587,8 @@ object Constant {
     * Color background Popup
     */
     fun getBackgroundPopupColor(context: Context): Int {
-        return if (appBackgroundColor.isNotEmpty()) {
-            Color.parseColor(appBackgroundColor)
+        return if (popupBackgroundColor.isNotEmpty()) {
+            Color.parseColor(popupBackgroundColor)
         } else {
             ContextCompat.getColor(context, R.color.colorBackgroundPopup)
         }
@@ -595,13 +596,12 @@ object Constant {
 
     val getBackgroundPopupColorCode: String
         get() {
-            return if (appBackgroundColor.isNotEmpty()) {
-                appBackgroundColor
+            return if (popupBackgroundColor.isNotEmpty()) {
+                popupBackgroundColor
             } else {
                 "#80000000"
             }
         }
-
 
 
 }

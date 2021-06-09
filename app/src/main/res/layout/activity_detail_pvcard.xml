@@ -11,13 +11,14 @@
         android:id="@+id/toolbarPv"
         layout="@layout/toolbar_pvcombank" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarPv">
 
-        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -69,7 +70,7 @@
                 app:layout_constraintTop_toTopOf="@id/tvMoney"
                 app:srcCompat="@drawable/ic_eye_on_white_24px" />
 
-            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewWhite
+            <View
                 android:id="@+id/viewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="224dp"
@@ -171,7 +172,7 @@
                     android:layout_marginBottom="@dimen/size_3" />
             </FrameLayout>
 
-            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -307,8 +308,8 @@
                         android:text="Lịch sử giao dịch" />
                 </androidx.cardview.widget.CardView>
 
-            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
-        </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>
-    </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite>
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 

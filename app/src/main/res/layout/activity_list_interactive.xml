@@ -10,9 +10,10 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_light_blue" />
 
-    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
+    <View
         android:id="@id/viewBackground"
         android:layout_width="match_parent"
+        android:background="@color/grayF0"
         android:layout_height="@dimen/size_10"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
