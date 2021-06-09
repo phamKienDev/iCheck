@@ -2,14 +2,16 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.selectdistrictstamp
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_select_province.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -20,18 +22,20 @@ import vn.icheck.android.screen.user.selectdistrict.presenter.SelectDistrictStam
 import vn.icheck.android.screen.user.selectdistrict.view.SelectDistrictStampView
 import java.util.concurrent.TimeUnit
 
-class SelectDistrictStampActivity : BaseActivity<SelectDistrictStampPresenter>(), SelectDistrictStampView {
+class SelectDistrictStampActivity : BaseActivityMVVM(), SelectDistrictStampView {
     private val adapter = SelectDistrictStampAdapter(this)
 
     private var disposable: Disposable? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_select_province
+    val presenter = SelectDistrictStampPresenter(this@SelectDistrictStampActivity)
 
-    override val getPresenter: SelectDistrictStampPresenter
-        get() = SelectDistrictStampPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_select_province)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         initRecyclerView()
         initListener()
@@ -81,6 +85,10 @@ class SelectDistrictStampActivity : BaseActivity<SelectDistrictStampPresenter>()
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SelectDistrictStampActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -102,7 +110,6 @@ class SelectDistrictStampActivity : BaseActivity<SelectDistrictStampPresenter>()
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         if (adapter.isListNotEmpty) {
             showShortError(errorMessage)
@@ -110,6 +117,9 @@ class SelectDistrictStampActivity : BaseActivity<SelectDistrictStampPresenter>()
             adapter.setError(errorMessage)
         }
     }
+
+    override val mContext: Context
+        get() = this@SelectDistrictStampActivity
 
     override fun onDestroy() {
         disposable?.dispose()

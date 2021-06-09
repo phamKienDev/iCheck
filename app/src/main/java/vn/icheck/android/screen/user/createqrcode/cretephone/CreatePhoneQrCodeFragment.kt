@@ -2,9 +2,13 @@ package vn.icheck.android.screen.user.createqrcode.cretephone
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.btnCreate
@@ -13,35 +17,47 @@ import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.imgBack
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.tvMessage
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.txtTitle
 import kotlinx.android.synthetic.main.fragment_create_text_qr_code.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
+import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.base.view.IBaseCreateQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
-import vn.icheck.android.helper.ContactHelper
-import vn.icheck.android.screen.dialog.PermissionDialog
+import vn.icheck.android.util.KeyboardUtils
 
 /**
  * Created by VuLCL on 10/5/2019.
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresenter>(), IBaseCreateQrCodeView {
+class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
     private val requestContact = 1
     private val permissionContact = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_create_phone_qr_code
-
-    override val getPresenter: BaseCreateQrCodePresenter
-        get() = BaseCreateQrCodePresenter(this)
-
     private val requestNew = 2
 
-    override fun onInitView() {
+    val presenter = BaseCreateQrCodePresenter(this@CreatePhoneQrCodeFragment)
+
+    override fun isRegisterEventBus(): Boolean {
+        return true
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_create_phone_qr_code, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onInitView()
+    }
+
+    fun onInitView() {
         initToolbar()
         initListener()
         focusView(edtContent)
@@ -88,19 +104,18 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
         KeyboardUtils.hideSoftInput(edtContent)
 
-        val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
-        intent.putExtra(Constant.DATA_1,text)
-        startActivityForResult(intent,requestNew)
+        val intent = Intent(requireContext(), CreateQrCodeSuccessActivity::class.java)
+        intent.putExtra(Constant.DATA_1, text)
+        startActivityForResult(intent, requestNew)
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
         edtContent.requestFocus()
     }
 
@@ -126,10 +141,20 @@ class CreatePhoneQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePrese
             }
         }
 
-        if (requestCode == requestNew){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == requestNew) {
+            if (resultCode == Activity.RESULT_OK) {
                 activity?.onBackPressed()
             }
+        }
+    }
+
+    override val mContext: Context?
+        get() = requireContext()
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ICMessageEvent) {
+        if (event.type == ICMessageEvent.Type.BACK) {
+            activity?.onBackPressed()
         }
     }
 }

@@ -1,14 +1,18 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor
 
+import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_more_product_verified_by_distributor.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.adapter.MoreProductVerifiedByDistributorAdapter
@@ -16,17 +20,18 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.view.IMoreProductVerifiedByDistributorView
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 
-class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifiedByDistributorPresenter>(), IMoreProductVerifiedByDistributorView {
+class MoreProductVerifiedByDistributorActivity : BaseActivityMVVM(), IMoreProductVerifiedByDistributorView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_more_product_verified_by_distributor
-
-    override val getPresenter: MoreProductVerifiedByDistributorPresenter
-        get() = MoreProductVerifiedByDistributorPresenter(this)
-
+    val presenter = MoreProductVerifiedByDistributorPresenter(this@MoreProductVerifiedByDistributorActivity)
     private lateinit var adapter: MoreProductVerifiedByDistributorAdapter
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_more_product_verified_by_distributor)
+        onInitView()
+    }
+
+    fun onInitView() {
         initRecyclerView()
         if (DetailStampActivity.isVietNamLanguage == false){
             txtTitle.text = "Related Product"
@@ -113,6 +118,17 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
         if (!item.sku.isNullOrEmpty()) {
             IckProductDetailActivity.start(this, item.sku!!)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@MoreProductVerifiedByDistributorActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@MoreProductVerifiedByDistributorActivity, isShow)
     }
 
     override fun onRefresh() {

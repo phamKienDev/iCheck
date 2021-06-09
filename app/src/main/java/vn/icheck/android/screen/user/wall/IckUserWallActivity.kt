@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -16,8 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ActivityIckUserWallBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -27,14 +25,13 @@ import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragment
 import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragmentDirections
 import vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.util.kotlin.StatusBarUtils
 
 const val USER_ID = "user_id"
 const val OPEN_INFOR = "open_infor"
 const val EDIT_MY_PUBLIC_INFO = 1222
 
 @AndroidEntryPoint
-class IckUserWallActivity : BaseCoroutineActivity() {
+class IckUserWallActivity : BaseActivityMVVM() {
     private lateinit var binding: ActivityIckUserWallBinding
     private val ickUserWallViewModel: IckUserWallViewModel by viewModels()
 

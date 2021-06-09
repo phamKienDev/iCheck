@@ -1,6 +1,8 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
+import android.content.Context
 import android.graphics.Typeface
+import android.os.Bundle
 import android.text.Html
 import android.util.TypedValue
 import android.view.Gravity
@@ -12,14 +14,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
-import kotlinx.android.synthetic.main.activity_detai_history_guarantee.layoutContentHistory
-import kotlinx.android.synthetic.main.toolbar_blue.imgBack
-import kotlinx.android.synthetic.main.toolbar_blue.txtTitle
+import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
@@ -30,18 +31,20 @@ import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 
-class DetaiHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresenter>(), IDetaiHistoryGuaranteeView {
+class DetaiHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuaranteeView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detai_history_guarantee
-
-    override val getPresenter: DetailHistoryGuaranteePresenter
-        get() = DetailHistoryGuaranteePresenter(this)
+    val presenter = DetailHistoryGuaranteePresenter(this@DetaiHistoryGuaranteeActivity)
 
     private lateinit var adapter: ListNoteHistoryAdapter
 
-    override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detai_history_guarantee)
+        onInitView()
+    }
+
+    fun onInitView() {
+        if (DetailStampActivity.isVietNamLanguage == false) {
             txtTitle.text = "Details of warranty information"
             tvCustomerInfor.text = "Customer Information"
             tvWarrantyInfor.text = "Warranty Information"
@@ -59,7 +62,7 @@ class DetaiHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresent
 
     private fun initRecyclerview() {
         adapter = ListNoteHistoryAdapter(this)
-        val manager = object :LinearLayoutManager(this){
+        val manager = object : LinearLayoutManager(this) {
             override fun canScrollVertically(): Boolean {
                 return false
             }
@@ -79,8 +82,14 @@ class DetaiHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresent
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@DetaiHistoryGuaranteeActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@DetaiHistoryGuaranteeActivity, isShow)
     }
 
     override fun getObjectIntentSuccess(item: ICListHistoryGuarantee, list: MutableList<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>?) {
@@ -183,7 +192,7 @@ class DetaiHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresent
             }
         }
 
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (DetailStampActivity.isVietNamLanguage == false) {
             tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
                 Html.fromHtml("<font color=#434343>Date of return : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
             } else {
@@ -304,7 +313,7 @@ class DetaiHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresent
             }
         }
 
-        if (!list.isNullOrEmpty()){
+        if (!list.isNullOrEmpty()) {
             adapter.setListData(list)
         }
     }

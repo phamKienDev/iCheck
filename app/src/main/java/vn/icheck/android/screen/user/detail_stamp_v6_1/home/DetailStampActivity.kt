@@ -5,12 +5,14 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Html
@@ -38,13 +40,14 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail_stamp.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.holder.StampECommerceHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.banner.ListBannerAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.visibleOrInvisible
@@ -59,7 +62,6 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
 import vn.icheck.android.network.util.JsonHelper
-import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
@@ -78,6 +80,7 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
@@ -85,13 +88,9 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
-class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampView, CampaignLoyaltyHelper.ILoginListener, IClickListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
+class DetailStampActivity : BaseActivityMVVM(), IDetailStampView, CampaignLoyaltyHelper.ILoginListener, IClickListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detail_stamp
-
-    override val getPresenter: DetailStampPresenter
-        get() = DetailStampPresenter(this)
+    val presenter = DetailStampPresenter(this@DetailStampActivity)
 
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
@@ -171,7 +170,15 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail_stamp)
+        onInitView()
+    }
+
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun onInitView() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 //        val code = intent?.getStringExtra(Constant.DATA_1)
 
@@ -609,7 +616,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //                intent.putExtra(Constant.DATA_2, objProductShopVariant)
 //                startActivity(intent)
             } else {
-                startActivity<AccountActivity>()
+                ActivityUtils.startActivity<IckLoginActivity>(this@DetailStampActivity)
             }
         }
 
@@ -1648,9 +1655,15 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
 //        Handler().postDelayed({ onBackPressed() }, 500)
+    }
+
+    override val mContext: Context
+        get() = this@DetailStampActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@DetailStampActivity, isShow)
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {

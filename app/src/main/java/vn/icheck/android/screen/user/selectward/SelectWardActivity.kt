@@ -1,14 +1,16 @@
 package vn.icheck.android.screen.user.selectward
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_select_province.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -24,18 +26,18 @@ import java.util.concurrent.TimeUnit
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class SelectWardActivity : BaseActivity<SelectWardPresenter>(), SelectWardView {
+class SelectWardActivity : BaseActivityMVVM(), SelectWardView {
     private val adapter = SelectWardAdapter(this)
-
+    private val presenter = SelectWardPresenter(this@SelectWardActivity)
     private var disposable: Disposable? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_select_province
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_select_province)
+        onInitView()
+    }
 
-    override val getPresenter: SelectWardPresenter
-        get() = SelectWardPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         initRecyclerView()
         initListener()
@@ -81,6 +83,10 @@ class SelectWardActivity : BaseActivity<SelectWardPresenter>(), SelectWardView {
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SelectWardActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -107,7 +113,6 @@ class SelectWardActivity : BaseActivity<SelectWardPresenter>(), SelectWardView {
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         if (adapter.isListNotEmpty) {
             showShortError(errorMessage)
@@ -115,6 +120,9 @@ class SelectWardActivity : BaseActivity<SelectWardPresenter>(), SelectWardView {
             adapter.setError(errorMessage)
         }
     }
+
+    override val mContext: Context
+        get() = this@SelectWardActivity
 
     override fun onDestroy() {
         disposable?.dispose()

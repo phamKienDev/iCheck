@@ -1,10 +1,12 @@
 package vn.icheck.android.screen.user.profile.changepassword
 
+import android.content.Context
+import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.profile.changepassword.presenter.ChangePasswordPresenter
 import vn.icheck.android.screen.user.profile.changepassword.view.ChangePasswordView
@@ -16,15 +18,17 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class ChangePasswordActivity : BaseActivity<ChangePasswordPresenter>(), ChangePasswordView, View.OnClickListener {
+class ChangePasswordActivity : BaseActivityMVVM(), ChangePasswordView, View.OnClickListener {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_change_password
+    val presenter = ChangePasswordPresenter(this@ChangePasswordActivity)
 
-    override val getPresenter: ChangePasswordPresenter
-        get() = ChangePasswordPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_change_password)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         initListener()
         KeyboardUtils.showSoftInput(edtOldPassword)
@@ -78,6 +82,10 @@ class ChangePasswordActivity : BaseActivity<ChangePasswordPresenter>(), ChangePa
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ChangePasswordActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -88,8 +96,10 @@ class ChangePasswordActivity : BaseActivity<ChangePasswordPresenter>(), ChangePa
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@ChangePasswordActivity
 }

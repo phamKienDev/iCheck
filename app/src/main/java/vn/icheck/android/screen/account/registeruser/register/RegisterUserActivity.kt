@@ -1,20 +1,22 @@
 package vn.icheck.android.screen.account.registeruser.register
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.toolbar_account.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
 import vn.icheck.android.lib.keyboard.Unregistrar
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.registeruser.inputotp.RegisterUserOtpActivity
 import vn.icheck.android.screen.account.registeruser.register.presetner.RegisterUserPresenter
 import vn.icheck.android.screen.account.registeruser.register.view.IRegisterUserView
@@ -22,20 +24,23 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class RegisterUserActivity : BaseActivity<RegisterUserPresenter>(), IRegisterUserView, View.OnClickListener {
+class RegisterUserActivity : BaseActivityMVVM(), IRegisterUserView, View.OnClickListener {
     private var unregister: Unregistrar? = null
 
     private var keyboardHeight = 0
 
     private val requestRegister = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_register
+    private val presenter = RegisterUserPresenter(this@RegisterUserActivity)
 
-    override val getPresenter: RegisterUserPresenter
-        get() = RegisterUserPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_register)
 
-    override fun onInitView() {
+        onInitView()
+    }
+
+    fun onInitView() {
         setupTheme()
         initToolbar()
         initListener()
@@ -86,7 +91,7 @@ class RegisterUserActivity : BaseActivity<RegisterUserPresenter>(), IRegisterUse
 
         txtLeft.setOnClickListener {
             if (presenter.getIsGoToLogin) {
-                startActivityForResult<AccountActivity>(requestRegister)
+                startActivityForResult<IckLoginActivity>(requestRegister)
             } else {
                 onBackPressed()
             }
@@ -153,9 +158,14 @@ class RegisterUserActivity : BaseActivity<RegisterUserPresenter>(), IRegisterUse
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
-
         ToastUtils.showShortError(this, errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@RegisterUserActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@RegisterUserActivity, isShow)
     }
 
     override fun onClick(view: View?) {

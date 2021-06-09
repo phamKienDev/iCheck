@@ -8,7 +8,9 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -117,9 +119,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     companion object {
         var INSTANCE: HomePageFragment? = null
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_home
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
 
     override fun isRegisterEventBus(): Boolean {

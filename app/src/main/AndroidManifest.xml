@@ -149,11 +149,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name=".screen.user.social_chat.SocialChatActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
             android:name=".screen.user.detail_media.DetailMediaActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
@@ -887,12 +882,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_Blue"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.home.AccountActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.bannersurvey.BannerSurveyActivity"

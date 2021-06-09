@@ -41,7 +41,7 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
     private var dispose: Disposable? = null
 
     private var isActivityVisible = true
-    private var requestLogin = 1
+    private var requestLoginV2 = 1
     private var offset = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -239,7 +239,7 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         if (isActivityVisible) {
             when (event.type) {
                 ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_PAGE -> {
                     val id = event.data as Long
@@ -252,7 +252,7 @@ class SearchPageActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             refeshData()
         }
     }

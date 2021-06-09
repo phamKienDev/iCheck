@@ -2,7 +2,9 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -11,7 +13,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_update_information_first.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
@@ -26,17 +28,11 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.selectprovincestamp.Selec
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.adapter.FieldAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter.UpdateInformationFirstPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
-import vn.icheck.android.screen.user.selectprovince.SelectProvinceActivity
 import vn.icheck.android.util.ick.logError
 import java.util.concurrent.TimeUnit
 
-class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresenter>(), IUpdateInformationFirstView {
-
-    override val getLayoutID: Int
-        get() = R.layout.activity_update_information_first
-
-    override val getPresenter: UpdateInformationFirstPresenter
-        get() = UpdateInformationFirstPresenter(this)
+class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFirstView {
+    val presenter = UpdateInformationFirstPresenter(this@UpdateInformationFirstActivity)
 
     private var mProductCode: String? = null
     private var mVariantName: String? = null
@@ -58,8 +54,14 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     private var adapter = FieldAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_update_information_first)
+        onInitView()
+    }
+
     @SuppressLint("SetTextI18n")
-    override fun onInitView() {
+    fun onInitView() {
         DetailStampActivity.listActivities.add(this)
 
         runOnUiThread {
@@ -645,8 +647,14 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@UpdateInformationFirstActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@UpdateInformationFirstActivity, isShow)
     }
 
     override fun onBackPressed() {

@@ -124,7 +124,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     /**
      * ICRequireLogin
      * */
-    private var requestLogin = 101
+    var requestLogin = 101
 
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode

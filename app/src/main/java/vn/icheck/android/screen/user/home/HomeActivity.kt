@@ -3,15 +3,16 @@ package vn.icheck.android.screen.user.home
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Looper
 import android.text.Html
 import android.text.Spannable
@@ -19,8 +20,6 @@ import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.Gravity
 import android.view.View
 import androidx.activity.viewModels
@@ -50,7 +49,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
@@ -65,19 +64,16 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
-import vn.icheck.android.loyalty.helper.ActivityHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.network.base.TokenTimeoutCallback
 import vn.icheck.android.network.models.ICClientSetting
-import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.screen.account.registeruser.register.RegisterUserActivity
 import vn.icheck.android.screen.checktheme.CheckThemeViewModel
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -99,7 +95,6 @@ import vn.icheck.android.screen.user.scan_history.model.ICScanHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 import vn.icheck.android.screen.user.scan_history.view_model.ScanHistoryViewModel
 import vn.icheck.android.screen.user.setting.SettingsActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatFragment
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
@@ -112,10 +107,11 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView, View.OnClickListener {
+class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnClickListener {
     private lateinit var ringtoneHelper: RingtoneHelper
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var locationCallback: LocationCallback? = null
+    private val presenter = HomePresenter(this@HomeActivity)
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
@@ -173,18 +169,18 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         var INSTANCE: HomeActivity? = null
     }
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_home
-
-    override val getPresenter: HomePresenter
-        get() = HomePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+        onInitView()
+    }
 
     override fun isHomeActivity(): Boolean {
         return true
     }
 
     @SuppressLint("RtlHardcoded")
-    override fun onInitView() {
+    fun onInitView() {
         StatusBarUtils.setOverStatusBarDark(this)
         logDebug("home create")
         isOpen = true
@@ -616,11 +612,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     override fun onShowLoading(isShow: Boolean) {
-        if (isShow) {
-            DialogHelper.showLoading(this)
-        } else {
-            DialogHelper.closeLoading(this)
-        }
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@HomeActivity, isShow)
     }
 
     override fun onLogoutFalse() {
@@ -630,6 +622,13 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             }
         })
     }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@HomeActivity
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
@@ -1060,7 +1059,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 checkLoginOrLogoutChat(false)
 
                 FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-                    ickLoginViewModel.loginDevice(token).observe(this, Observer {  })
+                    ickLoginViewModel.loginDevice(token).observe(this, Observer { })
                 }
             }
             ICMessageEvent.Type.ON_LOG_IN -> {

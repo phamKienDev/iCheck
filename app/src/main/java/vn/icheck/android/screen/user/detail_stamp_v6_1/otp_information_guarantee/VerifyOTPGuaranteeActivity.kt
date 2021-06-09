@@ -2,7 +2,8 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarante
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
+import android.content.Context
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
@@ -11,9 +12,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_verify_otpguarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
@@ -21,18 +21,20 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 import vn.icheck.android.util.KeyboardUtils
 
-class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),IVerifyOTPGuaranteeView {
+class VerifyOTPGuaranteeActivity : BaseActivityMVVM(),IVerifyOTPGuaranteeView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_verify_otpguarantee
-
-    override val getPresenter: VerifyOTPGuaranteePresenter
-        get() = VerifyOTPGuaranteePresenter(this)
+    val presenter = VerifyOTPGuaranteePresenter(this@VerifyOTPGuaranteeActivity)
 
     private var timer: CountDownTimer? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_verify_otpguarantee)
+        onInitView()
+    }
+
     @SuppressLint("SetTextI18n")
-    override fun onInitView() {
+    fun onInitView() {
         presenter.getDataByIntent(intent)
         if (DetailStampActivity.isVietNamLanguage == false) {
             txtTitle.text = "Enter verified code"
@@ -200,9 +202,15 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@VerifyOTPGuaranteeActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@VerifyOTPGuaranteeActivity, isShow)
     }
 
     override fun onDestroy() {

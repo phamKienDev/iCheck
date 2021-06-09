@@ -1,27 +1,26 @@
 package vn.icheck.android.screen.user.surveydetail.success
 
+import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_answer_survey_success.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
-import vn.icheck.android.screen.user.surveydetail.success.presenter.SurveyDetailSuccessPresenter
-import vn.icheck.android.screen.user.surveydetail.success.view.ISurveyDetailSuccessView
+import vn.icheck.android.base.activity.BaseActivityMVVM
 
 /**
  * Created by VuLCL on 10/22/2019.
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class SurveyDetailSuccessActivity : BaseActivity<SurveyDetailSuccessPresenter>(), ISurveyDetailSuccessView {
+class SurveyDetailSuccessActivity : BaseActivityMVVM() {
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_answer_survey_success
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_answer_survey_success)
+        onInitView()
+    }
 
-    override val getPresenter: SurveyDetailSuccessPresenter
-        get() = SurveyDetailSuccessPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         initListener()
     }

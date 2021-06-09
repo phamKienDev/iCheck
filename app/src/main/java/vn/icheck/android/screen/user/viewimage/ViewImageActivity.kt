@@ -1,13 +1,16 @@
 package vn.icheck.android.screen.user.viewimage
 
 import android.Manifest
+import android.content.Context
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_view_image.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICThumbnail
 import vn.icheck.android.screen.user.viewimage.adapter.ViewImageAdapter
 import vn.icheck.android.screen.user.viewimage.presenter.ViewImagePresenter
@@ -18,18 +21,18 @@ import vn.icheck.android.screen.user.viewimage.view.IViewImageView
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class ViewImageActivity : BaseActivity<ViewImagePresenter>(), IViewImageView {
+class ViewImageActivity : BaseActivityMVVM(), IViewImageView {
     private val adapter = ViewImageAdapter()
-
+    private val presenter = ViewImagePresenter(this@ViewImageActivity)
     private val requestStorage = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_view_image
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_view_image)
+        onInitView()
+    }
 
-    override val getPresenter: ViewImagePresenter
-        get() = ViewImagePresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupViewPager()
         initListener()
 
@@ -71,6 +74,17 @@ class ViewImageActivity : BaseActivity<ViewImagePresenter>(), IViewImageView {
     override fun onGetDataSuccess(list: MutableList<ICThumbnail>, position: Int) {
         adapter.setData(list)
         viewPager.currentItem = position
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ViewImageActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ViewImageActivity, isShow)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

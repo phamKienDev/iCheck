@@ -1,11 +1,13 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_verified_phone.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.constant.Constant
@@ -17,13 +19,8 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.presenter.VerifiedPhonePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.view.IVerifiedPhoneView
 
-class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedPhoneView {
-
-    override val getLayoutID: Int
-        get() = R.layout.activity_verified_phone
-
-    override val getPresenter: VerifiedPhonePresenter
-        get() = VerifiedPhonePresenter(this)
+class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
+    val presenter = VerifiedPhonePresenter(this@VerifiedPhoneActivity)
 
     private var mIdDistributor: Long? = null
     private var mProductCode: String? = null
@@ -32,12 +29,18 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
     private var mIdVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant? = null
     private var mCodeStamp: String? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_verified_phone)
+        onInitView()
+    }
+
     @SuppressLint("SetTextI18n")
-    override fun onInitView() {
+    fun onInitView() {
         DetailStampActivity.listActivities.add(this)
         presenter.onGetDataIntent(intent)
 
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (DetailStampActivity.isVietNamLanguage == false) {
             txtTitle.text = "Activated Phone Number"
             tvMessTitleVerifyPhone.text = "Enter the actived phone number for this product before updating new information"
             tvSubTel.text = "Phone Number"
@@ -136,8 +139,14 @@ class VerifiedPhoneActivity : BaseActivity<VerifiedPhonePresenter>(), IVerifiedP
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@VerifiedPhoneActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@VerifiedPhoneActivity, isShow)
     }
 
     override fun onDestroy() {
