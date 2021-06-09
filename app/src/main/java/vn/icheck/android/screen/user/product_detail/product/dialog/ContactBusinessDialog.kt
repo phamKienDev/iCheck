@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.product_detail.product.dialog
 
 import android.content.Context
 import kotlinx.android.synthetic.main.dialog_contact_business.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
@@ -48,7 +49,9 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
 
         dialog.btnChat.setOnClickListener {
             requestLogin({
-                ChatSocialDetailActivity.createRoomChat(dialog.context, id ?: -1, "page")
+                ICheckApplication.currentActivity()?.let { activity ->
+                    ChatSocialDetailActivity.createRoomChat(activity, id ?: -1, "page")
+                }
             })
         }
 
