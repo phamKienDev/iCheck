@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ActivityIckUserWallBinding
 import vn.icheck.android.loyalty.helper.ActivityHelper

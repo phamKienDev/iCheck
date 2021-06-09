@@ -389,7 +389,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                     super.onProgressChanged(view, newProgress)
                     isPageLoaded = newProgress == 100
 
-                    if (isAdded && layoutText != null && newProgress >= 80) {
+                    if (isAdded && layoutText != null && newProgress >= 70) {
                         if (isLoadFirst) {
                             layoutText.beInvisible()
                             Handler().postDelayed({
