@@ -3,6 +3,7 @@ package vn.icheck.android.base.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +58,11 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
             return result
         }
 
-    protected abstract val getLayoutID: Int
+    fun focusView(view: View) {
+        Handler().postDelayed({
+            KeyboardUtils.showSoftInput(view)
+        }, 600)
+    }
 
     /**
      * Activity Function
@@ -65,14 +70,6 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (isRegisterEventBus()) EventBus.getDefault().register(this)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return if (getLayoutID != 0) {
-            inflater.inflate(getLayoutID, container, false)
-        } else {
-            super.onCreateView(inflater, container, savedInstanceState)
-        }
     }
 
     override fun onDestroy() {

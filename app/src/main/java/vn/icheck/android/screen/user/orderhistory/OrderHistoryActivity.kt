@@ -5,13 +5,8 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_order_history.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.base.activity.BaseActivityPresenter
-import vn.icheck.android.base.activity.BaseActivityView
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.base.model.ICMessageEvent

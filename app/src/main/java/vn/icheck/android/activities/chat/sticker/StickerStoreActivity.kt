@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 
-class StickerStoreActivity : AppCompatActivity() {
+class StickerStoreActivity : BaseActivityMVVM() {
 
     lateinit var stickerViewModel: StickerViewModel
     lateinit var stickerAdapter: StickerAdapter

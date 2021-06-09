@@ -38,7 +38,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
     private var dispose: Disposable? = null
 
     private var isActivityVisible = true
-    private var requestLogin = 1
+    private var requestLoginV2 = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(SearchShopViewModel::class.java)
@@ -229,7 +229,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         if (isActivityVisible) {
             when (event.type) {
                 ICMessageEvent.Type.ON_LOG_IN -> {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
                 else -> {
                 }
@@ -239,7 +239,7 @@ class SearchShopActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             getData()
         }
     }

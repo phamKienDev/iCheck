@@ -1,12 +1,14 @@
 package vn.icheck.android.screen.account.registerfacebookphone
 
 import android.app.Activity
+import android.content.Context
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_register_facebook_phone.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.account.registerfacebookphone.presenter.RegisterFacebookPhonePresenter
@@ -14,16 +16,19 @@ import vn.icheck.android.screen.account.registerfacebookphone.view.RegisterFaceb
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class RegisterFacebookPhoneActivity : BaseActivity<RegisterFacebookPhonePresenter>(), RegisterFacebookPhoneView, View.OnClickListener {
+class RegisterFacebookPhoneActivity : BaseActivityMVVM(), RegisterFacebookPhoneView, View.OnClickListener {
     private var timer: CountDownTimer? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_register_facebook_phone
+    private val presenter = RegisterFacebookPhonePresenter(this@RegisterFacebookPhoneActivity)
 
-    override val getPresenter: RegisterFacebookPhonePresenter
-        get() = RegisterFacebookPhonePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_register_facebook_phone)
 
-    override fun onInitView() {
+        onInitView()
+    }
+
+    fun onInitView() {
         initToolbar()
         onCountDownOtp()
         initListener()
@@ -68,6 +73,10 @@ class RegisterFacebookPhoneActivity : BaseActivity<RegisterFacebookPhonePresente
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@RegisterFacebookPhoneActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -102,10 +111,12 @@ class RegisterFacebookPhoneActivity : BaseActivity<RegisterFacebookPhonePresente
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@RegisterFacebookPhoneActivity
 
     override fun onClick(view: View?) {
         when (view?.id) {

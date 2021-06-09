@@ -3,12 +3,13 @@ package vn.icheck.android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.databinding.ActivityTestBinding
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.screen.account.icklogin.fragment.IckUserInfoFragment
 
 @AndroidEntryPoint
-class TestActivity : AppCompatActivity() {
+class TestActivity : BaseActivityMVVM() {
     lateinit var binding:ActivityTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

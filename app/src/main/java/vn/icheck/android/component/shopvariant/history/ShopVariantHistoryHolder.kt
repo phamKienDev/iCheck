@@ -18,17 +18,20 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.map.MapGoogleActivity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.*
+import vn.icheck.android.helper.AddToCartHelper
+import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.history.HistoryInteractor
 import vn.icheck.android.network.models.ICHistory_Product
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.TestTimeUtil
@@ -211,7 +214,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
                 AddToCartHelper.addToCart(itemView.context, obj.variant?.id)
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
-                    act.startActivity(Intent(act, AccountActivity::class.java))
+                    ActivityUtils.startActivity<IckLoginActivity>(act)
                 }
             }
         }

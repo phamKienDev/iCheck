@@ -17,18 +17,31 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.viewmod
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
+class HistoryGuaranteeActivity : BaseActivityMVVM(), IHistoryGuaranteeView {
 class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private val adapter = HistoryGuaranteeAdapter(this)
 
     private val viewModel by viewModels<WarrantyHistoryViewModel>()
 
+    val presenter = HistoryGuaranteePresenter(this@HistoryGuaranteeActivity)
     private lateinit var binding: ActivityHistoryGuaranteeBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history_guarantee)
+        onInitView()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryGuaranteeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+    fun onInitView() {
+        presenter.getDataIntent(intent)
+        listener()
+        initRecyclerView()
+        if (DetailStampActivity.isVietNamLanguage == false) {
+            txtTitle.text = "Warranty log"
         binding.layoutToolbar.txtTitle.text =  if (StampDetailActivity.isVietNamLanguage == false) {
             "Warranty log"
         } else {

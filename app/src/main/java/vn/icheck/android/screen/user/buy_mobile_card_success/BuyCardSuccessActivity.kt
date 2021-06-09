@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_buy_card_success.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -28,7 +29,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
 
-class BuyCardSuccessActivity : AppCompatActivity() {
+class BuyCardSuccessActivity : BaseActivityMVVM() {
 
     lateinit var viewModel: PaymentViewModel
 

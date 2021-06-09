@@ -21,6 +21,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentQrAndBarcodeOfMeBinding
@@ -37,7 +38,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.*
 
-class MyQrActivity : AppCompatActivity() {
+class MyQrActivity : BaseActivityMVVM() {
     lateinit var binding: FragmentQrAndBarcodeOfMeBinding
     private var user: ICUser? = null
     private var setting: ICClientSetting? = null

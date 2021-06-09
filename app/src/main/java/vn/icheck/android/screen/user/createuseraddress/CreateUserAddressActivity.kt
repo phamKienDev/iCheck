@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.createuseraddress
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -10,7 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_create_user_address.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.createuseraddress.presenter.CreateUserAddressPresenter
@@ -25,19 +27,21 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CreateUserAddressActivity : BaseActivity<CreateUserAddressPresenter>(), ICreateUserAddressView, View.OnClickListener {
+class CreateUserAddressActivity : BaseActivityMVVM(), ICreateUserAddressView, View.OnClickListener {
+
+    private val presenter = CreateUserAddressPresenter(this@CreateUserAddressActivity)
 
     private val requestProvince = 1
     private val requestDistrict = 2
     private val requestWard = 3
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_create_user_address
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_create_user_address)
+        onInitView()
+    }
 
-    override val getPresenter: CreateUserAddressPresenter
-        get() = CreateUserAddressPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupListener()
     }
@@ -85,6 +89,10 @@ class CreateUserAddressActivity : BaseActivity<CreateUserAddressPresenter>(), IC
 
     override fun onShowLoading() {
         DialogHelper.showLoading(this)
+    }
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@CreateUserAddressActivity, isShow)
     }
 
     override fun onCloseLoading() {
@@ -147,10 +155,12 @@ class CreateUserAddressActivity : BaseActivity<CreateUserAddressPresenter>(), IC
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@CreateUserAddressActivity
 
     override fun onClick(view: View?) {
         when (view?.id) {

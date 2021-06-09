@@ -2,30 +2,35 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.select_variant
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_select_variant.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 
-class SelectVariantActivity : BaseActivity<SelectVariantPresenter>(), ISelectVariantView {
+class SelectVariantActivity : BaseActivityMVVM(), ISelectVariantView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_select_variant
-
-    override val getPresenter: SelectVariantPresenter
-        get() = SelectVariantPresenter(this)
+    val presenter = SelectVariantPresenter(this@SelectVariantActivity)
 
     private var mid: Long? = null
     private val adapter = SelectVariantStampAdapter(this)
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_select_variant)
+        onInitView()
+    }
+
+    fun onInitView() {
         initHeader()
         listener()
         presenter.getDataIntent(intent)
@@ -74,6 +79,17 @@ class SelectVariantActivity : BaseActivity<SelectVariantPresenter>(), ISelectVar
 
     override fun onRefresh() {
         presenter.getDataIntent(intent)
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@SelectVariantActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SelectVariantActivity, isShow)
     }
 
     override fun onGetDataVariantFail(string: String) {
