@@ -59,6 +59,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.getDeviceWidth
+import vn.icheck.android.ichecklibs.util.showDurationErrorToast
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -516,28 +517,20 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                     if (obj.data != null) {
 
                                         if (obj.data?.state == null || obj.data?.state == null) {
-                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                            showShortErrorToast("Không tìm thấy sản phẩm")
-                                            enableCapture()
+                                            showErrorNotFoundBarcode()
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                    showShortErrorToast("Không tìm thấy sản phẩm")
-                                                    enableCapture()
+                                                    showErrorNotFoundBarcode()
                                                 }
                                                 else -> {
 
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
-                                                            enableCapture()
+                                                            showErrorBusinessDeactiveBarcode()
                                                         }
                                                         "adminDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm không cho quét")
-                                                            enableCapture()
+                                                            showErrorAdminDeactiveBarcode()
                                                         }
                                                         else -> {
                                                             setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
@@ -546,18 +539,15 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                                     }
                                                 }
                                             }
-
                                         }
 
                                     } else {
-                                        TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                        showShortErrorToast("Không tìm thấy sản phẩm")
-                                        enableCapture()
+                                        showErrorNotFoundBarcode()
                                     }
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    showShortErrorToast(error?.message)
+                                    showErrorCustom(error?.message)
                                 }
                             })
                         }
@@ -566,23 +556,19 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
                                         if (obj.data?.state == null || obj.data?.state == null) {
-                                            showShortErrorToast("Không tìm thấy sản phẩm")
-                                            enableCapture()
+                                            showErrorNotFoundBarcode(false)
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    showShortErrorToast("Không tìm thấy sản phẩm")
-                                                    enableCapture()
+                                                    showErrorNotFoundBarcode(false)
                                                 }
                                                 else -> {
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
-                                                            enableCapture()
+                                                            showErrorBusinessDeactiveBarcode(false)
                                                         }
                                                         "adminDeactive" -> {
-                                                            showShortErrorToast("Sản phẩm không cho quét")
-                                                            enableCapture()
+                                                            showErrorAdminDeactiveBarcode(false)
                                                         }
                                                         else -> {
                                                             startActivityForResult(Intent(this@V6ScanditActivity, EditReviewActivity::class.java).apply {
@@ -595,14 +581,12 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                                         }
                                     } else {
-                                        showShortErrorToast("Không tìm thấy sản phẩm")
-                                        enableCapture()
+                                        showErrorAdminDeactiveBarcode(false)
                                     }
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    showShortErrorToast(error?.message)
-                                    enableCapture()
+                                    showErrorCustom(error?.message,false)
                                 }
                             })
                         }
@@ -786,8 +770,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                     TrackingAllHelper.trackScanStart(Constant.MA_QR)
                     when {
                         viewModel.scanOnly || viewModel.reviewOnly -> {
-                            showShortErrorToast("Không tìm thấy sản phẩm")
-                            enableCapture()
+                            showErrorNotFoundBarcode(false)
                             return@runOnUiThread
                         }
                         code.startsWith("icv") -> {
@@ -811,28 +794,20 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
                                         if (obj.data?.state == null || obj.data?.state == null) {
-                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                            showShortErrorToast("Không tìm thấy sản phẩm")
-                                            enableCapture()
+                                            showErrorNotFoundBarcode()
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                    showShortErrorToast("Không tìm thấy sản phẩm")
-                                                    enableCapture()
+                                                    showErrorNotFoundBarcode()
                                                 }
                                                 else -> {
 
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
-                                                            enableCapture()
+                                                            showErrorBusinessDeactiveBarcode()
                                                         }
                                                         "adminDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm không cho quét")
-                                                            enableCapture()
+                                                            showErrorAdminDeactiveBarcode()
                                                         }
                                                         else -> {
                                                             setResult(Activity.RESULT_OK, Intent().apply { putExtra(Constant.DATA_1, obj.data) })
@@ -845,15 +820,14 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                         }
 
                                     } else {
-                                        TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                        showShortErrorToast("Không tìm thấy sản phẩm")
-                                        enableCapture()
+                                        showErrorNotFoundBarcode()
                                     }
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
                                     TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                    showShortErrorToast(error?.message)
+                                    error?.message?.let { showDurationErrorToast(it,3000) }
+                                    enableCapture()
                                 }
                             })
 
@@ -864,28 +838,20 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                 override fun onSuccess(obj: ICResponse<ICProductDetail>) {
                                     if (obj.data != null) {
                                         if (obj.data?.state == null || obj.data?.state == null) {
-                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                            showShortErrorToast("Không tìm thấy sản phẩm")
-                                            enableCapture()
+                                            showErrorNotFoundBarcode()
                                         } else {
                                             when (obj.data?.status) {
                                                 "notFound" -> {
-                                                    TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                    showShortErrorToast("Không tìm thấy sản phẩm")
-                                                    enableCapture()
+                                                    showErrorNotFoundBarcode()
                                                 }
                                                 else -> {
 
                                                     when (obj.data?.state) {
                                                         "businessDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu")
-                                                            enableCapture()
+                                                            showErrorBusinessDeactiveBarcode()
                                                         }
                                                         "adminDeactive" -> {
-                                                            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                                            showShortErrorToast("Sản phẩm không cho quét")
-                                                            enableCapture()
+                                                            showErrorAdminDeactiveBarcode()
                                                         }
                                                         else -> {
                                                             startActivityForResult(Intent(this@V6ScanditActivity, EditReviewActivity::class.java).apply {
@@ -897,9 +863,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                                             }
                                         }
                                     } else {
-                                        TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                        showShortErrorToast("Không tìm thấy sản phẩm")
-                                        enableCapture()
+                                        showErrorNotFoundBarcode()
                                     }
                                 }
 
@@ -940,6 +904,38 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 })
             }
         }
+    }
+
+    private fun showErrorCustom(message:String?,tracking:Boolean=true) {
+        if (tracking) {
+            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+        }
+        message?.let { showDurationErrorToast(it,3000) }
+        enableCapture()
+    }
+
+    private fun showErrorAdminDeactiveBarcode(tracking:Boolean=true) {
+        if (tracking) {
+            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+        }
+        showDurationErrorToast("Sản phẩm không cho quét",3000)
+        Handler().postDelayed({enableCapture()},3000)
+    }
+
+    private fun showErrorBusinessDeactiveBarcode(tracking:Boolean=true) {
+        if (tracking) {
+            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+        }
+        showDurationErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu",3000)
+        Handler().postDelayed({enableCapture()},3000)
+    }
+
+    private fun showErrorNotFoundBarcode(tracking:Boolean=true) {
+        if (tracking) {
+            TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
+        }
+        showDurationErrorToast("Không tìm thấy sản phẩm",3000)
+        Handler().postDelayed({enableCapture()},3000)
     }
 
     private fun enableCapture() {
@@ -1064,8 +1060,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 it.startsWith("u-") || it.startsWith("U-") -> {
                     when {
                         viewModel.scanOnly || viewModel.reviewOnly -> {
-                            showShortErrorToast("Không tìm thấy sản phẩm")
-                            enableCapture()
+                            showErrorNotFoundBarcode(false)
                         }
                         else -> {
                             if (it.count { "-".contains(it) } == 1) {
