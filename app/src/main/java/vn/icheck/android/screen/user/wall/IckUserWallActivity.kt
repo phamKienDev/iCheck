@@ -4,11 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +14,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ActivityIckUserWallBinding
@@ -27,7 +24,6 @@ import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragment
 import vn.icheck.android.screen.user.wall.mainuser.IckUserWallFragmentDirections
 import vn.icheck.android.screen.user.wall.manage_page.PageManagementFragment
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.util.kotlin.StatusBarUtils
 
 const val USER_ID = "user_id"
 const val OPEN_INFOR = "open_infor"
@@ -79,7 +75,7 @@ class IckUserWallActivity : BaseCoroutineActivity() {
             id = SessionManager.session.user?.id ?: -1L
         }
         ickUserWallViewModel.id = id
-        ickUserWallViewModel.showBottomBar.observe(this, Observer {
+        ickUserWallViewModel.showBottomBar.observe(this, {
             if (it) {
                 showBottom()
             } else {

@@ -30,10 +30,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant.getHtmlData
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
@@ -41,7 +41,6 @@ import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beInvisible
-import vn.icheck.android.util.ick.logDebug
 
 
 class DialogNotificationFirebaseAds : DialogFragment() {
@@ -329,20 +328,35 @@ class DialogNotificationFirebaseAds : DialogFragment() {
         }
     }
 
+
     private fun setupWebViewHtml(htmlText: String) {
         webViewHtml.apply {
             settings.apply {
-                defaultFontSize = 14f.toInt()
+                javaScriptEnabled = true
+                domStorageEnabled = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
+                setAppCacheEnabled(true)
+                loadsImagesAutomatically = true
+                javaScriptCanOpenWindowsAutomatically = true
+                allowFileAccess = true
+                mediaPlaybackRequiresUserGesture = false
+                cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                 // Full with
-                loadWithOverviewMode = true
-                useWideViewPort = true
+//                loadWithOverviewMode = true
+//                useWideViewPort = true
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                }
+                layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                } else {
+                    WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+                }
+                setGeolocationEnabled(true)
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
-            } else {
-                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
-            }
-            loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+
+            loadDataWithBaseURL(null, vn.icheck.android.ichecklibs.Constant.getHtmlTextNotPadding(htmlText), "text/html", "utf-8", "")
             isVerticalScrollBarEnabled = true
             var isPageLoaded = false
 
@@ -367,11 +381,6 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                }
-
-                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                    super.onReceivedError(view, request, error)
-                    dismiss()
                 }
             }
 
@@ -400,7 +409,8 @@ class DialogNotificationFirebaseAds : DialogFragment() {
     private fun setupWebViewUrl() {
         webViewUrl.apply {
             setPadding(0, 0, 0, 0)
-            setInitialScale(1)
+            setInitialScale(100)
+
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
@@ -411,6 +421,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 javaScriptCanOpenWindowsAutomatically = true
                 allowFileAccess = true
                 mediaPlaybackRequiresUserGesture = false
+                cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                 // Full with
                 loadWithOverviewMode = true
                 useWideViewPort = true
@@ -426,6 +437,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
             }
 
             var isPageLoaded = false
+//            var isProgress = 0
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -448,11 +460,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                }
-
-                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                    super.onReceivedError(view, request, error)
-                    dismiss()
+//                    logDebug("kien_1 $isProgress")
                 }
             }
 
@@ -460,8 +468,9 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     isPageLoaded = newProgress == 100
-
-                    if (isAdded && layoutWeb != null && newProgress >= 80) {
+//                    isProgress = newProgress
+//                    logDebug("kien $newProgress")
+                    if (isAdded && layoutWeb != null && newProgress >= 70) {
                         if (isLoadFirst) {
                             layoutWeb.beInvisible()
                             Handler().postDelayed({

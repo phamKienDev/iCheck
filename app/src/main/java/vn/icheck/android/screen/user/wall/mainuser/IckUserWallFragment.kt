@@ -240,9 +240,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
         startActivityForResult(i, USER_WALL_CREATE_POST)
     }
 
-    private fun hideBottomBar() {
-        ickUserWallViewModel.showBottomBar.postValue(false)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -252,7 +249,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     override fun onResume() {
         super.onResume()
-        showBottomBar()
+        if (ickUserWallViewModel.id==SessionManager.session.user?.id || ickUserWallViewModel.id==-1L) {
+            showBottomBar()
+        }else{
+            hideBottomBar()
+        }
         val intentFilter = IntentFilter(USER_WALL_BROADCAST)
         requireActivity().registerReceiver(eventReceiver, intentFilter)
         setNotify()
@@ -261,6 +262,10 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     private fun showBottomBar() {
         ickUserWallViewModel.showBottomBar.postValue(true)
+    }
+
+    private fun hideBottomBar() {
+        ickUserWallViewModel.showBottomBar.postValue(false)
     }
 
     override fun onPause() {
