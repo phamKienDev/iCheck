@@ -213,6 +213,18 @@ object Constant {
         return "<html>$head<body>$bodyHTML</body></html>"
     }
 
+    fun getHtmlTextNotPadding(content:String):String{
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "\n" +
+                "<body style=\"margin: 0; padding: 0; overflow: hidden\">\n" +
+                content +
+                "</body>\n" +
+                "\n" +
+                "</html>"
+    }
+
+
     fun formatPhone(phone: String?): String? {
         return if (phone?.length ?: 0 >= 10) {
             StringBuilder(phone!!).insert(phone.length - 3, " ").insert(phone.length - 6, " ").toString()

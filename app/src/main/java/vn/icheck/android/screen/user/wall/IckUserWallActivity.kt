@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,7 +75,7 @@ class IckUserWallActivity : BaseActivityMVVM() {
             id = SessionManager.session.user?.id ?: -1L
         }
         ickUserWallViewModel.id = id
-        ickUserWallViewModel.showBottomBar.observe(this, Observer {
+        ickUserWallViewModel.showBottomBar.observe(this, {
             if (it) {
                 showBottom()
             } else {

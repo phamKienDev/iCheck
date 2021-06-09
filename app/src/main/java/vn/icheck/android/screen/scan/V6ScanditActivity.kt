@@ -93,7 +93,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     companion object {
-        var isOpenFirst: Boolean = false
+        var listPopupShowed: MutableList<Long> = mutableListOf()
 
         fun create(context: Context, tab: Int = -1) {
             val i = Intent(context, V6ScanditActivity::class.java)
@@ -274,9 +274,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         initViews()
         pushUpHeight()
 
-        if (intent.getIntExtra(Constant.DATA_1, 1) == -1 && !isOpenFirst) {
+        if (intent.getIntExtra(Constant.DATA_1, 1) == -1) {
             viewModel.getPopup()
-            isOpenFirst = true
         }
     }
 
@@ -671,7 +670,10 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         })
 
         viewModel.onPopupAds.observe(this, {
-            DialogNotificationFirebaseAds.showPopupAds(this, it)
+            if(!listPopupShowed.contains(it.id)){
+                DialogNotificationFirebaseAds.showPopupAds(this, it)
+                listPopupShowed.add(it.id?:-1L)
+            }
         })
         initListener()
     }

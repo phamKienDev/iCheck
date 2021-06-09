@@ -79,7 +79,7 @@
         <activity android:name=".screen.scan.MyQrActivity" />
         <activity
             android:name=".screen.scan.V6ScanditActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".TestActivity" />
         <activity

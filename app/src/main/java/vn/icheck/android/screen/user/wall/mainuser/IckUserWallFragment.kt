@@ -240,9 +240,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
         startActivityForResult(i, USER_WALL_CREATE_POST)
     }
 
-    private fun hideBottomBar() {
-        ickUserWallViewModel.showBottomBar.postValue(false)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -252,7 +249,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     override fun onResume() {
         super.onResume()
-        showBottomBar()
+        if (ickUserWallViewModel.id==SessionManager.session.user?.id || ickUserWallViewModel.id==-1L) {
+            showBottomBar()
+        }else{
+            hideBottomBar()
+        }
         val intentFilter = IntentFilter(USER_WALL_BROADCAST)
         requireActivity().registerReceiver(eventReceiver, intentFilter)
         setNotify()
@@ -261,6 +262,10 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     private fun showBottomBar() {
         ickUserWallViewModel.showBottomBar.postValue(true)
+    }
+
+    private fun hideBottomBar() {
+        ickUserWallViewModel.showBottomBar.postValue(false)
     }
 
     override fun onPause() {
@@ -311,7 +316,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
                         binding.toolbar.background = ColorDrawable(Color.WHITE)
                         binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_blue_24px_new)
-                        if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+                        if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                             binding.notify.setImageResource(R.drawable.ic_home_blue_v2_24px)
                         } else {
                             binding.notify.setImageResource(R.drawable.ic_homenoti_empty_blue_24px)
@@ -330,7 +335,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                     binding.toolbar.background = ColorDrawable(Color.TRANSPARENT)
                     binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_black_28px)
                     binding.titleDiv.beGone()
-                    if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+                    if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                         binding.notify.setImageResource(R.drawable.ic_home_black_28px)
                     } else {
                         binding.notify.setImageResource(R.drawable.ic_noti_black_28dp)
