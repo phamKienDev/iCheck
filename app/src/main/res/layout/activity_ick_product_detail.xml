@@ -275,7 +275,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ doanh nghiệp"
+                android:text="@string/lien_he_doanh_nghiep"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>

@@ -377,9 +377,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 }
 
 fun requestLogin(loginSuccess: () -> Unit, loginCancel: (() -> Unit?)? = null) {
-    ICheckApplication.currentActivity()?.let { activity ->
-        if (activity is BaseActivityMVVM) {
-            activity.onRequireLogin(loginSuccess, loginCancel)
+    if (SessionManager.isUserLogged) {
+        loginSuccess.invoke()
+    } else {
+        ICheckApplication.currentActivity()?.let { activity ->
+            if (activity is BaseActivityMVVM) {
+                activity.onRequireLogin(loginSuccess, loginCancel)
+            } else {
+                loginCancel?.invoke()
+            }
         }
     }
 }
