@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_verified_18px"
             android:drawableRight="@drawable/ic_verified_18px"
-            android:ellipsize="end"
+            android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:drawablePadding="4dp"
             android:hint="@string/dang_cap_nhat"
