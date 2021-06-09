@@ -1,9 +1,11 @@
 package vn.icheck.android.screen.account.registeruser.inputotp
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.*
 import android.text.method.LinkMovementMethod
@@ -15,12 +17,12 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_register_user_otp.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.account.registeruser.inputotp.presenter.RegisterUserOtpPresenter
 import vn.icheck.android.screen.account.registeruser.inputotp.view.IRegisterUserOtpView
 import vn.icheck.android.util.KeyboardUtils
@@ -31,16 +33,19 @@ import vn.icheck.android.util.kotlin.ActivityUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class RegisterUserOtpActivity : BaseActivity<RegisterUserOtpPresenter>(), IRegisterUserOtpView {
+class RegisterUserOtpActivity : BaseActivityMVVM(), IRegisterUserOtpView {
     private var timer: CountDownTimer? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_register_user_otp
+    private val presenter = RegisterUserOtpPresenter(this@RegisterUserOtpActivity)
 
-    override val getPresenter: RegisterUserOtpPresenter
-        get() = RegisterUserOtpPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_register_user_otp)
 
-    override fun onInitView() {
+        onInitView()
+    }
+
+    fun onInitView() {
         setupTheme()
         initToolbar()
         presenter.getData(intent)
@@ -209,13 +214,17 @@ class RegisterUserOtpActivity : BaseActivity<RegisterUserOtpPresenter>(), IRegis
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@RegisterUserOtpActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
 
     override fun onRegisterSuccess(phone: String) {
         if (presenter.getIsGoToLogin) {
-            val intent = Intent(this, AccountActivity::class.java)
+            val intent = Intent(this, IckLoginActivity::class.java)
             intent.putExtra(Constant.DATA_2, phone)
             ActivityUtils.startActivity(this, intent)
             ActivityUtils.finishActivity(this)
@@ -228,10 +237,12 @@ class RegisterUserOtpActivity : BaseActivity<RegisterUserOtpPresenter>(), IRegis
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showLongError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@RegisterUserOtpActivity
 
     override fun onDestroy() {
         super.onDestroy()

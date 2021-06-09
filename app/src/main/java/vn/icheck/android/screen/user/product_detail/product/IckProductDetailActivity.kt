@@ -70,6 +70,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.network.base.OnClickBtnChatListener
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -82,10 +83,10 @@ import java.io.File
  */
 class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener,
     ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
-    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
+    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener, OnClickBtnChatListener {
     private lateinit var viewModel: IckProductDetailViewModel
 
-    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
+    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this, this)
 
     private val permissionCamera = 98
     private var positionSubmit = -1
@@ -97,6 +98,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
+    private val requestLoginProductDetail = 9
+    private val requestLoginScanCode = 10
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -184,12 +187,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         const val REQUEST_MMB = 1
 
         fun start(activity: Activity, barcode: String, isScan: Boolean? = null) {
-            val intent = Intent(activity, IckProductDetailActivity::class.java)
-
-            intent.putExtra(Constant.DATA_1, barcode)
-            if (isScan != null)
-                intent.putExtra(Constant.DATA_2, isScan)
-
+            val intent = Intent(activity, IckProductDetailActivity::class.java).apply {
+                putExtra(Constant.DATA_1, barcode)
+                if (isScan != null) putExtra(Constant.DATA_2, isScan)
+            }
             ActivityUtils.startActivity(activity, intent)
         }
 
@@ -652,13 +653,15 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     ContactBusinessDialog(this).show(
                         productDetail.owner?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
+                        this
                     )
                 } else {
                     ContactBusinessDialog(this).show(
                         productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
+                        this
                     )
                 }
             }
@@ -756,15 +759,27 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         tvBuy.setOnClickListener {
             if (!viewModel.verifyProduct) {
                 if (!viewModel.urlBuy.isNullOrEmpty()) {
-                    val bottomSheetWebView = BottomSheetWebView(this)
-                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+                    BottomSheetWebView(this@IckProductDetailActivity).showWithUrl(viewModel.urlBuy ?: "")
+//                    BottomSheetWebView.show(supportFragmentManager, viewModel.urlBuy ?: "")
                 }
             } else {
-                ChatSocialDetailActivity.createRoomChat(
-                    it.context,
-                    viewModel.productDetail?.owner?.pageId ?: -1,
-                    "page"
-                )
+                if (SessionManager.isUserLogged) {
+                    if (viewModel.productDetail?.owner?.verified == true) {
+                        ChatSocialDetailActivity.createRoomChat(
+                            it.context,
+                            viewModel.productDetail?.owner?.pageId ?: -1,
+                            "page"
+                        )
+                    } else {
+                        ChatSocialDetailActivity.createRoomChat(
+                            it.context,
+                            viewModel.productDetail?.manager?.id ?: -1,
+                            "page"
+                        )
+                    }
+                } else {
+                    onRequireLogin(requestLoginProductDetail)
+                }
             }
         }
 
@@ -796,6 +811,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (type == adapter.getListData[i].viewType) {
                 recyclerView.smoothScrollToPosition(i)
             }
+        }
+    }
+
+    override fun onRequireLoginSuccess(requestCode: Int) {
+        super.onRequireLoginSuccess(requestCode)
+        if (requestCode == requestLoginProductDetail) {
+            viewModel.getProductLayout()
         }
     }
 
@@ -1152,5 +1174,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onClickReviewPermission() {
         viewModel.reloadMyReview(viewModel.urlMyReview)
+    }
+
+    override fun onClick(id: Long?) {
+        if (SessionManager.isUserLogged) {
+            ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
+        } else {
+            onRequireLogin(requestLoginScanCode)
+        }
     }
 }

@@ -7,11 +7,10 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.network.models.ICCategory
 import vn.icheck.android.screen.user.listproductcategory.ListProductCategoryActivity
-import vn.icheck.android.screen.user.mall.MallFragment
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class MallCategoryHorizontalAdapter : BaseMallCategoryAdapter<ICCategory, MallCategoryHorizontalAdapter.ViewHolder>() {
@@ -28,7 +27,6 @@ class MallCategoryHorizontalAdapter : BaseMallCategoryAdapter<ICCategory, MallCa
 
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
-                        MallFragment.nameCategory = obj.name
                         TrackingAllHelper.trackCategoryViewed(obj.name, InsiderHelper.CATEGORY)
                         ActivityUtils.startActivity<ListProductCategoryActivity, Long>(activity, Constant.DATA_1, obj.id)
                     }

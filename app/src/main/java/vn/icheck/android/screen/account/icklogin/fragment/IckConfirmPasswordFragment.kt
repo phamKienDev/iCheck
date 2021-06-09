@@ -14,16 +14,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentFillPwBinding
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class IckConfirmPasswordFragment : CoroutineFragment() {
+class IckConfirmPasswordFragment : BaseFragmentMVVM() {
     private lateinit var binding: FragmentFillPwBinding
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
     private val args: IckConfirmPasswordFragmentArgs by navArgs()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentFillPwBinding.inflate(inflater, container, false)
@@ -68,7 +68,7 @@ class IckConfirmPasswordFragment : CoroutineFragment() {
                             }.show(requireActivity().supportFragmentManager, null)
                         } else {
                             it?.message?.let { msg ->
-                                showError(msg)
+                                requireContext().showShortErrorToast(msg)
                             }
                         }
                     })

@@ -6,11 +6,13 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlarmManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.text.Html
 import android.text.Spannable
@@ -27,11 +29,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import kotlinx.android.synthetic.main.activity_detail_stamp_v5.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
-import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
@@ -65,13 +66,9 @@ import vn.icheck.android.util.kotlin.GlideImageGetter
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.util.*
 
-class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailStampV5View {
+class DetailStampV5Activity : BaseActivityMVVM(), IDetailStampV5View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detail_stamp_v5
-
-    override val getPresenter: DetailStampV5Presenter
-        get() = DetailStampV5Presenter(this)
+    private val presenter = DetailStampV5Presenter(this@DetailStampV5Activity)
 
     private var showVendor: Int? = null
     private var showDistributor: Int? = null
@@ -102,8 +99,14 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     private var bannerAdapter: BannerV5Adapter? = null
     private lateinit var adapterConfigError: ICStampContactAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail_stamp_v5)
+        onInitView()
+    }
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onInitView() {
+    fun onInitView() {
         initBanner()
         initUpdateLocation()
         listener()
@@ -756,8 +759,14 @@ class DetailStampV5Activity : BaseActivity<DetailStampV5Presenter>(), IDetailSta
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@DetailStampV5Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@DetailStampV5Activity, isShow)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

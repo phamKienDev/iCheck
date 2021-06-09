@@ -2,39 +2,56 @@ package vn.icheck.android.screen.user.createqrcode.createcontact
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_contact_qr_code.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
+import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.createcontact.presenter.CreateContactQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createcontact.view.ICreateContactQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
-import vn.icheck.android.helper.ContactHelper
-import vn.icheck.android.screen.dialog.PermissionDialog
+import vn.icheck.android.util.KeyboardUtils
 
 /**
  * Created by VuLCL on 10/5/2019.
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCodePresenter>(), ICreateContactQrCodeView {
+class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView {
     private val requestContact = 1
     private val permissionContact = 1
     private val requestNew = 2
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_create_contact_qr_code
+    private val presenter = CreateContactQrCodePresenter(this@CreateContactQrCodeFragment)
 
-    override val getPresenter: CreateContactQrCodePresenter
-        get() = CreateContactQrCodePresenter(this)
+    override fun isRegisterEventBus(): Boolean {
+        return true
+    }
 
-    override fun onInitView() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_create_contact_qr_code, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onInitView()
+    }
+
+    fun onInitView() {
         initToolbar()
         initListener()
         focusView(edtPhone)
@@ -149,6 +166,13 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
         startActivityForResult(intent, requestNew)
     }
 
+    override fun showError(errorMessage: String) {
+        requireContext().showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context?
+        get() = requireContext()
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -168,7 +192,7 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
         if (requestCode == requestContact) {
             if (resultCode == Activity.RESULT_OK) run {
                 val listInfo = ContactHelper.getDetailPhone(activity, data)
-                if(!listInfo.isNullOrEmpty()){
+                if (!listInfo.isNullOrEmpty()) {
                     edtPhone.setText(listInfo[0])
                     edtLastName.setText(listInfo[1])
                     edtMiddleName.setText(listInfo[2])
@@ -184,6 +208,13 @@ class CreateContactQrCodeFragment : BaseCreateQrCodeFragment<CreateContactQrCode
             if (resultCode == Activity.RESULT_OK) {
                 activity?.onBackPressed()
             }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ICMessageEvent) {
+        if (event.type == ICMessageEvent.Type.BACK) {
+            activity?.onBackPressed()
         }
     }
 }

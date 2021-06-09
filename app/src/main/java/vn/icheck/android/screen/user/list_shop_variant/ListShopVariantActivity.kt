@@ -17,11 +17,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICShopVariantV2
-import vn.icheck.android.screen.account.home.AccountActivity
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.list_shop_variant.adapter.ListShopVariantAdapter
 import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
 import vn.icheck.android.screen.user.list_shop_variant.viewmodel.ListShopVariantViewModel
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 
 class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
 
@@ -107,7 +108,7 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
         if (SessionManager.isUserLogged) {
             viewModel.addCart(id)
         } else {
-            AccountActivity.start(this)
+            ActivityUtils.startActivity<IckLoginActivity>(this@ListShopVariantActivity)
         }
     }
 

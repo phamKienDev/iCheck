@@ -21,7 +21,6 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -32,9 +31,13 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
+abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback,
+    TokenTimeoutCallback {
+
+    var onRequestUserLoginSuccess: () -> Unit = {}
+
     var job: Job? = null
-    var confirmLogin:ConfirmDialog? = null
+    var confirmLogin: ConfirmDialog? = null
     open val getStatusBarHeight: Int
         get() {
             var result = 0
@@ -82,10 +85,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
             if (!isHomeActivity()) {
                 ActivityUtils.finishActivity(this)
             }
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
-                ActivityUtils.finishActivity(this)
-            }
         }
     }
 
@@ -111,7 +110,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == requestLogin) {
             if (resultCode == Activity.RESULT_OK) {
                 onRequireLoginSuccess(requestLogin)
@@ -124,7 +122,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     /**
      * ICRequireLogin
      * */
-    private var requestLogin = 101
+    var requestLogin = 101
 
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode
@@ -146,7 +144,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
 
-    override fun onRequireLoginSuccess(requestCode: Int) {
+    override fun onRequireLoginSuccess(requestCode: Int){
+
     }
 
     override fun onRequireLoginCancel() {
@@ -159,15 +158,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-
-
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it,
-                            "Thông báo",
-                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Để sau",
-                            "Đăng nhập ngay",
-                            false) {
+                    confirmLogin = object : ConfirmDialog(
+                        it,
+                        "Thông báo",
+                        "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                        "Để sau",
+                        "Đăng nhập ngay",
+                        false
+                    ) {
                         override fun onDisagree() {
 
                         }
@@ -294,11 +293,17 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivity<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity(key: String, value: String) {
+    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity(
+        key: String,
+        value: String
+    ) {
         ActivityUtils.startActivity<T>(this, key, value)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivity(key: String, value: O) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivity(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivity<T, O>(this, key, value)
     }
 
@@ -310,11 +315,19 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityForResult(activity, intent, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(key: String, value: String, requestCode: Int) {
+    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(
+        key: String,
+        value: String,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T>(this, key, value, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityForResult(key: String, value: O, requestCode: Int) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityForResult(
+        key: String,
+        value: O,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
@@ -326,7 +339,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityAndFinish<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityAndFinish(key: String, value: O) {
+    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityAndFinish(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivityAndFinish<T, O>(this, key, value)
     }
 
@@ -336,7 +352,11 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
     fun replaceFragment(fragment: Fragment) {
-        ActivityUtils.replaceFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        ActivityUtils.replaceFragment(
+            supportFragmentManager,
+            WidgetUtils.FRAME_FRAGMENT_ID,
+            fragment
+        )
     }
 
     fun removeFragments(fragment: Fragment) {
@@ -349,7 +369,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     fun hideSoftKeyboard() {
         if (currentFocus != null) {
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
         }
     }

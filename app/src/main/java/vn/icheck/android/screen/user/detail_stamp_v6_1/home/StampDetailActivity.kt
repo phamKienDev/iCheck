@@ -89,7 +89,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     private var requestRequireLogin = 0
     private val requestGps = 2
     private val requestUpdateOrDestroy = 1
-    private var requestLogin = 101
 
     private var guarantee: ICWidgetData? = null
     private var isExistLastGuarantee = false

@@ -13,7 +13,7 @@ import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
@@ -22,6 +22,7 @@ import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
@@ -46,7 +47,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class IckLoginFragment : CoroutineFragment() {
+class IckLoginFragment : BaseFragmentMVVM() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
 
     @Inject
@@ -196,12 +197,12 @@ class IckLoginFragment : CoroutineFragment() {
                     })
                 } else {
                     showFocus()
-                    showError(loginRes?.msg)
+                    requireContext().showShortErrorToast(loginRes?.msg)
                 }
             })
         } catch (e: Exception) {
             showFocus()
-            showError(e.localizedMessage)
+            requireContext().showShortErrorToast(e.localizedMessage)
             dismissLoadingScreen()
         }
     }

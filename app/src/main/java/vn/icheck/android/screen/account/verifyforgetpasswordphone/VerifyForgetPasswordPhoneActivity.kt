@@ -1,9 +1,11 @@
 package vn.icheck.android.screen.account.verifyforgetpasswordphone
 
+import android.content.Context
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_verify_forget_password_phone.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -17,15 +19,17 @@ import vn.icheck.android.util.KeyboardUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class VerifyForgetPasswordPhoneActivity : BaseActivity<VerifyPhonePresenter>(), IVerifyPhoneView {
+class VerifyForgetPasswordPhoneActivity : BaseActivityMVVM(), IVerifyPhoneView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_verify_forget_password_phone
+    private val presenter = VerifyPhonePresenter(this@VerifyForgetPasswordPhoneActivity)
 
-    override val getPresenter: VerifyPhonePresenter
-        get() = VerifyPhonePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_verify_forget_password_phone)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         setupTheme()
         setupToolbar()
         initListener()
@@ -92,6 +96,10 @@ class VerifyForgetPasswordPhoneActivity : BaseActivity<VerifyPhonePresenter>(), 
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@VerifyForgetPasswordPhoneActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -101,7 +109,9 @@ class VerifyForgetPasswordPhoneActivity : BaseActivity<VerifyPhonePresenter>(), 
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@VerifyForgetPasswordPhoneActivity
 }

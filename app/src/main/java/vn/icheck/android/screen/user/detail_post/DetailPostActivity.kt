@@ -85,7 +85,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private val requestUpdateComment = 20
     private val requestEditPost = 21
     private val requestSentComment = 22
-    private val requestLogin = 23
+    private val requestLoginV2 = 23
     private val requestMedia = 24
 
     private var isActivityVisible = true
@@ -718,7 +718,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
             ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
                 if (isActivityVisible) {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
             }
             ICMessageEvent.Type.OPEN_MEDIA_IN_POST -> {
@@ -798,7 +798,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     }
                     setResult(RESULT_OK)
                 }
-                requestLogin -> {
+                requestLoginV2 -> {
                     getData()
                 }
             }

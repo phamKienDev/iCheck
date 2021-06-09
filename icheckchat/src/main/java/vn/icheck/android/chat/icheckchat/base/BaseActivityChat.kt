@@ -49,7 +49,6 @@ abstract class BaseActivityChat<VB : ViewBinding> : FragmentActivity() {
     open fun onMessageEvent(event: MCMessageEvent) {
         if (event.type == MCMessageEvent.Type.ON_FINISH_ALL_CHAT) {
             finish()
-
             overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
         }
     }

@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.mygift.fragment.reward_item_v2
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,8 +24,9 @@ class MyGiftsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     lateinit var viewModel: MyGiftsViewModel
     val adapter = RewardItemV2Adapter(this)
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_my_gifts
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_my_gifts, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

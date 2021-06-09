@@ -14,6 +14,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.activity.BaseCoroutineActivity
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ActivityIckUserWallBinding
@@ -30,7 +31,7 @@ const val OPEN_INFOR = "open_infor"
 const val EDIT_MY_PUBLIC_INFO = 1222
 
 @AndroidEntryPoint
-class IckUserWallActivity : BaseCoroutineActivity() {
+class IckUserWallActivity : BaseActivityMVVM() {
     private lateinit var binding: ActivityIckUserWallBinding
     private val ickUserWallViewModel: IckUserWallViewModel by viewModels()
 

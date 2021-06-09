@@ -322,7 +322,7 @@
                 android:drawablePadding="@dimen/size_7"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Đánh giá"
+                android:text="@string/danh_gia"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>

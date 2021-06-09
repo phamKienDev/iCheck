@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
@@ -36,9 +35,7 @@ import vn.icheck.android.network.model.profile.IckUserFriendModel
 import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
-import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
@@ -224,7 +221,6 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
 
         binding.btnSendMsg.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                ListConversationFragment.finishAllChat()
                 ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
