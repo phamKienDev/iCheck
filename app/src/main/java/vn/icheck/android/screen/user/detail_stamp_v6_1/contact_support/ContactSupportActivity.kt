@@ -35,7 +35,7 @@ class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
     }
 
     fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Contact help"
         } else {
             txtTitle.text = "Liên hệ hỗ trợ"

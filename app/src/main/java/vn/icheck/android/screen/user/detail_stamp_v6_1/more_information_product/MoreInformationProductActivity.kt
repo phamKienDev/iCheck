@@ -32,7 +32,7 @@ class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProduc
     }
 
     fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Information"
         } else {
             txtTitle.text = "Thông tin"
