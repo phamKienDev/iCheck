@@ -3,13 +3,13 @@ package vn.icheck.android.network.models.detail_stamp_v6_1
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ICFieldGuarantee(
+data class ICCustomerField(
 
-        @SerializedName("value_f")
-        val valueF: MutableList<ValueFItem>? = null,
+//        @SerializedName("value_f")
+//        val valueF: MutableList<ValueFItem>? = null,
 
-//        @SerializedName("value")
-//        val value: String? = null,
+        @SerializedName("value")
+        val value: String? = null,
 
         @SerializedName("name")
         val name: String? = null,
@@ -33,17 +33,17 @@ data class ICFieldGuarantee(
         var string_values: String? = null,
 ) : Serializable
 
-class ValueFItem : Serializable {
-
-    @SerializedName("id")
-    var id: Int? = null
-
-    @SerializedName("value")
-    var value: String? = null
-
-    var isChecked: Boolean = false
-
-    override fun toString(): String {
-        return value ?: ""
-    }
-}
+//class ValueFItem : Serializable {
+//
+//    @SerializedName("id")
+//    var id: Int? = null
+//
+//    @SerializedName("value")
+//    var value: String? = null
+//
+//    var isChecked: Boolean = false
+//
+//    override fun toString(): String {
+//        return value ?: ""
+//    }
+//}

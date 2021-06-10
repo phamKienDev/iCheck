@@ -5,6 +5,20 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object TimeHelper {
+
+    val simpleDateFormatSv: SimpleDateFormat
+        get() {
+            val sdfSv = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            sdfSv.timeZone = TimeZone.getTimeZone("GMT+0")
+            return sdfSv
+        }
+
+    private fun simpleDateFormat(format: String): SimpleDateFormat {
+        val sdfSv = SimpleDateFormat(format, Locale.getDefault())
+        sdfSv.timeZone = TimeZone.getTimeZone("GMT+0")
+        return sdfSv
+    }
+
     fun getCreteTimeDate(): String {
         val sdf = SimpleDateFormat("HH_mm_ss_dd_MM_yyyy", Locale.getDefault())
         val mDate = Date()
@@ -21,6 +35,7 @@ object TimeHelper {
             "${String.format("%02d", minute)}:${String.format("%02d", second)}"
         }
     }
+
     fun convertDateVnToMillisecond2(dateVn: String?): Long? {
         if (dateVn.isNullOrEmpty())
             return null
@@ -29,6 +44,31 @@ object TimeHelper {
 
         return try {
             sdfSv.parse(dateVn)?.time
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    fun convertMillisecondToDateTimeSv(millisecond: Long?): String? {
+        if (millisecond == null || millisecond == -1L)
+            return null
+
+        return try {
+            simpleDateFormatSv.format(Date(millisecond))
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    fun convertDateTimeSvToDateVn(date: String?): String? {
+        if (date.isNullOrEmpty())
+            return null
+
+        val sdfSv = simpleDateFormatSv
+        val sdfVn = simpleDateFormat("dd/MM/yyyy")
+
+        return try {
+            sdfVn.format(sdfSv.parse(date))
         } catch (e: Exception) {
             null
         }

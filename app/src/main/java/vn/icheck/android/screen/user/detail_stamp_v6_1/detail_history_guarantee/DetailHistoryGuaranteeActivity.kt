@@ -1,8 +1,7 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
-import android.content.Context
-import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,12 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ItemDetailHistoryGuaranteeBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.DialogHelper
-import vn.icheck.android.ichecklibs.view.TextBody1
+import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
@@ -27,33 +26,27 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
+import vn.icheck.android.ui.view.TextBody1
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 
-class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuaranteeView {
+class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresenter>(), IDetaiHistoryGuaranteeView {
 
-    val presenter = DetailHistoryGuaranteePresenter(this@DetailHistoryGuaranteeActivity)
+    override val getLayoutID: Int
+        get() = R.layout.activity_detai_history_guarantee
+
+    override val getPresenter: DetailHistoryGuaranteePresenter
+        get() = DetailHistoryGuaranteePresenter(this)
 
     private val adapter = ListNoteHistoryAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detai_history_guarantee)
-    }
+    override fun onInitView() {
+        txtTitle.text = "Chi tiết bảo hành"
+        tvCustomerInfor.text = "Thông tin khách hàng"
+        tvWarrantyInfor.text = "Thông tin bảo hành"
 
-    fun onInitView() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Details of warranty information"
-            tvCustomerInfor.text = "Customer Information"
-            tvWarrantyInfor.text = "Warranty Information"
-        } else {
-            txtTitle.text = "Chi tiết bảo hành"
-            tvCustomerInfor.text = "Thông tin khách hàng"
-            tvWarrantyInfor.text = "Thông tin bảo hành"
-        }
-
-        listener()
         initRecyclerview()
+        setupListener()
 
         presenter.getObjectIntent(intent)
     }
@@ -68,7 +61,7 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
         recyclerView.adapter = adapter
     }
 
-    private fun listener() {
+    private fun setupListener() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
@@ -79,145 +72,38 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
     }
 
     override fun showError(errorMessage: String) {
+        super.showError(errorMessage)
         showShortError(errorMessage)
     }
 
-    override val mContext: Context
-        get() = this@DetailHistoryGuaranteeActivity
-
-    override fun onShowLoading(isShow: Boolean) {
-        DialogHelper.showLoading(this@DetailHistoryGuaranteeActivity, isShow)
-    }
-
     override fun getObjectIntentSuccess(item: ICListHistoryGuarantee, list: MutableList<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>?) {
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Name : </font>" + "<b>" + item.customer?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Name : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + item.customer?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvNameCustomer.text = item.customer?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Tel : </font>" + "<b>" + item.customer?.phone + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Tel : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + item.customer?.phone + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvPhoneCustomer.text = item.customer?.phone
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + item.customer?.email + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + item.customer?.email + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Email : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvMailCustomer.text = item.customer?.email
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + item.customer?.address + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Address : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + item.customer?.address + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Địa chỉ : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvAddressCustomer.text = item.customer?.address
+        for (field in item.customer?.fields ?: mutableListOf()) {
+            val binding = ItemDetailHistoryGuaranteeBinding.inflate(LayoutInflater.from(this), layoutCustomer, false)
+            binding.tvTitle.text = field.name
+                if (field.type == "date") {
+                    binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
+                } else {
+                    binding.tvContent.text = field.value
+                }
+            layoutCustomer.addView(binding.root)
+        }
 
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Time : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Time : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time)
         } else {
             null
         }
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Warranty Center : </font>" + "<b>" + item.store?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Warranty Center : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + item.store?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvNameStoreGuarantee.text = item.store?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false) {
-//            tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Warranty Status : </font>" + "<b>" + item.state?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Warranty Status : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Tình trạng : </font>" + "<b>" + item.state?.name + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Tình trạng : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvStateGuarantee.text = item.state?.name
-
-//        if (DetailStampActivity.isVietNamLanguage == false){
-//            tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Date of return : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Date of return : </font>" + "<b>" + "updating" + "</b>")
-//            }
-//        } else {
-//            tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-//                Html.fromHtml("<font color=#434343>Ngày hẹn trả : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
-//            } else {
-//                Html.fromHtml("<font color=#434343>Ngày hẹn trả : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
-//            }
-//        }
         tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time)
         } else {
             null
         }
-
         if (!item.note.isNullOrEmpty()) {
             if (StampDetailActivity.isVietNamLanguage == false) {
                 layoutContent.addView(createTableRow("Notes of Warranty return:", item.note))
@@ -232,7 +118,7 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
                 try {
                     val value = sdf.parse(i.value!!)
                     if (value != null) {
-                        layoutContent.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToDateVn(i.value)))
+                        layoutContent.addView(createTableRow(i.name, TimeHelper.convertDateTimeSvToTimeDateVnPhay(i.value)))
                     } else {
                         layoutContent.addView(createTableRow(i.name, i.value))
                     }

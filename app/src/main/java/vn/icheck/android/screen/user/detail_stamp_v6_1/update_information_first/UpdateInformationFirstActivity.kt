@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityUpdateInformationFirstBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.ValidHelper
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
@@ -69,7 +70,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         StampDetailActivity.listActivities.add(this)
 
         setupToolbar()
-//        setupView()
         setupListener()
         setupSearchCustomer()
         checkData()
@@ -82,54 +82,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
         binding.layoutToolbar.txtTitle.setText(R.string.thong_tin_khach_hang)
     }
-
-//    private fun setupView() {
-//        if (StampDetailActivity.isVietNamLanguage == false) {
-//            binding.layoutToolbar.txtTitle.text = "Customer Information"
-//            binding.tvLabelInforCustomer.text = "Customer Information"
-//            binding.tvViewVerifiedPhoneNumber.text = "Update customer information to receive the hot deals and service."
-//            binding.tvViewForceUpdate.text = "You have to update personal information to active warranty.Manufacturer may refuse warranty if the information is incorrect"
-//            binding.tvSubPhone.text = "Phone Number (*)"
-//            binding.tvSubName.text = "Name"
-//            binding.tvSubTinhThanh.text = "City"
-//            binding.tvSubHuyen.text = "District"
-//            binding.tvCities.text = "Option"
-//            binding.tvDistricts.text = "Option"
-//            binding.tvSubAddress.text = "Address"
-//            binding.btnUpdate.text = "Update"
-//            binding.edtPhone.hint = "Enter Phone Number"
-//            binding.edtName.hint = "Enter Name"
-//            binding.edtEmail.hint = "Enter Email"
-//            binding.edtAddress.hint = "Enter Address"
-//            binding.tvSubProductCode.text = "Product Code"
-//            binding.edtProductCode.hint = "Enter Product Code"
-//            binding.tvSubProductVariant.text = "Varitation code"
-//            binding.edtVariant.hint = "Enter Variation Code"
-//            binding.tvTitleField.text = "Received information"
-//        } else {
-//            binding.layoutToolbar.txtTitle.text = "Thông tin khách hàng"
-//            binding.tvLabelInforCustomer.text = "Thông tin khách hàng"
-//            binding.tvViewVerifiedPhoneNumber.text = "Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
-//            binding.tvViewForceUpdate.text = "Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác."
-//            binding.tvSubPhone.text = "Số điện thoại (*)"
-//            binding.tvSubName.text = "Họ và tên"
-//            binding.tvSubTinhThanh.text = "Tỉnh thành"
-//            binding.tvSubHuyen.text = "Huyện"
-//            binding.tvCities.text = "Tùy chọn"
-//            binding.tvDistricts.text = "Tùy chọn"
-//            binding.tvSubAddress.text = "Địa chỉ"
-//            binding.btnUpdate.text = "Cập nhật"
-//            binding.edtPhone.hint = "Nhập số điện thoại"
-//            binding.edtName.hint = "Nhập họ tên"
-//            binding.edtEmail.hint = "Nhập email"
-//            binding.edtAddress.hint = "Nhập địa chỉ"
-//            binding.tvSubProductCode.text = "Mã hiệu sản phẩm"
-//            binding.edtProductCode.hint = "Nhập mã hiệu sản phẩm"
-//            binding.tvSubProductVariant.text = "Mã biến thể"
-//            binding.edtVariant.hint = "Nhập biến thể sản phẩm"
-//            binding.tvTitleField.text = "Thông tin tiếp nhận"
-//        }
-//    }
 
     private fun setupListener() {
         binding.layoutSelectCity.setOnClickListener {
@@ -154,33 +106,12 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
 
         binding.btnUpdate.setOnClickListener {
-            val customerData = getBody(customerVariantAdapter.listData)
-            if (customerData == null) {
-                showInputDataError()
-                return@setOnClickListener
-            }
-
-            val guaranteeData = getBody(guaranteeVariantAdapter.listData)
-            if (guaranteeData == null) {
-                showInputDataError()
-                return@setOnClickListener
-            }
-
-            presenter.validUpdateInformationGuarantee(name = binding.edtName.text.toString(),
-                    phone = binding.edtPhone.text.toString(), email = binding.edtEmail.text.toString(),
-                    address = binding.edtAddress.text.toString(), productCode = binding.edtProductCode.text.toString(),
-                    variant = viewModel.objVariant?.id, customerData = customerData,
-                    guaranteeData = guaranteeData, barcode = viewModel.barcode,
-                    updateType = viewModel.updateType, serial = viewModel.serial)
+            updateUserInfo()
         }
     }
 
     private fun showInputDataError() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            showShortError("Please fill in the required fields")
-        } else {
-            showShortError("Bạn cần nhập các trường yêu cầu")
-        }
+        showShortError("Bạn cần nhập các trường yêu cầu")
     }
 
     private fun setupSearchCustomer() {
@@ -198,6 +129,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                 }, {
                     logError(it)
                 })
+    }
+
+    private fun stopSerchCustomer() {
+        disposable?.dispose()
+        disposable = null
     }
 
     private fun checkData() {
@@ -240,11 +176,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
     private fun getProductVariant() {
         if (NetworkHelper.isNotConnected(this)) {
-            getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
-                "Checking network. Please try again"
-            } else {
-                getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
-            })
+            getProductVariantError(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -276,15 +208,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             }
 
             withContext(Dispatchers.Main) {
-//                if (productVariant == null || customerVariant == null || guaranteeVariant == null) {
-//                    getProductVariantError(if (StampDetailActivity.isVietNamLanguage == false) {
-//                        "Occurred. Please try again"
-//                    } else {
-//                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-//                    })
-//                    return@withContext
-//                }
-
                 if (!productVariant?.data?.products.isNullOrEmpty()) {
                     binding.tvSubProductCode.visibility = View.GONE
                     binding.edtProductCode.visibility = View.GONE
@@ -297,6 +220,17 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     binding.edtVariant.visibility = View.GONE
                 }
 
+                /*
+                * Thông tin động của user
+                * */
+                customerVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
+                }
+
                 if (!customerVariant.isNullOrEmpty()) {
                     binding.rcvCustomerVariant.apply {
                         beVisible()
@@ -306,6 +240,17 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     customerVariantAdapter.addData(customerVariant!!)
                 } else {
                     binding.rcvCustomerVariant.visibility = View.GONE
+                }
+
+                /*
+                * Thông tin động của bảo hành
+                * */
+                guaranteeVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
                 }
 
                 if (!guaranteeVariant.isNullOrEmpty()) {
@@ -328,11 +273,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                         binding.edtProductCode.setText(viewModel.productCode)
                         binding.edtVariant.setText(viewModel.objVariant?.extra)
                         if (!viewModel.phoneNumber.isNullOrEmpty()) {
-                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
+                            binding.edtPhone.setText(viewModel.phoneNumber)
                         } else {
                             val phone = SessionManager.session.user?.phone
                             if (!phone.isNullOrEmpty()) {
-                                searchGuaranteeCustomerDetail(phone)
+                                binding.edtPhone.setText(phone)
                             }
                         }
                     }
@@ -342,11 +287,11 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                         binding.edtProductCode.setText(viewModel.productCode)
                         binding.edtVariant.setText(viewModel.objVariant?.extra)
                         if (!viewModel.phoneNumber.isNullOrEmpty()) {
-                            searchGuaranteeCustomerDetail(viewModel.phoneNumber!!)
+                            binding.edtPhone.setText(viewModel.phoneNumber)
                         } else {
                             val phone = SessionManager.session.user?.phone
                             if (!phone.isNullOrEmpty()) {
-                                searchGuaranteeCustomerDetail(phone)
+                                binding.edtPhone.setText(phone)
                             }
                         }
                     }
@@ -355,13 +300,19 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                         binding.edtProductCode.visibility = View.GONE
                         binding.tvSubProductVariant.visibility = View.GONE
                         binding.edtVariant.visibility = View.GONE
-                        binding.edtPhone.setText(SessionManager.session.user?.phone)
-                        binding.edtName.setText(SessionManager.session.user?.first_name + SessionManager.session.user?.last_name)
-                        binding.edtEmail.setText(SessionManager.session.user?.email)
-                        binding.tvCities.text = SessionManager.session.user?.city?.name
-                        binding.tvDistricts.text = SessionManager.session.user?.district?.name
-                        presenter.cityId = SessionManager.session.user?.city?.id?.toInt()
-                        presenter.districtId = SessionManager.session.user?.district?.id
+
+                        SessionManager.session.user?.let { user ->
+                            stopSerchCustomer()
+                            binding.edtPhone.setText(user.phone)
+                            setupSearchCustomer()
+
+                            binding.edtName.setText(Constant.getName(user.last_name, user.first_name, ""))
+                            binding.edtEmail.setText(user.email)
+                            binding.tvCities.text = user.city?.name
+                            binding.tvDistricts.text = user.district?.name
+                            presenter.cityId = user.city?.id?.toInt()
+                            presenter.districtId = user.district?.id
+                        }
                     }
                 }
             }
@@ -383,7 +334,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
                     resetCustomerInfo()
                 }
                 Status.ERROR_REQUEST -> {
-                    showLongError(ICheckApplication.getError(it.message))
+                    showLongError(R.string.khong_tim_thay_tai_khoan)
                     resetCustomerInfo()
                 }
                 Status.SUCCESS -> {
@@ -416,67 +367,52 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
         if (!customer.name.isNullOrEmpty()) {
             binding.edtName.setText(customer.name)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtName.hint = "Enter Name"
-            } else {
-                binding.edtName.hint = "Nhập họ tên"
-            }
         }
 
-        disposable?.dispose()
-        disposable = null
-
+        stopSerchCustomer()
         if (!customer.phone.isNullOrEmpty()) {
             binding.edtPhone.setText(customer.phone)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtPhone.hint = "Enter Phone Number"
-            } else {
-                binding.edtPhone.hint = "Nhập số điện thoại"
-            }
         }
-
         setupSearchCustomer()
 
         if (!customer.email.isNullOrEmpty()) {
             binding.edtEmail.setText(customer.email)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtEmail.hint = "Enter Email"
-            } else {
-                binding.edtEmail.hint = "Nhập email"
-            }
         }
 
         if (!customer.address.isNullOrEmpty()) {
             binding.edtAddress.setText(customer.address)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtAddress.hint = "Enter Address"
-            } else {
-                binding.edtAddress.hint = "Nhập địa chỉ"
-            }
         }
 
         if (!viewModel.productCode.isNullOrEmpty()) {
             binding.edtProductCode.setText(viewModel.productCode)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtProductCode.hint = "Enter Product Code"
-            } else {
-                binding.edtProductCode.hint = "Nhập mã hiệu sản phẩm"
-            }
         }
 
         if (!viewModel.objVariant?.extra.isNullOrEmpty()) {
             binding.edtVariant.setText(viewModel.objVariant?.extra)
-        } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                binding.edtVariant.hint = "Enter Variation Code"
-            } else {
-                binding.edtVariant.hint = "Nhập biến thể sản phẩm"
+        }
+
+        customer.fields?.let { customerField ->
+            for (field in customerVariantAdapter.listData) {
+                customerField.find { it.key == field.key }?.let { find ->
+                    if (field.type == "checkbox" || field.type == "select") {
+                        find.string_values?.split(",")?.let { listSelected ->
+                            try {
+                                for (i in (field.valueF ?: mutableListOf()).indices) {
+                                    if (listSelected.find { it.toInt() == i } != null) {
+                                        field.valueF!![i].isChecked = true
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    } else {
+                        field.string_values = find.string_values
+                    }
+                }
             }
+
+            customerVariantAdapter.notifyDataSetChanged()
         }
     }
 
@@ -484,19 +420,6 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         binding.edtName.setText("")
         binding.edtEmail.setText("")
         binding.edtAddress.setText("")
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            binding.edtName.hint = "Enter Name"
-            binding.edtEmail.hint = "Enter Email"
-            binding.tvCities.text = "Option"
-            binding.tvDistricts.text = "Option"
-            binding.edtAddress.hint = "Enter Address"
-        } else {
-            binding.edtName.hint = "Nhập họ tên"
-            binding.edtEmail.hint = "Nhập email"
-            binding.tvCities.text = "Tùy chọn"
-            binding.tvDistricts.text = "Tùy chọn"
-            binding.edtAddress.hint = "Nhập địa chỉ"
-        }
     }
 
     private fun getBody(listData: MutableList<ICFieldGuarantee>): HashMap<String, Any>? {
@@ -505,72 +428,135 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         for (item in listData) {
             if (item.type == "input") {
                 if (item.require == 1) {
-                    if (item.inputContent.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputContent.isNullOrEmpty()) {
-                    body[item.key] = item.inputContent!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "textarea") {
                 if (item.require == 1) {
-                    if (item.inputArea.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputArea.isNullOrEmpty()) {
-                    body[item.key] = item.inputArea!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "date") {
-                if (item.require == 1) {
-                    if (item.date.isNullOrEmpty()) {
-                        return null
-                    }
+                if (item.require == 1 && item.string_values.isNullOrEmpty()) {
+                    return null
                 }
-                if (!item.date.isNullOrEmpty()) {
-                    body[item.key] = item.date!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "select") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        var value: String? = null
-                        for (select in item.valueF!!) {
-                            if (select.isChecked) {
-                                value = select.value
-                            }
-                        }
-                        if (value == null) {
-                            return null
-                        }
-                        body[item.key] = value
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
 
             if (item.type == "checkbox") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        val list = mutableListOf<String>()
-                        for (checkbox in item.valueF!!) {
-                            if (checkbox.isChecked) {
-                                list.add(checkbox.value!!)
-                            }
-                        }
-                        if (list.isNotEmpty()) {
-                            body[item.key] = list
-                        }
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
         }
 
         return body
+    }
+
+    private fun getInputValue(list: MutableList<ValueFItem>?): String {
+        val stringBuilder = StringBuilder()
+        for (item in list ?: mutableListOf()) {
+            if (item.isChecked) {
+                if (stringBuilder.isNotEmpty()) {
+                    stringBuilder.append(",")
+                }
+                stringBuilder.append(item.id)
+            }
+        }
+        return stringBuilder.toString()
+    }
+
+    private fun updateUserInfo() {
+        val customerData = getBody(customerVariantAdapter.listData)
+        if (customerData == null) {
+            showInputDataError()
+            return
+        }
+
+        val guaranteeData = getBody(guaranteeVariantAdapter.listData)
+        if (guaranteeData == null) {
+            showInputDataError()
+            return
+        }
+
+        val name = binding.edtName.text.toString().trim()
+        val phone = binding.edtPhone.text.toString().trim()
+        val email = binding.edtEmail.text.toString().trim()
+        val address = binding.edtAddress.text.toString().trim()
+
+        val validName = ValidHelper.validName(this, name)
+        if (validName != null) {
+            showLongError(validName)
+            return
+        }
+
+        val validPhone = ValidHelper.validPhoneNumber(this, phone)
+        if (validPhone != null) {
+            showLongError(validPhone)
+            return
+        }
+
+        if (presenter.cityId ?: 0 <= 0) {
+            showLongError(getString(R.string.tinh_thanh_khong_duoc_de_trong))
+            return
+        }
+
+        if (presenter.districtId ?: 0 <= 0) {
+            showLongError(getString(R.string.quan_huyen_khong_duoc_de_trong))
+            return
+        }
+
+        if (address.isEmpty()) {
+            showLongError(getString(R.string.dia_chi_khong_duoc_de_trong))
+            return
+        }
+
+        val user = ICUpdateCustomerGuarantee(name, phone, email, address, presenter.districtId, presenter.cityId, customerData)
+
+        if (viewModel.serial.isEmpty()) {
+            finishActivity(RESULT_OK, Intent().apply {
+                putExtra(Constant.DATA_1, user)
+            })
+            return
+        }
+
+        presenter.validUpdateInformationGuarantee(
+                user = user,
+                productCode = binding.edtProductCode.text.toString(),
+                variant = viewModel.objVariant?.id,
+                customerData = customerData,
+                guaranteeData = guaranteeData,
+                barcode = viewModel.barcode,
+                updateType = viewModel.updateType,
+                serial = viewModel.serial)
     }
 
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {
@@ -585,11 +571,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameCityFail() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            binding.tvCities.text = "Option"
-        } else {
-            binding.tvCities.text = "Tùy chọn"
-        }
+        binding.tvCities.text = ""
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
@@ -598,11 +580,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameDistrictFail() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            binding.tvDistricts.text = "Option"
-        } else {
-            binding.tvDistricts.text = "Tùy chọn"
-        }
+        binding.tvDistricts.text = ""
     }
 
     override fun onShowError(message: String) {
@@ -617,12 +595,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     override fun onSetCityName(name: String, id: Int) {
         binding.tvCities.text = name
         presenter.cityId = id
-
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            binding.tvDistricts.text = "Option"
-        } else {
-            binding.tvDistricts.text = "Tùy chọn"
-        }
+        binding.tvDistricts.text = ""
     }
 
     override fun onSetDistrictName(name: String, id: Int) {
@@ -630,14 +603,12 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         presenter.districtId = id
     }
 
-    override fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?,
-                                           districtId: Int?, address: String, productCode: String,
+    override fun onSendOtpGuaranteeSuccess(user: ICUpdateCustomerGuarantee, productCode: String,
                                            variant: Long?, customerData: HashMap<String, Any>,
                                            guaranteeData: HashMap<String, Any>) {
-        val obj = ICUpdateCustomerGuarantee(name, phone, email, address, districtId, cityId, customerData)
 
         val intent = Intent(this, VerifyOTPGuaranteeActivity::class.java)
-        intent.putExtra(Constant.DATA_1, obj)
+        intent.putExtra(Constant.DATA_1, user)
         intent.putExtra(Constant.DATA_2, viewModel.serial)
         intent.putExtra(Constant.DATA_3, productCode)
         intent.putExtra(Constant.DATA_4, variant)
@@ -646,27 +617,15 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
     }
 
     override fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee) {
-        setResult(RESULT_OK, Intent().apply {
-            putExtra(Constant.DATA_1, user)
-        })
-
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                showShortSuccess("Successfully updated")
-            } else {
-                showShortSuccess("Cập nhật thông tin thành công")
-            }
+            showShortSuccess("Cập nhật thông tin thành công")
         }
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            showShortError("Occurred. Please try again")
-        } else {
-            showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-        }
+        showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

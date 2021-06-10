@@ -17,7 +17,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
  * Email: phonglh@icheck.vn
  */
 class DetailHistoryGuaranteePresenter(val view: IDetaiHistoryGuaranteeView) : BaseActivityPresenter(view) {
-
     private val interactor = DetailStampRepository()
 
     fun getObjectIntent(intent: Intent) {
@@ -40,7 +39,7 @@ class DetailHistoryGuaranteePresenter(val view: IDetaiHistoryGuaranteeView) : Ba
         interactor.getListNoteHistoryGuarantee(item._id!!, object : ICApiListener<ICResp_Note_Guarantee> {
             override fun onSuccess(obj: ICResp_Note_Guarantee) {
                 view.onShowLoading(false)
-                if (obj.data?.logs != null && !obj.data?.logs?.list.isNullOrEmpty()) {
+                if (!obj.data?.logs?.list.isNullOrEmpty()) {
                     view.getObjectIntentSuccess(item, obj.data?.logs?.list)
                 } else {
                     view.getObjectIntentSuccess(item, null)

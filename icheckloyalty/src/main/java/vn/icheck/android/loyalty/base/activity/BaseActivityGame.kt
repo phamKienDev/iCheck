@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.base.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -11,7 +12,7 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
 import java.io.Serializable
 
-abstract class BaseActivityGame : FragmentActivity() {
+abstract class BaseActivityGame : AppCompatActivity() {
 
     protected abstract val getLayoutID: Int
     protected abstract fun onInitView()
