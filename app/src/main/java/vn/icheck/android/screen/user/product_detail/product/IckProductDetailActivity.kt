@@ -651,7 +651,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             viewModel.productDetail?.let { productDetail ->
                 if (productDetail.owner?.verified == true) {
                     ContactBusinessDialog(this).show(
-                        productDetail.owner?.id,
+                        productDetail.owner?.pageId ?: productDetail.manager?.id,
                         productDetail.manager?.phone,
                         productDetail.manager?.email,
                         this
