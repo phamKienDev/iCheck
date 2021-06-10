@@ -21,8 +21,6 @@ class DetailStampRepository : BaseRepository() {
     suspend fun getDetailStampV61(user: ICUpdateCustomerGuarantee?, barcode: String, lat: Double?, lon: Double?): ICResponse<ICStampV61> {
         val body = JsonObject()
 
-        val loginUser = SessionManager.session.user
-
         if (user != null) {
             body.add("customer", JsonObject().apply {
                 if (!user.name.isNullOrEmpty()) {
@@ -54,29 +52,9 @@ class DetailStampRepository : BaseRepository() {
                     })
                 }
             })
-        } else if (loginUser != null) {
-            body.add("customer", JsonObject().apply {
-                val name = Constant.getName(loginUser.last_name, loginUser.first_name, "")
-                if (name.isNotEmpty()) {
-                    addProperty("name", name)
-                }
-                if (!loginUser.phone.isNullOrEmpty()) {
-                    addProperty("phone", loginUser.phone!!)
-                }
-                if (!loginUser.email.isNullOrEmpty()) {
-                    addProperty("email", loginUser.email!!)
-                }
-                if (!loginUser.address.isNullOrEmpty()) {
-                    addProperty("address", loginUser.address!!)
-                }
-                if (loginUser.district_id ?: 0 > 0) {
-                    addProperty("district", loginUser.district_id!!)
-                }
-                if (loginUser.city_id ?: 0 > 0) {
-                    addProperty("city", loginUser.city_id!!)
-                }
-            })
         }
+
+        val loginUser = SessionManager.session.user
 
         if (loginUser != null) {
             if (loginUser.id != 0L) {
