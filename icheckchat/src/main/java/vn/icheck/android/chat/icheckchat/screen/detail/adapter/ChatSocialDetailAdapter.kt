@@ -358,6 +358,16 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
+            if (ChatSocialDetailActivity.toType == "user") {
+                binding.imgAvatarUser.setBackgroundResource(0)
+            } else {
+                if (ChatSocialDetailActivity.isVerified) {
+                    binding.imgAvatarUser.setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                } else {
+                    binding.imgAvatarUser.setBackgroundResource(0)
+                }
+            }
+
             if (!obj.content.isNullOrEmpty()) {
                 if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
                     binding.tvMessage.setGone()
@@ -402,7 +412,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
 
                 binding.btnProductDetail.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
             }
         }

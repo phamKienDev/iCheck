@@ -5,10 +5,13 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Handler
 import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.text.style.ImageSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +19,9 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -88,6 +93,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         var toId = ""
         var toType = ""
+        var isVerified = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -305,7 +311,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
-                                        binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
+                                        val ssb = SpannableStringBuilder(success.child("name").value.toString().replace("null", "") + "   ")
+                                        ssb.setSpan(getImageSpan(R.drawable.ic_verified_24dp_chat), ssb.length - 1, ssb.length, 0)
+
+                                        isVerified = success.child("is_verify").value.toString().toBoolean()
+
+                                        if (isVerified){
+                                            binding.layoutToolbar.txtTitle.setText(ssb, TextView.BufferType.SPANNABLE)
+                                        }else{
+                                            binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
+                                        }
                                     }, {
 
                                     })
@@ -1145,6 +1160,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         } else {
             //keyboard is hidden
         }
+    }
+
+    private fun getImageSpan(resource: Int): ImageSpan {
+        val textTitle = AppCompatTextView(this@ChatSocialDetailActivity)
+        textTitle.includeFontPadding = false
+        textTitle.setCompoundDrawablesWithIntrinsicBounds(resource, 0, 0, 0)
+
+        textTitle.isDrawingCacheEnabled = true
+        textTitle.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
+        textTitle.layout(0, 0, textTitle.measuredWidth, textTitle.measuredHeight)
+        textTitle.buildDrawingCache(true)
+        val bitmap = Bitmap.createBitmap(textTitle.drawingCache)
+        textTitle.isDrawingCacheEnabled = false
+
+        return ImageSpan(this@ChatSocialDetailActivity, bitmap)
     }
 
     override fun onPause() {
