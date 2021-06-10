@@ -19,11 +19,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_ick_product_detail.*
-import kotlinx.android.synthetic.main.activity_ick_product_detail.imgBack
-import kotlinx.android.synthetic.main.activity_ick_product_detail.layoutBottom
-import kotlinx.android.synthetic.main.activity_ick_product_detail.recyclerView
-import kotlinx.android.synthetic.main.activity_ick_product_detail.txtTitle
-import kotlinx.android.synthetic.main.activity_ick_product_detail.view
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
@@ -49,6 +44,7 @@ import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -72,7 +68,6 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -84,8 +79,8 @@ import java.io.File
  * Chúc mừng năm mới anh Phong nha. Năm mới kiếm nhiều tiền nha anh :v
  */
 class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener,
-    ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
-    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
+        ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
+        CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
     private lateinit var viewModel: IckProductDetailViewModel
 
     private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
@@ -144,8 +139,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         job = lifecycleScope.launch {
                             delay(200)
                             val i = Intent(
-                                this@IckProductDetailActivity,
-                                ContributionAttributesActivity::class.java
+                                    this@IckProductDetailActivity,
+                                    ContributionAttributesActivity::class.java
                             )
                             i.putExtra("productId", viewModel.productID)
                             i.putExtra("image", viewModel.listMedia.firstOrNull()?.content)
@@ -166,9 +161,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                                 }
                             }
                             DetailMediaActivity.start(
-                                this@IckProductDetailActivity,
-                                arr,
-                                intent.getIntExtra(POSITION, 0)
+                                    this@IckProductDetailActivity,
+                                    arr,
+                                    intent.getIntExtra(POSITION, 0)
                             )
                         }
                     }
@@ -198,9 +193,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         fun start(activity: Activity, productID: Long) {
             ActivityUtils.startActivity<IckProductDetailActivity, Long>(
-                activity,
-                Constant.DATA_3,
-                productID
+                    activity,
+                    Constant.DATA_3,
+                    productID
             )
         }
 
@@ -281,25 +276,25 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         viewModel.alertProduct.observe(this) {
             DialogHelper.showConfirm(
-                this,
-                it.title,
-                it.alertDescription,
-                "Đóng",
-                "Chi tiết",
-                false,
-                object : ConfirmDialogListener {
-                    override fun onDisagree() {
-                    }
+                    this,
+                    it.title,
+                    it.alertDescription,
+                    "Đóng",
+                    "Chi tiết",
+                    false,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {
+                        }
 
-                    override fun onAgree() {
-                        WebViewActivity.start(
-                            this@IckProductDetailActivity,
-                            it.content,
-                            null,
-                            it.title
-                        )
-                    }
-                })
+                        override fun onAgree() {
+                            WebViewActivity.start(
+                                    this@IckProductDetailActivity,
+                                    it.content,
+                                    null,
+                                    it.title
+                            )
+                        }
+                    })
         }
 
         viewModel.onSetTitle.observe(this) {
@@ -310,19 +305,29 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         viewModel.onDataProduct.observe(this, Observer {
             hideLayoutStatus()
             swipeLayout.beVisible()
-            CampaignLoyaltyHelper.getCampaign(
-                this@IckProductDetailActivity, barcode,
-                object : IClickListener {
-                    override fun onClick(obj: Any) {
-                        if (obj is ICKLoyalty) {
-                            viewModel.onAddHolderInput.postValue(ICLayout().apply {
-                                data = obj
-                                viewType = ICViewTypes.LOYALTY_HOLDER_TYPE
-                            })
-                        }
-                    }
-                }, this@IckProductDetailActivity
-            )
+
+            if (!it.loyalty?.campaignCode.isNullOrEmpty() || !it.loyalty?.campaignId.isNullOrEmpty()) {
+                CampaignLoyaltyHelper.getCampaignQrMar(
+                        this@IckProductDetailActivity,
+                        it.loyalty?.campaignCode ?: it.loyalty?.campaignId,
+                        this@IckProductDetailActivity
+                )
+            } else {
+                CampaignLoyaltyHelper.getCampaign(
+                        this@IckProductDetailActivity, barcode,
+                        object : IClickListener {
+                            override fun onClick(obj: Any) {
+                                if (obj is ICKLoyalty) {
+                                    viewModel.onAddHolderInput.postValue(ICLayout().apply {
+                                        data = obj
+                                        viewType = ICViewTypes.LOYALTY_HOLDER_TYPE
+                                    })
+                                }
+                            }
+                        }, this@IckProductDetailActivity
+                )
+            }
+
             if (it.verified == true) {
                 tvBuy.setText(R.string.dang_ky_mua_hang_chinh_hang)
             } else {
@@ -336,32 +341,32 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     removeLoading()
 
                     DialogHelper.showNotification(
-                        this@IckProductDetailActivity,
-                        R.string.khong_tim_thay_du_lieu_vui_long_thu_lai_sau,
-                        false,
-                        object : NotificationDialogListener {
-                            override fun onDone() {
-                                onBackPressed()
-                            }
-                        })
+                            this@IckProductDetailActivity,
+                            R.string.khong_tim_thay_du_lieu_vui_long_thu_lai_sau,
+                            false,
+                            object : NotificationDialogListener {
+                                override fun onDone() {
+                                    onBackPressed()
+                                }
+                            })
                 }
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
                     removeLoading()
 
                     DialogHelper.showConfirm(
-                        this,
-                        R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau,
-                        R.string.huy_bo,
-                        R.string.thu_lai,
-                        object : ConfirmDialogListener {
-                            override fun onDisagree() {
-                                onBackPressed()
-                            }
+                            this,
+                            R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau,
+                            R.string.huy_bo,
+                            R.string.thu_lai,
+                            object : ConfirmDialogListener {
+                                override fun onDisagree() {
+                                    onBackPressed()
+                                }
 
-                            override fun onAgree() {
-                                getLayoutData()
-                            }
-                        })
+                                override fun onAgree() {
+                                    getLayoutData()
+                                }
+                            })
                 }
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -539,7 +544,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 if (adapter.getListData[i].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
                     if (recyclerView.findViewHolderForAdapterPosition(i) is ProductListReviewHolder) {
                         (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(
-                            ItemListReviewModel(it)
+                                ItemListReviewModel(it)
                         )
                     }
                 }
@@ -606,13 +611,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 it?.let {
                     if (it is ICPost) {
                         putExtra(
-                            Intent.EXTRA_TEXT,
-                            resources.getString(
-                                R.string.chia_se_danh_gia,
-                                it.avgPoint,
-                                it.content,
-                                it.link
-                            )
+                                Intent.EXTRA_TEXT,
+                                resources.getString(
+                                        R.string.chia_se_danh_gia,
+                                        it.avgPoint,
+                                        it.content,
+                                        it.link
+                                )
                         )
                     } else {
                         putExtra(Intent.EXTRA_TEXT, it as String)
@@ -634,9 +639,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     private fun setupSwipeLayout() {
         swipeLayout.setColorSchemeColors(
-            ContextCompat.getColor(this, R.color.colorPrimary),
-            ContextCompat.getColor(this, R.color.colorPrimary),
-            ContextCompat.getColor(this, R.color.colorPrimary)
+                ContextCompat.getColor(this, R.color.colorPrimary),
+                ContextCompat.getColor(this, R.color.colorPrimary),
+                ContextCompat.getColor(this, R.color.colorPrimary)
         )
 
         swipeLayout.setOnRefreshListener {
@@ -650,15 +655,15 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             viewModel.productDetail?.let { productDetail ->
                 if (productDetail.owner?.verified == true) {
                     ContactBusinessDialog(this).show(
-                        productDetail.owner?.id,
-                        productDetail.manager?.phone,
-                        productDetail.manager?.email
+                            productDetail.owner?.id,
+                            productDetail.manager?.phone,
+                            productDetail.manager?.email
                     )
                 } else {
                     ContactBusinessDialog(this).show(
-                        productDetail.manager?.id,
-                        productDetail.manager?.phone,
-                        productDetail.manager?.email
+                            productDetail.manager?.id,
+                            productDetail.manager?.phone,
+                            productDetail.manager?.email
                     )
                 }
             }
@@ -701,9 +706,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         imgAction.setOnClickListener {
             if (imgAction.drawable.constantState == ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_more_light_blue_24dp
-                )?.constantState
+                            this,
+                            R.drawable.ic_more_light_blue_24dp
+                    )?.constantState
             ) {
                 if (viewModel.productID != 0L) {
                     if (layoutAction.visibility == View.VISIBLE) {
@@ -747,9 +752,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         btnRate.setOnClickListener {
             if (viewModel.productID != 0L)
                 startActivityForResult<ListProductReviewActivity, Long>(
-                    Constant.DATA_1,
-                    viewModel.productID,
-                    requestReview
+                        Constant.DATA_1,
+                        viewModel.productID,
+                        requestReview
                 )
         }
 
@@ -762,25 +767,25 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             } else {
 
                 DialogHelper.showConfirm(
-                    this,
-                    "Thông báo",
-                    "Bạn muốn Đăng ký mua hàng chính hãng? Hãy gửi yêu cầu cho chúng tôi, chúng tôi sẽ liên hệ lại khi nhận được thông tin.",
-                    "Hủy",
-                    "Gửi",
-                    true,
-                    object : ConfirmDialogListener {
-                        override fun onDisagree() {
+                        this,
+                        "Thông báo",
+                        "Bạn muốn Đăng ký mua hàng chính hãng? Hãy gửi yêu cầu cho chúng tôi, chúng tôi sẽ liên hệ lại khi nhận được thông tin.",
+                        "Hủy",
+                        "Gửi",
+                        true,
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {
 
-                        }
-
-                        override fun onAgree() {
-                            if (SessionManager.isUserLogged) {
-                                viewModel.registerBuyProduct()
-                            } else {
-                                onRequireLogin()
                             }
-                        }
-                    })
+
+                            override fun onAgree() {
+                                if (SessionManager.isUserLogged) {
+                                    viewModel.registerBuyProduct()
+                                } else {
+                                    onRequireLogin()
+                                }
+                            }
+                        })
 
             }
         }
@@ -830,11 +835,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun clickGoQa(idProduct: ICCommentPostMore?) {
         ListProductQuestionActivity.start(
-            this,
-            viewModel.productID,
-            viewModel.barcode,
-            false,
-            requestQuestion
+                this,
+                viewModel.productID,
+                viewModel.barcode,
+                false,
+                requestQuestion
         )
     }
 
@@ -856,9 +861,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onTakeImage(positionHolder: Int) {
         val permissions = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
         )
         if (!PermissionHelper.isAllowPermission(this, permissions)) {
             PermissionHelper.checkPermission(this, permissions, permissionCamera)
@@ -867,11 +872,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         positionSubmit = positionHolder
         TakeMediaDialog.show(
-            supportFragmentManager,
-            this,
-            takeMediaListener,
-            selectMulti = true,
-            isVideo = true
+                supportFragmentManager,
+                this,
+                takeMediaListener,
+                selectMulti = true,
+                isVideo = true
         )
     }
 
@@ -893,13 +898,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }.show()
 
         val myReview = ICLayout(
-            "",
-            "",
-            ICRequest(),
-            null,
-            null,
-            ICViewTypes.MY_REVIEW_TYPE,
-            MyReviewModel(ICProductMyReview(obj, null, null))
+                "",
+                "",
+                ICRequest(),
+                null,
+                null,
+                ICViewTypes.MY_REVIEW_TYPE,
+                MyReviewModel(ICProductMyReview(obj, null, null))
         )
         for (i in 0 until adapter.getListData.size) {
             recyclerView.findViewHolderForAdapterPosition(i)?.let { holder ->
@@ -915,12 +920,12 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun clickAnswersInQuestion(obj: ICProductQuestion) {
         ListProductQuestionActivity.start(
-            this,
-            viewModel.productID,
-            viewModel.barcode,
-            false,
-            obj,
-            requestQuestion
+                this,
+                viewModel.productID,
+                viewModel.barcode,
+                false,
+                obj,
+                requestQuestion
         )
     }
 
@@ -931,11 +936,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             ICMessageEvent.Type.OPEN_LIST_QUESTIONS -> {
                 if (isActivityVisible) {
                     ListProductQuestionActivity.start(
-                        this,
-                        viewModel.productID,
-                        viewModel.barcode,
-                        event.data as Boolean?,
-                        requestQuestion
+                            this,
+                            viewModel.productID,
+                            viewModel.barcode,
+                            event.data as Boolean?,
+                            requestQuestion
                     )
                 }
             }
@@ -947,9 +952,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             ICMessageEvent.Type.OPEN_LIST_REVEWS -> {
                 if (isActivityVisible) {
                     startActivityForResult<ListProductReviewActivity, Long>(
-                        Constant.DATA_1,
-                        viewModel.productID,
-                        requestReview
+                            Constant.DATA_1,
+                            viewModel.productID,
+                            requestReview
                     )
                 }
             }
@@ -1027,7 +1032,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                             (adapter.getListData[index].data as ProductListReviewModel).data.forEachIndexed { indexReview, icPost ->
                                 if ((adapter.getListData[index].data as ProductListReviewModel).data[indexReview].id == event.data.id) {
                                     (adapter.getListData[index].data as ProductListReviewModel).data[indexReview] =
-                                        event.data
+                                            event.data
                                     adapter.notifyItemChanged(index)
                                 }
                             }
@@ -1080,7 +1085,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                             if (adapter.getListData[i].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
                                 if (recyclerView.findViewHolderForAdapterPosition(i) is ProductListReviewHolder) {
                                     (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(
-                                        ItemListReviewModel(post)
+                                            ItemListReviewModel(post)
                                     )
                                 }
                             }
@@ -1104,19 +1109,19 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 }
                 CampaignLoyaltyHelper.REQUEST_GET_GIFT -> {
                     CampaignLoyaltyHelper.getReceiveGift(
-                        this@IckProductDetailActivity, viewModel.barcode, viewModel.code, obj?.name
+                            this@IckProductDetailActivity, viewModel.barcode, viewModel.code, obj?.name
                             ?: "", null
                     )
                 }
                 CampaignLoyaltyHelper.REQUEST_CHECK_CODE -> {
                     obj?.let {
                         CampaignLoyaltyHelper.checkCodeLoyalty(
-                            this@IckProductDetailActivity,
-                            it,
-                            viewModel.code,
-                            viewModel.barcode,
-                            this@IckProductDetailActivity,
-                            this@IckProductDetailActivity
+                                this@IckProductDetailActivity,
+                                it,
+                                viewModel.code,
+                                viewModel.barcode,
+                                this@IckProductDetailActivity,
+                                this@IckProductDetailActivity
                         )
                     }
                 }
@@ -1148,21 +1153,21 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         this@IckProductDetailActivity.obj = data
         if (code.isNullOrEmpty()) {
             LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(
-                this@IckProductDetailActivity,
-                "requestCode",
-                1,
-                CampaignLoyaltyHelper.REQUEST_GET_GIFT,
-                data
+                    this@IckProductDetailActivity,
+                    "requestCode",
+                    1,
+                    CampaignLoyaltyHelper.REQUEST_GET_GIFT,
+                    data
             )
         } else {
             viewModel.code = code
             LoyaltySdk.showDialogLogin<IckLoginActivity, Int>(
-                this@IckProductDetailActivity,
-                "requestCode",
-                1,
-                CampaignLoyaltyHelper.REQUEST_CHECK_CODE,
-                data,
-                viewModel.code
+                    this@IckProductDetailActivity,
+                    "requestCode",
+                    1,
+                    CampaignLoyaltyHelper.REQUEST_CHECK_CODE,
+                    data,
+                    viewModel.code
             )
         }
     }

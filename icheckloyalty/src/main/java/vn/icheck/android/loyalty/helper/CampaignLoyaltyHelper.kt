@@ -1,4 +1,4 @@
- package vn.icheck.android.loyalty.helper
+package vn.icheck.android.loyalty.helper
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -23,6 +23,7 @@ import vn.icheck.android.loyalty.repository.CampaignRepository
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.onboarding.OnBoardingActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.GameActivity
 import vn.icheck.android.loyalty.screen.loyalty_customers.gift_shop.GiftShopActivity
+import vn.icheck.android.loyalty.sdk.CampaignType
 
 object CampaignLoyaltyHelper {
     const val REQUEST_GET_GIFT = 19
@@ -57,6 +58,51 @@ object CampaignLoyaltyHelper {
                                 }
                                 else -> {
                                     getMiniGame(activity, obj.data!!, null, barcode, null)
+                                }
+                            }
+                        } else {
+                            /**
+                             * Dialog Login
+                             */
+                            callback.showDialogLogin(obj.data!!, null)
+                        }
+                    }
+                }
+            }
+
+            override fun onError(error: ICKBaseResponse?) {
+
+            }
+        })
+    }
+
+    fun getCampaignQrMar(activity: FragmentActivity, barcode: String?, callback: ILoginListener) {
+        CampaignRepository().getCampaignQrMar(barcode ?: "", object : ICApiListener<ICKResponse<ICKLoyalty>> {
+            override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
+                if (obj.data != null) {
+                    if (obj.data?.introduction_image != null) {
+                        DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
+                            override fun onDismiss() {
+
+                            }
+                        })
+                    }
+
+                    if (obj.data?.has_chance_code == false) {
+                        if (SessionManager.isLogged) {
+                            when (obj.data?.type) {
+                                CampaignType.RECEIVE_GIFT_QR_MAR -> {
+                                    getReceiveGift(activity, null, barcode, obj.data?.name
+                                            ?: "", null)
+                                }
+                                CampaignType.ACCUMULATE_POINT_QR_MAR -> {
+                                    getAccumulatePoint(activity, obj.data!!, null, barcode, null)
+                                }
+                                CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
+                                    getPointLongTime(activity, obj.data!!, null, barcode, null)
+                                }
+                                else -> {
+                                    getMiniGame(activity, obj.data!!, barcode, null, null)
                                 }
                             }
                         } else {
@@ -255,7 +301,7 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    fun getReceiveGift(activity: FragmentActivity, barcode: String, code: String?, nameCampaign: String, listener: IRemoveHolderInputLoyaltyListener?) {
+    fun getReceiveGift(activity: FragmentActivity, barcode: String?, code: String?, nameCampaign: String, listener: IRemoveHolderInputLoyaltyListener?) {
         CampaignRepository().postReceiveGift(barcode, code, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
                 if (obj.statusCode != 200) {
@@ -358,11 +404,13 @@ object CampaignLoyaltyHelper {
                                 })
                             }
                             else -> {
-                                showCustomErrorToast(activity, obj.data?.message ?: "Mã ${code ?: target} không hợp lệ!")
+                                showCustomErrorToast(activity, obj.data?.message
+                                        ?: "Mã ${code ?: target} không hợp lệ!")
                             }
                         }
                     } else {
-                        showCustomErrorToast(activity, obj.data?.message ?: "Mã ${code ?: target} không hợp lệ!")
+                        showCustomErrorToast(activity, obj.data?.message
+                                ?: "Mã ${code ?: target} không hợp lệ!")
                     }
                 } else {
                     listener?.onRemoveHolderInput()

@@ -71,6 +71,11 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().getCampaign(url, barcode), listener)
     }
 
+    fun getCampaignQrMar(barcode: String, listener: ICApiListener<ICKResponse<ICKLoyalty>>) {
+        val url = APIConstants.LOYALTY_HOST + "loyalty/campaign/$barcode"
+        requestApi(ICNetworkClient.getApiClientLoyalty().getCampaign(url, barcode), listener)
+    }
+
     fun postCancelShipGift(gift_id: Long, listener: ICApiListener<ICKResponse<ICKWinner>>) {
         val body = hashMapOf<String, Any>()
         body["status"] = "refused_gift"
@@ -85,11 +90,13 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().getDetailGiftWinner(url), listener)
     }
 
-    fun postReceiveGift(barcode: String, code: String?, listener: ICApiListener<ICKResponse<ICKReceiveGift>>) {
+    fun postReceiveGift(barcode: String?, code: String?, listener: ICApiListener<ICKResponse<ICKReceiveGift>>) {
         val params = hashMapOf<String, Any>()
         val user = SessionManager.session.user
 
-        params["target"] = barcode
+        if (!barcode.isNullOrEmpty()) {
+            params["target"] = barcode
+        }
 
         if (!code.isNullOrEmpty()) {
             params["code"] = code
