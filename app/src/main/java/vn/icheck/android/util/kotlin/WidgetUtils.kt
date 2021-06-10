@@ -34,6 +34,7 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.LoadImageListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.ichecklibs.util.visibleOrInvisible
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.ui.edittext.FocusableEditText
 import vn.icheck.android.util.ick.logError
@@ -1358,9 +1359,9 @@ object WidgetUtils {
 
     fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
         imgKeyboard.apply {
-            visibleOrGone(edtPassword.isFocused)
+            visibleOrInvisible(edtPassword.isFocused)
             layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
-                setMargins(marginLeft, marginTop, marginEnd, vn.icheck.android.ichecklibs.SizeHelper.size12)
+                setMargins(marginLeft, marginTop, marginEnd, edtPassword.getBottomPadding())
             }
         }
     }

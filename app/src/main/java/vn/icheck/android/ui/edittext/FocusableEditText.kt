@@ -7,14 +7,17 @@ import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.marginBottom
 import vn.icheck.android.R
-import vn.icheck.android.util.ick.toPx
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
-
+import vn.icheck.android.util.ick.toPx
 
 class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
@@ -113,11 +116,24 @@ class FocusableEditText : AppCompatEditText {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         currentText = text.toString()
         setDrawableFocusable()
-        mError = null
+
         if (!text.isNullOrEmpty() && originalPadding != paddingBottom) {
             setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
             requestLayout()
         }
+
+        checkCenterViewMarginBottom()
+        if (originalPadding != paddingBottom) {
+            centerView?.let { view ->
+                (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+            }
+        }else {
+            centerView?.let { view ->
+                (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom
+            }
+        }
+
+        mError = null
     }
 
     private fun setDrawableFocusable() {
@@ -155,6 +171,28 @@ class FocusableEditText : AppCompatEditText {
         }
     }
 
+    private var centerView: View? = null
+    private var centerViewMarginBottom = 0
+
+    fun setCenterView(view: View) {
+        centerView = view
+        centerViewMarginBottom = view.marginBottom
+    }
+
+    fun getBottomPadding(): Int {
+        return if (originalPadding != paddingBottom) {
+            SizeHelper.size32
+        } else {
+            SizeHelper.size12
+        }
+    }
+
+    private fun checkCenterViewMarginBottom() {
+        if (centerViewMarginBottom == 0) {
+            centerViewMarginBottom = centerView?.marginBottom ?: 0
+        }
+    }
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
             if (event.rawX > right - totalPaddingRight) {
@@ -183,48 +221,53 @@ class FocusableEditText : AppCompatEditText {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.apply {
-            canvas?.translate(scrollX.toFloat(), 0f)
+            canvas.translate(scrollX.toFloat(), 0f)
             val bottom = height - paddingBottom + 2.5f.toPx()
+
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(ContextCompat.getColor(context, R.color.colorAccentRed))
-                drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
-                drawBitmap(
-                        mErrorDrawable!!.toBitmap(),
-                        0f,
-                        bottom.toFloat(),
-                        mErrorPaint
-                )
-                drawText(
-                        mError.toString(),
-                        26.dpToPx().toFloat(),
-                        (bottom + 15f.toPx()).toFloat(),
-                        mErrorTextPaint
-                )
+                mLinePaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
+                drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
+                drawBitmap(mErrorDrawable!!.toBitmap(), 0f, bottom, mErrorPaint)
+                drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Color.parseColor("#057DDA"))
+                    mLinePaint.color = Color.parseColor("#057DDA")
                 } else {
-                    mLinePaint.setColor(Color.parseColor("#D8D8D8"))
+                    mLinePaint.color = Color.parseColor("#D8D8D8")
                 }
-                drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
+                drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
+
             }
-            canvas?.translate(0f, 0f)
+
+            canvas.translate(0f, 0f)
         }
     }
 
     override fun setError(error: CharSequence?) {
         mError = error
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
+
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//        requestLayout()
+        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        requestLayout()
+
+        checkCenterViewMarginBottom()
+        centerView?.let { view ->
+            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+        }
     }
 
     override fun setError(error: CharSequence?, icon: Drawable?) {
         mError = error
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
+
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//        requestLayout()
+        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        requestLayout()
+
+        checkCenterViewMarginBottom()
+        centerView?.let { view ->
+            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+        }
     }
 }
