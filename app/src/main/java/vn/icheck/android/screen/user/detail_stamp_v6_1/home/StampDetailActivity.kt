@@ -57,7 +57,6 @@ import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.hypot
 
-@AndroidEntryPoint
 class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
     private lateinit var binding: ActivityDetailStampBinding
     private val viewModel by viewModels<ICDetailStampViewModel>()
