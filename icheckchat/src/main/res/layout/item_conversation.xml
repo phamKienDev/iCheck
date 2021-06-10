@@ -39,18 +39,17 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNameUser"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:drawableEnd="@drawable/ic_verified_18px"
             android:drawableRight="@drawable/ic_verified_18px"
             android:ellipsize="middle"
             android:fontFamily="@font/barlow_semi_bold"
             android:drawablePadding="4dp"
-            android:hint="@string/dang_cap_nhat"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/black_21"
             android:textSize="16sp"
-            tools:text="Mai Lan Nguyễn s;kdja;skldj ksjadklaskldsaj d" />
+            tools:text="Mai Lan" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
