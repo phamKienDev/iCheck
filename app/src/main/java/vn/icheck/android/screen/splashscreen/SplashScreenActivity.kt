@@ -10,7 +10,7 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.checktheme.CheckThemeActivity
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.tracking.TrackingAllHelper
@@ -84,7 +84,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ActivityHelper.startActivityAndFinish<HomeActivity>(this)
         Handler().postDelayed({
-                DialogNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
+                DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
         }, 2000)
     }
 
