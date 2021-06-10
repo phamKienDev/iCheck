@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.CustomLayoutToastBinding
+import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import java.io.File
 import java.io.FileInputStream
 import java.text.DecimalFormat
@@ -211,7 +212,7 @@ fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int, placeholde
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .placeholder(placeholder)
             .error(error)
