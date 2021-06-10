@@ -214,7 +214,7 @@ object Constant {
     }
 
     fun getHtmlTextNotPadding(content:String):String{
-        val head = "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+        val head = "<head><style> img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
 
         return "<!DOCTYPE html>\n" +
                 "<html>\n" +

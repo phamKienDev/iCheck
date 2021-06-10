@@ -54,7 +54,7 @@
     <LinearLayout
         android:id="@+id/layoutWeb"
         android:layout_width="match_parent"
-        android:layout_height="526dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_20"
         android:orientation="vertical"
         android:paddingStart="@dimen/size_10"
@@ -62,12 +62,13 @@
         android:paddingEnd="@dimen/size_10"
         android:paddingBottom="@dimen/size_20"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="visible"
+        tools:ignore="WebViewLayout">
 
         <WebView
             android:id="@+id/webViewUrl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:rotation="180" />
     </LinearLayout>
 

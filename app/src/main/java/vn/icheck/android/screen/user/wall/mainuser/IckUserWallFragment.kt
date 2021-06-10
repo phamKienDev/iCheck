@@ -72,7 +72,6 @@ import vn.icheck.android.screen.user.wall.OPEN_INFOR
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.screen.user.wall.friend_wall_setting.FriendWallSettingsDialog
 import vn.icheck.android.screen.user.wall.report_user.ReportUserDialog
-import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.*
 
 class IckUserWallFragment : Fragment(), IPostListener {
@@ -426,7 +425,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             createPost(true)
         }
         binding.notify.setOnClickListener {
-            if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+            if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                 requireActivity().startClearTopActivity(HomeActivity::class.java)
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             } else {
@@ -451,7 +450,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
 
     private fun setNotify() {
-        if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+        if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
             binding.notify.setImageResource(R.drawable.ic_home_black_28px)
             binding.tvNotificationCount.beInvisible()
         } else {
