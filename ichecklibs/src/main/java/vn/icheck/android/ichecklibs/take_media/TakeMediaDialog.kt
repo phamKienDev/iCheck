@@ -15,16 +15,40 @@ import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import java.io.File
 
-class TakeMediaDialog(val activity: Activity,
-                      val listener: TakeMediaListener,
-                      private val selectMulti: Boolean = false, // cho chọn nhiều ảnh/video
-                      private val cropImage: Boolean = false,  // cho phép chuyển sang màn Crop
-                      private val ratio: String? = null,  // tỉ lệ Crop ảnh
-                      private val isVideo: Boolean = true, // cho chọn video hay không?
-                      val disableTakeImage: Boolean = false, // cho chụp ảnh hay không?
-                      val saveImageToGallery: Boolean = false, // cho phép lưu ảnh
-                      val maxSelectCount: Int? = null // số lượng chọn tối đa
-) : BaseBottomSheetDialogFragment() {
+class TakeMediaDialog : BaseBottomSheetDialogFragment() {
+
+    private var listener: TakeMediaListener? = null
+
+    private var activity: Activity? = null
+    private var selectMulti: Boolean = false // cho chọn nhiều ảnh/video
+    private var cropImage: Boolean = false  // cho phép chuyển sang màn Crop
+    private var ratio: String? = null  // tỉ lệ Crop ảnh
+    private var isVideo: Boolean = true // cho chọn video hay không?
+    var disableTakeImage: Boolean = false // cho chụp ảnh hay không?
+    var saveImageToGallery: Boolean = false // cho phép lưu ảnh
+    var maxSelectCount: Int? = null // số lượng chọn tối đa
+
+    fun setListener(
+            activity: Activity,
+            listener: TakeMediaListener,
+            selectMulti: Boolean = false, // cho chọn nhiều ảnh/video
+            cropImage: Boolean = false,  // cho phép chuyển sang màn Crop
+            ratio: String? = null,  // tỉ lệ Crop ảnh
+            isVideo: Boolean = true, // cho chọn video hay không?
+            disableTakeImage: Boolean = false, // cho chụp ảnh hay không?
+            saveImageToGallery: Boolean = false, // cho phép lưu ảnh
+            maxSelectCount: Int? = null, // số lượng chọn tối đa
+    ) {
+        this.activity = activity
+        this.listener = listener
+        this.selectMulti = selectMulti
+        this.cropImage = cropImage
+        this.ratio = ratio
+        this.isVideo = isVideo
+        this.disableTakeImage = disableTakeImage
+        this.saveImageToGallery = saveImageToGallery
+        this.maxSelectCount = maxSelectCount
+    }
 
     companion object {
         var INSTANCE: TakeMediaDialog? = null
@@ -32,7 +56,14 @@ class TakeMediaDialog(val activity: Activity,
 
         fun show(fragmentManager: FragmentManager, activity: Activity, listener: TakeMediaListener, selectMulti: Boolean = false, cropImage: Boolean = false, ratio: String? = null, isVideo: Boolean = false, disableTakeImage: Boolean = false, saveImageToGallery: Boolean = false, maxSelectCount: Int? = null) {
             if (fragmentManager.findFragmentByTag(TakeMediaDialog::class.java.simpleName)?.isAdded != true) {
-                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+
+                TakeMediaDialog().apply {
+                    setListener(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount)
+                    show(fragmentManager, TakeMediaDialog::class.java.simpleName)
+                }
+
+
+//                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }
@@ -44,7 +75,7 @@ class TakeMediaDialog(val activity: Activity,
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        listener.onDismiss()
+        listener?.onDismiss()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,16 +85,20 @@ class TakeMediaDialog(val activity: Activity,
         }
 
         if (cropImage) {
-            takeMediaHelper = TakeMediaHelper(activity, listener).apply {
-                onTakeImageSuccess = {
+            takeMediaHelper = listener?.let {
+                TakeMediaHelper(activity, it).apply {
+                    onTakeImageSuccess = {
 
-                    listener.onStartCrop(it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                        listener?.onStartCrop(it?.absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                    }
                 }
             }
         } else {
-            takeMediaHelper = TakeMediaHelper(activity, listener, isVideo).apply {
-                onTakeImageSuccess = {
-                    listener.onTakeMediaSuccess(it)
+            takeMediaHelper = listener?.let {
+                TakeMediaHelper(activity, it, isVideo).apply {
+                    onTakeImageSuccess = {
+                        listener?.onTakeMediaSuccess(it)
+                    }
                 }
             }
         }
@@ -94,13 +129,13 @@ class TakeMediaDialog(val activity: Activity,
 
                 if (list.isNotEmpty()) {
                     if (selectMulti) {
-                        listener.onPickMuliMediaSucess(list)
+                        listener?.onPickMuliMediaSucess(list)
                         dismiss()
                     } else {
                         if (cropImage) {
-                            listener.onStartCrop(list[0].absolutePath, null, ratio, CROP_IMAGE_GALLERY)
+                            listener?.onStartCrop(list[0].absolutePath, null, ratio, CROP_IMAGE_GALLERY)
                         } else {
-                            listener.onPickMediaSucess(list[0])
+                            listener?.onPickMediaSucess(list[0])
                             dismiss()
                         }
                     }
@@ -132,7 +167,7 @@ class TakeMediaDialog(val activity: Activity,
                     MediaStore.Files.FileColumns.MEDIA_TYPE,
                     MediaStore.Files.FileColumns.DURATION)
 
-            val cursor = it.contentResolver.query(
+            val cursor = it?.contentResolver?.query(
                     uri,
                     projection,
                     selection,
@@ -168,7 +203,7 @@ class TakeMediaDialog(val activity: Activity,
         } else {
             if (requestCode == CROP_IMAGE_GALLERY && resultCode == Activity.RESULT_OK) {
                 data?.getStringExtra(Constant.DATA_1)?.let { url ->
-                    listener.onPickMediaSucess(File(url))
+                    listener?.onPickMediaSucess(File(url))
                     dismiss()
                 }
             }

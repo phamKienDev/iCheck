@@ -8,6 +8,6 @@ interface IVerifyOTPGuaranteeView : BaseActivityView {
     fun onCountDownOtp()
     fun onGetDataError()
     fun onErrorOtp(errorMessage: String)
-    fun updateInformationCusomterGuaranteeSuccess()
+    fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee)
     fun updateInformationCusomterGuaranteeFail()
 }

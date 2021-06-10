@@ -120,7 +120,7 @@ class IckUserWallAdapter(val listener: IPostListener) :
                 )
             )
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 
@@ -224,7 +224,6 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
 
         binding.btnSendMsg.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                ListConversationFragment.finishAllChat()
                 ChatSocialDetailActivity.createRoomChat(it.context, data?.id ?: -1, "user")
             } else {
                 ICheckApplication.currentActivity()?.let { act ->

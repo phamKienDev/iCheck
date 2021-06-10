@@ -114,7 +114,7 @@ class DetailStampThinhLongAdapter(private val headerImagelistener: SlideHeaderSt
             ICViewType.RELATED_PRODUCT_STAMP -> {
                 ProductRelatedStampThinhLongHolder(parent,headerImagelistener)
             }
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

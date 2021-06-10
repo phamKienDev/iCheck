@@ -40,23 +40,19 @@ class DetailStampV6Presenter(val view: IDetailStampV6View) : BaseActivityPresent
                 path = path.removeRange(0, 1)
             }
 
-            if (path.contains("1.0")) {
-                code = path
-                onGetDataDetailStampQRMV6(path.split(".").last())
-            } else if (path.contains("1.1")) {
-                code = path
-                onGetDataDetailStampQRIV6(path.split(".").last())
-            } else {
-                view.onGetDataIntentError(Constant.ERROR_UNKNOW)
+            when {
+                path.contains("1.0") -> {
+                    code = path
+                    onGetDataDetailStampQRMV6(path.split(".").last())
+                }
+                path.contains("1.1") -> {
+                    code = path
+                    onGetDataDetailStampQRIV6(path.split(".").last())
+                }
+                else -> {
+                    view.onGetDataIntentError(Constant.ERROR_UNKNOW)
+                }
             }
-
-//            val separated: List<String> = data.split("/")
-//            val code :List<String> = separated[3].split(".")
-//            if (separated[3].contains("1.0")){
-//                onGetDataDetailStampQRMV6(code[2])
-//            }else{
-//                onGetDataDetailStampQRIV6(code[2])
-//            }
         } else {
             view.onGetDataIntentError(Constant.ERROR_UNKNOW)
         }

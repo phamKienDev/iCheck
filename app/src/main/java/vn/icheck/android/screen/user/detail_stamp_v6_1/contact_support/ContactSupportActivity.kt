@@ -12,7 +12,7 @@ import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.models.ICSupport
 import vn.icheck.android.screen.dialog.PermissionDialog
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
 class ContactSupportActivity : BaseActivity<ContactSupportPresenter>(), IContactSupportView {
@@ -29,7 +29,7 @@ class ContactSupportActivity : BaseActivity<ContactSupportPresenter>(), IContact
     private var value:String? = null
 
     override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Contact help"
         } else {
             txtTitle.text = "Liên hệ hỗ trợ"

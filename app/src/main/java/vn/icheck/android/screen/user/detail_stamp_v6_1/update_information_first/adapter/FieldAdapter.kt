@@ -23,7 +23,6 @@ import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
-
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val listData = mutableListOf<ICFieldGuarantee>()

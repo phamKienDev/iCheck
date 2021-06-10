@@ -121,7 +121,7 @@
                 android:textColor="@color/black_21_v2" />
 
             <WebView
-                android:id="@id/webView"
+                android:id="@id/webViewUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

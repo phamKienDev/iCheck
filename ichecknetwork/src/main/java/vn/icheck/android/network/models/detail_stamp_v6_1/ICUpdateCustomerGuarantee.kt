@@ -15,5 +15,7 @@ data class ICUpdateCustomerGuarantee (
         @Expose
         var district:Int? = null,
         @Expose
-        var city:Int? = null
+        var city:Int? = null,
+        @Expose
+        var fields: HashMap<String, Any>? = null
 ) : Serializable

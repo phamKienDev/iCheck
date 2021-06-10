@@ -16,7 +16,6 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.screen.user.webview.WebViewActivity
 
-
 class SocialNetworkAdapter(val type: String) : RecyclerView.Adapter<SocialNetworkAdapter.SocialNetworkHolderLinear>() {
     val listData = mutableListOf<ICSocialNetworkModel>()
 

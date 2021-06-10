@@ -37,13 +37,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     private val listData = mutableListOf<MCConversation>()
 
     companion object {
-        var isOpenChat = false
-
         var isOpenConversation = false
-
-        fun finishAllChat() {
-            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
-        }
 
         interface ICountMessageListener {
             fun getCountMessage(count: Long)
@@ -220,7 +214,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
                             element.targetUserName = success.child("name").value.toString()
                             element.imageTargetUser = success.child("image").value.toString()
                             element.isVerified = success.child("is_verify").value.toString().toBoolean()
-                            element.kycStatus = success.child("kycStatus").value as Long? ?: 0L
+                            element.kycStatus = success.child("kyc_status").value as Long? ?: 0L
 
                             adapter.refreshItem(element)
                         }, {
@@ -372,7 +366,6 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
     override fun onResume() {
         super.onResume()
-        isOpenChat = false
         isOpenConversation = true
     }
 

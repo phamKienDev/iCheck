@@ -25,12 +25,13 @@ class InformationProductViewModel : ViewModel() {
     var code = ""
     var productId = 0L
 
-    fun getCollectionID(intent: Intent?) {
+    fun getData(intent: Intent?) {
         code = try {
             intent?.getStringExtra(Constant.DATA_1) ?: ""
         } catch (e: Exception) {
             ""
         }
+
         productId = try {
             intent?.getLongExtra(Constant.DATA_2, 0L) ?: 0L
         } catch (e: Exception) {
@@ -53,7 +54,11 @@ class InformationProductViewModel : ViewModel() {
         viewModelScope.launch {
             interaction.getInformationProduct(code, productId, object : ICNewApiListener<ICResponse<ICInformationProduct>> {
                 override fun onSuccess(obj: ICResponse<ICInformationProduct>) {
-                    liveData.postValue(obj.data)
+                    if (obj.data != null) {
+                        liveData.postValue(obj.data!!)
+                    } else {
+                        onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                    }
                 }
 
                 override fun onError(error: ICResponseCode?) {

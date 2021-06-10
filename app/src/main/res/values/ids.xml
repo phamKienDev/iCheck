@@ -170,7 +170,7 @@
     <item name="layoutInputNote" type="id" />
     <item name="edtNote" type="id" />
     <item name="imgLocation" type="id" />
-    <item name="webView" type="id" />
+    <item name="webViewUrl" type="id" />
     <item name="imgClose" type="id" />
     <item name="imgAnswer" type="id" />
     <item name="imgHelp" type="id" />
@@ -397,6 +397,24 @@
     <item name="layoutPrice" type="id" />
     <item name="layoutKeyboard" type="id" />
     <item name="btnKeyboard" type="id" />
+    <item name="tvBarcode" type="id" />
+    <item name="imgCountry" type="id" />
+    <item name="tvCountry" type="id" />
+    <item name="container" type="id" />
+    <item name="tvScanCount" type="id" />
+    <item name="tvScanCountTitle" type="id" />
+    <item name="imgPeople" type="id" />
+    <item name="tvPeopleCount" type="id" />
+    <item name="tvPeopleCountTitle" type="id" />
+    <item name="tvRemaining" type="id" />
+    <item name="tvActivate" type="id" />
+    <item name="tvState" type="id" />
+    <item name="tvDateTime" type="id" />
+    <item name="tvArrow" type="id" />
+    <item name="layoutName" type="id" />
+    <item name="tvWebsite" type="id" />
+    <item name="tvGln" type="id" />
+    <item name="tvDescription" type="id" />
     <item name="btnKeyboardNew" type="id" />
     <item name="btnKeyboardOld" type="id" />
 </resources>

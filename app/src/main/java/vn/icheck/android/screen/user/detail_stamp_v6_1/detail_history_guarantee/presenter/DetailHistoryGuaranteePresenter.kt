@@ -3,11 +3,10 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 import android.content.Intent
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
@@ -19,7 +18,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
  */
 class DetailHistoryGuaranteePresenter(val view: IDetaiHistoryGuaranteeView) : BaseActivityPresenter(view) {
 
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
 
     fun getObjectIntent(intent: Intent) {
         val item = intent.getSerializableExtra(Constant.DATA_1) as ICListHistoryGuarantee

@@ -8,33 +8,9 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_44">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@id/imgBack"
-            android:layout_width="@dimen/size_44"
-            android:layout_height="match_parent"
-            android:background="?android:attr/selectableItemBackground"
-            app:srcCompat="@drawable/ic_categories_menu_blue_24" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/txtTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/size_44"
-            android:layout_marginEnd="@dimen/size_44"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:singleLine="true"
-            android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/font_18"
-            android:textStyle="normal"
-            tools:text="Tiêu đề" />
-
-    </FrameLayout>
+    <include
+        android:id="@id/layoutToolbar"
+        layout="@layout/toolbar_light_blue" />
 
     <View
         android:layout_width="match_parent"
@@ -51,7 +27,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextBody1
                 android:id="@+id/tvViewVerifiedPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,15 +35,15 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginBottom="@dimen/size_12"
-                android:fontFamily="sans-serif"
                 android:gravity="center"
+                android:text="@string/thong_bao_nhap_thong_tin_khach_hang_stamp_v61"
                 android:textAlignment="center"
                 android:textColor="#828282"
-                android:textSize="@dimen/font_13"
                 android:textStyle="normal"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextBody1
                 android:id="@+id/tvViewForceUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,153 +51,146 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginBottom="@dimen/size_12"
-                android:fontFamily="sans-serif"
                 android:gravity="center"
+                android:text="@string/thong_bao_nhap_thong_tin_ca_nhan_stamp_v61"
                 android:textAlignment="center"
                 android:textColor="#828282"
-                android:textSize="@dimen/font_13"
                 android:textStyle="normal"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/tvLabelInforCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_16"
-                android:paddingTop="@dimen/size_8"
-                app:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/size_8"
-                android:paddingStart="@dimen/size_12"
-                android:textColor="#3C5A99"
-                android:background="#F5F5F5"/>
+                android:layout_marginStart="@dimen/size_12"
+                android:text="@string/thong_tin_khach_hang"
+                android:textColor="@color/colorSecondary" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubPhone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/so_dien_thoai_bat_buoc"
+                android:textColor="@color/colorNormalText" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
+                android:background="@drawable/bg_transparent_corners_4"
+                android:hint="@string/nhap_so_dien_thoai"
                 android:inputType="phone"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/ho_va_ten_bat_buoc"
+                android:textColor="@color/colorNormalText" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:background="@drawable/bg_transparent_corners_4"
+                android:hint="@string/nhap_ho_va_ten"
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <vn.icheck.android.ichecklibs.view.TextCaption
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
                 android:text="Email"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:textColor="@color/colorNormalText" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
+                android:background="@drawable/bg_transparent_corners_4"
+                android:hint="@string/nhap_email"
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText"
                 android:textStyle="normal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:layout_marginEnd="@dimen/size_12">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.TextCaption
                     android:id="@+id/tvSubTinhThanh"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:fontFamily="sans-serif"
-                    android:paddingStart="@dimen/size_24"
-                    android:textColor="#434343"
-                    android:textSize="@dimen/font_14"
-                    android:textStyle="normal"
+                    android:layout_marginEnd="@dimen/size_6"
+                    android:text="@string/tinh_thanh_bat_buoc"
+                    android:textColor="@color/colorNormalText"
                     app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <vn.icheck.android.ichecklibs.view.TextCaption
+                    android:id="@+id/tvSubHuyen"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_6"
+                    android:text="@string/quan_huyen_bat_buoc"
+                    android:textColor="@color/colorNormalText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
+                    app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutSelectCity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="4.5dp"
-                    android:background="@drawable/bg_gray_corners_40_solid_white"
+                    android:layout_marginTop="@dimen/size_6"
+                    android:layout_marginEnd="@dimen/size_6"
+                    android:background="@drawable/bg_transparent_corners_4"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/layoutSelectDistrict"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvCities"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_16"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:layout_marginBottom="@dimen/size_10"
-                        android:fontFamily="sans-serif"
-                        android:textColor="#434343"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_marginTop="@dimen/size_8"
+                        android:layout_marginBottom="@dimen/size_8"
+                        android:hint="@string/tuy_chon"
+                        android:textColor="@color/colorNormalText"
+                        android:textColorHint="@color/colorSecondText"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -237,43 +206,28 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvSubHuyen"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:paddingStart="@dimen/size_16"
-                    android:textColor="#434343"
-                    android:textSize="@dimen/font_14"
-                    android:textStyle="normal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
-                    app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutSelectDistrict"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4.5dp"
+                    android:layout_marginStart="@dimen/size_6"
                     android:layout_marginTop="@dimen/size_8"
-                    android:layout_marginEnd="@dimen/size_12"
-                    android:background="@drawable/bg_gray_corners_40_solid_white"
+                    android:background="@drawable/bg_transparent_corners_4"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="@+id/tvSubHuyen"
                     app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
                     app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvDistricts"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_16"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:layout_marginBottom="@dimen/size_10"
-                        android:fontFamily="sans-serif"
-                        android:textColor="#434343"
-                        android:textSize="@dimen/font_14"
-                        android:textStyle="normal"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_marginTop="@dimen/size_8"
+                        android:layout_marginBottom="@dimen/size_8"
+                        android:hint="@string/tuy_chon"
+                        android:textColor="@color/colorNormalText"
+                        android:textColorHint="@color/colorSecondText"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -291,129 +245,123 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/dia_chi_bat_buoc"
+                android:textColor="@color/colorNormalText" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
-                android:textStyle="normal" />
+                android:background="@drawable/bg_transparent_corners_4"
+                android:hint="@string/nhap_dia_chi"
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubProductCode"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/ma_hieu_san_pham"
+                android:textColor="@color/colorNormalText"
                 android:visibility="gone"
-                android:textStyle="normal" />
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtProductCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
+                android:background="@drawable/bg_transparent_corners_4"
+                android:hint="@string/nhap_ma_hieu_san_pham"
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText"
                 android:visibility="gone"
-                android:textStyle="normal" />
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.TextCaption
                 android:id="@+id/tvSubProductVariant"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_24"
-                android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="sans-serif"
-                android:textColor="#434343"
-                android:textSize="@dimen/font_14"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/ma_bien_the"
+                android:textColor="@color/colorNormalText"
                 android:visibility="gone"
-                android:textStyle="normal" />
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ui.view.EditTextBody1
                 android:id="@+id/edtVariant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_corners_40_solid_white"
-                android:fontFamily="sans-serif"
-                android:paddingStart="@dimen/size_16"
-                android:paddingTop="@dimen/size_10"
-                android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
+                android:background="@drawable/bg_transparent_corners_4"
                 android:focusable="false"
-                android:textColorHint="#b4b4b4"
-                android:textSize="@dimen/font_14"
+                android:hint="@string/nhap_bien_the_san_pham"
+                android:paddingStart="@dimen/size_10"
+                android:paddingTop="@dimen/size_8"
+                android:paddingBottom="@dimen/size_8"
+                android:textColor="@color/colorNormalText"
+                android:textColorHint="@color/colorSecondText"
                 android:visibility="gone"
-                android:textStyle="normal" />
+                tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvCustomerVariant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/tvTitleField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_16"
-                android:layout_marginTop="@dimen/size_12"
-                android:paddingTop="@dimen/size_8"
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_18"
+                android:text="@string/thong_tin_tiep_nhan"
+                android:textColor="@color/colorSecondary"
                 android:visibility="gone"
-                app:fontFamily="@font/roboto_bold"
-                android:paddingBottom="@dimen/size_8"
-                android:paddingStart="@dimen/size_12"
-                android:textColor="#3C5A99"
-                android:background="#F5F5F5"/>
+                tools:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvField"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <vn.icheck.android.ichecklibs.view.TextSubheader2
                 android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_40"
-                android:layout_marginTop="@dimen/size_37"
-                android:layout_marginEnd="@dimen/size_40"
-                android:layout_marginBottom="@dimen/size_12"
-                android:background="@drawable/bg_blue_corners_40"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/font_16"
-                android:textStyle="normal" />
-
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginTop="@dimen/size_30"
+                android:layout_marginEnd="@dimen/size_12"
+                android:layout_marginBottom="@dimen/size_30"
+                android:background="@drawable/btn_light_blue_corners_4"
+                android:padding="@dimen/size_8"
+                android:text="@string/cap_nhat"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

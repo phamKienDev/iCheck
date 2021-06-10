@@ -32,7 +32,7 @@ class HistoryGameViewModel : BaseViewModel<ICKItemReward>() {
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa nhập mã dự thưởng nào", "Thử nhập ngay vận may biết đâu tới", "Nhập mã thêm lượt quay", R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
+                        setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa nhập mã dự thưởng nào", "Thử nhập ngay vận may biết đâu tới", "Nhập mã thêm lượt quay", R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }

@@ -24,22 +24,21 @@ import vn.icheck.android.component.infomation_contribution.NoContributionHolder
 import vn.icheck.android.component.my_contribution.MyContributionHolder
 import vn.icheck.android.component.my_contribution.MyContributionViewModel
 import vn.icheck.android.component.noimage.NoImageHolder
-import vn.icheck.android.component.product.horizontal_product.ListProductHorizontalHolder
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.component.product.bottominfo.BottomInfoHolder
 import vn.icheck.android.component.product.certifications.CertificationsHolder
 import vn.icheck.android.component.product.certifications.CertificationsModel
 import vn.icheck.android.component.product.emty_qa.EmptyQAModel
 import vn.icheck.android.component.product.emty_qa.ProductEmptyQaHolder
-import vn.icheck.android.component.product.enterprise.EnterpriseComponentV2
-import vn.icheck.android.component.product.enterprise.EnterpriseModelV2
+import vn.icheck.android.component.product.enterprise.ICPageInfoHolder
 import vn.icheck.android.component.product.header.HeaderInforProductComponent
 import vn.icheck.android.component.product.header.ProductHeaderModelV2
+import vn.icheck.android.component.product.horizontal_product.ListProductHorizontalHolder
 import vn.icheck.android.component.product.infor.ProductInformationHolder
 import vn.icheck.android.component.product.infor_contribution.EmptyContributionEnterpriseHolder
 import vn.icheck.android.component.product.infor_contribution.InformationContributionModel
-import vn.icheck.android.component.product.mbtt.MbttModel
 import vn.icheck.android.component.product.mbtt.MbttHolder
+import vn.icheck.android.component.product.mbtt.MbttModel
 import vn.icheck.android.component.product.notverified.ProductNotVerifiedHolder
 import vn.icheck.android.component.product.notverified.ProductNotVerifiedModel
 import vn.icheck.android.component.product.npp.DistributorHolder
@@ -60,7 +59,7 @@ import vn.icheck.android.component.product_review.my_review.MyReviewModel
 import vn.icheck.android.component.product_review.submit_review.ISubmitReviewListener
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewHolder
 import vn.icheck.android.component.product_review.submit_review.SubmitReviewModel
-import vn.icheck.android.component.shopvariant.product_detail.ProductDetailShopHolder
+import vn.icheck.android.component.shopvariant.product_detail.ListShopHolder
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.getAdsType
@@ -265,13 +264,13 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.IMAGE_VIDEO_SLIDER -> ICImageVideoSlider.createAttachments(parent, sharedPool)
             ICViewTypes.HEADER_TYPE -> HeaderInforProductComponent.create(parent, productListener)
             ICViewTypes.REVIEW_SUMMARY_TYPE -> ReviewSummaryHolder(parent)
-            ICViewTypes.SHOP_VARIANT_TYPE -> ProductDetailShopHolder(parent)
+            ICViewTypes.SHOP_VARIANT_TYPE -> ListShopHolder(parent)
             ICViewTypes.TRANSPARENCY_TYPE -> MbttHolder.create(parent)
-            ICViewTypes.ENTERPRISE_TYPE -> EnterpriseComponentV2(parent, sharedPool)
+            ICViewTypes.ENTERPRISE_TYPE -> ICPageInfoHolder(parent)
             ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> EmptyContributionEnterpriseHolder(parent, productListener)
             ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent)
-            ICViewTypes.VENDOR_TYPE -> VendorHolder(parent, sharedPool)
-            ICViewTypes.DISTRIBUTOR -> DistributorHolder(parent, sharedPool)
+            ICViewTypes.VENDOR_TYPE -> VendorHolder(parent)
+            ICViewTypes.DISTRIBUTOR -> DistributorHolder(parent)
             ICViewTypes.LIST_REVIEWS_TYPE -> ProductListReviewHolder(parent, sharedPool)
             ICViewTypes.SUBMIT_REVIEW_TYPE -> SubmitReviewHolder(parent, sharedPool, submitReviewListener)
             ICViewTypes.MY_REVIEW_TYPE -> MyReviewHolder(parent, listenerMyReview)
@@ -302,13 +301,13 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
             ICViewTypes.IMAGE_VIDEO_SLIDER -> (holder as ICImageVideoSlider).bind(listData[position].data as ICImageVideoSliderModel)
             ICViewTypes.HEADER_TYPE -> (holder as HeaderInforProductComponent).bind(listData[position].data as ProductHeaderModelV2)
             ICViewTypes.REVIEW_SUMMARY_TYPE -> (holder as ReviewSummaryHolder).bind(listData[position].data as IckReviewSummaryModel)
-            ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ProductDetailShopHolder).bind(listData[position].data as ShopProductModel)
+            ICViewTypes.SHOP_VARIANT_TYPE -> (holder as ListShopHolder).bind((listData[position].data as ShopProductModel).listShop)
             ICViewTypes.TRANSPARENCY_TYPE -> (holder as MbttHolder).bind(listData[position].data as MbttModel)
-            ICViewTypes.ENTERPRISE_TYPE -> (holder as EnterpriseComponentV2).bind(listData[position].data as EnterpriseModelV2)
+            ICViewTypes.ENTERPRISE_TYPE -> (holder as ICPageInfoHolder).bind(listData[position].data as ICOwner)
             ICViewTypes.EMPTY_CONTRIBUTION_INTERPRISE_TYPE -> (holder as EmptyContributionEnterpriseHolder).bind(listData[position].data as InformationContributionModel)
             ICViewTypes.VERIFIED_TYPE -> (holder as ProductVerifiedHolder).bind(listData[position].data as ICClientSetting)
             ICViewTypes.NOT_VERIFIED_TYPE -> (holder as ProductNotVerifiedHolder).bind(listData[position].data as ProductNotVerifiedModel)
-            ICViewTypes.VENDOR_TYPE -> (holder as VendorHolder).bind(listData[position].data as VendorModel)
+            ICViewTypes.VENDOR_TYPE -> (holder as VendorHolder).bind((listData[position].data as VendorModel).listVendor)
             ICViewTypes.DISTRIBUTOR -> (holder as DistributorHolder).bind(listData[position].data as DistributorModel, IckProductDetailActivity.urlDistributor)
             ICViewTypes.LIST_REVIEWS_TYPE -> (holder as ProductListReviewHolder).bind(listData[position].data as ProductListReviewModel)
             ICViewTypes.SUBMIT_REVIEW_TYPE -> (holder as SubmitReviewHolder).bind(listData[position].data as SubmitReviewModel,refeshTextReview).apply { refeshTextReview=false }

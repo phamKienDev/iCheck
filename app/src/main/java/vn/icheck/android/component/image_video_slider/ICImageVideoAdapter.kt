@@ -15,7 +15,7 @@ class ICImageVideoAdapter(val listData: List<MediaLogic>, val onClick:(() -> Uni
         return when (viewType) {
             ICMediaType.TYPE_IMAGE -> ImageHolder.create(parent)
             ICMediaType.TYPE_VIDEO -> VideoHolder.create(parent)
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

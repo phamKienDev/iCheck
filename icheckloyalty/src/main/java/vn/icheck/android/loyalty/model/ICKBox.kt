@@ -8,6 +8,15 @@ class ICKBox : Serializable {
     val id: Long? = null
 
     @Expose
+    val points: Long? = null
+
+    @Expose
+    val gift_used: Long? = null
+
+    @Expose
+    val total_code: Long? = null
+
+    @Expose
     val campaign_id: Long? = null
 
     @Expose

@@ -21,8 +21,8 @@
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:focusableInTouchMode="true"
-            android:background="#f0f0f0" />
+            android:background="#f0f0f0"
+            android:focusableInTouchMode="true" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <FrameLayout
@@ -322,13 +322,13 @@
                 android:drawablePadding="@dimen/size_7"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Đánh giá"
+                android:text="@string/danh_gia"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_12" />
+                android:textSize="@dimen/font_14" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@id/btnBuy"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBuy"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_42"
             android:layout_marginStart="@dimen/size_5"
@@ -337,19 +337,13 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:background="@drawable/background_button_enable"
-            android:gravity="center">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvBuy"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/barlow_medium"
-                android:gravity="center"
-                android:text="@string/dang_ky_mua_hang_chinh_hang"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/lien_he_n_doanh_nghiep"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_14"
+            tools:text="@string/lien_he_n_doanh_nghiep" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,45 +1,51 @@
 package vn.icheck.android.component.product.infor
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_information.view.*
 import vn.icheck.android.ICheckApplication
-import vn.icheck.android.R
-import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ItemProductInformationBinding
+import vn.icheck.android.network.models.ICInfo
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICProductInformations
+import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity
 import vn.icheck.android.screen.user.information_product.InformationProductActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class ProductInformationHolder(parent: ViewGroup) : BaseViewHolder<ICProductInformations>(LayoutInflater.from(parent.context).inflate(R.layout.item_product_information, parent, false)) {
+class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInformationBinding =
+        ItemProductInformationBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    override fun bind(obj: ICProductInformations) {
-        itemView.tvTitle.text = obj.title
+    fun bind(obj: ICProductInformations) {
+        binding.tvTitle.text = obj.title
 
         if (!obj.shortContent.isNullOrEmpty()) {
-            itemView.tvContent.beVisible()
-            itemView.tvContent.text = obj.shortContent
+            binding.tvContent.beVisible()
+            binding.tvContent.text = Html.fromHtml(obj.shortContent)
         } else {
-            itemView.tvContent.beGone()
+            binding.tvContent.beGone()
         }
 
         if (!obj.image.isNullOrEmpty()) {
-            itemView.imgImage.beVisible()
-            itemView.viewBackground.beVisible()
+            binding.imgImage.beVisible()
+            binding.viewBackground.beVisible()
 
-            WidgetUtils.loadImageUrl(itemView.imgImage, obj.image)
+            WidgetUtils.loadImageUrl(binding.imgImage, obj.image)
         } else {
-            itemView.imgImage.beGone()
-            itemView.viewBackground.beGone()
+            binding.imgImage.beGone()
+            binding.viewBackground.beGone()
         }
 
-        itemView.imgImage.setOnClickListener {
+        binding.imgImage.setOnClickListener {
             ICheckApplication.currentActivity()?.let {
                 val listImage = mutableListOf<ICMedia>()
                 listImage.add(ICMedia(content = obj.image))
@@ -47,12 +53,34 @@ class ProductInformationHolder(parent: ViewGroup) : BaseViewHolder<ICProductInfo
             }
         }
 
-        itemView.tvViewAll.setOnClickListener {
+        binding.tvViewAll.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
                 val intent = Intent(activity, InformationProductActivity::class.java)
                 intent.putExtra(Constant.DATA_1, obj.code)
                 intent.putExtra(Constant.DATA_2, obj.productID)
                 intent.putExtra(Constant.DATA_3, obj.productImage)
+                ActivityUtils.startActivity(activity, intent)
+            }
+        }
+    }
+
+    fun bind(obj: ICInfo) {
+        binding.tvTitle.text = obj.title
+
+        if (!obj.content.isNullOrEmpty()) {
+            binding.tvContent.beVisible()
+            binding.tvContent.text = obj.content
+        } else {
+            binding.tvContent.beGone()
+        }
+
+        binding.imgImage.beGone()
+        binding.viewBackground.beGone()
+
+        binding.tvViewAll.setOnClickListener {
+            ICheckApplication.currentActivity()?.let { activity ->
+                val intent = Intent(activity, MoreInformationProductActivity::class.java)
+                intent.putExtra(Constant.DATA_1, obj.id)
                 ActivityUtils.startActivity(activity, intent)
             }
         }

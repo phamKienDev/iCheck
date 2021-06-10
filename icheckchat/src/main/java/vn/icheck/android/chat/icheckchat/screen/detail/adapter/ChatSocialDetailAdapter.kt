@@ -570,10 +570,17 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
             if (obj.content!!.contains("icheck://")) {
                 val positionStart = obj.content!!.indexOf("icheck://")
-                val positionEnd = obj.content!!.indexOf(" ", positionStart)
 
-                val schema = if (positionEnd != -1) {
-                    obj.content!!.substring(positionStart, positionEnd)
+                var lastPosition = 0
+                for (i in positionStart until obj.content!!.length) {
+                    if (obj.content!![i] == ' ' || obj.content!![i] == '\n') {
+                        lastPosition = i
+                        break
+                    }
+                }
+
+                val schema = if (lastPosition != 0) {
+                    obj.content!!.substring(positionStart, lastPosition)
                 } else {
                     obj.content!!
                 }
@@ -583,7 +590,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 text = Html.fromHtml(content)
 
                 setOnClickListener {
-                    ChatSdk.openActivity(schema)
+                    openActivity(schema)
                 }
             } else {
                 text = obj.content!!.replace("\r", "\n")
