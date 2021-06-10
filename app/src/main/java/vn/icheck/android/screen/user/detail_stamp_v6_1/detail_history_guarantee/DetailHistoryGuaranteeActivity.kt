@@ -1,5 +1,7 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
+import android.content.Context
+import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +16,12 @@ import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemDetailHistoryGuaranteeBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
@@ -30,17 +34,16 @@ import vn.icheck.android.ui.view.TextBody1
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 
-class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresenter>(), IDetaiHistoryGuaranteeView {
+class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuaranteeView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detai_history_guarantee
-
-    override val getPresenter: DetailHistoryGuaranteePresenter
-        get() = DetailHistoryGuaranteePresenter(this)
+    private val presenter = DetailHistoryGuaranteePresenter(this)
 
     private val adapter = ListNoteHistoryAdapter()
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detai_history_guarantee)
+
         txtTitle.text = "Chi tiết bảo hành"
         tvCustomerInfor.text = "Thông tin khách hàng"
         tvWarrantyInfor.text = "Thông tin bảo hành"
@@ -72,8 +75,17 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this
+
+    override fun onShowLoading(isShow: Boolean) {
+        if (isShow)
+            DialogHelper.showLoading(this)
+        else
+            DialogHelper.closeLoading(this)
     }
 
     override fun getObjectIntentSuccess(item: ICListHistoryGuarantee, list: MutableList<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>?) {
@@ -84,11 +96,11 @@ class DetailHistoryGuaranteeActivity : BaseActivity<DetailHistoryGuaranteePresen
         for (field in item.customer?.fields ?: mutableListOf()) {
             val binding = ItemDetailHistoryGuaranteeBinding.inflate(LayoutInflater.from(this), layoutCustomer, false)
             binding.tvTitle.text = field.name
-                if (field.type == "date") {
-                    binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
-                } else {
-                    binding.tvContent.text = field.value
-                }
+            if (field.type == "date") {
+                binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
+            } else {
+                binding.tvContent.text = field.value
+            }
             layoutCustomer.addView(binding.root)
         }
 
