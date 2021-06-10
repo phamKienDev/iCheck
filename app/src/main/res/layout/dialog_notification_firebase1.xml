@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/size_20"
+    android:rotation="180">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="@dimen/size_32"
+        android:layout_height="@dimen/size_32"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/size_20"
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_close_popup_32px" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:rotation="180"
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/layoutText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_10"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_10"
+        android:visibility="gone">
+
+        <WebView
+            android:id="@+id/webViewHtml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:rotation="180"
+            tools:ignore="WebViewLayout" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutWeb"
+        android:layout_width="match_parent"
+        android:layout_height="526dp"
+        android:layout_marginBottom="@dimen/size_20"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/size_10"
+        android:paddingTop="@dimen/size_20"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingBottom="@dimen/size_20"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <WebView
+            android:id="@+id/webViewUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rotation="180" />
+    </LinearLayout>
+
+</LinearLayout>
