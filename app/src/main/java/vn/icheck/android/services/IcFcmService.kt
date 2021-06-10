@@ -24,7 +24,7 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.feature.mission.MissionInteractor
 import vn.icheck.android.network.models.ICMissionDetail
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.popup_complete_mission.PopupCompleteMissionActivity
 import vn.icheck.android.screen.user.rank_of_user.RankUpActivity
@@ -172,7 +172,7 @@ class IcFcmService : FirebaseMessagingService() {
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ICheckApplication.currentActivity()?.apply {
             if(this is AppCompatActivity){
-                DialogNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
+                DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
             }
         }
     }

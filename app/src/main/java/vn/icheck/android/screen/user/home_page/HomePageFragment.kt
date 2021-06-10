@@ -54,6 +54,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
@@ -296,7 +297,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
         })
 
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
