@@ -1192,6 +1192,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onResume() {
         super.onResume()
+
+        if (!key.isNullOrEmpty()){
+            markReadMessage(key!!)
+        }
         inboxRoomID = keyRoom
         inboxUserID = toId
     }
