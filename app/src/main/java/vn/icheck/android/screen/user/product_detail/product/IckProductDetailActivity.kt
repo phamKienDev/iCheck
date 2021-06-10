@@ -83,10 +83,10 @@ import java.io.File
  */
 class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener,
     ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
-    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener, OnClickBtnChatListener {
+    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
     private lateinit var viewModel: IckProductDetailViewModel
 
-    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this, this)
+    private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
 
     private val permissionCamera = 98
     private var positionSubmit = -1
@@ -653,15 +653,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     ContactBusinessDialog(this).show(
                         productDetail.owner?.pageId ?: productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email,
-                        this
+                        productDetail.manager?.email
                     )
                 } else {
                     ContactBusinessDialog(this).show(
                         productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email,
-                        this
+                        productDetail.manager?.email
                     )
                 }
             }
@@ -1174,13 +1172,5 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
     override fun onClickReviewPermission() {
         viewModel.reloadMyReview(viewModel.urlMyReview)
-    }
-
-    override fun onClick(id: Long?) {
-        if (SessionManager.isUserLogged) {
-            ChatSocialDetailActivity.createRoomChat(this, id ?: -1, "page")
-        } else {
-            onRequireLogin(requestLoginScanCode)
-        }
     }
 }

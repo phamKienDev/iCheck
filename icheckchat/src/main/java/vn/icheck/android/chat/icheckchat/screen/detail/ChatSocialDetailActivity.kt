@@ -312,13 +312,23 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
+                                        
+                                        if (toType.contains("page")){
+                                            isVerified = success.child("is_verify").value.toString().toBoolean()
 
-                                        isVerified = success.child("is_verify").value.toString().toBoolean()
-
-                                        if (isVerified){
-                                            binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            if (isVerified){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
                                         }else{
-                                            binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            val isKYC = success.child("kyc_status").value as Long? ?: 0L
+
+                                            if (isKYC == 2L){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
                                         }
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
