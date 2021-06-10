@@ -151,6 +151,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtOldPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardOld, binding.edtOldPassword)
         }
+        binding.edtOldPassword.setCenterView(binding.btnKeyboardOld)
 
         binding.btnKeyboardOld.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtOldPassword)
@@ -159,6 +160,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)
@@ -167,6 +169,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtRePassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
         }
+        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
 
         binding.btnKeyboardNew.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtRePassword)

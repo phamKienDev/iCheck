@@ -196,6 +196,7 @@ class IckLoginOtpFragment : CoroutineFragment() {
         binding.edtPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)
@@ -204,6 +205,7 @@ class IckLoginOtpFragment : CoroutineFragment() {
         binding.edtRePassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
         }
+        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
 
         binding.btnKeyboardNew.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtRePassword)
