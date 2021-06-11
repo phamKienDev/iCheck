@@ -757,8 +757,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (SessionManager.isUserLogged) {
                 if (!viewModel.verifyProduct) {
                     if (!viewModel.urlBuy.isNullOrEmpty()) {
-                        val bottomSheetWebView = BottomSheetWebView(this)
-                        bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
+                        BottomSheetWebView(this@IckProductDetailActivity).showWithUrl(viewModel.urlBuy ?: "")
                     }
                 } else {
                     if (viewModel.productDetail?.owner?.verified == true) {
