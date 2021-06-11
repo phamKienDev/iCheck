@@ -53,7 +53,7 @@ class WebViewActivity : BaseActivityMVVM() {
 
     companion object {
         fun start(fragmentActivity: FragmentActivity?, url: String?, isScan: Int? = null, title: String? = null, isMarketing: Boolean? = null) {
-            if (fragmentActivity == null || url.isNullOrEmpty()) {
+            if (fragmentActivity == null || url.isNullOrEmpty() || checkDeepLink(url)) {
                 return
             }
 
@@ -74,7 +74,7 @@ class WebViewActivity : BaseActivityMVVM() {
         }
 
         fun start(activity: Activity?, url: String?, isScan: Int? = null, title: String? = null) {
-            if (activity == null || url.isNullOrEmpty()) {
+            if (activity == null || url.isNullOrEmpty() || checkDeepLink(url)) {
                 return
             }
 
@@ -106,6 +106,20 @@ class WebViewActivity : BaseActivityMVVM() {
                         start(activity, link)
                     }
                 }
+            }
+        }
+
+        fun checkDeepLink(url: String?):Boolean{
+            return when{
+                url?.contains("icheckdev.page.link") == true -> {
+                    openChrome(url)
+                    true
+                }
+                url?.contains("icheck.page.link") == true -> {
+                    openChrome(url)
+                    true
+                }
+                else -> false
             }
         }
     }

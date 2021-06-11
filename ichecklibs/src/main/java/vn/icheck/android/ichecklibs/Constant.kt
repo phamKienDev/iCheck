@@ -310,6 +310,14 @@ object Constant {
         }
     }
 
+    fun isNullOrEmpty(value: String?): Boolean {
+        return when {
+            value.isNullOrEmpty() -> true
+            value.contains("null") -> true
+            else -> false
+        }
+    }
+
     fun getName(lastName: String?, firstName: String?, default: String = ""): String {
         return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
             "${lastName ?: ""} ${firstName ?: ""}".trim()
