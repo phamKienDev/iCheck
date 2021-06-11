@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ship"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:animateLayoutChanges="true">
 
-    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
-        android:id="@+id/btn_back"
-        android:layout_width="@dimen/size_50"
-        android:layout_height="@dimen/size_50"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back_blue_24px_new" />
-
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_50"
-        tools:text="Giỏ hàng"
-        android:textSize="@dimen/font_18"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_light_blue" />
 
     <View
         android:id="@+id/divider10"
@@ -36,15 +18,15 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/group_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
-        android:paddingBottom="@dimen/size_10"
         android:background="@android:color/white"
+        android:paddingBottom="@dimen/size_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider10"
@@ -55,13 +37,13 @@
             android:layout_width="@dimen/size_30"
             android:layout_height="@dimen/size_30"
             android:layout_marginStart="@dimen/size_12"
-            app:civ_border_color="@color/grayB4"
-            app:civ_border_width="@dimen/size_1"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_12"
-            tools:src="@drawable/ic_icheck_logo"
+            app:civ_border_color="@color/grayB4"
+            app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_icheck_logo" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_business_name"
@@ -79,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Innissfree VN (tên 1 dòng)...   " />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_quantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -88,7 +70,6 @@
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@+id/business_logo"
@@ -124,18 +105,18 @@
         android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_36"
-        android:textAllCaps="false"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:textSize="@dimen/font_16"
-        android:visibility="gone"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/barlow_medium"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
         android:text="Nhập địa chỉ nhận hàng"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_16"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -177,4 +158,4 @@
             android:text="Bạn chưa có sản phẩm nào trong giỏ hàng" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

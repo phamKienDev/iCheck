@@ -64,26 +64,20 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
         fun bindData(item: ICStoreNear) {
             binding.layoutImage.background=ViewHelper.bgTransparentStrokeLineColor1Corners12(binding.layoutImage.context)
             binding.layoutParent.background=ViewHelper.bgWhiteCorners16(binding.layoutParent.context)
+
+            binding.tvKhoangCach.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setImageColorDisableText(R.drawable.ic_gps_off_18_px,itemView.context),0,0,0)
+
             binding.layoutParent.layoutParams = if (listData.size > 1){
                 RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)
                 }
             } else {
-                RecyclerView.LayoutParams(
-                    RecyclerView.LayoutParams.MATCH_PARENT,
-                    RecyclerView.LayoutParams.WRAP_CONTENT
-                ).apply {
+                RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(sizeMargin, 0, sizeMargin, 0)
                 }
             }
 
-            WidgetUtils.loadImageUrlRoundedFitCenter(
-                itemView.imgAva,
-                item.avatar,
-                R.drawable.ic_error_load_shop_40_px,
-                R.drawable.ic_error_load_shop_40_px,
-                SizeHelper.size12
-            )
+            WidgetUtils.loadImageUrlRoundedFitCenter(itemView.imgAva, item.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px, SizeHelper.size12)
 
             if (selectedPos == absoluteAdapterPosition) {
                 itemView.layoutParent.background = ViewHelper.bgWhiteStrokePrimary2Corners16(itemView.context)
@@ -105,8 +99,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
                 null
             }
 
-            itemView.tvAddress.text =
-                item.address ?: itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvAddress.text = item.address ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             itemView.tvPhone.text = item.phone ?: itemView.context.getString(R.string.dang_cap_nhat)
 

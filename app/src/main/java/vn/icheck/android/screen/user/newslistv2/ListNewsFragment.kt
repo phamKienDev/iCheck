@@ -57,7 +57,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
         viewModel.idCategory = arguments?.getLong(Constant.ID) ?: -1
 
         if (arguments?.getBoolean(Constant.DATA_1) == false) {
-            imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
+            imgBack.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
             imgBack.setOnClickListener {
@@ -68,7 +68,7 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
                 }
             }
         } else {
-            imgBack.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_back_blue_v2_24px,requireContext()))
+            imgBack.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_back_blue_v2_24px,requireContext()))
 
             imgBack.setOnClickListener {
                 ActivityUtils.finishActivity(requireActivity())

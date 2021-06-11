@@ -39,7 +39,6 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.addPriceTextWatcher
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -637,7 +636,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                                                                 binding.edtPhonePage.setText("")
                                                                 binding.edtTax.setText("")
                                                                 binding.edtCategory.setText("")
-                                                                binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                                                                binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                                                                 ickContributeProductViewModel.categoryAttributes.clear()
                                                                 categoryAttributesAdapter.notifyDataSetChanged()
                                                                 binding.tvImgFirst simpleText "+ Ảnh mặt trước"
@@ -783,7 +782,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                     if (event.action == MotionEvent.ACTION_UP) {
                         if (ickContributeProductViewModel.categoryAttributes.isNotEmpty()) {
                             binding.edtCategory.setText("")
-                            binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                            binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                             ickContributeProductViewModel.categoryAttributes.clear()
                             categoryAttributesAdapter.notifyDataSetChanged()
                         }

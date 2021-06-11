@@ -42,7 +42,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.gms.maps.MapView
 import de.hdodenhof.circleimageview.CircleImageView
-import org.w3c.dom.Text
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.avatar_user.AvatarUserComponent
@@ -1570,7 +1569,7 @@ object ViewHelper {
                         },
                         null,
                         createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.darkGray3),
+                        Constant.getSecondTextColor(context),
                         14f).also {
                     it.gravity = Gravity.CENTER
                 })
@@ -2502,7 +2501,7 @@ object ViewHelper {
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                imgCamera.setImageResource(R.drawable.ic_arrow_down_blue_24px)
+                imgCamera.setImageResource(R.drawable.ic_arrow_down_blue_24dp)
             })
             it.addView(AppCompatTextView(context).also {
                 it.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
@@ -2867,7 +2866,7 @@ object ViewHelper {
                 it.text = parent.context.getString(R.string.xem_chi_tiet)
                 it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
-                it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                it.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 it.includeFontPadding = false
             })
         }

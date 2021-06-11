@@ -7,26 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
-        android:id="@+id/btn_back"
-        android:layout_width="@dimen/size_50"
-        android:layout_height="@dimen/size_50"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back_blue_24px_new" />
-
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_50"
-        android:text="Xác nhận giao hàng"
-        android:textSize="@dimen/font_18"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_light_blue"/>
 
     <View
         android:id="@+id/divider10"
@@ -35,7 +18,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <View
         android:id="@+id/divider16"
@@ -47,11 +30,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#e5e5e5"
         app:layout_constraintBottom_toTopOf="@+id/divider16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,14 +56,13 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:id="@+id/textView91"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="Thời gian đặt hàng"
                     android:textSize="@dimen/font_16"
                     android:visibility="gone"
@@ -102,7 +83,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tv_ship_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,7 +98,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView91"
                     tools:text="12:14, 12/07/2020" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_ship_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,7 +144,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,19 +155,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView85"
                     tools:text="Trần Văn Hoàng" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name"
                     tools:text="0546 334 889" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +174,6 @@
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginBottom="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -293,7 +272,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_quantity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -302,14 +281,13 @@
                     android:layout_marginTop="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
-                    android:fontFamily="@font/barlow_medium"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/business_logo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_business_name"
                     tools:text="2/2 sản phẩm" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:id="@+id/divider21"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_1"
@@ -347,7 +325,7 @@
                     app:layout_constraintTop_toTopOf="@+id/img_gift"
                     tools:text="Sữa rửa mặt sạch dầu (1 dòng)..." />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_quantity_gift"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -370,7 +348,7 @@
                 android:background="@android:color/white"
                 tools:visibility="visible">
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:id="@+id/divider36"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_1"
@@ -422,16 +400,15 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/textView98"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="Tổng thanh toán:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />

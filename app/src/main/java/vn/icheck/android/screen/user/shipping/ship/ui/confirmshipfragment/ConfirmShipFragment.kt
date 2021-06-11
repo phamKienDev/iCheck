@@ -49,7 +49,9 @@ class ConfirmShipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvReport.background=ViewHelper.btnWhiteStrokePrimary1Corners4(requireContext())
+        setupView()
+
+        binding.toolbar.txtTitle simpleText "Xác nhận giao hàng"
 
         if (viewModel.arrayCart.isEmpty()) {
             binding.btnConfirm simpleText "Thanh toán"
@@ -133,7 +135,7 @@ class ConfirmShipFragment : Fragment() {
                     }
                 }
             }
-            binding.btnBack.setOnClickListener {
+            binding.toolbar.imgBack.setOnClickListener {
                 viewModel.moveToChoose()
             }
             binding.tvChange.setOnClickListener {
@@ -205,7 +207,7 @@ class ConfirmShipFragment : Fragment() {
             binding.textView91.beVisible()
         } else {
             showLoadingTimeOut(10000)
-            binding.btnBack.setOnClickListener {
+            binding.toolbar.imgBack.setOnClickListener {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_TO_SHAKE))
                 requireActivity().finish()
             }
@@ -216,8 +218,14 @@ class ConfirmShipFragment : Fragment() {
 
     }
 
+    private fun setupView() {
+        binding.tvReport.background = ViewHelper.btnWhiteStrokePrimary1Corners4(requireContext())
+        binding.edtNotes.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
+        binding.edtNotes.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(requireContext()))
+    }
+
     private fun getDetailOrder() {
-        binding.textView26 simpleText "Thông tin đơn hàng"
+        binding.toolbar.txtTitle simpleText "Thông tin đơn hàng"
         binding.imgStatus.beVisible()
         viewModel.getDetailOrder().observe(viewLifecycleOwner, {
             it.data?.let { detailOrderResponse ->

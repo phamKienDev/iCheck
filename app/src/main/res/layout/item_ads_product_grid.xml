@@ -30,18 +30,16 @@
             android:adjustViewBounds="true"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxHeight="@dimen/size_40"
         android:maxLines="2"
         android:minLines="2"
-        android:textColor="@color/darkGray1"
         android:textSize="@dimen/font_14"
         tools:text="Adidas Store (tối 2 dòng)..." />
 
@@ -167,5 +165,4 @@
             tools:text="Ghé thăm" />
 
     </LinearLayout>
-
 </LinearLayout>

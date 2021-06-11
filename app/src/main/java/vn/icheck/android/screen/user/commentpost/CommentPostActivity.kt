@@ -603,7 +603,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_camera_on_24px,this))
+            imgCamera.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_camera_on_24px,this))
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }
@@ -611,7 +611,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun checkSendStatus() {
         if (edtContent.text.toString().trim().isNotEmpty() || imgCommentSend.tag != null) {
-            imgSend.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_chat_send_24px,this))
+            imgSend.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_chat_send_24px,this))
             imgSend.isClickable = true
             layoutInputContent.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {

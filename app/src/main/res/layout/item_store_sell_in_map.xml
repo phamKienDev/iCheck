@@ -26,14 +26,12 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:layout_marginEnd="@dimen/size_6"
-        android:textColor="#4f4f4f"
         android:textSize="@dimen/font_16"
         android:singleLine="true"
         android:ellipsize="end"

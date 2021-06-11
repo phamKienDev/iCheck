@@ -27,7 +27,7 @@ class SocialChatFragment:CoroutineFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.root.setPadding(0, requireContext().getStatusBarHeight(), 0,0)
-        binding.imgMenu.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
+        binding.imgMenu.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_leftmenu_24_px,requireContext()))
         binding.divSelector.background=ViewHelper.bgPrimaryCornersTop4(requireContext())
         binding.tvMessage.setOnClickListener {
             binding.containerFramelayout.setCurrentItem(0, true)

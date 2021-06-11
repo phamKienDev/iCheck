@@ -30,9 +30,7 @@
 
     <View
         android:id="@+id/divider10"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_1"
-        android:background="?android:attr/listDivider"
+        style="@style/Shadow_Bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" />
@@ -70,10 +68,9 @@
 
     <View
         android:id="@+id/divider16"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
+        style="@style/Shadow_Bottom"
+        android:rotation="180"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

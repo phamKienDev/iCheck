@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -422,7 +421,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
         if (show) {
-            imgCamera.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_camera_on_24px,this))
+            imgCamera.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_camera_on_24px,this))
             view2.beVisible()
             imgClearImage.beVisible()
             cardViewImage.beVisible()
@@ -457,7 +456,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun showBtnSend(enable: Boolean) {
         if (enable) {
             imgSend.isEnabled = true
-            imgSend.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_chat_send_24px,this))
+            imgSend.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_chat_send_24px,this))
             containerEnter.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {
             imgSend.isEnabled = false

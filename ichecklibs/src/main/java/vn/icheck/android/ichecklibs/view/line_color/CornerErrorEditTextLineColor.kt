@@ -1,4 +1,4 @@
-package vn.icheck.android.ichecklibs.view.edit_text
+package vn.icheck.android.ichecklibs.view.line_color
 
 import android.content.Context
 import android.graphics.*
@@ -10,7 +10,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.util.dpToPx
 
-open class CornerErrorEditText : AppCompatEditText {
+open class CornerErrorEditTextLineColor : AppCompatEditText {
     var originalPadding = 0
     lateinit var mErrorTextPaint: Paint
     lateinit var mBackgroundPaint: Paint
@@ -39,7 +39,7 @@ open class CornerErrorEditText : AppCompatEditText {
         mBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mBackgroundPaint.strokeWidth = 1f.dpToPx()
         mBackgroundPaint.style = Paint.Style.STROKE
-        mBackgroundPaint.setColor(Color.parseColor("#df1733"))
+        mBackgroundPaint.setColor(Constant.getLineColor(context))
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
         setBackgroundResource(0)
 
@@ -49,7 +49,7 @@ open class CornerErrorEditText : AppCompatEditText {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         if (!text.isNullOrEmpty() && originalPadding != paddingBottom) {
 //            setBackgroundResource(R.drawable.gray_stroke_corner_4)
-            mBackgroundPaint.setColor(Color.parseColor("#D8D8D8"))
+            mBackgroundPaint.setColor(Constant.getLineColor(context))
             setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
             requestLayout()
         }

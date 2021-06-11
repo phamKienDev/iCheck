@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.location.CITY
@@ -47,6 +49,7 @@ class AddShipAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
         initBinding()
         viewModel.arrayAddress.firstOrNull {
             it?.id == viewModel.getAddressUpdateId() && it.id != -1L
@@ -65,6 +68,35 @@ class AddShipAddressFragment : Fragment() {
             viewModel.setWard(CityItem(it.ward?.name, it.ward?.id))
 
             binding.edtAddress.setText(it.address)
+        }
+    }
+
+    private fun setupView() {
+        Constant.getNormalTextColor(requireContext()).apply {
+            binding.edtLastName.setTextColor(this)
+            binding.edtFirstName.setTextColor(this)
+            binding.edtPhone.setTextColor(this)
+            binding.edtTinhThanh.setTextColor(this)
+            binding.edtQuan.setTextColor(this)
+            binding.edtPhuongXa.setTextColor(this)
+            binding.edtAddress.setTextColor(this)
+        }
+
+        Constant.getDisableTextColor(requireContext()).apply {
+            binding.edtLastName.setHintTextColor(this)
+            binding.edtFirstName.setHintTextColor(this)
+            binding.edtPhone.setHintTextColor(this)
+            binding.edtTinhThanh.setHintTextColor(this)
+            binding.edtQuan.setHintTextColor(this)
+            binding.edtPhuongXa.setHintTextColor(this)
+            binding.edtAddress.setHintTextColor(this)
+        }
+
+
+        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,requireContext()).apply {
+            binding.edtQuan.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.edtTinhThanh.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.edtPhuongXa.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
         }
     }
 

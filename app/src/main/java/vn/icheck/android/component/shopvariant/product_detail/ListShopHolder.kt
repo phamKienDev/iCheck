@@ -57,7 +57,7 @@ class ListShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVari
                         text.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                         text.gravity = Gravity.CENTER
                         text.setText(R.string.xem_tat_ca_diem_ban)
-                        text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                        text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                     })
 
                     layoutMoreShop.setOnClickListener {

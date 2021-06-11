@@ -165,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rotation="0"
-            android:src="@drawable/ic_arrow_down_blue_24px" />
+            android:src="@drawable/ic_arrow_down_blue_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerEnter"

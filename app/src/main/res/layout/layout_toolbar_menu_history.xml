@@ -6,7 +6,7 @@
     android:layout_height="@dimen/size_96"
     android:elevation="@dimen/size_4">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/imgCloseDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

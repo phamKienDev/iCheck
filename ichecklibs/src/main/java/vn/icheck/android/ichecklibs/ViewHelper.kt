@@ -321,6 +321,22 @@ object ViewHelper {
         return ScaleDrawable(drawable, gravity, 1f, 0f)
     }
 
+
+    /*
+    * SET màu drawable
+    * */
+    fun setImageColor(drawable: Drawable,color: Int): Drawable {
+        DrawableCompat.setTint(drawable, color)
+        return drawable
+    }
+
+    fun setImageColor(icon: Int, context: Context,color: Int): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, color)
+        }
+        return icon
+    }
+
     /*
     * StateListDrawable
     * */
@@ -467,14 +483,14 @@ object ViewHelper {
         return createColorPressStateList(Constant.getPrimaryColor(context), Constant.getSecondaryColor(context))
     }
 
-    fun setImagePrimary(drawable: Drawable, context: Context,color: Int=Constant.getPrimaryColor(context)): Drawable {
-        DrawableCompat.setTint(drawable, color)
+    fun setImageColorPrimary(drawable: Drawable, context: Context): Drawable {
+        DrawableCompat.setTint(drawable, Constant.getPrimaryColor(context))
         return drawable
     }
 
-    fun setImagePrimary(icon: Int, context: Context,color: Int=Constant.getPrimaryColor(context)): Int {
+    fun setImageColorPrimary(icon: Int, context: Context): Int {
         ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, color)
+            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
         }
         return icon
     }
@@ -842,6 +858,19 @@ object ViewHelper {
         return layerDrawble
     }
 
+
+    fun setImageColorLineColor(drawable: Drawable, context: Context): Drawable {
+        DrawableCompat.setTint(drawable, Constant.getLineColor(context))
+        return drawable
+    }
+
+    fun setImageColorLineColor(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getLineColor(context))
+        }
+        return icon
+    }
+
     fun bgProductItemBottemLeft(context: Context) = bgProductItem(context, left = 0, top = SizeHelper.size1, right = SizeHelper.size0_5, bottom = 0)
     fun bgProductItemBottemRight(context: Context) = bgProductItem(context, left = SizeHelper.size0_5, top = SizeHelper.size1, right = 0, bottom = 0)
     fun bgProductItemTopLeft(context: Context) = bgProductItem(context, left = 0, top = 0, right = SizeHelper.size0_5, bottom = 0)
@@ -979,6 +1008,39 @@ object ViewHelper {
         Constant.getSecondTextColor(context),
         Constant.getNormalTextColor(context)
     )
+
+    /*
+    * Second Text
+     */
+
+    fun setImageColorSecondText(drawable: Drawable, context: Context): Drawable {
+        DrawableCompat.setTint(drawable, Constant.getSecondTextColor(context))
+        return drawable
+    }
+
+    fun setImageColorSecondText(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getSecondTextColor(context))
+        }
+        return icon
+    }
+
+
+    /*
+    * Disable Text
+    */
+
+    fun setImageColorDisableText(drawable: Drawable, context: Context): Drawable {
+        DrawableCompat.setTint(drawable, Constant.getDisableTextColor(context))
+        return drawable
+    }
+
+    fun setImageColorDisableText(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getDisableTextColor(context))
+        }
+        return icon
+    }
 
     /*
     *  App Background White

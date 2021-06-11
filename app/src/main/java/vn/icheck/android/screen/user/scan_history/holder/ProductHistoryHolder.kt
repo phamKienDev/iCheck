@@ -95,6 +95,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 }
             }
 
+            binding.tvBarcodeProduct.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setImageColorDisableText(R.drawable.ic_barcode_gray_18px,itemView.context),0,0,0)
             if (!obj.product?.barcode.isNullOrEmpty()) {
                 binding.tvBarcodeProduct.beVisible()
                 binding.tvBarcodeProduct.text = obj.product?.barcode?.trim()

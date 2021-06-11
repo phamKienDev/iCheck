@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -375,7 +374,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvProduct, rcvProduct.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllProduct.text = getString(R.string.xem_tat_ca)
-                    tvAllProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
             R.id.tvAllCategory -> {
@@ -386,7 +385,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvCategory, rcvCategory.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllCategory.text = getString(R.string.xem_tat_ca)
-                    tvAllCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
             R.id.tvAllCompany -> {
@@ -397,7 +396,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvCompany, rcvCompany.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllCompany.text = getString(R.string.xem_tat_ca)
-                    tvAllCompany.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllCompany.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
         }

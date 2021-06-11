@@ -102,6 +102,8 @@ object SettingManager {
             Constant.normalTextColor=it.theme?.normalTextColor?:""
             Constant.secondTextColor=it.theme?.secondTextColor?:""
             Constant.disableTextColor=it.theme?.disableTextColor?:""
+
+            Constant.lineColor=it.theme?.lineColor?:""
         }
 
 //            Constant.appBackgroundColor="#85c440"

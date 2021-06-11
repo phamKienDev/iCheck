@@ -1,15 +1,8 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.view.MotionEvent
-import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 
 open class TextNormalBarlowMedium : TextBarlowMedium {

@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_filter_type.view.*
 import vn.icheck.android.R
@@ -57,14 +56,16 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
         fun bindData(item: ICTypeHistory) {
             itemView.tvName.text = item.name
 
+            itemView.img_tick.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_tick_filter_history_blue_24,itemView.context))
+
             if (item.select) {
                 itemView.layoutContent.background = ViewHelper.bgWhiteStrokePrimary1Corners4(itemView.context)
                 itemView.img_tick.visibility = View.VISIBLE
-                itemView.tvName.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
+                itemView.tvName.setTextColor(Constant.getPrimaryColor(itemView.context))
             } else {
-                itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_f2f2f2)
+                itemView.layoutContent.background = ViewHelper.bgGrayCorners4(itemView.context)
                 itemView.img_tick.visibility = View.INVISIBLE
-                itemView.tvName.setTextColor(Color.parseColor(Constant.getNormalTextCode))
+                itemView.tvName.setTextColor(Color.parseColor(Constant.getSecondTextCode))
             }
 
             itemView.layoutContent.setOnClickListener {

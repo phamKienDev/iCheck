@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider37"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
@@ -81,8 +81,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_quantity_gift"
-        app:srcCompat="@drawable/ic_add_cart_40" />
+        app:layout_constraintTop_toTopOf="@+id/tv_quantity_gift" />
 
     <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_total"

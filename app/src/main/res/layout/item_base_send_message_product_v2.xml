@@ -89,8 +89,8 @@
             android:id="@id/tvArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_arrow_down_blue_24px"
-            android:drawableLeft="@drawable/ic_arrow_down_blue_24px"
+            android:drawableStart="@drawable/ic_arrow_down_blue_24dp"
+            android:drawableLeft="@drawable/ic_arrow_down_blue_24dp"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="@id/imgAvatar" />

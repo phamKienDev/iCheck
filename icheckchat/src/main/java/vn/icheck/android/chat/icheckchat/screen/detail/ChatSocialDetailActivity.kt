@@ -186,7 +186,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         binding.layoutToolbar.imgAction.setVisible()
 
-        binding.layoutToolbar.imgAction.setImageResource(ViewHelper.setImagePrimary(R.drawable.ic_setting_blue_24dp_chat, this))
+        binding.layoutToolbar.imgAction.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_setting_blue_24dp_chat, this))
     }
 
     private fun setupView() {
