@@ -313,12 +313,22 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
 
-                                        isVerified = success.child("is_verify").value.toString().toBoolean()
+                                        if (toType.contains("page")){
+                                            isVerified = success.child("is_verify").value.toString().toBoolean()
 
-                                        if (isVerified){
-                                            binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            if (isVerified){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
                                         }else{
-                                            binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            val isKYC = success.child("kyc_status").value as Long? ?: 0L
+
+                                            if (isKYC == 2L){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
                                         }
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
@@ -428,8 +438,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun listenChangeMessage(key: String) {
+
         viewModel.getChangeMessageChat(key) { data ->
-            markReadMessage(key)
+
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -494,7 +505,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-//                markReadMessage(key)
+                markReadMessage(key)
+
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1
@@ -950,6 +962,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 getProductBarcode(barcode)
                             }
                             !qrCode.isNullOrEmpty() -> {
+                                binding.tvMessage.setGone()
+                                binding.edtMessage.setVisible()
+                                binding.edtMessage.requestFocus()
                                 binding.edtMessage.setText(qrCode)
                             }
                         }

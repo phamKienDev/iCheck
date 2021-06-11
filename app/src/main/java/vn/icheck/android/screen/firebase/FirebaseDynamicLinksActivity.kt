@@ -728,8 +728,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             product -> {
                 val targetID = deepLink?.getQueryParameter("id")
 
-                if (!targetID.isNullOrEmpty()) {
-                    IckProductDetailActivity.start(this, targetID.toLong())
+                if (!vn.icheck.android.ichecklibs.Constant.isNullOrEmpty(targetID)) {
+                    IckProductDetailActivity.start(this, targetID!!.toLong())
                 } else {
                     val targetBarcode = deepLink?.getQueryParameter("barcode")
 
