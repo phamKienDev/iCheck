@@ -6,7 +6,7 @@
     android:layout_marginTop="@dimen/size_8"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         tools:text="Ngày 2020-08-12" />
     0
 
-    <vn.icheck.android.ui.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.TextBody1
         android:id="@id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

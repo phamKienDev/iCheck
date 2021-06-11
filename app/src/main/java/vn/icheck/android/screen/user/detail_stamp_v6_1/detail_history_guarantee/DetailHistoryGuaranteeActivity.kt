@@ -15,14 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemDetailHistoryGuaranteeBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.DialogHelper
-import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.view.TextBody1
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
@@ -30,7 +29,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
-import vn.icheck.android.ui.view.TextBody1
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
 
