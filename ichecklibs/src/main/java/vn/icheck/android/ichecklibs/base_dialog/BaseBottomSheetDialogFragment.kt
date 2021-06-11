@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.ichecklibs.R
 
-open class BaseBottomSheetDialogFragment(val state: Int = BottomSheetBehavior.STATE_COLLAPSED): BottomSheetDialogFragment() {
+open class BaseBottomSheetDialogFragment(val state: Int = BottomSheetBehavior.STATE_EXPANDED): BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
             BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme).also { dialog ->
