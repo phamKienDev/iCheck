@@ -48,4 +48,13 @@ fun hideKeyboard(activity: FragmentActivity?, view: View?) {
     imm?.hideSoftInputFromWindow(view?.windowToken, 0)
 }
 
+fun checkTypeUser(id: Long?): Int {
+    return when {
+        RelationshipManager.checkFriend(id ?: 0L) -> MAIN_USER_FRIEND
+        id == SessionManager.session.user?.id -> MAIN_USER
+        else -> MAIN_USER_NOT_FRIEND
+    }
+}
+
+
 
