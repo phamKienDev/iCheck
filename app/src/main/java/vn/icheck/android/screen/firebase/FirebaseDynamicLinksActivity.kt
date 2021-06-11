@@ -50,7 +50,6 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
@@ -302,19 +301,6 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     fragmentActivity.overridePendingTransition(R.anim.none, R.anim.none)
                 } else {
                     startTarget(fragmentActivity, targetType)
-                }
-            }
-        }
-
-        @WorkerThread
-        fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
-            ICheckApplication.currentActivity()?.apply {
-                runOnUiThread {
-                    object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
-                        override fun onDismiss() {
-
-                        }
-                    }.show()
                 }
             }
         }

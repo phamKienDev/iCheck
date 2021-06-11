@@ -26,6 +26,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.campaign.CampainsInteractor
 import vn.icheck.android.network.feature.page.PageRepository
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -37,6 +38,7 @@ import kotlin.collections.set
 
 open class PageDetailViewModel : ViewModel() {
     val pageInteraction = PageRepository()
+    private val popupRepository = PopupInteractor()
     val campaignInteraction = CampainsInteractor()
     val adsRepository = AdsRepository()
     val postInteractor = PostInteractor()
@@ -56,6 +58,7 @@ open class PageDetailViewModel : ViewModel() {
     val onPageName = MutableLiveData<String>()
     val onDetailPost = MutableLiveData<ICPost>()
     val onDeletePost = MutableLiveData<Long>()
+    val onPopupAds = MutableLiveData<ICPopup>()
 
     val onUpdatePost = MutableLiveData<MutableList<ICLayout>>()
     var offsetPost = 0
@@ -80,7 +83,7 @@ open class PageDetailViewModel : ViewModel() {
     var countError = 0
 
     var isFollowPage = false
-
+    var firstPopupAds = true
 
     fun getData(bundle: Bundle?) {
         pageID = bundle?.getLong(Constant.DATA_1, -1) ?: -1
@@ -172,6 +175,11 @@ open class PageDetailViewModel : ViewModel() {
                                 layout.data = pageOverview
                                 this@PageDetailViewModel.pageOverview = pageOverview
                                 onAddData.value = layout
+
+                                if (firstPopupAds) {
+                                    getPopup(pageOverview)
+                                    firstPopupAds = false
+                                }
                             }
                         }
                         "page-follow-invitation-1" -> {
@@ -340,6 +348,30 @@ open class PageDetailViewModel : ViewModel() {
             else -> R.drawable.page_cover_4
         }
     }
+
+
+    private fun getPopup(page: ICPageOverview) {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupRepository.getPopup(page.id,
+            if (page.isVerify) {
+                vn.icheck.android.ichecklibs.Constant.PAGE_VERIFY
+            } else {
+                vn.icheck.android.ichecklibs.Constant.PAGE_UNVERIFIED
+            }, object : ICNewApiListener<ICResponse<ICPopup>> {
+                override fun onSuccess(obj: ICResponse<ICPopup>) {
+                    if (obj.data != null) {
+                        onPopupAds.postValue(obj.data!!)
+                    }
+                }
+
+                override fun onError(error: ICResponseCode?) {
+                }
+            })
+    }
+
     private fun getWidgetBrand(layout: ICLayout) {
         pageInteraction.getBrands(layout.request.url!!, 0, object : ICNewApiListener<ICResponse<ICListResponse<ICPageTrend>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICPageTrend>>) {

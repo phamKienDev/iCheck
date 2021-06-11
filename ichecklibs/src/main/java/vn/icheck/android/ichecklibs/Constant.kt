@@ -63,6 +63,17 @@ object Constant {
     const val ENTERPRISE = "enterprise"
     const val SHOP = "shop"
 
+    /*
+    ScreenCode Popup
+     */
+
+    const val SCAN = "scan"
+    const val HOME = "home"
+    const val PAGE_VERIFY = "page_verified"
+    const val PAGE_UNVERIFIED = "page_unverified"
+    const val PRODUCT_UNVERIFIED = "product_unverified"
+    const val PRODUCT_VERIFY = "product_verified"
+
     const val PAGE_BRAND_TYPE = 1 // Nhãn hàng
     const val PAGE_EXPERT_TYPE = 2 // Chuyên gia
     const val PAGE_ENTERPRISE_TYPE = 3 // Doanh nghiệp
@@ -200,6 +211,21 @@ object Constant {
         val head = "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
         return "<html>$head<body>$bodyHTML</body></html>"
     }
+
+    fun getHtmlTextNotPadding(content:String):String{
+        val head = "<head><style> img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                head+
+                "\n" +
+                "<body style=\"margin: 0; padding: 0; overflow: hidden\">\n" +
+                content +
+                "</body>\n" +
+                "\n" +
+                "</html>"
+    }
+
 
     fun formatPhone(phone: String?): String? {
         return if (phone?.length ?: 0 >= 10) {

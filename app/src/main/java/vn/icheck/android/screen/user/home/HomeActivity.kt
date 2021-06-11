@@ -264,7 +264,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         when (position) {
             1 -> {
                 if (!isChecked(tvHome)) {
-                    TrackingAllHelper.trackHomePageViewed()
+//                    TrackingAllHelper.trackHomePageViewed()
                     viewPager.setCurrentItem(0, false)
                     HideWebUtils.showWeb("Home")
                     HomePageFragment.INSTANCE?.scrollToTop()
@@ -1173,7 +1173,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 super.onBackPressed()
             }
             else -> {
-                TrackingAllHelper.trackHomePageViewed()
+//                TrackingAllHelper.trackHomePageViewed()
                 viewPager.setCurrentItem(0, false)
             }
         }

@@ -44,6 +44,7 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
@@ -61,6 +62,7 @@ import vn.icheck.android.util.kotlin.HideWebUtils
 
 class IckProductDetailViewModel : BaseViewModel() {
     private val productRepository = ProductInteractor()
+    private val popupRepository = PopupInteractor()
     private val reviewInteraction = ProductReviewInteractor()
     private val settingInteraction = SettingRepository()
     private val adsRepository = AdsRepository()
@@ -93,6 +95,8 @@ class IckProductDetailViewModel : BaseViewModel() {
     val onDetailPost = MutableLiveData<ICPost>()
     val onMyReviewData = MutableLiveData<ICProductMyReview>()
     val onRegisterBuyProduct = MutableLiveData<Boolean>()
+    val onPopupAds = MutableLiveData<ICPopup>()
+
 
     val onUrlDistributor = MutableLiveData<String>()
 
@@ -122,6 +126,8 @@ class IckProductDetailViewModel : BaseViewModel() {
     /*Transparency*/
     var onPostTransparency = MutableLiveData<ICTransparency>()
     val listInfo = arrayListOf<CategoryAttributesItem>()
+
+    private var firstPopup = true
 
     fun getData(intent: Intent?) {
         barcode = intent?.getStringExtra(Constant.DATA_1) ?: ""
@@ -231,6 +237,10 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (productDetail?.status == "ok" && productDetail?.state == "active") {
             checkBookMark()
             getProductLayoutData(isUpdate, obj, productDetail)
+            if (firstPopup) {
+                getPopup()
+                firstPopup = false
+            }
             onDataProduct.postValue(productDetail)
         } else if (productDetail?.status == "notFound") {
             TrackingAllHelper.trackScanBarcodeFailed(barcode,"notFound")
@@ -314,6 +324,27 @@ class IckProductDetailViewModel : BaseViewModel() {
             }
         })
     }
+
+    private fun getPopup() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupRepository.getPopup(productDetail?.id, if (productDetail?.verified == true) {
+            vn.icheck.android.ichecklibs.Constant.PRODUCT_VERIFY
+        } else {
+            vn.icheck.android.ichecklibs.Constant.PRODUCT_UNVERIFIED
+        }, object : ICNewApiListener<ICResponse<ICPopup>> {
+            override fun onSuccess(obj: ICResponse<ICPopup>) {
+                if (obj.data != null) {
+                    onPopupAds.postValue(obj.data!!)
+                }
+            }
+            override fun onError(error: ICResponseCode?) {
+            }
+        })
+    }
+
 
     private fun getProductLayoutData(isUpdate: Boolean, obj: ICLayoutData<JsonObject>, productDetail: ICDataProductDetail?) {
         viewModelScope.launch {

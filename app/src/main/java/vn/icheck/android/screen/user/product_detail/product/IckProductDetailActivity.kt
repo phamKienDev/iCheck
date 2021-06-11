@@ -73,6 +73,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -629,6 +630,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
             showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+        })
+        viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this,it)
         })
     }
 

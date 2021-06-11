@@ -54,6 +54,7 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
 
@@ -315,6 +316,10 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         viewModel.onDeletePost.observe(viewLifecycleOwner, {
             DialogHelper.showDialogSuccessBlack(requireContext(), getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
             adapter.deletePost(it)
+        })
+
+        viewModel.onPopupAds.observe(viewLifecycleOwner, {
+            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
         })
     }
 
