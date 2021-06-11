@@ -294,4 +294,12 @@ object Constant {
             context.startActivity(intent)
         }
     }
+
+    fun isNullOrEmpty(value: String?): Boolean {
+        return when {
+            value.isNullOrEmpty() -> true
+            value.contains("null") -> true
+            else -> false
+        }
+    }
 }

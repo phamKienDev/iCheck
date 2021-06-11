@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.icheck.android.chat.icheckchat.R
@@ -50,7 +51,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
     private val adapter = ContactAdapter(this)
 
-    private lateinit var viewModel: ContactViewModel
+    private val viewModel by viewModels<ContactViewModel>()
 
     var offset = 0
 
@@ -247,8 +248,6 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
 
         if (!isCreated) {
             isCreated = true
-
-            viewModel = ViewModelProvider(this@ContactFragment)[ContactViewModel::class.java]
 
             if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 binding.swipeRefresh.isEnabled = true

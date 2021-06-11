@@ -55,10 +55,12 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
-import vn.icheck.android.ichecklibs.util.beGone
-import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.NotificationDialogListener
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 import java.util.regex.Pattern
@@ -88,6 +90,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         var toId = ""
         var toType = ""
+        var isVerified = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -152,24 +155,28 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         userType = intent.getStringExtra(DATA_3) ?: "user"
         key = intent.getStringExtra(KEY)
 
-        when {
-            conversation != null -> {
-                viewModel.loginFirebase({
+        viewModel.loginFirebase({
+            when {
+                conversation != null -> {
                     if (!conversation?.key.isNullOrEmpty()) {
                         key = conversation?.key
                         getChatRoom(conversation?.key!!)
                     }
-                }, {
-
-                })
+                }
+                !key.isNullOrEmpty() -> {
+                    getChatRoom(key!!)
+                }
+                else -> {
+                    createRoom()
+                }
             }
-            !key.isNullOrEmpty() -> {
-                getChatRoom(key!!)
-            }
-            else -> {
-                createRoom()
-            }
-        }
+        }, {
+            DialogHelper.showNotification(this@ChatSocialDetailActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                override fun onDone() {
+                    onBackPressed()
+                }
+            })
+        })
 
         binding.layoutToolbar.imgAction.setVisible()
 
@@ -305,6 +312,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
+
+                                        if (toType.contains("page")){
+                                            isVerified = success.child("is_verify").value.toString().toBoolean()
+
+                                            if (isVerified){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }else{
+                                            val isKYC = success.child("kyc_status").value as Long? ?: 0L
+
+                                            if (isKYC == 2L){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
 
@@ -413,8 +438,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun listenChangeMessage(key: String) {
+
         viewModel.getChangeMessageChat(key) { data ->
-            markReadMessage(key)
+
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -479,7 +505,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-//                markReadMessage(key)
+                markReadMessage(key)
+
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1
@@ -935,6 +962,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 getProductBarcode(barcode)
                             }
                             !qrCode.isNullOrEmpty() -> {
+                                binding.tvMessage.setGone()
+                                binding.edtMessage.setVisible()
+                                binding.edtMessage.requestFocus()
                                 binding.edtMessage.setText(qrCode)
                             }
                         }
