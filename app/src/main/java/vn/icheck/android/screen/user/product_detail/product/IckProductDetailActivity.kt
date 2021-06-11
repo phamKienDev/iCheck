@@ -309,7 +309,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (!it.loyalty?.campaignCode.isNullOrEmpty() || !it.loyalty?.campaignId.isNullOrEmpty()) {
                 CampaignLoyaltyHelper.getCampaignQrMar(
                         this@IckProductDetailActivity,
-                        it.loyalty?.campaignCode ?: it.loyalty?.campaignId,
+                        it.loyalty?.campaignId, it.loyalty?.campaignCode, it.loyalty?.giftCode,
                         this@IckProductDetailActivity
                 )
             } else {
@@ -1110,7 +1110,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 CampaignLoyaltyHelper.REQUEST_GET_GIFT -> {
                     CampaignLoyaltyHelper.getReceiveGift(
                             this@IckProductDetailActivity, viewModel.barcode, viewModel.code, obj?.name
-                            ?: "", null
+                            ?: "", listener = null
                     )
                 }
                 CampaignLoyaltyHelper.REQUEST_CHECK_CODE -> {

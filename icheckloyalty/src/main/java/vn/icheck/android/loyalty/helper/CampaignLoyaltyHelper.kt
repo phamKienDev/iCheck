@@ -47,8 +47,7 @@ object CampaignLoyaltyHelper {
                         if (SessionManager.isLogged) {
                             when (obj.data?.type) {
                                 "receive_gift" -> {
-                                    getReceiveGift(activity, barcode, null, obj.data?.name
-                                            ?: "", null)
+                                    getReceiveGift(activity, barcode, null, obj.data?.name ?: "")
                                 }
                                 "accumulate_point" -> {
                                     getAccumulatePoint(activity, obj.data!!, null, barcode, null)
@@ -57,7 +56,7 @@ object CampaignLoyaltyHelper {
                                     getPointLongTime(activity, obj.data!!, null, barcode, null)
                                 }
                                 else -> {
-                                    getMiniGame(activity, obj.data!!, null, barcode, null)
+                                    getMiniGame(activity, obj.data!!, target = barcode)
                                 }
                             }
                         } else {
@@ -76,8 +75,9 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    fun getCampaignQrMar(activity: FragmentActivity, barcode: String?, callback: ILoginListener) {
-        CampaignRepository().getCampaignQrMar(barcode ?: "", object : ICApiListener<ICKResponse<ICKLoyalty>> {
+    fun getCampaignQrMar(activity: FragmentActivity, campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null, callback: ILoginListener) {
+        CampaignRepository().getCampaignQrMar(campaignId
+                ?: campaignCode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
             override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
                 if (obj.data != null) {
                     if (obj.data?.introduction_image != null) {
@@ -92,17 +92,16 @@ object CampaignLoyaltyHelper {
                         if (SessionManager.isLogged) {
                             when (obj.data?.type) {
                                 CampaignType.RECEIVE_GIFT_QR_MAR -> {
-                                    getReceiveGift(activity, null, barcode, obj.data?.name
-                                            ?: "", null)
+                                    getReceiveGift(activity, nameCampaign = obj.data?.name ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
                                 }
                                 CampaignType.ACCUMULATE_POINT_QR_MAR -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, barcode, null)
+                                    getAccumulatePoint(activity, obj.data!!, null, null, null)
                                 }
                                 CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
-                                    getPointLongTime(activity, obj.data!!, null, barcode, null)
+                                    getPointLongTime(activity, obj.data!!, null, null, null)
                                 }
                                 else -> {
-                                    getMiniGame(activity, obj.data!!, barcode, null, null)
+                                    getMiniGame(activity, obj.data!!)
                                 }
                             }
                         } else {
@@ -150,13 +149,13 @@ object CampaignLoyaltyHelper {
                     /**
                      * Nhận quà
                      */
-                    getReceiveGift(activity, barcode, code, data.name ?: "", listener)
+                    getReceiveGift(activity, barcode, code, data.name ?: "", listener = listener)
                 }
                 else -> {
                     /**
                      * Vòng quay may mắn
                      */
-                    getMiniGame(activity, data, code, barcode, listener)
+                    getMiniGame(activity, data, code, barcode, listener = listener)
                 }
             }
         } else {
@@ -301,8 +300,13 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    fun getReceiveGift(activity: FragmentActivity, barcode: String?, code: String?, nameCampaign: String, listener: IRemoveHolderInputLoyaltyListener?) {
-        CampaignRepository().postReceiveGift(barcode, code, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
+    fun getReceiveGift(activity: FragmentActivity,
+                       barcode: String? = null, code: String? = null,
+                       nameCampaign: String,
+                       campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
+                       listener: IRemoveHolderInputLoyaltyListener?=null
+    ) {
+        CampaignRepository().postReceiveGift(barcode, code, campaignId, campaignCode, giftCode, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
                 if (obj.statusCode != 200) {
                     when (obj.status) {
@@ -376,9 +380,15 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    private fun getMiniGame(activity: FragmentActivity, data: ICKLoyalty, code: String?, target: String?, listener: IRemoveHolderInputLoyaltyListener?) {
-        CampaignRepository().postGameGift(data.id
-                ?: -1, target, code, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
+    private fun getMiniGame(
+            activity: FragmentActivity,
+            data: ICKLoyalty,
+            code: String? = null,
+            target: String? = null,
+            campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
+            listener: IRemoveHolderInputLoyaltyListener?=null
+    ) {
+        CampaignRepository().postGameGift(data.id ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
             override fun onSuccess(obj: ICKResponse<DataReceiveGameResp>) {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {
