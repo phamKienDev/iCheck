@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <LinearLayout
+        android:id="@id/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -35,7 +37,7 @@
             android:visibility="gone" />
 
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/layoutText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +46,7 @@
             android:paddingStart="@dimen/size_10"
             android:paddingTop="@dimen/size_10"
             android:paddingEnd="@dimen/size_10"
+            android:rotation="180"
             android:paddingBottom="@dimen/size_10"
             android:visibility="gone">
 
@@ -52,9 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:rotation="180"
                 tools:ignore="WebViewLayout" />
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:id="@+id/layoutWeb"
@@ -66,16 +68,15 @@
             android:paddingTop="@dimen/size_20"
             android:paddingEnd="@dimen/size_10"
             android:paddingBottom="@dimen/size_20"
-            android:visibility="gone">
+            android:rotation="180"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="WebViewLayout">
 
             <WebView
-                android:id="@+id/webViewUrl"
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="WebViewLayout"
-                android:rotation="180" />
+                android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

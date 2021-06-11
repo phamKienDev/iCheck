@@ -96,11 +96,12 @@ class IckProductDetailViewModel : BaseViewModel() {
     val onDetailPost = MutableLiveData<ICPost>()
     val onMyReviewData = MutableLiveData<ICProductMyReview>()
     val onRegisterBuyProduct = MutableLiveData<Boolean>()
+    val onPopupAds = MutableLiveData<ICPopup>()
+
 
     val onUrlDistributor = MutableLiveData<String>()
 
     val onAddHolderInput = MutableLiveData<ICLayout>()
-    val onPopupAds = MutableLiveData<ICPopup>()
 
     var code = ""
 
@@ -126,7 +127,6 @@ class IckProductDetailViewModel : BaseViewModel() {
     /*Transparency*/
     var onPostTransparency = MutableLiveData<ICTransparency>()
     val listInfo = arrayListOf<CategoryAttributesItem>()
-
 
     private var firstPopup = true
 

@@ -54,7 +54,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
@@ -75,6 +75,7 @@ import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
@@ -295,8 +296,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
+
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+//            object : DialogNotificationFirebaseAds(requireActivity(),null,null,"http://icheck.com.vn",null) {
+//                override fun onDismiss() {
+//                }
+//            }.show()
         })
 
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
@@ -717,8 +723,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     override fun onResume() {
         super.onResume()
-
         isOpen = true
+
+        TrackingAllHelper.trackHomePageViewed()
 
         if (!isViewCreated) {
             isViewCreated = true
