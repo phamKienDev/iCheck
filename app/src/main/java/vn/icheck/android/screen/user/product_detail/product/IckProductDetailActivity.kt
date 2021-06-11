@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
@@ -766,23 +767,14 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
                 }
             } else {
-                if (SessionManager.isUserLogged) {
+                requestLogin({
+                    onRequireLoginSuccess(requestLoginProductDetail)
                     if (viewModel.productDetail?.owner?.verified == true) {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.owner?.pageId ?: -1,
-                            "page"
-                        )
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.owner?.pageId ?: -1, "page")
                     } else {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.manager?.id ?: -1,
-                            "page"
-                        )
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.manager?.id ?: -1, "page")
                     }
-                } else {
-                    onRequireLogin(requestLoginProductDetail)
-                }
+                })
             }
         }
 

@@ -145,24 +145,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         userType = intent.getStringExtra(DATA_3) ?: "user"
         key = intent.getStringExtra(KEY)
 
-        when {
-            conversation != null -> {
-                viewModel.loginFirebase({
-                    if (!conversation?.key.isNullOrEmpty()) {
-                        key = conversation?.key
-                        getChatRoom(conversation?.key!!)
-                    }
-                }, {
+        viewModel.loginFirebase({
+            when {
+                conversation != null -> {
+                        if (!conversation?.key.isNullOrEmpty()) {
+                            key = conversation?.key
+                            getChatRoom(conversation?.key!!)
+                        }
+                }
+                !key.isNullOrEmpty() -> {
+                    getChatRoom(key!!)
+                }
+                else -> {
+                    createRoom()
+                }
+            }
+        }, {
 
-                })
-            }
-            !key.isNullOrEmpty() -> {
-                getChatRoom(key!!)
-            }
-            else -> {
-                createRoom()
-            }
-        }
+        })
 
         binding.layoutToolbar.imgAction.setVisible()
 
