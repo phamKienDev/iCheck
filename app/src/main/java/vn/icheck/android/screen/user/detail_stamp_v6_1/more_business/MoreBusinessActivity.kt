@@ -1,17 +1,19 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_business
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_more_business.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import kotlinx.android.synthetic.main.toolbar_blue.imgBack
-import kotlinx.android.synthetic.main.toolbar_blue.txtTitle
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectDistributor
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectVendor
@@ -22,13 +24,9 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreB
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
-class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusinessView {
+class MoreBusinessActivity : BaseActivityMVVM(), IMoreBusinessView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_more_business
-
-    override val getPresenter: MoreBusinessPresenter
-        get() = MoreBusinessPresenter(this)
+    val presenter = MoreBusinessPresenter(this@MoreBusinessActivity)
 
     private var adapterSuggestion = MoreProductVerifiedInBusinessAdapter(this,StampDetailActivity.isVietNamLanguage)
 
@@ -40,7 +38,13 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
     private var mId: Long? = null
     private val requestPhone = 1
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_more_business)
+        onInitView()
+    }
+
+    fun onInitView() {
         presenter.getDataIntent(intent)
         initRecyclerViewMoreProduct()
         listener()
@@ -114,6 +118,17 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
                 startActivity(intent)
             }
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@MoreBusinessActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@MoreBusinessActivity, isShow)
     }
 
     override fun onLoadMore() {

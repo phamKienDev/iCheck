@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.vinmart
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
@@ -11,22 +12,20 @@ import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_vin_mart.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
-import vn.icheck.android.base.activity.BaseActivityPresenter
-import vn.icheck.android.base.activity.BaseActivityView
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.util.regex.Pattern
 
-class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView {
+class VinMartActivity : BaseActivityMVVM() {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_vin_mart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_vin_mart)
+        onInitView()
+    }
 
-    override val getPresenter: BaseActivityPresenter
-        get() = BaseActivityPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         val url = intent?.getStringExtra(Constant.DATA_1)
 
         if (url.isNullOrEmpty()) {

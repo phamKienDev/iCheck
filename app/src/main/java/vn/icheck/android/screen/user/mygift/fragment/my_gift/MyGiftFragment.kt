@@ -2,7 +2,9 @@ package vn.icheck.android.screen.user.mygift.fragment.my_gift
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,8 +31,9 @@ class MyGiftFragment : BaseFragmentMVVM() {
     lateinit var viewModel: MyGiftViewModel
     val adapter = MyGiftAdapter()
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_my_gift
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_my_gift, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

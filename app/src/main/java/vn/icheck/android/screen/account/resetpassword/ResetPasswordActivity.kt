@@ -1,11 +1,13 @@
 package vn.icheck.android.screen.account.resetpassword
 
+import android.content.Context
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.account.resetpassword.presenter.ResetPasswordPresenter
@@ -19,16 +21,19 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class ResetPasswordActivity : BaseActivity<ResetPasswordPresenter>(), IResetPasswordView, View.OnClickListener {
+class ResetPasswordActivity : BaseActivityMVVM(), IResetPasswordView, View.OnClickListener {
     private var timer: CountDownTimer? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_reset_password
+    private val presenter = ResetPasswordPresenter(this@ResetPasswordActivity)
 
-    override val getPresenter: ResetPasswordPresenter
-        get() = ResetPasswordPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_reset_password)
 
-    override fun onInitView() {
+        onInitView()
+    }
+
+    fun onInitView() {
         setupTheme()
         presenter.getData(intent)
     }
@@ -145,9 +150,14 @@ class ResetPasswordActivity : BaseActivity<ResetPasswordPresenter>(), IResetPass
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
-
         ToastUtils.showShortError(this@ResetPasswordActivity, errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ResetPasswordActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ResetPasswordActivity, isShow)
     }
 
     override fun onClick(view: View?) {

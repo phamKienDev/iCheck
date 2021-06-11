@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.home
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,6 +12,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Looper
 import android.text.Html
 import android.text.Spannable
@@ -47,7 +49,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
@@ -62,6 +64,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -104,10 +107,11 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView, View.OnClickListener {
+class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnClickListener {
     private lateinit var ringtoneHelper: RingtoneHelper
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var locationCallback: LocationCallback? = null
+    private val presenter = HomePresenter(this@HomeActivity)
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
@@ -165,18 +169,18 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         var INSTANCE: HomeActivity? = null
     }
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_home
-
-    override val getPresenter: HomePresenter
-        get() = HomePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+        onInitView()
+    }
 
     override fun isHomeActivity(): Boolean {
         return true
     }
 
     @SuppressLint("RtlHardcoded")
-    override fun onInitView() {
+    fun onInitView() {
         StatusBarUtils.setOverStatusBarDark(this)
         logDebug("home create")
         isOpen = true
@@ -608,11 +612,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     override fun onShowLoading(isShow: Boolean) {
-        if (isShow) {
-            DialogHelper.showLoading(this)
-        } else {
-            DialogHelper.closeLoading(this)
-        }
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@HomeActivity, isShow)
     }
 
     override fun onLogoutFalse() {
@@ -622,6 +622,13 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             }
         })
     }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@HomeActivity
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)

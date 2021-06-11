@@ -1,7 +1,9 @@
 package vn.icheck.android.activities.product.product_questions_v1
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.Html
@@ -12,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_product_questions_v1.*
 import kotlinx.android.synthetic.main.item_base_send_message_product.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
 import vn.icheck.android.callback.IHorizontalImageSendListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -23,6 +24,8 @@ import vn.icheck.android.activities.product.product_questions_v1.adapter.Product
 import vn.icheck.android.screen.user.product_questions.presenter.ProductQuestionsPresenter
 import vn.icheck.android.activities.product.product_questions_v1.view.IProductQuestionsView
 import vn.icheck.android.activities.product.review_product_v1.adapter.HorizontalImageSendAdapter
+import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.models.v1.ICQuestionRow
 import vn.icheck.android.network.models.v1.ICQuestionsAnswers
@@ -33,25 +36,28 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
 
-class ProductQuestionsV1Activity : BaseActivity<ProductQuestionsPresenter>(), IProductQuestionsView, TakePhotoHelper.TakePhotoListener, View.OnClickListener, IHorizontalImageSendListener {
+class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, TakePhotoHelper.TakePhotoListener, View.OnClickListener, IHorizontalImageSendListener {
     private val questionAdapter = ProductQuestionsAdapter(this)
     private var imageAdapter = HorizontalImageSendAdapter(this)
 
     private val takePhotoHelper = TakePhotoHelper(this)
     private val permissionCamera = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_product_questions_v1
+    private val presenter = ProductQuestionsPresenter(this@ProductQuestionsV1Activity)
 
-    override val getPresenter: ProductQuestionsPresenter
-        get() = ProductQuestionsPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_product_questions_v1)
+
+        onInitView()
+    }
 
     private var listFile = mutableListOf<File>()
     private var listFileEmpity = mutableListOf<String>()
     private var questionId = -1L
     private var positionAnswer = -1
 
-    override fun onInitView() {
+    fun onInitView() {
         initRecyclerView()
         initRecyclerViewImage()
         initSwipeLayout()
@@ -222,13 +228,28 @@ class ProductQuestionsV1Activity : BaseActivity<ProductQuestionsPresenter>(), IP
 
 
     override fun onClickDetailUser(type: String, id: Long) {
-        if (type == "user") {
-            IckUserWallActivity.create(id,this)
-        } else if (type == "page") {
-            PageDetailActivity.start(this, id, Constant.PAGE_ENTERPRISE_TYPE)
-        } else {
+        when (type) {
+            "user" -> {
+                IckUserWallActivity.create(id,this)
+            }
+            "page" -> {
+                PageDetailActivity.start(this, id, Constant.PAGE_ENTERPRISE_TYPE)
+            }
+            else -> {
 //            ShopDetailActivity.start(id, this@ProductQuestionsV1Activity)
+            }
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ProductQuestionsV1Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ProductQuestionsV1Activity, isShow)
     }
 
     private fun pickPhoto() {

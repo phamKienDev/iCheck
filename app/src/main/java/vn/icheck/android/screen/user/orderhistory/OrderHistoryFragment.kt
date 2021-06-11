@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.orderhistory
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_order_history.*
@@ -34,9 +36,9 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             return fragment
         }
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_order_history
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_order_history, container, false)
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
