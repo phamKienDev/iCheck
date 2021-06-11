@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_8">
+
+    <vn.icheck.android.ui.view.TextBody1
+        android:id="@id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_12"
+        android:drawableStart="@drawable/ic_outline_person_blue_18px"
+        android:drawablePadding="@dimen/size_8"
+        android:text="@string/ho_va_ten_v2"
+        android:textColor="@color/darkGray3"
+        android:textSize="@dimen/font_14" />
+
+    <vn.icheck.android.ui.view.TextBody1
+        android:id="@id/tvContent"
+        android:layout_width="@dimen/size_0"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="kjf fkfd jkfad;"
+        android:gravity="end"
+        android:hint="@string/dang_cap_nhat"
+        android:textAlignment="gravity"
+        android:textColor="@color/black2"
+        android:textColorHint="@color/black2"
+        android:textSize="@dimen/font_14" />
+</TableRow>

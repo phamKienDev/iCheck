@@ -69,7 +69,7 @@ class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInform
 
         if (!obj.content.isNullOrEmpty()) {
             binding.tvContent.beVisible()
-            binding.tvContent.text = obj.content
+            binding.tvContent.text = Html.fromHtml(obj.content)
         } else {
             binding.tvContent.beGone()
         }

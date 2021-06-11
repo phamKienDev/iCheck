@@ -317,4 +317,12 @@ object Constant {
             else -> false
         }
     }
+
+    fun getName(lastName: String?, firstName: String?, default: String = ""): String {
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
+        } else {
+            default
+        }
+    }
 }

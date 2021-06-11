@@ -24,6 +24,6 @@ class ICStampInfoHolder(parent: ViewGroup) : BaseViewHolder<String>(
 ) {
 
     override fun bind(obj: String) {
-        (itemView as AppCompatTextView).text = obj
+        (itemView as AppCompatTextView).text = itemView.context.getString(vn.icheck.android.R.string.serial_v2_xxx, obj)
     }
 }

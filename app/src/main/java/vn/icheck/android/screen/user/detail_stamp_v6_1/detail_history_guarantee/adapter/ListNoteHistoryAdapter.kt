@@ -13,6 +13,8 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -47,8 +49,10 @@ class ListNoteHistoryAdapter : RecyclerView.Adapter<ListNoteHistoryAdapter.ViewH
             itemView.tvDate.text = TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_at)
             itemView.tvContent.text = item.note
 
+            itemView.layoutImage.removeAllViews()
+
             if (!item.images.isNullOrEmpty()) {
-                itemView.layoutImage.removeAllViews()
+                itemView.layoutImage.beVisible()
                 for (i in item.images ?: mutableListOf()) {
                     itemView.layoutImage.addView(AppCompatImageView(itemView.context).also { itemImage ->
                         val paramsImage = LinearLayout.LayoutParams(SizeHelper.size40, SizeHelper.size40)
@@ -68,6 +72,8 @@ class ListNoteHistoryAdapter : RecyclerView.Adapter<ListNoteHistoryAdapter.ViewH
                         }
                     })
                 }
+            } else {
+                itemView.layoutImage.beGone()
             }
         }
     }

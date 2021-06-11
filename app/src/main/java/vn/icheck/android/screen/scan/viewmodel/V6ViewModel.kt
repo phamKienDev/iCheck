@@ -115,8 +115,8 @@ class V6ViewModel: ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                if (error?.code == 400 || error?.status == "400") {
+                    stampFake.postValue(ICheckApplication.getError(error.message))
                 } else {
                     errorQr.postValue(codeScan)
                 }
