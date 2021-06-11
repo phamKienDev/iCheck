@@ -118,8 +118,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         if (requestCode == requestLogin) {
             if (resultCode == Activity.RESULT_OK) {
                 onRequireLoginSuccess(requestLogin)
+                loginSuccessCallback?.invoke()
             } else {
                 onRequireLoginCancel()
+                loginErrorCallback?.invoke()
             }
         }
     }
@@ -128,6 +130,29 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
      * ICRequireLogin
      * */
     private var requestLogin = 101
+    private var loginSuccessCallback: (() -> Unit?)? = null
+    private var loginErrorCallback: (() -> Unit?)? = null
+
+    fun onRequireLogin(loginSuccess: () -> Unit, loginCancel: (() -> Unit?)?) {
+        loginSuccessCallback = loginSuccess
+        loginErrorCallback = loginCancel
+
+        runOnUiThread {
+            RewardLoginDialog.show(supportFragmentManager, object : RewardLoginCallback {
+                override fun onDismiss() {
+                    onRequireLoginCancel()
+                }
+
+                override fun onLogin() {
+                    startActivityForResult<IckLoginActivity>(requestLogin)
+                }
+
+                override fun onRegister() {
+                    simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                }
+            })
+        }
+    }
 
     override fun onRequireLogin(requestCode: Int) {
         requestLogin = requestCode
@@ -373,6 +398,14 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+    }
+}
+
+fun requestLogin(loginSuccess: () -> Unit, loginCancel: (() -> Unit?)? = null) {
+    ICheckApplication.currentActivity()?.let { activity ->
+        if (activity is BaseActivityMVVM) {
+            activity.onRequireLogin(loginSuccess, loginCancel)
         }
     }
 }
