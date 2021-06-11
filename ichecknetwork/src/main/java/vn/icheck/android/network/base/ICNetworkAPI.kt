@@ -1472,12 +1472,4 @@ interface ICNetworkAPI {
     @PATCH
     fun clickPopupAds(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICResponse<Any>>
 
-    /**
-     * Popup quảng cáo
-     */
-    @GET(APIConstants.Popup.GET_POPUP_BY_SCREEN)
-    fun getPopupByScreen(@QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICPopup>>
-
-    @PATCH
-    fun clickPopupAds(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICResponse<Any>>
 }

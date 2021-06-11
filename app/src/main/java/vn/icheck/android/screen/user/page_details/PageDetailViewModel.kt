@@ -80,7 +80,6 @@ open class PageDetailViewModel : ViewModel() {
     val onErrorProduct = MutableLiveData<ICError>()
     val addHorizontal = MutableLiveData<RelatedProductModel>()
     val addVertical = MutableLiveData<MutableList<RelatedProductModel>>()
-    val onPopupAds = MutableLiveData<ICPopup>()
 
     var countError = 0
 
