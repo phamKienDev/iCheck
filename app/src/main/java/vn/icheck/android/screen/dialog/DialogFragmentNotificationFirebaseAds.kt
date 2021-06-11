@@ -53,7 +53,6 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
 
     private var isLoadFirst = false
 
-
     fun setData(document: String?, url: String?, bitmap: Bitmap?, schema: String?, popup: ICPopup?) {
         this.document = document
         this.url = url
@@ -153,11 +152,6 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (dialog != null && dialog!!.window != null) {
             dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
@@ -197,8 +191,6 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 layoutWeb.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(0, 0, 0, SizeHelper.size80)
                 }
-                setupWebViewUrl()
-
 
                 if (Constant.isMarketingStamps(url!!)) {
                     val header = hashMapOf<String, String>()
@@ -236,9 +228,9 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                         urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
                     }
 
-                    webViewUrl.loadUrl(urlBuilder.build().toString(), header)
+                    setupWebViewUrl(urlBuilder.build().toString(), header)
                 } else {
-                    webViewUrl.loadUrl(url!!)
+                    setupWebViewUrl(url!!, null)
                 }
             }
         }
@@ -355,7 +347,6 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 javaScriptCanOpenWindowsAutomatically = true
                 allowFileAccess = true
                 mediaPlaybackRequiresUserGesture = false
-                cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                 // Full with
 //                loadWithOverviewMode = true
 //                useWideViewPort = true
@@ -369,9 +360,11 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 }
                 setGeolocationEnabled(true)
             }
+            requestFocusFromTouch()
+            isVerticalScrollBarEnabled = true
+            isHorizontalScrollBarEnabled=true
 
             loadDataWithBaseURL(null, vn.icheck.android.ichecklibs.Constant.getHtmlTextNotPadding(htmlText), "text/html", "utf-8", "")
-            isVerticalScrollBarEnabled = true
             var isPageLoaded = false
 
             webViewClient = object : WebViewClient() {
@@ -419,10 +412,8 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
         }
     }
 
-
-    private fun setupWebViewUrl() {
-        webViewUrl.apply {
-
+    private fun setupWebViewUrl(url: String, header: Map<String, String>?) {
+        webView.apply {
             settings.apply {
                     javaScriptEnabled = true
                     domStorageEnabled = true
@@ -449,6 +440,12 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
             }
 
             var isPageLoaded = false
+
+            if (header != null) {
+                loadUrl(url, header)
+            } else {
+                loadUrl(url)
+            }
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
