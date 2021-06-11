@@ -110,8 +110,6 @@ class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActiv
             return
         }
 
-        view.onErrorOtp("")
-
         if (obj == null) {
             view.onGetDataError()
             return
@@ -153,7 +151,7 @@ class VerifyOTPGuaranteePresenter(val view: IVerifyOTPGuaranteeView) : BaseActiv
 
         val deviceId = DeviceUtils.getUniqueDeviceId()
 
-        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, StampDetailActivity.mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
+        interactor.updateInfomationGuarantee(obj!!, deviceId, mId, mProductCode, mSerial, mProductVariant, body, object : ICApiListener<IC_RESP_UpdateCustomerGuarantee> {
             override fun onSuccess(obj: IC_RESP_UpdateCustomerGuarantee) {
                 if (obj.status == 200) {
                     view.updateInformationCusomterGuaranteeSuccess(this@VerifyOTPGuaranteePresenter.obj!!)

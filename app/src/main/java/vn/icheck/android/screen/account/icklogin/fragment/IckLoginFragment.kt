@@ -6,6 +6,8 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -45,6 +47,7 @@ import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
+import android.view.ViewTreeObserver.OnGlobalLayoutListener as OnGlobalLayoutListener1
 
 @AndroidEntryPoint
 class IckLoginFragment : BaseFragmentMVVM() {
@@ -156,6 +159,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)

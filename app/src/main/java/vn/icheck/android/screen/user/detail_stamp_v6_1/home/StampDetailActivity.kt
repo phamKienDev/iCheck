@@ -57,7 +57,6 @@ import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.hypot
 
-@AndroidEntryPoint
 class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewCallback, IClickListener, CampaignLoyaltyHelper.ILoginListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener {
     private lateinit var binding: ActivityDetailStampBinding
     private val viewModel by viewModels<ICDetailStampViewModel>()
@@ -67,7 +66,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
     companion object {
         val listActivities = mutableListOf<AppCompatActivity>()
         var isVietNamLanguage: Boolean? = true
-        var mSerial: String? = null
     }
 
     private var disposable: Disposable? = null
@@ -280,6 +278,7 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                 intent.putExtra(Constant.DATA_5, serial)
                 intent.putExtra(Constant.DATA_6, productId)
 //                intent.putExtra(Constant.DATA_7, objVariant)
+                intent.putExtra(Constant.DATA_8, viewModel.barcode)
                 ActivityUtils.startActivity(this, intent)
             }
         }
@@ -508,34 +507,35 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                             binding.textFab.visibleOrInvisible(mData.canUpdate == true)
 
                             if (mData.forceUpdate == true) {
-                                if (guarantee != null) {
-                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                    intent.putExtra(Constant.DATA_1, 1)
-                                    intent.putExtra(Constant.DATA_2, distributorId)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    if (guarantee != null) {
+                                        val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                        intent.putExtra(Constant.DATA_1, 1)
+                                        intent.putExtra(Constant.DATA_2, distributorId)
 //                                intent.putExtra(Constant.DATA_4, product_code)
-                                    intent.putExtra(Constant.DATA_5, serial)
-                                    intent.putExtra(Constant.DATA_6, productId)
+                                        intent.putExtra(Constant.DATA_5, serial)
+                                        intent.putExtra(Constant.DATA_6, productId)
 //                                intent.putExtra(Constant.DATA_7, objVariant)
-                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                    startActivity(intent)
-                                } else {
-                                    val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-                                    intent.putExtra(Constant.DATA_1, 2)
-                                    intent.putExtra(Constant.DATA_2, distributorId)
+                                        intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                        startActivity(this, intent)
+                                    } else {
+                                        val intent = Intent(this, UpdateInformationFirstActivity::class.java)
+                                        intent.putExtra(Constant.DATA_1, 2)
+                                        intent.putExtra(Constant.DATA_2, distributorId)
 //                                intent.putExtra(Constant.DATA_4, product_code)
-                                    intent.putExtra(Constant.DATA_5, serial)
-                                    intent.putExtra(Constant.DATA_6, productId)
+                                        intent.putExtra(Constant.DATA_5, serial)
+                                        intent.putExtra(Constant.DATA_6, productId)
 //                                intent.putExtra(Constant.DATA_7, objVariant)
-                                    intent.putExtra(Constant.DATA_8, viewModel.barcode)
-                                    startActivity(intent)
-                                }
+                                        intent.putExtra(Constant.DATA_8, viewModel.barcode)
+                                        startActivity(this, intent)
+                                    }
+                                }, 500)
                             }
                         } else {
                             if (it.data?.data?.errorCode == 4) {
-                                adapter.setError(R.drawable.ic_error_request, ICheckApplication.getError(mData.errorMessage), null)
-
                                 val intent = Intent(this, UpdateInformationFirstActivity::class.java)
                                 intent.putExtra(Constant.DATA_1, 3)
+                                intent.putExtra(Constant.DATA_5, serial)
                                 intent.putExtra(Constant.DATA_8, viewModel.barcode)
                                 startActivityForResult(this, intent, requestUpdateOrDestroy)
                             } else {
@@ -640,52 +640,6 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
             binding.tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
             return
         }
-
-//        if (obj.data?.active_require_profile == 1) {
-//            val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-//            intent.putExtra(Constant.DATA_1, 3)
-//            intent.putExtra(Constant.DATA_8, viewModel.barcode)
-//            startActivity(intent)
-//        }
-
-//            if (!obj.data?.message?.message.isNullOrEmpty()) {
-//                presenter.getConfigError()
-//                tvMessageStampError.text = "CẢNH BÁO!" + "\n" + obj.data?.message?.message
-//            } else {
-////                scrollView.visibility = View.VISIBLE
-//            }
-
-//        idDistributor = obj.data?.distributor?.id
-
-//      set image local cho tab history qrCode
-//        url = obj.data?.product?.image
-//        productId = obj.data?.product?.id
-//        objVariant = obj.data?.guarantee?.last_guarantee?.variant
-
-//      check force update thong tin ca nhan
-//        if (obj.data?.force_update == true) {
-//            if (obj.data?.guarantee != null) {
-//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-//                intent.putExtra(Constant.DATA_1, 1)
-//                intent.putExtra(Constant.DATA_2, idDistributor)
-//                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-//                intent.putExtra(Constant.DATA_5, verfiedSerial)
-//                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-//                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-//                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-//                startActivity(intent)
-//            } else {
-//                val intent = Intent(this, UpdateInformationFirstActivity::class.java)
-//                intent.putExtra(Constant.DATA_1, 2)
-//                intent.putExtra(Constant.DATA_2, idDistributor)
-//                intent.putExtra(Constant.DATA_4, obj.data?.guarantee?.last_guarantee?.product_code)
-//                intent.putExtra(Constant.DATA_5, verfiedSerial)
-//                intent.putExtra(Constant.DATA_6, obj.data?.product?.id)
-//                intent.putExtra(Constant.DATA_7, obj.data?.guarantee?.last_guarantee?.variant)
-//                intent.putExtra(Constant.DATA_8, viewModel.barcode)
-//                startActivity(intent)
-//            }
-//        }
 
 //      setdata slide image product
         if (obj.data?.product?.images != null) {
@@ -861,6 +815,5 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
         disposable?.dispose()
         listActivities.clear()
         isVietNamLanguage = null
-        mSerial = null
     }
 }

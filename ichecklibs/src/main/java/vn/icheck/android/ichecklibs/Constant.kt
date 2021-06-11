@@ -309,4 +309,12 @@ object Constant {
             context.startActivity(intent)
         }
     }
+
+    fun getName(lastName: String?, firstName: String?, default: String = ""): String {
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
+        } else {
+            default
+        }
+    }
 }

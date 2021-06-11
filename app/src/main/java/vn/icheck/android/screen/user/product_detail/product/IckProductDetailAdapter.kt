@@ -67,7 +67,6 @@ import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.holder.LoyaltyViewHolder
 import vn.icheck.android.loyalty.model.ICKLoyalty
-import vn.icheck.android.network.base.OnClickBtnChatListener
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.listproductecommerce.holder.ListProductsECommerceHolder
@@ -80,8 +79,7 @@ class IckProductDetailAdapter(
     private val submitReviewListener: ISubmitReviewListener,
     private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
     private val listenerLogin: CampaignLoyaltyHelper.ILoginListener,
-    private val listenerMyReview: IMyReviewListener,
-    private val onClickBtnChatListener: OnClickBtnChatListener
+    private val listenerMyReview: IMyReviewListener
 ) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var sharedPool: RecyclerView.RecycledViewPool? = null
     private var refeshTextReview = true
@@ -283,7 +281,7 @@ class IckProductDetailAdapter(
                 parent,
                 productListener
             )
-            ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent, onClickBtnChatListener)
+            ICViewTypes.NOT_VERIFIED_TYPE -> ProductNotVerifiedHolder(parent)
             ICViewTypes.VENDOR_TYPE -> VendorHolder(parent)
             ICViewTypes.DISTRIBUTOR -> DistributorHolder(parent)
             ICViewTypes.LIST_REVIEWS_TYPE -> ProductListReviewHolder(parent, sharedPool)

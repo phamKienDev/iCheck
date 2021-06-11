@@ -8,7 +8,7 @@ import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import javax.inject.Inject
 
-class ICDetailStampViewModel @Inject constructor(): BaseViewModel() {
+class ICDetailStampViewModel: BaseViewModel() {
     private val repository = DetailStampRepository()
 
     var barcode = ""

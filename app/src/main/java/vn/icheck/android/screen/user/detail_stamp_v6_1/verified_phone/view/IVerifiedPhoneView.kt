@@ -12,7 +12,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICVerifiedPhone
 interface IVerifiedPhoneView : BaseActivityView {
     fun onErrorPhone(errorMessage: String)
     fun onErrorIntent()
-    fun onVerifiedPhoneSuccess(data: ICVerifiedPhone.Data)
+    fun onVerifiedPhoneSuccess(data: ICVerifiedPhone.Data, phone: String)
     fun onVerifiedPhoneFail()
     fun onGetDataIntentSuccess(idDistributor: Long, productCode: String?, serial: String?, productId: Long?, objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant?, codeStamp: String?)
 }

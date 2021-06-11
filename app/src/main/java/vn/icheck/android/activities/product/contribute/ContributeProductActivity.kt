@@ -48,6 +48,7 @@ import vn.icheck.android.adapters.ContributeImageAdapter
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.loading.LoadingDialog
+import vn.icheck.android.databinding.NullHolderBinding
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
 import vn.icheck.android.network.base.ICNetworkClient
@@ -998,11 +999,13 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
     }
 }
 
-class NullHolder(view: View) : BaseHolder(view) {
+class NullHolder(parent: ViewGroup, val binding: NullHolderBinding =
+        NullHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        BaseHolder(binding.root) {
+
     companion object {
         fun create(parent: ViewGroup): NullHolder {
-            return NullHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.null_holder, parent, false))
+            return NullHolder(parent)
         }
     }
 }
