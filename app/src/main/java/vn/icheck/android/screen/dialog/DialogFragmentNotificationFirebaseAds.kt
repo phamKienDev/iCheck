@@ -52,6 +52,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
     private var popup: ICPopup? = null
 
     private var isLoadFirst = false
+    private var urlLoading = ""
 
     fun setData(document: String?, url: String?, bitmap: Bitmap?, schema: String?, popup: ICPopup?) {
         this.document = document
@@ -85,7 +86,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                                 CoroutineScope(Dispatchers.Main).launch {
                                     DialogFragmentNotificationFirebaseAds().apply {
                                         setData(null, null, resource, schema, popup)
-                                        setStyle(STYLE_NORMAL,R.style.DialogTheme)
+                                        setStyle(STYLE_NORMAL, R.style.DialogTheme)
                                     }.show(activity.supportFragmentManager, null)
                                 }
                             }
@@ -120,7 +121,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                         CoroutineScope(Dispatchers.Main).launch {
                             DialogFragmentNotificationFirebaseAds().apply {
                                 setData(popup.document, null, null, null, popup)
-                                setStyle(STYLE_NORMAL,R.style.DialogTheme)
+                                setStyle(STYLE_NORMAL, R.style.DialogTheme)
                             }.show(activity.supportFragmentManager, null)
                         }
                     }
@@ -134,7 +135,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 CoroutineScope(Dispatchers.Main).launch {
                     DialogFragmentNotificationFirebaseAds().apply {
                         setData(document, url, null, schema, null)
-                        setStyle(STYLE_NORMAL,R.style.DialogTheme)
+                        setStyle(STYLE_NORMAL, R.style.DialogTheme)
                     }.show(activity.supportFragmentManager, null)
                 }
 
@@ -161,7 +162,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setStyle(STYLE_NORMAL,R.style.DialogTheme)
+        setStyle(STYLE_NORMAL, R.style.DialogTheme)
         when {
             bitmap != null -> {
                 imageView.beVisible()
@@ -362,7 +363,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
             }
             requestFocusFromTouch()
             isVerticalScrollBarEnabled = true
-            isHorizontalScrollBarEnabled=true
+            isHorizontalScrollBarEnabled = true
 
             loadDataWithBaseURL(null, vn.icheck.android.ichecklibs.Constant.getHtmlTextNotPadding(htmlText), "text/html", "utf-8", "")
             var isPageLoaded = false
@@ -375,9 +376,10 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (isPageLoaded) {
+                    if (isPageLoaded && urlLoading != url) {
                         if (url?.startsWith("http") == true) {
                             ICheckApplication.currentActivity()?.let { activity ->
+                                urlLoading = url
                                 WebViewActivity.start(activity, url)
                             }
                             return true
@@ -415,27 +417,27 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
     private fun setupWebViewUrl(url: String, header: Map<String, String>?) {
         webView.apply {
             settings.apply {
-                    javaScriptEnabled = true
-                    domStorageEnabled = true
-                    allowFileAccessFromFileURLs = true
-                    allowUniversalAccessFromFileURLs = true
-                    setAppCacheEnabled(true)
-                    loadsImagesAutomatically = true
-                    javaScriptCanOpenWindowsAutomatically = true
-                    allowFileAccess = true
-                    mediaPlaybackRequiresUserGesture = false
-                    // Full with
-                    loadWithOverviewMode = true
-                    useWideViewPort = true
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-                    }
-                    layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
-                    } else {
-                        WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-                    }
-                    setGeolocationEnabled(true)
+                javaScriptEnabled = true
+                domStorageEnabled = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
+                setAppCacheEnabled(true)
+                loadsImagesAutomatically = true
+                javaScriptCanOpenWindowsAutomatically = true
+                allowFileAccess = true
+                mediaPlaybackRequiresUserGesture = false
+                // Full with
+                loadWithOverviewMode = true
+                useWideViewPort = true
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                }
+                layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                } else {
+                    WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+                }
+                setGeolocationEnabled(true)
 
             }
 
@@ -455,9 +457,10 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (isPageLoaded) {
+                    if (isPageLoaded && urlLoading != url) {
                         if (url?.startsWith("http") == true) {
                             ICheckApplication.currentActivity()?.let { activity ->
+                                urlLoading = url
                                 WebViewActivity.start(activity, url)
                             }
                             return true
