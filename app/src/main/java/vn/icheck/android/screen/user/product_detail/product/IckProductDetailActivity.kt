@@ -100,11 +100,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
     private val requestLoginProductDetail = 9
-    private val requestLoginScanCode = 10
 
     private var isActivityVisible = true
     private var productViewedInsider = true
     private var reviewStartInsider = true
+    private var isRefreshData = false
 
     private var obj: ICKLoyalty? = null
     private val takeMediaListener = object : TakeMediaListener {
@@ -763,7 +763,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 }
             } else {
                 requestLogin({
-                    onRequireLoginSuccess(requestLoginProductDetail)
+                    isRefreshData = true
                     if (viewModel.productDetail?.owner?.verified == true) {
                         ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.owner?.pageId ?: -1, "page")
                     } else {
@@ -1123,6 +1123,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         super.onResume()
         isActivityVisible = true
         viewModel.getOrUpdateAds()
+
+        if (isRefreshData) {
+            isRefreshData = false
+            viewModel.getProductLayout()
+        }
     }
 
     override fun onPause() {

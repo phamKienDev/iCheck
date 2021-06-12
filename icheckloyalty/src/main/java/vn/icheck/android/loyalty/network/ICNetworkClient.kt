@@ -4,7 +4,6 @@ import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
 //import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -30,7 +29,7 @@ internal object ICNetworkClient {
                                 .connectTimeout(30, TimeUnit.SECONDS)
                                 .readTimeout(30, TimeUnit.SECONDS)
                                 .writeTimeout(30, TimeUnit.SECONDS)
-                                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//                                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                                 .addInterceptor { chain -> requireLoginCallback(chain) }.build())
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
