@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/size_16"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.option_edit_information_public.EditInformationPublicActivity">
 

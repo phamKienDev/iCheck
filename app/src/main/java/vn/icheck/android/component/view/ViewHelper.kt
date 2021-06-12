@@ -2535,7 +2535,7 @@ object ViewHelper {
             it.setTextColor(Constant.getNormalTextColor(parent.context))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-            it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12px, 0, 0, 0)
+            it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12dp, 0, 0, 0)
             it.compoundDrawablePadding = SizeHelper.size2
             it.includeFontPadding = false
         })

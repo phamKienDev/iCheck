@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_privacy_public.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserPublicInfor
 import vn.icheck.android.util.ick.convertBirthDay
 
@@ -40,6 +41,9 @@ class ListPrivacyPublicAdapter(val view: IEditInforPublicView) : RecyclerView.Ad
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserPublicInfor) {
+            itemView.tvTitle.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp,itemView.context),0,0,0)
+            itemView.switchKey.trackDrawable= ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(itemView.context)
+
             when (item.privacyElementCode) {
                 "GENDER" -> {
                     setData(item)
@@ -74,8 +78,7 @@ class ListPrivacyPublicAdapter(val view: IEditInforPublicView) : RecyclerView.Ad
             itemView.tvTitle.text = item.privacyElementName
             itemView.switchKey.isChecked = item.selected!!
 
-            itemView.switchKey.setOnClickListener {
-                itemView.switchKey.isChecked = !itemView.switchKey.isChecked
+            itemView.switchKey.setOnCheckedChangeListener { buttonView, isChecked ->
                 val isCheck = !item.selected!!
                 view.onClick(item, isCheck, position)
             }

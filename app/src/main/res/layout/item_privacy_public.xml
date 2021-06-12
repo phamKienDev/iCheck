@@ -8,15 +8,13 @@
     android:layout_marginBottom="@dimen/size_8"
     android:background="?android:attr/selectableItemBackground">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_list_blue_12px"
+        android:drawableStart="@drawable/ic_list_blue_12dp"
         android:drawablePadding="@dimen/size_2"
-        android:fontFamily="@font/barlow_medium"
         android:text="Giới tính"
-        android:textColor="#434343"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +34,7 @@
         android:id="@+id/switchKey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
+        android:thumb="@drawable/ic_filer_switch_thumb_selector"
         app:layout_constraintBottom_toBottomOf="@id/tvValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle" />

@@ -36,6 +36,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.FocusableEditText
 import vn.icheck.android.ichecklibs.util.visibleOrGone
 import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.ichecklibs.view.primary.FocusableEdittextLineColorUncheckPrimaryChecked
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.logError
 import java.io.File
@@ -1357,7 +1358,34 @@ object WidgetUtils {
         }
     }
 
+    fun changePasswordInput(editText: FocusableEdittextLineColorUncheckPrimaryChecked) {
+        editText.apply {
+            if (isFocused) {
+                val mTransformationMethod = transformationMethod
+
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_NUMBER
+                }
+
+                transformationMethod = mTransformationMethod
+
+                setSelection(length())
+            }
+        }
+    }
+
     fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
+        imgKeyboard.apply {
+            visibleOrGone(edtPassword.isFocused)
+            layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                setMargins(marginLeft, marginTop, marginEnd, vn.icheck.android.ichecklibs.SizeHelper.size12)
+            }
+        }
+    }
+
+    fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEdittextLineColorUncheckPrimaryChecked) {
         imgKeyboard.apply {
             visibleOrGone(edtPassword.isFocused)
             layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {

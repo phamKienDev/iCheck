@@ -31,6 +31,7 @@ class IckNewPwFragment : CoroutineFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        validate()
         if (SessionManager.session.user?.hasPassword == false) {
             binding.textView26 simpleText "Cập nhật mật khẩu"
             binding.tvDesc simpleText "Vui lòng nhập mật khẩu"

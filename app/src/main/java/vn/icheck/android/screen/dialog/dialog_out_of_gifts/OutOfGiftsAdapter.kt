@@ -43,7 +43,7 @@ class OutOfGiftsAdapter(val listData: MutableList<ICGiftReceived>) : RecyclerVie
                     it.isSingleLine = true
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.includeFontPadding = false
-                    it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12px, 0, 0, 0)
+                    it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12dp, 0, 0, 0)
                     it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     it.setTextColor(ContextCompat.getColor(context, R.color.black))
                     it.compoundDrawablePadding = SizeHelper.size2

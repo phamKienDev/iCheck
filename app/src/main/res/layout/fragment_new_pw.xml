@@ -14,13 +14,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
         android:text="Thay đổi mật khẩu"
-        android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -51,7 +50,7 @@
             android:fillViewport="true"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +58,6 @@
                 android:layout_marginTop="@dimen/size_26"
                 android:layout_marginEnd="@dimen/size_65"
                 android:layout_marginBottom="@dimen/size_32"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="@string/title_update_pw" />
 
@@ -67,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <vn.icheck.android.ichecklibs.FocusableEditText
+                <vn.icheck.android.ichecklibs.view.primary.FocusableEdittextLineColorUncheckPrimaryChecked
                     android:id="@id/edtOldPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,7 +106,7 @@
                 android:layout_marginEnd="@dimen/size_34"
                 android:layout_marginRight="@dimen/size_34">
 
-                <vn.icheck.android.ichecklibs.FocusableEditText
+                <vn.icheck.android.ichecklibs.view.primary.FocusableEdittextLineColorUncheckPrimaryChecked
                     android:id="@id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -145,7 +143,7 @@
                 android:layout_marginEnd="@dimen/size_34"
                 android:layout_marginRight="@dimen/size_34">
 
-                <vn.icheck.android.ichecklibs.FocusableEditText
+                <vn.icheck.android.ichecklibs.view.primary.FocusableEdittextLineColorUncheckPrimaryChecked
                     android:id="@id/edtRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
