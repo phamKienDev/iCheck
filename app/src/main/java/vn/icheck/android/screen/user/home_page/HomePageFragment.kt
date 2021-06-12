@@ -103,6 +103,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private var pvCombankType = 0
     private var isViewCreated = false
     private var isOpen = false
+    private var isRefreshLayout = false
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -417,6 +418,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     fun refreshHomeData() {
+        if (!isOpen) {
+            isRefreshLayout = true
+        }
+
         swipeLayout.isRefreshing = true
         //            setToolbarBackground(0f)
         homeAdapter.removeAllView()
@@ -750,23 +755,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         } else {
             View.INVISIBLE
         }
-//        if (!PreferenceManager.getDefaultSharedPreferences(ICheckApplication.getInstance()).getBoolean(FIREBASE_REGISTER_DEVICE, false)) {
-//            FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener<InstanceIdResult?> { task ->
-//                if (!task.isSuccessful()) {
-//                    return@OnCompleteListener
-//                }
-//
-//                // Get new Instance ID token
-//                val token = task.result?.token ?: ""
-//
-//                // Log and toast
-//                Log.e("token", token.toString())
-//
-//                viewModel.registerDevice(token)
-//            })
-//        }
 
-//        homeAdapter.notifyItemChanged(0)
+        if (isRefreshLayout) {
+            isRefreshLayout = false
+            refreshHomeData()
+        }
+
         updateHomeHeader()
         getCoin()
         getReminders()

@@ -33,7 +33,7 @@ import java.io.Serializable
 
 abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     var job: Job? = null
-    var confirmLogin:ConfirmDialog? = null
+    var confirmLogin: ConfirmDialog? = null
     open val getStatusBarHeight: Int
         get() {
             var result = 0
@@ -106,7 +106,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == requestLogin) {
             if (resultCode == Activity.RESULT_OK) {
                 onRequireLoginSuccess(requestLogin)
@@ -166,7 +165,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
 
-    override fun onRequireLoginSuccess(requestCode: Int) {
+    override fun onRequireLoginSuccess(requestCode: Int){
+
     }
 
     override fun onRequireLoginCancel() {
@@ -179,15 +179,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-
-
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it,
-                            "Thông báo",
-                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Để sau",
-                            "Đăng nhập ngay",
-                            false) {
+                    confirmLogin = object : ConfirmDialog(
+                        it,
+                        "Thông báo",
+                        "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                        "Để sau",
+                        "Đăng nhập ngay",
+                        false
+                    ) {
                         override fun onDisagree() {
 
                         }
@@ -314,11 +314,17 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivity<T>(this)
     }
 
-    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(key: String, value: String) {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(
+        key: String,
+        value: String
+    ) {
         ActivityUtils.startActivity<T>(this, key, value)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivity(key: String, value: O) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivity(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivity<T, O>(this, key, value)
     }
 
@@ -334,11 +340,19 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityForResult(activity, intent, requestCode)
     }
 
-    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(key: String, value: String, requestCode: Int) {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(
+        key: String,
+        value: String,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T>(this, key, value, requestCode)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityForResult(key: String, value: O, requestCode: Int) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityForResult(
+        key: String,
+        value: O,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
@@ -350,7 +364,10 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityAndFinish<T>(this)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityAndFinish(key: String, value: O) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityAndFinish(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivityAndFinish<T, O>(this, key, value)
     }
 

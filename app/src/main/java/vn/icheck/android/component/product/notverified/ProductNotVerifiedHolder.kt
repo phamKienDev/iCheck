@@ -14,11 +14,12 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.network.base.OnClickBtnChatListener
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.visibleOrGone
 
-class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVerifiedModel>(createView(parent.context)) {
+class ProductNotVerifiedHolder(parent: ViewGroup, private val onClickBtnChatListener: OnClickBtnChatListener) : BaseViewHolder<ProductNotVerifiedModel>(createView(parent.context)) {
 
     override fun bind(obj: ProductNotVerifiedModel) {
         // Layout parent
@@ -51,7 +52,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
 
                     setOnClickListener {
                         obj.page?.let { productDetail ->
-                            ContactBusinessDialog(itemView.context).show(null, productDetail.owner?.phone, productDetail.owner?.email)
+                            ContactBusinessDialog(itemView.context).show(null, productDetail.owner?.phone, productDetail.owner?.email, onClickBtnChatListener)
                         }
                     }
                 }

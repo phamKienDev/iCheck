@@ -1,11 +1,14 @@
 package vn.icheck.android.screen.user.home_page
 
+import android.os.Handler
+import android.os.Looper
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -95,36 +98,36 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                             if (!item.request.url.isNullOrEmpty()) {
                                 totalRequest++
                                 val primary = ICLayout(viewType = ICViewTypes.HOME_PRIMARY_FUNC, id = item.id, request = item.request, key = "", custom = item.custom)
-                                onAddData.value = primary
+                                addLayoutToAdapter(primary)
                                 getFunc(primary, item.request.url!!)
                             }
                         } else {
                             when (obj.layout!![i].id) {
                                 "ads-1" -> {
                                     totalRequest++
-                                    onAddData.value = item.apply {
+                                    addLayoutToAdapter(item.apply {
                                         subType = ICViewTypes.ADS_TYPE
-                                    }
+                                    })
                                     getAds(false)
                                 }
                                 "news-1" -> {
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.LIST_NEWS_TYPE }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.LIST_NEWS_TYPE })
                                         getNews(item, item.request.url!!)
                                     }
                                 }
                                 "ads-survey-1" -> {
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.ADS_DIRECT_SURVEY_TYPE }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.ADS_DIRECT_SURVEY_TYPE })
                                         getAdsSurvey(item, item.request.url!!)
                                     }
                                 }
                                 "ads-coll-1" -> {
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.COLLECTION_TYPE }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.COLLECTION_TYPE })
                                         getCollection(item, item.request.url!!)
                                     }
                                 }
@@ -132,7 +135,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // flashSale
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.FLASH_SALE_TYPE }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.FLASH_SALE_TYPE })
                                         loadFlashSale(item, item.request.url!!)
                                     }
                                 }
@@ -140,7 +143,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // campaigns
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.CAMPAIGNS }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.CAMPAIGNS })
                                         getWidgetCampaigns(item, item.request.url!!)
                                     }
                                 }
@@ -148,7 +151,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // Danh Mục Mua Sắm
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.MALL_CATALOG }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.MALL_CATALOG })
                                         getMallCatalog(item, item.request.url!!)
                                     }
                                 }
@@ -156,7 +159,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // newProduct
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.EXPERIENCE_NEW_PRODUCT }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.EXPERIENCE_NEW_PRODUCT })
                                         getExperienceNewProducts(item, item.request.url!!)
                                     }
                                 }
@@ -164,7 +167,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // suggestionProduct
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_FOR_YOU_TYPE }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.PRODUCT_FOR_YOU_TYPE })
                                         loadProductForYou(item, item.request.url!!)
                                     }
                                 }
@@ -175,26 +178,26 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     listCategory.add(ICExperienceCategory(0, "Sản phẩm", true))
                                     listCategory.add(ICExperienceCategory(0, "Doanh nghiệp", false))
                                     listCategory.add(ICExperienceCategory(0, "Chuyên gia", false))
-                                    onAddData.value = item.apply {
+                                    addLayoutToAdapter(item.apply {
                                         viewType = ICViewTypes.TREND
                                         data = ICTopTrend(listCategory)
-                                    }
+                                    })
                                     finishRequest(true)
                                 }
                                 "sugg-review-1" -> {
                                     // Product Need Review
                                     if (!item.request.url.isNullOrEmpty()) {
                                         totalRequest++
-                                        onAddData.value = item.apply { viewType = ICViewTypes.PRODUCT_NEED_REVIEW }
+                                        addLayoutToAdapter(item.apply { viewType = ICViewTypes.PRODUCT_NEED_REVIEW })
                                         getProductNeedReview(item, item.request.url!!)
                                     }
                                 }
                                 "app-sugg-update-1" -> {
                                     if (SettingManager.configUpdateApp?.isSuggested == true) {
-                                        onAddData.value = item.apply {
+                                        addLayoutToAdapter(item.apply {
                                             viewType = ICViewTypes.CHECK_UPDATE_TYPE
                                             data = true
-                                        }
+                                        })
                                     }
                                 }
                             }
@@ -210,6 +213,14 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
 //                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
             }
         })
+    }
+
+    private fun addLayoutToAdapter(layout: ICLayout) {
+        onAddData.value = layout
+    }
+
+    private fun updateLayoutOfAdapter(layout: ICLayout) {
+        onUpdateData.value = layout
     }
 
     @Synchronized
@@ -229,13 +240,13 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 if (!obj.data?.secondary_functions.isNullOrEmpty()) {
                     layout.data = mutableListOf(obj.data)
                 }
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
                 getPVCombank()
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -316,12 +327,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     layout.data = obj.data?.rows
                 }
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -343,7 +354,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -366,7 +377,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
                 // Truyền data = null để xóa item null trong listData ở adapter
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -378,12 +389,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     layout.data = obj.data?.rows
                 }
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -395,7 +406,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     layout.data = obj.data?.rows
                 }
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -453,12 +464,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                     layout.data = listData
                 }
 
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -468,12 +479,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
             override fun onSuccess(obj: ICResponse<ICFlashSale>) {
                 finishRequest(true)
                 layout.data = obj.data
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }
@@ -485,12 +496,12 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     layout.data = obj.data?.rows
                 }
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
 
             override fun onError(error: ICResponseCode?) {
                 finishRequest(false)
-                onUpdateData.value = layout
+                updateLayoutOfAdapter(layout)
             }
         })
     }

@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
@@ -98,7 +99,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
-    private val requestEnterpriseContact = 9
+    private val requestLoginProductDetail = 9
+    private val requestLoginScanCode = 10
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -652,7 +654,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     ContactBusinessDialog(this).show(
                         productDetail.owner?.pageId ?: productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
                     )
                 } else {
                     ContactBusinessDialog(this).show(
@@ -754,28 +756,20 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            if (SessionManager.isUserLogged) {
-                if (!viewModel.verifyProduct) {
-                    if (!viewModel.urlBuy.isNullOrEmpty()) {
-                        BottomSheetWebView(this@IckProductDetailActivity).showWithUrl(viewModel.urlBuy ?: "")
-                    }
-                } else {
-                    if (viewModel.productDetail?.owner?.verified == true) {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.owner?.pageId ?: -1,
-                            "page"
-                        )
-                    } else {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.manager?.id ?: -1,
-                            "page"
-                        )
-                    }
+            if (!viewModel.verifyProduct) {
+                if (!viewModel.urlBuy.isNullOrEmpty()) {
+                    val bottomSheetWebView = BottomSheetWebView(this)
+                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
                 }
             } else {
-                onRequireLogin(requestEnterpriseContact)
+                requestLogin({
+                    onRequireLoginSuccess(requestLoginProductDetail)
+                    if (viewModel.productDetail?.owner?.verified == true) {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.owner?.pageId ?: -1, "page")
+                    } else {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.manager?.id ?: -1, "page")
+                    }
+                })
             }
         }
 
@@ -807,6 +801,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (type == adapter.getListData[i].viewType) {
                 recyclerView.smoothScrollToPosition(i)
             }
+        }
+    }
+
+    override fun onRequireLoginSuccess(requestCode: Int) {
+        super.onRequireLoginSuccess(requestCode)
+        if (requestCode == requestLoginProductDetail) {
+            viewModel.getProductLayout()
         }
     }
 
@@ -1080,9 +1081,6 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                             }
                         }
                     }
-                }
-                requestEnterpriseContact -> {
-                    viewModel.getProductLayout()
                 }
                 CONTRIBUTION_PRODUCT -> {
                     val productID = data?.getLongExtra(Constant.DATA_1, -1)
