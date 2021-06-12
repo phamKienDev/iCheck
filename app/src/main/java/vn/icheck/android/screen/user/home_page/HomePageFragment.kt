@@ -299,7 +299,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
 
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this@HomePageFragment.requireActivity(),it)
 //            object : DialogNotificationFirebaseAds(requireActivity(),null,null,"http://icheck.com.vn",null) {
 //                override fun onDismiss() {
 //                }
@@ -732,16 +732,20 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
         TrackingAllHelper.trackHomePageViewed()
 
-        if (!isViewCreated) {
-            isViewCreated = true
-            Handler().post {
-                setupViewModel()
-                setupRecyclerView()
-                setupSwipeLayout()
-                LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
-                WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+        if (requireActivity().intent?.getStringExtra(Constant.DATA_3).isNullOrEmpty()) {
+            if (!isViewCreated) {
+                isViewCreated = true
+                Handler().post {
+                    setupViewModel()
+                    setupRecyclerView()
+                    setupSwipeLayout()
+                    LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
+                    WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+                }
+                return
             }
-            return
+        } else {
+            requireActivity().intent?.putExtra(Constant.DATA_3, "")
         }
 
         viewModel.getAds(true)

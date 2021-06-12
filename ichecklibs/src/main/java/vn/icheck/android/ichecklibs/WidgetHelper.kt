@@ -4,9 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.graphics.drawable.Drawable
+import android.text.InputType
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginLeft
+import androidx.core.view.marginTop
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -14,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.ichecklibs.helper.ApplicationHelper
+import vn.icheck.android.ichecklibs.util.visibleOrInvisible
 import java.io.File
 
 object WidgetHelper {
@@ -832,5 +837,32 @@ object WidgetHelper {
                 .error(error)
                 .transform(CenterCrop())
                 .into(image)
+    }
+
+    fun changePasswordInput(editText: FocusableEditText) {
+        editText.apply {
+            if (isFocused) {
+                val mTransformationMethod = transformationMethod
+
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_NUMBER
+                }
+
+                transformationMethod = mTransformationMethod
+
+                setSelection(length())
+            }
+        }
+    }
+
+    fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
+        imgKeyboard.apply {
+            visibleOrInvisible(edtPassword.isFocused)
+            layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                setMargins(marginLeft, marginTop, marginEnd, edtPassword.getBottomPadding())
+            }
+        }
     }
 }

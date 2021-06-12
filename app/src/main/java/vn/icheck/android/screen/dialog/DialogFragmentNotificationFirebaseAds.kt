@@ -85,11 +85,13 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                             isFirstResource: Boolean
                         ): Boolean {
                             if (resource != null) {
-                                CoroutineScope(Dispatchers.Main).launch {
-                                    DialogFragmentNotificationFirebaseAds().apply {
-                                        setData(null, null, resource, schema, popup)
-                                        setStyle(STYLE_NORMAL, R.style.DialogTheme)
-                                    }.show(activity.supportFragmentManager, null)
+                                if (!activity.isDestroyed) {
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        DialogFragmentNotificationFirebaseAds().apply {
+                                            setData(null, null, resource, schema, popup)
+                                            setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                                        }.show(activity.supportFragmentManager, null)
+                                    }
                                 }
                             }
                             return false
@@ -104,10 +106,12 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
             when (popup.displayType) {
                 "url" -> {
                     if (!popup.url.isNullOrEmpty()) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            DialogFragmentNotificationFirebaseAds().apply {
-                                setData(null, popup.url, null, null, popup)
-                            }.show(activity.supportFragmentManager, null)
+                        if (!activity.isDestroyed) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                DialogFragmentNotificationFirebaseAds().apply {
+                                    setData(null, popup.url, null, null, popup)
+                                }.show(activity.supportFragmentManager, null)
+                            }
                         }
                     }
                 }
@@ -120,11 +124,13 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 }
                 else -> {
                     if (!popup.document.isNullOrEmpty()) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            DialogFragmentNotificationFirebaseAds().apply {
-                                setData(popup.document, null, null, null, popup)
-                                setStyle(STYLE_NORMAL, R.style.DialogTheme)
-                            }.show(activity.supportFragmentManager, null)
+                        if (!activity.isDestroyed) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                DialogFragmentNotificationFirebaseAds().apply {
+                                    setData(popup.document, null, null, null, popup)
+                                    setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                                }.show(activity.supportFragmentManager, null)
+                            }
                         }
                     }
                 }
@@ -134,13 +140,14 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
 
         fun showPopupFirebase(activity: FragmentActivity, image: String?, document: String?, url: String?, schema: String?) {
             if (image.isNullOrEmpty()) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    DialogFragmentNotificationFirebaseAds().apply {
-                        setData(document, url, null, schema, null)
-                        setStyle(STYLE_NORMAL, R.style.DialogTheme)
-                    }.show(activity.supportFragmentManager, null)
+                if (!activity.isDestroyed) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        DialogFragmentNotificationFirebaseAds().apply {
+                            setData(document, url, null, schema, null)
+                            setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                        }.show(activity.supportFragmentManager, null)
+                    }
                 }
-
             } else {
                 loadImage(activity, image, schema, null) {
 
@@ -165,12 +172,17 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.DialogTheme)
+
+        if (imageView == null) {
+            return
+        }
+
         when {
             bitmap != null -> {
-                imageView.beVisible()
+                imageView?.beVisible()
                 setImageView(bitmap!!)
 
-                imageView.setOnClickListener {
+                imageView?.setOnClickListener {
                     if (popup != null) {
                         clickPopupAds(popup!!)
                     } else {
@@ -253,7 +265,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 resource.width > container.width && resource.height <= container.height -> {
                     // ảnh rộng quá màn hình -> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 }
                 resource.height > container.height && resource.width <= container.width -> {
                     //  ảnh dài quá màn hình ->  max height, wrap with
@@ -262,17 +274,17 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
                 resource.width > resource.height && resource.width > container.width -> {
                     //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 }
                 resource.height > resource.width && resource.height > container.height -> {
                     if (ratioWidth > ratioHeight) {
                         // max with
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
                     } else {
                         // max height
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     }
                 }
                 resource.height < container.height && resource.width < container.width -> {
@@ -339,7 +351,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
 
 
     private fun setupWebViewHtml(htmlText: String) {
-        webViewHtml.apply {
+        webViewHtml?.apply {
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
@@ -417,7 +429,7 @@ class DialogFragmentNotificationFirebaseAds : DialogFragment() {
     }
 
     private fun setupWebViewUrl(url: String, header: Map<String, String>?) {
-        webView.apply {
+        webView?.apply {
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true

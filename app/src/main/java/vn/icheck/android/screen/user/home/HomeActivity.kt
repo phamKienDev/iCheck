@@ -1183,11 +1183,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     override fun onResume() {
         super.onResume()
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if (it.isSuccessful) {
-            }
-        }
-
         try {
             presenter.checkVersionApp()
             onUpdateUserInfo()
