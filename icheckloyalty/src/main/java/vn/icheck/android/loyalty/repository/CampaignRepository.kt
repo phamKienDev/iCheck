@@ -227,7 +227,7 @@ internal class CampaignRepository : BaseRepository() {
         }
 
         if (!giftCode.isNullOrEmpty()) {
-            params["gift_code"] = giftCode
+            params["special_turn_code"] = giftCode
         }
 
         if (!barcode.isNullOrEmpty()) {
