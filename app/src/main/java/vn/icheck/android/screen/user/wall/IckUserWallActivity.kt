@@ -79,7 +79,7 @@ class IckUserWallActivity : BaseCoroutineActivity() {
             id = SessionManager.session.user?.id ?: -1L
         }
         ickUserWallViewModel.id = id
-        ickUserWallViewModel.showBottomBar.observe(this, Observer {
+        ickUserWallViewModel.showBottomBar.observe(this, {
             if (it) {
                 showBottom()
             } else {
