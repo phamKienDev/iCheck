@@ -112,7 +112,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
         WidgetUtils.loadImageUrlRounded4(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
         binding.tvNamePage.apply {
-            text = obj.name
+            text = obj.name ?: context.getString(R.string.dang_cap_nhat)
             setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
         }
 
