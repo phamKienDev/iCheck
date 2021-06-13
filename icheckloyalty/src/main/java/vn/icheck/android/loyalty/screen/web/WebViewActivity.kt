@@ -13,8 +13,12 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_web_view_loyalty.*
+import kotlinx.android.synthetic.main.activity_web_view_loyalty.webView
+import kotlinx.android.synthetic.main.fragment_help_game.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import kotlinx.android.synthetic.main.toolbar_blue.imgBack
 import kotlinx.coroutines.launch
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -97,6 +101,7 @@ class WebViewActivity : BaseActivityGame() {
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.defaultFontSize = 16.spToPx()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW

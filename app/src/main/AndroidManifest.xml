@@ -149,11 +149,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name=".screen.user.social_chat.SocialChatActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
             android:name=".screen.user.detail_media.DetailMediaActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
@@ -797,6 +792,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.detail_stamp_v6_1.verified_phone.VerifiedPhoneActivity"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.listnotification.ListNotificationActivity"
@@ -809,7 +805,7 @@
             android:name=".screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screen.user.detail_stamp_v6_1.detail_history_guarantee.DetaiHistoryGuaranteeActivity"
+            android:name=".screen.user.detail_stamp_v6_1.detail_history_guarantee.DetailHistoryGuaranteeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity"
@@ -822,8 +818,9 @@
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.detail_stamp_v6_1.home.DetailStampActivity"
+            android:name=".screen.user.detail_stamp_v6_1.home.StampDetailActivity"
             android:exported="true"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.setting.SettingsActivity"
@@ -887,12 +884,6 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_Blue"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.home.AccountActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.bannersurvey.BannerSurveyActivity"
@@ -967,7 +958,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_logo_icheck_tet" />
+            android:resource="@mipmap/ic_launcher" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />

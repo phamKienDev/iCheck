@@ -11,7 +11,6 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
-import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGift
 
@@ -85,25 +84,29 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                     if (obj.voucher.checked_condition?.status == false) {
 
-                        if (obj.voucher.checked_condition?.code == "START_TIME_CAN_USE") {
+                        when(obj.voucher.checked_condition?.code){
+                            "START_TIME_CAN_USE" -> {
+                                itemView.tvTitleDate.text = "Có hiệu lực từ"
 
-                            itemView.tvTitleDate.text = "Có hiệu lực từ"
+                                itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
 
-                            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
+                                itemView.tvStatus.text = "Chưa có hiệu lực"
+                            }
+                            "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                itemView.layoutDate.setGone()
 
-                            itemView.tvStatus.text = "Chưa có hiệu lực"
+                                itemView.tvStatus.text = "Hết lượt sử dụng"
+                            }
+                            "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                itemView.tvTimeGift.text = ""
 
-                        } else if (obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+                                itemView.tvStatus.text = "Đã bị khóa"
+                            }
+                            else -> {
+                                itemView.tvTimeGift.text = ""
 
-                            itemView.layoutDate.setGone()
-
-                            itemView.tvStatus.text = "Hết lượt sử dụng"
-
-                        } else {
-
-                            itemView.tvTimeGift.text = ""
-
-                            itemView.tvStatus.text = "Hết hạn sử dụng"
+                                itemView.tvStatus.text = "Hết hạn sử dụng"
+                            }
                         }
 
                     } else {
@@ -176,8 +179,8 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
             }
 
             if (!obj.desc.isNullOrEmpty()) {
-                itemView.webView.settings.javaScriptEnabled = true
-                itemView.webView.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
+                itemView.webViewUrl.settings.javaScriptEnabled = true
+                itemView.webViewUrl.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
             }
 
             itemView.tvCode.text = obj.id.toString()

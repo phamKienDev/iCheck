@@ -2,25 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_20"
+    android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_18"
+    android:layout_marginEnd="@dimen/size_12"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextCaption
         android:id="@+id/tvTitleCheckbox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_24"
-        android:fontFamily="sans-serif"
-        android:textColor="#434343"
-        android:textSize="@dimen/font_14"
-        android:textStyle="normal" />
+        android:textColor="@color/colorNormalText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_8"
-        android:layout_marginStart="@dimen/size_12"
-        android:layout_marginEnd="@dimen/size_12"/>
-
+        android:layout_marginTop="@dimen/size_6" />
 </LinearLayout>

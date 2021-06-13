@@ -2,34 +2,40 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_contact_support.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICSupport
 import vn.icheck.android.screen.dialog.PermissionDialog
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.util.kotlin.ContactUtils
 
-class ContactSupportActivity : BaseActivity<ContactSupportPresenter>(), IContactSupportView {
+class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_contact_support
-
-    override val getPresenter: ContactSupportPresenter
-        get() = ContactSupportPresenter(this)
+    val presenter = ContactSupportPresenter(this@ContactSupportActivity)
 
     private val adapter = ContactSupportAdapter(this)
     private val requestPhone = 1
 
     private var value:String? = null
 
-    override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_contact_support)
+        onInitView()
+    }
+
+    fun onInitView() {
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Contact help"
         } else {
             txtTitle.text = "Liên hệ hỗ trợ"
@@ -83,6 +89,17 @@ class ContactSupportActivity : BaseActivity<ContactSupportPresenter>(), IContact
                 startActivity(Intent.createChooser(intent, "Send To"))
             }
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ContactSupportActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@ContactSupportActivity, isShow)
     }
 
     @SuppressLint("MissingPermission")

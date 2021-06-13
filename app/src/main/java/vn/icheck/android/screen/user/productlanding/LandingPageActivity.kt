@@ -53,26 +53,26 @@ class LandingPageActivity : FragmentActivity() {
         val html = intent?.getStringExtra(Constant.DATA_1)
         val url = intent?.getStringExtra(Constant.DATA_2)
 
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
         if (!html.isNullOrEmpty()) {
-            webView.loadDataWithBaseURL(null, html, "text/html", "utf-8", "")
+            webViewUrl.loadDataWithBaseURL(null, html, "text/html", "utf-8", "")
         } else if (!url.isNullOrEmpty()) {
-            webView.loadUrl(url)
+            webViewUrl.loadUrl(url)
         } else {
             onBackPressed()
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     view.loadUrl(request.url.toString())
@@ -108,7 +108,7 @@ class LandingPageActivity : FragmentActivity() {
     }
 
     private fun setupListener() {
-        webView.setOnTouchListener { _, _ ->
+        webViewUrl.setOnTouchListener { _, _ ->
             timer?.cancel()
             timer = null
 
@@ -126,8 +126,8 @@ class LandingPageActivity : FragmentActivity() {
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
+        if (webViewUrl.canGoBack()) {
+            webViewUrl.goBack()
         } else {
             if (imgClose.visibility == View.VISIBLE) {
                 finish()

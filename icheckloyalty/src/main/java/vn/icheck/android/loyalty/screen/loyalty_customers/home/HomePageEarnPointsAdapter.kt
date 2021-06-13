@@ -54,7 +54,8 @@ internal class HomePageEarnPointsAdapter(private val banner: String?, private va
         isLoading = false
 
         listData.add(listData.size, true)
-        setMessage(error.icon, error.title, error.message, error.textButton, error.backgroundButton)
+        setMessage(error.icon, error.title, error.message, error.textButton, error.backgroundButton, colorMessage =
+        error.colorMessage ?: R.color.colorSecondText)
         notifyDataSetChanged()
     }
 

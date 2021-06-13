@@ -8,8 +8,10 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.activity_voucher_loyalty.*
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
+import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
@@ -49,6 +51,7 @@ class VoucherLoyaltyActivity : BaseActivityGame() {
         imgQrCode.setImageBitmap(qrCode)
 
         tvClose.setOnClickListener {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
             onBackPressed()
         }
 

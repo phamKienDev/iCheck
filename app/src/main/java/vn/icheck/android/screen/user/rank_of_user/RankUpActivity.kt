@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityRankUpBinding
 import vn.icheck.android.network.base.SessionManager
@@ -12,7 +13,7 @@ import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.beVisible
 
 @AndroidEntryPoint
-class RankUpActivity : AppCompatActivity() {
+class RankUpActivity : BaseActivityMVVM() {
     lateinit var binding:ActivityRankUpBinding
     val ickUserWallViewModel by viewModels<IckUserWallViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {

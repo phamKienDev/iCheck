@@ -44,7 +44,7 @@ class DetailMyRewardAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             ICViewTypes.SPONSOR_CAMPAIGN -> {
                 SupplierRewardHolder(parent)
             }
-            else -> NullHolder.create(parent)
+            else -> NullHolder(parent)
         }
     }
 

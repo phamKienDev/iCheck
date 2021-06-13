@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
@@ -21,7 +21,7 @@ import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class IckLoginOtpFragment : CoroutineFragment() {
+class IckLoginOtpFragment : BaseFragmentMVVM() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
     private val args: IckLoginOtpFragmentArgs by navArgs()
     lateinit var binding: FragmentIckOtpLoginBinding
@@ -117,7 +117,7 @@ class IckLoginOtpFragment : CoroutineFragment() {
                                             )
                                     findNavController().navigate(action)
                                 } else if (it?.statusCode == "U3018") {
-                                    showError("Đã tồn tại yêu cầu thay đổi mật khẩu")
+                                    requireContext().showShortErrorToast("Đã tồn tại yêu cầu thay đổi mật khẩu")
                                 } else {
                                     it?.message?.let { msg ->
                                         requireContext().showShortErrorToast(msg)
@@ -196,6 +196,7 @@ class IckLoginOtpFragment : CoroutineFragment() {
         binding.edtPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)
@@ -204,6 +205,7 @@ class IckLoginOtpFragment : CoroutineFragment() {
         binding.edtRePassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
         }
+        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
 
         binding.btnKeyboardNew.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtRePassword)

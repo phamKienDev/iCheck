@@ -26,6 +26,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
 import vn.icheck.android.network.feature.campaign.CampainsInteractor
 import vn.icheck.android.network.feature.page.PageRepository
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -37,6 +38,7 @@ import kotlin.collections.set
 
 open class PageDetailViewModel : ViewModel() {
     val pageInteraction = PageRepository()
+    private val popupRepository = PopupInteractor()
     val campaignInteraction = CampainsInteractor()
     val adsRepository = AdsRepository()
     val postInteractor = PostInteractor()
@@ -56,6 +58,7 @@ open class PageDetailViewModel : ViewModel() {
     val onPageName = MutableLiveData<String>()
     val onDetailPost = MutableLiveData<ICPost>()
     val onDeletePost = MutableLiveData<Long>()
+    val onPopupAds = MutableLiveData<ICPopup>()
 
     val onUpdatePost = MutableLiveData<MutableList<ICLayout>>()
     var offsetPost = 0
@@ -77,15 +80,16 @@ open class PageDetailViewModel : ViewModel() {
     val onErrorProduct = MutableLiveData<ICError>()
     val addHorizontal = MutableLiveData<RelatedProductModel>()
     val addVertical = MutableLiveData<MutableList<RelatedProductModel>>()
+
     var countError = 0
 
     var isFollowPage = false
-
+    var firstPopupAds = true
 
     fun getData(bundle: Bundle?) {
         pageID = bundle?.getLong(Constant.DATA_1, -1) ?: -1
         pageType = bundle?.getInt(Constant.DATA_2, Constant.PAGE_BRAND_TYPE)
-                ?: Constant.PAGE_BRAND_TYPE
+            ?: Constant.PAGE_BRAND_TYPE
 
         if (pageID == -1L) {
             onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
@@ -96,7 +100,12 @@ open class PageDetailViewModel : ViewModel() {
 
     fun getLayoutPage() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(
+                ICError(
+                    R.drawable.ic_error_network,
+                    ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                )
+            )
             return
         }
 
@@ -130,7 +139,12 @@ open class PageDetailViewModel : ViewModel() {
                                             } else {
                                                 listAttachments.add(MediaLogic(att.content, ICMediaType.TYPE_VIDEO).also {
                                                     it.exoPlayer = SimpleExoPlayer.Builder(ICheckApplication.getInstance()).build()
-                                                    it.setMs(DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance().applicationContext, "icheck")))
+                                                    it.setMs(
+                                                        DefaultDataSourceFactory(
+                                                            ICheckApplication.getInstance(),
+                                                            Util.getUserAgent(ICheckApplication.getInstance().applicationContext, "icheck")
+                                                        )
+                                                    )
                                                 })
                                             }
                                         }
@@ -172,6 +186,11 @@ open class PageDetailViewModel : ViewModel() {
                                 layout.data = pageOverview
                                 this@PageDetailViewModel.pageOverview = pageOverview
                                 onAddData.value = layout
+
+                                if (firstPopupAds) {
+                                    getPopup(pageOverview)
+                                    firstPopupAds = false
+                                }
                             }
                         }
                         "page-follow-invitation-1" -> {
@@ -331,6 +350,7 @@ open class PageDetailViewModel : ViewModel() {
             }
         })
     }
+
     @DrawableRes
     fun getDrawable(): Int {
         return when ((0..3).random()) {
@@ -340,6 +360,30 @@ open class PageDetailViewModel : ViewModel() {
             else -> R.drawable.page_cover_4
         }
     }
+
+
+    private fun getPopup(page: ICPageOverview) {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupRepository.getPopup(page.id,
+            if (page.isVerify) {
+                vn.icheck.android.ichecklibs.Constant.PAGE_VERIFY
+            } else {
+                vn.icheck.android.ichecklibs.Constant.PAGE_UNVERIFIED
+            }, object : ICNewApiListener<ICResponse<ICPopup>> {
+                override fun onSuccess(obj: ICResponse<ICPopup>) {
+                    if (obj.data != null) {
+                        onPopupAds.postValue(obj.data!!)
+                    }
+                }
+
+                override fun onError(error: ICResponseCode?) {
+                }
+            })
+    }
+
     private fun getWidgetBrand(layout: ICLayout) {
         pageInteraction.getBrands(layout.request.url!!, 0, object : ICNewApiListener<ICResponse<ICListResponse<ICPageTrend>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICPageTrend>>) {
@@ -540,8 +584,10 @@ open class PageDetailViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onUpdateState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(
+                    error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                )
             }
         })
     }
@@ -576,8 +622,10 @@ open class PageDetailViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onUpdateState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(
+                    error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                )
             }
         })
     }
@@ -597,8 +645,10 @@ open class PageDetailViewModel : ViewModel() {
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    onShowMessage.postValue(error?.message
-                            ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    onShowMessage.postValue(
+                        error?.message
+                            ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    )
                 }
             })
         }
@@ -620,8 +670,10 @@ open class PageDetailViewModel : ViewModel() {
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    onShowMessage.postValue(error?.message
-                            ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    onShowMessage.postValue(
+                        error?.message
+                            ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    )
                 }
             })
         }
@@ -636,8 +688,10 @@ open class PageDetailViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(
+                    error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                )
             }
         })
     }
@@ -651,8 +705,10 @@ open class PageDetailViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(
+                    error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                )
             }
         })
     }
@@ -676,8 +732,10 @@ open class PageDetailViewModel : ViewModel() {
 
             override fun onError(error: ICBaseResponse?) {
                 onUpdateState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(
+                    error?.message
+                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                )
             }
         })
     }

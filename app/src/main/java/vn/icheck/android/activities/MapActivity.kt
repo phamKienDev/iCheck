@@ -17,8 +17,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : BaseActivityMVVM(), OnMapReadyCallback {
 
     private var mMap: GoogleMap? = null
     var userLat:Double = 0.0

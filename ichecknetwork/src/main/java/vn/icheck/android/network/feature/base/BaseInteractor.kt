@@ -1,7 +1,5 @@
 package vn.icheck.android.network.feature.base
 
-import android.text.TextUtils
-import com.google.gson.GsonBuilder
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -177,28 +175,7 @@ open class BaseInteractor {
     }
 
     fun checkRequestErrorSocial(throws: Throwable, listener: ICNewApiListener<*>) {
-        val errorBody = ICResponseCode()
-        errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
-
         when (throws) {
-            is RetrofitException -> {
-                val error = JsonHelper.parseJson(throws.response?.errorBody()?.string(), ICResponseCode::class.java)
-
-                if (error != null) {
-                    when (error.statusCode) {
-                        "U102", "S402" -> {
-                            ICNetworkManager.onEndOfToken()
-                            error.message = null
-                        }
-                        else -> {
-                            error.message = APIConstants.checkErrorString(error.statusCode, error.message)
-                        }
-                    }
-
-                    listener.onError(error)
-                    return
-                }
-            }
             is HttpException -> {
                 val error = JsonHelper.parseJson(throws.response()?.errorBody()?.string(), ICResponseCode::class.java)
 
@@ -217,20 +194,39 @@ open class BaseInteractor {
                     return
                 }
             }
+            is RetrofitException -> {
+                val error = JsonHelper.parseJson(throws.response?.errorBody()?.string(), ICResponseCode::class.java)
+
+                if (error != null) {
+                    when (error.statusCode) {
+                        "U102", "S402" -> {
+                            ICNetworkManager.onEndOfToken()
+                            error.message = null
+                        }
+                        else -> {
+                            error.message = APIConstants.checkErrorString(error.statusCode, error.message)
+                        }
+                    }
+
+                    listener.onError(error)
+                    return
+                }
+            }
         }
 
-        listener.onError(errorBody)
+        listener.onError(ICResponseCode())
     }
 
-    fun <T> parseJson(json: String?, clazz: Class<T>): T? {
-        if (TextUtils.isEmpty(json))
-            return null
-
-        return try {
-            val gson = GsonBuilder().serializeNulls().excludeFieldsWithoutExposeAnnotation().create()
-            gson.fromJson(json, clazz)
-        } catch (e: Exception) {
-            null
-        }
-    }
+    fun <T> parseJson(json: String?, clazz: Class<T>) = JsonHelper.parseJson(json, clazz)
+//    {
+//        if (TextUtils.isEmpty(json))
+//            return null
+//
+//        return try {
+//            val gson = GsonBuilder().serializeNulls().excludeFieldsWithoutExposeAnnotation().create()
+//            gson.fromJson(json, clazz)
+//        } catch (e: Exception) {
+//            null
+//        }
+//    }
 }

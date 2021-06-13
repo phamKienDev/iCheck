@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.page_details.fragment.product
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
@@ -31,9 +33,9 @@ class ProductOfPageFragment : BaseFragmentMVVM() {
             return ProductOfPageFragment()
         }
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_product
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_product, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.history_loading_card.history_loaded_topup
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,8 +20,9 @@ import vn.icheck.android.screen.user.history_loading_card.history_loaded_topup.v
 
 class HistoryLoadedTopupFragment : BaseFragmentMVVM(), IHistoryLoadedTopupView {
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_history_loaded_topup
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_history_loaded_topup, container, false)
+    }
 
     private lateinit var viewModel: HistoryBuyTopupViewModel
     private var adapter = HistoryLoadedTopupAdapter(this)

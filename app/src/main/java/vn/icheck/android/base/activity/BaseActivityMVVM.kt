@@ -21,7 +21,6 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -34,7 +33,7 @@ import java.io.Serializable
 
 abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     var job: Job? = null
-    var confirmLogin:ConfirmDialog? = null
+    var confirmLogin: ConfirmDialog? = null
     open val getStatusBarHeight: Int
         get() {
             var result = 0
@@ -82,10 +81,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
             if (!isHomeActivity()) {
                 ActivityUtils.finishActivity(this)
             }
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (!isHomeActivity() && ListConversationFragment.isOpenChat) {
-                ActivityUtils.finishActivity(this)
-            }
         }
     }
 
@@ -111,7 +106,6 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == requestLogin) {
             if (resultCode == Activity.RESULT_OK) {
                 onRequireLoginSuccess(requestLogin)
@@ -126,7 +120,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     /**
      * ICRequireLogin
      * */
-    private var requestLogin = 101
+    var requestLogin = 101
     private var loginSuccessCallback: (() -> Unit?)? = null
     private var loginErrorCallback: (() -> Unit?)? = null
 
@@ -171,7 +165,8 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     }
 
 
-    override fun onRequireLoginSuccess(requestCode: Int) {
+    override fun onRequireLoginSuccess(requestCode: Int){
+
     }
 
     override fun onRequireLoginCancel() {
@@ -184,15 +179,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     override fun onTokenTimeout() {
         runOnUiThread {
             ICheckApplication.currentActivity()?.let {
-
-
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it,
-                            "Thông báo",
-                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Để sau",
-                            "Đăng nhập ngay",
-                            false) {
+                    confirmLogin = object : ConfirmDialog(
+                        it,
+                        "Thông báo",
+                        "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
+                        "Để sau",
+                        "Đăng nhập ngay",
+                        false
+                    ) {
                         override fun onDisagree() {
 
                         }
@@ -315,39 +310,64 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     /**
      * End Toast Control
      * */
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity() {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity() {
         ActivityUtils.startActivity<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivity(key: String, value: String) {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(
+        key: String,
+        value: String
+    ) {
         ActivityUtils.startActivity<T>(this, key, value)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivity(key: String, value: O) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivity(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivity<T, O>(this, key, value)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(requestCode: Int) {
+    inline fun startActivity(activity: Activity, intent: Intent) {
+        ActivityUtils.startActivity(activity, intent)
+    }
+
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(requestCode: Int) {
         ActivityUtils.startActivityForResult<T>(this, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityForResult(key: String, value: String, requestCode: Int) {
+    inline fun startActivityForResult(activity: AppCompatActivity, intent: Intent, requestCode: Int) {
+        ActivityUtils.startActivityForResult(activity, intent, requestCode)
+    }
+
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(
+        key: String,
+        value: String,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T>(this, key, value, requestCode)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityForResult(key: String, value: O, requestCode: Int) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityForResult(
+        key: String,
+        value: O,
+        requestCode: Int
+    ) {
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
-    inline fun FragmentActivity.startActivityAndFinish(intent: Intent) {
+    inline fun AppCompatActivity.startActivityAndFinish(intent: Intent) {
         ActivityUtils.startActivityAndFinish(this, intent)
     }
 
-    inline fun <reified T : FragmentActivity> FragmentActivity.startActivityAndFinish() {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityAndFinish() {
         ActivityUtils.startActivityAndFinish<T>(this)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> FragmentActivity.startActivityAndFinish(key: String, value: O) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityAndFinish(
+        key: String,
+        value: O
+    ) {
         ActivityUtils.startActivityAndFinish<T, O>(this, key, value)
     }
 
@@ -377,9 +397,15 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 }
 
 fun requestLogin(loginSuccess: () -> Unit, loginCancel: (() -> Unit?)? = null) {
-    ICheckApplication.currentActivity()?.let { activity ->
-        if (activity is BaseActivityMVVM) {
-            activity.onRequireLogin(loginSuccess, loginCancel)
+    if (SessionManager.isUserLogged) {
+        loginSuccess.invoke()
+    } else {
+        ICheckApplication.currentActivity()?.let { activity ->
+            if (activity is BaseActivityMVVM) {
+                activity.onRequireLogin(loginSuccess, loginCancel)
+            } else {
+                loginCancel?.invoke()
+            }
         }
     }
 }

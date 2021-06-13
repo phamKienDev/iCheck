@@ -19,15 +19,16 @@ import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
-import vn.icheck.android.network.model.location.CityItem
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.account.icklogin.viewmodel.CHOOSE_TOPIC
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.location.CITY
@@ -44,7 +45,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class IckUserInfoFragment : CoroutineFragment() {
+class IckUserInfoFragment : BaseFragmentMVVM() {
 
     private var _binding: FragmentUserInfoBinding? = null
     private val binding get() = _binding!!
@@ -137,7 +138,7 @@ class IckUserInfoFragment : CoroutineFragment() {
                     val timeInMills = Calendar.getInstance().timeInMillis
                     ickLoginViewModel.calendar.set(year, month, day)
                     if (timeInMills < ickLoginViewModel.calendar.timeInMillis) {
-                        showError("Không cho phép chọn ngày sinh là ngày tương lai!")
+                        requireContext().showShortErrorToast("Không cho phép chọn ngày sinh là ngày tương lai!")
                     } else {
                         val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                         ickLoginViewModel.setBirthDay(df.format(ickLoginViewModel.calendar.time))

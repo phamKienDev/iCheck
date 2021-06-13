@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity">
+    tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity">
 
     <LinearLayout
         android:id="@+id/layoutScroll"

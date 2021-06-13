@@ -12,14 +12,13 @@ import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
-import kotlinx.android.synthetic.main.toolbar_blue.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 
-class BottomSheetWebView (context: Context) : FrameLayout(context) {
+class BottomSheetWebView(context: Context) : FrameLayout(context) {
 
-    private val mBottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context,R.style.BottomSheetDialog)
+    private val mBottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
     private var mCurrentWebViewScrollY = 0
 
     init {
@@ -31,15 +30,20 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     private fun inflateLayout(context: Context) {
         inflate(context, R.layout.bottom_sheet_dialog_reason_not_buy_product, this)
 
+        ICheckApplication.currentActivity()?.let { activity ->
+            layoutContainer.minimumHeight = activity.findViewById<View>(android.R.id.content).rootView.height
+        }
+
         mBottomSheetDialog.setContentView(this)
 
-        mBottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                ?.setBackgroundResource(android.R.color.transparent);
+        mBottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent);
     }
 
     private fun setupBottomSheetBehaviour() {
         (parent as? View)?.let { view ->
             BottomSheetBehavior.from(view).let { behaviour ->
+                behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+
                 behaviour.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {
 

@@ -1,6 +1,8 @@
 package vn.icheck.android.screen.user.profile.confirmphone
 
 import android.app.Activity
+import android.content.Context
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Html
@@ -9,7 +11,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_register_user_otp.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.profile.confirmphone.presenter.ConfirmNewPhonePresenter
@@ -21,16 +23,17 @@ import vn.icheck.android.util.KeyboardUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class ConfirmNewPhoneActivity : BaseActivity<ConfirmNewPhonePresenter>(), IConfirmNewPhoneView {
+class ConfirmNewPhoneActivity : BaseActivityMVVM(), IConfirmNewPhoneView {
     private var timer: CountDownTimer? = null
+    private val presenter = ConfirmNewPhonePresenter(this@ConfirmNewPhoneActivity)
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_register_user_otp
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_register_user_otp)
+        onInitView()
+    }
 
-    override val getPresenter: ConfirmNewPhonePresenter
-        get() = ConfirmNewPhonePresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         presenter.getData(intent)
     }
@@ -130,6 +133,10 @@ class ConfirmNewPhoneActivity : BaseActivity<ConfirmNewPhonePresenter>(), IConfi
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ConfirmNewPhoneActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -140,10 +147,12 @@ class ConfirmNewPhoneActivity : BaseActivity<ConfirmNewPhonePresenter>(), IConfi
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@ConfirmNewPhoneActivity
 
     override fun onDestroy() {
         super.onDestroy()

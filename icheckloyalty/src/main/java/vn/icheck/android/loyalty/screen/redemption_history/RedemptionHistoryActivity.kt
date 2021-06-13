@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
+import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.screen.loyalty_customers.gift_shop.GiftShopActivity
@@ -121,6 +122,15 @@ class RedemptionHistoryActivity : BaseActivityGame(), IRecyclerViewCallback {
             viewModel.getRedemptionHistory(true)
         } else {
             viewModel.getRedemptionHistoryLongTime(true)
+        }
+    }
+
+    override fun onMessageEvent(event: ICMessageEvent) {
+        when(event.type){
+            ICMessageEvent.Type.BACK_UPDATE -> {
+                getData()
+            }
+            else -> super.onMessageEvent(event)
         }
     }
 }

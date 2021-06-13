@@ -9,7 +9,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
-import vn.icheck.android.base.fragment.BaseFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.helper.DialogHelper
@@ -34,10 +33,6 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
             ActivityUtils.finishActivity(this)
-        } else if (event.type == ICMessageEvent.Type.ON_FINISH_ALL_CHAT) {
-            if (ListConversationFragment.isOpenChat) {
-                ActivityUtils.finishActivity(this)
-            }
         }
     }
 

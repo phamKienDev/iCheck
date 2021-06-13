@@ -21,7 +21,6 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICCampaignOnboarding
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -91,7 +90,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                     finish()
                 }
                 1 -> {
-                    webView.beVisible()
+                    webViewUrl.beVisible()
                     recyclerview.beGone()
 
                     setUpWebView(it.onboardLanding ?: "")
@@ -113,7 +112,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                     }
                 }
                 else -> {
-                    webView.beGone()
+                    webViewUrl.beGone()
                     recyclerview.beVisible()
                     layoutCenter.beGone()
 
@@ -192,7 +191,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
         var loadingFinished = true
         var redirect = false
 
-        webView.settings.apply {
+        webViewUrl.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
@@ -215,7 +214,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
             setGeolocationEnabled(true)
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 loadingFinished = false
@@ -247,9 +246,9 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
             }
         }
         if (myUrl.startsWith("http")) {
-            webView.loadUrl(myUrl)
+            webViewUrl.loadUrl(myUrl)
         } else {
-            webView.loadData(Constant.getHtmlData(myUrl), "text/html; charset=utf-8", "UTF-8")
+            webViewUrl.loadData(Constant.getHtmlData(myUrl), "text/html; charset=utf-8", "UTF-8")
         }
     }
 }

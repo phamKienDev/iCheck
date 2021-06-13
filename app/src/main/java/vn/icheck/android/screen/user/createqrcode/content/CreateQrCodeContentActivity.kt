@@ -2,7 +2,7 @@ package vn.icheck.android.screen.user.createqrcode.content
 
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseFragmentActivity
-import vn.icheck.android.base.fragment.BaseFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.createqrcode.createcontact.CreateContactQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.createemail.CreateEmailQrCodeFragment
@@ -19,7 +19,7 @@ class CreateQrCodeContentActivity : BaseFragmentActivity() {
     override val getLayoutID: Int
         get() = R.layout.layout_frame
 
-    override val getFirstFragment: BaseFragment<*>
+    override val getFirstFragment: BaseFragmentMVVM
         get() = when (intent?.getIntExtra(Constant.DATA_1, R.id.txtText)) {
             R.id.txtText -> {
                 CreateTextQrCodeFragment()

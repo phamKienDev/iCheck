@@ -17,7 +17,14 @@ import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActi
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListContributeListener {
-    private var adapter = ListContributeAdapter(this, this, this)
+    private var adapter = ListContributeAdapter(this, this, this) {
+        val i = Intent(this, IckProductDetailActivity::class.java).apply {
+            putExtra(Constant.DATA_3, it)
+            setResult(Activity.RESULT_OK, this)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        startActivity(i)
+    }
 
     lateinit var viewModel: ListContributeViewModel
     private var isActivityVisible = false
@@ -44,11 +51,21 @@ class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListC
             onBackPressed()
         }
 
-        if(!intent.getStringExtra(Constant.DATA_2).isNullOrEmpty()){
-            WidgetUtils.loadImageUrlRoundedFitCenter(imgProduct,intent.getStringExtra(Constant.DATA_2)!!,R.drawable.error_load_image,SizeHelper.size4)
+        if (!intent.getStringExtra(Constant.DATA_2).isNullOrEmpty()) {
+            WidgetUtils.loadImageUrlRoundedFitCenter(
+                imgProduct,
+                intent.getStringExtra(Constant.DATA_2)!!,
+                R.drawable.error_load_image,
+                SizeHelper.size4
+            )
         }
 
-        WidgetUtils.loadImageUrlRounded(imgProduct, intent.getStringExtra(Constant.DATA_2), R.drawable.default_product_image, SizeHelper.size4)
+        WidgetUtils.loadImageUrlRounded(
+            imgProduct,
+            intent.getStringExtra(Constant.DATA_2),
+            R.drawable.default_product_image,
+            SizeHelper.size4
+        )
     }
 
     private fun setUpRecyclerView() {
@@ -92,17 +109,6 @@ class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListC
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
         when (event.type) {
-            ICMessageEvent.Type.OPEN_PRODUCT_DETAIL -> {
-                val i = Intent(this, IckProductDetailActivity::class.java).apply {
-                    if (event.data != null && event.data is Long) {
-                        putExtra(Constant.DATA_3, event.data)
-                        setResult(Activity.RESULT_OK, this)
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                        finish()
-                    }
-                }
-                startActivity(i)
-            }
             ICMessageEvent.Type.REQUEST_VOTE_CONTRIBUTION -> {
                 if (isActivityVisible) {
                     onRequireLogin(requestVoteContribute)
@@ -117,7 +123,7 @@ class ListContributeActivity : BaseActivityMVVM(), IRecyclerViewCallback, IListC
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == requestVoteContribute) {
-                isClickVote=true
+                isClickVote = true
                 getDataTryAgain()
             }
         }

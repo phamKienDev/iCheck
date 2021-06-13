@@ -7,17 +7,20 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.feature.popup.PopupInteractor
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICMyID
+import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.screen.scan.model.ICKScanModel
 
 class V6ViewModel: ViewModel() {
-
+    private val popupRepository = PopupInteractor()
     private var ickScanModel = ICKScanModel()
     val ickScanModelLiveData = MutableLiveData<ICKScanModel>()
     val userInteractor = UserInteractor()
@@ -39,6 +42,8 @@ class V6ViewModel: ViewModel() {
     val stampFake = MutableLiveData<String>()
     val errorQr = MutableLiveData<String>()
     val errorString = MutableLiveData<String>()
+    val onPopupAds = MutableLiveData<ICPopup>()
+
 
     fun getMyID() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
@@ -60,6 +65,23 @@ class V6ViewModel: ViewModel() {
             }
         })
     }
+
+    fun getPopup() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
+
+        popupRepository.getPopup(null, Constant.SCAN, object : ICNewApiListener<ICResponse<ICPopup>> {
+            override fun onSuccess(obj: ICResponse<ICPopup>) {
+                if (obj.data != null) {
+                    onPopupAds.postValue(obj.data!!)
+                }
+            }
+            override fun onError(error: ICResponseCode?) {
+            }
+        })
+    }
+
 
     fun checkQrStampSocial() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
@@ -93,8 +115,8 @@ class V6ViewModel: ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                if (error?.code == 400 || error?.status == "400") {
+                    stampFake.postValue(ICheckApplication.getError(error.message))
                 } else {
                     errorQr.postValue(codeScan)
                 }

@@ -15,14 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_list_distributor.*
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
-import vn.icheck.android.activities.base.BaseICActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.models.bookmark.ICBookmarkPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
-class ListDistributorActivity : BaseICActivity() {
+class ListDistributorActivity : BaseActivityMVVM() {
 
     companion object {
         var instance: ListDistributorActivity? = null
@@ -34,6 +34,7 @@ class ListDistributorActivity : BaseICActivity() {
             activity.startActivity(intent)
         }
     }
+    var requiresLogin = true
 
     lateinit var pageAdapter: PageAdapter
     val listChild = mutableListOf<PageChild>()

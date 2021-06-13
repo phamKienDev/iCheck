@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.vinmart
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
@@ -11,22 +12,20 @@ import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_vin_mart.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
-import vn.icheck.android.base.activity.BaseActivityPresenter
-import vn.icheck.android.base.activity.BaseActivityView
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.util.regex.Pattern
 
-class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView {
+class VinMartActivity : BaseActivityMVVM() {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_vin_mart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_vin_mart)
+        onInitView()
+    }
 
-    override val getPresenter: BaseActivityPresenter
-        get() = BaseActivityPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         val url = intent?.getStringExtra(Constant.DATA_1)
 
         if (url.isNullOrEmpty()) {
@@ -46,24 +45,24 @@ class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView 
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String) {
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
         if (url.startsWith("http")) {
-            webView.loadUrl(url)
+            webViewUrl.loadUrl(url)
         } else {
-            webView.loadData(url, "text/html; charset=utf-8", "UTF-8");
+            webViewUrl.loadData(url, "text/html; charset=utf-8", "UTF-8");
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.url?.let { url ->
@@ -105,8 +104,8 @@ class VinMartActivity : BaseActivity<BaseActivityPresenter>(), BaseActivityView 
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
+        if (webViewUrl.canGoBack()) {
+            webViewUrl.goBack()
         } else {
             super.onBackPressed()
         }

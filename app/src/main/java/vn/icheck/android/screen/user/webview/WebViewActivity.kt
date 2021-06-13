@@ -31,6 +31,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.*
+import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
@@ -52,7 +53,7 @@ class WebViewActivity : BaseActivityMVVM() {
 
     companion object {
         fun start(fragmentActivity: FragmentActivity?, url: String?, isScan: Int? = null, title: String? = null, isMarketing: Boolean? = null) {
-            if (fragmentActivity == null || url.isNullOrEmpty()) {
+            if (fragmentActivity == null || url.isNullOrEmpty() || checkDeepLink(url)) {
                 return
             }
 
@@ -73,7 +74,7 @@ class WebViewActivity : BaseActivityMVVM() {
         }
 
         fun start(activity: Activity?, url: String?, isScan: Int? = null, title: String? = null) {
-            if (activity == null || url.isNullOrEmpty()) {
+            if (activity == null || url.isNullOrEmpty() || checkDeepLink(url)) {
                 return
             }
 
@@ -105,6 +106,20 @@ class WebViewActivity : BaseActivityMVVM() {
                         start(activity, link)
                     }
                 }
+            }
+        }
+
+        fun checkDeepLink(url: String?):Boolean{
+            return when{
+                url?.contains("icheckdev.page.link") == true -> {
+                    openChrome(url)
+                    true
+                }
+                url?.contains("icheck.page.link") == true -> {
+                    openChrome(url)
+                    true
+                }
+                else -> false
             }
         }
     }
@@ -323,6 +338,8 @@ class WebViewActivity : BaseActivityMVVM() {
     private fun handleNewUrl(view: WebView?, uri: Uri) {
         if (uri.scheme.equals("http") || uri.scheme.equals("https")) {
             view?.loadUrl(uri.toString())
+        } else if (uri.toString().contains("icheck://")) {
+            FirebaseDynamicLinksActivity.startDestinationUrl(this@WebViewActivity, uri.toString().replace("unsafe:", ""))
         } else if (uri.scheme.equals("intent")) {
             val appPackage = getAppPackageFromUri(uri)
 

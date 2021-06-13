@@ -1,7 +1,7 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product
 
+import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.Spannable
@@ -10,26 +10,29 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_more_information_product.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_InformationProduct
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.presenter.MoreInformationProductPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.view.IMoreInformationProductView
 import vn.icheck.android.util.kotlin.GlideImageGetter
 
-class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresenter>(),IMoreInformationProductView {
+class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProductView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_more_information_product
-
-    override val getPresenter: MoreInformationProductPresenter
-        get() = MoreInformationProductPresenter(this)
+    val presenter = MoreInformationProductPresenter(this@MoreInformationProductActivity)
 
     private var dataHtml = ""
 
-    override fun onInitView() {
-        if (DetailStampActivity.isVietNamLanguage == false){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_more_information_product)
+        onInitView()
+    }
+
+    fun onInitView() {
+        if (StampDetailActivity.isVietNamLanguage == false){
             txtTitle.text = "Information"
         } else {
             txtTitle.text = "Thông tin"
@@ -55,7 +58,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
         when(errorType){
             Constant.ERROR_INTERNET -> {
                 imgError.setImageResource(R.drawable.ic_error_network)
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     tvMessageError.text = "Checking network. Please try again"
                 } else {
                     tvMessageError.text = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
@@ -63,7 +66,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
             }
             Constant.ERROR_UNKNOW -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     tvMessageError.text = "Occurred. Please try again"
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
@@ -71,7 +74,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
             }
             Constant.ERROR_EMPTY -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                if (DetailStampActivity.isVietNamLanguage == false) {
+                if (StampDetailActivity.isVietNamLanguage == false) {
                     tvMessageError.text = "Occurred. Please try again"
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
@@ -98,7 +101,13 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@MoreInformationProductActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@MoreInformationProductActivity, isShow)
     }
 }

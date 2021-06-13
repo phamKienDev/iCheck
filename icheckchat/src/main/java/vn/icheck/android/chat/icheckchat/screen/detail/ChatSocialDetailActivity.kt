@@ -55,18 +55,22 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
-import vn.icheck.android.ichecklibs.util.beGone
-import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.NotificationDialogListener
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
+import java.util.regex.Pattern
 
 class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBinding>(), IRecyclerViewCallback, View.OnClickListener {
     companion object {
         var isOpened = false
 
         fun createRoomChat(context: Context, userId: Long, type: String) {
+            finishAllChat()
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
                 putExtra(DATA_2, userId)
                 putExtra(DATA_3, type)
@@ -74,13 +78,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         }
 
         fun openRoomChatWithKey(context: Context, key: String) {
+            finishAllChat()
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
                 putExtra(KEY, key)
             })
         }
 
+        fun finishAllChat() {
+            EventBus.getDefault().post(MCMessageEvent(MCMessageEvent.Type.ON_FINISH_ALL_CHAT))
+        }
+
         var toId = ""
         var toType = ""
+        var isVerified = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -126,7 +136,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
     override fun onInitView() {
         isOpened = false
-        ListConversationFragment.isOpenChat = true
+//        ListConversationFragment.isOpenChat = true
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
@@ -145,24 +155,28 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         userType = intent.getStringExtra(DATA_3) ?: "user"
         key = intent.getStringExtra(KEY)
 
-        when {
-            conversation != null -> {
-                viewModel.loginFirebase({
+        viewModel.loginFirebase({
+            when {
+                conversation != null -> {
                     if (!conversation?.key.isNullOrEmpty()) {
                         key = conversation?.key
                         getChatRoom(conversation?.key!!)
                     }
-                }, {
-
-                })
+                }
+                !key.isNullOrEmpty() -> {
+                    getChatRoom(key!!)
+                }
+                else -> {
+                    createRoom()
+                }
             }
-            !key.isNullOrEmpty() -> {
-                getChatRoom(key!!)
-            }
-            else -> {
-                createRoom()
-            }
-        }
+        }, {
+            DialogHelper.showNotification(this@ChatSocialDetailActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                override fun onDone() {
+                    onBackPressed()
+                }
+            })
+        })
 
         binding.layoutToolbar.imgAction.setVisible()
 
@@ -229,9 +243,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         })
     }
 
+    fun validNumber(text: String): Boolean {
+        return Pattern.compile("^[0-9]+").matcher(text).matches()
+    }
+
     private fun createRoom() {
+
         val listMember = mutableListOf<MCMember>()
-        listMember.add(MCMember(FirebaseAuth.getInstance().uid.toString().toLong(), "user", "admin"))
+
+        val uid = FirebaseAuth.getInstance().uid
+
+        if (!uid.isNullOrEmpty() && validNumber(uid)) {
+            listMember.add(MCMember(uid.toLong(), "user", "admin"))
+        }
         listMember.add(MCMember(userId, userType, "member"))
 
         viewModel.createRoom(listMember).observe(this@ChatSocialDetailActivity, {
@@ -288,12 +312,30 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                     inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
+
+                                        if (toType.contains("page")){
+                                            isVerified = success.child("is_verify").value.toString().toBoolean()
+
+                                            if (isVerified){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }else{
+                                            val isKYC = success.child("kyc_status").value as Long? ?: 0L
+
+                                            if (isKYC == 2L){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
 
                                     })
                                 } else {
-                                    deleteAt = if (item.child("deleted_at").value != null) {
+                                    deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
                                         item.child("deleted_at").value.toString().toLong()
                                     } else {
                                         -1
@@ -353,21 +395,24 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     val listChatMessage = mutableListOf<MCDetailMessage>()
                     if (obj.hasChildren()) {
                         for (item in obj.children.reversed()) { // đảo list - tin nhắn cũ được đọc trước : so sánh thời gian với tin nhắn trước dễ hơn
-                            if (item.child("time").value.toString().toLong() > deleteAt) {
-                                val message = convertDataFirebase(item, newMessage)
+                            if (item.child("time").value != null && validNumber(item.child("time").value.toString())) {
+                                if (item.child("time").value.toString().toLong() > deleteAt) {
+                                    val message = convertDataFirebase(item, newMessage)
 
-                                listChatMessage.add(message)
-                                newMessage = if (isLoadData) {
-                                    if (adapter.getListData.isNullOrEmpty()) {
-                                        message
+                                    listChatMessage.add(message)
+                                    newMessage = if (isLoadData) {
+                                        if (adapter.getListData.isNullOrEmpty()) {
+                                            message
+                                        } else {
+                                            adapter.getListData.last { it.time != null }
+                                        }
                                     } else {
-                                        adapter.getListData.last { it.time != null }
+                                        message
                                     }
-                                } else {
-                                    message
+                                    isLoadData = false
                                 }
-                                isLoadData = false
                             }
+
                         }
 
                         markReadMessage(key)
@@ -393,8 +438,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     }
 
     private fun listenChangeMessage(key: String) {
+
         viewModel.getChangeMessageChat(key) { data ->
-            markReadMessage(key)
+
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -459,7 +505,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-//                markReadMessage(key)
+                markReadMessage(key)
+
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1
@@ -555,9 +602,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         message.child("message").child("sticker").value.toString()
                     } else {
                         MCSticker().apply {
-                            id = stickerFirebase.child("id").value.toString().toLong()
+                            if (stickerFirebase.child("id").value != null && validNumber(stickerFirebase.child("id").value.toString())) {
+                                id = stickerFirebase.child("id").value.toString().toLong()
+                            }
+
                             thumbnail = stickerFirebase.child("thumbnail").value.toString()
-                            packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                            if (stickerFirebase.child("packageId").value != null && validNumber(stickerFirebase.child("packageId").value.toString())) {
+                                packageId = stickerFirebase.child("packageId").value.toString().toLong()
+                            }
                         }
                     }
                 }
@@ -910,6 +962,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 getProductBarcode(barcode)
                             }
                             !qrCode.isNullOrEmpty() -> {
+                                binding.tvMessage.setGone()
+                                binding.edtMessage.setVisible()
+                                binding.edtMessage.requestFocus()
                                 binding.edtMessage.setText(qrCode)
                             }
                         }
@@ -1144,11 +1199,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         super.onResume()
         inboxRoomID = keyRoom
         inboxUserID = toId
-
-        if (isOpened) {
-            finish()
-            overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
-        }
     }
 
     override fun onBackPressed() {

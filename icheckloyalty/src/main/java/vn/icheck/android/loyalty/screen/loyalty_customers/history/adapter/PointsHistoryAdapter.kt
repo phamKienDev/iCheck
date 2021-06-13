@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_transaction_history.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.getHHMMDate
+import vn.icheck.android.loyalty.helper.TimeHelper
 import vn.icheck.android.loyalty.model.TransactionHistoryResponse
 
 class PointsHistoryAdapter: PagingDataAdapter<TransactionHistoryResponse, RecyclerView.ViewHolder>(COMPARTOR) {
@@ -36,7 +37,7 @@ class PointsHistoryAdapter: PagingDataAdapter<TransactionHistoryResponse, Recycl
         holder as LoyaltyPointsHistory
         val data = getItem(position)
         holder.view.tvName.text = data?.reason
-        holder.view.tvDate.text = data?.createdAt?.getHHMMDate()
+        holder.view.tvDate.text = TimeHelper.convertDateTimeSvToTimeDateVn(data?.createdAt)
         if (data?.type?.id == "02") {
             holder.view.imgCategory.setImageResource(R.drawable.ic_xu_contract_20px)
 

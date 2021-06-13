@@ -236,8 +236,6 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             viewModel.scanOnlyChat = true
             _binding?.btnMyCode.beGone()
             _binding?.btnQm.beGone()
-            _binding?.imgSdha.beGone()
-            _binding?.imgHdSdha.beGone()
         } else {
             viewModel.scanOnlyChat = false
         }
@@ -254,7 +252,8 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
+        takeImageDialog = TakeMediaDialog()
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false, disableTakeImage = false)
     }
 
     private fun initBarcodeCapture() {

@@ -1,12 +1,14 @@
 package vn.icheck.android.screen.user.selectuseraddress
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_select_address.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -27,18 +29,18 @@ import vn.icheck.android.screen.user.selectuseraddress.view.ISelectUserAddressVi
  * Data: key: Constant.DATA_1, type: Json
  * If no data: Selected item was deleted
  */
-class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), ISelectUserAddressView {
+class SelectUserAddressActivity : BaseActivityMVVM(), ISelectUserAddressView {
     private val adapter = SelectUserAddressAdapter(this)
-
+    private val presenter = SelectUserAddressPresenter(this@SelectUserAddressActivity)
     private val requestCreateAddress = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_select_address
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_select_address)
+        onInitView()
+    }
 
-    override val getPresenter: SelectUserAddressPresenter
-        get() = SelectUserAddressPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupRecyclerView()
         setupSwipeRefreshLayout()
@@ -116,6 +118,10 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SelectUserAddressActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -150,10 +156,12 @@ class SelectUserAddressActivity : BaseActivity<SelectUserAddressPresenter>(), IS
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@SelectUserAddressActivity
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

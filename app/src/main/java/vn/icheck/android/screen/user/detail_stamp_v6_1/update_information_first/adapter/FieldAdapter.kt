@@ -9,20 +9,13 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_check_box_field.view.*
-import kotlinx.android.synthetic.main.item_date_field.view.*
-import kotlinx.android.synthetic.main.item_input_field.view.*
-import kotlinx.android.synthetic.main.item_select_field.view.*
-import kotlinx.android.synthetic.main.item_text_field.view.*
-import kotlinx.android.synthetic.main.item_radio_box_field.view.*
-import vn.icheck.android.R
-import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.component.`null`.NullHolder
+import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
-
 
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -42,14 +35,13 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            inputType -> InputFieldHolder(inflater.inflate(R.layout.item_input_field, parent, false))
-            textType -> TextFieldHolder(inflater.inflate(R.layout.item_text_field, parent, false))
-            selectType -> SelectFieldHolder(inflater.inflate(R.layout.item_select_field, parent, false))
-            radioBoxType -> RadioButtonFieldHolder(inflater.inflate(R.layout.item_radio_box_field, parent, false))
-            checkboxType -> CheckBoxFieldHolder(inflater.inflate(R.layout.item_check_box_field, parent, false))
-            dateType -> DateFieldHolder(inflater.inflate(R.layout.item_date_field, parent, false))
+            inputType -> InputFieldHolder(parent)
+            textType -> TextFieldHolder(parent)
+            selectType -> SelectFieldHolder(parent)
+            radioBoxType -> RadioButtonFieldHolder(parent)
+            checkboxType -> CheckBoxFieldHolder(parent)
+            dateType -> DateFieldHolder(parent)
             else -> NullHolder(parent)
         }
     }
@@ -97,7 +89,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 textType
             }
             "select" -> {
-                if (listData[position].valueF?.isNullOrEmpty() == false) {
+                if (!listData[position].valueF.isNullOrEmpty()) {
                     if (listData[position].valueF?.size!! > 6) {
                         selectType
                     } else {
@@ -119,11 +111,11 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return listData.size
-    }
+    override fun getItemCount() = listData.size
 
-    inner class InputFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
+    inner class InputFieldHolder(parent: ViewGroup, val binding: ItemInputFieldBinding =
+            ItemInputFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
 
         private val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -131,7 +123,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                listData[adapterPosition].inputContent = s.toString()
+                listData[adapterPosition].string_values = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -141,24 +133,30 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitle.text = obj.name + " (*)"
+                binding.tvTitle.text = obj.name + " (*)"
             } else {
-                itemView.tvTitle.text = obj.name
+                binding.tvTitle.text = obj.name
             }
-            itemView.edtInput.hint = "Nhập " + obj.name
-            itemView.edtInput.removeTextChangedListener(textWatcher)
-            itemView.edtInput.addTextChangedListener(textWatcher)
+            binding.edtInput.apply {
+                hint = "Nhập " + obj.name
+                removeTextChangedListener(textWatcher)
+                setText(obj.string_values)
+                addTextChangedListener(textWatcher)
+            }
         }
     }
 
-    inner class TextFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
+    inner class TextFieldHolder(parent: ViewGroup, val binding: ItemTextFieldBinding =
+            ItemTextFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
+
         private val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                listData[adapterPosition].inputArea = s.toString()
+                listData[adapterPosition].string_values = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -168,24 +166,29 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleTextArea.text = obj.name + " (*)"
+                binding.tvTitleTextArea.text = obj.name + " (*)"
             } else {
-                itemView.tvTitleTextArea.text = obj.name
+                binding.tvTitleTextArea.text = obj.name
             }
-            itemView.edtTextArea.hint = "Nhập " + obj.name
-            itemView.edtTextArea.removeTextChangedListener(textWatcher)
-            itemView.edtTextArea.addTextChangedListener(textWatcher)
+            binding.edtTextArea.apply {
+                hint = "Nhập " + obj.name
+                removeTextChangedListener(textWatcher)
+                setText(obj.string_values)
+                addTextChangedListener(textWatcher)
+            }
         }
     }
 
-    inner class SelectFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
+    inner class SelectFieldHolder(parent: ViewGroup, val binding: ItemSelectFieldBinding =
+            ItemSelectFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
         private var checkedPos = -1
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleSelect.text = obj.name + " (*)"
+                binding.tvTitleSelect.text = obj.name + " (*)"
             } else {
-                itemView.tvTitleSelect.text = obj.name
+                binding.tvTitleSelect.text = obj.name
             }
 
             if (!obj.valueF.isNullOrEmpty()) {
@@ -195,11 +198,22 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 objHint.value = "Chọn " + obj.name
                 list?.add(objHint)
 
-                val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, android.R.layout.simple_spinner_item)
+                val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                itemView.spinner.adapter = adapter
-                itemView.spinner.setSelection(adapter.count)
-                itemView.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                binding.spinner.adapter = adapter
+
+                val selectedPosition = if (!obj.string_values.isNullOrEmpty()) {
+                    try {
+                        obj.string_values!!.toInt()
+                    } catch (e: Exception) {
+                        adapter.count
+                    }
+                } else {
+                    adapter.count
+                }
+                binding.spinner.setSelection(selectedPosition)
+
+                binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         if (checkedPos != position && checkedPos != -1) {
                             obj.valueF!![checkedPos].isChecked = false
@@ -218,51 +232,72 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class RadioButtonFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
+    inner class RadioButtonFieldHolder(parent: ViewGroup, val binding: ItemRadioBoxFieldBinding =
+            ItemRadioBoxFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
+
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleRadiobox.text = obj.name + " (*)"
+                binding.tvTitleRadiobox.text = obj.name + " (*)"
             } else {
-                itemView.tvTitleRadiobox.text = obj.name
+                binding.tvTitleRadiobox.text = obj.name
             }
 
             if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
-                itemView.rcvRadioBox.layoutManager = GridLayoutManager(itemView.context, 2)
-                itemView.rcvRadioBox.adapter = RadioButtonFieldAdapter(obj.valueF!!)
-            }
-        }
-    }
-
-    inner class CheckBoxFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
-        override fun bind(obj: ICFieldGuarantee) {
-            if (obj.require == 1) {
-                itemView.tvTitleCheckbox.text = obj.name + " (*)"
-            } else {
-                itemView.tvTitleCheckbox.text = obj.name
-            }
-
-            if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
-                itemView.rcvCheckBox.layoutManager = LinearLayoutManager(itemView.context)
-                itemView.rcvCheckBox.adapter = CheckBoxFieldAdapter(obj.valueF!!)
-            }
-        }
-    }
-
-    inner class DateFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
-        override fun bind(obj: ICFieldGuarantee) {
-            if (obj.require == 1) {
-                itemView.tvTitleDate.text = obj.name + " (*)"
-            } else {
-                itemView.tvTitleDate.text = obj.name
-            }
-
-            itemView.setOnClickListener {
-                TimeHelper.datePicker(itemView.context, System.currentTimeMillis(), object : DateTimePickerListener {
-                    override fun onSelected(dateTime: String, milliseconds: Long) {
-                        itemView.edtInputDate.text = dateTime
-                        listData[adapterPosition].date = dateTime
+                binding.rcvRadioBox.layoutManager = GridLayoutManager(binding.root.context, 2)
+                binding.rcvRadioBox.adapter = RadioButtonFieldAdapter(obj.valueF!!, if (!obj.string_values.isNullOrEmpty()) {
+                    try {
+                        obj.string_values!!.toInt()
+                    } catch (e: Exception) {
+                        -1
                     }
+                } else {
+                    -1
                 })
+            }
+        }
+    }
+
+    inner class CheckBoxFieldHolder(parent: ViewGroup, val binding: ItemCheckBoxFieldBinding =
+            ItemCheckBoxFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
+
+        override fun bind(obj: ICFieldGuarantee) {
+            if (obj.require == 1) {
+                binding.tvTitleCheckbox.text = obj.name + " (*)"
+            } else {
+                binding.tvTitleCheckbox.text = obj.name
+            }
+
+            if (!obj.valueF.isNullOrEmpty() && obj.valueF!!.size > 0) {
+                binding.rcvCheckBox.layoutManager = LinearLayoutManager(binding.root.context)
+                binding.rcvCheckBox.adapter = CheckBoxFieldAdapter(obj.valueF!!)
+            }
+        }
+    }
+
+    inner class DateFieldHolder(parent: ViewGroup, val binding: ItemDateFieldBinding =
+            ItemDateFieldBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+            BaseViewHolder<ICFieldGuarantee>(binding.root) {
+
+        override fun bind(obj: ICFieldGuarantee) {
+            if (obj.require == 1) {
+                binding.tvTitleDate.text = obj.name + " (*)"
+            } else {
+                binding.tvTitleDate.text = obj.name
+            }
+
+            binding.edtInputDate.apply {
+                text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
+
+                setOnClickListener {
+                    TimeHelper.datePicker(binding.root.context, System.currentTimeMillis(), object : DateTimePickerListener {
+                        override fun onSelected(dateTime: String, milliseconds: Long) {
+                            binding.edtInputDate.text = dateTime
+                            listData[adapterPosition].string_values = vn.icheck.android.ichecklibs.TimeHelper.convertMillisecondToDateTimeSv(milliseconds)
+                        }
+                    })
+                }
             }
         }
     }

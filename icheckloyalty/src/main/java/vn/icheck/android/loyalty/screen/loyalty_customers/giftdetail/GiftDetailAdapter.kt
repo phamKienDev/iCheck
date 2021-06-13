@@ -75,36 +75,45 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 if (obj.voucher?.checked_condition?.status == false) {
                     itemView.tvTitleDate.text = "Hạn sử dụng"
 
-                    if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
+                    when (obj.voucher?.checked_condition?.code) {
+                        "START_TIME_CAN_USE" -> {
+                            itemView.tvTitleDate.text = "Có hiệu lực từ"
 
-                        itemView.tvTitleDate.text = "Có hiệu lực từ"
+                            itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
 
-                        itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
-
-                        itemView.tvStatus.apply {
-                            text = "Chưa có hiệu lực"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
-                            setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            itemView.tvStatus.apply {
+                                text = "Chưa có hiệu lực"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
+                                setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                            }
                         }
+                        "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                            itemView.layoutDate.setGone()
 
-                    } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
-
-                        itemView.layoutDate.setGone()
-
-                        itemView.tvStatus.apply {
-                            text = "Hết lượt sử dụng"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                            setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                            itemView.tvStatus.apply {
+                                text = "Hết lượt sử dụng"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                            }
                         }
+                        "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                            itemView.tvDateTime.text = ""
 
-                    } else {
+                            itemView.tvStatus.apply {
+                                text = "Đã bị khóa"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                            }
+                        }
+                        else -> {
 
-                        itemView.tvDateTime.text = ""
+                            itemView.tvDateTime.text = ""
 
-                        itemView.tvStatus.apply {
-                            text = "Hết hạn sử dụng"
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
-                            setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                            itemView.tvStatus.apply {
+                                text = "Hết hạn sử dụng"
+                                setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
+                                setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
+                            }
                         }
                     }
 
@@ -222,8 +231,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 }
             }
 
-            itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.gift?.description
+            itemView.webViewUrl.settings.javaScriptEnabled = true
+            itemView.webViewUrl.loadDataWithBaseURL(null, obj.gift?.description
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.owner?.logo?.medium)
@@ -290,8 +299,8 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 }
             }
 
-            itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description
+            itemView.webViewUrl.settings.javaScriptEnabled = true
+            itemView.webViewUrl.loadDataWithBaseURL(null, obj.loyalty_gift?.gift?.description
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.business?.logo?.medium)

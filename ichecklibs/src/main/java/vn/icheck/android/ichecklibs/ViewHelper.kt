@@ -7,12 +7,16 @@ import android.graphics.drawable.StateListDrawable
 import android.widget.LinearLayout
 
 object ViewHelper {
-    fun createLayoutParams(width: Int, height: Int, weight: Float): LinearLayout.LayoutParams {
-        return LinearLayout.LayoutParams(width, height, weight)
+    fun createLayoutParams(): LinearLayout.LayoutParams {
+        return LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
     }
 
     fun createLayoutParams(width: Int, height: Int = LinearLayout.LayoutParams.WRAP_CONTENT): LinearLayout.LayoutParams {
         return LinearLayout.LayoutParams(width, height)
+    }
+
+    fun createLayoutParams(width: Int, height: Int, weight: Float): LinearLayout.LayoutParams {
+        return LinearLayout.LayoutParams(width, height, weight)
     }
 
     fun createColorStateList(unCheckColor: Int, checkedColor: Int): ColorStateList {

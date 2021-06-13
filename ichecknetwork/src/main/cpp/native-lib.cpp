@@ -38,6 +38,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APICons
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_STAMPGETCONFIGERROR(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("config"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_PRODUCTINFO(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("info-product/{id}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_VARIANTPRODUCT(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("product/{product_id}/extras"); }
+extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_getCustomerVariant(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("g_customers/field/list-client/{code}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_GETFIELDLISTGUARANTEE(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("guarantee/field/list-client/{code}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_USERSENDOTPCONFIRMPHONESTAMP(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("users/send-otp-anonymous-phone"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_USERCONFIRMPHONESTAMP(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("users/anonymous-phone-confirm"); }
@@ -59,6 +60,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APICons
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_PRODUCTDETAIL(JNIEnv* env,jobject /* this */) { return env->NewStringUTF("products/{id}"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_themeSetting(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/cms/system-setting-design/theme/my-theme"); }
 extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_productsECommerce(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("social/api/products/ecommerce//products/ecommerce/{id}"); }
+extern "C" JNIEXPORT jstring JNICALL Java_vn_icheck_android_network_base_APIConstants_stampDetailV61(JNIEnv* env, jobject /* this */) { return env->NewStringUTF("qr-core-aps/scan"); }
 
 /*
  * Utilities

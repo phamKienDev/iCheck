@@ -19,20 +19,17 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_ick_product_detail.*
-import kotlinx.android.synthetic.main.activity_ick_product_detail.imgBack
-import kotlinx.android.synthetic.main.activity_ick_product_detail.layoutBottom
-import kotlinx.android.synthetic.main.activity_ick_product_detail.recyclerView
-import kotlinx.android.synthetic.main.activity_ick_product_detail.txtTitle
-import kotlinx.android.synthetic.main.activity_ick_product_detail.view
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
+import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.commentpost.ICCommentPostMore
 import vn.icheck.android.component.product.ProductDetailListener
@@ -49,6 +46,7 @@ import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -73,6 +71,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -100,10 +99,12 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
+    private val requestLoginProductDetail = 9
 
     private var isActivityVisible = true
     private var productViewedInsider = true
     private var reviewStartInsider = true
+    private var isRefreshData = false
 
     private var obj: ICKLoyalty? = null
     private val takeMediaListener = object : TakeMediaListener {
@@ -187,12 +188,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         const val REQUEST_MMB = 1
 
         fun start(activity: Activity, barcode: String, isScan: Boolean? = null) {
-            val intent = Intent(activity, IckProductDetailActivity::class.java)
-
-            intent.putExtra(Constant.DATA_1, barcode)
-            if (isScan != null)
-                intent.putExtra(Constant.DATA_2, isScan)
-
+            val intent = Intent(activity, IckProductDetailActivity::class.java).apply {
+                putExtra(Constant.DATA_1, barcode)
+                if (isScan != null) putExtra(Constant.DATA_2, isScan)
+            }
             ActivityUtils.startActivity(activity, intent)
         }
 
@@ -324,7 +323,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 }, this@IckProductDetailActivity
             )
             if (it.verified == true) {
-                tvBuy.setText(R.string.dang_ky_mua_hang_chinh_hang)
+                tvBuy.setText(R.string.lien_he_n_doanh_nghiep)
             } else {
                 tvBuy.setText(R.string.mua_tai_nha_san_xuat)
             }
@@ -630,6 +629,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
             showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
         })
+        viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this,it)
+        })
     }
 
     private fun setupSwipeLayout() {
@@ -650,9 +652,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             viewModel.productDetail?.let { productDetail ->
                 if (productDetail.owner?.verified == true) {
                     ContactBusinessDialog(this).show(
-                        productDetail.owner?.id,
+                        productDetail.owner?.pageId ?: productDetail.manager?.id,
                         productDetail.manager?.phone,
-                        productDetail.manager?.email
+                        productDetail.manager?.email,
                     )
                 } else {
                     ContactBusinessDialog(this).show(
@@ -753,35 +755,21 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 )
         }
 
-        btnBuy.setOnClickListener {
+        tvBuy.setOnClickListener {
             if (!viewModel.verifyProduct) {
                 if (!viewModel.urlBuy.isNullOrEmpty()) {
                     val bottomSheetWebView = BottomSheetWebView(this)
                     bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
                 }
             } else {
-
-                DialogHelper.showConfirm(
-                    this,
-                    "Thông báo",
-                    "Bạn muốn Đăng ký mua hàng chính hãng? Hãy gửi yêu cầu cho chúng tôi, chúng tôi sẽ liên hệ lại khi nhận được thông tin.",
-                    "Hủy",
-                    "Gửi",
-                    true,
-                    object : ConfirmDialogListener {
-                        override fun onDisagree() {
-
-                        }
-
-                        override fun onAgree() {
-                            if (SessionManager.isUserLogged) {
-                                viewModel.registerBuyProduct()
-                            } else {
-                                onRequireLogin()
-                            }
-                        }
-                    })
-
+                requestLogin({
+                    isRefreshData = true
+                    if (viewModel.productDetail?.owner?.verified == true) {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.owner?.pageId ?: -1, "page")
+                    } else {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.manager?.id ?: -1, "page")
+                    }
+                })
             }
         }
 
@@ -813,6 +801,13 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (type == adapter.getListData[i].viewType) {
                 recyclerView.smoothScrollToPosition(i)
             }
+        }
+    }
+
+    override fun onRequireLoginSuccess(requestCode: Int) {
+        super.onRequireLoginSuccess(requestCode)
+        if (requestCode == requestLoginProductDetail) {
+            viewModel.getProductLayout()
         }
     }
 
@@ -1128,6 +1123,11 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         super.onResume()
         isActivityVisible = true
         viewModel.getOrUpdateAds()
+
+        if (isRefreshData) {
+            isRefreshData = false
+            viewModel.getProductLayout()
+        }
     }
 
     override fun onPause() {

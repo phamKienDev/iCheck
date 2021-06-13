@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.campaign.DetailRewardResponse
 import vn.icheck.android.screen.user.shipping.ship.ui.main.AddShipAddressFragment
@@ -21,7 +22,7 @@ import vn.icheck.android.screen.user.shipping.ship.ui.main.SelectShipAddressFrag
 import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 
 @AndroidEntryPoint
-class ShipActivity : AppCompatActivity() {
+class ShipActivity : BaseActivityMVVM() {
 
     companion object {
         const val CART = 1000

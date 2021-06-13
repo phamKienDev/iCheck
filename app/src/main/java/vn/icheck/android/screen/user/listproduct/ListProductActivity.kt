@@ -1,16 +1,19 @@
 package vn.icheck.android.screen.user.listproduct
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_list_product.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.listproduct.adapter.ListProductAdapter
@@ -23,8 +26,9 @@ import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActi
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductView {
+class ListProductActivity : BaseActivityMVVM(), IListProductView {
     private val adapter = ListProductAdapter(this)
+    private val presenter = ListProductPresenter(this@ListProductActivity)
 
     companion object {
         /**
@@ -54,13 +58,13 @@ class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductVi
         }
     }
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_list_product
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list_product)
+        onInitView()
+    }
 
-    override val getPresenter: ListProductPresenter
-        get() = ListProductPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         setupRecyclerView()
         initSwipeLayout()
@@ -190,5 +194,16 @@ class ListProductActivity : BaseActivity<ListProductPresenter>(), IListProductVi
         if (!product.barcode.isNullOrEmpty()) {
             IckProductDetailActivity.start(this, product.barcode!!)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ListProductActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ListProductActivity, isShow)
     }
 }
