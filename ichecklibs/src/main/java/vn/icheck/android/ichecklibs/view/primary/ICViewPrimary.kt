@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import vn.icheck.android.ichecklibs.Constant
 
-class ViewPrimary : View {
+class ICViewPrimary : View {
 
     constructor(context: Context) : super(context) { setup() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { setup() }

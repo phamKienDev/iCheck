@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/size_10"
     android:paddingBottom="@dimen/size_10">
 
-    <vn.icheck.android.ichecklibs.view.primary.ViewPrimary
+    <vn.icheck.android.ichecklibs.view.primary.ICViewPrimary
         android:id="@+id/backgroundVerified"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:drawableStart="@drawable/ic_list_blue_12px"
+            android:drawableStart="@drawable/ic_list_blue_12dp"
             android:drawablePadding="@dimen/size_2"
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
@@ -138,7 +138,7 @@
                 android:id="@+id/tvMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_list_blue_12px"
+                android:drawableStart="@drawable/ic_list_blue_12dp"
                 android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"

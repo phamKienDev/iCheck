@@ -285,7 +285,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvNo.run {
                 visibility = View.VISIBLE
-                setTextColor(ViewHelper.textColorDisableTextUncheckYellowChecked(context))
+                setTextColor(ViewHelper.textColorDisableTextUncheckAccentYellowChecked(context))
 
                 text = if (obj.downVotes > 0) {
                     "Sai (${obj.downVotes})"

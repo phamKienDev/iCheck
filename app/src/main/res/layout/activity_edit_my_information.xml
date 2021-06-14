@@ -148,7 +148,7 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/gioi_tinh" />
 
@@ -179,7 +179,7 @@
                         android:paddingRight="@dimen/size_12"
                         android:text="@string/nam" />
 
-                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckYellowChecked
+                    <RadioButton
                         android:id="@id/rbFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -200,7 +200,7 @@
                         android:paddingRight="@dimen/size_12"
                         android:text="@string/nu" />
 
-                    <vn.icheck.android.ichecklibs.view.disable_text.RadiobuttonDisableUncheckVioletChecked
+                    <RadioButton
                         android:id="@+id/rbGay"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
@@ -225,11 +225,11 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Họ" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
+                <vn.icheck.android.ichecklibs.view.OldFocusableEditText
                     android:id="@+id/edt_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -247,7 +247,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -255,11 +255,11 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Tên" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
+                <vn.icheck.android.ichecklibs.view.OldFocusableEditText
                     android:id="@+id/edt_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -276,7 +276,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -284,7 +284,7 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
@@ -298,7 +298,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     style="@style/Line_Gray_Wall.HorizontalWall"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -306,7 +306,7 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
@@ -352,7 +352,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -360,11 +360,11 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
+                <vn.icheck.android.ichecklibs.view.OldFocusableEditText
                     android:id="@id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -379,7 +379,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     style="@style/Line_Gray_Wall.HorizontalWall"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -387,23 +387,22 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/txtProvince"
                     style="@style/UpdateProfile_Input"
                     android:layout_height="match_parent"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24dp"
                     android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
-                    android:hint="@string/tuy_chon"
-                    android:textColorHint="#434343" />
+                    android:hint="@string/tuy_chon"/>
             </TableRow>
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -411,7 +410,7 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:paddingStart="@dimen/size_12"
                     android:paddingLeft="@dimen/size_12"
@@ -419,18 +418,17 @@
                     android:paddingRight="@dimen/size_32"
                     android:text="@string/quan_huyen" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/txtDistrict"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24dp"
                     android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
-                    android:hint="@string/tuy_chon"
-                    android:textColorHint="#434343" />
+                    android:hint="@string/tuy_chon" />
             </TableRow>
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -438,22 +436,21 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@id/tvWard"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24dp"
                     android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
-                    android:hint="@string/tuy_chon"
-                    android:textColorHint="#434343" />
+                    android:hint="@string/tuy_chon" />
             </TableRow>
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     style="@style/Line_Gray.Horizontal"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -461,11 +458,11 @@
 
             <TableRow>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
-                <vn.icheck.android.ichecklibs.view.disable_text.OldFocusableEdittextDisableHint
+                <vn.icheck.android.ichecklibs.view.OldFocusableEditText
                     android:id="@id/edtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -483,7 +480,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     style="@style/Line_Gray_Wall.HorizontalWall"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -491,7 +488,7 @@
 
             <TableRow android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/facebook" />
 
@@ -533,7 +530,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     style="@style/Line_Gray_Wall.HorizontalWall"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -541,7 +538,7 @@
 
             <TableRow android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
                     android:text="@string/danh_tinh" />
 
@@ -591,6 +588,7 @@
                             android:visibility="gone" />
 
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgArrowDanhTinh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -604,7 +602,7 @@
 
             <TableRow>
 
-                <View
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
                     style="@style/Line_Gray_Wall.HorizontalWall"
                     android:layout_span="2"
                     android:layout_weight="1" />
@@ -612,7 +610,7 @@
 
             <TableRow>
 
-                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableHint
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/txtChangePassword"
                     style="@style/UpdateProfile_Input"
                     android:layout_width="match_parent"

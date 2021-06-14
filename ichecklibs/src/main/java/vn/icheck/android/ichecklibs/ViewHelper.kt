@@ -984,7 +984,7 @@ object ViewHelper {
         return layerDrawble
     }
 
-    fun textColorDisableTextUncheckYellowChecked(context: Context): ColorStateList {
+    fun textColorDisableTextUncheckAccentYellowChecked(context: Context): ColorStateList {
         return createColorStateList(
             Constant.getDisableTextColor(context),
             Constant.getAccentYellowColor(context)
@@ -1041,6 +1041,28 @@ object ViewHelper {
         }
         return icon
     }
+
+    fun textColorDisableTextUncheckLightBlueChecked(context: Context): ColorStateList {
+        return createColorStateList(
+            Constant.getDisableTextColor(context),
+            ContextCompat.getColor(context,R.color.light_blue)
+        )
+    }
+
+    fun textColorDisableTextUncheckYellowChecked(context: Context): ColorStateList {
+        return createColorStateList(
+            Constant.getDisableTextColor(context),
+            ContextCompat.getColor(context,R.color.warning_scan_buy)
+        )
+    }
+
+    fun textColorDisableTextUncheckViolentChecked(context: Context): ColorStateList {
+        return createColorStateList(
+            Constant.getDisableTextColor(context),
+            ContextCompat.getColor(context,R.color.violet_4)
+        )
+    }
+
 
     /*
     *  App Background White

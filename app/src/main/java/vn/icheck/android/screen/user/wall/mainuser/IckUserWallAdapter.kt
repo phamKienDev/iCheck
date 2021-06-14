@@ -165,6 +165,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         isFriendInvitationMeUser = null
 
         binding.tvRequestSent.background=ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
+        binding.btnSetting.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_btn_setting_blue,itemView.context))
 
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)

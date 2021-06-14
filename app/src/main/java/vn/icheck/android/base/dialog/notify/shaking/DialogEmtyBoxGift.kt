@@ -5,7 +5,6 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
@@ -62,7 +61,7 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
                         it.gravity = Gravity.CENTER_VERTICAL
                         it.setTextColor(Constant.getNormalTextColor(context))
                         it.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                        it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12px, 0, 0, 0)
+                        it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_list_blue_12dp, 0, 0, 0)
                         it.text = missions[i].missionName
                     })
                 }

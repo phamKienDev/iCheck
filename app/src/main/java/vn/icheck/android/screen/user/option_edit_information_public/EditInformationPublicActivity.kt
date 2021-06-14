@@ -20,6 +20,7 @@ import vn.icheck.android.constant.USER_WALL_EDIT_PERSONAL
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserPublicInfor
+import vn.icheck.android.util.kotlin.StatusBarUtils
 
 class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
 
@@ -32,9 +33,20 @@ class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
         setContentView(R.layout.activity_edit_information_public)
         initView()
         initRecyclerView()
+        listener()
         listenerGetData()
         viewModel.getPublicInfor()
-        listener()
+    }
+
+    private fun initView() {
+        StatusBarUtils.setOverStatusBarLight(this)
+        txtTitle.text = "Chỉnh sửa thông tin công khai"
+    }
+
+    private fun initRecyclerView() {
+        adapter = ListPrivacyPublicAdapter(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
     private fun listener() {
@@ -52,16 +64,6 @@ class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
                 finish()
             }
         }
-    }
-
-    private fun initView() {
-        txtTitle.text = "Chỉnh sửa thông tin công khai"
-    }
-
-    private fun initRecyclerView() {
-        adapter = ListPrivacyPublicAdapter(this)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
     }
 
     private fun listenerGetData() {

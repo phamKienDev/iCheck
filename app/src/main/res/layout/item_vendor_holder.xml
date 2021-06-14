@@ -100,14 +100,14 @@
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/size_12"
-            android:drawableStart="@drawable/ic_list_blue_12px"
+            android:drawableStart="@drawable/ic_list_blue_12dp"
             android:visibility="visible"
             android:drawablePadding="@dimen/size_2"
             android:textStyle="italic"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_14"
             android:text="Số điện thoại đang cập nhật"
-            android:drawableLeft="@drawable/ic_list_blue_12px" />
+            android:drawableLeft="@drawable/ic_list_blue_12dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAddress"
@@ -125,8 +125,8 @@
                 android:id="@+id/tvMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_list_blue_12px"
-                android:drawableLeft="@drawable/ic_list_blue_12px"
+                android:drawableStart="@drawable/ic_list_blue_12dp"
+                android:drawableLeft="@drawable/ic_list_blue_12dp"
                 android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"

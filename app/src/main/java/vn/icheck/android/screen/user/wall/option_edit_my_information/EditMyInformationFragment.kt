@@ -182,14 +182,41 @@ class EditMyInformationFragment : CoroutineFragment() {
     }
 
     private fun initView() {
-        binding.rbMale.setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(requireContext()))
+        binding.rbMale.setTextColor(ViewHelper.textColorDisableTextUncheckLightBlueChecked(requireContext()))
+        binding.rbFemale.setTextColor(ViewHelper.textColorDisableTextUncheckYellowChecked(requireContext()))
+        binding.rbGay.setTextColor(ViewHelper.textColorDisableTextUncheckViolentChecked(requireContext()))
+
         binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(requireContext())
 
-//        ickUserWallViewModel.getFacebook().observe(viewLifecycleOwner, {
-//            if (!it?.trim().isNullOrEmpty()) {
-//                binding.edtConnectFb.setText("Đã xác thực")
-//            }
-//        })
+        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,requireContext()).apply {
+            binding.txtProvince.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.txtDistrict.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.tvWard.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.txtChangePassword.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+        }
+
+        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_right_light_blue_24dp,requireContext()).apply {
+            binding.edtConnectFb.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
+            binding.imgArrowDanhTinh.setImageResource(this)
+        }
+
+        Constant.getDisableTextColor(requireContext()).apply {
+            binding.edtLastname.setHintTextColor(this)
+            binding.edtFirstname.setHintTextColor(this)
+            binding.edtEmail.setHintTextColor(this)
+            binding.edtAddress.setHintTextColor(this)
+        }
+
+        Constant.getNormalTextColor(requireContext()).apply {
+            binding.edtLastname.setTextColor(this)
+            binding.edtFirstname.setTextColor(this)
+            binding.txtBirthday.setTextColor(this)
+            binding.edtPhone.setTextColor(this)
+            binding.edtEmail.setTextColor(this)
+            binding.edtAddress.setTextColor(this)
+        }
+
+
         binding.edtConnectFb.setOnClickListener {
             if (SessionManager.session.user?.linkedFbId.isNullOrEmpty()) {
                 if (!ickUserWallViewModel.inAction) {
@@ -277,6 +304,11 @@ class EditMyInformationFragment : CoroutineFragment() {
 
                     binding.txtDistrict.setText("Tùy chọn")
                     binding.tvWard.setText("Tùy chọn")
+
+                    Constant.getDisableTextColor(requireContext()).apply {
+                        binding.txtDistrict.setTextColor(this)
+                        binding.tvWard.setTextColor(this)
+                    }
                     binding.edtAddress.setText("")
 
                     ickUserWallViewModel.editUserInfo.remove(DISTRICT_ID)
@@ -297,6 +329,7 @@ class EditMyInformationFragment : CoroutineFragment() {
                             binding.txtDistrict.text = city.name
 
                             binding.tvWard.setText("Tùy chọn")
+                            binding.tvWard.setTextColor(Constant.getDisableTextColor(requireContext()))
                             binding.edtAddress.setText("")
 
                             ickUserWallViewModel.editUserInfo.remove(WARD_ID)
@@ -563,12 +596,18 @@ class EditMyInformationFragment : CoroutineFragment() {
             }
             if (!user.data?.city?.name.isNullOrEmpty()) {
                 binding.txtProvince.text = user.data?.city?.name
+            }else{
+                binding.txtProvince.setHintTextColor(Constant.getDisableTextColor(requireContext()))
             }
             if (!user.data?.district?.name.isNullOrEmpty()) {
                 binding.txtDistrict.text = user.data?.district?.name
+            }else{
+                binding.txtDistrict.setHintTextColor(Constant.getDisableTextColor(requireContext()))
             }
             if (!user.data?.ward?.name.isNullOrEmpty()) {
                 binding.tvWard.text = user.data?.ward?.name
+            }else{
+                binding.tvWard.setHintTextColor(Constant.getDisableTextColor(requireContext()))
             }
             if (!user.data?.address.isNullOrEmpty()) {
                 binding.edtAddress.setText(user.data?.address)
