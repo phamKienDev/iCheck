@@ -41,78 +41,34 @@ object CampaignLoyaltyHelper {
                             })
                         }
 
-                    if (obj.data?.has_chance_code == true) {
-                        listener.onClick(obj.data!!)
-                    } else {
-                        if (SessionManager.isLogged) {
-                            when (obj.data?.type) {
-                                "receive_gift" -> {
-                                    getReceiveGift(activity, barcode, null, obj.data?.name ?: "")
-                                }
-                                "accumulate_point" -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, barcode, null)
-                                }
-                                "accumulation_long_term_point" -> {
-                                    getPointLongTime(activity, obj.data!!, null, barcode, null)
-                                }
-                                else -> {
-                                    getMiniGame(activity, obj.data!!, target = barcode)
-                                }
-                            }
+                        if (obj.data?.has_chance_code == true) {
+                            listener.onClick(obj.data!!)
                         } else {
-                            /**
-                             * Dialog Login
-                             */
-                            callback.showDialogLogin(obj.data!!, null)
+                            if (SessionManager.isLogged) {
+                                when (obj.data?.type) {
+                                    "receive_gift" -> {
+                                        getReceiveGift(activity, barcode, null, obj.data?.name
+                                                ?: "")
+                                    }
+                                    "accumulate_point" -> {
+                                        getAccumulatePoint(activity, obj.data!!, null, barcode, null)
+                                    }
+                                    "accumulation_long_term_point" -> {
+                                        getPointLongTime(activity, obj.data!!, null, barcode, null)
+                                    }
+                                    else -> {
+                                        getMiniGame(activity, obj.data!!, target = barcode)
+                                    }
+                                }
+                            } else {
+                                /**
+                                 * Dialog Login
+                                 */
+                                callback.showDialogLogin(obj.data!!, null)
+                            }
                         }
                     }
                 }
-            }
-
-            override fun onError(error: ICKBaseResponse?) {
-
-            }
-        })
-    }
-
-    fun getCampaignQrMar(activity: FragmentActivity, campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null, callback: ILoginListener) {
-        CampaignRepository().getCampaignQrMar(campaignId
-                ?: campaignCode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
-            override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
-                if (obj.data != null) {
-                    if (obj.data?.introduction_image != null) {
-                        DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
-                            override fun onDismiss() {
-
-                            }
-                        })
-                    }
-
-                    if (obj.data?.has_chance_code == false) {
-                        if (SessionManager.isLogged) {
-                            when (obj.data?.type) {
-                                CampaignType.RECEIVE_GIFT_QR_MAR -> {
-                                    getReceiveGift(activity, nameCampaign = obj.data?.name ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
-                                }
-                                CampaignType.ACCUMULATE_POINT_QR_MAR -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, null, null)
-                                }
-                                CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
-                                    getPointLongTime(activity, obj.data!!, null, null, null)
-                                }
-                                else -> {
-                                    getMiniGame(activity, obj.data!!)
-                                }
-                            }
-                        } else {
-                            /**
-                             * Dialog Login
-                             */
-                            callback.showDialogLogin(obj.data!!, null)
-                        }
-                    }
-                }
-            }
 
                 override fun onError(error: ICKBaseResponse?) {
 
@@ -120,6 +76,100 @@ object CampaignLoyaltyHelper {
             })
         }
 
+        fun getCampaignQrMar(activity: FragmentActivity, campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null, callback: ILoginListener) {
+            CampaignRepository().getCampaignQrMar(campaignId
+                    ?: campaignCode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
+                override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
+                    if (obj.data != null) {
+                        if (obj.data?.introduction_image != null) {
+                            DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
+                                override fun onDismiss() {
+
+                                }
+                            })
+                        }
+
+                        if (obj.data?.has_chance_code == false) {
+                            if (SessionManager.isLogged) {
+                                when (obj.data?.type) {
+                                    CampaignType.RECEIVE_GIFT_QR_MAR -> {
+                                        getReceiveGift(activity, nameCampaign = obj.data?.name
+                                                ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
+                                    }
+                                    CampaignType.ACCUMULATE_POINT_QR_MAR -> {
+                                        getAccumulatePoint(activity, obj.data!!, null, null, null)
+                                    }
+                                    CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
+                                        getPointLongTime(activity, obj.data!!, null, null, null)
+                                    }
+                                    else -> {
+                                        getMiniGame(activity, obj.data!!)
+                                    }
+                                }
+                            } else {
+                                /**
+                                 * Dialog Login
+                                 */
+                                callback.showDialogLogin(obj.data!!, null)
+                            }
+                        }
+                    }
+                }
+
+                override fun onError(error: ICKBaseResponse?) {
+
+                }
+            })
+        }
+
+    }
+
+    fun getCampaignQrMar(activity: FragmentActivity, campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null, callback: ILoginListener) {
+        activity.lifecycleScope.launch {
+            CampaignRepository().getCampaignQrMar(campaignId
+                    ?: campaignCode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
+                override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
+                    if (obj.data != null) {
+                        if (obj.data?.introduction_image != null) {
+                            DialogHelperGame.dialogAdsCampaign(activity, obj.data?.introduction_image!!.original, object : IDismissDialog {
+                                override fun onDismiss() {
+
+                                }
+                            })
+                        }
+
+                        if (obj.data?.has_chance_code == false) {
+                            if (SessionManager.isLogged) {
+                                when (obj.data?.type) {
+                                    CampaignType.RECEIVE_GIFT_QR_MAR -> {
+                                        getReceiveGift(activity, nameCampaign = obj.data?.name
+                                                ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
+                                    }
+                                    CampaignType.ACCUMULATE_POINT_QR_MAR -> {
+                                        getAccumulatePoint(activity, obj.data!!, null, null, null)
+                                    }
+                                    CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
+                                        getPointLongTime(activity, obj.data!!, null, null, null)
+                                    }
+                                    else -> {
+                                        getMiniGame(activity, obj.data!!)
+                                    }
+                                }
+                            } else {
+                                /**
+                                 * Dialog Login
+                                 */
+                                callback.showDialogLogin(obj.data!!, null)
+                            }
+                        }
+                    }
+                }
+
+                override fun onError(error: ICKBaseResponse?) {
+
+                }
+            })
+        }
     }
 
     fun checkCodeLoyalty(activity: FragmentActivity, data: ICKLoyalty, code: String, barcode: String, listener: IRemoveHolderInputLoyaltyListener?, callback: ILoginListener) {
@@ -306,7 +356,7 @@ object CampaignLoyaltyHelper {
                        barcode: String? = null, code: String? = null,
                        nameCampaign: String,
                        campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-                       listener: IRemoveHolderInputLoyaltyListener?=null
+                       listener: IRemoveHolderInputLoyaltyListener? = null
     ) {
         CampaignRepository().postReceiveGift(barcode, code, campaignId, campaignCode, giftCode, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
@@ -388,9 +438,10 @@ object CampaignLoyaltyHelper {
             code: String? = null,
             target: String? = null,
             campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-            listener: IRemoveHolderInputLoyaltyListener?=null
+            listener: IRemoveHolderInputLoyaltyListener? = null
     ) {
-        CampaignRepository().postGameGift(data.id ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
+        CampaignRepository().postGameGift(data.id
+                ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
             override fun onSuccess(obj: ICKResponse<DataReceiveGameResp>) {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {
@@ -476,7 +527,7 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit){
+    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit) {
         if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
             error(activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
@@ -484,9 +535,10 @@ object CampaignLoyaltyHelper {
 
         CampaignRepository().scanVoucher(voucher, object : ICApiListener<ICKResponse<ICKScanVoucher>> {
             override fun onSuccess(obj: ICKResponse<ICKScanVoucher>) {
-                if (obj.statusCode != 200){
-                    error(obj.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                }else{
+                if (obj.statusCode != 200) {
+                    error(obj.message
+                            ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                } else {
                     success()
                 }
             }
