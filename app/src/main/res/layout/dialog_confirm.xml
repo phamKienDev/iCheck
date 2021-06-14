@@ -36,14 +36,13 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/txtMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:textStyle="normal"
@@ -52,12 +51,11 @@
             card_view:layout_constraintTop_toBottomOf="@id/txtTitle"
             tools:text="Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/viewBottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginTop="@dimen/size_20"
-            android:background="#33000000"
             card_view:layout_constraintTop_toBottomOf="@id/txtMessage" />
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
@@ -75,11 +73,10 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="@id/viewCenter" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/viewCenter"
             android:layout_width="@dimen/size_0_5"
             android:layout_height="@dimen/size_40"
-            android:background="#33000000"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"

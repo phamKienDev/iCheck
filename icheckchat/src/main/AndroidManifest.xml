@@ -17,6 +17,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.detail.ChatSocialDetailActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
     </application>
 

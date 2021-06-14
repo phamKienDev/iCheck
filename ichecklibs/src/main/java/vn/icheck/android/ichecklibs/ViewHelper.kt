@@ -10,8 +10,10 @@ import android.view.Gravity
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.graphics.drawable.shapes.OvalShape
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -495,6 +497,22 @@ object ViewHelper {
         return icon
     }
 
+    fun ImageView.setImageColorPrimary(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
+        }
+        this.setImageResource(icon)
+        return icon
+    }
+
+    fun AppCompatImageButton.setImageColorPrimary(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
+        }
+        this.setImageResource(icon)
+        return icon
+    }
+
     fun setCheckedPrimary(uncheck: Drawable,checked:Drawable, context: Context): Drawable {
         DrawableCompat.setTint(uncheck, ContextCompat.getColor(context,R.color.grayB4))
         DrawableCompat.setTint(checked, Constant.getPrimaryColor(context))
@@ -608,6 +626,13 @@ object ViewHelper {
 
     fun setSecondaryHtmlString(string: String): String {
         return string.replace("#3c5a99", Constant.getSecondaryColorCode)
+    }
+
+    fun setImageColorSecondary(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getSecondaryColor(context))
+        }
+        return icon
     }
 
 
@@ -1008,6 +1033,18 @@ object ViewHelper {
         Constant.getSecondTextColor(context),
         Constant.getNormalTextColor(context)
     )
+
+    fun setImageColorNormalText(drawable: Drawable, context: Context): Drawable {
+        DrawableCompat.setTint(drawable, Constant.getNormalTextColor(context))
+        return drawable
+    }
+
+    fun setImageColorNormalText(icon: Int, context: Context): Int {
+        ContextCompat.getDrawable(context, icon)?.let {
+            DrawableCompat.setTint(it, Constant.getNormalTextColor(context))
+        }
+        return icon
+    }
 
     /*
     * Second Text

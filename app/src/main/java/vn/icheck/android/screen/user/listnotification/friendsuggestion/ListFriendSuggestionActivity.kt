@@ -34,6 +34,8 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setupViewModel()
         setupRecyclerView()
         setupSwipeLayout()
+
+        edt_search.setTextColor(Constant.getNormalTextColor(this))
     }
 
     private fun setupToolbar() {
@@ -72,14 +74,14 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         adapter.disableLoadMore()
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendSuggestionActivity, vn.icheck.android.ichecklibs.R.color.grayF0)
+            paint.color = Constant.getLineColor(this@ListFriendSuggestionActivity)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)
     }
 
     private fun setupSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = Constant.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {

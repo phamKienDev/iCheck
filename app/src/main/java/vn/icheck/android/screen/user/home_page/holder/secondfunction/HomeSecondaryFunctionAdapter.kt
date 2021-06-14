@@ -19,7 +19,10 @@ import vn.icheck.android.network.models.ICThemeFunction
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunction> = mutableListOf(), private val isUseTheme: Boolean = true) : RecyclerView.Adapter<HomeSecondaryFunctionAdapter.ViewHolder>() {
+class HomeSecondaryFunctionAdapter(
+    private val listData: MutableList<ICThemeFunction> = mutableListOf(),
+    private val isUseTheme: Boolean = true
+) : RecyclerView.Adapter<HomeSecondaryFunctionAdapter.ViewHolder>() {
 
     fun setData(list: MutableList<ICThemeFunction>) {
         listData.clear()
@@ -35,7 +38,8 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
         holder.bind(listData[position])
     }
 
-    inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICThemeFunction>(LayoutInflater.from(parent.context).inflate(R.layout.item_second_functions_holder, parent, false)) {
+    inner class ViewHolder(parent: ViewGroup) :
+        BaseViewHolder<ICThemeFunction>(LayoutInflater.from(parent.context).inflate(R.layout.item_second_functions_holder, parent, false)) {
 
         override fun bind(obj: ICThemeFunction) {
             (itemView as ConstraintLayout).run {
@@ -65,11 +69,11 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
                 (getChildAt(1) as AppCompatTextView).run {
                     text = obj.label
 
-                    if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
-                        setTextColor(Color.parseColor(obj.label_color))
-                    } else {
-                        setTextColor(Constant.getSecondTextColor(context))
-                    }
+//                    if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
+//                        setTextColor(Color.parseColor(obj.label_color))
+//                    } else {
+//                    setTextColor(Constant.getSecondTextColor(context))
+//                    }
                 }
 
                 (getChildAt(2) as AppCompatImageView).run {

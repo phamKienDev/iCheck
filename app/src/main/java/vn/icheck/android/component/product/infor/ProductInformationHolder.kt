@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_information.view.*
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemProductInformationBinding
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -29,6 +30,7 @@ class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInform
     fun bind(obj: ICProductInformations) {
         binding.tvTitle.text = obj.title
         binding.viewBackground.background= ViewHelper.bgProductInfomation(itemView.context)
+        binding.tvViewAll.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorSecondary(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context),0)
 
         if (!obj.shortContent.isNullOrEmpty()) {
             binding.tvContent.beVisible()
@@ -67,6 +69,8 @@ class ProductInformationHolder(parent: ViewGroup, val binding: ItemProductInform
     }
 
     fun bind(obj: ICInfo) {
+        binding.tvViewAll.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorSecondary(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context),0)
+
         binding.tvTitle.text = obj.title
 
         if (!obj.content.isNullOrEmpty()) {

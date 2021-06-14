@@ -24,15 +24,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_xem_them"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_12"
         android:visibility="gone"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
+        android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
         android:gravity="center_vertical"
         android:text="@string/xem_them"
+        android:fontFamily="@font/barlow_medium"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_14" />
 
 </LinearLayout>

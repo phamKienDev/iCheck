@@ -14,6 +14,7 @@ import vn.icheck.android.component.product.enterprise.ICSocialNetworkModel
 import vn.icheck.android.component.product.enterprise.SocialNetworkAdapter
 import vn.icheck.android.databinding.ItemPageInfoBinding
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICPage
@@ -34,9 +35,18 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
         holder.bind(listData[position])
     }
 
-    inner class ViewHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = ItemPageInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = ItemPageInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(obj: ICPage) {
+
+            ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp, itemView.context).apply {
+                binding.tvPhone.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
+                binding.tvDangCapNhatSDT.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
+                binding.tvAddress.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
+                binding.tvMST.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
+            }
+
             if (listData.size < 2) {
                 binding.container.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT)
             } else {
@@ -52,11 +62,13 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
             }
 
-            binding.imgDetail.setImageResource(if (obj.background == R.color.grayB4) {
-                R.drawable.ic_arrow_right_gray_28px
-            } else {
-                R.drawable.ic_arrow_right_white_bg_blue_28px
-            })
+            binding.imgDetail.setImageResource(
+                if (obj.background == R.color.grayB4) {
+                    R.drawable.ic_arrow_right_gray_28px
+                } else {
+                    R.drawable.ic_arrow_right_white_bg_blue_28px
+                }
+            )
 
             binding.backgroundVerified.setBackgroundColor(ContextCompat.getColor(binding.root.context, obj.background))
 

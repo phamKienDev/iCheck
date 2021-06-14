@@ -164,13 +164,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_130"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_gps_off_24px"
                 android:drawableLeft="@drawable/ic_gps_off_24px"
                 android:drawablePadding="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Sống tại"
                 android:textSize="@dimen/font_12" />
@@ -194,13 +193,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_130"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_register_name_gray_24px"
                 android:drawableLeft="@drawable/ic_register_name_gray_24px"
                 android:drawablePadding="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Tài khoản"
                 android:textSize="@dimen/font_12" />
@@ -223,13 +221,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_130"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_register_birthday_off_24px"
                 android:drawableLeft="@drawable/ic_register_birthday_off_24px"
                 android:drawablePadding="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Đang theo dõi"
                 android:textSize="@dimen/font_12" />
@@ -252,13 +249,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:orientation="horizontal">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="@dimen/size_130"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_register_birthday_off_24px"
                 android:drawableLeft="@drawable/ic_register_birthday_off_24px"
                 android:drawablePadding="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="Người theo dõi"
                 android:textSize="@dimen/font_12" />

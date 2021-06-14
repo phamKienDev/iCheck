@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -36,6 +37,8 @@ class BookmarkHistoryActivity : AppCompatActivity() {
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
         EventBus.getDefault().register(this)
+
+        setupView()
 
         binding.header.txtTitle simpleText "Sản phẩm yêu thích"
         binding.header.imgBack.setOnClickListener {
@@ -104,6 +107,11 @@ class BookmarkHistoryActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setupView() {
+        binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(this))
+        binding.edtSearch.setTextColor(Constant.getNormalTextColor(this))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

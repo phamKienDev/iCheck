@@ -9,6 +9,7 @@ import vn.icheck.android.base.activity.BaseActivityView
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.createqrcode.content.CreateQrCodeContentActivity
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 /**

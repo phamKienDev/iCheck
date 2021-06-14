@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +28,7 @@
         android:minLines="2"
         android:layout_marginLeft="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
+        android:textColor="@color/black_21"
         android:layout_marginBottom="@dimen/size_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

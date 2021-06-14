@@ -122,7 +122,7 @@
             android:textStyle="italic"
             android:visibility="visible" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvAddress"
             style="@style/style_text_barlow_page"
             android:hint="@string/dia_chi_dang_cap_nhat" />
@@ -134,7 +134,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -142,7 +142,6 @@
                 android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/darkGray1"
                 android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 

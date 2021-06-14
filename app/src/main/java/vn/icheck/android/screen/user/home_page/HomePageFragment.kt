@@ -811,6 +811,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         group_notification.beVisible()
                         tv_show_all_reminders.text = "Xem tất cả lời nhắc (${viewModel.getRemindersCount()})"
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
+                        tv_action.setCompoundDrawablesWithIntrinsicBounds(0,0,vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_right_light_blue_24dp,requireContext()),0)
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {
                             tv_action.text = it?.data?.rows?.firstOrNull()?.label
                         } else {

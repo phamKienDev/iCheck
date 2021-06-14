@@ -68,7 +68,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@+id/tv_no_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

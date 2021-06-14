@@ -59,7 +59,7 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
 
         private fun createView(context: Context): LinearLayout {
             return LinearLayout(context).also { layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
                 layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
 

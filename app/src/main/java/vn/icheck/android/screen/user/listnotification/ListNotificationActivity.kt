@@ -20,6 +20,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.models.ICNotification
@@ -55,7 +56,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
             onBackPressed()
         }
 
-        imgAction.setImageResource(R.drawable.ic_read_all_light_blue_24dp)
+        imgAction.setImageColorPrimary(R.drawable.ic_read_all_light_blue_24dp,this)
         imgAction.beVisible()
 
         imgAction.setOnClickListener {
@@ -66,7 +67,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(ListNotificationViewModel::class.java)
 
-        viewModel.onAddData.observe(this, Observer {
+        viewModel.onAddData.observe(this, {
             closeLoading()
             if (it.data is ICNotification) {
                 viewModel.arrNotify.add(it.data as ICNotification)
@@ -74,7 +75,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
             adapter.addItem(it)
         })
 
-        viewModel.onUpdateData.observe(this, Observer {
+        viewModel.onUpdateData.observe(this, {
             if (it.data is ICNotification) {
                 viewModel.arrNotify.add(it.data as ICNotification)
             }
@@ -86,12 +87,12 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
             adapter.updateItem(it)
         })
 
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             closeLoading()
             adapter.setError(it.icon, it.message.toString(), it.button)
         })
 
-        viewModel.onStatus.observe(this, Observer {
+        viewModel.onStatus.observe(this, {
             when (it) {
                 ICMessageEvent.Type.ON_SHOW_LOADING -> {
                     DialogHelper.showLoading(this)
@@ -102,13 +103,13 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
             }
         })
 
-        viewModel.onMarkAllSuccess.observe(this, Observer {
+        viewModel.onMarkAllSuccess.observe(this, {
             adapter.markReadAll()
             showShortSuccessToast(it)
 //            DialogHelper.showSpecialNotification(this@ListNotificationActivity, null, it, false)
         })
 
-        viewModel.onShowErrorMessage.observe(this, Observer {
+        viewModel.onShowErrorMessage.observe(this, {
             showLongError(it)
         })
     }

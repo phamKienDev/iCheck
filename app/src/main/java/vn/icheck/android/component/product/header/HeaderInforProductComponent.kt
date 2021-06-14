@@ -13,6 +13,7 @@ import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 
@@ -27,6 +28,10 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
             } else {
                 setImageResource(R.drawable.ic_like_off_24dp)
             }
+        }
+        itemView.img_share.apply {
+            background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
+            setImageColorPrimary(R.drawable.ic_share_product_24dp,itemView.context)
         }
 
         when (productHeaderModel.icBarcodeProduct.type) {

@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -470,8 +472,10 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         if (!post.expressive.isNullOrEmpty()) {
             tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_on_24dp, 0, 0, 0)
+            tvLike.setTextColor(ContextCompat.getColor(this,R.color.red_like_question))
         } else {
             tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
+            tvLike.setTextColor(ContextCompat.getColor(this,R.color.black_75))
         }
     }
 
@@ -603,7 +607,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_camera_on_24px,this))
+            imgCamera.setImageColorPrimary(R.drawable.ic_camera_off_vector_24dp,this)
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }

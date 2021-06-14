@@ -158,6 +158,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun setupView() {
         containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        edtContent.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
     }
 
     private fun setupListener() {

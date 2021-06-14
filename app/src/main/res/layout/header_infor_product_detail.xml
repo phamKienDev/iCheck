@@ -30,7 +30,7 @@
             android:layout_marginRight="@dimen/size_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_share_product" />
+            tools:srcCompat="@drawable/ic_share_product_24dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_fav"

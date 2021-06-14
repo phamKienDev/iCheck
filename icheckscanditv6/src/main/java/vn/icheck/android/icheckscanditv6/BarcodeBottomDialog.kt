@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.icheckscanditv6.databinding.IckBarcodeBottomBinding
 
@@ -67,7 +68,8 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.root.background=ViewHelper.bgWhiteCornersTop16(requireContext())
+        setupView()
+
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }
@@ -91,6 +93,10 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
                 submitBarcode()
             }
         }
+    }
+
+    private fun setupView() {
+        binding.root.background = ViewHelper.bgWhiteCornersTop16(requireContext())
     }
 
     private fun submitBarcode() {

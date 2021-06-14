@@ -76,7 +76,7 @@ class UtilitiesAdapter(callbank: IRecyclerViewCallback) : RecyclerViewAdapter<IC
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                     it.setMargins(SizeHelper.size12, SizeHelper.size10, 0, 0)
                 }
-                it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(it.context))
+                it.setTextColor(Constant.getSecondaryColor(it.context))
                 it.textSize = 16f
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
             })

@@ -25,9 +25,7 @@ import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ToastUtils
 
-class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)
-) {
+class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)) {
     private var listener: View.OnClickListener? = null
 
     override fun bind(obj: ICNotification) {

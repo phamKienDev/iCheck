@@ -52,6 +52,7 @@ class CreateMessageQrCodeFragment : BaseCreateQrCodeFragment<CreateMessageQrCode
 
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_phonebook_24dp,requireContext()),0)
     }
 
     private fun initListener() {

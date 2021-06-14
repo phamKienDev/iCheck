@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCriteriaReview
 
 class ReviewBottomSheetAdapter(val listData: List<ICCriteriaReview>, val isClick: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,6 +29,7 @@ class ReviewBottomSheetAdapter(val listData: List<ICCriteriaReview>, val isClick
 
     inner class ReviewBottomSheetViewHolder(view: View) : BaseViewHolder<ICCriteriaReview>(view) {
         override fun bind(obj: ICCriteriaReview) {
+            itemView.tvVote.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp, itemView.context),0,0,0)
             if (!obj.name.isNullOrEmpty()) {
                 itemView.tvVote.text = obj.name
             } else {

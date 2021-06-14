@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Giày thể thao cao cổ Converse ( 1 dòng)..." />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_barcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,9 +44,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:drawablePadding="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="#828282"
         app:drawableLeftCompat="@drawable/ic_barcode_gray_18px"
         app:drawableStartCompat="@drawable/ic_barcode_gray_18px"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
         app:layout_constraintVertical_bias="0.0" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider38"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
@@ -117,7 +115,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_16"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
+        android:fontFamily="@font/barlow_medium"
         android:maxLines="1"
         android:text="Giá chưa được cập nhật"
         app:layout_constraintBottom_toBottomOf="parent"

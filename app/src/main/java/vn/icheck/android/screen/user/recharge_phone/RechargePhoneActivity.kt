@@ -87,6 +87,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     private fun initView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
         tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_phonebook_24dp,this),0)
 
         if (SessionManager.isUserLogged) {
             tv1.visibility = View.VISIBLE

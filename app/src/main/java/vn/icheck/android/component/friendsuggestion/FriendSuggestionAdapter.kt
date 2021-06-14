@@ -3,7 +3,6 @@ package vn.icheck.android.component.friendsuggestion
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.network.models.ICFriendSuggestion
 import vn.icheck.android.network.models.ICUser
 
 class FriendSuggestionAdapter(val maxItem:Int = -1) : RecyclerView.Adapter<FriendSuggestionHolder>() {
@@ -34,7 +33,7 @@ class FriendSuggestionAdapter(val maxItem:Int = -1) : RecyclerView.Adapter<Frien
     override fun onBindViewHolder(holder: FriendSuggestionHolder, position: Int) {
         holder.bind(listData[position])
 
-        holder.setOnRemoveListener(View.OnClickListener {
+        holder.setOnRemoveListener {
             listData.removeAt(position)
 
             if (listData.isNotEmpty()) {
@@ -43,6 +42,6 @@ class FriendSuggestionAdapter(val maxItem:Int = -1) : RecyclerView.Adapter<Frien
             } else {
                 listener?.onClick(null)
             }
-        })
+        }
     }
 }

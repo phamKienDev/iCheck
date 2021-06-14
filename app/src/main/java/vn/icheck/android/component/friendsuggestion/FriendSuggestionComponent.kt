@@ -45,13 +45,13 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                 adapter = friendRequestAdapter
                 friendRequestAdapter.setData(obj)
 
-                friendRequestAdapter.setOnRemoveListener(View.OnClickListener {
+                friendRequestAdapter.setOnRemoveListener {
                     listener?.onClick(null)
-                })
+                }
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.setColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
+                    paint.color = Constant.getLineColor(itemView.context)
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)
@@ -67,9 +67,9 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
 
         private fun createView(context: Context) : LinearLayout {
             return LinearLayout(context).also {layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(layoutParent.context))
+                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also {layoutTitle ->
@@ -77,7 +77,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                     layoutTitle.orientation = LinearLayout.HORIZONTAL
                     layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                    val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+                    val secondaryColor = Constant.getSecondaryColor(context)
 
                     layoutTitle.addView(ViewHelper.createText(context,
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
@@ -105,7 +105,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                 // List
                 layoutParent.addView(RecyclerView(context).apply {
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                        topMargin = SizeHelper.size10
+                        topMargin = SizeHelper.size5
                     }
                     layoutManager = LinearLayoutManager(context)
                 })

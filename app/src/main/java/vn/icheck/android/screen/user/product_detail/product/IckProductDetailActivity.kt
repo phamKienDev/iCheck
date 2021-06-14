@@ -44,6 +44,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
@@ -259,14 +260,14 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         layoutStatus.visibility = View.VISIBLE
         layoutToolbarAlpha.alpha = 1f
         imgLike.beInvisible()
-        imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
+        imgAction.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,this)
     }
 
     private fun hideLayoutStatus() {
         layoutStatus.visibility = View.GONE
         layoutToolbarAlpha.alpha = 0f
         imgLike.beVisible()
-        imgAction.setImageResource(R.drawable.ic_more_light_blue_24dp)
+        imgAction.setImageColorPrimary(R.drawable.ic_more_light_blue_24dp,this)
     }
 
     private fun setupViewModel() {

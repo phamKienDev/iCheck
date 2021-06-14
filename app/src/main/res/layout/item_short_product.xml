@@ -18,18 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_default_square" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvTitle"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:maxLines="2"
         android:singleLine="false"
-        android:textColor="#434343"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgProduct"

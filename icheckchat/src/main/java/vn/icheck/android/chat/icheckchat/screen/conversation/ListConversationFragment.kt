@@ -65,6 +65,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
         initRecyclerView()
         initSwipeLayout()
+        initView()
         initListener()
         initEditText()
         setOnClick()
@@ -88,6 +89,10 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         binding.swipeRefresh.post {
             getData()
         }
+    }
+
+    private fun initView() {
+        binding.edtSearch.setTextColor(Constant.getNormalTextColor(requireContext()))
     }
 
     private fun initListener() {

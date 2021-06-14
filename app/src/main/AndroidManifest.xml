@@ -224,12 +224,14 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.info.AppInfoActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.campaign_onboarding.CampaignOnboardingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.contact.ContactActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.wall.manage_page.my_follow_page.MyFollowPageActivity"
@@ -459,7 +461,7 @@
         <activity
             android:name=".screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.listnotification.friendrequest.ListFriendRequestActivity"
@@ -788,6 +790,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.setting.SettingsActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.missiondetail.MissionDetailActivity"
@@ -824,7 +827,7 @@
             android:name=".screen.user.createqrcode.home.CreateQrCodeHomeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.createqrcode.content.CreateQrCodeContentActivity"

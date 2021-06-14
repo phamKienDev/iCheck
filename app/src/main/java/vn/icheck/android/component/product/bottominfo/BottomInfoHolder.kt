@@ -24,6 +24,12 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
         itemView.rcvContacSetting.adapter = adapter
         adapter.setListData(bottomModel.list)
 
+        ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp,itemView.context).apply {
+            itemView.tvPhone.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
+            itemView.tvEmail.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
+            itemView.tvMst.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
+        }
+
         itemView.tvAddress.text = productContact.find { it.key == "product-contact.address" }?.value ?: itemView.context.getString(R.string.dia_chi_icheck)
         itemView.tvMst.text = itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.tax-code" }?.value ?: "0106875900")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

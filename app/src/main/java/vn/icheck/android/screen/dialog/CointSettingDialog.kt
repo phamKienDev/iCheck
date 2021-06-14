@@ -1,6 +1,9 @@
 package vn.icheck.android.screen.dialog
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_setting_point.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
@@ -16,13 +19,12 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             setButton(true)
         }
 
-        dialog.txtSettingAgain.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        setupView()
 
         dialog.txtBegin.text = begin
         dialog.txtEnd.text = end
 
-        dialog.txtBegin.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
-        dialog.txtEnd.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+
 
         when (type) {
             1 -> {
@@ -92,6 +94,23 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
         }
 
         dialog.show()
+    }
+
+    private fun setupView() {
+        dialog.txtSettingAgain.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        dialog.txtBegin.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        dialog.txtEnd.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+
+        dialog.txtBegin.setTextColor(Constant.getNormalTextColor(dialog.context))
+        dialog.txtEnd.setTextColor(Constant.getNormalTextColor(dialog.context))
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ViewHelper.createColorStateList(ContextCompat.getColor(dialog.context,R.color.grayB4),Constant.getPrimaryColor(dialog.context)).apply {
+                dialog.radioAll.buttonTintList=this
+                dialog.radioXuRa.buttonTintList=this
+                dialog.radioXuVao.buttonTintList=this
+            }
+        }
     }
 
     private fun settingAgain() {

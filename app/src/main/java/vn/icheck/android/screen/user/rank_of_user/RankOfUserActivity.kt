@@ -92,7 +92,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
                 Constant.USER_LEVEL_GOLD -> {
                     tvPoint.text = "${score} Điểm"
-                    tvPoint.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentYellowColor(this))
+                    tvPoint.setTextColor(Color.parseColor("#ffb800"))
                     tvNameRank.text = "Thành viên Vàng"
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_gold_8)
@@ -100,7 +100,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
                 Constant.USER_LEVEL_DIAMOND -> {
                     tvPoint.text = "${score} Điểm"
-                    tvPoint.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+                    tvPoint.setTextColor(Color.parseColor("#057dda"))
                     tvNameRank.text = "Thành viên Kim cương"
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_diamond_8)

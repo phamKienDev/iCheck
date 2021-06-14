@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.item_load_more.view.*
 import kotlinx.android.synthetic.main.item_message_campaign.view.*
 import kotlinx.android.synthetic.main.item_user_follow.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
@@ -204,25 +208,42 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                         itemView.tv_related_friend.visibility = View.INVISIBLE
                     }
                     MAIN_USER_NOT_FRIEND -> {
-                        if (RelationshipManager.checkMyFriendInvitation(item.id ?: 0L)) {
-                            itemView.btnMessenger.visibility = View.INVISIBLE
-                            itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
-                            itemView.layoutAddFriend.visibility = View.INVISIBLE
+                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
+                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList, (item.id ?: 0L).toString(), object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.value != null && snapshot.value is Long) {
+                                        itemView.btnMessenger.visibility = View.INVISIBLE
+                                        itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
+                                        itemView.layoutAddFriend.visibility = View.INVISIBLE
+                                    } else {
+                                        checkPrivacyConfig(item)
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    checkPrivacyConfig(item)
+                                }
+                            })
                         } else {
-                            if (item.userPrivacyConfig?.whoInviteFriend == "ONLY_ME") {
-                                itemView.btnMessenger.visibility = View.INVISIBLE
-                                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                                itemView.layoutAddFriend.visibility = View.INVISIBLE
-                                itemView.tv_related_friend.visibility = View.INVISIBLE
-                            } else {
-                                itemView.btnMessenger.visibility = View.INVISIBLE
-                                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                                itemView.layoutAddFriend.visibility = View.VISIBLE
-                                itemView.tv_related_friend.visibility = View.VISIBLE
-                            }
+                            checkPrivacyConfig(item)
                         }
+
                     }
                 }
+            }
+        }
+
+        private fun checkPrivacyConfig(item: ICUserFollowWall) {
+            if (item.userPrivacyConfig?.whoInviteFriend == "ONLY_ME") {
+                itemView.btnMessenger.visibility = View.INVISIBLE
+                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                itemView.layoutAddFriend.visibility = View.INVISIBLE
+                itemView.tv_related_friend.visibility = View.INVISIBLE
+            } else {
+                itemView.btnMessenger.visibility = View.INVISIBLE
+                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                itemView.layoutAddFriend.visibility = View.VISIBLE
+                itemView.tv_related_friend.visibility = View.VISIBLE
             }
         }
     }

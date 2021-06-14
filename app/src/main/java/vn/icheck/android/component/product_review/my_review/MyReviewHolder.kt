@@ -59,6 +59,7 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
         }
 
         obj.data.myReview?.let { data ->
+
             tvRating.setText(ReviewPointText.getTextTotal(data.avgPoint))
             viewStar.isClickable = false
             viewStar.rating = data.avgPoint

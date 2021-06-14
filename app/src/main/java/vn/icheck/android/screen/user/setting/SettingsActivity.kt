@@ -38,6 +38,7 @@ class SettingsActivity : BaseActivityMVVM() {
 
     private fun setupView() {
         btnReset.background = ViewHelper.bgWhiteStrokePrimary1Corners4(this)
+        tvClearCache.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_delete_24px,this),0)
     }
 
     private fun initView() {

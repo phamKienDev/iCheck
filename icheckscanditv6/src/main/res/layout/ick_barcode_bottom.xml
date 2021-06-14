@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_clear"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_cancel_blue_24px" />
+        android:src="@drawable/ic_cancel_blue_24px" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:layout_width="wrap_content"
@@ -51,12 +51,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view9" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/barlow_medium"
         android:text="Nhập mã được in trên sản phẩm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -39,6 +39,7 @@ import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -314,11 +315,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
                     if (!showToolbar) {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
                         binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
-                        binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_blue_24px_new)
+                        binding.toolbar.btn_back.setImageColorPrimary(R.drawable.ic_back_blue_24px_new,requireContext())
                         if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
-                            binding.notify.setImageResource(R.drawable.ic_home_blue_v2_24px)
+                            binding.notify.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,requireContext())
                         } else {
-                            binding.notify.setImageResource(R.drawable.ic_homenoti_empty_blue_24px)
+                            binding.notify.setImageColorPrimary(R.drawable.ic_homenoti_empty_blue_24px,requireContext())
                         }
                         binding.titleDiv.beVisible()
                         if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {

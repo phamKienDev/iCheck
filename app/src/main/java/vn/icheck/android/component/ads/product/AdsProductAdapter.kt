@@ -358,10 +358,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (obj.owner?.verified == true) {
                 itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(
-                        obj.owner?.name,
-                        R.drawable.ic_verified_16px
-                    )
+                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 }, 100)
             } else {
                 binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {

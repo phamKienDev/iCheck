@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Handler
 import android.text.Editable
@@ -54,6 +55,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -183,9 +185,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 createRoom()
             }
         }
-
+        binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()
-
         binding.layoutToolbar.imgAction.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_setting_blue_24dp_chat, this))
     }
 
@@ -195,9 +196,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.tvNewMessage.background = ViewHelper.bgWhiteStrokeLineColor1Corners4(this)
 
         binding.imgScan.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_scan_gray_24dp_chat,R.drawable.ic_scan_white_24dp_chat, this), null, null, null)
-        binding.imgCamera.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_camera_off_24dp_chat,R.drawable.ic_camera_on_24dp_chat, this), null, null, null)
+        binding.imgCamera.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_camera_off_24dp_chat,R.drawable.ic_camera_off_vector_24dp, this), null, null, null)
         binding.imgSticker.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_emoji_20dp_chat,R.drawable.ic_imoji_fc_24dp_chat, this), null, null, null)
         binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
+
+        binding.edtMessage.setTextColor(Constant.getNormalTextColor(this))
     }
 
     @SuppressLint("ClickableViewAccessibility")

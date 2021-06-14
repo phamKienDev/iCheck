@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_friend_suggestion.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
@@ -67,12 +69,31 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
             }
 
             // Text agree
-            getChildAt(3).setOnClickListener {
-                inviteFriend(obj)
+
+            getChildAt(3).apply {
+                background=ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    inviteFriend(obj)
+                }
+
             }
 
-            checkSend(RelationshipManager.checkMyFriendInvitation(obj.id), obj)
+            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
+                //mình gửi kết bạn đến người khác
+                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList, obj.id.toString(), object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        checkSend(snapshot.value != null && snapshot.value is Long, obj)
 
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        checkSend(false, obj)
+
+                    }
+                })
+            }else{
+                checkSend(false, obj)
+            }
         }
     }
 
@@ -92,6 +113,7 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(4).visibility = View.VISIBLE
                 getChildAt(5).visibility = View.GONE
                 (getChildAt(4) as TextView?)?.text = "Xóa"
+
                 // Text disagree
                 getChildAt(4).apply {
                     background = ViewHelper.btnWhiteStrokePrimary1Corners4(context)

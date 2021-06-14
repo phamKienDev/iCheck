@@ -33,6 +33,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -101,9 +102,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, SizeHelper.size16, 0, 0)
-
-        imgBack.setImageResource(R.drawable.ic_cancel_light_blue_24dp)
+        imgBack.setImageColorPrimary(R.drawable.ic_cancel_light_blue_24dp,this)
         imgBack.setOnClickListener {
             onBackPressed()
         }
@@ -111,6 +110,8 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
     private fun setupView() {
         tvViewMore.background=vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        edtContent.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)

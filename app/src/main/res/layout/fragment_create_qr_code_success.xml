@@ -30,15 +30,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_qr_code_success_top"
-            android:fontFamily="sans-serif"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/chia_se_qr_code_nay_toi_ban_be_cua_ban"
-            android:textColor="#35384b"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 

@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,10 +23,12 @@
         android:layout_marginRight="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_8"
         android:ellipsize="end"
+        android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
         android:maxLines="2"
         android:minLines="2"
+        android:textColor="@color/black_75"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
