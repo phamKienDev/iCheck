@@ -91,7 +91,7 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
         return showHistory.format(calendar.time)
     }
 
-    fun getTimeDateNews(): String {
+    fun getTimeDateNews(isDetail: Boolean = true): String {
         val date = sdf.parse(timeS)
 
         if (date != null) {
@@ -102,7 +102,11 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
             if (differenceHours > 24 && diff < 2) {
                 return "$diff ngày trước"
             } else if (diff > 2){
-                return vn.icheck.android.helper.TimeHelper.convertDateTimeSvToTimeDateVnV2(timeS).toString()
+                return if (isDetail){
+                    vn.icheck.android.helper.TimeHelper.convertDateTimeSvToTimeDateVnV2(timeS).toString()
+                }else{
+                    vn.icheck.android.helper.TimeHelper.convertDateSvToDateVn(timeS).toString()
+                }
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return when {
