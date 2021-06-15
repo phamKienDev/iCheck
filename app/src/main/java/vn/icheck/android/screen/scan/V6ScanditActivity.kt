@@ -659,6 +659,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                 listPopupShowed.add(it.id?:-1L)
             }
         })
+
         initListener()
     }
 

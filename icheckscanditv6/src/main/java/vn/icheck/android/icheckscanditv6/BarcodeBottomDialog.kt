@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import vn.icheck.android.icheckscanditv6.databinding.IckBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.WidgetHelper
+import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
@@ -83,7 +84,20 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
                 submitBarcode()
             }
         }
+
+        setupListener()
     }
+
+    private fun setupListener() {
+        binding.edtBarcode.setOnFocusChangeListener { _, _ ->
+            WidgetHelper.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtBarcode)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetHelper.changePasswordInput(binding.edtBarcode)
+        }
+    }
+
 
     private fun submitBarcode() {
         if (binding.submitBarcode.isEnabled) {

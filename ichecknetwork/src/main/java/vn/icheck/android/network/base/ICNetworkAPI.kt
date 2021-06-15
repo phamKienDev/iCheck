@@ -1463,7 +1463,6 @@ interface ICNetworkAPI {
     @GET
     fun getPointHistoryAll(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKPointHistory>>>
 
-
     /**
      * Popup quảng cáo
      */
@@ -1472,4 +1471,5 @@ interface ICNetworkAPI {
 
     @PATCH
     fun clickPopupAds(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICResponse<Any>>
+
 }

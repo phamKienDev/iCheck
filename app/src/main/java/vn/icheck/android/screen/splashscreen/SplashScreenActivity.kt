@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.splashscreen
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -84,7 +85,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ActivityHelper.startActivityAndFinish<HomeActivity>(this)
         Handler().postDelayed({
-                DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
+            DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
         }, 2000)
     }
 

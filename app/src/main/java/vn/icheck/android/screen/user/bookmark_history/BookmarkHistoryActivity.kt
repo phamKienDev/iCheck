@@ -33,7 +33,6 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
         setContentView(binding.root)
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-        EventBus.getDefault().register(this)
         binding.header.tvTitle simpleText "Sản phẩm yêu thích"
         binding.header.icBack.setOnClickListener {
             finish()

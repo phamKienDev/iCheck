@@ -80,7 +80,10 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
         get() = this
 
     override fun onShowLoading(isShow: Boolean) {
-        DialogHelper.showLoading(this, isShow)
+        if (isShow)
+            DialogHelper.showLoading(this)
+        else
+            DialogHelper.closeLoading(this)
     }
 
     override fun getObjectIntentSuccess(item: ICListHistoryGuarantee, list: MutableList<ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote>?) {

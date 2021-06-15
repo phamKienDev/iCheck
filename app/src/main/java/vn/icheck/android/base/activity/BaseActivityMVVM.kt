@@ -31,11 +31,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback,
-    TokenTimeoutCallback {
-
-    var onRequestUserLoginSuccess: () -> Unit = {}
-
+abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetworkCallback, TokenTimeoutCallback {
     var job: Job? = null
     var confirmLogin: ConfirmDialog? = null
     open val getStatusBarHeight: Int

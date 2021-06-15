@@ -37,6 +37,9 @@
                 android:layout_marginTop="@dimen/size_5"
                 android:layout_marginEnd="@dimen/size_14"
                 android:layout_marginRight="@dimen/size_14"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:inputType="textMultiLine"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,8 +123,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_medium"
-                        android:textSize="@dimen/font_12"
                         android:textColor="#b4b4b4"
+                        android:textSize="@dimen/font_12"
                         tools:text="23,504,000đ" />
 
                 </LinearLayout>
@@ -142,8 +145,8 @@
                         android:layout_height="match_parent"
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
                         android:drawablePadding="@dimen/size_8"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
                         android:text="Chỉ đường"
                         android:textColor="#057dda"
                         android:textSize="@dimen/font_16" />

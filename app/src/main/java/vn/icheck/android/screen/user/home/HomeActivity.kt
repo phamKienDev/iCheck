@@ -260,7 +260,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         when (position) {
             1 -> {
                 if (!isChecked(tvHome)) {
-                    TrackingAllHelper.trackHomePageViewed()
+//                    TrackingAllHelper.trackHomePageViewed()
                     viewPager.setCurrentItem(0, false)
                     HideWebUtils.showWeb("Home")
                     HomePageFragment.INSTANCE?.scrollToTop()
@@ -1174,7 +1174,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 super.onBackPressed()
             }
             else -> {
-                TrackingAllHelper.trackHomePageViewed()
+//                TrackingAllHelper.trackHomePageViewed()
                 viewPager.setCurrentItem(0, false)
             }
         }
@@ -1182,11 +1182,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 
     override fun onResume() {
         super.onResume()
-
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if (it.isSuccessful) {
-            }
-        }
 
         try {
             presenter.checkVersionApp()

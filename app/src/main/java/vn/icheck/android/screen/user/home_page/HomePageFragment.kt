@@ -75,6 +75,7 @@ import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
@@ -296,8 +297,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
+
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this@HomePageFragment.requireActivity(),it)
 //            object : DialogNotificationFirebaseAds(requireActivity(),null,null,"http://icheck.com.vn",null) {
 //                override fun onDismiss() {
 //                }
@@ -726,19 +728,24 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     override fun onResume() {
         super.onResume()
-
         isOpen = true
 
-        if (!isViewCreated) {
-            isViewCreated = true
-            Handler().post {
-                setupViewModel()
-                setupRecyclerView()
-                setupSwipeLayout()
-                LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
-                WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+        TrackingAllHelper.trackHomePageViewed()
+
+        if (requireActivity().intent?.getStringExtra(Constant.DATA_3).isNullOrEmpty()) {
+            if (!isViewCreated) {
+                isViewCreated = true
+                Handler().post {
+                    setupViewModel()
+                    setupRecyclerView()
+                    setupSwipeLayout()
+                    LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
+                    WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+                }
+                return
             }
-            return
+        } else {
+            requireActivity().intent?.putExtra(Constant.DATA_3, "")
         }
 
         viewModel.getAds(true)

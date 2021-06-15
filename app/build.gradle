@@ -28,8 +28,8 @@ android {
         applicationId "vn.icheck.android"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 21052401
-        versionName "6.21.1"
+        versionCode 21061201
+        versionName "6.22.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         signingConfig signingConfigs.release
@@ -51,7 +51,7 @@ android {
     aaptOptions { cruncherEnabled = false }
     buildTypes {
         release {
-            debuggable true
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [partner: "icheckvn"]
@@ -81,9 +81,9 @@ android {
             resValue "string", "client_token", "7e784c39b6e8276791c06bb407f1c58b"
 
             // todo bỏ khi release
-            resConfigs "xxhdpi"
-            ext.enableCrashlytics = false
-            ext.alwaysUpdateBuildId = false
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
         prod {
             resValue "string", "app_name", "iCheck"
@@ -92,9 +92,9 @@ android {
             resValue "string", "client_token", "2d5a74d2ced833d25af57a02e63132a9"
 
             // todo bỏ khi release
-            resConfigs "xxhdpi"
-            ext.enableCrashlytics = false
-            ext.alwaysUpdateBuildId = false
+//            resConfigs "xxhdpi"
+//            ext.enableCrashlytics = false
+//            ext.alwaysUpdateBuildId = false
         }
     }
     dexOptions {

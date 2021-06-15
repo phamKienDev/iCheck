@@ -58,6 +58,7 @@ open class PageDetailViewModel : ViewModel() {
     val onPageName = MutableLiveData<String>()
     val onDetailPost = MutableLiveData<ICPost>()
     val onDeletePost = MutableLiveData<Long>()
+    val onPopupAds = MutableLiveData<ICPopup>()
 
     val onUpdatePost = MutableLiveData<MutableList<ICLayout>>()
     var offsetPost = 0
@@ -79,13 +80,11 @@ open class PageDetailViewModel : ViewModel() {
     val onErrorProduct = MutableLiveData<ICError>()
     val addHorizontal = MutableLiveData<RelatedProductModel>()
     val addVertical = MutableLiveData<MutableList<RelatedProductModel>>()
-    val onPopupAds = MutableLiveData<ICPopup>()
 
     var countError = 0
 
     var isFollowPage = false
     var firstPopupAds = true
-
 
     fun getData(bundle: Bundle?) {
         pageID = bundle?.getLong(Constant.DATA_1, -1) ?: -1
@@ -362,6 +361,7 @@ open class PageDetailViewModel : ViewModel() {
         }
     }
 
+
     private fun getPopup(page: ICPageOverview) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             return
@@ -383,7 +383,6 @@ open class PageDetailViewModel : ViewModel() {
                 }
             })
     }
-
 
     private fun getWidgetBrand(layout: ICLayout) {
         pageInteraction.getBrands(layout.request.url!!, 0, object : ICNewApiListener<ICResponse<ICListResponse<ICPageTrend>>> {
