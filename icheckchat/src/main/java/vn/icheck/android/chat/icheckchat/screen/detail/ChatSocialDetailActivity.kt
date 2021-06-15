@@ -50,7 +50,6 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.*
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
@@ -75,6 +74,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(DATA_2, userId)
                 putExtra(DATA_3, type)
             })
+        }
+
+        fun createRoomChat(activity: Activity, userId: Long, type: String, requestCode: Int = 0) {
+            finishAllChat()
+
+            val intent = Intent(activity, ChatSocialDetailActivity::class.java).apply {
+                putExtra(DATA_2, userId)
+                putExtra(DATA_3, type)
+            }
+
+            if (requestCode == 0) {
+                activity.startActivity(intent)
+            } else {
+                activity.startActivityForResult(intent, requestCode)
+            }
         }
 
         fun openRoomChatWithKey(context: Context, key: String) {

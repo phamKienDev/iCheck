@@ -170,6 +170,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (isScan && !isUpdate) {
             productRepository.scanProduct(barcode, object : ICNewApiListener<ICLayoutData<JsonObject>> {
                 override fun onSuccess(obj: ICLayoutData<JsonObject>) {
+                    isScan = false
                     checkProductLayout(isUpdate, obj)
                 }
 
@@ -177,8 +178,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                     if (error?.message.isNullOrEmpty()) {
                         error?.message = ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
                     }
-                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message
-                            ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
                 }
             })
         } else {
@@ -191,8 +191,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                     if (error?.message.isNullOrEmpty()) {
                         error?.message = ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
                     }
-                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message
-                            ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
                 }
             })
         }
