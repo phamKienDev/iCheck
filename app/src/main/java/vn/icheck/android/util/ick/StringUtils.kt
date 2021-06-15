@@ -27,10 +27,10 @@ infix fun String?.getDateFormat(format: String): String {
         if (date != null) {
             show.format(date)
         } else {
-            "Đang cập nhật"
+            StringConstant.dang_cap_nhat
         }
     } else {
-        "Đang cập nhật"
+        StringConstant.dang_cap_nhat
     }
 }
 
@@ -40,7 +40,7 @@ fun String.getHtmlText(): Spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_C
     Html.fromHtml(this)
 }
 
-fun String?.getInfo() = if (this?.replace("null", "")?.trim().isNullOrEmpty()) "Đang cập nhật" else this
+fun String?.getInfo() = if (this?.replace("null", "")?.trim().isNullOrEmpty()) StringConstant.dang_cap_nhat else this
 
 
 fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -148,20 +148,20 @@ fun String.getNotifyTime() :String{
         val diffMinutes = getDifferenceMinutes(date, currentDate)
         when {
             diffMinutes <= 1 -> {
-                "Vừa xong"
+                StringConstant.vua_xong
             }
             diffMinutes <= 60 -> {
-                "$diffMinutes phút trước"
+                "$diffMinutes ${StringConstant.phut_truoc}"
             }
             diffHours <= 24 -> {
-                "$diffHours giờ trước"
+                "$diffHours ${StringConstant.gio_truoc}"
             }
             else -> {
                 getTime("HH:mm, dd/MM/yyyy")
             }
         }
     } catch (e: Exception) {
-        "Vừa xong"
+        StringConstant.vua_xong
     }
 
 }
@@ -174,20 +174,20 @@ fun Long.getNotifyTimeVn() :String{
         val diffMinutes = getDifferenceMinutes(date, currentDate)
         when {
             diffMinutes <= 1 -> {
-                "Vừa xong"
+                StringConstant.vua_xong
             }
             diffMinutes <= 60 -> {
-                "$diffMinutes phút trước"
+                "$diffMinutes ${StringConstant.phut_truoc}"
             }
             diffHours <= 24 -> {
-                "$diffHours giờ trước"
+                "$diffHours ${StringConstant.gio_truoc}"
             }
             else -> {
                 getTime("HH:mm, dd/MM/yyyy", false)
             }
         }
     } catch (e: Exception) {
-        "Vừa xong"
+        StringConstant.vua_xong
     }
 
 }
@@ -263,19 +263,19 @@ fun Int.getMoneyFormat() = String.format("%,dđ", this).replace(".", ",")
 fun String.getRewardType() :String{
    return when (this) {
         "PRODUCT_SHIP" -> {
-             "Giao tận nơi"
+            StringConstant.giao_tan_noi
         }
         "PRODUCT_IN_SHOP" -> {
-            "Nhận tại cửa hàng"
+            StringConstant.nhan_tai_cua_hang
         }
         "CARD" -> {
-            "Quà thẻ cào"
+            StringConstant.qua_the_cao
         }
         "LUCKY" -> {
-             "Quà tinh thần"
+            StringConstant.qua_tinh_than
         }
         else ->{
-             "Quà hiện vật"
+            StringConstant.qua_hien_vat
         }
     }
 }

@@ -20,6 +20,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.view.IVerifyOTPGuaranteeView
 import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.util.ick.rText
 
 class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),IVerifyOTPGuaranteeView {
 
@@ -35,15 +36,15 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     override fun onInitView() {
         presenter.getDataByIntent(intent)
         if (DetailStampActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Enter verified code"
-            txtOtp.text = "Verified code"
-            txtStatus.text = "Resend code"
-            btnConfirm.text = "Confirm"
+            txtTitle rText R.string.enter_verified_code
+            txtOtp rText R.string.verified_code
+            txtStatus rText R.string.resend_code
+            btnConfirm rText R.string.confirm
         } else {
-            txtTitle.text = "Nhập mã xác nhận"
-            txtOtp.text = "Mã xác thực"
-            txtStatus.text = "Gửi lại mã"
-            btnConfirm.text = "Xác nhận"
+            txtTitle rText R.string.nhap_ma_xac_nhan
+            txtOtp rText R.string.ma_xac_thuc
+            txtStatus rText R.string.gui_lai_ma
+            btnConfirm rText R.string.xac_nhan
         }
     }
 
@@ -69,16 +70,16 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
         txtStatus.setOnClickListener {
             if (DetailStampActivity.isVietNamLanguage == false){
-                if (txtStatus.text.toString() == "Resend code") {
+                if (txtStatus.text.toString() == rText(R.string.resend_code)) {
                     progressBar.visibility = View.VISIBLE
-                    txtStatus.text = "Sending code"
+                    txtStatus rText R.string.sending_code
 
                     presenter.sendOtpConfirmPhone()
                 }
             } else {
-                if (txtStatus.text.toString() == "Gửi lại mã") {
+                if (txtStatus.text.toString() == rText(R.string.gui_lai_ma)) {
                     progressBar.visibility = View.VISIBLE
-                    txtStatus.text = "Đang gửi mã"
+                    txtStatus rText R.string.dang_gui_ma
 
                     presenter.sendOtpConfirmPhone()
                 }
@@ -104,7 +105,7 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
 
                 layoutStatus.visibility = View.VISIBLE
                 progressBar.visibility = View.INVISIBLE
-                txtStatus.text = "Resend code"
+                txtStatus rText R.string.resend_code
             }
         } else {
             if (isShow) {
@@ -179,16 +180,16 @@ class VerifyOTPGuaranteeActivity : BaseActivity<VerifyOTPGuaranteePresenter>(),I
     override fun updateInformationCusomterGuaranteeSuccess() {
         setResult(Activity.RESULT_OK)
         if (DetailStampActivity.isVietNamLanguage == false) {
-            showShortSuccess("Successfully updated")
+            showShortSuccess(rText(R.string.successfully_updated))
         } else {
-            showShortSuccess("Cập nhật thông tin thành công")
+            showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
         }
         onBackPressed()
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            showShortError("Occurred. Please try again")
+            showShortError(rText(R.string.occurred_please_try_again))
         } else {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
         }

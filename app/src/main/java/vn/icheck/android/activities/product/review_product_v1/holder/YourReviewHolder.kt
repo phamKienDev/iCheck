@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.review_product.holder
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.item_your_review_product_v1.view.*
+import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.base.adapter.HorizontalImageAdapter
@@ -13,8 +14,10 @@ import vn.icheck.android.util.text.ReviewPointText
 
 class YourReviewHolder(view: View, val listener: IReviewProductView) : BaseViewHolder<ICCriteria>(view) {
     override fun bind(obj: ICCriteria) {
-        itemView.tv_your_score.text = String.format("%.1f %s", obj.customerEvaluation!!.averagePoint * 2,
+        itemView.tv_your_score.apply {
+            text = context.getString(R.string.your_score, obj.customerEvaluation!!.averagePoint * 2,
                 ReviewPointText.getText(obj.customerEvaluation!!.averagePoint))
+        }
         itemView.customer_rating.rating = obj.customerEvaluation!!.averagePoint
 
         val listImg = mutableListOf<String>()

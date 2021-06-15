@@ -7,11 +7,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.hdodenhof.circleimageview.CircleImageView
+import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.network.models.ICProductTrend
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class TopTendencyProductHolder(parent: ViewGroup) : BaseViewHolder<ICProductTrend>(ViewHelper.createItemProductTopTendency(parent.context)) {
@@ -40,17 +42,17 @@ class TopTendencyProductHolder(parent: ViewGroup) : BaseViewHolder<ICProductTren
             tvRate.text = obj.rating.toString()
 
             when {
-                obj.rating!! >= 9 -> {
-                    text.text = "Fantastic"
+                obj.rating >= 9 -> {
+                    text rText R.string.fantastic
                 }
-                obj.rating!! >= 7 -> {
-                    text.text = "Great"
+                obj.rating >= 7 -> {
+                    text rText R.string.great
                 }
-                obj.rating!! >= 6 -> {
-                    text.text = "Good"
+                obj.rating >= 6 -> {
+                    text rText R.string.good
                 }
                 else -> {
-                    text.text = "Not good"
+                    text rText R.string.not_good
                 }
             }
         } else {

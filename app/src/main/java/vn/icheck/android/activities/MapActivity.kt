@@ -21,10 +21,10 @@ import vn.icheck.android.R
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var mMap: GoogleMap? = null
-    var userLat:Double = 0.0
-    var userLng:Double = 0.0
-    var targetLat:Double = 0.0
-    var targetLng:Double = 0.0
+    var userLat: Double = 0.0
+    var userLng: Double = 0.0
+    var targetLat: Double = 0.0
+    var targetLng: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +49,26 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         targetLng = intent.getDoubleExtra("lng", userLng)
         findViewById<TextView>(R.id.tv_shop_name).text = intent.getStringExtra("name")
         findViewById<TextView>(R.id.tv_shop_address).text = intent.getStringExtra("address")
-        if ( intent.getDoubleExtra("distance_value", 0.0) != 0.0) {
-            findViewById<TextView>(R.id.tv_distance).text = String.format("(%.3f %s)",
-                    intent.getDoubleExtra("distance_value", 0.0),
-                    intent.getStringExtra("distance_unit")
-
+        if (intent.getDoubleExtra("distance_value", 0.0) != 0.0) {
+            findViewById<TextView>(R.id.tv_distance).text = getString(
+                R.string.format_distance,
+                intent.getDoubleExtra("distance_value", 0.0),
+                intent.getStringExtra("distance_unit")
             )
         }
         findViewById<Button>(R.id.btn_guide).setOnClickListener {
-            val uriString = String.format("https://www.google.com/maps/dir/?api=1" +
-                    "&daddr=$targetLat,$targetLng")
-            val uri = Uri.parse("geo:0,0?q=$targetLat,$targetLng (" + intent.getStringExtra("name") + ")")
+//            val uriString = String.format(
+//                "https://www.google.com/maps/dir/?api=1" +
+//                        "&daddr=$targetLat,$targetLng"
+//            )
+            val uri = Uri.parse(
+                getString(
+                    R.string.format_url_google_map,
+                    targetLat,
+                    targetLng,
+                    intent.getStringExtra("name")
+                )
+            )
             val directionIntent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(directionIntent)
         }

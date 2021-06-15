@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.news.NewsListV2Holder
@@ -117,7 +118,7 @@ class NewsListV2Adapter(val listener: IRecyclerViewCallback) : RecyclerView.Adap
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, message = "Chưa có tin tức nào!", buttonID = -1)
+                    holder.bind(iconMessage, message = ICheckApplication.getString(R.string.chua_co_tin_tuc_nao), buttonID = -1)
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
 

@@ -21,6 +21,7 @@ import vn.icheck.android.constant.USER_WALL_BROADCAST
 import vn.icheck.android.constant.USER_WALL_EDIT_PERSONAL
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.wall.ICUserPublicInfor
+import vn.icheck.android.util.ick.rText
 
 class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
 
@@ -53,7 +54,7 @@ class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
     }
 
     private fun initView() {
-        txtTitle.text = "Chỉnh sửa thông tin công khai"
+        txtTitle rText R.string.chinh_sua_thong_tin_cong_khai
     }
 
     private fun initRecyclerView() {

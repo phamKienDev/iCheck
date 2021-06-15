@@ -8,6 +8,7 @@ import android.widget.TextView
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ui.GlideUtil
 
 class ContributeModule(view: View): BaseHolder(view) {
@@ -23,8 +24,8 @@ class ContributeModule(view: View): BaseHolder(view) {
                     btnWrong.changeState()
                 }
 
-                getTv(R.id.btn_right).text = String.format("Đúng (%d)", btnRight.vote)
-                getTv(R.id.btn_wrong).text = String.format("Sai (%d)", btnWrong.vote)
+                getTv(R.id.btn_right).rText(R.string.dung_d, btnRight.vote)
+                getTv(R.id.btn_wrong).rText(R.string.sai_d, btnWrong.vote)
 
                 if (-1 == btnWrong.state && btnRight.state == -1) {
                     contributeUserModel.contributionCallback.downvote(contributeUserModel.contributions)
@@ -43,8 +44,8 @@ class ContributeModule(view: View): BaseHolder(view) {
                 if (btnRight.state == 1) {
                     btnRight.changeState()
                 }
-                getTv(R.id.btn_right).text = String.format("Đúng (%d)", btnRight.vote)
-                getTv(R.id.btn_wrong).text = String.format("Sai (%d)", btnWrong.vote)
+                getTv(R.id.btn_right).rText(R.string.dung_d, btnRight.vote)
+                getTv(R.id.btn_wrong).rText(R.string.sai_d, btnWrong.vote)
                 if (btnRight.state == btnWrong.state && btnRight.state == -1) {
                     contributeUserModel.contributionCallback.downvote(contributeUserModel.contributions)
                 } else {
@@ -73,8 +74,8 @@ class ContributeModule(view: View): BaseHolder(view) {
             }
         }
         getTv(R.id.tv_user_name).text = contributeUserModel.contributions?.user?.name
-        getTv(R.id.btn_right).text = String.format("Đúng (%d)", contributeUserModel.contributions?.upvotes)
-        getTv(R.id.btn_wrong).text = String.format("Sai (%d)", contributeUserModel.contributions?.downvotes)
+        getTv(R.id.btn_right).rText(R.string.dung_d, contributeUserModel.contributions?.upvotes)
+        getTv(R.id.btn_wrong).rText(R.string.sai_d, contributeUserModel.contributions?.downvotes)
         GlideUtil.loadAva(contributeUserModel.contributions?.user?.thumbnails?.small,
                 getImg(R.id.ava_user))
         setOnClick(R.id.ava_user, View.OnClickListener {

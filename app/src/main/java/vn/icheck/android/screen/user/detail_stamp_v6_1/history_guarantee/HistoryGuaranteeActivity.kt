@@ -13,6 +13,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.adapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.presenter.HistoryGuaranteePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeActivity : BaseActivity<HistoryGuaranteePresenter>(), IHistoryGuaranteeView {
 
@@ -29,9 +30,9 @@ class HistoryGuaranteeActivity : BaseActivity<HistoryGuaranteePresenter>(), IHis
         listener()
         initRecyclerView()
         if (DetailStampActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Warranty log"
+            txtTitle rText R.string.warranty_log
         } else {
-            txtTitle.text = "Lịch sử bảo hành"
+            txtTitle rText R.string.lich_su_bao_hanh
         }
     }
 

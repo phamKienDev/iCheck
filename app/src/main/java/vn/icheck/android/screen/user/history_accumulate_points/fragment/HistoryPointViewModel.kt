@@ -38,7 +38,7 @@ class HistoryPointViewModel : ViewModel() {
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         onSetData.postValue(obj.data?.rows)
                     }else{
-                        onErrorEmpty.postValue(ICError(R.drawable.ic_group_120dp, "Bạn chưa dùng điểm nào", "Hãy tích lũy và sử dụng điểm để đổi những món quà hấp dẫn ở mục đặc quyền riêng nhé", R.string.dung_diem))
+                        onErrorEmpty.postValue(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_dung_diem_nao), ICheckApplication.getString(R.string.hay_tich_luy_va_su_dung_diem_de_doi_nhung_mon_qua_hap_dan_o_muc_dac_quyen_rieng_nhe), R.string.dung_diem))
                     }
                 } else {
                     onAddData.postValue(obj.data?.rows ?: mutableListOf())

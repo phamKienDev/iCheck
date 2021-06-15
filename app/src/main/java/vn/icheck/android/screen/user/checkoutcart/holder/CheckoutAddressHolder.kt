@@ -15,7 +15,7 @@ class CheckoutAddressHolder(view: View) : BaseViewHolder<ICAddress>(view) {
 
     private fun getAddress(address: String?) : String {
         return if (!address.isNullOrEmpty()) {
-            ", " + address
+            ", $address"
         } else {
             ""
         }

@@ -127,7 +127,7 @@ class PurchaseCardFragment : Fragment() {
                 bundle.putString("denomition", denomition)
                 bundle.putInt("id", mspId)
                 checkOutFragment.arguments = bundle
-                activity!!.supportFragmentManager.beginTransaction()
+                requireActivity().supportFragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
                         .replace(R.id.content, checkOutFragment)
                         .addToBackStack(null)

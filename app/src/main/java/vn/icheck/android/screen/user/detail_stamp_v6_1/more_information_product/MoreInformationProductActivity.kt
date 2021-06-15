@@ -16,6 +16,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_InformationPro
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.presenter.MoreInformationProductPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.view.IMoreInformationProductView
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.GlideImageGetter
 
 class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresenter>(),IMoreInformationProductView {
@@ -30,9 +31,9 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
 
     override fun onInitView() {
         if (DetailStampActivity.isVietNamLanguage == false){
-            txtTitle.text = "Information"
+            txtTitle rText R.string.information
         } else {
-            txtTitle.text = "Thông tin"
+            txtTitle rText R.string.thong_tin
         }
 
         presenter.getDataIntent(intent)
@@ -56,7 +57,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
             Constant.ERROR_INTERNET -> {
                 imgError.setImageResource(R.drawable.ic_error_network)
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Checking network. Please try again"
+                    tvMessageError rText R.string.checking_network_please_try_again
                 } else {
                     tvMessageError.text = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
@@ -64,7 +65,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
             Constant.ERROR_UNKNOW -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Occurred. Please try again"
+                    tvMessageError rText R.string.occurred_please_try_again
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
@@ -72,7 +73,7 @@ class MoreInformationProductActivity : BaseActivity<MoreInformationProductPresen
             Constant.ERROR_EMPTY -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Occurred. Please try again"
+                    tvMessageError rText R.string.occurred_please_try_again
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

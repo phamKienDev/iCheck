@@ -93,6 +93,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.logDebug
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleStartForResultActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
@@ -602,7 +603,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Cách tích điểm")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, rText(R.string.cach_tinh_diem))
                         }
                     })
                 }
@@ -615,7 +616,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Hướng dẫn sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, rText(R.string.huong_dan_su_dung))
                         }
                     })
                 }
@@ -628,7 +629,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, rText(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }
@@ -641,7 +642,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, rText(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }

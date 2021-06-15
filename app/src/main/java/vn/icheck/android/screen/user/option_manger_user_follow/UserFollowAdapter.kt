@@ -22,6 +22,7 @@ import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 
 class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -178,7 +179,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
 
             if (item.relateFriendCount > 0) {
                 itemView.tv_related_friend.beVisible()
-                itemView.tv_related_friend simpleText "${item.relateFriendCount} bạn chung"
+                itemView.tv_related_friend.rText(R.string.d_ban_chung, item.relateFriendCount)
             } else {
                 itemView.tv_related_friend.beGone()
             }
@@ -235,7 +236,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
             when (errorCode) {
                 Constant.ERROR_EMPTY_SEARCH -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = "Xin lỗi chúng tôi không thể tìm kiếm được kết quả phù hợp với tìm kiếm của bạn"
+                    itemView.txtMessageDetail rText R.string.xin_loi_chung_toi_khong_the_tim_kiem_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban
                 }
                 Constant.ERROR_EMPTY_WATCHING -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)

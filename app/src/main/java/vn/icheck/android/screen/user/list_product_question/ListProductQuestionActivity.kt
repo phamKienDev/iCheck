@@ -56,6 +56,7 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
@@ -270,7 +271,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
             swipeLayout.isRefreshing = false
 
             if (it.isNullOrEmpty())
-                questionAdapter.setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+                questionAdapter.setError(R.drawable.ic_empty_questions, rText(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
             else
                 questionAdapter.setListData(it)
         })
@@ -439,7 +440,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     override fun onDelete(obj: ICProductQuestion) {
-        DialogHelper.showConfirm(this@ListProductQuestionActivity, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@ListProductQuestionActivity, rText(R.string.ban_chac_chan_muon_xoa_binh_luan_nay), null, rText(R.string.de_sau), rText(R.string.dong_y), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
             override fun onDisagree() {
 
             }

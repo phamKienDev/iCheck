@@ -26,7 +26,6 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.feed.ICAvatarOfFriend
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.user_follow_page.UserFollowPageActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -152,18 +151,30 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
         itemView.btnPhu.setOnClickListener {
             val phone = data.pageDetail?.phone ?: ""
             if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+                DialogHelper.showConfirm(
+                    itemView.context,
+                    itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone),
+                    null,
+                    itemView.context.getString(R.string.de_sau),
+                    itemView.context.getString(R.string.dong_y),
+                    null,
+                    null,
+                    true,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
+                        }
 
-                    override fun onAgree() {
-                        phone.startCallPhone()
-                    }
-                })
+                        override fun onAgree() {
+                            phone.startCallPhone()
+                        }
+                    })
 
             } else {
-                DialogHelper.showDialogErrorBlack(itemView.context, itemView.context.getString(R.string.sdt_dang_cap_nhat))
+                DialogHelper.showDialogErrorBlack(
+                    itemView.context,
+                    itemView.context.getString(R.string.sdt_dang_cap_nhat)
+                )
             }
         }
 
@@ -184,7 +195,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
                 override fun onClickReportPage() {
                     if (SessionManager.isUserLogged) {
                         view.onShowReportForm()
-                    }else{
+                    } else {
                         view.onRequireLogin()
                     }
                 }
@@ -230,32 +241,58 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
                 data.followCount.minus(data.followers!!.size)
             }
 
-            itemView.tv_number_follow.text = if (size > 0) {
-                if (!follow) {
-                    listName.toString().substring(1, listName.toString().length - 1) + " và " + TextHelper.formatMoney(size) + " người khác đang theo dõi trang này"
-                } else {
-                    if (size.minus(1) == 0L) {
-                        listName.toString().substring(1, listName.toString().length - 1) + " và bạn theo dõi trang này"
+            itemView.tv_number_follow.apply {
+                text =
+                    if (size > 0) {
+                        if (!follow) {
+                            context.getString(
+                                R.string.s_va_s_nguoi_khac_dang_theo_doi_trang_nay,
+                                listName.toString().substring(1, listName.toString().length - 1),
+                                TextHelper.formatMoney(size)
+                            )
+                        } else {
+                            if (size.minus(1) == 0L) {
+                                context.getString(
+                                    R.string.s_va_ban_theo_doi_trang_nay,
+                                    listName.toString().substring(1, listName.toString().length - 1)
+                                )
+                            } else {
+                                context.getString(
+                                    R.string.s_va_s_nguoi_khac_dang_theo_doi_trang_nay,
+                                    listName.toString()
+                                        .substring(1, listName.toString().length - 1),
+                                    TextHelper.formatMoney(size - 1)
+                                )
+                            }
+                        }
                     } else {
-                        listName.toString().substring(1, listName.toString().length - 1) + " và " + TextHelper.formatMoney(size - 1) + " người khác đang theo dõi trang này"
+                        context.getString(
+                            R.string.s_dang_theo_doi_trang_nay,
+                            listName.toString().substring(1, listName.toString().length - 1)
+                        )
                     }
-                }
-            } else {
-                listName.toString().substring(1, listName.toString().length - 1) + " đang theo dõi trang này"
             }
         } else {
             itemView.img_list_avatar.beGone()
-            if (!follow) {
-                if (data.followCount > 0) {
-                    itemView.tv_number_follow.text = TextHelper.formatMoney(data.followCount) + " người đang theo dõi trang này"
+            itemView.tv_number_follow.apply {
+                text = if (!follow) {
+                    if (data.followCount > 0) {
+                        context.getString(
+                            R.string.s_nguoi_dang_theo_doi_trang_nay,
+                            TextHelper.formatMoney(data.followCount)
+                        )
+                    } else {
+                        context.getString(R.string.chua_co_nguoi_theo_doi_trang_nay)
+                    }
                 } else {
-                    itemView.tv_number_follow.text = "Chưa có người theo dõi trang này"
-                }
-            } else {
-                if (data.followCount > 1) {
-                    itemView.tv_number_follow.text = "Bạn và ${data.followCount!!.minus(1)} người khác đang theo dõi trang này"
-                } else {
-                    itemView.tv_number_follow.text = "Bạn đang theo dõi trang này"
+                    if (data.followCount > 1) {
+                        context.getString(
+                            R.string.ban_va_d_nguoi_khac_dang_theo_doi_trang_nay,
+                            data.followCount.minus(1)
+                        )
+                    } else {
+                        context.getString(R.string.ban_dang_theo_doi_trang_nay)
+                    }
                 }
             }
         }

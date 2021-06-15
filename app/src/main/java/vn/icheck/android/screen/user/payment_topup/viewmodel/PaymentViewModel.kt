@@ -47,11 +47,11 @@ class PaymentViewModel : BaseViewModel() {
 
         val listValue = mutableListOf<ICNameValue>()
         if (type == 1) {
-            listValue.add(ICNameValue("Dịch vụ:", "Nạp thẻ điện thoại"))
+            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu), ICheckApplication.getString(R.string.nap_the_dien_thoai)))
         } else {
-            listValue.add(ICNameValue("Dịch vụ:", "Mua mã thẻ điện thoại"))
+            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu), ICheckApplication.getString(R.string.mua_ma_the_dien_thoai)))
         }
-        listValue.add(ICNameValue("Nhà mạng:", card?.provider))
+        listValue.add(ICNameValue(ICheckApplication.getString(R.string.nha_mang_colon), card?.provider))
         if (type == 1) {
             if (phoneNumber.isNullOrEmpty()) {
                 val replacePhone = SessionManager.session.user?.phone?.let {
@@ -59,13 +59,13 @@ class PaymentViewModel : BaseViewModel() {
                         replace(0, 2, "0")
                     }.toString()
                 }
-                listValue.add(ICNameValue("Nạp cho số:", replacePhone))
+                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so), replacePhone))
             } else {
-                listValue.add(ICNameValue("Nạp cho số:", phoneNumber))
+                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so), phoneNumber))
             }
         }
-        listValue.add(ICNameValue("Mệnh giá:", TextHelper.formatMoneyPhay(value?.toLong()) + "đ"))
-        listValue.add(ICNameValue("Phí dịch vụ:", "Miễn phí"))
+        listValue.add(ICNameValue(ICheckApplication.getString(R.string.menh_gia), ICheckApplication.getString(R.string.s_d, TextHelper.formatMoneyPhay(value?.toLong()))))
+        listValue.add(ICNameValue(ICheckApplication.getString(R.string.phi_dich_vu), ICheckApplication.getString(R.string.mien_phi)))
 
 //        dataIntent.postValue(ICPaymentLocal(value, card?.serviceId, card, listValue, phoneNumber, type))
         dataIntent.postValue(ICPaymentLocal(value, card, listValue, phoneNumber, type))
@@ -148,7 +148,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (error?.statusCode != "S50002") {
                         postError(error?.message)
                     } else {
-                        errorData.postValue("Thông tin nhà mạng không đúng.\nVui lòng liên hệ với iCheck để được hỗ trợ!")
+                        errorData.postValue(ICheckApplication.getString(R.string.thong_tin_khong_dung_vui_long_lien_he_voi_icheck_de_duoc_ho_tro))
                     }
                 }
             })
@@ -187,14 +187,16 @@ class PaymentViewModel : BaseViewModel() {
 
             interactor.getDetailCard(orderId, object : ICNewApiListener<ICResponse<ICRechargePhone>> {
                 override fun onSuccess(obj: ICResponse<ICRechargePhone>) {
-                    detailCard.postValue(obj.data)
+                    obj.data?.let {
+                        detailCard.postValue(it)
+                    }
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     if (error?.statusCode != "S50002"){
                         errorMessage.postValue(error?.message)
                     }else{
-                        errorMessage.postValue("Thông tin nhà mạng không đúng.\nVui lòng liên hệ với iCheck để được hỗ trợ!")
+                        errorMessage.postValue(ICheckApplication.getString(R.string.thong_tin_khong_dung_vui_long_lien_he_voi_icheck_de_duoc_ho_tro))
                     }
                 }
             })

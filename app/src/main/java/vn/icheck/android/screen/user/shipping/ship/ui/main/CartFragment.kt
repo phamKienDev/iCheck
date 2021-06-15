@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentCartBinding
 import vn.icheck.android.tracking.insider.InsiderHelper
@@ -125,11 +126,11 @@ class CartFragment : Fragment() {
                             value ?: 0
                         }
 //                binding.tvQuantity simpleText "$total sản phẩm"
-                binding.textView26 simpleText "Giỏ hàng ($total)"
+                binding.textView26.rText(R.string.gio_hang_d, total)
 
                 val arrNewCart = arrayListOf<ItemCartItem>()
                 if (!it.data?.firstOrNull()?.itemCart.isNullOrEmpty()) {
-                    for (item in it?.data?.firstOrNull()?.itemCart!!) {
+                    for (item in it.data?.firstOrNull()?.itemCart!!) {
                         arrNewCart.add(item!!)
                     }
                 }
@@ -169,8 +170,8 @@ class CartFragment : Fragment() {
                 totalProduct += item.quantity ?: 0
             }
         }
-        binding.tvQuantity simpleText "$totalProduct/$total sản phẩm"
-        binding.tvPrice simpleText String.format("%,d Xu", totalPrice).replace(".", ",")
+        binding.tvQuantity.rText(R.string.d_d_san_pham, totalProduct, total)
+        binding.tvPrice.text = rText(R.string.d_xu, totalPrice).replace(".", ",")
     }
 
 }

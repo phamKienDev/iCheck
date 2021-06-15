@@ -15,6 +15,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.presenter.MoreProductVerifiedByDistributorPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.view.IMoreProductVerifiedByDistributorView
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.ick.rText
 
 class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifiedByDistributorPresenter>(), IMoreProductVerifiedByDistributorView {
 
@@ -29,9 +30,9 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
     override fun onInitView() {
         initRecyclerView()
         if (DetailStampActivity.isVietNamLanguage == false){
-            txtTitle.text = "Related Product"
+            txtTitle rText R.string.related_product
         } else {
-            txtTitle.text = "Sản phẩm liên quan"
+            txtTitle rText R.string.san_pham_lien_quan
         }
 
         presenter.getDataIntent(intent)
@@ -74,7 +75,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
         when (errorType) {
             Constant.ERROR_UNKNOW -> {
                 if (DetailStampActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("Occurred. Please try again")
+                    adapter.setErrorCode(rText(R.string.occurred_please_try_again))
                 } else {
                     adapter.setErrorCode(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -82,7 +83,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
 
             Constant.ERROR_EMPTY -> {
                 if (DetailStampActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("No Data")
+                    adapter.setErrorCode(rText(R.string.no_data))
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_du_lieu))
                 }
@@ -90,7 +91,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivity<MoreProductVerifie
 
             Constant.ERROR_INTERNET -> {
                 if (DetailStampActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("Checking network. Please try again")
+                    adapter.setErrorCode(rText(R.string.checking_network_please_try_again))
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 }

@@ -15,6 +15,7 @@ import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
 import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -57,7 +58,7 @@ class ProductNeedReviewAdapter(private val listData: MutableList<ICProductNeedRe
             }
 
             itemView.tvName.setTextNameProduct(item.name)
-            itemView.tvNameBusiness.text = if (!item.owner?.name.isNullOrEmpty()) item.owner?.name else itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvNameBusiness.text = if (!item.owner?.name.isNullOrEmpty()) item.owner?.name else itemView.context rText R.string.dang_cap_nhat
 
             itemView.ratingBar.isClickable = false
         }

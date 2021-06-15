@@ -44,7 +44,7 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
 //            TooltipCompat.setTooltipText(binding.imgHelp,categoryAttributesModel.categoryItem.description)
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            binding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

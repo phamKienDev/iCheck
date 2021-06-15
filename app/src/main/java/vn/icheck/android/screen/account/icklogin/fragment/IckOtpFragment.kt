@@ -30,6 +30,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
@@ -86,9 +87,9 @@ class IckOtpFragment : Fragment() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
+        val span = SpannableString("${rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} ${arr.joinToString(separator = "")}")
         span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
+        val text = String.format("<p>${rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -110,7 +111,7 @@ class IckOtpFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.tvTimer.setOnClickListener {
-            if (binding.tvTimer.text == "Gửi lại mã") {
+            if (binding.tvTimer.text == rText(R.string.gui_lai_ma)) {
                 initTimer()
             }
         }
@@ -141,7 +142,7 @@ class IckOtpFragment : Fragment() {
             override fun onFinish() {
                 try {
                     binding.tvTimer.setTextColor(Color.parseColor("#3C5A99"))
-                    binding.tvTimer.text = "Gửi lại mã"
+                    binding.tvTimer rText R.string.gui_lai_ma
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {
                             ickLoginViewModel.waitResponse = true
@@ -207,7 +208,7 @@ class IckOtpFragment : Fragment() {
 
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    binding.tvTimer.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    binding.tvTimer.rText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }

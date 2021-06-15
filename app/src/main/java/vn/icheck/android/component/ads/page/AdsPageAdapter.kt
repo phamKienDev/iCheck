@@ -142,9 +142,13 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             }
 
             if (obj.followCount != null && obj.followCount!! > 0) {
-                binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                }
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.chua_co_nguoi_theo_doi)
+                }
             }
             binding.tvContent.text = obj.description
 
@@ -244,9 +248,13 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (obj.followCount != null && obj.followCount!! > 0) {
-                binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                }
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.chua_co_nguoi_theo_doi)
+                }
             }
 
             setButtonText(binding.btnAction, obj.isFollow, 0)

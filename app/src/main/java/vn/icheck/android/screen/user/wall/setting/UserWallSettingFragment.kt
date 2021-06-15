@@ -22,6 +22,7 @@ import vn.icheck.android.screen.user.option_edit_information_public.EditInformat
 import vn.icheck.android.screen.user.option_manager_user_watching.ManagerUserWatchingActivity
 import vn.icheck.android.screen.user.option_manger_user_follow.ManagerUserFollowActivity
 import vn.icheck.android.screen.user.wall.EDIT_MY_PUBLIC_INFO
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.ick.simpleText
 
@@ -54,9 +55,9 @@ class UserWallSettingFragment:BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (SessionManager.session.user?.hasPassword == false) {
-            binding.tvEditPw simpleText "Cập nhật mật khẩu"
+            binding.tvEditPw rText R.string.cap_nhat_mat_khau
         } else {
-            binding.tvEditPw simpleText "Thay đổi mật khẩu"
+            binding.tvEditPw rText R.string.thay_doi_mat_khau
         }
         binding.imgCancel.setOnClickListener {
             findNavController().popBackStack()

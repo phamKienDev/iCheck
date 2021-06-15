@@ -12,11 +12,12 @@ import vn.icheck.android.network.models.v1.ICRelatedProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.ralated_product.RelatedProductStampAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.adapter.related_product.RelatedProductStampThinhLongAdapter
+import vn.icheck.android.util.ick.rText
 
 class ProductRelatedStampThinhLongHolder(parent: ViewGroup, private val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<MutableList<ICRelatedProductV1.RelatedProductRow>>(LayoutInflater.from(parent.context).inflate(R.layout.cstsp_slidesp_holder, parent, false)) {
 
     override fun bind(obj: MutableList<ICRelatedProductV1.RelatedProductRow>) {
-        itemView.slide_title.text = "Sản phẩm cùng doanh nghiệp sở hữu"
+        itemView.slide_title rText R.string.san_pham_cung_doanh_nghiep_so_huu
         val adapter = RelatedProductStampThinhLongAdapter(obj, headerImagelistener)
         itemView.rcv_slide_product.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
         itemView.rcv_slide_product.adapter = adapter

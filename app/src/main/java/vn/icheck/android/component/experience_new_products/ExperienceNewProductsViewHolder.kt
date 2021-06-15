@@ -43,7 +43,7 @@ class ExperienceNewProductsViewHolder(parent: ViewGroup) : RecyclerView.ViewHold
         })
 
         more.setOnClickListener {
-            ToastUtils.showLongWarning(itemView.context, "onClickViewAll")
+            ToastUtils.showLongWarning(itemView.context, itemView.context.getString(R.string.on_click_view_all))
         }
         recyclerViewHorizontalAdapter.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewHorizontalAdapter.adapter = categoryAdapter

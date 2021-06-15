@@ -35,6 +35,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -73,7 +74,7 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
             WidgetUtils.loadImageUrlRounded4(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
             itemView.tvNamePage.text = if (obj.name.isNullOrEmpty()) {
-                itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.context rText R.string.dang_cap_nhat
             } else {
                 obj.name
             }
@@ -105,7 +106,7 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
             }
 
             if (obj.address.isNullOrEmpty()) {
-                itemView.tvAddress.text = itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvAddress rText R.string.dang_cap_nhat
             } else {
                 itemView.tvAddress.text = obj.address
             }
@@ -114,7 +115,7 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
                 itemView.findViewById<AppCompatTextView>(R.id.tvMST).text = obj.tax
                 itemView.tvDangCapNhatMST.visibility = View.GONE
             } else {
-                itemView.findViewById<AppCompatTextView>(R.id.tvMST).text = "Mã số thuế: "
+                itemView.findViewById<AppCompatTextView>(R.id.tvMST) rText R.string.ma_so_thue
                 itemView.tvDangCapNhatMST.visibility = View.VISIBLE
             }
 
@@ -156,16 +157,25 @@ class VendorAdapter(val listData: MutableList<ICPage>, val icon: Int?) : Recycle
             }
 
             override fun onClick(view: View) {
-                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thong_bao), itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_so, text), itemView.context.getString(R.string.huy), itemView.context.getString(R.string.dong_y), true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
-                    }
+                itemView.context.apply {
+                    DialogHelper.showConfirm(
+                        this,
+                        rText(R.string.thong_bao),
+                        rText(R.string.ban_co_muon_goi_dien_thoai_den_so, text),
+                        rText(R.string.huy),
+                        rText(R.string.dong_y),
+                        true,
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {
+                            }
 
-                    override fun onAgree() {
-                        val intent = Intent(Intent.ACTION_DIAL)
-                        intent.data = Uri.parse("tel:${text}")
-                        ICheckApplication.currentActivity()?.startActivity(intent)
-                    }
-                })
+                            override fun onAgree() {
+                                val intent = Intent(Intent.ACTION_DIAL)
+                                intent.data = Uri.parse("tel:${text}")
+                                ICheckApplication.currentActivity()?.startActivity(intent)
+                            }
+                        })
+                }
             }
         }
 

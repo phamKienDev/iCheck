@@ -35,7 +35,9 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
 
         findViewById<LinearLayout>(R.id.containerMission)?.run {
             if (missions.isNullOrEmpty()) {
-                tvTitle.text = "Bạn không đủ lượt để mở quà"
+                tvTitle.apply {
+                    text = context.getString(R.string.ban_khong_du_luot_de_mo_qua)
+                }
                 tvDescription.beGone()
                 beGone()
                 btnAction.beGone()
@@ -43,7 +45,9 @@ abstract class DialogEmtyBoxGift(context: Context, private val image: Int, priva
             } else {
                 tvTitle.text = title
                 tvDescription.beVisible()
-                tvDescription.text = "Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
+                tvDescription.apply {
+                    text = context.getString(R.string.hoan_thanh_cac_thu_thach_sau_de_nhan_them_luot_mo_qua_moi_nao)
+                }
                 beVisible()
                 btnAction.beVisible()
 

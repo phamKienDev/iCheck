@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.layout_shop_history_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICHistory_Shop
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_shop_history_holder, parent, false)) {
@@ -76,7 +77,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
             itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_collapse_history_24dp, 0)
             itemView.viewLine2.visibility = View.VISIBLE
         } else {
-            itemView.tvAllProduct.text = "12 sản phẩm có sẵn"
+            itemView.tvAllProduct rText R.string.x_san_pham_co_san
             itemView.tvCollapse.text = itemView.context.getString(R.string.xem_them)
             itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_extend_history_24dp, 0)
             itemView.viewLine2.visibility = View.GONE
@@ -84,7 +85,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 
         itemView.tvCollapse.setOnClickListener {
             if (expand) {
-                itemView.tvAllProduct.text = "12  sản phẩm có sẵn"
+                itemView.tvAllProduct rText R.string.x_san_pham_co_san
                 itemView.tvCollapse.text = itemView.context.getString(R.string.xem_them)
                 itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_extend_history_24dp, 0)
                 itemView.viewLine2.visibility = View.GONE

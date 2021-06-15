@@ -21,6 +21,7 @@ import vn.icheck.android.screen.user.detail_stamp_v5.more_business_v5.presenter.
 import vn.icheck.android.screen.user.detail_stamp_v5.more_business_v5.view.IMoreBusinessV5View
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 
 class MoreBusinessV5Activity : BaseActivity<MoreBusinessV5Presenter>(), IMoreBusinessV5View {
@@ -55,7 +56,7 @@ class MoreBusinessV5Activity : BaseActivity<MoreBusinessV5Presenter>(), IMoreBus
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_TEXT, tvEmail.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
             }
         }
 

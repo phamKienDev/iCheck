@@ -28,7 +28,6 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -153,7 +152,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnSubmit.isClickable = true
                 ToastUtils.showShortError(
                     itemView.context,
-                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi_danh_gia)
                 )
             }
         }

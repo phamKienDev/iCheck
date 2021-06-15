@@ -58,16 +58,16 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
             when {
                 RelationshipManager.checkFriend(ickUserWallViewModel.userInfo?.data?.id ?: 0L) -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow simpleText "Bỏ theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvUnfolow.rText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
-                        binding.tvUnfolow simpleText "Theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     }
                     if (AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify simpleText "Hủy kết bạn ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvTitleNotify.rText(R.string.huy_ket_ban_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
                         if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                            binding.tvTitleNotify simpleText "Hủy lời mời kết bạn với ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                            binding.tvTitleNotify.rText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
                         } else {
                             binding.layoutNotify.beGone()
                         }
@@ -77,20 +77,20 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                 }
                 else -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow simpleText "Bỏ theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvUnfolow.rText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
-                        binding.tvUnfolow simpleText "Theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     }
                     if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify simpleText "Hủy lời mời kết bạn ${ickUserWallViewModel.userInfo?.data?.getName()}"
+                        binding.tvTitleNotify.rText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
                         binding.layoutNotify.beGone()
                     }
                 }
             }
         } else {
-            binding.tvUnfolow simpleText "Theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}"
+            binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
             binding.layoutNotify.beGone()
         }
         binding.layoutReport.setOnClickListener {
@@ -112,8 +112,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                 ickUserWallViewModel.inAction = true
                 if (AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
 
-                    object : ConfirmDialog(requireContext(), "Bạn có chắc chắn hủy kết bạn với\n" +
-                            "${ickUserWallViewModel.userInfo?.data?.getName()} chứ?",null , "Để Sau", "Đồng ý", true) {
+                    object : ConfirmDialog(requireContext(), rText(R.string.ban_co_chac_chan_huy_ket_ban_voi_n_s_chu, ickUserWallViewModel.userInfo?.data?.getName()),null , rText(R.string.de_sau), rText(R.string.dong_y), true) {
 
                         override fun onDisagree() {
                             dismiss()
@@ -156,7 +155,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         ickUserWallViewModel.unFollowUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showShortSuccessToast("Bạn đã hủy theo dõi với ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                                requireContext().showShortSuccessToast(rText(R.string.ban_da_huy_theo_doi_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                                 AppDatabase.getDatabase().meFollowUserDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
                                 dismiss()
                             }
@@ -164,7 +163,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     } else {
                         ickUserWallViewModel.followUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showShortSuccessToast("Bạn đã theo dõi ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                                requireContext().showShortSuccessToast(rText(R.string.ban_da_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                                 AppDatabase.getDatabase().meFollowUserDao().insertMeFollowUser(ICMeFollowUser(ickUserWallViewModel.userInfo?.data?.id!!))
                                 dismiss()
                             }

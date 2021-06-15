@@ -28,7 +28,7 @@
         android:background="@drawable/bg_outgoing_text"
         android:padding="@dimen/size_8"
         android:textColor="@android:color/white"
-        tools:text="Hôm nay mình có việc nên không thể nghe đt được, bạn thông cảm chút cho mình nha :(" />
+        tools:text="@string/hom_nay_minh_co_viec_nen_khong_the_nghe_dt_duoc_ban_thong_cam_chut_cho_minh_nha" />
 
     <TextView
         android:id="@+id/tv_retry"

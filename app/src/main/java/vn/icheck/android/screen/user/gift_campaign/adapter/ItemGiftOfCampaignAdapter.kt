@@ -13,6 +13,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.campaign.ICGiftOfCampaign
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampaign>, private val type: Int) : RecyclerView.Adapter<ItemGiftOfCampaignAdapter.ViewHolder>() {
@@ -59,7 +60,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICGiftOfCampaign) {
 
-            itemView.tvCountGift.text = "${obj.rewardTotal} Quà"
+            itemView.tvCountGift.rText(R.string.d_qua, obj.rewardTotal)
 
             when (type) {
                 ICViewTypes.PRODUCT_CAMPAIGN_TYPE -> {
@@ -69,13 +70,13 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
                     itemView.imgAvatar.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).also {
                         it.topMargin = SizeHelper.size10
                     }
-                    itemView.tvPrice.text = "${TextHelper.formatMoneyPhay(obj.rewardValue)}đ"
+                    itemView.tvPrice.rText(R.string.s_d, TextHelper.formatMoneyPhay(obj.rewardValue))
                 }
                 ICViewTypes.VOUCHER_CAMPAIGN_TYPE -> {
                     WidgetUtils.loadImageUrl(itemView.imgICoin, obj.image)
                     WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.logo, R.drawable.ic_business_v2)
 
-                    itemView.tvPrice.text = "${TextHelper.formatMoneyPhay(obj.rewardValue)}đ"
+                    itemView.tvPrice.rText(R.string.s_d, TextHelper.formatMoneyPhay(obj.rewardValue))
                 }
                 ICViewTypes.ICOIN_CAMPAIGN_TYPE -> {
                     itemView.tvName.visibility = View.GONE
@@ -86,7 +87,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
                     itemView.imgAvatar.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).also {
                         it.topMargin = SizeHelper.size16
                     }
-                    itemView.tvPrice.text = "${TextHelper.formatMoneyPhay(obj.icoin)} Xu"
+                    itemView.tvPrice.rText(R.string.s_xu, TextHelper.formatMoneyPhay(obj.icoin))
                 }
                 ICViewTypes.MORALE_CAMPAIGN_TYPE -> {
                     WidgetUtils.loadImageUrl(itemView.imgICoin, obj.image)

@@ -11,6 +11,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
+import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeAdapter(val listener: IHistoryGuaranteeView, val vietNamLanguage: Boolean?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -78,10 +79,12 @@ class HistoryGuaranteeAdapter(val listener: IHistoryGuaranteeView, val vietNamLa
             }
 
             if (vietNamLanguage == false) {
-                itemView.tvCreatedTime.text = if (!obj.created_time.isNullOrEmpty()) {
-                    TimeHelper.convertDateTimeSvToDateVn(obj.created_time)
-                } else {
-                    "updating"
+                itemView.tvCreatedTime.apply {
+                    text = if (!obj.created_time.isNullOrEmpty()) {
+                        TimeHelper.convertDateTimeSvToDateVn(obj.created_time)
+                    } else {
+                        context.rText(R.string.updating)
+                    }
                 }
             } else {
                 itemView.tvCreatedTime.text = if (!obj.created_time.isNullOrEmpty()) {
@@ -98,28 +101,28 @@ class HistoryGuaranteeAdapter(val listener: IHistoryGuaranteeView, val vietNamLa
             val message = when (errorCode) {
                 Constant.ERROR_INTERNET -> {
                     if (vietNamLanguage == false) {
-                       "Checking network. Please try again"
+                       itemView.context.rText(R.string.checking_network_please_try_again)
                     } else {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     }
                 }
                 Constant.ERROR_UNKNOW -> {
                     if (vietNamLanguage == false) {
-                        "Occurred. Please try again"
+                        itemView.context.rText(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
                 }
                 Constant.ERROR_EMPTY -> {
                     if (vietNamLanguage == false) {
-                        "No Data"
+                        itemView.context.rText(R.string.no_data)
                     } else {
                         itemView.context.getString(R.string.khong_co_du_lieu)
                     }
                 }
                 else -> {
                     if (vietNamLanguage == false) {
-                        "Occurred. Please try again"
+                        itemView.context.rText(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }

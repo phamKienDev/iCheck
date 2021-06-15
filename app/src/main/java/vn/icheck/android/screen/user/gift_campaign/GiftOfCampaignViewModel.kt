@@ -138,19 +138,19 @@ class GiftOfCampaignViewModel : ViewModel() {
 
                     listData.apply {
                         if (!listProduct.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.PRODUCT_CAMPAIGN_TYPE, listProduct, "Quà hiện vật"))
+                            add(GiftOfCampaignModel(ICViewTypes.PRODUCT_CAMPAIGN_TYPE, listProduct, ICheckApplication.getInstance().getString(R.string.qua_hien_vat)))
                         }
                         if (!listVoucher.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.VOUCHER_CAMPAIGN_TYPE, listVoucher, "Quà dịch vụ"))
+                            add(GiftOfCampaignModel(ICViewTypes.VOUCHER_CAMPAIGN_TYPE, listVoucher, ICheckApplication.getInstance().getString(R.string.qua_dich_vu)))
                         }
                         if (!listICoin.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.ICOIN_CAMPAIGN_TYPE, listICoin, "Quà thưởng Xu"))
+                            add(GiftOfCampaignModel(ICViewTypes.ICOIN_CAMPAIGN_TYPE, listICoin, ICheckApplication.getInstance().getString(R.string.qua_thuong_xu)))
                         }
                         if (!listMorale.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.MORALE_CAMPAIGN_TYPE, listMorale, "Quà tinh thần"))
+                            add(GiftOfCampaignModel(ICViewTypes.MORALE_CAMPAIGN_TYPE, listMorale, ICheckApplication.getInstance().getString(R.string.qua_tinh_than)))
                         }
                         if (!listCampaign365.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.CAMPAIGN_365_TYPE, listCampaign365, "Mã dự thưởng"))
+                            add(GiftOfCampaignModel(ICViewTypes.CAMPAIGN_365_TYPE, listCampaign365, ICheckApplication.getInstance().getString(R.string.ma_du_thuong)))
                         }
                     }
 
@@ -158,7 +158,7 @@ class GiftOfCampaignViewModel : ViewModel() {
                         onNotEmpty.postValue("")
                         onSuccess.postValue(listData)
                     } else {
-                        onErrorEmpty.postValue("Quà tặng đang cập nhật")
+                        onErrorEmpty.postValue(ICheckApplication.getInstance().getString(R.string.qua_tang_dang_cap_nhat))
                     }
                 }
             }

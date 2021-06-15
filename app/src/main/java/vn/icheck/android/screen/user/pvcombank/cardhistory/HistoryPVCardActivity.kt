@@ -25,6 +25,7 @@ import vn.icheck.android.screen.user.pvcombank.cardhistory.adapter.HistoryPVCard
 import vn.icheck.android.screen.user.pvcombank.cardhistory.adapter.HistoryPVTransactionAdapter
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.ConfirmUnlockPVCardActivity
 import vn.icheck.android.ui.carousel_recyclerview.ZoomCenterCardLayoutManager
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.visibleOrGone
 
 class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -83,7 +84,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private fun initData() {
         viewModel.onSetTransaction.observe(this, Observer {
             if (it.isNullOrEmpty()) {
-                transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
+                transactionAdapter.setError(R.drawable.ic_group_120dp, rText(R.string.chua_co_lich_su_giao_dich), -1)
             } else {
                 transactionAdapter.setListData(it)
             }
@@ -96,7 +97,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         viewModel.onError.observe(this, Observer {
             if (cardAdapter.isEmpty && transactionAdapter.isEmpty) {
-                transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
+                transactionAdapter.setError(R.drawable.ic_group_120dp, rText(R.string.chua_co_lich_su_giao_dich), -1)
             } else {
                 showShortError(it.message ?: "")
             }

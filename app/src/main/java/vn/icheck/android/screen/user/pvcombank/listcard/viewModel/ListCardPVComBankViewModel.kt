@@ -81,7 +81,9 @@ class ListCardPVComBankViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    dataLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataLockCard.postValue(it)
+                    }
                 } else {
                     errorString.postValue(obj.message
                             ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))

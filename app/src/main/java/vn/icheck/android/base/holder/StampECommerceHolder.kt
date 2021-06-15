@@ -24,7 +24,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
         if (obj.promotionPrice != null) {
             if (obj.listPrice != null) {
                 binding.tvOldPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.listPrice) + "đ")
+                    text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.listPrice))
                     paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     beVisible()
                 }
@@ -34,7 +34,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
 
             if (obj.promotionPrice != null) {
                 binding.tvPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.promotionPrice) + "đ")
+                    text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.promotionPrice))
                     beVisible()
                 }
             } else {
@@ -43,7 +43,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
         } else {
             binding.tvOldPrice.beGone()
             binding.tvPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.listPrice) + "đ")
+                text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.listPrice))
                 beVisible()
             }
         }

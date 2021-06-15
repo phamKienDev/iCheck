@@ -13,10 +13,7 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
-import vn.icheck.android.util.ick.getLayoutInflater
-import vn.icheck.android.util.ick.loadImageWithHolder
-import vn.icheck.android.util.ick.loadRoundedImage
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class CartItemsAdapter(val listData: List<ItemCartItem>, val onAdd: (Int) -> Unit, val onRemove: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -45,7 +42,7 @@ class CartItemsAdapter(val listData: List<ItemCartItem>, val onAdd: (Int) -> Uni
             }
         }
         holder.binding.tvTotal simpleText cartItem.quantity.toString()
-        holder.binding.tvQuantityGift simpleText "${TextHelper.formatMoneyPhay(cartItem.price)} Xu"
+        holder.binding.tvQuantityGift.rText(R.string.s_xu, TextHelper.formatMoneyPhay(cartItem.price))
         holder.binding.checkBox.isChecked = cartItem.isSelected
         holder.binding.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             onCheckedChange?.let {

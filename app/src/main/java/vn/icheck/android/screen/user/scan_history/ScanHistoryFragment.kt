@@ -127,7 +127,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                     val i = it.data
                     when {
                         i ?: 0 > 9 -> {
-                            tvCountCart.text = "9+"
+                            tvCountCart rText R.string.count_9
                             tvCountCart.beVisible()
                         }
                         i ?: 0 > 0 -> {
@@ -244,7 +244,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             override fun onGoToEmail(target: String?, content: String?) {
                 startActivity(Intent.createChooser(Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:$target")
-                }, "Send Email"))
+                }, rText(R.string.send_to)))
             }
 
             override fun onGoToLink(target: String?, content: String?) {
@@ -346,7 +346,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
     private fun handleQr(type: Int, data: String) {
         when (type) {
             Constant.TYPE_URL -> {
-                WebViewActivity.start(requireActivity(), data, 0, "Chi tiết Qr Code")
+                WebViewActivity.start(requireActivity(), data, 0, rText(R.string.chi_tiet_qr_code))
             }
             Constant.TYPE_SMS -> {
                 Handler().postDelayed({
@@ -456,7 +456,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                             startActivity(intent)
                         } catch (exception: ActivityNotFoundException) {
-                            requireContext().showShortErrorToast("Không tìm thấy ứng dụng google map!")
+                            requireContext().showShortErrorToast(rText(R.string.khong_tim_thay_ung_dung_google_map))
                         }
                     }
                 }, 800)
@@ -584,7 +584,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
         if (item.id != null) {
             listIdBigCorp.add(item.id!!)
         }
-        if (item.name != "Tất cả") {
+        if (item.name != rText(R.string.tat_ca)) {
             adapter?.hideSuggestShop()
         } else {
             adapter?.showSuggest()
@@ -630,14 +630,14 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             R.id.btnNearest -> {
                 checkTextOnTick(btnNearest, btnfurthest, isNearest = true, isFurthest = false)
                 showCategory(false)
-                tvSort.text = ("Sắp xếp: Mới nhất")
+                tvSort rText R.string.sap_xep_moi_nhat
                 sort = 2
                 viewModel.getListScanHistory(sort, listIdBigCorp, listType, false)
             }
             R.id.btnfurthest -> {
                 checkTextOnTick(btnNearest, btnfurthest, isNearest = false, isFurthest = true)
                 showCategory(false)
-                tvSort.text = ("Sắp xếp: Cũ nhất")
+                tvSort rText R.string.sap_xep_cu_nhat
                 sort = 1
                 viewModel.getListScanHistory(sort, listIdBigCorp, listType, false)
             }
@@ -788,7 +788,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                     val i = it.data
                     when {
                         i ?: 0 > 9 -> {
-                            tvCountCart.text = "9+"
+                            tvCountCart rText R.string.count_9
                             tvCountCart.beVisible()
                         }
                         i ?: 0 > 0 -> {

@@ -53,7 +53,9 @@ class InformationProductViewModel : ViewModel() {
         viewModelScope.launch {
             interaction.getInformationProduct(code, productId, object : ICNewApiListener<ICResponse<ICInformationProduct>> {
                 override fun onSuccess(obj: ICResponse<ICInformationProduct>) {
-                    liveData.postValue(obj.data)
+                    obj.data?.let {
+                        liveData.postValue(it)
+                    }
                 }
 
                 override fun onError(error: ICResponseCode?) {

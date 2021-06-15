@@ -18,6 +18,7 @@ import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 
 class BuyTopupSuccessActivity : AppCompatActivity() {
     lateinit var viewModel: PaymentViewModel
@@ -48,7 +49,7 @@ class BuyTopupSuccessActivity : AppCompatActivity() {
         val data = intent.getLongExtra(Constant.DATA_2, -1)
 
         if (data != -1L){
-            tvTypePayment.text = "VNPAY"
+            tvTypePayment rText R.string.vnpay
             viewModel.getDetailCard(data)
         }else{
             onBackPressed()
@@ -100,17 +101,17 @@ class BuyTopupSuccessActivity : AppCompatActivity() {
     }
 
     fun setDataView(data: ICRechargePhone) {
-        tvMessageSuccess.text = "Quý khách đã nạp thành công \n 1 mã thẻ điện thoại " + data?.provider
+        tvMessageSuccess.rText(R.string.quy_khach_da_nap_thanh_cong_mot_ma_the_dien_thoai_s, data.provider)
 
-        tvName.text = data?.provider
+        tvName.text = data.provider
 
         if (data.denomination is String) {
             if (vnPayType) {
-                tvTotal.text = TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " đ"
-                tvTypePayment.text = "VNPAY"
+                tvTotal.rText(R.string.s_space_d, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
+                tvTypePayment rText R.string.vnpay
             } else {
-                tvTotal.text = TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " Xu"
-                tvTypePayment.text = "Ví iCheck"
+                tvTotal.rText(R.string.s_xu, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
+                tvTypePayment rText R.string.vi_icheck
             }
         }
 

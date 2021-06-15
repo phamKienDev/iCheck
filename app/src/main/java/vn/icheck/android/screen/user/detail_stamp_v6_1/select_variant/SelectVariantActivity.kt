@@ -13,6 +13,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.util.ick.rText
 
 class SelectVariantActivity : BaseActivity<SelectVariantPresenter>(), ISelectVariantView {
 
@@ -46,9 +47,9 @@ class SelectVariantActivity : BaseActivity<SelectVariantPresenter>(), ISelectVar
     @SuppressLint("SetTextI18n")
     private fun initHeader() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select Varitation"
+            txtTitle rText R.string.select_variation
         } else {
-            txtTitle.text = "Chọn biến thể"
+            txtTitle rText R.string.chon_bien_the
         }
     }
 
@@ -84,7 +85,7 @@ class SelectVariantActivity : BaseActivity<SelectVariantPresenter>(), ISelectVar
         when(errorType){
             Constant.ERROR_INTERNET -> {
                 if (DetailStampActivity.isVietNamLanguage == false){
-                    DialogHelper.showConfirm(this@SelectVariantActivity, "Checking network. Please try again", false, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(this@SelectVariantActivity, rText(R.string.checking_network_please_try_again), false, object : ConfirmDialogListener {
                         override fun onDisagree() {
                             onBackPressed()
                         }

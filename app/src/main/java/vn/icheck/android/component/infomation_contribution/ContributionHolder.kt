@@ -252,16 +252,21 @@ class ContributionHolder(parent: ViewGroup) :
                     )
                 }
             }
-            tvUpVote.text = if (contribution.contribution!!.upVotes > 0) {
-                "Đúng (${contribution.contribution!!.upVotes})"
-            } else {
-                "Đúng"
-            }
-
-            tvDownVote.text = if (contribution.contribution!!.downVotes > 0) {
-                "Sai (${contribution.contribution!!.downVotes})"
-            } else {
-                "Sai"
+            contribution.contribution?.let {
+                tvUpVote.apply {
+                    text = if (it.upVotes > 0) {
+                        context.getString(R.string.dung_d, it.upVotes)
+                    } else {
+                        context.getString(R.string.dung)
+                    }
+                }
+                tvDownVote.apply {
+                    text = if (it.downVotes > 0) {
+                        context.getString(R.string.sai_d, it.downVotes)
+                    } else {
+                        context.getString(R.string.sai)
+                    }
+                }
             }
         }
     }
@@ -281,8 +286,8 @@ class ContributionHolder(parent: ViewGroup) :
                         itemView.context,
                         itemView.context.getString(R.string.thay_doi_binh_chon),
                         itemView.context.getString(R.string.content_change_vote_contribution),
-                        "Không, tôi muốn giữ",
-                        "Chắc chắn",
+                        itemView.context.getString(R.string.khong_toi_khong_muon_giu),
+                        itemView.context.getString(R.string.chac_chan),
                         true,
                         object : ConfirmDialogListener {
                             override fun onDisagree() {
@@ -353,7 +358,12 @@ class ContributionHolder(parent: ViewGroup) :
                     )
                 )
             }
-            tvListAvatar.text = "${data.data!!.count} người khác đã đóng góp thông tin"
+            tvListAvatar.apply {
+                text = context.getString(
+                    R.string.d_nguoi_khac_da_dong_gop_thong_tin,
+                    data.data?.count ?: 0
+                )
+            }
         } else {
             tvAll.visibility = View.GONE
             layoutListAvatar.visibility = View.GONE

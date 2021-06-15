@@ -54,14 +54,14 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                 adapter = friendRequestAdapter
                 friendRequestAdapter.setData(obj.rows)
 
-                friendRequestAdapter.setUpdateTitleListener(View.OnClickListener {
+                friendRequestAdapter.setUpdateTitleListener {
                     obj.count--
                     setTitle(obj.count)
-                })
+                }
 
-                friendRequestAdapter.setOnRemoveListener(View.OnClickListener {
+                friendRequestAdapter.setOnRemoveListener {
                     listener?.onClick(null)
-                })
+                }
             }
         }
     }

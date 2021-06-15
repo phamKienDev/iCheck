@@ -20,6 +20,7 @@ import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarante
 import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarantee_v5.view.IUpdateInformationStampV5View
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectCityBottomSheet
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectDistrictBottomSheet
+import vn.icheck.android.util.ick.rText
 
 class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Presenter>(), IUpdateInformationStampV5View {
 
@@ -37,7 +38,7 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
     private var districtId: Int? = null
 
     override fun onInitView() {
-        txtTitle.text = "Thông tin khách hàng"
+        txtTitle rText R.string.thong_tin_khach_hang
         presenter.getDataIntent(intent)
         listener()
     }
@@ -119,7 +120,7 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
     }
 
     override fun onGetNameCityFail() {
-        tvCities.text = "Tùy chọn"
+        tvCities rText R.string.tuy_chon
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
@@ -127,7 +128,7 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
     }
 
     override fun onGetNameDistrictFail() {
-        tvDistricts.text = "Tùy chọn"
+        tvDistricts rText R.string.tuy_chon
     }
 
     override fun showError(errorMessage: String) {
@@ -144,7 +145,7 @@ class UpdateInformationStampV5Activity : BaseActivity<UpdateInformationStampV5Pr
         val intent = Intent()
         intent.putExtra(Constant.DATA_1, objUpdate)
         setResult(Activity.RESULT_OK, intent)
-        showShortSuccess("Cập nhật thông tin thành công")
+        showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
         onBackPressed()
     }
 

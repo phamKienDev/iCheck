@@ -13,6 +13,7 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.rText
 
 class SettingsActivity : BaseActivityMVVM() {
 
@@ -35,7 +36,7 @@ class SettingsActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
-        txtTitle.text = "Cấu hình"
+        txtTitle rText R.string.cau_hinh
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -56,20 +57,20 @@ class SettingsActivity : BaseActivityMVVM() {
         }
 
         if (SettingManager.getLanguageENSetting) {
-            textView.text = "Language:"
-            tvLanguage.text = "English"
+            textView rText R.string.language
+            tvLanguage rText R.string.english
             imgLanguage.setImageResource(R.drawable.ic_language_english_24)
 
-            appCompatTextView.text = "Ngôn ngữ:"
-            tvLanguageEN.text = "Việt Nam"
+            appCompatTextView rText R.string.ngon_ngu
+            tvLanguageEN rText R.string.viet_nam
             imgLanguageEN.setImageResource(R.drawable.ic_language_viet_nam_24)
         } else {
-            appCompatTextView.text = "Language:"
-            tvLanguageEN.text = "English"
+            appCompatTextView rText R.string.language
+            tvLanguageEN rText R.string.english
             imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-            textView.text = "Ngôn ngữ:"
-            tvLanguage.text = "Việt Nam"
+            textView rText R.string.ngon_ngu
+            tvLanguage rText R.string.viet_nam
             imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
         }
     }
@@ -109,8 +110,7 @@ class SettingsActivity : BaseActivityMVVM() {
         }
 
         btnReset.setOnClickListener {
-            val ob = object : ConfirmDialog(this,"Đặt lại mặc định?", "Bạn chắc chắn muốn đặt lại cài đặt \n" +
-                    "về mặc định ban đầu?", "Để Sau", "Đồng ý", true) {
+            val ob = object : ConfirmDialog(this,rText(R.string.dat_lai_mac_dinh), rText(R.string.ban_chac_chan_muon_dat_lai_cai_dat_ve_mac_dinh_ban_dau), rText(R.string.de_sau), rText(R.string.dong_y), true) {
                 override fun onDisagree() {
                     dismiss()
                 }
@@ -141,22 +141,22 @@ class SettingsActivity : BaseActivityMVVM() {
             if (SettingManager.getLanguageENSetting) {
                 SettingManager.setLanguageENSetting(false)
 
-                appCompatTextView.text = "Language:"
-                tvLanguageEN.text = "English"
+                appCompatTextView rText R.string.language
+                tvLanguageEN rText R.string.english
                 imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-                textView.text = "Ngôn ngữ:"
-                tvLanguage.text = "Việt Nam"
+                textView rText R.string.ngon_ngu
+                tvLanguage rText R.string.viet_nam
                 imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
             } else {
                 SettingManager.setLanguageENSetting(true)
 
-                textView.text = "Language:"
-                tvLanguage.text = "English"
+                textView rText R.string.language
+                tvLanguage rText R.string.english
                 imgLanguage.setImageResource(R.drawable.ic_language_english_24)
 
-                appCompatTextView.text = "Ngôn ngữ:"
-                tvLanguageEN.text = "Việt Nam"
+                appCompatTextView rText R.string.ngon_ngu
+                tvLanguageEN rText R.string.viet_nam
                 imgLanguageEN.setImageResource(R.drawable.ic_language_viet_nam_24)
             }
         }
@@ -245,12 +245,12 @@ class SettingsActivity : BaseActivityMVVM() {
         switchSound.setImageResource(R.drawable.ic_switch_on_24px)
         switchVibrate.setImageResource(R.drawable.ic_switch_on_24px)
 
-        appCompatTextView.text = "Language:"
-        tvLanguageEN.text = "English"
+        appCompatTextView rText R.string.language
+        tvLanguageEN rText R.string.english
         imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-        textView.text = "Ngôn ngữ:"
-        tvLanguage.text = "Việt Nam"
+        textView rText R.string.ngon_ngu
+        tvLanguage rText R.string.viet_nam
         imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
         viewModel.getNotifySetting()
     }
@@ -264,7 +264,7 @@ class SettingsActivity : BaseActivityMVVM() {
                 size = 0
                 viewModel.deleteCache()
                 tvClearCache.text = viewModel.readableFileSize(size)
-                this@SettingsActivity.showShortSuccessToast("Bạn đã xóa cache thành công!")
+                this@SettingsActivity.showShortSuccessToast(rText(R.string.ban_da_xoa_cache_thanh_cong))
             }
         })
     }

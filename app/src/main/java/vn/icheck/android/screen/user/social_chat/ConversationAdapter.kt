@@ -39,7 +39,7 @@ class ConversationAdapter(var data:List<ChatConversation>):RecyclerView.Adapter<
             when{
                 conversation.unreadCount > 9L -> {
                     binding.tvUnread.beVisible()
-                    binding.tvUnread simpleText "9+"
+                    binding.tvUnread rText R.string.count_9
                     binding.root.setBackgroundColor(Color.parseColor("#1A057DDA"))
                 }
                 conversation.unreadCount > 0L -> {

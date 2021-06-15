@@ -34,7 +34,7 @@ class FriendSuggestionAdapter(val maxItem:Int = -1) : RecyclerView.Adapter<Frien
     override fun onBindViewHolder(holder: FriendSuggestionHolder, position: Int) {
         holder.bind(listData[position])
 
-        holder.setOnRemoveListener(View.OnClickListener {
+        holder.setOnRemoveListener {
             listData.removeAt(position)
 
             if (listData.isNotEmpty()) {
@@ -43,6 +43,6 @@ class FriendSuggestionAdapter(val maxItem:Int = -1) : RecyclerView.Adapter<Frien
             } else {
                 listener?.onClick(null)
             }
-        })
+        }
     }
 }

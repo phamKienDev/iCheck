@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_infor_product_hoa_phat.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.GlideImageGetter
 import vn.icheck.android.util.text.HtmlImageGetter
 import vn.icheck.android.util.text.HtmlImageGetterStamp
@@ -22,7 +23,7 @@ class InforProductHoaPhatActivity : BaseActivityMVVM() {
         val title = try {
             intent?.getStringExtra(Constant.DATA_1)
         } catch (e: Exception) {
-            "Thông tin thêm"
+            rText(R.string.thong_tin_them)
         }
 
         val content = try {

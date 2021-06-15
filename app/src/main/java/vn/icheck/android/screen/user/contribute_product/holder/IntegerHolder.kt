@@ -19,6 +19,7 @@ import vn.icheck.android.databinding.ItemIntegerBinding
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 
 class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.root) {
@@ -51,9 +52,9 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            binding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
+            binding.tvTitle.text = categoryAttributesModel.categoryItem.name
         }
         if (categoryAttributesModel.values != null && categoryAttributesModel.values.toString().isNotEmpty()) {
             if (categoryAttributesModel.values is Double) {

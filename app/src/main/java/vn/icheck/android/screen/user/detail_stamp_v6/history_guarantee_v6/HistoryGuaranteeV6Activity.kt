@@ -13,6 +13,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6
 import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.adapter.HistoryGuaranteeV6Adapter
 import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.presenter.HistoryGuaranteeV6Presenter
 import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.view.IHistoryGuaranteeV6View
+import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeV6Activity : BaseActivity<HistoryGuaranteeV6Presenter>(),IHistoryGuaranteeV6View {
 
@@ -28,7 +29,7 @@ class HistoryGuaranteeV6Activity : BaseActivity<HistoryGuaranteeV6Presenter>(),I
         presenter.getDataIntent(intent)
         listener()
         initRecyclerView()
-        txtTitle.text = "Lịch sử bảo hành"
+        txtTitle rText R.string.lich_su_bao_hanh
     }
 
     private fun listener(){

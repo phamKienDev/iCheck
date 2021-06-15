@@ -78,6 +78,7 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.AdsUtils
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.text.SimpleDateFormat
@@ -180,15 +181,15 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 
         runOnUiThread {
             if (isVietNamLanguage == false) {
-                txtTitle.text = "Verified product"
-                tvChatWithAdmin.text = "Contact to Admin Icheck"
-                btnAgainError.text = "Try Again"
-                btnRequestPermission.text = "Turn on GPS"
+                txtTitle rText R.string.verified_product
+                tvChatWithAdmin rText R.string.contact_to_admin_icheck
+                btnAgainError rText R.string.try_again
+                btnRequestPermission rText R.string.turn_on_gps
             } else {
-                txtTitle.text = "Xác thực sản phẩm"
-                tvChatWithAdmin.text = "Liên hệ Admin iCheck"
-                btnAgainError.text = "Thử Lại"
-                btnRequestPermission.text = "Bật GPS"
+                txtTitle rText R.string.xac_thuc_san_pham
+                tvChatWithAdmin rText R.string.lien_he_admin_icheck
+                btnAgainError rText R.string.thu_lai
+                btnRequestPermission rText R.string.bat_gps
             }
         }
 
@@ -400,7 +401,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
     override fun onItemEmailClick(email: String?) {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:$email")
-        startActivity(Intent.createChooser(intent, "Send To"))
+        startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -586,7 +587,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (!itemDistributor?.email.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:" + itemDistributor?.email)
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
             }
         }
 
@@ -594,7 +595,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (tvMailDistributor.text.toString() != getString(R.string.dang_cap_nhat)) {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:" + tvMailDistributor.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
             }
         }
 
@@ -635,7 +636,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //            } else {
 //                onRequireLogin(requestAddToCartShortToast)
 //            }
-            showShortSuccess("Tính năng đang phát triển")
+            showShortSuccess(rText(R.string.tinh_nang_dang_phat_trien))
         }
 
         tvAddToCartInDiemBan.setOnClickListener {
@@ -701,9 +702,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 layoutExceededScan.visibility = View.VISIBLE
                 tvMessageApollo.text = obj.data?.scan_message?.text
                 tvBussinessName.text = obj.data?.distributor?.name
-                tvAddressBussiness.text = "Địa chỉ: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
-                tvHotlineBussiness.text = "Tổng đài: " + obj.data?.distributor?.phone
-                tvEmailBussiness.text = " - Email: " + obj.data?.distributor?.email
+                tvAddressBussiness.text = "${rText(R.string.dia_chi)}: " + obj.data?.distributor?.address + ", " + obj.data?.distributor?.district + ", " + obj.data?.distributor?.city
+                tvHotlineBussiness.text = "${rText(R.string.tong_dai)}: " + obj.data?.distributor?.phone
+                tvEmailBussiness.text = " - ${rText(R.string.email)}: " + obj.data?.distributor?.email
                 return
             }
 
@@ -721,7 +722,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             } else {
                 if (!obj.data?.message?.message.isNullOrEmpty()) {
                     presenter.getConfigError()
-                    tvMessageStampError.text = "CẢNH BÁO!" + "\n" + obj.data?.message?.message
+                    tvMessageStampError.rText(R.string.canh_bao_s, obj.data?.message?.message)
                 } else {
                     scrollView.visibility = View.VISIBLE
                     initBanner()
@@ -750,11 +751,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     //fake
                     0 -> {
                         if (isVietNamLanguage == false) {
-                            appCompatTextView12.text = "Number of scan"
-                            appCompatTextView13.text = "Number of scaner"
+                            appCompatTextView12 rText R.string.number_of_scan
+                            appCompatTextView13 rText R.string.number_of_scanner
                         } else {
-                            appCompatTextView12.text = "Số lần quét"
-                            appCompatTextView13.text = "Số người quét"
+                            appCompatTextView12 rText R.string.so_lan_quet
+                            appCompatTextView13 rText R.string.so_nguoi_quet
                         }
 
                         layoutFake.visibility = View.VISIBLE
@@ -765,7 +766,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //                            val mNumber = textNumberSerial + it.number
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialFake.text = "Serial: $verfiedSerial"
+                            tvSerialFake.rText(R.string.serial_s, verfiedSerial)
 
                             tvCountScanFake.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                                 it.scan_count.toString()
@@ -784,11 +785,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     //verified
                     1 -> {
                         if (isVietNamLanguage == false) {
-                            appCompatTextView15.text = "Number of scan"
-                            appCompatTextView16.text = "Number of scaner"
+                            appCompatTextView15 rText R.string.number_of_scan
+                            appCompatTextView16 rText R.string.number_of_scanner
                         } else {
-                            appCompatTextView15.text = "Số lần quét"
-                            appCompatTextView16.text = "Số người quét"
+                            appCompatTextView15 rText R.string.so_lan_quet
+                            appCompatTextView16 rText R.string.so_nguoi_quet
                         }
 
                         layoutVerified.visibility = View.VISIBLE
@@ -796,7 +797,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                         obj.data?.count?.let {
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialVerified.text = "Serial: $verfiedSerial"
+                            tvSerialVerified.rText(R.string.serial_s, verfiedSerial)
 
                             tvCountScanVerified.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                                 it.scan_count.toString()
@@ -814,18 +815,18 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     //Guarantee
                     2 -> {
                         if (isVietNamLanguage == false) {
-                            appCompatTextView19.text = "Number of scan"
-                            appCompatTextView20.text = "Number of scaner"
+                            appCompatTextView19 rText R.string.number_of_scan
+                            appCompatTextView20 rText R.string.number_of_scanner
                         } else {
-                            appCompatTextView19.text = "Số lần quét"
-                            appCompatTextView20.text = "Số người quét"
+                            appCompatTextView19 rText R.string.so_lan_quet
+                            appCompatTextView20 rText R.string.so_nguoi_quet
                         }
                         layoutVerifiedBaoHanh.visibility = View.VISIBLE
                         tvMessageVerifiedBaoHanh.text = obj.data?.scan_message?.text
                         obj.data?.count?.let {
                             mSerial = getSerialNumber(it.prefix, it.number)
                             verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            tvSerialVerifiedBaoHanh.text = "Serial: $verfiedSerial"
+                            tvSerialVerifiedBaoHanh.rText(R.string.serial_s, verfiedSerial)
 
                             tvCountScanVerifiedBaoHanh.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                                 it.scan_count.toString()
@@ -847,7 +848,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 obj.data?.count?.let {
                     mSerial = getSerialNumber(it.prefix, it.number)
                     verfiedSerial = getSerialNumber(it.prefix, it.number)
-                    tvSerialVerifiedChongGia.text = "Serial: $verfiedSerial"
+                    tvSerialVerifiedChongGia.rText(R.string.serial_s, verfiedSerial)
                 }
             }
 
@@ -882,9 +883,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.can_update == true) {
 
                 if (isVietNamLanguage == false) {
-                    textFab.text = "Update customer information"
+                    textFab rText R.string.update_customer_information
                 } else {
-                    textFab.text = "Cập nhật thông tin khách hàng"
+                    textFab rText R.string.cap_nhat_thong_tin_khach_hang
                 }
 
                 textFab.visibility = View.VISIBLE
@@ -968,7 +969,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 tvPriceProduct.textSize = 16F
                 tvPriceProduct.setTypeface(null, Typeface.ITALIC)
             } else {
-                tvPriceProduct.text = TextHelper.formatMoneyComma(obj.data?.product?.price!!) + "đ"
+                tvPriceProduct.rText(R.string.x_d, TextHelper.formatMoneyComma(obj.data?.product?.price!!))
             }
 
 //      namePrice
@@ -1002,11 +1003,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             objGuarantee = obj.data?.guarantee
             if (obj.data?.guarantee?.time != null) {
                 if (isVietNamLanguage == false) {
-                    tvWarrantyInformation.text = "Warranty information"
-                    tvDetailsWarranty.text = "Details of Warranty information"
+                    tvWarrantyInformation rText R.string.warranty_information
+                    tvDetailsWarranty rText R.string.detail_of_warranty_information
                 } else {
-                    tvWarrantyInformation.text = "Thông tin bảo hành"
-                    tvDetailsWarranty.text = "Chi tiết bảo hành"
+                    tvWarrantyInformation rText R.string.thong_tin_bao_hanh
+                    tvDetailsWarranty rText R.string.chi_tiet_bao_hanh
                 }
 
                 layoutGurantee.visibility = View.VISIBLE
@@ -1014,62 +1015,62 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                     if (isVietNamLanguage == false) {
                         tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
                             if (it.type_guarantee_day!!.trim() == "years") {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "year" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_period)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.year) + "</b>")
                             } else if (it.type_guarantee_day!!.trim() == "months") {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "month" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_period)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.month) + "</b>")
                             } else {
-                                Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + it.guarantee_days_update + " " + "day" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_period)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.day) + "</b>")
                             }
                         } else {
-                            Html.fromHtml("<font color=#434343>Warranty period: </font>" + "<b>" + "updating" + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.warranty_period)}: </font>" + "<b>" + rText(R.string.updating) + "</b>")
                         }
 
                         tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.expire_date)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Expire date: </font>" + "<b>" + "updating" + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.expire_date)}: </font>" + "<b>" + "updating" + "</b>")
                         }
 
                         tvRemainingDay.text = if (it.days_remaining_str != null) {
-                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + it.days_remaining_str + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.expire_date_of_warranty)}: </font>" + "<b>" + it.days_remaining_str + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Expiry date of warranty: </font>" + "<b>" + "updating" + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.expire_date_of_warranty)}: </font>" + "<b>" + rText(R.string.updating) + "</b>")
                         }
 
                         tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.warranty_activation_date)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Warranty activation date: </font>" + "<b>" + "updating" + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.warranty_activation_date)}: </font>" + "<b>" + rText(R.string.updating) + "</b>")
                         }
                     } else {
                         tvGuaranteeDay.text = if (it.guarantee_days_update != null && !it.type_guarantee_day.isNullOrEmpty()) {
                             if (it.type_guarantee_day!!.trim() == "years") {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "năm" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.year_nam) + "</b>")
                             } else if (it.type_guarantee_day!!.trim() == "months") {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "tháng" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.thang) + "</b>")
                             } else {
-                                Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.guarantee_days_update + " " + "ngày" + "</b>")
+                                Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + it.guarantee_days_update + " " + rText(R.string.ngay) + "</b>")
                             }
                         } else {
-                            Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
                         tvExpiredDay.text = if (!it.expired_date.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.han_bao_hanh)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.expired_date) + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.han_bao_hanh)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
                         tvRemainingDay.text = if (it.days_remaining_str != null) {
-                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + it.days_remaining_str + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.so_ngay_bao_hanh_con_lai)}: </font>" + "<b>" + it.days_remaining_str + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.so_ngay_bao_hanh_con_lai)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
 
                         tvActiveDay.text = if (!it.active.isNullOrEmpty()) {
-                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.ngay_kich_hoat_bao_hanh)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.active) + "</b>")
                         } else {
-                            Html.fromHtml("<font color=#434343>Ngày kích hoạt bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                            Html.fromHtml("<font color=#434343>${rText(R.string.ngay_kich_hoat_bao_hanh)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                         }
                     }
                 }
@@ -1081,11 +1082,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.guarantee?.last_guarantee != null) {
                 layoutContentHistory.removeAllViews()
                 if (isVietNamLanguage == false) {
-                    appCompatTextView6.text = "Lastest Warranty log"
-                    tvMoreHistoryGuarantee.text = "View all"
+                    appCompatTextView6 rText R.string.lastest_warranty_log
+                    tvMoreHistoryGuarantee rText R.string.view_all
                 } else {
-                    appCompatTextView6.text = "Lịch sử bảo hành gần nhất"
-                    tvMoreHistoryGuarantee.text = "Xem tất cả"
+                    appCompatTextView6 rText R.string.lich_su_bao_hanh_gan_nhat
+                    tvMoreHistoryGuarantee rText R.string.xem_tat_ca
                 }
                 layoutHistoryGuarantee.visibility = View.VISIBLE
                 obj.data?.guarantee?.last_guarantee?.let {
@@ -1130,9 +1131,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             tvCreatedTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
                             tvCreatedTime.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Time: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
+                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>${rText(R.string.time)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
                             } else {
-                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>Thời gian: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
+                                tvCreatedTime.text = Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.created_time!!) + "</b>")
                             }
                         })
                     }
@@ -1149,9 +1150,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             tvNameStoreGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_store_blue_18px, 0, 0, 0)
                             tvNameStoreGuarantee.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Center: </font>" + "<b>" + it.store?.name + "</b>")
+                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.warranty_center)}: </font>" + "<b>" + it.store?.name + "</b>")
                             } else {
-                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>Điểm bảo hành: </font>" + "<b>" + it.store?.name + "</b>")
+                                tvNameStoreGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.diem_bao_hanh)}: </font>" + "<b>" + it.store?.name + "</b>")
                             }
                         })
                     }
@@ -1168,9 +1169,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             tvStatusLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
                             tvStatusLastGuarantee.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>State: </font>" + "<b>" + it.status?.name + "</b>")
+                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.state)}: </font>" + "<b>" + it.status?.name + "</b>")
                             } else {
-                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>Trạng thái: </font>" + "<b>" + it.status?.name + "</b>")
+                                tvStatusLastGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.trang_thai)}: </font>" + "<b>" + it.status?.name + "</b>")
                             }
                         })
                     }
@@ -1187,9 +1188,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             tvStateLastGuarantee.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warranty_blue_18px, 0, 0, 0)
                             tvStateLastGuarantee.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Warranty Status: </font>" + "<b>" + it.state?.name + "</b>")
+                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.warranty_status)}: </font>" + "<b>" + it.state?.name + "</b>")
                             } else {
-                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng: </font>" + "<b>" + it.state?.name + "</b>")
+                                tvStateLastGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang)}: </font>" + "<b>" + it.state?.name + "</b>")
                             }
                         })
                     }
@@ -1206,9 +1207,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             tvReturnTime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_time_start_blue_18_px, 0, 0, 0)
                             tvReturnTime.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Date of return: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
+                                tvReturnTime.text = Html.fromHtml("<font color=#434343>${rText(R.string.date_of_return)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
                             } else {
-                                tvReturnTime.text = Html.fromHtml("<font color=#434343>Ngày hẹn trả: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
+                                tvReturnTime.text = Html.fromHtml("<font color=#434343>${rText(R.string.ngay_hen_tra)}: </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateVn(it.return_time) + "</b>")
                             }
                         })
                     }
@@ -1225,9 +1226,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
                             textNote.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                textNote.text = Html.fromHtml("<font color=#434343>Notes of Warranty reuturn: </font>" + "<b>" + it.note + "</b>")
+                                textNote.text = Html.fromHtml("<font color=#434343>${rText(R.string.notes_of_warranty_return)}: </font>" + "<b>" + it.note + "</b>")
                             } else {
-                                textNote.text = Html.fromHtml("<font color=#434343>Ghi chú trả BH: </font>" + "<b>" + it.note + "</b>")
+                                textNote.text = Html.fromHtml("<font color=#434343>${rText(R.string.ghi_chu_tra_bao_hanh)}: </font>" + "<b>" + it.note + "</b>")
                             }
                         })
                     }
@@ -1272,9 +1273,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                             textNote.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check_blue_18px, 0, 0, 0)
                             textNote.compoundDrawablePadding = SizeHelper.size8
                             if (isVietNamLanguage == false) {
-                                textNote.text = Html.fromHtml("<font color=#434343>Variation: </font>" + "<b>" + it.variant?.extra + "</b>")
+                                textNote.text = Html.fromHtml("<font color=#434343>${rText(R.string.variation)}: </font>" + "<b>" + it.variant?.extra + "</b>")
                             } else {
-                                textNote.text = Html.fromHtml("<font color=#434343>Biến thể: </font>" + "<b>" + it.variant?.extra + "</b>")
+                                textNote.text = Html.fromHtml("<font color=#434343>${rText(R.string.bien_the)}: </font>" + "<b>" + it.variant?.extra + "</b>")
                             }
                         })
                     }
@@ -1287,9 +1288,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.show_vendor == 1) {
                 if (obj.data?.product?.vendor != null) {
                     if (isVietNamLanguage == false) {
-                        tvSubVendor.text = "Manufacturer"
+                        tvSubVendor rText R.string.manufacturer
                     } else {
-                        tvSubVendor.text = "Nhà sản xuất"
+                        tvSubVendor rText R.string.nha_san_xuat
                     }
 
                     tvSubVendor.visibility = View.VISIBLE
@@ -1337,9 +1338,9 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.data?.show_distributor == 1) {
                 if (obj.data?.show_distributor != null) {
                     if (isVietNamLanguage == false) {
-                        tvSubDistributor.text = "Distributor"
+                        tvSubDistributor rText R.string.distributor
                     } else {
-                        tvSubDistributor.text = "Nhà phân phối"
+                        tvSubDistributor rText R.string.nha_phan_phoi
                     }
 
                     tvSubDistributor.visibility = View.VISIBLE
@@ -1399,11 +1400,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 initRecyclerViewMoreProduct()
 
                 if (isVietNamLanguage == false) {
-                    appCompatTextView9.text = "Related Product"
-                    tvMoreProductVerified.text = "View all"
+                    appCompatTextView9 rText R.string.related_product
+                    tvMoreProductVerified rText R.string.view_all
                 } else {
-                    appCompatTextView9.text = "Sản phẩm liên quan"
-                    tvMoreProductVerified.text = "Xem tất cả"
+                    appCompatTextView9 rText R.string.san_pham_lien_quan
+                    tvMoreProductVerified rText R.string.xem_tat_ca
                 }
 
                 layoutSubProductVerified.visibility = View.VISIBLE
@@ -1452,13 +1453,13 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
             if (obj.rows[0].shop?.is_online == true) {
                 if (obj.rows[0].is_active == true) {
                     if (isVietNamLanguage == false) {
-                        btnChat.text = "Chat now"
+                        btnChat rText R.string.chat_now
 //                        btnAddToCart.text = "+ Cart"
-                        tvBuyNow.text = "Buy now"
+                        tvBuyNow rText R.string.buy_now
                     } else {
-                        btnChat.text = "Chat ngay"
+                        btnChat rText R.string.chat_ngay
 //                        btnAddToCart.text = "+ Giỏ hàng"
-                        tvBuyNow.text = "Mua ngay"
+                        tvBuyNow rText R.string.mua_ngay
                     }
 
                     layoutShopVariant.visibility = View.VISIBLE
@@ -1477,11 +1478,11 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
 //            }
 
             if (obj.rows[0].verified == "verified") {
-                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_18px, "Đại lý chính hãng", "#4dbba6", R.drawable.bg_corner_offline_shop_variant))
+                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_18px, rText(R.string.dai_ly_chinh_hang), "#4dbba6", R.drawable.bg_corner_offline_shop_variant))
             }
 
             if (obj.rows[0].shop?.is_offline == true) {
-                listService.add(ICServiceShopVariant(2, R.drawable.ic_offline_shop_18px, "Mua tại cửa hàng", "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+                listService.add(ICServiceShopVariant(2, R.drawable.ic_offline_shop_18px, rText(R.string.mua_tai_cua_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
             }
 
             if (!listService.isNullOrEmpty()) {
@@ -1534,7 +1535,7 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
                 tvPriceNoSale.visibility = View.INVISIBLE
             }
 
-            tvPriceSale.text = TextHelper.formatMoneyPhay(obj.rows[0].special_price) + "đ"
+            tvPriceSale.rText(R.string.x_d, TextHelper.formatMoneyPhay(obj.rows[0].special_price))
 
             if (tvPriceNoSale.text.toString().isNotEmpty()) {
 //                qrScanViewModel.update(ICQrScan(presenter.code!!, null, null, 1, productId, "http://icheckcdn.net/images/480x480/$url.jpg", nameProduct, presenter.data, tvPriceProduct.text.toString(), tvPriceNoSale.text.toString(), seller_id, barcode, false, null, "v6.1"))
@@ -1630,15 +1631,15 @@ class DetailStampActivity : BaseActivity<DetailStampPresenter>(), IDetailStampVi
         when (errorType) {
             Constant.ERROR_INTERNET -> {
                 imgError.setImageResource(R.drawable.ic_error_network)
-                tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                tvMessageError rText R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai
             }
             Constant.ERROR_UNKNOW -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
             }
             Constant.ERROR_EMPTY -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
             }
         }
     }

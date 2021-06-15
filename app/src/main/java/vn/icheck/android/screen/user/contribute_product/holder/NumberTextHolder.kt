@@ -20,10 +20,7 @@ import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemNumberBinding
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.simpleText
-import vn.icheck.android.util.ick.toStringNotNull
+import vn.icheck.android.util.ick.*
 
 class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : CoroutineViewHolder(itemNumberBinding.root) {
     var balloon: Balloon? = null
@@ -55,14 +52,14 @@ class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : Corou
 //            TooltipCompat.setTooltipText(itemNumberBinding.imgHelp,categoryAttributesModel.categoryItem.description)
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemNumberBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            itemNumberBinding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             itemNumberBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
 
         itemNumberBinding.edtPrice.apply {
             clearFocus()
-            hint = "Nhập ${categoryAttributesModel.categoryItem.name}"
+            hint = context.rText(R.string.nhap_s, categoryAttributesModel.categoryItem.name)
             setText(categoryAttributesModel.values?.toStringNotNull())
         }
 

@@ -15,6 +15,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.history.ICProductOfShopHistory
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.ick.rText
 
 class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryView {
 
@@ -35,7 +36,7 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     @SuppressLint("SetTextI18n")
     private fun initViewModel() {
         viewModel.dataIntent.observe(this, {
-            txtTitle.text = "Cửa hàng ${it.name}"
+            txtTitle.rText(R.string.cua_hang_s, it.name)
         })
 
         adapter.disableLoadMore()

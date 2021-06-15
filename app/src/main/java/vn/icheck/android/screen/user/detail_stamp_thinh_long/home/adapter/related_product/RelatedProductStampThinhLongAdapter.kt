@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.network.models.ICRelatedProduct
 import vn.icheck.android.network.models.v1.ICRelatedProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ui.GlideUtil
 
 class RelatedProductStampThinhLongAdapter(val list: MutableList<ICRelatedProductV1.RelatedProductRow>, private val headerImagelistener: SlideHeaderStampHoaPhatListener) : RecyclerView.Adapter<RelatedProductStampThinhLongAdapter.RelatedProductStampHolder>() {
@@ -39,7 +40,7 @@ class RelatedProductStampThinhLongAdapter(val list: MutableList<ICRelatedProduct
             }
             itemView.product_rating.rating = child.rating
             if (child.price > 0) {
-                itemView.product_price.text = String.format("%,dđ", child.price)
+                itemView.product_price.rText(R.string.x_d, child.price)
             } else {
                 itemView.product_price.text = itemView.context.getString(R.string.dang_cap_nhat_gia)
             }

@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.ctsp_unverified.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.ImageSliderAdapter
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.text.ReviewPointText
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -22,7 +23,7 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
 
     fun bind(productHeaderModel: ProductHeaderModel){
         if (productHeaderModel.icBarcodeProductV2.price > 0) {
-            view.tv_price.text = String.format("%,dđ", productHeaderModel.icBarcodeProductV2.price)
+            view.tv_price.rText(R.string.x_d, productHeaderModel.icBarcodeProductV2.price)
         } else {
             view.tv_price.visibility = View.INVISIBLE
         }
@@ -39,7 +40,7 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
         if (productHeaderModel.icProductReviews?.rows?.size == 0) {
             view.tv_xrv.visibility = View.GONE
         } else {
-            view.tv_xrv.text = String.format("Xem %,d đánh giá", productHeaderModel.icProductReviews?.rows?.size)
+            view.tv_xrv.rText(R.string.xem_d_danh_gia, productHeaderModel.icProductReviews?.rows?.size)
             view.tv_xrv.setOnClickListener {
                 productHeaderModel.headerClickListener.showAllReview(productHeaderModel)
             }
@@ -47,7 +48,7 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
         }
         productHeaderModel.icCriteria?.percentSuggest?.let {
             if (it > 0f) {
-                view.tv_recommend.text = String.format("%.0f%% Sẽ giới thiệu cho bạn bè", it)
+                view.tv_recommend.rText(R.string.f_se_gioi_thieu_cho_ban_be, it)
             }
         }
         productHeaderModel.icCriteria?.productEvaluation?.averagePoint?.let {
@@ -55,7 +56,7 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
                 view.product_rate.visibility = View.VISIBLE
                 view.tv_product_avg.visibility = View.VISIBLE
                 view.product_rate.rating = it
-                view.tv_product_avg.text = String.format("%.1f %s", it * 2,
+                view.tv_product_avg.rText(R.string.your_score, it * 2,
                         ReviewPointText.getText(it))
             } else {
                 view.product_rate.visibility = View.GONE

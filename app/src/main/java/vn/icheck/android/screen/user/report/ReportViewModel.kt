@@ -76,7 +76,7 @@ class ReportViewModel : ViewModel() {
                     if (obj.data is Int || obj.data is Double) {
                         onReport.postValue(1)
                     } else {
-                        onError.postValue(ICError(R.drawable.ic_error_request, "Đã report đơn hàng trước đó"))
+                        onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.da_report_don_hang_truoc_do)))
                     }
                 }
 

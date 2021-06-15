@@ -19,6 +19,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
@@ -91,7 +92,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
         runOnUiThread {
             viewModel.listData.observe(this, Observer {
                 swipe_layout.isRefreshing = false
-                tvCount.text = it.count.toString() + " người đang theo dõi bạn"
+                tvCount.rText(R.string.d_nguoi_dang_theo_doi_ban, it.count.toString())
                 adapter.addListData(it.rows)
                 if (!initFirst){
                     initTextListener()

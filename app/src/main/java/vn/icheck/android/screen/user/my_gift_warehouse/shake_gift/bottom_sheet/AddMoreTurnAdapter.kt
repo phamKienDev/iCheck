@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_message_more_turn.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.util.ick.rText
 
 class AddMoreTurnAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -80,7 +81,7 @@ class AddMoreTurnAdapter(val context : Context) : RecyclerView.Adapter<RecyclerV
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgError.setImageResource(R.drawable.ic_emty_shake_list_mission)
-                    itemView.tvMessage.text = "Hiện tại chưa có sự kiện nào!"
+                    itemView.tvMessage rText R.string.hien_tai_chua_co_su_kien_nao
                 }
 
                 Constant.ERROR_SERVER -> {

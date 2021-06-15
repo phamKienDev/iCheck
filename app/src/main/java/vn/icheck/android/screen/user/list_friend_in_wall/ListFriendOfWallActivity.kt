@@ -32,6 +32,7 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 import java.util.concurrent.TimeUnit
 
@@ -65,7 +66,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun initView() {
-        txtTitle.text = "Danh sách bạn bè"
+        txtTitle rText R.string.danh_sach_ban_be
     }
 
     private fun listener() {
@@ -111,7 +112,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.listData.observe(this, Observer {
                 adapter.addListData(it)
                 tv_total_friend.visibility = View.VISIBLE
-                tv_total_friend simpleText if (viewModel.friendCount > 0) "${viewModel.friendCount} Bạn bè" else "Bạn bè"
+                tv_total_friend simpleText if (viewModel.friendCount > 0) rText(R.string.d_ban_be, viewModel.friendCount) else rText(R.string.ban_be)
             })
 
             viewModel.isLoadMoreData.observe(this, Observer {
@@ -121,7 +122,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.unFriend.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã hủy kết bạn với $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast( rText(R.string.ban_da_huy_ket_ban_voi_s, nameItem))
                     adapter.removeItem(positionList!!)
                     setResult(RESULT_OK)
                 }
@@ -130,7 +131,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.followOrUnFollow.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã bỏ theo dõi $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast( rText(R.string.ban_da_bo_theo_doi_s, nameItem))
                 }
             })
 
@@ -294,7 +295,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun showDialogConfirmUnFriend(item: ICUserFollowWall) {
-        object : ConfirmDialog(this@ListFriendOfWallActivity, "Bạn có chắc chắn hủy kết bạn với ${item.getUserName()} chứ?", null, "Để Sau", "Đồng ý", true) {
+        object : ConfirmDialog(this@ListFriendOfWallActivity, rText(R.string.ban_co_chac_chan_huy_ket_ban_voi_s_chu, item.getUserName()), null, rText(R.string.de_sau), rText(R.string.dong_y), true) {
             override fun onDisagree() {
                 dismiss()
             }

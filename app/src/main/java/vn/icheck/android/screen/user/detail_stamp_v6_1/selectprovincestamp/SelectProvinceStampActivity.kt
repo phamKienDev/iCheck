@@ -17,6 +17,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.screen.user.selectprovincestamp.adapter.SelectProvinceStampAdapter
 import vn.icheck.android.screen.user.selectprovincestamp.presenter.SelectProvinceStampPresenter
 import vn.icheck.android.screen.user.selectprovincestamp.view.SelectProvinceStampView
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>(), SelectProvinceStampView {
@@ -41,7 +42,7 @@ class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>()
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select City"
+            txtTitle rText R.string.select_city
         } else {
             txtTitle.setText(R.string.chon_tinh_thanh_pho)
         }

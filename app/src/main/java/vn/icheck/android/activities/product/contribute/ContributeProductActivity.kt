@@ -99,7 +99,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                 if (current.length <= s.toString().length) {
                     edt_product_price.removeTextChangedListener(this)
                     val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
-                    val formatted = String.format("%,dđ", cleanString.toLong())
+                    val formatted = getString(R.string.x_d, cleanString.toLong())
                     current = formatted
                     edt_product_price.setText(formatted)
                     edt_product_price.setSelection(formatted.length)
@@ -108,7 +108,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                     edt_product_price.removeTextChangedListener(this)
                     val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
                     if (cleanString.length > 1) {
-                        val formatted = String.format("%,dđ", cleanString.substring(0, cleanString.length - 1).toLong())
+                        val formatted = getString(R.string.x_d, cleanString.substring(0, cleanString.length - 1).toLong())
                         current = formatted
                         edt_product_price.setText(formatted)
                         edt_product_price.setSelection(formatted.length)
@@ -151,7 +151,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contribute_product)
         btn_submit.isEnabled = false
-        validateForm.observe(this, Observer {
+        validateForm.observe(this, {
             if (it == 2) {
                 btn_submit.isEnabled = true
                 btn_submit.setBackgroundResource(R.drawable.bg_blue_border_20)
@@ -202,7 +202,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
             if (edt_email.text.isNotEmpty()) {
                 if (!Patterns.EMAIL_ADDRESS.matcher(edt_email.text.toString()).matches()) {
                     validate = false
-                    edt_email.setError("Email không đúng định dạng!")
+                    edt_email.error = getString(R.string.email_khong_dung_dinh_dang_1)
                 }
             }
             if (uploadQueue.size >= 2 && edt_product_name.text.trim().toString().isNotEmpty() && validate) {
@@ -213,10 +213,10 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                         override fun onDismiss() {
                             if (result == 1) {
                                 ToastUtils.showShortSuccess(this@ContributeProductActivity,
-                                        "Tạo sản phẩm thành công!")
+                                        getString(R.string.tao_san_pham_thanh_cong))
                             } else {
                                 ToastUtils.showShortError(this@ContributeProductActivity,
-                                        "Đã xảy ra lỗi. Vui lòng thử lại sau!")
+                                        getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                             }
                         }
                     }
@@ -262,7 +262,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                                 logError(e)
                                 withContext(Dispatchers.Main) {
                                     ToastUtils.showShortError(this@ContributeProductActivity,
-                                            "Đã xảy ra lỗi. Vui lòng thử lại sau!")
+                                        getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                                 }
                             }
                         }
@@ -332,10 +332,10 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                         override fun onDismiss() {
                             if (result == 1) {
                                 ToastUtils.showShortSuccess(this@ContributeProductActivity,
-                                        "Tạo sản phẩm thành công!")
+                                        getString(R.string.tao_san_pham_thanh_cong))
                             } else {
                                 ToastUtils.showShortError(this@ContributeProductActivity,
-                                        "Đã xảy ra lỗi. Vui lòng thử lại sau!")
+                                        getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                             }
                         }
                     }
@@ -392,11 +392,13 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                 }
             } else {
                 if (edt_product_name.text.trim().isEmpty()) {
-                    edt_product_name.error = "Trường tên sản phẩm là bắt buộc!"
-                    edt_product_name.requestFocus()
+                    edt_product_name.apply {
+                        error = getString(R.string.truong_san_pham_la_bat_buoc)
+                        requestFocus()
+                    }
                 }
                 if (listChild.size <= 2) {
-                    Toast.makeText(this, "Sản phẩm tối thiểu phải có 2 ảnh!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.san_pham_toi_thieu_phai_co_2_anh), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -488,8 +490,10 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                     productV2 = response
 
                     if (response.price != 0L) {
-                        edt_product_price.setText(String.format("%,dđ", response.price))
-                        edt_product_price.isEnabled = false
+                        edt_product_price.apply {
+                            setText(context.getString(R.string.x_d, response.price))
+                            isEnabled = false
+                        }
                     }
                     if (!response.categories.isNullOrEmpty()) {
                         spn_dm.text = response.categories.last().name
@@ -764,13 +768,13 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                 if (resultCode == Activity.RESULT_OK) {
                     val uri = data?.data
                     uri?.let {
-                        uploadQueue.set(posChange, UploadHolder(it))
+                        uploadQueue[posChange] = UploadHolder(it)
                         if (posChange == 0) {
-                            listChild.set(0, ContributeImageChild(it.toString(),
-                                    ContributeImageAdapter.FRONT_IMAGE))
+                            listChild[0] = ContributeImageChild(it.toString(),
+                                ContributeImageAdapter.FRONT_IMAGE)
                         } else {
-                            listChild.set(posChange, ContributeImageChild(it.toString(),
-                                    ContributeImageAdapter.BACK_IMAGE))
+                            listChild[posChange] = ContributeImageChild(it.toString(),
+                                ContributeImageAdapter.BACK_IMAGE)
                         }
                         contributeImageAdapter.notifyDataSetChanged()
                     }
@@ -940,9 +944,9 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
     class DescriptionButton(view: View) : BaseHolder(view) {
 
         fun bind() {
-            setOnClick(R.id.btn_add_description, View.OnClickListener {
+            setOnClick(R.id.btn_add_description) {
                 ContributeProductActivity.instance?.showInfoDialog()
-            })
+            }
         }
 
         companion object {

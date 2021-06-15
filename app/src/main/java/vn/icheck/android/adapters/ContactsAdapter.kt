@@ -20,12 +20,12 @@ class ContactsAdapter(val listener: OnContactClick) : RecyclerView.Adapter<Conta
 
     override fun onBindViewHolder(holder: ContactChildHolder, position: Int) {
         if (list.get(position).rowObject != null) {
-            holder.tvContactName.text = list.get(position).rowObject.name
+            holder.tvContactName.text = list[position].rowObject.name
             holder.root.setOnClickListener {
-                listener.onContactChildClick(list.get(position))
+                listener.onContactChildClick(list[position])
             }
             Glide.with(holder.view.context.applicationContext)
-                    .load(list.get(position).rowObject.avatarThumbnails.small)
+                    .load(list[position].rowObject.avatarThumbnails.small)
                     .placeholder(R.drawable.ic_avatar_default_84px)
                     .into(holder.img)
         }

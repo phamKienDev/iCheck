@@ -12,6 +12,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.util.ick.rText
 
 class PopupCompleteMissionActivity : BaseActivityMVVM() {
 
@@ -37,7 +38,7 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
         val giftCount = intent.getIntExtra("giftCount",0)
         val campaignId = intent.getStringExtra("campaignId")
 
-        tvNameGift.text = "Bạn nhận được $giftCount lượt mở quà"
+        tvNameGift.rText(R.string.ban_nhan_duoc_s_luot_mo_qua, giftCount)
 
         btnClose.setOnClickListener {
             finish()

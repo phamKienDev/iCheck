@@ -64,7 +64,7 @@
                 android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
-                tools:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_sdt" />
+                tools:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_sdt_s" />
 
             <vn.icheck.android.ui.OtpEditText
                 android:id="@+id/edt_otp"

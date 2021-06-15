@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
@@ -26,6 +27,7 @@ import vn.icheck.android.network.models.ICStoreiCheck
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
 import vn.icheck.android.screen.user.icheckstore.view.IGiftStoreView
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -136,7 +138,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, "Hiện tại chưa có sản phẩm nào", "Vui lòng quay lại sau để đổi những sản phẩm\nchính hãng từ các thương hiệu uy tín nhất", -1)
+                    holder.bind(iconMessage, ICheckApplication.getString(R.string.hien_tai_chua_co_san_pham_nao), ICheckApplication.getString(R.string.vui_long_quay_lai_sau_de_doi_nhung_san_pham_chinh_hang_tu_cac_thuong_hieu_uy_tin_nhat), -1)
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
 
@@ -168,16 +170,16 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 if (obj.addToCart) {
                     btnAction.isEnabled = false
                     btnAction.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
-                    btnAction.text = "Đã có trong giỏ hàng"
+                    btnAction rText R.string.da_co_trong_gio_hang
                     btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
                 } else {
                     btnAction.isEnabled = true
                     btnAction.setTextColor(ContextCompat.getColor(context, R.color.white))
-                    btnAction.text = "Thêm vào giỏ hàng"
+                    btnAction rText R.string.them_vao_gio_hang
                     btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
                 }
 
-                tvICoin.text = "${TextHelper.formatMoneyPhay(obj.price)} Xu"
+                tvICoin.rText(R.string.s_xu ,TextHelper.formatMoneyPhay(obj.price))
 
                 tvName.text = if (!obj.name.isNullOrEmpty()) {
                     obj.name
@@ -195,7 +197,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     } else {
                         obj.addToCart = true
                         btnAction.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
-                        btnAction.text = "Đã có trong giỏ hàng"
+                        btnAction rText R.string.da_co_trong_gio_hang
                         btnAction.background = ContextCompat.getDrawable(context, R.drawable.bg_corner_f0f0f0_4)
                         view.onExchangeGift(obj)
                     }
@@ -282,7 +284,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     it.bottomMargin = SizeHelper.size10
                 }
                 btn.setPadding(0, SizeHelper.size4, 0, SizeHelper.size4)
-                btn.text = "Thêm vào giỏ quà"
+                btn rText R.string.them_vao_gio_qua
                 btn.setTextColor(ContextCompat.getColor(context, R.color.white))
                 btn.includeFontPadding = false
                 btn.isSingleLine = true

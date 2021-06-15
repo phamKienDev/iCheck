@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.product_detail_mbtt2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.ick.rText
 
 class MbttHolder(view: View) : BaseHolder(view) {
 
@@ -95,7 +96,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
     private fun hideVoteLayout() {
         hideView(R.id.btn_yes)
         hideView(R.id.btn_no)
-        itemView.tvName.text = "Câu trả lời của bạn đã được ghi nhận:"
+        itemView.tvName rText R.string.cau_tra_loi_cua_ban_da_duoc_ghi_nhan
     }
 
     private fun hideLayoutProgress() {

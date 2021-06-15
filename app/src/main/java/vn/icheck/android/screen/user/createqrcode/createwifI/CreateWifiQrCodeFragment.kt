@@ -14,6 +14,7 @@ import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCode
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
 import vn.icheck.android.screen.user.createqrcode.createwifI.presenter.CreateWifiQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createwifI.view.ICreateWifiQrCodeView
+import vn.icheck.android.util.ick.rText
 
 /**
  * Created by VuLCL on 10/8/2019.
@@ -72,7 +73,7 @@ class CreateWifiQrCodeFragment : BaseCreateQrCodeFragment<CreateWifiQrCodePresen
             }
 
             if (securityType.isNullOrEmpty()){
-                showShortError("Bạn cần phải chọn kiểu bảo mật")
+                showShortError(rText(R.string.ban_can_phai_chon_kieu_bao_mat))
                 return@setOnClickListener
             }
 

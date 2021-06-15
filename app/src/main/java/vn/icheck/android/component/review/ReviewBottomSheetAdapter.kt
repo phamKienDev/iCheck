@@ -38,12 +38,11 @@ class ReviewBottomSheetAdapter(val listData: List<ICCriteriaReview>, val isClick
 
             itemView.ratingReview.isClickable = isClick
             if (isClick) {
-                itemView.ratingReview.setOnRatingChangeListener(object : BaseRatingBar.OnRatingChangeListener {
-                    override fun onRatingChange(ratingBar: BaseRatingBar?, rating: Float, fromUser: Boolean) {
-                        listData[adapterPosition].point = itemView.ratingReview.rating
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.CLICK_START_REVIEW))
-                    }
-                })
+                itemView.ratingReview.setOnRatingChangeListener { _, _, _ ->
+                    listData[adapterPosition].point = itemView.ratingReview.rating
+                    EventBus.getDefault()
+                        .post(ICMessageEvent(ICMessageEvent.Type.CLICK_START_REVIEW))
+                }
             }
         }
     }

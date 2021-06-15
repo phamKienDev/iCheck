@@ -61,7 +61,7 @@ class NewsListViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICArticleCategory>>) {
 
                 obj.data?.rows?.add(0, ICArticleCategory().apply {
-                    name = "Tất cả"
+                    name = ICheckApplication.getString(R.string.tat_ca)
                     isChecked = true
                 })
 

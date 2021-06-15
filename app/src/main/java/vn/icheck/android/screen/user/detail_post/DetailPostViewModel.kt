@@ -99,7 +99,9 @@ class DetailPostViewModel : ViewModel() {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
 
                 if (obj.data != null) {
-                    onDetailPost.postValue(obj.data)
+                    obj.data?.let {
+                        onDetailPost.postValue(it)
+                    }
                     post = obj.data
                     involeType = obj.data!!.involveType
                 } else {
@@ -342,7 +344,9 @@ class DetailPostViewModel : ViewModel() {
                     //cho phép hiện trả lời
                     obj.data!!.isReply = isReply
                     obj.data!!.involveType = involeType
-                    onPostComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostComment.postValue(it)
+                    }
                     addCommentPostData(obj.data!!)
                 }
             }
@@ -372,8 +376,9 @@ class DetailPostViewModel : ViewModel() {
                 if (obj.data != null) {
                     obj.data!!.marginTop = SizeHelper.size3
                     obj.data!!.marginStart = SizeHelper.size36
-
-                    onPostChildComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostChildComment.postValue(it)
+                    }
                 }
             }
 
@@ -397,7 +402,9 @@ class DetailPostViewModel : ViewModel() {
 
         interactor.deleteComment(comment.id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
-                onDeleteComment.postValue(obj.data)
+                obj.data?.let {
+                    onDeleteComment.postValue(it)
+                }
                 deleteCommentPostData(comment)
             }
 
@@ -455,7 +462,9 @@ class DetailPostViewModel : ViewModel() {
         postInteractor.deletePost(id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
-                onDeletePost.postValue(obj.data)
+                obj.data?.let {
+                    onDeletePost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

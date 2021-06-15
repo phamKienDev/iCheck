@@ -142,7 +142,9 @@ class MediaInPostViewModel : ViewModel() {
         PostInteractor().getShareLinkOfPost(postDetail!!.id, object : ICNewApiListener<ICResponse<String>> {
             override fun onSuccess(obj: ICResponse<String>) {
                 onStatusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onSharePost.postValue(obj.data)
+                obj.data?.let {
+                    onSharePost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

@@ -482,14 +482,14 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             tv_user_rank.visibility = View.VISIBLE
             tv_user_rank.setTextColor(Color.parseColor("#212121"))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
+                val spannableString = SpannableString(Html.fromHtml("${rText(R.string.vui_long)} <font color=#057DDA><u>${rText(R.string.dang_ky)}</u></font> ${rText(R.string.hoac)} <font color=#057DDA><u>${rText(R.string.dang_nhap)}</u></font>", Html.FROM_HTML_MODE_COMPACT))
                 spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                 spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 tv_user_rank.text = spannableString
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             } else {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>"))
+                val spannableString = SpannableString(Html.fromHtml("${rText(R.string.vui_long)} <font color=#057DDA><u>${rText(R.string.dang_ky)}</u></font> ${rText(R.string.hoac)} <font color=#057DDA><u>${rText(R.string.dang_nhap)}</u></font>"))
 
                 spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
@@ -842,7 +842,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 }
             }
             R.id.tv_logout -> {
-                object : ConfirmDialog(this@HomeActivity, "Đăng xuất", "Bạn muốn thoát tài khoản này?", "Để Sau", "Đồng ý", true) {
+                object : ConfirmDialog(this@HomeActivity, rText(R.string.dang_xuat), rText(R.string.ban_muon_thoat_tai_khoan_nay), rText(R.string.de_sau), rText(R.string.dong_y), true) {
                     override fun onDisagree() {
                     }
 
@@ -875,7 +875,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Hướng dẫn sử dụng")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.huong_dan_su_dung))
                     }
                 })
             }
@@ -886,7 +886,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.dieu_khoan_su_dung))
                     }
                 })
             }
@@ -897,7 +897,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Câu hỏi thường gặp")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.cau_hoi_thuong_gap))
                     }
                 })
             }

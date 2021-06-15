@@ -248,7 +248,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
             binding.groupFollowed goneIf data?.infoPrivacyConfig?.gender
             binding.moreInfo goneIf data?.infoPrivacyConfig?.birthday
             binding.tvAddress.text = data?.city?.name.getInfo()
-            binding.tvId.text = "IC - " + data?.id
+            binding.tvId.rText(R.string.ic_d, data?.id)
             if (SessionManager.session.user?.id == ickUserProfileModel.id) {
                 binding.tvFollow.text = "${RelationshipManager.getTotalFollowed()}"
                 binding.tvWatch.text = "${RelationshipManager.getTotalFollow()}"
@@ -384,7 +384,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
+                if (binding.tvAddFriend.text == binding.tvAddFriend.context.rText(R.string.dong_y_ket_ban)) {
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })
@@ -421,7 +421,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                 }
                 isFriendInvitationMeUser -> {
                     binding.btnAddFriend.beVisible()
-                    binding.tvAddFriend.setText("Đồng ý kết bạn")
+                    binding.tvAddFriend rText R.string.dong_y_ket_ban
                     binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
                     binding.tvRequestSent.beGone()
                 }
@@ -432,7 +432,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                         0,
                         0
                     )
-                    binding.tvAddFriend.setText("Kết bạn")
+                    binding.tvAddFriend rText R.string.ket_ban
                     binding.btnAddFriend.beVisible()
                     binding.tvRequestSent.beGone()
                 }

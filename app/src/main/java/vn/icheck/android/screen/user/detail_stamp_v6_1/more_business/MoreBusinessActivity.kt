@@ -20,6 +20,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.adapter.Mor
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.presenter.MoreBusinessPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreBusinessView
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 
 class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusinessView {
@@ -97,7 +98,7 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
         if (email != getString(R.string.dang_cap_nhat)) {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:$email")
-            startActivity(Intent.createChooser(intent, "Send To"))
+            startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
         }
     }
 

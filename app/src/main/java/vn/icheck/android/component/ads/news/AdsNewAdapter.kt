@@ -7,17 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_grid_ads_news.view.*
 import kotlinx.android.synthetic.main.item_horizontal_ads_news.view.*
-import kotlinx.android.synthetic.main.item_post.view.*
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.*
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.imgImage
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.tvContent
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.ui.RoundedCornersTransformation

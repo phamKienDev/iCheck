@@ -28,6 +28,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ui.layout.ItemDecorationAlbumColumns
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 
@@ -73,7 +74,7 @@ class ProductStoreiCheckActivity : BaseActivityMVVM(), IGiftStoreView, IRecycler
             onBackPressed()
         }
 
-        txtTitle.text = "Gian hàng iCheck"
+        txtTitle rText R.string.gian_hang_icheck
     }
 
     private fun initRecyclerView() {
@@ -163,9 +164,9 @@ class ProductStoreiCheckActivity : BaseActivityMVVM(), IGiftStoreView, IRecycler
             })
         }
 
-        tvPrice.text = "${TextHelper.formatMoneyPhay(viewModel.getTotalPrice())} Xu"
+        tvPrice.rText(R.string.s_xu, TextHelper.formatMoneyPhay(viewModel.getTotalPrice()))
 
-        tvCountProduct.text = "${viewModel.getCount()} Sản phẩm"
+        tvCountProduct.rText(R.string.d_san_pham, viewModel.getCount())
     }
 
     override fun onClickItem(item: ICStoreiCheck) {
@@ -191,9 +192,9 @@ class ProductStoreiCheckActivity : BaseActivityMVVM(), IGiftStoreView, IRecycler
                 layoutAddToCart.beGone()
             }
 
-            tvPrice.text = "${TextHelper.formatMoneyPhay(viewModel.getTotalPrice())} Xu"
+            tvPrice.rText(R.string.s_xu,TextHelper.formatMoneyPhay(viewModel.getTotalPrice()))
 
-            tvCountProduct.text = "${viewModel.getCount()} Sản phẩm"
+            tvCountProduct.rText(R.string.d_san_pham, viewModel.getCount())
 
             getData()
         }

@@ -22,6 +22,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
+import vn.icheck.android.util.ick.rText
 
 
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -141,11 +142,13 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitle.text = obj.name + " (*)"
+                itemView.tvTitle.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitle.text = obj.name
             }
-            itemView.edtInput.hint = "Nhập " + obj.name
+            itemView.edtInput.apply {
+                hint = context.rText(R.string.nhap_s, obj.name)
+            }
             itemView.edtInput.removeTextChangedListener(textWatcher)
             itemView.edtInput.addTextChangedListener(textWatcher)
         }
@@ -168,11 +171,13 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleTextArea.text = obj.name + " (*)"
+                itemView.tvTitleTextArea.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitleTextArea.text = obj.name
             }
-            itemView.edtTextArea.hint = "Nhập " + obj.name
+            itemView.edtTextArea.apply {
+                hint = context.rText(R.string.nhap_s, obj.name)
+            }
             itemView.edtTextArea.removeTextChangedListener(textWatcher)
             itemView.edtTextArea.addTextChangedListener(textWatcher)
         }
@@ -183,7 +188,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleSelect.text = obj.name + " (*)"
+                itemView.tvTitleSelect.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitleSelect.text = obj.name
             }
@@ -192,7 +197,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val list = obj.valueF
                 val objHint = ValueFItem()
                 objHint.id = null
-                objHint.value = "Chọn " + obj.name
+                objHint.value = itemView.context.rText(R.string.chon_s, obj.name)
                 list?.add(objHint)
 
                 val adapter = HintSpinnerAdapter(itemView.context, obj.valueF, android.R.layout.simple_spinner_item)
@@ -221,7 +226,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class RadioButtonFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleRadiobox.text = obj.name + " (*)"
+                itemView.tvTitleRadiobox.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitleRadiobox.text = obj.name
             }
@@ -236,7 +241,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class CheckBoxFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleCheckbox.text = obj.name + " (*)"
+                itemView.tvTitleCheckbox.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitleCheckbox.text = obj.name
             }
@@ -251,7 +256,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class DateFieldHolder constructor(view: View) : BaseViewHolder<ICFieldGuarantee>(view) {
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                itemView.tvTitleDate.text = obj.name + " (*)"
+                itemView.tvTitleDate.rText(R.string.s_bat_buoc, obj.name)
             } else {
                 itemView.tvTitleDate.text = obj.name
             }

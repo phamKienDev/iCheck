@@ -11,6 +11,7 @@ import vn.icheck.android.base.model.ICFragment
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.history_accumulate_points.fragment.received.HistoryPointsReceivedFragment
 import vn.icheck.android.screen.user.history_accumulate_points.fragment.used.HistoryPointUsedFragment
+import vn.icheck.android.util.ick.rText
 
 class HistoryAccumulatePointActivity : BaseActivityMVVM() {
 
@@ -23,7 +24,7 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
     }
 
     private fun initToolbar(){
-        txtTitle.text = "Lịch sử điểm tích lũy"
+        txtTitle rText R.string.lich_su_diem_tich_luy
         imgBack.setOnClickListener {
             onBackPressed()
         }

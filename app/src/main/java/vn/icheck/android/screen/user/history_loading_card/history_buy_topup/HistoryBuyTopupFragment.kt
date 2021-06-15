@@ -18,6 +18,7 @@ import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.history_buy_topup.adapter.HistoryBuyTopupAdapter
 import vn.icheck.android.screen.user.history_loading_card.history_buy_topup.view.IHistoryBuyTopupView
 import vn.icheck.android.screen.user.history_loading_card.history_buy_topup.viewmodel.HistoryBuyTopupViewModel
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class HistoryBuyTopupFragment : BaseFragmentMVVM(), IHistoryBuyTopupView {
@@ -109,7 +110,7 @@ class HistoryBuyTopupFragment : BaseFragmentMVVM(), IHistoryBuyTopupView {
     }
 
     override fun onClickLoadNow(item: ICRechargePhone) {
-        DialogHelper.showConfirm(context, "Bạn đồng ý nạp mã thẻ này?", "*100*${item.card?.pin}#", true, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(context, rText(R.string.ban_dong_y_nap_ma_the_nay), "*100*${item.card?.pin}#", true, object : ConfirmDialogListener {
             override fun onDisagree() {
                 DialogHelper.closeLoading(this@HistoryBuyTopupFragment)
             }

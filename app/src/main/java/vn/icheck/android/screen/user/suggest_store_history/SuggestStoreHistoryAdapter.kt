@@ -15,6 +15,7 @@ import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
 import vn.icheck.android.network.models.history.ICSuggestStoreHistory
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -154,7 +155,7 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
             itemView.tvNameShop.text = item.name
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
             itemView.tvCountRating.text = String.format("%.1f", item.rating)
-            itemView.tvCountProductOfShop.text = "Có ${item.numProductSell} sản phẩm có sẵn"
+            itemView.tvCountProductOfShop.rText(R.string.co_d_san_pham_co_san, item.numProductSell)
         }
     }
 }

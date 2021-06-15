@@ -1,20 +1,16 @@
 package vn.icheck.android.component.my_contribution
 
 import android.content.Intent
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.infomation_contribution.ContributrionModel
+import vn.icheck.android.R
 import vn.icheck.android.constant.ACTION_PRODUCT_DETAIL
 import vn.icheck.android.constant.SHOW_ATTRIBUTES
 import vn.icheck.android.databinding.ItemMyContributionBinding
-import vn.icheck.android.screen.user.contribute_product.adapter.CategoryAttributesAdapter
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.screen.user.product_detail.product.my_contribution.MyContributionAdapter
 import vn.icheck.android.util.ick.getLayoutInflater
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 
 class MyContributionHolder(val binding: ItemMyContributionBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -26,7 +22,7 @@ class MyContributionHolder(val binding: ItemMyContributionBinding) : RecyclerVie
                 getValues()
             })
         }
-        binding.textView34 simpleText  "Thông tin thêm (${myContributionViewModel.arrayInfo.size})"
+        binding.textView34.rText(R.string.thong_tin_them_d, myContributionViewModel.arrayInfo.size)
         val attributesAdapter = MyContributionAdapter(listCategory = arr, maxLine = 5, maxLength = 1)
         binding.rcvMyContribution.adapter = attributesAdapter
         binding.btnShowAll.setOnClickListener {

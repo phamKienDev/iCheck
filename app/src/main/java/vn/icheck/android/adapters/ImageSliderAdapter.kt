@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.util.ui.GlideUtil
-import java.util.*
 
 class ImageSliderAdapter(var listImg: List<ImageChild>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -36,15 +35,15 @@ class ImageSliderAdapter(var listImg: List<ImageChild>) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (listImg.get(position).type) {
-            TYPE_HEADER -> (holder as ImageHolder).bind(listImg.get(position).url)
-            TYPE_CCCN -> (holder as CccnHolder).bind(listImg.get(position))
-            TYPE_NULL -> (holder as ImageHolder).bind(listImg.get(position).url)
+            TYPE_HEADER -> (holder as ImageHolder).bind(listImg[position].url)
+            TYPE_CCCN -> (holder as CccnHolder).bind(listImg[position])
+            TYPE_NULL -> (holder as ImageHolder).bind(listImg[position].url)
         }
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return listImg.get(position).type
+        return listImg[position].type
     }
 
     class ImageHolder(view: View, val listImg: List<ImageChild>) : BaseHolder(view) {

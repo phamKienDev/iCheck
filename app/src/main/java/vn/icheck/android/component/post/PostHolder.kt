@@ -157,7 +157,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 ViewHelper.setExpandTextWithoutAction(
                     this,
                     3,
-                    itemView.tvContent.context.getString(R.string.xem_them)
+                    context rText R.string.xem_them
                 )
             } else {
                 beGone()
@@ -550,7 +550,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai
                 )
                 return
             }
@@ -564,7 +564,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     response.data?.let { shareLink ->
                         ShareCompat.IntentBuilder.from(activity)
                             .setType("text/plain")
-                            .setChooserTitle(activity.getString(R.string.chia_se))
+                            .setChooserTitle(activity rText R.string.chia_se)
                             .setText(shareLink)
                             .startChooser()
 
@@ -576,7 +576,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     val message = error?.message
-                        ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai
                     ToastUtils.showLongError(activity, message)
                 }
             })
@@ -589,24 +589,26 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 object : PostOptionDialog(activity, obj) {
                     override fun onPin(isPin: Boolean) {
                         if (obj.pinned) {
-                            DialogHelper.showConfirm(
-                                dialog.context,
-                                "Bạn chắc chắn muốn bỏ ghim bài viết này?",
-                                null,
-                                "Để sau",
-                                "Đồng ý",
-                                true,
-                                null,
-                                R.color.colorPrimary,
-                                object : ConfirmDialogListener {
-                                    override fun onDisagree() {
+                            dialog.context.apply {
+                                DialogHelper.showConfirm(
+                                    this,
+                                    rText(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay),
+                                    null,
+                                    rText(R.string.de_sau),
+                                    rText(R.string.dong_y),
+                                    true,
+                                    null,
+                                    R.color.colorPrimary,
+                                    object : ConfirmDialogListener {
+                                        override fun onDisagree() {
 
-                                    }
+                                        }
 
-                                    override fun onAgree() {
-                                        pinPost(post, isPin)
-                                    }
-                                })
+                                        override fun onAgree() {
+                                            pinPost(post, isPin)
+                                        }
+                                    })
+                            }
                         } else {
                             pinPost(post, isPin)
                         }
@@ -641,7 +643,8 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai
+
                 )
                 return
             }
@@ -693,7 +696,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                         } else {
                             itemView.context.showShortErrorToast(
                                 error?.message
-                                    ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai
                             )
                         }
 
@@ -708,7 +711,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai
                 )
                 return
             }
@@ -736,7 +739,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     override fun onError(error: ICResponseCode?) {
                         DialogHelper.closeLoading(activity)
                         val message = error?.message
-                            ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai
                         ToastUtils.showLongError(activity, message)
                     }
                 })

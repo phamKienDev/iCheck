@@ -28,6 +28,8 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
 import vn.icheck.android.screen.user.selectprovince.SelectProvinceActivity
 import vn.icheck.android.util.ick.logError
+import vn.icheck.android.util.ick.rHintText
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresenter>(), IUpdateInformationFirstView {
@@ -64,49 +66,73 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
         runOnUiThread {
             if (DetailStampActivity.isVietNamLanguage == false) {
-                txtTitle.text = "Customer Information"
-                tvLabelInforCustomer.text = "Customer Information"
-                tvViewVerifiedPhoneNumber.text = "Update customer information to receive the hot deals and service."
-                tvViewForceUpdate.text = "You have to update personal information to active warranty.Manufacturer may refuse warranty if the information is incorrect"
-                tvSubPhone.text = "Phone Number (*)"
-                tvSubName.text = "Name"
-                tvSubTinhThanh.text = "City"
-                tvSubHuyen.text = "District"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                tvSubAddress.text = "Address"
-                btnUpdate.text = "Update"
-                edtPhone.hint = "Enter Phone Number"
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                edtAddress.hint = "Enter Address"
-                tvSubProductCode.text = "Product Code"
-                edtProductCode.hint = "Enter Product Code"
-                tvSubProductVariant.text = "Varitation code"
-                edtVariant.hint = "Enter Variation Code"
-                tvTitleField.text = "Received information"
+                txtTitle rText R.string.customer_information
+                tvLabelInforCustomer rText R.string.customer_information
+                tvViewVerifiedPhoneNumber rText R.string.customer_information
+                tvViewForceUpdate rText R.string.you_have_to_update_personal_information_to_active_warranty
+                tvSubPhone rText R.string.phone_number_bat_buoc
+                tvSubName rText R.string.name
+                tvSubTinhThanh rText R.string.city
+                tvSubHuyen rText R.string.district
+                tvCities rText R.string.option
+                tvDistricts rText R.string.option
+                tvSubAddress rText R.string.address
+                btnUpdate rText R.string.update
+                edtPhone.apply {
+                    hint = context.rText(R.string.enter_phone_number)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.enter_name)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.enter_email)
+                }
+                edtAddress.apply {
+                    hint = context.rText(R.string.enter_address)
+                }
+                tvSubProductCode rText R.string.product_code
+                edtProductCode.apply {
+                    hint = context.rText(R.string.enter_product_code)
+                }
+                tvSubProductVariant rText R.string.variation_code
+                edtVariant.apply {
+                    hint = context.rText(R.string.enter_variation_code)
+                }
+                tvTitleField rText R.string.received_information
             } else {
-                txtTitle.text = "Thông tin khách hàng"
-                tvLabelInforCustomer.text = "Thông tin khách hàng"
-                tvViewVerifiedPhoneNumber.text = "Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
-                tvViewForceUpdate.text = "Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác."
-                tvSubPhone.text = "Số điện thoại (*)"
-                tvSubName.text = "Họ và tên"
-                tvSubTinhThanh.text = "Tỉnh thành"
-                tvSubHuyen.text = "Huyện"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                tvSubAddress.text = "Địa chỉ"
-                btnUpdate.text = "Cập nhật"
-                edtPhone.hint = "Nhập số điện thoại"
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                edtAddress.hint = "Nhập địa chỉ"
-                tvSubProductCode.text = "Mã hiệu sản phẩm"
-                edtProductCode.hint = "Nhập mã hiệu sản phẩm"
-                tvSubProductVariant.text = "Mã biến thể"
-                edtVariant.hint = "Nhập biến thể sản phẩm"
-                tvTitleField.text = "Thông tin tiếp nhận"
+                txtTitle rText R.string.thong_tin_khach_hang
+                tvLabelInforCustomer rText R.string.thong_tin_khach_hang
+                tvViewVerifiedPhoneNumber rText R.string.cap_nhat_thong_tin_khach_hang_de_nhan_cac_uu_dai_va_cham_soc_tot_nhat
+                tvViewForceUpdate rText R.string.ban_phai_nhap_thong_tin_ca_nhan_de_kich_hoat_bao_hanh
+                tvSubPhone rText R.string.so_dien_thoai_bat_buoc
+                tvSubName rText R.string.ho_va_ten
+                tvSubTinhThanh rText R.string.tinh_thanh
+                tvSubHuyen rText R.string.huyen
+                tvCities rText R.string.tuy_chon
+                tvDistricts rText R.string.tuy_chon
+                tvSubAddress rText R.string.dia_chi
+                btnUpdate rText R.string.cap_nhat
+                edtPhone.apply {
+                    hint = context.rText(R.string.nhap_so_dien_thoai)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.nhap_ho_ten)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.nhap_email)
+                }
+                edtAddress.apply {
+                    hint = context.rText(R.string.nhap_dia_chi)
+                }
+                tvSubProductCode rText R.string.ma_hieu_san_pham
+                edtProductCode.apply {
+                    hint = context.rText(R.string.nhap_ma_hieu_san_pham)
+                }
+                tvSubProductVariant rText R.string.ma_bien_the
+                edtVariant.apply {
+                    hint = context.rText(R.string.nhap_bien_the_san_pham)
+                }
+                tvTitleField rText R.string.thong_tin_tiep_nhan
             }
         }
 
@@ -128,9 +154,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
             if (body == null) {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    showShortError("Please fill in the required fields")
+                    showShortError(rText(R.string.please_fill_in_the_required_fields))
                 } else {
-                    showShortError("Bạn cần nhập các trường yêu cầu")
+                    showShortError(rText(R.string.ban_can_nhap_cac_truong_yeu_cau))
                 }
                 return@setOnClickListener
             }
@@ -253,19 +279,35 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             edtEmail.setText("")
             edtAddress.setText("")
             if (DetailStampActivity.isVietNamLanguage == false) {
-                edtPhone.hint = "Enter Phone Number"
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                edtAddress.hint = "Enter Address"
+                edtPhone.apply {
+                    hint = context.rText(R.string.enter_phone_number)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.enter_name)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.enter_email)
+                }
+                tvCities rText R.string.option
+                tvDistricts rText R.string.option
+                edtAddress.apply {
+                    hint = context.rText(R.string.enter_address)
+                }
             } else {
-                edtPhone.hint = "Nhập số điện thoại"
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                edtAddress.hint = "Nhập địa chỉ"
+                edtPhone.apply {
+                    hint = context.rText(R.string.nhap_so_dien_thoai)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.nhap_ho_ten)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.nhap_email)
+                }
+                tvCities rText R.string.tuy_chon
+                tvDistricts rText R.string.tuy_chon
+                edtAddress.apply {
+                    hint = context.rText(R.string.nhap_dia_chi)
+                }
             }
         }
     }
@@ -368,7 +410,7 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         when (errorType) {
             Constant.ERROR_INTERNET -> {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, "Checking network. Please try again", false, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, rText(R.string.checking_network_please_try_again), false, object : ConfirmDialogListener {
                         override fun onDisagree() {
                             onBackPressed()
                         }
@@ -401,17 +443,35 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             edtEmail.setText("")
             edtAddress.setText("")
             if (DetailStampActivity.isVietNamLanguage == false) {
-                edtName.hint = "Enter Name"
-                edtEmail.hint = "Enter Email"
-                tvCities.text = "Option"
-                tvDistricts.text = "Option"
-                edtAddress.hint = "Enter Address"
+                edtPhone.apply {
+                    hint = context.rText(R.string.enter_phone_number)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.enter_name)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.enter_email)
+                }
+                tvCities rText R.string.option
+                tvDistricts rText R.string.option
+                edtAddress.apply {
+                    hint = context.rText(R.string.enter_address)
+                }
             } else {
-                edtName.hint = "Nhập họ tên"
-                edtEmail.hint = "Nhập email"
-                tvCities.text = "Tùy chọn"
-                tvDistricts.text = "Tùy chọn"
-                edtAddress.hint = "Nhập địa chỉ"
+                edtPhone.apply {
+                    hint = context.rText(R.string.nhap_so_dien_thoai)
+                }
+                edtName.apply {
+                    hint = context.rText(R.string.nhap_ho_ten)
+                }
+                edtEmail.apply {
+                    hint = context.rText(R.string.nhap_email)
+                }
+                tvCities rText R.string.tuy_chon
+                tvDistricts rText R.string.tuy_chon
+                edtAddress.apply {
+                    hint = context.rText(R.string.nhap_dia_chi)
+                }
             }
         }
     }
@@ -436,9 +496,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 edtName.setText(customer.name)
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtName.hint = "Enter Name"
+                    edtName rHintText R.string.enter_name
                 } else {
-                    edtName.hint = "Nhập họ tên"
+                    edtName rHintText R.string.nhap_ho_ten
                 }
             }
 
@@ -456,9 +516,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtPhone.hint = "Enter Phone Number"
+                    edtPhone rHintText R.string.enter_phone_number
                 } else {
-                    edtPhone.hint = "Nhập số điện thoại"
+                    edtPhone rHintText R.string.nhap_so_dien_thoai
                 }
             }
             searchCustomer()
@@ -467,9 +527,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 edtEmail.setText(customer.email)
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtEmail.hint = "Enter Email"
+                    edtEmail rHintText R.string.enter_email
                 } else {
-                    edtEmail.hint = "Nhập email"
+                    edtEmail rHintText R.string.nhap_email
                 }
             }
 
@@ -477,9 +537,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 edtAddress.setText(customer.address)
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtAddress.hint = "Enter Address"
+                    edtAddress rHintText R.string.enter_address
                 } else {
-                    edtAddress.hint = "Nhập địa chỉ"
+                    edtAddress rHintText R.string.nhap_dia_chi
                 }
             }
 
@@ -487,9 +547,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 edtProductCode.setText(mProductCode)
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtProductCode.hint = "Enter Product Code"
+                    edtProductCode rHintText R.string.enter_product_code
                 } else {
-                    edtProductCode.hint = "Nhập mã hiệu sản phẩm"
+                    edtProductCode rHintText R.string.nhap_ma_hieu_san_pham
                 }
             }
 
@@ -497,9 +557,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
                 edtVariant.setText(mVariantName)
             } else {
                 if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtVariant.hint = "Enter Variation Code"
+                    edtVariant rHintText R.string.enter_variation_code
                 } else {
-                    edtVariant.hint = "Nhập biến thể sản phẩm"
+                    edtVariant rHintText R.string.nhap_bien_the_san_pham
                 }
             }
         }
@@ -512,9 +572,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     @SuppressLint("SetTextI18n")
     override fun onGetNameCityFail() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            tvCities.text = "Option"
+            tvCities rText R.string.option
         } else {
-            tvCities.text = "Tùy chọn"
+            tvCities rText R.string.tuy_chon
         }
     }
 
@@ -525,9 +585,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
     @SuppressLint("SetTextI18n")
     override fun onGetNameDistrictFail() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            tvDistricts.text = "Option"
+            tvDistricts rText R.string.option
         } else {
-            tvDistricts.text = "Tùy chọn"
+            tvDistricts rText R.string.tuy_chon
         }
     }
 
@@ -558,9 +618,9 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         cityId = id
 
         if (DetailStampActivity.isVietNamLanguage == false) {
-            tvDistricts.text = "Option"
+            tvDistricts rText R.string.option
         } else {
-            tvDistricts.text = "Tùy chọn"
+            tvDistricts rText R.string.tuy_chon
         }
     }
 
@@ -603,16 +663,16 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
             if (DetailStampActivity.isVietNamLanguage == false) {
-                showShortSuccess("Successfully updated")
+                showShortSuccess(rText(R.string.successfully_updated))
             } else {
-                showShortSuccess("Cập nhật thông tin thành công")
+                showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
             }
         }
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
         if (DetailStampActivity.isVietNamLanguage == false) {
-            showShortError("Occurred. Please try again")
+            showShortError(rText(R.string.occurred_please_try_again))
         } else {
             showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
         }

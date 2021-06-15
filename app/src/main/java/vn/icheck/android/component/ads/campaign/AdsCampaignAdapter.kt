@@ -151,7 +151,9 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             itemView.tvNameSlide.text = obj.name
-            itemView.tvTimeStartSlide.text = "${TimeHelper.getDayOfWeek(obj.startTime)}, ${TimeHelper.getDayAndMonth(obj.startTime)} - ${TimeHelper.getDayAndMonth(obj.endTime)}"
+            itemView.tvTimeStartSlide.apply {
+                text = context.getString(R.string.format_s_s_s, TimeHelper.getDayOfWeek(obj.startTime), TimeHelper.getDayAndMonth(obj.startTime), TimeHelper.getDayAndMonth(obj.endTime))
+            }
             itemView.tvTimeLeftSlide.text = TimeHelper.convertDateTimeSvToCurrentTimeLeftCampaign(obj.endTime)
 
             if (targetType == campaignApproach) {

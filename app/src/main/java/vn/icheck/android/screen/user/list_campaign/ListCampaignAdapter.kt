@@ -24,6 +24,7 @@ import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : RecyclerViewCustomAdapter<ICCampaign>(callback) {
@@ -107,7 +108,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
             when (obj.state.toString().toDouble().toInt()) {
                 //Chưa bắt đầu
                 0 -> {
-                    itemView.tv1.text = "Thời gian diễn ra"
+                    itemView.tv1 rText R.string.thoi_gian_dien_ra
                     itemView.txtCountUserJoin.beGone()
                     itemView.tv2.beGone()
                     itemView.view.beGone()
@@ -116,11 +117,11 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.btnJoinCampaign.beGone()
                     itemView.tvEnded.beGone()
 
-                    itemView.txtDate.text = "Từ ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)} - ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                    itemView.txtDate.rText(R.string.tu_s_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt), TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
                 }
                 //Chưa tham gia
                 1 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.tv1 rText R.string.thoi_gian
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -132,13 +133,13 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
                         itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        itemView.txtDate.rText(R.string.den_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
                     }
 
                 }
                 //Đã tham gia
                 2 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.tv1 rText R.string.thoi_gian
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -150,13 +151,13 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
                         itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        itemView.txtDate.rText(R.string.den_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
                     }
-                    itemView.tvReward.text = "${obj.itemCount} lượt mở"
+                    itemView.tvReward.rText(R.string.d_luot_mo, obj.itemCount)
                 }
                 //Đã hết hạn
                 else -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.tv1 rText R.string.thoi_gian
                     itemView.txtCountUserJoin.beGone()
                     itemView.tv2.beGone()
                     itemView.view.beGone()

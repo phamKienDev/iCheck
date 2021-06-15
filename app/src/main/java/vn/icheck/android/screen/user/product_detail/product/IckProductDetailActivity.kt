@@ -73,6 +73,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -284,8 +285,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 this,
                 it.title,
                 it.alertDescription,
-                "Đóng",
-                "Chi tiết",
+                rText(R.string.dong),
+                rText(R.string.chi_tiet),
                 false,
                 object : ConfirmDialogListener {
                     override fun onDisagree() {
@@ -594,7 +595,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 putExtra(Intent.EXTRA_SUBJECT, viewModel.infoProduct?.name)
                 putExtra(Intent.EXTRA_TEXT, it)
                 type = "text/plain"
-                val title = "Chia sẻ " + (viewModel.infoProduct?.name ?: "")
+                val title = rText(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
                 startActivity(Intent.createChooser(this, title))
             }
         })
@@ -619,7 +620,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     }
                 }
                 type = "text/plain"
-                val title = "Chia sẻ " + (viewModel.infoProduct?.name ?: "")
+                val title = rText(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
                 startActivity(Intent.createChooser(this, title))
             }
         }
@@ -628,7 +629,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             urlDistributor = it
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
-            showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
+            showShortSuccessToast(rText(R.string.cam_on_ban_chung_toi_se_lien_he_lai_trong_thoi_gian_som_nhat))
         })
     }
 
@@ -763,10 +764,10 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
                 DialogHelper.showConfirm(
                     this,
-                    "Thông báo",
-                    "Bạn muốn Đăng ký mua hàng chính hãng? Hãy gửi yêu cầu cho chúng tôi, chúng tôi sẽ liên hệ lại khi nhận được thông tin.",
-                    "Hủy",
-                    "Gửi",
+                    rText(R.string.thong_bao),
+                    rText(R.string.ban_muon_dang_ky_mua_hang_chinh_hang_hay_gui_yeu_cau_cho_chung_toi_chung_toi_se_lien_he_lai_khi_nhan_duoc_thong_tin),
+                    rText(R.string.huy),
+                    rText(R.string.gui),
                     true,
                     object : ConfirmDialogListener {
                         override fun onDisagree() {
@@ -1091,9 +1092,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     val productID = data?.getLongExtra(Constant.DATA_1, -1)
                     val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
                     if (myContribute == 0) {
-                        showShortSuccessToast("Bạn đã đóng góp thông tin thành công")
+                        showShortSuccessToast(rText(R.string.ban_da_dong_gop_thong_tin_thanh_cong))
                     } else {
-                        showShortSuccessToast("Bạn đã chỉnh sửa đóng góp thành công")
+                        showShortSuccessToast(rText(R.string.ban_da_chinh_sua_dong_gop_thanh_cong))
                     }
                     if (productID != -1L) {
                         viewModel.barcode = ""

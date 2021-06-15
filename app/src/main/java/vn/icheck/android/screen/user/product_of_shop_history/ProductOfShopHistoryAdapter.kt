@@ -15,6 +15,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.history.ICProductOfShopHistory
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -183,7 +184,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (item.reviewCount!! < 1000 ){
                     itemView.tvCountReview.text = "(${item.reviewCount})"
                 } else {
-                    itemView.tvCountReview.text = "(999+)"
+                    itemView.tvCountReview rText R.string.count_999
                 }
             }
         }
@@ -201,7 +202,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage2.text = "Hiện tại không có cửa hàng nào gần bạn!"
+                    itemView.txtMessage2 rText R.string.hien_tai_khong_co_cua_hang_nao_gan_ban
                 }
 
                 Constant.ERROR_SERVER -> {

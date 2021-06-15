@@ -311,7 +311,9 @@ class DetailStampThinhLongViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICGetIdPageSocial>>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data?.rows.isNullOrEmpty()){
-                    getIdSocial.postValue(obj.data?.rows!![0].id)
+                    obj.data?.rows?.get(0)?.id?.let {
+                        getIdSocial.postValue(it)
+                    }
                 } else {
                     errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }

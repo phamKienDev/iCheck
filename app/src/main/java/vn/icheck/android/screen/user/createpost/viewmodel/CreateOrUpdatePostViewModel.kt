@@ -112,7 +112,9 @@ class CreateOrUpdatePostViewModel : ViewModel() {
                     postDetail = obj.data
                     listPrivacy.addAll(obj.data!!.privacy!!)
                     onSetPrivacy.postValue(listPrivacy.find { it.selected } ?: listPrivacy[0])
-                    onSetPost.postValue(obj.data)
+                    obj.data?.let {
+                        onSetPost.postValue(it)
+                    }
                 }
             }
 
@@ -201,7 +203,9 @@ class CreateOrUpdatePostViewModel : ViewModel() {
         repository.createPost(pageId, privacy, content, productID, listImage, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onCreatedPost.postValue(obj.data)
+                obj.data?.let {
+                    onCreatedPost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -217,7 +221,9 @@ class CreateOrUpdatePostViewModel : ViewModel() {
         repository.updatePost(postID, privacy, content, productID, listImage, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onCreatedPost.postValue(obj.data)
+                obj.data?.let {
+                    onCreatedPost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

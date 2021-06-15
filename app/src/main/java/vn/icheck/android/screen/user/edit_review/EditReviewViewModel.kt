@@ -215,7 +215,9 @@ class EditReviewViewModel : ViewModel() {
         ProductReviewInteractor().postReview(productId, message, criteria, listImage, pageId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
                 onStatusMessage.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING, null))
-                onPostReviewSuccess.postValue(obj.data)
+                obj.data?.let {
+                    onPostReviewSuccess.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

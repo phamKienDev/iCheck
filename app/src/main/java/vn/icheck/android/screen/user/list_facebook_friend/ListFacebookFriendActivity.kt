@@ -17,6 +17,7 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -87,7 +88,7 @@ class ListFacebookFriendActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         viewModel.onSetData.observe(this, Observer {
             swipeLayout.isRefreshing = false
             if (!it.rows.isNullOrEmpty()) {
-                tvCount.text = "${TextHelper.formatMoneyComma(it.count)} Bạn bè"
+                tvCount.rText(R.string.s_ban_be, TextHelper.formatMoneyComma(it.count))
                 adapter.setListData(it.rows)
             } else {
                 tvCount.text = ""

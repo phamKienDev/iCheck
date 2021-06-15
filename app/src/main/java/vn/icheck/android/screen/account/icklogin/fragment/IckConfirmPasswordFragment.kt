@@ -14,9 +14,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentFillPwBinding
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class IckConfirmPasswordFragment : CoroutineFragment() {
@@ -47,16 +49,22 @@ class IckConfirmPasswordFragment : CoroutineFragment() {
             when {
 
                 binding.edtPassword.text?.trim().toString().length < 6 -> {
-                    binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
-                    binding.edtPassword.requestFocus()
+                    binding.edtPassword.apply {
+                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                        requestFocus()
+                    }
                 }
                 binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
-                    binding.edtRePassword.setError("Vui lòng nhập dữ liệu")
-                    binding.edtRePassword.requestFocus()
+                    binding.edtRePassword.apply {
+                        error = context rText R.string.vui_long_nhap_du_lieu
+                        requestFocus()
+                    }
                 }
                 binding.edtRePassword.text?.trim().toString() != binding.edtPassword.text?.trim().toString() -> {
-                    binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
-                    binding.edtRePassword.requestFocus()
+                    binding.edtRePassword.apply {
+                        error = context rText R.string.xac_nhan_mat_khau_khong_trung_khop
+                        requestFocus()
+                    }
                 }
                 else -> {
                     ickLoginViewModel.updatePassword(args.token, binding.edtPassword.text.toString()).observe(viewLifecycleOwner, Observer {

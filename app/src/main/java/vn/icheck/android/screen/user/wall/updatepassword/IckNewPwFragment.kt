@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
@@ -17,6 +18,7 @@ import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -32,8 +34,8 @@ class IckNewPwFragment : CoroutineFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (SessionManager.session.user?.hasPassword == false) {
-            binding.textView26 simpleText "Cập nhật mật khẩu"
-            binding.tvDesc simpleText "Vui lòng nhập mật khẩu"
+            binding.textView26 rText R.string.cap_nhat_mat_khau
+            binding.tvDesc rText R.string.vui_long_nhap_mat_khau
             binding.edtOldPassword.visibility = View.GONE
             binding.edtPassword.addTextChangedListener {
                 validate()
@@ -59,19 +61,29 @@ class IckNewPwFragment : CoroutineFragment() {
             if (SessionManager.session.user?.hasPassword == true) {
                 when {
                     binding.edtOldPassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtOldPassword.setError("Bạn chưa nhập mật khẩu cũ")
+                        binding.edtOldPassword.apply {
+                            error = context.rText(R.string.ban_chua_nhap_mat_khau_cu)
+                        }
                     }
                     binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtRePassword.setError("Xin vui lòng xác nhận mật khẩu")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.xin_vui_long_xac_nhan_mat_khau)
+                        }
                     }
                     binding.edtOldPassword.text?.length ?: 0 < 6 -> {
-                        binding.edtOldPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                        binding.edtOldPassword.apply {
+                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                        }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
-                        binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                        }
                     }
                     binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
-                        binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                        }
                     }
                     else -> {
 
@@ -81,7 +93,7 @@ class IckNewPwFragment : CoroutineFragment() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showShortSuccessToast("Bạn đã cập nhật mật khẩu thành công")
+                                            requireContext().showShortSuccessToast(rText(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
                                             ickUserWallViewModel.getUserInfo().observe(requireActivity(), {user ->
                                                 SessionManager.updateUser(user?.data?.createICUser())
                                             })
@@ -102,19 +114,29 @@ class IckNewPwFragment : CoroutineFragment() {
             } else {
                 when {
                     binding.edtPassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtPassword.setError("Bạn chưa nhập mật khẩu mới")
+                        binding.edtPassword.apply {
+                            error = context.rText(R.string.ban_chua_nhap_mat_khau_moi)
+                        }
                     }
                     binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtRePassword.setError("Xin vui lòng xác nhận mật khẩu")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.xin_vui_long_xac_nhan_mat_khau)
+                        }
                     }
                     binding.edtPassword.text?.length ?: 0 < 6 -> {
-                        binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                        binding.edtPassword.apply {
+                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                        }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
-                        binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 ký tự")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                        }
                     }
                     binding.edtPassword.text.toString() !=  binding.edtRePassword.text.toString() -> {
-                        binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
+                        binding.edtRePassword.apply {
+                            error = context.rText(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                        }
                     }
                     else -> {
 
@@ -124,7 +146,7 @@ class IckNewPwFragment : CoroutineFragment() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showShortSuccessToast("Bạn đã cập nhật mật khẩu thành công")
+                                            requireContext().showShortSuccessToast(rText(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
                                             delayAction({
                                                 findNavController().popBackStack()
                                             }, 3000)

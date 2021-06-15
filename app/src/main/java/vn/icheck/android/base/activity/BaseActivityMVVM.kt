@@ -187,12 +187,13 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
 
                 if (confirmLogin == null) {
-                    confirmLogin = object : ConfirmDialog(it,
-                            "Thông báo",
-                            "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                            "Để sau",
-                            "Đăng nhập ngay",
-                            false) {
+                    confirmLogin = object : ConfirmDialog(
+                        it,
+                        getString(R.string.thong_bao),
+                        getString(R.string.phien_dang_nhap_da_het_han_vui_long_dang_nhap_lai),
+                        getString(R.string.de_sau),
+                        getString(R.string.dang_nhap_ngay),
+                        false) {
                         override fun onDisagree() {
 
                         }

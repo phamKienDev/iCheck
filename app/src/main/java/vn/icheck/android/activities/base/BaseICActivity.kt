@@ -21,10 +21,6 @@ abstract class BaseICActivity : AppCompatActivity() {
     val compositeDisposable = CompositeDisposable()
     var requiresLogin = true
 
-    companion object{
-        const val TONG_DAI ="0902195488"
-    }
-
     override fun onResume() {
         super.onResume()
         if (requiresLogin) {
@@ -80,7 +76,7 @@ abstract class BaseICActivity : AppCompatActivity() {
 
     fun dial(phoneNumber: String) {
         try {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse(getString(R.string.tel_phone_number, phoneNumber)))
             startActivity(intent)
         } catch (e: Exception) {
         }
@@ -89,9 +85,9 @@ abstract class BaseICActivity : AppCompatActivity() {
     fun email(address: String) {
         try {
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.type = "vnd.android.cursor.item/email"
+            intent.type = getString(R.string.vnd_android_cursor_item_email)
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(address))
-            val mailer = Intent.createChooser(intent,  "Send mail using...")
+            val mailer = Intent.createChooser(intent,  getString(R.string.send_email_using))
             startActivity(mailer)
         } catch (e: Exception) {
         }

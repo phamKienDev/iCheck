@@ -43,6 +43,7 @@ import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 import javax.inject.Inject
 
 const val LOGIN_OTP = 1
@@ -194,7 +195,7 @@ class IckLoginActivity : BaseCoroutineActivity() {
     private fun launchLogin() {
 
         if (ickLoginViewModel.hasData() && ickLoginViewModel.registerType == REGISTER) {
-            DialogHelper.showConfirm(this, "Bạn chắc chắn muốn <br /> thay đổi phương thức đăng nhập?", null, "Không", "Chắc chắn", true, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, rText(R.string.ban_chac_chan_muon_thay_doi_phuong_thuc_dang_nhap), null, rText(R.string.khong), rText(R.string.chac_chan), true, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }

@@ -124,8 +124,10 @@ class ListDistributorActivity : BaseICActivity() {
                 }
 
                 if (page.gln_code != null) {
-                    view.findViewById<TextView>(R.id.tv_owner_mst).visibility = View.VISIBLE
-                    view.findViewById<TextView>(R.id.tv_owner_mst).text = "MST: ${page.gln_code}"
+                    view.findViewById<TextView>(R.id.tv_owner_mst).apply {
+                        text = context.getString(R.string.mst_x, page.gln_code)
+                        visibility = View.VISIBLE
+                    }
                 } else {
                     view.findViewById<TextView>(R.id.tv_owner_mst).visibility = View.GONE
                 }

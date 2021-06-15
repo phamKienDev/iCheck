@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import vn.icheck.android.R
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentPhoneBookBinding
 import vn.icheck.android.helper.SettingHelper
@@ -24,6 +25,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.logDebug
+import vn.icheck.android.util.ick.rText
 import java.util.ArrayList
 
 class SocialPhoneBookFragment:Fragment() {
@@ -92,7 +94,7 @@ class SocialPhoneBookFragment:Fragment() {
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                        WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, rText(R.string.dieu_khoan_su_dung))
                     }
                 })
             })

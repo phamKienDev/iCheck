@@ -145,7 +145,7 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
         override fun bind(obj: ICItemReward) {
             if (bindingAdapterPosition == 0 && obj.totalGifts != 0) {
                 itemView.tv_total_gifts.beVisible()
-                itemView.tv_total_gifts simpleText "Sản phẩm quà: ${obj.totalGifts}"
+                itemView.tv_total_gifts.rText(R.string.san_pham_qua_d, obj.totalGifts)
             } else {
                 itemView.tv_total_gifts.beGone()
             }
@@ -162,45 +162,45 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
             }
             when (obj.state) {
                 2 -> {
-                    itemView.tv_gift_state simpleText "Đã xác nhận giao quà"
+                    itemView.tv_gift_state rText R.string.da_xac_nhan_giao_qua
                 }
                 3 -> {
-                    itemView.tv_gift_state simpleText "Bạn đã từ chối nhận quà này"
+                    itemView.tv_gift_state rText R.string.ban_da_tu_choi_nhan_qua_nay
                 }
                 4 -> {
-                    itemView.tv_gift_state simpleText "Giao quà thành công"
+                    itemView.tv_gift_state rText R.string.giao_qua_thanh_cong
                 }
                 else -> {
-                    itemView.tv_gift_state simpleText "Hết hạn"
+                    itemView.tv_gift_state rText R.string.het_han
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#757575>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=#757575>${itemView.context.rText(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }
 
             when (obj.rewardType) {
                 "PRODUCT_SHIP" -> {
-                    itemView.tvState simpleText "Giao tận nơi"
+                    itemView.tvState rText R.string.giao_tan_noi
                 }
                 "PRODUCT_IN_SHOP" -> {
-                    itemView.tvState simpleText "Nhận tại cửa hàng"
+                    itemView.tvState rText R.string.nhan_tai_cua_hang
                 }
                 "CARD" -> {
-                    itemView.tvState simpleText "Quà thẻ cào"
+                    itemView.tvState rText R.string.qua_the_cao
                 }
                 "LUCKY" -> {
-                    itemView.tvState simpleText "Quà tinh thần"
+                    itemView.tvState rText R.string.qua_tinh_than
                 }
                 "CODE" -> {
-                    itemView.tvState simpleText "Mã dự thưởng"
+                    itemView.tvState rText R.string.ma_du_thuong
                 }
                 "VOUCHER" -> {
-                    itemView.tvState simpleText "Voucher"
+                    itemView.tvState rText R.string.voucher
                 }
                 else -> {
-                    itemView.tvState simpleText "Quà hiện vật"
+                    itemView.tvState rText R.string.qua_hien_vat
                 }
             }
 

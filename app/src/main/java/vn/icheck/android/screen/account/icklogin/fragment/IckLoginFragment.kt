@@ -13,6 +13,7 @@ import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
@@ -89,16 +90,18 @@ class IckLoginFragment : CoroutineFragment() {
                 binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
                     when {
                         binding.edtPassword.text.isNullOrEmpty() -> {
-                            binding.edtPassword.requestFocus()
-                            binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
-                                    ?: 0)
-                            binding.edtPassword.setError("Bạn chưa nhập mật khẩu")
+                            binding.edtPassword.apply {
+                                requestFocus()
+                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
+                                error = context rText R.string.ban_chua_nhap_mat_khau
+                            }
                         }
                         binding.edtPassword.text?.toString()?.length ?: 0 < 6 -> {
-                            binding.edtPassword.requestFocus()
-                            binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
-                                    ?: 0)
-                            binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
+                            binding.edtPassword.apply {
+                                requestFocus()
+                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
+                                error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                            }
                         }
                         else -> {
                             login()
@@ -108,7 +111,9 @@ class IckLoginFragment : CoroutineFragment() {
                 }
                 else -> {
                     showFocus()
-                    binding.edtPhone.setError("Số điện thoại không đúng định dạng")
+                    binding.edtPhone.apply {
+                        error = context rText R.string.so_dien_thoai_khong_dung_dinh_dang
+                    }
                 }
 
             }
@@ -131,7 +136,7 @@ class IckLoginFragment : CoroutineFragment() {
                 }
 
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, "Hỗ trợ đăng nhập")
+                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, it.context rText R.string.ho_tro_dang_nhap)
                 }
             })
 //            WebViewActivity.start(requireActivity(), "http://quotes.icheck.com.vn/van-de-khi-dang-nhap/")

@@ -12,7 +12,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
-import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.feature.social.SocialRepository
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.util.ui.GlideUtil
@@ -69,26 +68,36 @@ class StickerAdapter(var listSticker: ArrayList<StickerView>, var size: Int) : R
             val rcv = getRcv(R.id.rcv_stickers)
             GlideUtil.loading(stickerView.image, getImg(R.id.img_sticker_pack))
             getTv(R.id.tv_pack_name).text = stickerView.name
-            getTv(R.id.tv_total).text = String.format("%d nhãn dán", stickerView.total)
+            getTv(R.id.tv_total).apply {
+                text = context.getString(R.string.x_nhan_dan, stickerView.total)
+            }
             val button = view.findViewById<TextView>(R.id.btn_delete)
 
             if (checkId(stickerView.id)) {
-                button.text = "Xóa"
+                button.apply {
+                    text = context.getString(R.string.xoa)
+                }
                 button.setBackgroundResource(R.drawable.button_remove)
             } else {
-                button.text = "Thêm"
+                button.apply {
+                    text = context.getString(R.string.them)
+                }
                 button.setBackgroundResource(R.drawable.button_add)
             }
 
 
             setOnClick(R.id.btn_delete, View.OnClickListener {
                 if (checkId(stickerView.id)) {
-                    button.setBackgroundResource(R.drawable.button_add)
-                    button.text = "Thêm"
+                    button.apply {
+                        setBackgroundResource(R.drawable.button_add)
+                        text = context.getString(R.string.them)
+                    }
                     stickerPackagesDao.deleteStickPackages(stickerView.id)
                 } else {
-                    button.text = "Xóa"
-                    button.setBackgroundResource(R.drawable.button_remove)
+                    button.apply {
+                        setBackgroundResource(R.drawable.button_remove)
+                        text = context.getString(R.string.xoa)
+                    }
                     stickerPackagesDao.insertStickerPackages(StickerPackages(
                             stickerView.id, stickerView.name, stickerView.image, stickerView.total))
                 }

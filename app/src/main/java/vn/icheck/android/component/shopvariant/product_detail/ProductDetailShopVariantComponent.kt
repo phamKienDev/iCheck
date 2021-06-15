@@ -37,6 +37,7 @@ import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.account.home.AccountActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.text.ICheckTextUtils
 
@@ -65,7 +66,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
         if (productRow.distance != null) {
             TextHelper.convertMtoKm(productRow.distance!!, tv_distance, "Khoảng cách: ")
         } else {
-            tv_distance.text = "Khoảng cách: " + context.getString(R.string.dang_cap_nhat)
+            tv_distance rText R.string.khoang_cach_dang_cap_nhat
         }
 
         tv_score.text = String.format("%.1f", productRow.rating).replace(".", ",")
@@ -99,7 +100,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
         val listService = mutableListOf<ICServiceShopVariant>()
 
         if (productRow.isOffline == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, context rText R.string.mua_tai_cua_hang, "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
         if (!productRow.title.isNullOrEmpty()) {

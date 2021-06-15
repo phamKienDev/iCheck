@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -34,7 +35,7 @@ class BookmarkHistoryActivity : AppCompatActivity() {
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
         EventBus.getDefault().register(this)
-        binding.header.tvTitle simpleText "Sản phẩm yêu thích"
+        binding.header.tvTitle rText R.string.san_pham_yeu_thich
         binding.header.icBack.setOnClickListener {
             finish()
         }
@@ -52,7 +53,7 @@ class BookmarkHistoryActivity : AppCompatActivity() {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beVisible()
                     binding.tvNoBookmark.beVisible()
-                    binding.tvNoBookmark.text = "Không tìm thấy sản phẩm!"
+                    binding.tvNoBookmark rText R.string.khong_tim_thay_san_pham_1
                 } else {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beGone()

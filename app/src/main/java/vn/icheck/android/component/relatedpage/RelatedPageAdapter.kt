@@ -15,6 +15,7 @@ import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -50,7 +51,7 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
             }
 
             if (obj.followCount > 0) {
-                binding.tvFollowCount.text = TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
+                binding.tvFollowCount.rText(R.string.d_nguoi_theo_doi, obj.followCount)
             }
 
             binding.tvAction.setOnClickListener {

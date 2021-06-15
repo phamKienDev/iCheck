@@ -18,6 +18,7 @@ import vn.icheck.android.databinding.DialogReportUserBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 
 class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
     private var _binding: DialogReportUserBinding? = null
@@ -71,7 +72,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
 
             if (filter != null) {
                 delayAction({
-                    DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(dialog?.context, rText(R.string.ban_muon_bo_bao_cao_nay), null, rText(R.string.tiep_tuc_bao_cao), rText(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }
@@ -96,7 +97,7 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
                         dismiss()
                     })
                 } else {
-                    requireContext().showShortErrorToast("Vui lòng chọn ít nhất một lý do")
+                    requireContext().showShortErrorToast(rText(R.string.vui_long_chon_it_nhat_mot_ly_do))
                 }
             })
 

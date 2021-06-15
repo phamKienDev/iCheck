@@ -50,7 +50,7 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             itemSelectBinding.imgHelp.beVisible()
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemSelectBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            itemSelectBinding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             itemSelectBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
