@@ -126,7 +126,7 @@
                 android:id="@+id/btn_login_otp"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="@dimen/size_40"
                 android:layout_marginStart="@dimen/size_62"
                 android:layout_marginLeft="@dimen/size_62"
                 android:layout_marginTop="@dimen/size_50"
@@ -141,39 +141,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_problem" />
 
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_32"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Hoặc đăng nhập bằng"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_login_otp" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginStart="@dimen/size_62"
                 android:layout_marginLeft="@dimen/size_62"
                 android:layout_marginEnd="@dimen/size_10"
                 android:layout_marginRight="@dimen/size_10"
-                android:background="@color/grayB4"
                 app:layout_constraintBottom_toBottomOf="@+id/textView27"
                 app:layout_constraintEnd_toStartOf="@+id/textView27"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView27" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_62"
                 android:layout_marginRight="@dimen/size_62"
-                android:background="@color/grayB4"
                 app:layout_constraintBottom_toBottomOf="@+id/textView27"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView27"

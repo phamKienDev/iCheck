@@ -81,7 +81,6 @@
             android:name=".screen.scan.V6ScanditActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
             android:screenOrientation="portrait"
@@ -838,7 +837,6 @@
             android:name=".screen.user.createqrcode.success.CreateQrCodeSuccessActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_Blue"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.bannersurvey.BannerSurveyActivity"

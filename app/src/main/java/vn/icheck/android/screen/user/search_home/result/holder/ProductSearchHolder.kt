@@ -4,6 +4,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_search_result.view.*
@@ -24,6 +25,8 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_product_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICProductTrend>) {
+        itemView.tv_xem_them.setCompoundDrawablesWithIntrinsicBounds(0,0,
+            ViewHelper.setImageColor(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context,ContextCompat.getColor(itemView.context,R.color.colorPrimary)),0)
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()

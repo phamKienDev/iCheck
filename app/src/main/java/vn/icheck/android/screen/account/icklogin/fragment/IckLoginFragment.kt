@@ -64,25 +64,31 @@ class IckLoginFragment : CoroutineFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         TrackingAllHelper.trackLoginStart()
-        binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
+        binding.edtPhone.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
 //                if (s.toString().startsWith("84")) {
 //                    binding.edtPhone.setText(s.toString().replace("84","0", true))
 //                    binding.edtPhone.setSelection(1)
 //                }
-                if (s.toString().isNotEmpty()) {
-                    binding.edtPhone.setPadding(24.dpToPx(), 0, 0, 20.dpToPx())
-                } else {
-                    binding.edtPhone.setPadding(0, 0, 0, 20.dpToPx())
+                    if (s.toString().isNotEmpty()) {
+                        binding.edtPhone.setPadding(24.dpToPx(), 0, 0, 20.dpToPx())
+                    } else {
+                        binding.edtPhone.setPadding(0, 0, 0, 20.dpToPx())
+                    }
+                    checkForm()
                 }
-                checkForm()
-            }
-        })
-        binding.edtPassword.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
-                checkForm()
-            }
-        })
+            })
+        }
+        binding.edtPassword.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
+                    checkForm()
+                }
+            })
+        }
         binding.btnLoginFacebook.setOnSingleClickListener {
             loginManager.logInWithReadPermissions(this, listOf("public_profile"))
         }

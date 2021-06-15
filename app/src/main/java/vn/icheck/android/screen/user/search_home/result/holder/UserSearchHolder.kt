@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.search_home.result.holder
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_users_search_result_holder.view.*
@@ -17,6 +18,8 @@ import vn.icheck.android.util.ick.beVisible
 
 class UserSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_users_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICSearchUser>) {
+        itemView.tv_xem_them.setCompoundDrawablesWithIntrinsicBounds(0,0,
+                    ViewHelper.setImageColor(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context, ContextCompat.getColor(itemView.context,R.color.colorPrimary)),0)
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()

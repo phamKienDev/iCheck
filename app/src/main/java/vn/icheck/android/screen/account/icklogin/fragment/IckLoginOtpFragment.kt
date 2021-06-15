@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.CoroutineFragment
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -55,24 +56,34 @@ class IckLoginOtpFragment : CoroutineFragment() {
                 binding.edtRePassword.visibility = View.VISIBLE
             }
         }
-        binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
-                ickLoginViewModel.cPhone = s?.trim().toString()
-                validate()
-            }
-        })
-        binding.edtPassword.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
-                ickLoginViewModel.cPw = s?.trim().toString()
-                validate()
-            }
-        })
-        binding.edtRePassword.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
-                ickLoginViewModel.cRPw = s?.trim().toString()
-                validate()
-            }
-        })
+        binding.edtPhone.apply {
+            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
+                    ickLoginViewModel.cPhone = s?.trim().toString()
+                    validate()
+                }
+            })
+
+        }
+        binding.edtPassword.apply {
+            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
+                    ickLoginViewModel.cPw = s?.trim().toString()
+                    validate()
+                }
+            })
+        }
+        binding.edtRePassword.apply {
+            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
+                    ickLoginViewModel.cRPw = s?.trim().toString()
+                    validate()
+                }
+            })
+        }
         binding.btnContinue.setOnClickListener {
             val phone = if (binding.edtPhone.text?.length == 9) "0${binding.edtPhone.text}" else binding.edtPhone.text
             when {

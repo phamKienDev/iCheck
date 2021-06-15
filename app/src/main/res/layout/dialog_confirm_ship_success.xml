@@ -29,14 +29,13 @@
             android:gravity="center"
             android:text="Tiếp nhận thông tin thành công"/>
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView90"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_18"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_18"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="Đơn hàng của bạn sẽ được iCheck giao tới bạn trong 2-4 ngày tới" />
 

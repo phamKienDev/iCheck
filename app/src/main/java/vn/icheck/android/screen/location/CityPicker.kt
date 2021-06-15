@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.location
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
 import vn.icheck.android.databinding.BottomNationDialogBinding
 import vn.icheck.android.databinding.ItemCityBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.network.model.location.CityResponse
@@ -63,7 +65,7 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cityAdapter = CityAdapter(onCityClick)
-        binding.edtSearch.background= ViewHelper.bgGrayCorners4(requireContext())
+        binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(requireContext()))
         binding.rcvNation.layoutManager = WrapContentLinearLayoutManager(requireContext())
         binding.rcvNation.adapter = cityAdapter
         when (type) {

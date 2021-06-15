@@ -16,6 +16,7 @@ import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.kotlin.StatusBarUtils
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -36,9 +37,10 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
         presenter.getData(intent)
         initListener()
 
-        imgCreate.background=ViewHelper.btnWhiteCircle48dp(this)
-        imgSave.background=ViewHelper.btnWhiteCircle48dp(this)
-        imgDownload.background=ViewHelper.btnWhiteCircle48dp(this)
+        StatusBarUtils.setOverStatusBarDark(this)
+        imgCreate.background = ViewHelper.btnWhiteCircle48dp(this)
+        imgSave.background = ViewHelper.btnWhiteCircle48dp(this)
+        imgDownload.background = ViewHelper.btnWhiteCircle48dp(this)
     }
 
     private fun initListener() {

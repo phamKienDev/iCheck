@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/layoutImage"
         tools:text="Siêu thị VinMart Mỹ Đình fds fdsfk sjflkdsjfjdslfjdsl kfjsdk fsd" />
 
-    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvKhoangCach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

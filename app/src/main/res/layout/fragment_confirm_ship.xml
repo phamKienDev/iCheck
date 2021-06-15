@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider10">
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
             android:id="@+id/containter"
             android:paddingBottom="@dimen/size_10"
             android:layout_width="match_parent"
@@ -399,10 +399,10 @@
                 android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 tools:visibility="visible" />
-        </LinearLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
     </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
-    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView98"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

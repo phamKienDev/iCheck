@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.databinding.IckBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -63,24 +64,27 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }
-        binding.edtBarcode.setOnKeyListener { v, keyCode, event ->
-            if ((event.action == KeyEvent.ACTION_DOWN) &&
-                (keyCode == KeyEvent.KEYCODE_ENTER) && !binding.edtBarcode.text.isNullOrEmpty()
-            ) {
-                submitBarcode()
-            }
-            false
-        }
-        binding.edtBarcode.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                if (s.toString().isNotBlank()) {
-                    binding.submitBarcode.enable()
-                } else {
-                    binding.submitBarcode.disable()
+        binding.edtBarcode.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            setOnKeyListener { v, keyCode, event ->
+                if ((event.action == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER) && !binding.edtBarcode.text.isNullOrEmpty()
+                ) {
+                    submitBarcode()
                 }
+                false
             }
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable) {
+                    if (s.toString().isNotBlank()) {
+                        binding.submitBarcode.enable()
+                    } else {
+                        binding.submitBarcode.disable()
+                    }
+                }
 
-        })
+            })
+        }
         binding.submitBarcode.setOnClickListener {
             if (!binding.edtBarcode.text.isNullOrEmpty()) {
                 submitBarcode()

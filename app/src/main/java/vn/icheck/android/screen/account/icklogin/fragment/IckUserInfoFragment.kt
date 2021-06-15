@@ -163,9 +163,18 @@ class IckUserInfoFragment : CoroutineFragment() {
             binding.tvFirstname.setText(ickLoginViewModel.facebookUsername)
             ickLoginViewModel.setFirstName(ickLoginViewModel.facebookUsername)
         }
-        binding.edtTinh.enableRightClick = false
-        binding.edtQuan.enableRightClick = false
-        binding.edtPhuongXa.enableRightClick = false
+        binding.edtTinh.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtQuan.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtPhuongXa.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
         binding.edtTinh.setOnClickListener {
             hideKeyboard()
             if (cityPicker?.isVisible == true) {
@@ -254,10 +263,13 @@ class IckUserInfoFragment : CoroutineFragment() {
                 ickLoginViewModel.setLastName(s?.trim().toString())
             }
         })
-        binding.edtEmailInput.addTextChangedListener {
+        binding.edtEmailInput.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener {
 //            binding.tvErrorEmail.beGone()
-            if (it?.trim().toString().isValidEmail()) {
-                ickLoginViewModel.setEmail(it?.trim().toString())
+                if (it?.trim().toString().isValidEmail()) {
+                    ickLoginViewModel.setEmail(it?.trim().toString())
+                }
             }
         }
         binding.edtMgt.addTextChangedListener {

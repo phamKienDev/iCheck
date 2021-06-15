@@ -12,6 +12,7 @@
     android:paddingBottom="@dimen/size_10">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvXemThem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"

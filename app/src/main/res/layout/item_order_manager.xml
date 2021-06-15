@@ -95,17 +95,15 @@
         android:layout_marginBottom="@dimen/size_10"
         android:orientation="horizontal">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvError"
             android:layout_width="@dimen/size_130"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_8"
             android:text="@string/bao_loi"
-            android:textColor="@color/light_blue"
             android:textSize="@dimen/font_16" />
 
         <androidx.appcompat.widget.AppCompatTextView

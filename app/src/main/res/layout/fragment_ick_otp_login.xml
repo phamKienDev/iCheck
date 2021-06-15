@@ -139,6 +139,7 @@
                 android:drawablePadding="@dimen/size_40"
                 android:focusableInTouchMode="true"
                 android:hint="Nhập mật khẩu"
+                android:backgroundTint="@android:color/holo_green_light"
                 android:inputType="numberPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"

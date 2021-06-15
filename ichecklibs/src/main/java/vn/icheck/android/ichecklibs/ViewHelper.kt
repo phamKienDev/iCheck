@@ -38,6 +38,15 @@ object ViewHelper {
         )
     }
 
+    fun createColorStateFocusedList(unFocusColor: Int, focusedColor: Int): ColorStateList {
+        return ColorStateList(
+            arrayOf(
+                intArrayOf(-android.R.attr.state_focused),
+                intArrayOf(android.R.attr.state_focused)
+            ), intArrayOf(unFocusColor, focusedColor)
+        )
+    }
+
     fun createColorStateList(disableColor: Int, enableColor: Int, pressedColor: Int): ColorStateList {
         return ColorStateList(
             arrayOf(

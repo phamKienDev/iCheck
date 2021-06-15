@@ -318,8 +318,33 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     private fun setupTabListener() {
-        WidgetUtils.setClickListener(this, tvHome, tvFeed, imgScanQr, tvHistory, tvChat, imgAvatar, tv_logout, tv_help, help_root, btn_rank_user, tv_hdsd, layoutSetting,
-                tv_dksd, tv_chtg, tv_lhic, group_history_topup, btnCreateQr, tv_ttud, btn_icheck_xu, layoutOrder, btn_manage_page, group_favorite_products, btnApply, tv_username)
+        WidgetUtils.setClickListener(
+            this,
+            tvHome,
+            tvFeed,
+            imgScanQr,
+            tvHistory,
+            tvChat,
+            imgAvatar,
+            tv_logout,
+            tv_help,
+            help_root,
+            btn_rank_user,
+            tv_hdsd,
+            layoutSetting,
+            tv_dksd,
+            tv_chtg,
+            tv_lhic,
+            group_history_topup,
+            btnCreateQr,
+            tv_ttud,
+            btn_icheck_xu,
+            layoutOrder,
+            btn_manage_page,
+            group_favorite_products,
+            btnApply,
+            tv_username
+        )
     }
 
     private fun checkPermission() {
@@ -329,7 +354,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             }
 
             override fun onRequestPermission() {
-                PermissionHelper.checkPermission(this@HomeActivity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), requestLocationPermission)
+                PermissionHelper.checkPermission(
+                    this@HomeActivity,
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
+                    requestLocationPermission
+                )
             }
 
             override fun onPermissionNotAllow() {
@@ -514,50 +543,63 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
             ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.grayB4), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
-            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this) }.apply {
-                tvHome.setTextColor(this)
-                tvFeed.setTextColor(this)
-                tvHistory.setTextColor(this)
-                tvChat.setTextColor(this)
-            }
+            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
+        }.apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
+        }
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
         if (homeBitmap != null) {
-            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_home_page_27), null, null)
         }
 
         val feedBitmap = BitmapFactory.decodeFile(path + FileHelper.newsIcon)
         if (feedBitmap != null) {
-            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_feed_27), null, null)
         }
 
         val historyBitmap = BitmapFactory.decodeFile(path + FileHelper.historyIcon)
         if (historyBitmap != null) {
-            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_history_27), null, null)
         }
 
         val chatBitmap = BitmapFactory.decodeFile(path + FileHelper.messageIcon)
         if (chatBitmap != null) {
-            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_chat_27), null, null)
         }
@@ -570,14 +612,15 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         }
     }
 
-    private fun checkkNewTheme() {
+    private fun checkNewTheme() {
         lifecycleScope.async {
             val file = File(FileHelper.getPath(this@HomeActivity) + FileHelper.imageFolder)
             if (file.exists()) {
                 FileHelper.deleteTheme(file)
             }
             SettingManager.themeSetting = null
-            setupTheme()
+//            setupTheme()
+            SettingManager.setAppThemeColor(null)
 
             val themeSettingRes = try {
                 withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
@@ -585,8 +628,11 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 null
             }
             SettingManager.themeSetting = themeSettingRes?.data
+            SettingManager.setAppThemeColor(themeSettingRes?.data)
 
-            viewModel.downloadTheme()
+//            startActivityAndFinish<HomeActivity>()
+            recreate()
+//            viewModel.downloadTheme()
         }
     }
 
@@ -629,11 +675,17 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
     }
 
     override fun onLogoutFalse() {
-        DialogHelper.showNotification(this@HomeActivity, null, R.string.dang_xuat_khong_thanh_cong_vui_long_thu_lai, R.string.thu_lai, false, object : NotificationDialogListener {
-            override fun onDone() {
-                presenter.loginAnonymous()
-            }
-        })
+        DialogHelper.showNotification(
+            this@HomeActivity,
+            null,
+            R.string.dang_xuat_khong_thanh_cong_vui_long_thu_lai,
+            R.string.thu_lai,
+            false,
+            object : NotificationDialogListener {
+                override fun onDone() {
+                    presenter.loginAnonymous()
+                }
+            })
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
@@ -1054,14 +1106,20 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                     }
                 }
 
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
+                ChatSdk.shareIntent(
+                    SessionManager.session.firebaseToken,
+                    SessionManager.session.user?.id,
+                    SessionManager.session.token,
+                    DeviceUtils.getUniqueDeviceId(),
+                    SessionManager.isUserLogged
+                )
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
                 ChatSdk.shareIntent(null, null, null, null, false)
 
                 tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
-                checkkNewTheme()
+                checkNewTheme()
                 clearFilter()
 
                 checkLoginOrLogoutChat(false)
@@ -1074,14 +1132,20 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 tv_username.text = SessionManager.session.user?.getName
                 tv_user_rank.text = SessionManager.session.user?.phone
                 Glide.with(this.applicationContext)
-                        .load(SessionManager.session.user?.avatar)
-                        .placeholder(R.drawable.ic_avatar_default_84px)
-                        .error(R.drawable.ic_avatar_default_84px)
-                        .into(imgAvatar)
+                    .load(SessionManager.session.user?.avatar)
+                    .placeholder(R.drawable.ic_avatar_default_84px)
+                    .error(R.drawable.ic_avatar_default_84px)
+                    .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
-                checkkNewTheme()
+                ChatSdk.shareIntent(
+                    SessionManager.session.firebaseToken,
+                    SessionManager.session.user?.id,
+                    SessionManager.session.token,
+                    DeviceUtils.getUniqueDeviceId(),
+                    SessionManager.isUserLogged
+                )
+                checkNewTheme()
                 clearFilter()
                 checkLoginOrLogoutChat(true)
             }
@@ -1217,6 +1281,7 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
         super.onDestroy()
         stopLocationUpdates()
         isOpen = false
+        viewModelStore.clear()
         RelationshipManager.removeListener()
         INSTANCE = null
     }

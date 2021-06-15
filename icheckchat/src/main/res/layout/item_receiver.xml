@@ -122,7 +122,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@color/colorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tvNameProduct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -130,18 +130,16 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:minLines="1"
-                android:textColor="@color/black_21"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/imgProduct"
                 app:layout_constraintStart_toStartOf="@id/imgProduct"
                 app:layout_constraintTop_toBottomOf="@id/imgProduct"
                 tools:text="German example for ( tên sản phẩm tối đa 2 dòng)..." />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvBarcode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -152,11 +150,9 @@
                 android:drawableLeft="@drawable/ic_scan_gray_24dp_chat"
                 android:drawablePadding="6dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/black_75"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/imgProduct"
                 app:layout_constraintStart_toStartOf="@id/imgProduct"
@@ -172,16 +168,14 @@
                 app:layout_constraintStart_toStartOf="@id/tvBarcode"
                 app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"

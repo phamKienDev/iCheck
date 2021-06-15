@@ -76,7 +76,7 @@ class IckOtpFragment : Fragment() {
         lifecycleScope.launch {
             delay(200)
             binding.otpEditText.requestFocus()
-            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
     }
@@ -362,7 +362,7 @@ class IckOtpFragment : Fragment() {
 //        binding.otpEditText.clearComposingText()
 //        requireActivity().forceHideKeyboard(binding.otpEditText)
 
-        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.otpEditText.windowToken, 0)
     }
 

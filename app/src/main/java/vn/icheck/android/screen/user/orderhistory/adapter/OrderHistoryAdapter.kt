@@ -125,7 +125,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             }
 
             itemView.tvConfirm.apply {
-                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                background = ViewHelper.bgPrimaryCorners4(itemView.context)
                 setOnClickListener {
                     DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
                         override fun onDisagree() {

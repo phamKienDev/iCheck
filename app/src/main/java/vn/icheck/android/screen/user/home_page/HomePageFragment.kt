@@ -72,7 +72,6 @@ import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
-import vn.icheck.android.screen.user.suggest_topic.SuggestTopicActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
@@ -607,33 +606,34 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            }
             ICMessageEvent.Type.ON_LOG_IN -> {
 
-                lifecycleScope.launch {
-                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-                    if (file.exists()) {
-                        FileHelper.deleteTheme(file)
-                    }
-                    homeAdapter.notifyDataSetChanged()
-                    checkTheme()
-                    delay(400)
-                    getReminders()
-                    refreshHomeData()
-                }
+//                lifecycleScope.launch {
+//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+//                    if (file.exists()) {
+//                        FileHelper.deleteTheme(file)
+//                    }
+//                    homeAdapter.notifyDataSetChanged()
+//                    checkTheme()
+//                    refreshHomeData()
+//                    delay(400)
+//                    getReminders()
+//                }
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-                lifecycleScope.launch {
-                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-                    if (file.exists()) {
-                        FileHelper.deleteTheme(file)
-                    }
-                    homeAdapter.notifyDataSetChanged()
-                    checkTheme()
-                    delay(400)
-                    getReminders()
-                }
-                getCoin()
-
-                layoutContainer.setTransition(R.id.no_reminder)
-                tvCartCount.beGone()
+//                lifecycleScope.launch {
+//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+//                    if (file.exists()) {
+//                        FileHelper.deleteTheme(file)
+//                    }
+//                    homeAdapter.notifyDataSetChanged()
+//                    checkTheme()
+//                    refreshHomeData()
+//                    delay(400)
+//                    getReminders()
+//                }
+//                getCoin()
+//
+//                layoutContainer.setTransition(R.id.no_reminder)
+//                tvCartCount.beGone()
             }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
                 if (isOpen) {
@@ -735,7 +735,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             return
         }
 
-        viewModel.getAds(true)
+//        viewModel.getAds(true)
         tvNotificationCount.visibility = if (RelationshipManager.unreadNotify > 0) {
             if (RelationshipManager.unreadNotify > 9) {
                 tvNotificationCount simpleText "9+"
@@ -845,6 +845,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
         super.onDestroy()
         INSTANCE = null
+       viewModel.onUpdateAds.value=null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

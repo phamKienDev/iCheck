@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/btn_clear"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
@@ -39,7 +39,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
         android:id="@+id/edt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

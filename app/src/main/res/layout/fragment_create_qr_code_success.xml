@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.primary.ConstraintLayoutPrimary xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_create_qr_success"/>
+        android:background="@drawable/bg_qrcode_marketing"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvClose"
@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_close_white_20"
         android:padding="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,14 +52,28 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@id/imgCreate"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgBgCreate"
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginEnd="@dimen/size_38"
-        android:src="@drawable/ic_add_blue_48"
+        android:src="@color/white"
         app:layout_constraintEnd_toStartOf="@id/imgDownload"
-        app:layout_constraintTop_toTopOf="@id/imgDownload" />
+        app:layout_constraintTop_toTopOf="@id/imgDownload"
+        android:layout_marginRight="@dimen/size_38" />
+
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+        android:id="@id/imgCreate"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="@color/transparent"
+        app:srcCompat="@drawable/ic_add_blue_24dp"
+        app:layout_constraintTop_toTopOf="@id/imgBgCreate"
+        app:layout_constraintBottom_toBottomOf="@id/imgBgCreate"
+        app:layout_constraintEnd_toEndOf="@id/imgBgCreate"
+        app:layout_constraintStart_toStartOf="@id/imgBgCreate"/>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -73,15 +88,28 @@
         app:layout_constraintStart_toStartOf="@id/imgCreate"
         app:layout_constraintTop_toBottomOf="@id/imgCreate" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@id/imgDownload"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgBgDownload"
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginBottom="@dimen/size_60"
-        android:src="@drawable/ic_download_blue_48"
+        android:src="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+        android:id="@id/imgDownload"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="@color/transparent"
+        app:srcCompat="@drawable/ic_download_blue_24dp"
+        app:layout_constraintTop_toTopOf="@id/imgBgDownload"
+        app:layout_constraintBottom_toBottomOf="@id/imgBgDownload"
+        app:layout_constraintEnd_toEndOf="@id/imgBgDownload"
+        app:layout_constraintStart_toStartOf="@id/imgBgDownload"/>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -96,14 +124,27 @@
         app:layout_constraintStart_toStartOf="@id/imgDownload"
         app:layout_constraintTop_toBottomOf="@id/imgDownload" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@id/imgSave"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgBgSave"
         android:layout_width="@dimen/size_48"
         android:layout_height="@dimen/size_48"
         android:layout_marginStart="@dimen/size_38"
-        android:src="@drawable/ic_share_blue_48"
+        android:src="@color/white"
         app:layout_constraintStart_toEndOf="@id/imgDownload"
         app:layout_constraintTop_toTopOf="@id/imgDownload" />
+
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+        android:id="@id/imgSave"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="@color/transparent"
+        app:srcCompat="@drawable/ic_share_blue_24dp"
+        app:layout_constraintTop_toTopOf="@id/imgBgSave"
+        app:layout_constraintBottom_toBottomOf="@id/imgBgSave"
+        app:layout_constraintEnd_toEndOf="@id/imgBgSave"
+        app:layout_constraintStart_toStartOf="@id/imgBgSave"/>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -117,4 +158,4 @@
         app:layout_constraintEnd_toEndOf="@id/imgSave"
         app:layout_constraintStart_toStartOf="@id/imgSave"
         app:layout_constraintTop_toBottomOf="@id/imgSave" />
-</vn.icheck.android.ichecklibs.view.primary.ConstraintLayoutPrimary>
+</androidx.constraintlayout.widget.ConstraintLayout>

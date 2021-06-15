@@ -1,14 +1,15 @@
 package vn.icheck.android.ichecklibs
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -183,27 +184,27 @@ open class FocusableEditText : AppCompatEditText {
             canvas?.translate(scrollX.toFloat(), 0f)
             val bottom = height - paddingBottom + 2.5f.toPx()
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(Constant.getAccentRedColor(context))
-                drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
+                mLinePaint.color = Constant.getAccentRedColor(context)
+                drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
                 drawBitmap(
                     mErrorDrawable!!.toBitmap(),
                     0f,
-                    bottom.toFloat(),
+                    bottom,
                     mErrorPaint
                 )
                 drawText(
                     mError.toString(),
                     26.dpToPx().toFloat(),
-                    (bottom + 15f.toPx()).toFloat(),
+                    (bottom + 15f.toPx()),
                     mErrorTextPaint
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Color.parseColor("#057DDA"))
+                    mLinePaint.color = Constant.getPrimaryColor(context)
                 } else {
-                    mLinePaint.setColor(Color.parseColor("#D8D8D8"))
+                    mLinePaint.color = Constant.getLineColor(context)
                 }
-                drawLine(0f, bottom.toFloat(), width.toFloat(), bottom.toFloat(), mLinePaint)
+                drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
             }
             canvas?.translate(0f, 0f)
         }
