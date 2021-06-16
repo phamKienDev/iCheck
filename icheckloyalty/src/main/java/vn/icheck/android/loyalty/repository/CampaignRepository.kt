@@ -164,12 +164,17 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().postReceiveGift(url, params), listener)
     }
 
-    fun postAccumulatePoint(campaignId: Long, code: String?, target: String?, listener: ICApiListener<ICKResponse<ICKAccumulatePoint>>) {
+    fun postAccumulatePoint(campaignId: Long, code: String?, target: String?, pointCode: String? = null, listener: ICApiListener<ICKResponse<ICKAccumulatePoint>>) {
         val params = hashMapOf<String, Any>()
 
         val user = SessionManager.session.user
 
         params["campaign_id"] = campaignId
+
+        if (!pointCode.isNullOrEmpty()) {
+            params["point_code"] = pointCode
+        }
+
         if (!code.isNullOrEmpty()) {
             params["code"] = code
         }

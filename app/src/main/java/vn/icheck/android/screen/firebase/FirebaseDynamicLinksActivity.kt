@@ -190,6 +190,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val memberPointExchangedGift = "member_point_exchanged_gift"
     private val loyaltyReward = "loyalty_reward"
     private val notification = "notification"
+    private val goToHomeAndOpenScan = "go_to_home_and_open_scan"
 
     private var deepLink: Uri? = null
     private var targetType: String = ""
@@ -383,6 +384,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
     private fun checkTarget() {
         when (targetType.toLowerCase(Locale.ROOT)) {
+            goToHomeAndOpenScan -> {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 5))
+            }
             home -> {
                 if (HomeActivity.isOpen == true) {
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))

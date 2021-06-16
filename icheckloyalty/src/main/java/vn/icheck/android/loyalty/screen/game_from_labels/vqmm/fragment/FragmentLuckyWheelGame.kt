@@ -39,16 +39,20 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
+import vn.icheck.android.loyalty.base.setGone
+import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.dialog.DialogErrorLoyalty
 import vn.icheck.android.loyalty.helper.NetworkHelper
 import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.model.PlayGameResp
 import vn.icheck.android.loyalty.dialog.DialogGuidePlayGame
 import vn.icheck.android.loyalty.dialog.DialogOotGame
+import vn.icheck.android.loyalty.helper.ActivityHelper.finishActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.GameActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.animations.*
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModelFactory
+import vn.icheck.android.loyalty.sdk.CampaignType
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class FragmentLuckyWheelGame : Fragment() {
@@ -525,6 +529,11 @@ class FragmentLuckyWheelGame : Fragment() {
     }
 
     private fun initViews() {
+        if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)){
+            btnHistory.setGone()
+        }else{
+            btnHistory.setVisible()
+        }
 
         imgBack.setOnClickListener {
             if (!spinning) {
@@ -542,9 +551,12 @@ class FragmentLuckyWheelGame : Fragment() {
                     } else {
                         object : DialogGuidePlayGame(requireContext()) {
                             override fun onClick() {
-//                                val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToScanForGameFragment(luckyGameViewModel.currentCount, args.campaignId, args.campaignName, args.shopName, args.avatarShop)
-//                                findNavController().navigate(action)
-                                LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
+                                if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)){
+                                    LoyaltySdk.openActivity("go_to_home_and_open_scan")
+                                    finishActivity(this@FragmentLuckyWheelGame.requireActivity())
+                                }else{
+                                    LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
+                                }
                             }
                         }.show()
                     }

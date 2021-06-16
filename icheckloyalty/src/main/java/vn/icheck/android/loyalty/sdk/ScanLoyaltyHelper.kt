@@ -79,11 +79,11 @@ object ScanLoyaltyHelper {
                             dismiss()
                             update = true
                             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_GAME, obj.data.play + currentCount))
-                            activity.finish()
+                            finishActivity(activity)
                         }
 
                         override fun onDismiss() {
-                            activity.finish()
+                            finishActivity(activity)
                         }
                     }.show()
                 } else {
@@ -284,5 +284,10 @@ object ScanLoyaltyHelper {
                 ToastHelper.showLongError(activity, error?.message)
             }
         })
+    }
+
+    fun finishActivity(activity: FragmentActivity){
+        activity.finish()
+        activity.overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
     }
 }

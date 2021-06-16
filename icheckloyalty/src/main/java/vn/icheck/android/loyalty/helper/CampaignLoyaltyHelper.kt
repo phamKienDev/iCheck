@@ -30,6 +30,7 @@ object CampaignLoyaltyHelper {
     const val REQUEST_CHECK_CODE = 20
 
     fun getCampaign(activity: FragmentActivity, barcode: String, listener: IClickListener, callback: ILoginListener) {
+        SharedLoyaltyHelper(activity).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
         CampaignRepository().getCampaign(barcode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
             override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
                 if (obj.data != null) {
@@ -50,10 +51,10 @@ object CampaignLoyaltyHelper {
                                     getReceiveGift(activity, barcode, null, obj.data?.name ?: "")
                                 }
                                 "accumulate_point" -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, barcode, null)
+                                    getAccumulatePoint(activity, obj.data!!, target = barcode)
                                 }
                                 "accumulation_long_term_point" -> {
-                                    getPointLongTime(activity, obj.data!!, null, barcode, null)
+                                    getPointLongTime(activity, obj.data!!, target = barcode)
                                 }
                                 else -> {
                                     getMiniGame(activity, obj.data!!, target = barcode)
@@ -76,6 +77,7 @@ object CampaignLoyaltyHelper {
     }
 
     fun getCampaignQrMar(activity: FragmentActivity, campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null, callback: ILoginListener) {
+        SharedLoyaltyHelper(activity).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
         CampaignRepository().getCampaignQrMar(campaignId
                 ?: campaignCode, object : ICApiListener<ICKResponse<ICKLoyalty>> {
             override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
@@ -92,16 +94,20 @@ object CampaignLoyaltyHelper {
                         if (SessionManager.isLogged) {
                             when (obj.data?.type) {
                                 CampaignType.RECEIVE_GIFT_QR_MAR -> {
-                                    getReceiveGift(activity, nameCampaign = obj.data?.name ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
+                                    getReceiveGift(activity, nameCampaign = obj.data?.name
+                                            ?: "", campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
                                 }
                                 CampaignType.ACCUMULATE_POINT_QR_MAR -> {
-                                    getAccumulatePoint(activity, obj.data!!, null, null, null)
+                                    getAccumulatePoint(activity, obj.data!!, pointCode = campaignCode
+                                            ?: giftCode)
                                 }
                                 CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR -> {
-                                    getPointLongTime(activity, obj.data!!, null, null, null)
+                                    getPointLongTime(activity, obj.data!!, pointCode = campaignCode
+                                            ?: giftCode)
                                 }
                                 else -> {
-                                    getMiniGame(activity, obj.data!!)
+                                    SharedLoyaltyHelper(activity).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
+                                    getMiniGame(activity, obj.data!!, campaignId = campaignId, campaignCode = campaignCode, giftCode = giftCode)
                                 }
                             }
                         } else {
@@ -137,13 +143,13 @@ object CampaignLoyaltyHelper {
                     /**
                      * Tích điểm đổi quà
                      */
-                    getAccumulatePoint(activity, data, code, barcode, listener)
+                    getAccumulatePoint(activity, data, code, barcode, listener = listener)
                 }
                 "accumulation_long_term_point" -> {
                     /**
                      * Tích điểm dài hạn
                      */
-                    getPointLongTime(activity, data, code, barcode, listener)
+                    getPointLongTime(activity, data, code, barcode, listener = listener)
                 }
                 "receive_gift" -> {
                     /**
@@ -166,9 +172,9 @@ object CampaignLoyaltyHelper {
         }
     }
 
-    private fun getAccumulatePoint(activity: FragmentActivity, data: ICKLoyalty, code: String?, target: String?, listener: IRemoveHolderInputLoyaltyListener?) {
+    private fun getAccumulatePoint(activity: FragmentActivity, data: ICKLoyalty, code: String? = null, target: String? = null, pointCode: String? = null, listener: IRemoveHolderInputLoyaltyListener? = null) {
         CampaignRepository().postAccumulatePoint(data.id
-                ?: -1, code, target, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
+                ?: -1, code, target, pointCode, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
             override fun onSuccess(obj: ICKResponse<ICKAccumulatePoint>) {
                 if (obj.statusCode != 200) {
 
@@ -234,9 +240,9 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    private fun getPointLongTime(activity: FragmentActivity, data: ICKLoyalty, code: String?, target: String?, listener: IRemoveHolderInputLoyaltyListener?) {
+    private fun getPointLongTime(activity: FragmentActivity, data: ICKLoyalty, code: String? = null, target: String? = null, pointCode: String? = null, listener: IRemoveHolderInputLoyaltyListener? = null) {
         CampaignRepository().postAccumulatePoint(data.id
-                ?: -1, code, target, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
+                ?: -1, code, target, pointCode, object : ICApiListener<ICKResponse<ICKAccumulatePoint>> {
             override fun onSuccess(obj: ICKResponse<ICKAccumulatePoint>) {
                 if (obj.statusCode != 200) {
 
@@ -304,7 +310,7 @@ object CampaignLoyaltyHelper {
                        barcode: String? = null, code: String? = null,
                        nameCampaign: String,
                        campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-                       listener: IRemoveHolderInputLoyaltyListener?=null
+                       listener: IRemoveHolderInputLoyaltyListener? = null
     ) {
         CampaignRepository().postReceiveGift(barcode, code, campaignId, campaignCode, giftCode, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
@@ -386,9 +392,10 @@ object CampaignLoyaltyHelper {
             code: String? = null,
             target: String? = null,
             campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-            listener: IRemoveHolderInputLoyaltyListener?=null
+            listener: IRemoveHolderInputLoyaltyListener? = null
     ) {
-        CampaignRepository().postGameGift(data.id ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
+        CampaignRepository().postGameGift(data.id
+                ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
             override fun onSuccess(obj: ICKResponse<DataReceiveGameResp>) {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {

@@ -13,9 +13,11 @@ import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
+import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGame
 import vn.icheck.android.loyalty.screen.web.WebViewActivity
+import vn.icheck.android.loyalty.sdk.CampaignType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,6 +47,12 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.owner?.logo?.medium)
             WidgetHelper.loadImageUrl(itemView.imgBanner, obj.image?.original, R.drawable.ic_default_img_game)
 
+            if (obj.type == "mini_game_qr_mar") {
+                SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
+            } else {
+                SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
+            }
+
             val startDate = sdf.parse(obj.startAt)
             val endDate = sdf.parse(obj.endAt)
             val timeString = "${show.format(startDate)} - ${show.format(endDate)}"
@@ -66,7 +74,7 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                 itemView.tvDate.visibility = View.GONE
 
                 when (obj.type) {
-                    "accumulate_point" -> {
+                    CampaignType.ACCUMULATE_POINT -> {
                         itemView.imgUpcoming.setInvisible()
                         itemView.layoutRight.setVisible()
                         itemView.tvPoint.setVisible()
@@ -83,12 +91,12 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                             itemView.tvPoint.text = "${0} Điểm"
                         }
                     }
-                    "receive_gift" -> {
+                    CampaignType.RECEIVE_GIFT -> {
                         itemView.imgUpcoming.setInvisible()
                         itemView.layoutRight.setInvisible()
                         itemView.tvDateRight.setInvisible()
                     }
-                    "mini_game" -> {
+                    CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
                         itemView.imgUpcoming.setInvisible()
                         itemView.layoutRight.setVisible()
                         itemView.tvPoint.setGone()
