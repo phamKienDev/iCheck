@@ -47,12 +47,6 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.owner?.logo?.medium)
             WidgetHelper.loadImageUrl(itemView.imgBanner, obj.image?.original, R.drawable.ic_default_img_game)
 
-            if (obj.type == "mini_game_qr_mar") {
-                SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
-            } else {
-                SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
-            }
-
             val startDate = sdf.parse(obj.startAt)
             val endDate = sdf.parse(obj.endAt)
             val timeString = "${show.format(startDate)} - ${show.format(endDate)}"
@@ -127,6 +121,13 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             }
 
             itemView.setOnClickListener {
+
+                if (obj.type == "mini_game_qr_mar") {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
+                } else {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
+                }
+
                 clickListener.onClick(obj)
             }
         }
