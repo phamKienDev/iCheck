@@ -150,7 +150,7 @@ class CropImageActivity : AppCompatActivity() {
             if (PermissionHelper.checkPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, requestPermission)) {
                 cropImage()
             } else {
-                showLongErrorToast(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                showLongErrorToast(rText(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
             }
         }
     }

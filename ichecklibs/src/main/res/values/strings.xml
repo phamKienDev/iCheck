@@ -17,4 +17,8 @@
     <string name="noi_dung_ma_qr">Nội dung mã QR</string>
     <string name="icheck_thong_bao">iCheck thông báo</string>
     <string name="capture">Capture</string>
+    <string name="s_muon_biet_vi_tri_cua_ban">\'%s\' muốn biết vị trí của bạn</string>
+    <string name="s_muon_su_dung_camera_cua_ban">\'%s\' muốn sử dụng camera của bạn</string>
+    <string name="tu_choi">Từ chối</string>
+    <string name="cho_phep">Cho phép</string>
 </resources>

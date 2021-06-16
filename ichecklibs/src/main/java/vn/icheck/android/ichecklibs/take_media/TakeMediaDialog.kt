@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.dialog_take_media.*
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.util.rText
 import java.io.File
 
 class TakeMediaDialog(val activity: Activity,
@@ -74,9 +75,9 @@ class TakeMediaDialog(val activity: Activity,
         }
 
         if (isVideo) {
-            tvTile.setText(R.string.chon_anh_video)
+            tvTile rText R.string.chon_anh_video
         } else {
-            tvTile.setText(R.string.chon_anh)
+            tvTile rText R.string.chon_anh
         }
 
         val listImage = getImageFromGallery()
