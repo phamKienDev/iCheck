@@ -20,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.CustomLayoutToastBinding
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import java.io.File
 import java.io.FileInputStream
 import java.text.DecimalFormat
@@ -135,7 +136,7 @@ fun View.setAllEnabled(enabled: Boolean) {
 
 fun loadImageUrlRounded(image: AppCompatImageView, url: String?, error: Int, roundCorners: Int) {
     if (url.isNullOrEmpty()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .transform(CenterCrop(), RoundedCorners(roundCorners))
                 .into(image)
@@ -143,7 +144,7 @@ fun loadImageUrlRounded(image: AppCompatImageView, url: String?, error: Int, rou
     }
 
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .placeholder(R.drawable.ic_default_image_upload_150_chat)
             .error(error)
@@ -153,14 +154,14 @@ fun loadImageUrlRounded(image: AppCompatImageView, url: String?, error: Int, rou
 
 fun loadImageFileRounded(image: AppCompatImageView, file: File?, error: Int, roundCorners: Int) {
     if (file == null || !file.exists()) {
-        Glide.with(image.context.applicationContext)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .transform(CenterCrop())
                 .into(image)
         return
     }
 
-    Glide.with(image.context.applicationContext)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(file)
             .placeholder(R.drawable.ic_default_image_upload_150_chat)
             .error(error)
@@ -171,7 +172,7 @@ fun loadImageFileRounded(image: AppCompatImageView, file: File?, error: Int, rou
 
 fun loadImageUrl(image: CircleImageView, url: String?, error: Int, placeholder: Int) {
     if (url.isNullOrEmpty()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .placeholder(placeholder)
                 .transform(CenterCrop())
@@ -179,7 +180,7 @@ fun loadImageUrl(image: CircleImageView, url: String?, error: Int, placeholder: 
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .placeholder(placeholder)
             .error(error)
@@ -189,14 +190,14 @@ fun loadImageUrl(image: CircleImageView, url: String?, error: Int, placeholder: 
 
 fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int) {
     if (url.isNullOrEmpty()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .transform(CenterCrop())
                 .into(image)
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .error(error)
             .transform(CenterCrop())
@@ -205,7 +206,7 @@ fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int) {
 
 fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int, placeholder: Int) {
     if (url.isNullOrEmpty()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .placeholder(placeholder)
                 .transform(CenterCrop())
@@ -213,7 +214,7 @@ fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int, placeholde
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .placeholder(placeholder)
             .error(error)
@@ -223,14 +224,14 @@ fun loadImageUrl(image: AppCompatImageView, url: String?, error: Int, placeholde
 
 fun loadImageFileNotRounded(image: AppCompatImageView, file: File?) {
     if (file == null || !file.exists()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(defaultError)
                 .transform(CenterCrop())
                 .into(image)
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(file)
             .placeholder(defaultError)
             .error(defaultError)
@@ -240,14 +241,14 @@ fun loadImageFileNotRounded(image: AppCompatImageView, file: File?) {
 
 fun loadImageUrlNotCrop(image: AppCompatImageView, url: String?, error: Int) {
     if (url.isNullOrEmpty()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(error)
                 .transform(CenterCrop())
                 .into(image)
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(url)
             .placeholder(defaultError)
             .error(error)
@@ -277,14 +278,14 @@ fun AppCompatImageView.loadImageFromVideoFile(file: File?, time: Long? = null, c
 
 fun loadImageFileRounded(image: AppCompatImageView, file: File?, roundCorners: Int) {
     if (file == null || !file.exists()) {
-        Glide.with(image.context)
+        Glide.with(ShareHelperChat.getApplicationByReflect())
                 .load(defaultError)
                 .transform(CenterCrop())
                 .into(image)
         return
     }
 
-    Glide.with(image.context)
+    Glide.with(ShareHelperChat.getApplicationByReflect())
             .load(file)
             .placeholder(defaultError)
             .error(defaultError)

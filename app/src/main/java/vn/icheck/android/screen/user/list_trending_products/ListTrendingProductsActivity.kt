@@ -5,9 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.util.ick.simpleStartActivity
 
-class ListTrendingProductsActivity : AppCompatActivity() {
+class ListTrendingProductsActivity : BaseActivityMVVM() {
 
     companion object{
 

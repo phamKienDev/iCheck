@@ -74,7 +74,6 @@ import vn.icheck.android.screen.user.wall.OPEN_INFOR
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.screen.user.wall.friend_wall_setting.FriendWallSettingsDialog
 import vn.icheck.android.screen.user.wall.report_user.ReportUserDialog
-import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.*
 
 class IckUserWallFragment : Fragment(), IPostListener {
@@ -242,9 +241,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
         startActivityForResult(i, USER_WALL_CREATE_POST)
     }
 
-    private fun hideBottomBar() {
-        ickUserWallViewModel.showBottomBar.postValue(false)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -254,7 +250,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     override fun onResume() {
         super.onResume()
-        showBottomBar()
+        if (ickUserWallViewModel.id==SessionManager.session.user?.id || ickUserWallViewModel.id==-1L) {
+            showBottomBar()
+        }else{
+            hideBottomBar()
+        }
         val intentFilter = IntentFilter(USER_WALL_BROADCAST)
         requireActivity().registerReceiver(eventReceiver, intentFilter)
         setNotify()
@@ -263,6 +263,10 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
     private fun showBottomBar() {
         ickUserWallViewModel.showBottomBar.postValue(true)
+    }
+
+    private fun hideBottomBar() {
+        ickUserWallViewModel.showBottomBar.postValue(false)
     }
 
     override fun onPause() {
@@ -316,7 +320,8 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
                         binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
                         binding.toolbar.btn_back.setImageColorPrimary(R.drawable.ic_back_blue_24px_new,requireContext())
-                        if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+
+                        if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                             binding.notify.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,requireContext())
                         } else {
                             binding.notify.setImageColorPrimary(R.drawable.ic_homenoti_empty_blue_24px,requireContext())
@@ -335,7 +340,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                     binding.toolbar.background = ColorDrawable(Color.TRANSPARENT)
                     binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_black_28px)
                     binding.titleDiv.beGone()
-                    if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+                    if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                         binding.notify.setImageResource(R.drawable.ic_home_black_28px)
                     } else {
                         binding.notify.setImageResource(R.drawable.ic_noti_black_28dp)
@@ -426,7 +431,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             createPost(true)
         }
         binding.notify.setOnClickListener {
-            if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+            if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
                 requireActivity().startClearTopActivity(HomeActivity::class.java)
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             } else {
@@ -451,7 +456,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
 
 
     private fun setNotify() {
-        if (checkTypeUser(ickUserWallViewModel.userInfo?.data?.id) != MAIN_USER) {
+        if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
             binding.notify.setImageResource(R.drawable.ic_home_black_28px)
             binding.tvNotificationCount.beInvisible()
         } else {

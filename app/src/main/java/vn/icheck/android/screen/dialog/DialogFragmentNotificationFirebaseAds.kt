@@ -11,7 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -30,10 +33,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant.getHtmlData
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.popup.PopupInteractor
@@ -41,10 +44,8 @@ import vn.icheck.android.network.models.ICPopup
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beInvisible
-import vn.icheck.android.util.ick.logDebug
 
-
-class DialogNotificationFirebaseAds : DialogFragment() {
+class DialogFragmentNotificationFirebaseAds : DialogFragment() {
 
     private var document: String? = null
     private var url: String? = null
@@ -53,7 +54,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
     private var popup: ICPopup? = null
 
     private var isLoadFirst = false
-
+    private var urlLoading = ""
 
     fun setData(document: String?, url: String?, bitmap: Bitmap?, schema: String?, popup: ICPopup?) {
         this.document = document
@@ -84,10 +85,13 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                             isFirstResource: Boolean
                         ): Boolean {
                             if (resource != null) {
-                                CoroutineScope(Dispatchers.Main).launch {
-                                    DialogNotificationFirebaseAds().apply {
-                                        setData(null, null, resource, schema, popup)
-                                    }.show(activity.supportFragmentManager, null)
+                                if (!activity.isDestroyed) {
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        DialogFragmentNotificationFirebaseAds().apply {
+                                            setData(null, null, resource, schema, popup)
+                                            setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                                        }.show(activity.supportFragmentManager, null)
+                                    }
                                 }
                             }
                             return false
@@ -102,10 +106,12 @@ class DialogNotificationFirebaseAds : DialogFragment() {
             when (popup.displayType) {
                 "url" -> {
                     if (!popup.url.isNullOrEmpty()) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            DialogNotificationFirebaseAds().apply {
-                                setData(null, popup.url, null, null, popup)
-                            }.show(activity.supportFragmentManager, null)
+                        if (!activity.isDestroyed) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                DialogFragmentNotificationFirebaseAds().apply {
+                                    setData(null, popup.url, null, null, popup)
+                                }.show(activity.supportFragmentManager, null)
+                            }
                         }
                     }
                 }
@@ -118,10 +124,13 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 }
                 else -> {
                     if (!popup.document.isNullOrEmpty()) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            DialogNotificationFirebaseAds().apply {
-                                setData(popup.document, null, null, null, popup)
-                            }.show(activity.supportFragmentManager, null)
+                        if (!activity.isDestroyed) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                DialogFragmentNotificationFirebaseAds().apply {
+                                    setData(popup.document, null, null, null, popup)
+                                    setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                                }.show(activity.supportFragmentManager, null)
+                            }
                         }
                     }
                 }
@@ -131,12 +140,14 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
         fun showPopupFirebase(activity: FragmentActivity, image: String?, document: String?, url: String?, schema: String?) {
             if (image.isNullOrEmpty()) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    DialogNotificationFirebaseAds().apply {
-                        setData(document, url, null, schema, null)
-                    }.show(activity.supportFragmentManager, null)
+                if (!activity.isDestroyed) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        DialogFragmentNotificationFirebaseAds().apply {
+                            setData(document, url, null, schema, null)
+                            setStyle(STYLE_NORMAL, R.style.DialogTheme)
+                        }.show(activity.supportFragmentManager, null)
+                    }
                 }
-
             } else {
                 loadImage(activity, image, schema, null) {
 
@@ -148,7 +159,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        dialog?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -160,13 +171,18 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.DialogTheme)
+
+        if (imageView == null) {
+            return
+        }
 
         when {
             bitmap != null -> {
-                imageView.beVisible()
+                imageView?.beVisible()
                 setImageView(bitmap!!)
 
-                imageView.setOnClickListener {
+                imageView?.setOnClickListener {
                     if (popup != null) {
                         clickPopupAds(popup!!)
                     } else {
@@ -184,10 +200,14 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 }, 200)
             }
             url != null -> {
-                setupWebViewUrl()
+                imgClose.layoutParams = LinearLayout.LayoutParams(SizeHelper.size32, SizeHelper.size32).apply {
+                    setMargins(0, SizeHelper.size60, 0, SizeHelper.size20)
+                }
+                layoutWeb.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(0, 0, 0, SizeHelper.size80)
+                }
 
-
-                if (vn.icheck.android.constant.Constant.isMarketingStamps(url!!)) {
+                if (Constant.isMarketingStamps(url!!)) {
                     val header = hashMapOf<String, String>()
                     val urlBuilder = Uri.parse(url).buildUpon()
 
@@ -223,9 +243,9 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                         urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
                     }
 
-                    webViewUrl.loadUrl(urlBuilder.build().toString(), header)
+                    setupWebViewUrl(urlBuilder.build().toString(), header)
                 } else {
-                    webViewUrl.loadUrl(url!!)
+                    setupWebViewUrl(url!!, null)
                 }
             }
         }
@@ -245,7 +265,7 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 resource.width > container.width && resource.height <= container.height -> {
                     // ảnh rộng quá màn hình -> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 }
                 resource.height > container.height && resource.width <= container.width -> {
                     //  ảnh dài quá màn hình ->  max height, wrap with
@@ -254,17 +274,17 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 resource.width > resource.height && resource.width > container.width -> {
                     //  ảnh rộng quá màn hình && ảnh có chiều rộng lớn hơn-> max with, wrap height
                     imageView.layoutParams =
-                        LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 }
                 resource.height > resource.width && resource.height > container.height -> {
                     if (ratioWidth > ratioHeight) {
                         // max with
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
                     } else {
                         // max height
                         imageView.layoutParams =
-                            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                     }
                 }
                 resource.height < container.height && resource.width < container.width -> {
@@ -329,21 +349,37 @@ class DialogNotificationFirebaseAds : DialogFragment() {
         }
     }
 
+
     private fun setupWebViewHtml(htmlText: String) {
-        webViewHtml.apply {
+        webViewHtml?.apply {
             settings.apply {
-                defaultFontSize = 14f.toInt()
+                javaScriptEnabled = true
+                domStorageEnabled = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
+                setAppCacheEnabled(true)
+                loadsImagesAutomatically = true
+                javaScriptCanOpenWindowsAutomatically = true
+                allowFileAccess = true
+                mediaPlaybackRequiresUserGesture = false
                 // Full with
-                loadWithOverviewMode = true
-                useWideViewPort = true
+//                loadWithOverviewMode = true
+//                useWideViewPort = true
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                }
+                layoutAlgorithm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                } else {
+                    WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+                }
+                setGeolocationEnabled(true)
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING;
-            } else {
-                settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL;
-            }
-            loadDataWithBaseURL(null, getHtmlData(htmlText), "text/html", "utf-8", "")
+            requestFocusFromTouch()
             isVerticalScrollBarEnabled = true
+            isHorizontalScrollBarEnabled = true
+
+            loadDataWithBaseURL(null, vn.icheck.android.ichecklibs.Constant.getHtmlTextNotPadding(htmlText), "text/html", "utf-8", "")
             var isPageLoaded = false
 
             webViewClient = object : WebViewClient() {
@@ -354,9 +390,10 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (isPageLoaded) {
+                    if (isPageLoaded && urlLoading != url) {
                         if (url?.startsWith("http") == true) {
                             ICheckApplication.currentActivity()?.let { activity ->
+                                urlLoading = url
                                 WebViewActivity.start(activity, url)
                             }
                             return true
@@ -367,11 +404,6 @@ class DialogNotificationFirebaseAds : DialogFragment() {
 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                }
-
-                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                    super.onReceivedError(view, request, error)
-                    dismiss()
                 }
             }
 
@@ -396,11 +428,8 @@ class DialogNotificationFirebaseAds : DialogFragment() {
         }
     }
 
-
-    private fun setupWebViewUrl() {
-        webViewUrl.apply {
-            setPadding(0, 0, 0, 0)
-            setInitialScale(1)
+    private fun setupWebViewUrl(url: String, header: Map<String, String>?) {
+        webView?.apply {
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
@@ -423,9 +452,16 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                     WebSettings.LayoutAlgorithm.SINGLE_COLUMN
                 }
                 setGeolocationEnabled(true)
+
             }
 
             var isPageLoaded = false
+
+            if (header != null) {
+                loadUrl(url, header)
+            } else {
+                loadUrl(url)
+            }
 
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -435,9 +471,10 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 }
 
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (isPageLoaded) {
+                    if (isPageLoaded && urlLoading != url) {
                         if (url?.startsWith("http") == true) {
                             ICheckApplication.currentActivity()?.let { activity ->
+                                urlLoading = url
                                 WebViewActivity.start(activity, url)
                             }
                             return true
@@ -449,19 +486,13 @@ class DialogNotificationFirebaseAds : DialogFragment() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                 }
-
-                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                    super.onReceivedError(view, request, error)
-                    dismiss()
-                }
             }
 
             webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     isPageLoaded = newProgress == 100
-
-                    if (isAdded && layoutWeb != null && newProgress >= 80) {
+                    if (isAdded && layoutWeb != null && newProgress >= 70) {
                         if (isLoadFirst) {
                             layoutWeb.beInvisible()
                             Handler().postDelayed({

@@ -1,14 +1,24 @@
 package vn.icheck.android.screen.user.createqrcode.createlink
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.fragment_create_link_qr_code.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.edtContent
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.imgBack
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.tvMessage
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.txtTitle
 import vn.icheck.android.R
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.KeyboardUtils
@@ -16,23 +26,33 @@ import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCode
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.base.view.IBaseCreateQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
+import vn.icheck.android.util.KeyboardUtils
 
 /**
  * Created by VuLCL on 10/7/2019.
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresenter>(), IBaseCreateQrCodeView {
+class CreateLinkQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_create_link_qr_code
-
-    override val getPresenter: BaseCreateQrCodePresenter
-        get() = BaseCreateQrCodePresenter(this)
+    val presenter = BaseCreateQrCodePresenter(this@CreateLinkQrCodeFragment)
 
     private val requestNew = 1
 
-    override fun onInitView() {
+    override fun isRegisterEventBus(): Boolean {
+        return true
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_create_link_qr_code, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onInitView()
+    }
+
+    fun onInitView() {
         initToolbar()
         setupView()
         initListener()
@@ -67,7 +87,6 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
         edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
@@ -80,6 +99,16 @@ class CreateLinkQrCodeFragment : BaseCreateQrCodeFragment<BaseCreateQrCodePresen
             if (requestCode == requestNew){
                 activity?.onBackPressed()
             }
+        }
+    }
+
+    override val mContext: Context?
+        get() = requireContext()
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ICMessageEvent) {
+        if (event.type == ICMessageEvent.Type.BACK) {
+            activity?.onBackPressed()
         }
     }
 }

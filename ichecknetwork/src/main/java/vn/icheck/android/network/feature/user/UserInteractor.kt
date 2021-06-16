@@ -1,6 +1,5 @@
 package vn.icheck.android.network.feature.user
 
-import okhttp3.ResponseBody
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.model.kyc.KycResponse
@@ -12,7 +11,7 @@ import vn.icheck.android.network.models.wall.ICUserPublicInfor
 /**
  * Created by VuLCL on 28/10/2019.
  */
-public class UserInteractor : BaseInteractor() {
+class UserInteractor : BaseInteractor() {
 
     fun sendOtpConfirmPhoneStamp(phone: String, listener: ICApiListener<ICStatus>) {
         val body = hashMapOf<String, String>()

@@ -44,7 +44,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
     private var dispose: Disposable? = null
 
     private var isActivityVisible = true
-    private var requestLogin = 1
+    private var requestLoginV2 = 1
     private var requestReviewDetail = 2
     private var requestPostDetail = 3
 
@@ -155,7 +155,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
         if (isActivityVisible) {
             when (event.type) {
                 ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_POST -> {
                     if (event.data != null && event.data is ICPost) {
@@ -201,7 +201,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             refreshData()
         }
     }

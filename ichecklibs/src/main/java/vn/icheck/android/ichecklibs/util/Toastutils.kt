@@ -68,6 +68,11 @@ infix fun Context.showLongErrorToast(@StringRes msg: Int) {
     showCustomToast(R.drawable.ic_waring_white_40_px, getString(msg), Toast.LENGTH_LONG)
 }
 
+@MainThread
+fun Context.showDurationErrorToast( msg: String,duration: Int) {
+    showCustomToast(R.drawable.ic_waring_white_40_px, msg, duration)
+}
+
 /*
 * Base
 * */
@@ -82,6 +87,6 @@ fun Context.showCustomToast(@DrawableRes id: Int, msg: String, duration: Int) {
 
     toast?.view = binding.root
     toast?.setGravity(Gravity.CENTER, 0, 0)
-    toast?.duration = Toast.LENGTH_SHORT
+    toast?.duration = duration
     toast?.show()
 }

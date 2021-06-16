@@ -8,7 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentNewPwBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -20,7 +20,7 @@ import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class IckNewPwFragment : CoroutineFragment() {
+class IckNewPwFragment : BaseFragmentMVVM() {
     private lateinit var binding: FragmentNewPwBinding
     private val ickUserWallViewModel: IckUserWallViewModel by activityViewModels()
 
@@ -152,6 +152,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtOldPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardOld, binding.edtOldPassword)
         }
+        binding.edtOldPassword.setCenterView(binding.btnKeyboardOld)
 
         binding.btnKeyboardOld.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtOldPassword)
@@ -160,6 +161,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtPassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)
@@ -168,6 +170,7 @@ class IckNewPwFragment : CoroutineFragment() {
         binding.edtRePassword.setOnFocusChangeListener { _, _ ->
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
         }
+        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
 
         binding.btnKeyboardNew.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtRePassword)

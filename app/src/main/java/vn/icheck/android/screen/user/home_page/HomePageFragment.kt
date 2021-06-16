@@ -8,7 +8,9 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -52,7 +54,7 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.product_need_review.ICProductNeedReview
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
@@ -73,6 +75,7 @@ import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.search_home.main.SearchHomeActivity
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
@@ -100,6 +103,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     private var pvCombankType = 0
     private var isViewCreated = false
     private var isOpen = false
+    private var isRefreshLayout = false
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -118,9 +122,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     companion object {
         var INSTANCE: HomePageFragment? = null
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_home
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
 
     override fun isRegisterEventBus(): Boolean {
@@ -296,8 +300,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             layoutHeader.beVisible()
         })
 
+
         viewModel.onPopupAds.observe(viewLifecycleOwner, Observer {
-            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this@HomePageFragment.requireActivity(),it)
+//            object : DialogNotificationFirebaseAds(requireActivity(),null,null,"http://icheck.com.vn",null) {
+//                override fun onDismiss() {
+//                }
+//            }.show()
         })
 
 //        viewModel.onUpdatePVCombank.observe(viewLifecycleOwner, Observer {
@@ -413,6 +422,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     fun refreshHomeData() {
+        if (!isOpen) {
+            isRefreshLayout = true
+        }
+
         swipeLayout.isRefreshing = true
         //            setToolbarBackground(0f)
         homeAdapter.removeAllView()
@@ -719,19 +732,24 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     override fun onResume() {
         super.onResume()
-
         isOpen = true
 
-        if (!isViewCreated) {
-            isViewCreated = true
-            Handler().post {
-                setupViewModel()
-                setupRecyclerView()
-                setupSwipeLayout()
-                LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
-                WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+        TrackingAllHelper.trackHomePageViewed()
+
+        if (requireActivity().intent?.getStringExtra(Constant.DATA_3).isNullOrEmpty()) {
+            if (!isViewCreated) {
+                isViewCreated = true
+                Handler().post {
+                    setupViewModel()
+                    setupRecyclerView()
+                    setupSwipeLayout()
+                    LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, IntentFilter("home"))
+                    WidgetUtils.setClickListener(this, txtAvatar, txtNotification, tvViewCart, txtSearch)
+                }
+                return
             }
-            return
+        } else {
+            requireActivity().intent?.putExtra(Constant.DATA_3, "")
         }
 
 //        viewModel.getAds(true)
@@ -745,23 +763,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         } else {
             View.INVISIBLE
         }
-//        if (!PreferenceManager.getDefaultSharedPreferences(ICheckApplication.getInstance()).getBoolean(FIREBASE_REGISTER_DEVICE, false)) {
-//            FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener<InstanceIdResult?> { task ->
-//                if (!task.isSuccessful()) {
-//                    return@OnCompleteListener
-//                }
-//
-//                // Get new Instance ID token
-//                val token = task.result?.token ?: ""
-//
-//                // Log and toast
-//                Log.e("token", token.toString())
-//
-//                viewModel.registerDevice(token)
-//            })
-//        }
 
-//        homeAdapter.notifyItemChanged(0)
+        if (isRefreshLayout) {
+            isRefreshLayout = false
+            refreshHomeData()
+        }
+
         updateHomeHeader()
         getCoin()
         getReminders()

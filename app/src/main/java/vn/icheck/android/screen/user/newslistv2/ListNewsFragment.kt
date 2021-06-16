@@ -1,7 +1,10 @@
 package vn.icheck.android.screen.user.newslistv2
 
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,8 +28,9 @@ class ListNewsFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     private lateinit var viewModel: NewsListViewModel
     private val adapter = NewsListV2Adapter(this)
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_list_news
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_list_news, container, false)
+    }
 
     companion object {
         fun newInstance(isShowBack: Boolean, idCategory: Long? = -1): ListNewsFragment {

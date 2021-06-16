@@ -23,6 +23,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
@@ -32,6 +33,7 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.TestTimeUtil
@@ -55,6 +57,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
         itemView.imgDelete.visibility = View.INVISIBLE
         itemView.progressHistory.visibility = View.INVISIBLE
+
         val image = obj.product?.thumbnails?.thumbnail
         if (!image.isNullOrEmpty()) {
             WidgetUtils.loadImageUrlRounded10FitCenter(itemView.imgAvaProduct, image)
@@ -220,7 +223,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
                 AddToCartHelper.addToCart(itemView.context, obj.variant?.id)
             } else {
                 ICheckApplication.currentActivity()?.let { act ->
-                    act.startActivity(Intent(act, IckLoginActivity::class.java))
+                    ActivityUtils.startActivity<IckLoginActivity>(act)
                 }
             }
         }

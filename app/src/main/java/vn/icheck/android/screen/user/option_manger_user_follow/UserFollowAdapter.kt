@@ -21,7 +21,6 @@ import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone

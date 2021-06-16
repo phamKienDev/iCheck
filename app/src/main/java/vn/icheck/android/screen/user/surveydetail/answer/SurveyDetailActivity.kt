@@ -1,10 +1,12 @@
 package vn.icheck.android.screen.user.surveydetail.answer
 
+import android.content.Context
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detail_survey.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
@@ -20,16 +22,17 @@ import vn.icheck.android.screen.user.surveydetail.success.SurveyDetailSuccessAct
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class SurveyDetailActivity : BaseActivity<SurveyDetailPresenter>(), ISurveyDetailView {
+class SurveyDetailActivity : BaseActivityMVVM(), ISurveyDetailView {
     private var questionAdapter: DetailSurveyQuestionAdapter? = null
+    private val presenter = SurveyDetailPresenter(this@SurveyDetailActivity)
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detail_survey
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail_survey)
+        onInitView()
+    }
 
-    override val getPresenter: SurveyDetailPresenter
-        get() = SurveyDetailPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         setupView()
         presenter.getData(intent)
@@ -156,8 +159,14 @@ class SurveyDetailActivity : BaseActivity<SurveyDetailPresenter>(), ISurveyDetai
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showLongError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@SurveyDetailActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SurveyDetailActivity, isShow)
     }
 }

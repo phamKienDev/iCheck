@@ -12,8 +12,8 @@ class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = I
 
     override fun bind(obj: ICWidgetData) {
         binding.tvTime.text = itemView.context.getString(R.string.xxx_ngay, (obj.guaranteeDay ?: 0).toString())
-        binding.tvEnd.text = TimeHelper.convertDateSvToDateVn(obj.expireDate)
+        binding.tvEnd.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.expireDate)
         binding.tvRemaining.text = itemView.context.getString(R.string.xxx_ngay, (obj.dayRemaining ?: 0).toString())
-        binding.tvActivate.text = TimeHelper.convertDateSvToDateVn(obj.activeDate)
+        binding.tvActivate.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.activeDate)
     }
 }

@@ -3,11 +3,11 @@ package vn.icheck.android.screen.user.createqrcode.createlocation
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.os.Bundle
+import android.view.*
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -18,17 +18,21 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_create_location_qr_code.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
+import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPointDetail
 import vn.icheck.android.network.models.ICPoints
 import vn.icheck.android.screen.dialog.PermissionDialog
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
 import vn.icheck.android.screen.user.createqrcode.createlocation.adapter.SearchLocationAdapter
 import vn.icheck.android.screen.user.createqrcode.createlocation.presenter.CreateLocationQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createlocation.view.ICreateLocationQrCodeView
@@ -36,8 +40,10 @@ import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessAct
 import vn.icheck.android.util.KeyboardUtils
 import java.util.concurrent.TimeUnit
 
-class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCodePresenter>(), OnMapReadyCallback, ICreateLocationQrCodeView {
+class CreateLocationQrCodeFragment : BaseFragmentMVVM(), OnMapReadyCallback, ICreateLocationQrCodeView {
     private var mMap: GoogleMap? = null
+
+    private val presenter = CreateLocationQrCodePresenter(this@CreateLocationQrCodeFragment)
 
     private var mFusedLocationClient: FusedLocationProviderClient? = null
     private var mLocationRequest: LocationRequest? = null
@@ -51,13 +57,20 @@ class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCo
     private var isSetLocation = false
     private val requestPermission = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_create_location_qr_code
+    override fun isRegisterEventBus(): Boolean {
+        return true
+    }
 
-    override val getPresenter: CreateLocationQrCodePresenter
-        get() = CreateLocationQrCodePresenter(this)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_create_location_qr_code, container, false)
+    }
 
-    override fun onInitView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onInitView()
+    }
+
+    fun onInitView() {
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         initToolbar()
         setupView()
@@ -283,6 +296,20 @@ class CreateLocationQrCodeFragment : BaseCreateQrCodeFragment<CreateLocationQrCo
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
         intent.putExtra(Constant.DATA_1,text)
         startActivityForResult(intent,requestAddNew)
+    }
+
+    override fun showError(errorMessage: String) {
+        requireContext().showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context?
+        get() = requireContext()
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ICMessageEvent) {
+        if (event.type == ICMessageEvent.Type.BACK) {
+            activity?.onBackPressed()
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

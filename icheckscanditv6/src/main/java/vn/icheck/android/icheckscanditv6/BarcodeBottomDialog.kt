@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ichecklibs.WidgetHelper
+import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.icheckscanditv6.databinding.DialogBarcodeBottomBinding
@@ -15,8 +17,7 @@ import vn.icheck.android.icheckscanditv6.databinding.DialogBarcodeBottomBinding
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     private var onBarCodeDismiss: OnBarCodeDismiss? = null
-    private var _binding: DialogBarcodeBottomBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: IckBarcodeBottomBinding
 
     companion object {
         fun show(fragmentManager: FragmentManager, isCancel: Boolean, listener: OnBarCodeDismiss) {
@@ -41,13 +42,8 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = DialogBarcodeBottomBinding.inflate(inflater, container, false)
+        binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     interface OnBarCodeDismiss {
@@ -59,9 +55,11 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         binding.submitBarcode.invalidate()
+
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }
+
         binding.edtBarcode.apply {
             setHintTextColor(Constant.getDisableTextColor(context))
 
@@ -88,11 +86,24 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
                 submitBarcode()
             }
         }
+
+        setupListener()
     }
 
     private fun setupView() {
         binding.root.background = ViewHelper.bgWhiteCornersTop16(requireContext())
     }
+
+    private fun setupListener() {
+        binding.edtBarcode.setOnFocusChangeListener { _, _ ->
+            WidgetHelper.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtBarcode)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetHelper.changePasswordInput(binding.edtBarcode)
+        }
+    }
+
 
     private fun submitBarcode() {
         if (binding.submitBarcode.isEnabled) {

@@ -71,6 +71,11 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().getCampaign(url, barcode), listener)
     }
 
+    fun getCampaignQrMar(campaignCode: String?, listener: ICApiListener<ICKResponse<ICKLoyalty>>) {
+        val url = APIConstants.LOYALTY_HOST + "loyalty/campaign/$campaignCode"
+        requestApi(ICNetworkClient.getApiClientLoyalty().getCampaignQrMar(url), listener)
+    }
+
     fun postCancelShipGift(gift_id: Long, listener: ICApiListener<ICKResponse<ICKWinner>>) {
         val body = hashMapOf<String, Any>()
         body["status"] = "refused_gift"
@@ -85,11 +90,27 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().getDetailGiftWinner(url), listener)
     }
 
-    fun postReceiveGift(barcode: String, code: String?, listener: ICApiListener<ICKResponse<ICKReceiveGift>>) {
+    fun postReceiveGift(barcode: String?, code: String?,
+                        campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
+                        listener: ICApiListener<ICKResponse<ICKReceiveGift>>) {
         val params = hashMapOf<String, Any>()
         val user = SessionManager.session.user
 
-        params["target"] = barcode
+        if (!campaignId.isNullOrEmpty()) {
+            params["campaign_id"] = campaignId
+        }
+
+        if (!campaignCode.isNullOrEmpty()) {
+            params["campaign_code"] = campaignCode
+        }
+
+        if (!giftCode.isNullOrEmpty()) {
+            params["gift_code"] = giftCode
+        }
+
+        if (!barcode.isNullOrEmpty()) {
+            params["target"] = barcode
+        }
 
         if (!code.isNullOrEmpty()) {
             params["code"] = code
@@ -193,11 +214,21 @@ internal class CampaignRepository : BaseRepository() {
         requestApi(ICNetworkClient.getApiClientLoyalty().postNhapMaTichDiem(host, params), listener)
     }
 
-    fun postGameGift(campaignId: Long, barcode: String?, code: String?, listener: ICApiListener<ICKResponse<DataReceiveGameResp>>) {
+    fun postGameGift(campaignId: Long, barcode: String?, code: String?,
+                     campaignCode: String? = null, giftCode: String? = null,
+                     listener: ICApiListener<ICKResponse<DataReceiveGameResp>>) {
         val params = hashMapOf<String, Any>()
         val user = SessionManager.session.user
 
         params["campaign_id"] = campaignId
+
+        if (!campaignCode.isNullOrEmpty()) {
+            params["campaign_code"] = campaignCode
+        }
+
+        if (!giftCode.isNullOrEmpty()) {
+            params["special_turn_code"] = giftCode
+        }
 
         if (!barcode.isNullOrEmpty()) {
             params["target"] = barcode

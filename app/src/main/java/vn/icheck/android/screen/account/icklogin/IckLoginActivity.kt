@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
@@ -27,23 +27,23 @@ import vn.icheck.android.constant.FACEBOOK_USERNAME
 import vn.icheck.android.databinding.ActivityIckLoginBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
-import vn.icheck.android.util.toICBaseResponse
 import vn.icheck.android.screen.account.icklogin.fragment.IckLoginFragmentDirections
 import vn.icheck.android.screen.account.icklogin.viewmodel.CHOOSE_TOPIC
 import vn.icheck.android.screen.account.icklogin.viewmodel.HIDE_LOGIN_REGISTER
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.account.icklogin.viewmodel.SHOW_LOGIN_REGISTER
 import vn.icheck.android.screen.user.suggest_topic.SuggestTopicActivity
+import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.toICBaseResponse
 import javax.inject.Inject
 
 const val LOGIN_OTP = 1
@@ -56,7 +56,7 @@ const val REGISTER = 3
  * Chúc mừng năm mới anh Sơn nha. Năm mới kiếm được người yêu nha anh :v
  */
 @AndroidEntryPoint
-class IckLoginActivity : BaseCoroutineActivity() {
+class IckLoginActivity : BaseActivityMVVM() {
     val ickLoginViewModel: IckLoginViewModel by viewModels()
 
     private lateinit var facebookReceiver: BroadcastReceiver

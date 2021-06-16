@@ -16,6 +16,8 @@
         android:layout_height="30dp"
         android:layout_marginBottom="@dimen/size_15"
         android:visibility="invisible"
+        android:background="@drawable/ic_bg_avatar_page"
+        android:padding="@dimen/size_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@color/colorPrimary" />

@@ -1,25 +1,30 @@
 package vn.icheck.android.screen.user.history_loading_card.home
 
+import android.content.Context
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_history_card.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.history_loading_card.home.presenter.HistoryCardPresenter
 import vn.icheck.android.screen.user.history_loading_card.home.view.IHistoryCardView
 import vn.icheck.android.tracking.TrackingAllHelper
 
-class HistoryCardActivity : BaseActivity<HistoryCardPresenter>(), IHistoryCardView {
+class HistoryCardActivity : BaseActivityMVVM(), IHistoryCardView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_history_card
+    val presenter = HistoryCardPresenter(this@HistoryCardActivity)
 
-    override val getPresenter: HistoryCardPresenter
-        get() = HistoryCardPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history_card)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         TrackingAllHelper.trackTopupHistoryViewed()
         txtTitle.text = getString(R.string.lich_su_nap_the_va_dich_vu)
         tabLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
@@ -43,5 +48,16 @@ class HistoryCardActivity : BaseActivity<HistoryCardPresenter>(), IHistoryCardVi
                 viewPager.currentItem = selectTab
             }
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@HistoryCardActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@HistoryCardActivity, isShow)
     }
 }

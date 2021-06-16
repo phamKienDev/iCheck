@@ -28,6 +28,7 @@
             android:orientation="vertical">
 
             <TableLayout
+                android:id="@id/layoutCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -35,9 +36,7 @@
                 android:paddingStart="@dimen/size_12"
                 android:paddingTop="@dimen/size_16"
                 android:paddingEnd="@dimen/size_12"
-                android:paddingBottom="@dimen/size_16"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:paddingBottom="@dimen/size_16">
 
                 <TableRow>
                     <vn.icheck.android.ichecklibs.view.TextBarlowMedium
@@ -45,6 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_span="2"
+                        android:layout_weight="1"
                         android:text="@string/thong_tin_khach_hang"
                         android:textSize="@dimen/font_18" />
                 </TableRow>
@@ -55,7 +55,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_weight="1"
                         android:drawableStart="@drawable/ic_outline_person_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/ho_va_ten_v2"
@@ -65,8 +64,9 @@
 
                     <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvNameCustomer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
@@ -82,7 +82,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_weight="1"
                         android:drawableStart="@drawable/ic_outline_person_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/so_dien_thoai_v2"
@@ -92,8 +91,9 @@
 
                     <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvPhoneCustomer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
@@ -109,7 +109,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_weight="1"
                         android:drawableStart="@drawable/ic_outline_local_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/email_v2"
@@ -119,8 +118,9 @@
 
                     <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvMailCustomer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
@@ -136,7 +136,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
-                        android:layout_weight="1"
                         android:drawableStart="@drawable/ic_outline_place_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/dia_chi_v2"
@@ -146,8 +145,9 @@
 
                     <vn.icheck.android.ichecklibs.view.TextBody1
                         android:id="@+id/tvAddressCustomer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"

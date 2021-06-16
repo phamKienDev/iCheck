@@ -75,7 +75,7 @@ import vn.icheck.android.util.KeyboardUtils
 
 class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val productListener: ProductDetailListener, private val submitReviewListener: ISubmitReviewListener, private val listenerLoyalty: CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener, private val listenerLogin: CampaignLoyaltyHelper.ILoginListener, private val listenerMyReview: IMyReviewListener) : RecyclerViewCustomAdapter<ICLayout>(listener) {
     private var sharedPool: RecyclerView.RecycledViewPool? = null
-    private var refeshTextReview=true
+    private var refeshTextReview = true
 //    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 //        super.onAttachedToRecyclerView(recyclerView)
 //        sharedPool = recyclerView.recycledViewPool
@@ -95,8 +95,8 @@ class IckProductDetailAdapter(listener: IRecyclerViewCallback, private val produ
         notifyItemRemoved(0)
     }
 
-    fun setRefeshTextReview(refesh:Boolean){
-        refeshTextReview=refesh
+    fun setRefeshTextReview(refesh: Boolean) {
+        refeshTextReview = refesh
     }
 
     fun removeContributionEnterprise() {

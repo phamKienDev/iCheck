@@ -55,6 +55,8 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.NotificationDialogListener
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
@@ -77,6 +79,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
             })
         }
 
+        fun createRoomChat(activity: Activity, userId: Long, type: String, requestCode: Int = 0) {
+            finishAllChat()
+
+            val intent = Intent(activity, ChatSocialDetailActivity::class.java).apply {
+                putExtra(DATA_2, userId)
+                putExtra(DATA_3, type)
+            }
+
+            if (requestCode == 0) {
+                activity.startActivity(intent)
+            } else {
+                activity.startActivityForResult(intent, requestCode)
+            }
+        }
+
         fun openRoomChatWithKey(context: Context, key: String) {
             finishAllChat()
             context.startActivity(Intent(context, ChatSocialDetailActivity::class.java).apply {
@@ -90,6 +107,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         var toId = ""
         var toType = ""
+        var isVerified = false
     }
 
     private lateinit var viewModel: ChatSocialDetailViewModel
@@ -139,19 +157,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
         viewModel = ViewModelProvider(this@ChatSocialDetailActivity)[ChatSocialDetailViewModel::class.java]
 
-        setClickListener(
-            this@ChatSocialDetailActivity,
-            binding.tvMessage,
-            binding.imgDelete,
-            binding.imgScan,
-            binding.imgCamera,
-            binding.imgSticker,
-            binding.edtMessage,
-            binding.imgSend,
-            binding.layoutToolbar.imgBack,
-            binding.layoutToolbar.imgAction,
-            binding.layoutNewMessage
-        )
+        setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
         setupView()
@@ -167,24 +173,28 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         userType = intent.getStringExtra(DATA_3) ?: "user"
         key = intent.getStringExtra(KEY)
 
-        when {
-            conversation != null -> {
-                viewModel.loginFirebase({
+        viewModel.loginFirebase({
+            when {
+                conversation != null -> {
                     if (!conversation?.key.isNullOrEmpty()) {
                         key = conversation?.key
                         getChatRoom(conversation?.key!!)
                     }
-                }, {
-
-                })
+                }
+                !key.isNullOrEmpty() -> {
+                    getChatRoom(key!!)
+                }
+                else -> {
+                    createRoom()
+                }
             }
-            !key.isNullOrEmpty() -> {
-                getChatRoom(key!!)
-            }
-            else -> {
-                createRoom()
-            }
-        }
+        }, {
+            DialogHelper.showNotification(this@ChatSocialDetailActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                override fun onDone() {
+                    onBackPressed()
+                }
+            })
+        })
         binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()
         binding.layoutToolbar.imgAction.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_setting_blue_24dp_chat, this))
@@ -332,9 +342,27 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 toType = item.child("type").value.toString()
                                 inboxUserID = toId
 
-                                viewModel.getChatSender(item.child("id").value.toString(), { success ->
-                                    binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
-                                }, {
+                                    viewModel.getChatSender(item.child("id").value.toString(), { success ->
+
+                                        if (toType.contains("page")){
+                                            isVerified = success.child("is_verify").value.toString().toBoolean()
+
+                                            if (isVerified){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_18px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }else{
+                                            val isKYC = success.child("kyc_status").value as Long? ?: 0L
+
+                                            if (isKYC == 2L){
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16px, 0)
+                                            }else{
+                                                binding.layoutToolbar.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                                            }
+                                        }
+                                        binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
+                                    }, {
 
                                 })
                             } else {
@@ -347,27 +375,19 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         }
                     }
 
-                    getChatMessage(key)
-                    listenChangeMessage(key)
+                        getChatMessage(key)
+                        listenChangeMessage(key)
 
-                    if (obj.child("is_block").value != null) {
-                        binding.layoutToolbar.imgAction.setGone()
-                        if (obj.child("is_block").child("from_id").value != null && obj.child("is_block").child("from_id").value.toString()
-                                .contains(FirebaseAuth.getInstance().uid.toString())
-                        ) {
-                            binding.layoutBlock.setVisible()
-                            setGoneView(binding.layoutChat, binding.layoutUserBlock)
+                        if (obj.child("is_block").value != null) {
+                            binding.layoutToolbar.imgAction.setGone()
+                            if (obj.child("is_block").child("from_id").value != null && obj.child("is_block").child("from_id").value.toString().contains(FirebaseAuth.getInstance().uid.toString())) {
+                                binding.layoutBlock.setVisible()
+                                setGoneView(binding.layoutChat, binding.layoutUserBlock)
 
-                            binding.tvTitle.text = "Bạn đã chặn tin nhắn của ${conversation?.targetUserName}"
+                                binding.tvTitle.text = "Bạn đã chặn tin nhắn của ${conversation?.targetUserName}"
 
-                            binding.btnUnBlock.setOnClickListener {
-                                this@ChatSocialDetailActivity.showConfirm(
-                                    getString(R.string.bo_chan_tin_nhan),
-                                    getString(R.string.message_unblock),
-                                    getString(R.string.de_sau),
-                                    getString(R.string.dong_y),
-                                    false,
-                                    object : ConfirmDialogListener {
+                                binding.btnUnBlock.setOnClickListener {
+                                    this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }
@@ -376,81 +396,82 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                             unBlockMessage(key, toId, toType)
                                         }
                                     })
+                                }
+                            } else {
+                                adapterImage.clearData()
+                                binding.edtMessage.setText("")
+                                checkKeyboard()
+                                setGoneView(binding.layoutChat, binding.layoutBlock)
+                                binding.layoutUserBlock.setVisible()
+                                binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
                             }
                         } else {
-                            adapterImage.clearData()
-                            binding.edtMessage.setText("")
-                            checkKeyboard()
-                            setGoneView(binding.layoutChat, binding.layoutBlock)
-                            binding.layoutUserBlock.setVisible()
-                            binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
+                            setGoneView(binding.layoutUserBlock, binding.layoutBlock)
+                            setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
                         }
-                    } else {
-                        setGoneView(binding.layoutUserBlock, binding.layoutBlock)
-                        setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
                     }
-                }
 
-                binding.tvMessage.isEnabled = true
-            },
-            {
-                setGoneView(binding.layoutUserBlock, binding.layoutBlock)
-                setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
-            })
+                    binding.tvMessage.isEnabled = true
+                },
+                {
+                    setGoneView(binding.layoutUserBlock, binding.layoutBlock)
+                    setVisibleView(binding.layoutToolbar.imgAction, binding.layoutChat)
+                })
     }
 
     private fun getChatMessage(key: String, lastTimeStamp: Long = 0) {
         viewModel.getChatMessage(lastTimeStamp, key,
-            { obj ->
-                isLoadData = true
-                val listChatMessage = mutableListOf<MCDetailMessage>()
-                if (obj.hasChildren()) {
-                    for (item in obj.children.reversed()) { // đảo list - tin nhắn cũ được đọc trước : so sánh thời gian với tin nhắn trước dễ hơn
-                        if (item.child("time").value != null && validNumber(item.child("time").value.toString())) {
-                            if (item.child("time").value.toString().toLong() > deleteAt) {
-                                val message = convertDataFirebase(item, newMessage)
+                { obj ->
+                    isLoadData = true
+                    val listChatMessage = mutableListOf<MCDetailMessage>()
+                    if (obj.hasChildren()) {
+                        for (item in obj.children.reversed()) { // đảo list - tin nhắn cũ được đọc trước : so sánh thời gian với tin nhắn trước dễ hơn
+                            if (item.child("time").value != null && validNumber(item.child("time").value.toString())) {
+                                if (item.child("time").value.toString().toLong() > deleteAt) {
+                                    val message = convertDataFirebase(item, newMessage)
 
-                                listChatMessage.add(message)
-                                newMessage = if (isLoadData) {
-                                    if (adapter.getListData.isNullOrEmpty()) {
-                                        message
+                                    listChatMessage.add(message)
+                                    newMessage = if (isLoadData) {
+                                        if (adapter.getListData.isNullOrEmpty()) {
+                                            message
+                                        } else {
+                                            adapter.getListData.last { it.time != null }
+                                        }
                                     } else {
-                                        adapter.getListData.last { it.time != null }
+                                        message
                                     }
-                                } else {
-                                    message
+                                    isLoadData = false
                                 }
-                                isLoadData = false
                             }
+
                         }
 
-                    }
+                        markReadMessage(key)
 
-                    markReadMessage(key)
-
-                    if (lastTimeStamp == 0L) {
-                        if (listChatMessage.isNullOrEmpty()) {
-                            viewModel.checkError(true, dataEmpty = true)
+                        if (lastTimeStamp == 0L) {
+                            if (listChatMessage.isNullOrEmpty()) {
+                                viewModel.checkError(true, dataEmpty = true)
+                            } else {
+                                adapter.setData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
+                            }
                         } else {
-                            adapter.setData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
+                            adapter.addData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
                         }
-                    } else {
-                        adapter.addData(listChatMessage.reversed().toMutableList()) // đảo list ngược lại để add view đúng thứ tự
-                    }
 
-                }
-            },
-            { error ->
-                listenChangeMessage(key)
-                showToastError(error.message)
-            })
+                    }
+                },
+                { error ->
+                    listenChangeMessage(key)
+                    showToastError(error.message)
+                })
 
 
     }
 
     private fun listenChangeMessage(key: String) {
+
         viewModel.getChangeMessageChat(key) { data ->
-            markReadMessage(key)
+
             // mình gửi
             if (FirebaseAuth.getInstance().currentUser?.uid == data.child("sender").child("source_id").value.toString()) {
                 val index = adapter.getListData.indexOfFirst { it.messageId == data.key }
@@ -515,7 +536,8 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
                 // đối phương gửi
             } else {
-//                markReadMessage(key)
+                markReadMessage(key)
+
                 val lastMessageReceive = adapter.getListData.firstOrNull { it.senderId != FirebaseAuth.getInstance().currentUser?.uid }
                 val message = convertDataFirebase(data, lastMessageReceive ?: MCDetailMessage())
                 message.showStatus = -1
@@ -971,6 +993,9 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 getProductBarcode(barcode)
                             }
                             !qrCode.isNullOrEmpty() -> {
+                                binding.tvMessage.setGone()
+                                binding.edtMessage.setVisible()
+                                binding.edtMessage.requestFocus()
                                 binding.edtMessage.setText(qrCode)
                             }
                         }

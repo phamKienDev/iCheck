@@ -3,16 +3,16 @@ package vn.icheck.android.screen.downloadtheme
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import android.widget.SeekBar
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_download_theme.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.FileHelper
-import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import java.io.File
@@ -22,18 +22,18 @@ import java.io.File
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class DownloadThemeActivity : BaseActivity<DownloadThemePresenter>(), IDownloadThemeView {
+class DownloadThemeActivity : BaseActivityMVVM() {
     private var timeUpdate = 0L
     private lateinit var path: String
     private lateinit var downloadManager: DownloadManager
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_download_theme
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_download_theme)
+        onInitView()
+    }
 
-    override val getPresenter: DownloadThemePresenter
-        get() = DownloadThemePresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         StatusBarUtils.setOverStatusBarLight(this)
 
         val link = intent?.getStringExtra(Constant.DATA_1) ?: ""

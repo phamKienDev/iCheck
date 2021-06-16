@@ -224,10 +224,24 @@ object Constant {
      * @return nội dung html đã chỉnh sửa
      */
     fun getHtmlData(bodyHTML: String): String {
-        val head =
-            "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+        val head = "<head><style> content{max-width: 100% !important; width: 100% !important; height: auto !important;} img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
         return "<html>$head<body>$bodyHTML</body></html>"
     }
+
+    fun getHtmlTextNotPadding(content:String):String{
+        val head = "<head><style> img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                head+
+                "\n" +
+                "<body style=\"margin: 0; padding: 0; overflow: hidden\">\n" +
+                content +
+                "</body>\n" +
+                "\n" +
+                "</html>"
+    }
+
 
     fun formatPhone(phone: String?): String? {
         return if (phone?.length ?: 0 >= 10) {
@@ -604,4 +618,20 @@ object Constant {
         }
 
 
+
+    fun isNullOrEmpty(value: String?): Boolean {
+        return when {
+            value.isNullOrEmpty() -> true
+            value.contains("null") -> true
+            else -> false
+        }
+    }
+
+    fun getName(lastName: String?, firstName: String?, default: String = ""): String {
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
+        } else {
+            default
+        }
+    }
 }

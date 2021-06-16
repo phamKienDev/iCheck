@@ -86,7 +86,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     private var unregistrar: Unregistrar? = null
 
     private val requestEdit = 1
-    private val requestLogin = 2
+    private val requestLoginV2 = 2
 
     companion object {
         fun start(activity: Activity, obj: ICPost, type: Int? = null) {
@@ -540,7 +540,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                 viewModel.send(permissionAdapter.getPageID, layoutActor.tag as Long?, imgCommentSend.tag as File?, edtContent.text.toString())
             } else {
                 imgSend.isEnabled = true
-                onRequireLogin(requestLogin)
+                onRequireLogin(requestLoginV2)
             }
         }
     }
@@ -743,7 +743,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                     }
                 }
             }
-            requestLogin -> {
+            requestLoginV2 -> {
                 viewModel.getData()
             }
         }

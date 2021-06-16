@@ -42,7 +42,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
 
     private var offset = 0
     private var isActivityVisible = true
-    private var requestLogin = 1
+    private var requestLoginV2 = 1
     private var requestUser = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -222,7 +222,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
         if (isActivityVisible) {
             when (event.type) {
                 ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_USER -> {
                     val user = event.data as ICSearchUser
@@ -234,7 +234,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             refreshData()
         }
     }

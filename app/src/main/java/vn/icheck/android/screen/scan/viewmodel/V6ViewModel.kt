@@ -44,6 +44,7 @@ class V6ViewModel: ViewModel() {
     val errorString = MutableLiveData<String>()
     val onPopupAds = MutableLiveData<ICPopup>()
 
+
     fun getMyID() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
@@ -65,10 +66,10 @@ class V6ViewModel: ViewModel() {
         })
     }
 
-     fun getPopup() {
-         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-             return
-         }
+    fun getPopup() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            return
+        }
 
         popupRepository.getPopup(null, Constant.SCAN, object : ICNewApiListener<ICResponse<ICPopup>> {
             override fun onSuccess(obj: ICResponse<ICPopup>) {
@@ -114,8 +115,8 @@ class V6ViewModel: ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                if (error?.code == 400 || error?.status == "400") {
+                    stampFake.postValue(ICheckApplication.getError(error.message))
                 } else {
                     errorQr.postValue(codeScan)
                 }

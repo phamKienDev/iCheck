@@ -3,15 +3,11 @@ package vn.icheck.android.helper
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.facebook.shimmer.ShimmerFrameLayout
 import vn.icheck.android.R
@@ -27,12 +23,16 @@ import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.base.dialog.notify.shaking.DialogEmtyBoxGift
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMission
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.dialog.ScanBuyPopUp
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.network.models.ICMission
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.ScanBuyPopUp
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 object DialogHelper {

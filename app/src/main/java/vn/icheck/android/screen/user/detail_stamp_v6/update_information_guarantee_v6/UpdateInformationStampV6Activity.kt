@@ -1,19 +1,21 @@
 package vn.icheck.android.screen.user.detail_stamp_v6.update_information_guarantee_v6
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_update_information_stamp_v6.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectCustomerHistoryGurantee
-import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_UpdateCustomerGuarantee
 import vn.icheck.android.room.entity.ICDistrict
 import vn.icheck.android.room.entity.ICProvince
 import vn.icheck.android.screen.user.detail_stamp_v6.select_store_stamp_v6.SelectStoreStampV6Activity
@@ -22,13 +24,9 @@ import vn.icheck.android.screen.user.detail_stamp_v6.update_information_guarante
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectCityBottomSheet
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectDistrictBottomSheet
 
-class UpdateInformationStampV6Activity : BaseActivity<UpdateInformationStampV6Presenter>(), IUpdateInformationStampV6View {
+class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationStampV6View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_update_information_stamp_v6
-
-    override val getPresenter: UpdateInformationStampV6Presenter
-        get() = UpdateInformationStampV6Presenter(this)
+    val presenter = UpdateInformationStampV6Presenter(this@UpdateInformationStampV6Activity)
 
     private val REQUEST_CODE_STORE = 10
 
@@ -37,7 +35,13 @@ class UpdateInformationStampV6Activity : BaseActivity<UpdateInformationStampV6Pr
     private var cityId: Int? = null
     private var districtId: Int? = null
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_update_information_stamp_v6)
+        onInitView()
+    }
+
+    fun onInitView() {
         txtTitle.text = "Thông tin khách hàng"
 
         btnUpdate.background=ViewHelper.bgSecondaryCorners40(this)
@@ -135,8 +139,14 @@ class UpdateInformationStampV6Activity : BaseActivity<UpdateInformationStampV6Pr
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@UpdateInformationStampV6Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@UpdateInformationStampV6Activity, isShow)
     }
 
     override fun onUpdateInformationSuccess(obj: IC_RESP_UpdateCustomerGuaranteeV6) {

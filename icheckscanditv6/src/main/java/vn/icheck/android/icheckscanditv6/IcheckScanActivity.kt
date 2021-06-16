@@ -237,8 +237,6 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
             viewModel.scanOnlyChat = true
             _binding?.btnMyCode.beGone()
             _binding?.btnQm.beGone()
-            _binding?.imgSdha.beGone()
-            _binding?.imgHdSdha.beGone()
         } else {
             viewModel.scanOnlyChat = false
         }

@@ -623,7 +623,7 @@ interface ICNetworkAPI {
     fun getDetailStamp(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICDetailStampV6_1>
 
     @POST
-    suspend fun getStampDetail(@Url url: String, @Body body: HashMap<String, Any>): ICResponse<ICStampV61>
+    suspend fun getStampDetail(@Url url: String, @Body body: JsonObject): ICResponse<ICStampV61>
 
     @GET
     fun getListNoteHistoryGuarantee(@Url url: String, @QueryMap queries: HashMap<String, Any>): Observable<ICResp_Note_Guarantee>
@@ -1442,7 +1442,6 @@ interface ICNetworkAPI {
     @GET
     fun getPointHistoryAll(@Url url: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICKPointHistory>>>
 
-
     /**
      * Popup quảng cáo
      */
@@ -1451,4 +1450,5 @@ interface ICNetworkAPI {
 
     @PATCH
     fun clickPopupAds(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICResponse<Any>>
+
 }

@@ -86,6 +86,7 @@ class VerifiedPhonePresenter(val view: IVerifiedPhoneView) : BaseActivityPresent
                 showError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
+
             onVerifiedPhoneNumber(phone)
         }
     }
@@ -97,7 +98,7 @@ class VerifiedPhonePresenter(val view: IVerifiedPhoneView) : BaseActivityPresent
             override fun onSuccess(obj: ICVerifiedPhone) {
                 view.onShowLoading(false)
                 if (obj.data != null) {
-                    view.onVerifiedPhoneSuccess(obj.data!!)
+                    view.onVerifiedPhoneSuccess(obj.data!!, phone)
                 } else {
                     view.onVerifiedPhoneFail()
                 }

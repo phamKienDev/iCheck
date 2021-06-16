@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_all_utilitys.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.kotlin.ToastUtils
 
-class UtilitiesActivity : AppCompatActivity(), IRecyclerViewCallback {
+class UtilitiesActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     lateinit var viewModel: UtilitiesViewModel
     lateinit var adapter: UtilitiesAdapter
 

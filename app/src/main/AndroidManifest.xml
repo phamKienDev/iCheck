@@ -79,7 +79,7 @@
         <activity android:name=".screen.scan.MyQrActivity" />
         <activity
             android:name=".screen.scan.V6ScanditActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
@@ -144,11 +144,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.suggest_store_history.SuggestStoreHistoryActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.user.social_chat.SocialChatActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White" />
@@ -911,7 +906,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
+            android:resource="@drawable/ic_icheck_notification" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />

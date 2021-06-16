@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.databinding.ActivityContributionAttributesBinding
 import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductViewModel
@@ -24,7 +25,7 @@ import vn.icheck.android.util.ick.simpleText
 import java.io.File
 
 @AndroidEntryPoint
-class ContributionAttributesActivity : AppCompatActivity() {
+class ContributionAttributesActivity : BaseActivityMVVM() {
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
     lateinit var categoryAttributesAdapter: MyContributionAdapter

@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
@@ -55,7 +56,7 @@ import vn.icheck.android.loyalty.sdk.LoyaltySdk
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.user.contact.ContactActivity
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -82,7 +83,9 @@ import java.io.File
  * 00:00 ngày 01/01/2021
  * Chúc mừng năm mới anh Phong nha. Năm mới kiếm nhiều tiền nha anh :v
  */
-class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener, ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener, CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
+class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISubmitReviewListener,
+    ProductDetailListener, CampaignLoyaltyHelper.IRemoveHolderInputLoyaltyListener,
+    CampaignLoyaltyHelper.ILoginListener, IMyReviewListener {
     private lateinit var viewModel: IckProductDetailViewModel
 
     private val adapter = IckProductDetailAdapter(this, this, this, this, this, this)
@@ -97,7 +100,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     private val requestListContribution = 6 //request chuyển màn ListContributeActivity
     private val requestReportProduct = 7
     private val requestMediaInPost = 8
-    private val requestEnterpriseContact = 9
+    private val requestRefreshLayout = 9
 
     private var isActivityVisible = true
     private var productViewedInsider = true
@@ -296,17 +299,29 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         viewModel.onDataProduct.observe(this, Observer {
             hideLayoutStatus()
             swipeLayout.beVisible()
-            CampaignLoyaltyHelper.getCampaign(this@IckProductDetailActivity, barcode,
-                    object : IClickListener {
-                        override fun onClick(obj: Any) {
-                            if (obj is ICKLoyalty) {
-                                viewModel.onAddHolderInput.postValue(ICLayout().apply {
-                                    data = obj
-                                    viewType = ICViewTypes.LOYALTY_HOLDER_TYPE
-                                })
+
+            if (!it.loyalty?.campaignCode.isNullOrEmpty() || !it.loyalty?.campaignId.isNullOrEmpty()) {
+                CampaignLoyaltyHelper.getCampaignQrMar(
+                        this@IckProductDetailActivity,
+                        it.loyalty?.campaignId, it.loyalty?.campaignCode, it.loyalty?.giftCode,
+                        this@IckProductDetailActivity
+                )
+            } else {
+                CampaignLoyaltyHelper.getCampaign(
+                        this@IckProductDetailActivity, barcode,
+                        object : IClickListener {
+                            override fun onClick(obj: Any) {
+                                if (obj is ICKLoyalty) {
+                                    viewModel.onAddHolderInput.postValue(ICLayout().apply {
+                                        data = obj
+                                        viewType = ICViewTypes.LOYALTY_HOLDER_TYPE
+                                    })
+                                }
                             }
-                        }
-                    }, this@IckProductDetailActivity)
+                        }, this@IckProductDetailActivity
+                )
+            }
+
             if (it.verified == true) {
                 tvBuy.setText(R.string.lien_he_n_doanh_nghiep)
             } else {
@@ -513,7 +528,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             for (i in 0 until adapter.getListData.size) {
                 if (adapter.getListData[i].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
                     if (recyclerView.findViewHolderForAdapterPosition(i) is ProductListReviewHolder) {
-                        (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(ItemListReviewModel(it))
+                        (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(
+                            ItemListReviewModel(it)
+                        )
                     }
                 }
             }
@@ -596,7 +613,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             showShortSuccessToast("Cảm ơn bạn, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.")
         })
         viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
-            DialogNotificationFirebaseAds.showPopupAds(this,it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(this,it)
         })
     }
 
@@ -614,9 +631,17 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         btn_contact_dn.setOnClickListener {
             viewModel.productDetail?.let { productDetail ->
                 if (productDetail.owner?.verified == true) {
-                    ContactBusinessDialog(this).show(productDetail.owner?.id, productDetail.manager?.phone, productDetail.manager?.email)
+                    ContactBusinessDialog(this).show(
+                        productDetail.owner?.pageId ?: productDetail.manager?.id,
+                        productDetail.manager?.phone,
+                        productDetail.manager?.email,
+                    )
                 } else {
-                    ContactBusinessDialog(this).show(productDetail.manager?.id, productDetail.manager?.phone, productDetail.manager?.email)
+                    ContactBusinessDialog(this).show(
+                        productDetail.manager?.id,
+                        productDetail.manager?.phone,
+                        productDetail.manager?.email
+                    )
                 }
             }
         }
@@ -703,29 +728,21 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         tvBuy.setOnClickListener {
-            if (SessionManager.isUserLogged) {
-                if (!viewModel.verifyProduct) {
-                    if (!viewModel.urlBuy.isNullOrEmpty()) {
-                        val bottomSheetWebView = BottomSheetWebView(this)
-                        bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
-                    }
-                } else {
-                    if (viewModel.productDetail?.owner?.verified == true) {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.owner?.pageId ?: -1,
-                            "page"
-                        )
-                    } else {
-                        ChatSocialDetailActivity.createRoomChat(
-                            it.context,
-                            viewModel.productDetail?.manager?.id ?: -1,
-                            "page"
-                        )
-                    }
+            if (!viewModel.verifyProduct) {
+                if (!viewModel.urlBuy.isNullOrEmpty()) {
+                    val bottomSheetWebView = BottomSheetWebView(this)
+                    bottomSheetWebView.showWithUrl(viewModel.urlBuy!!)
                 }
             } else {
-                onRequireLogin(requestEnterpriseContact)
+                val requestCode = if (SessionManager.isUserLogged) 0 else requestRefreshLayout
+
+                requestLogin({
+                    if (viewModel.productDetail?.owner?.verified == true) {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.owner?.pageId ?: -1, "page", requestCode)
+                    } else {
+                        ChatSocialDetailActivity.createRoomChat(this@IckProductDetailActivity, viewModel.productDetail?.manager?.id ?: -1, "page", requestCode)
+                    }
+                })
             }
         }
 
@@ -952,67 +969,79 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == RESULT_OK) {
-            when (requestCode) {
-                requestReportProduct -> {
-                    startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
-                    layoutAction.visibility = View.GONE
-                }
-                REQUEST_MMB -> {
-                    if (resultCode == RESULT_OK) {
-                        viewModel.postTransparency(postVote, viewModel.productID)
+        if (requestCode == requestRefreshLayout) {
+            getLayoutData()
+        } else {
+            if (resultCode == RESULT_OK) {
+                when (requestCode) {
+                    requestReportProduct -> {
+                        startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
+                        layoutAction.visibility = View.GONE
                     }
-                }
-                requestQuestion -> {
-                    viewModel.updateData()
-                }
-                requestReview -> {
-                    viewModel.updateData()
-                    viewModel.reloadMyReview()
-                }
-                requestVoteContribution -> {
-                    viewModel.getProductLayout(true)
-                }
-                requestListContribution -> {
-                    viewModel.getProductLayout(true)
-                }
-                requestMediaInPost -> {
-                    val post = data?.getSerializableExtra(Constant.DATA_1)
-                    if (post != null && post is ICPost) {
-                        for (i in 0 until adapter.getListData.size) {
-                            if (adapter.getListData[i].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
-                                if (recyclerView.findViewHolderForAdapterPosition(i) is ProductListReviewHolder) {
-                                    (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(ItemListReviewModel(post))
+                    REQUEST_MMB -> {
+                        if (resultCode == RESULT_OK) {
+                            viewModel.postTransparency(postVote, viewModel.productID)
+                        }
+                    }
+                    requestQuestion -> {
+                        viewModel.updateData()
+                    }
+                    requestReview -> {
+                        viewModel.updateData()
+                        viewModel.reloadMyReview()
+                    }
+                    requestVoteContribution -> {
+                        viewModel.getProductLayout(true)
+                    }
+                    requestListContribution -> {
+                        viewModel.getProductLayout(true)
+                    }
+                    requestMediaInPost -> {
+                        val post = data?.getSerializableExtra(Constant.DATA_1)
+                        if (post != null && post is ICPost) {
+                            for (i in 0 until adapter.getListData.size) {
+                                if (adapter.getListData[i].viewType == ICViewTypes.LIST_REVIEWS_TYPE) {
+                                    if (recyclerView.findViewHolderForAdapterPosition(i) is ProductListReviewHolder) {
+                                        (recyclerView.findViewHolderForAdapterPosition(i) as ProductListReviewHolder).updateReview(
+                                                ItemListReviewModel(post)
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                requestEnterpriseContact -> {
-                    viewModel.getProductLayout()
-                }
-                CONTRIBUTION_PRODUCT -> {
-                    val productID = data?.getLongExtra(Constant.DATA_1, -1)
-                    val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
-                    if (myContribute == 0) {
-                        showShortSuccessToast("Bạn đã đóng góp thông tin thành công")
-                    } else {
-                        showShortSuccessToast("Bạn đã chỉnh sửa đóng góp thành công")
+                    CONTRIBUTION_PRODUCT -> {
+                        val productID = data?.getLongExtra(Constant.DATA_1, -1)
+                        val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
+                        if (myContribute == 0) {
+                            showShortSuccessToast("Bạn đã đóng góp thông tin thành công")
+                        } else {
+                            showShortSuccessToast("Bạn đã chỉnh sửa đóng góp thành công")
+                        }
+                        if (productID != -1L) {
+                            viewModel.barcode = ""
+                            viewModel.productID = productID!!
+                            viewModel.getProductLayout()
+                            productViewedInsider = true
+                        }
                     }
-                    if (productID != -1L) {
-                        viewModel.barcode = ""
-                        viewModel.productID = productID!!
-                        viewModel.getProductLayout()
-                        productViewedInsider = true
+                    CampaignLoyaltyHelper.REQUEST_GET_GIFT -> {
+                        CampaignLoyaltyHelper.getReceiveGift(
+                                this@IckProductDetailActivity, viewModel.barcode, viewModel.code, obj?.name
+                                ?: "", null
+                        )
                     }
-                }
-                CampaignLoyaltyHelper.REQUEST_GET_GIFT -> {
-                    CampaignLoyaltyHelper.getReceiveGift(this@IckProductDetailActivity, viewModel.barcode, viewModel.code, obj?.name
-                            ?: "", null)
-                }
-                CampaignLoyaltyHelper.REQUEST_CHECK_CODE -> {
-                    obj?.let {
-                        CampaignLoyaltyHelper.checkCodeLoyalty(this@IckProductDetailActivity, it, viewModel.code, viewModel.barcode, this@IckProductDetailActivity, this@IckProductDetailActivity)
+                    CampaignLoyaltyHelper.REQUEST_CHECK_CODE -> {
+                        obj?.let {
+                            CampaignLoyaltyHelper.checkCodeLoyalty(
+                                    this@IckProductDetailActivity,
+                                    it,
+                                    viewModel.code,
+                                    viewModel.barcode,
+                                    this@IckProductDetailActivity,
+                                    this@IckProductDetailActivity
+                            )
+                        }
                     }
                 }
             }

@@ -56,7 +56,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
     private var notEmpityCount = 0
 
     private var isActivityVisible = true
-    private var requestLogin = 1
+    private var requestLoginV2 = 1
     private var requestReviewDetail = 2
     private var requestUser = 3
     private var requestPageOrShop = 4
@@ -246,7 +246,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                     KeyboardUtils.showSoftInput(edtSearch)
                 }
                 ICMessageEvent.Type.ON_REQUIRE_LOGIN -> {
-                    onRequireLogin(requestLogin)
+                    onRequireLogin(requestLoginV2)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_POST -> {
                     if (isActivityVisible) {
@@ -306,7 +306,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             getData()
         }
     }

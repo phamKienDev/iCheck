@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
@@ -58,11 +59,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             binding.tvDangCapNhatSDT.visibility = View.VISIBLE
         }
 
-        if (obj.address.isNullOrEmpty()) {
-            binding.tvAddress.text = binding.root.context.getString(R.string.dia_chi_dang_cap_nhat)
-        } else {
-            binding.tvAddress.text = obj.address
-        }
+        binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district?.name, obj.city?.name, null, null)
 
         if (!obj.tax.isNullOrEmpty()) {
             binding.tvMST.text = "Mã số thuế: " + obj.tax
@@ -115,7 +112,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
         WidgetUtils.loadImageUrlRounded4(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
         binding.tvNamePage.apply {
-            text = obj.name
+            text = obj.name ?: context.getString(R.string.dang_cap_nhat)
             setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
         }
 
@@ -142,11 +139,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             binding.tvDangCapNhatSDT.visibility = View.VISIBLE
         }
 
-        if (obj.address.isNullOrEmpty()) {
-            binding.tvAddress.text = binding.root.context.getString(R.string.dia_chi_dang_cap_nhat)
-        } else {
-            binding.tvAddress.text = obj.address
-        }
+        binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district, obj.city, null, null)
 
         if (!obj.tax.isNullOrEmpty()) {
             binding.tvMST.text = "Mã số thuế: " + obj.tax
@@ -188,7 +181,9 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.root.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->
-                ICPageInfoDialog(activity).show(obj)
+                if (activity is FragmentActivity) {
+                    ICPageInfoDialog.show(activity.supportFragmentManager, obj)
+                }
             }
         }
     }

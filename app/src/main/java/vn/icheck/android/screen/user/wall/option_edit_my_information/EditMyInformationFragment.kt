@@ -31,7 +31,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityEditMyInformationBinding
@@ -43,11 +43,11 @@ import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.network.base.*
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
 import vn.icheck.android.network.model.location.CityItem
-import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
 import vn.icheck.android.screen.location.DISTRICT
@@ -70,7 +70,7 @@ const val TAKE_WALL = 2
 const val VERIFY_IDENTITY = 3
 
 @AndroidEntryPoint
-class EditMyInformationFragment : CoroutineFragment() {
+class EditMyInformationFragment : BaseFragmentMVVM() {
     private var _binding: ActivityEditMyInformationBinding? = null
     private val binding get() = _binding!!
     private val ickUserWallViewModel: IckUserWallViewModel by activityViewModels()

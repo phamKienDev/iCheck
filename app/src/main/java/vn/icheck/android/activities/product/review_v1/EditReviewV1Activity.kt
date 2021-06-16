@@ -20,9 +20,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_edit_review_v1.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.base.BaseICActivity
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.adapters.ImageSliderAdapter.Companion.TYPE_CCCN
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
@@ -39,7 +39,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.ui.GlideUtil
 import java.io.File
 
-class EditReviewV1Activity : BaseICActivity(), TakePhotoHelper.TakePhotoListener {
+class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListener {
 
     private var criteria: ICCriteria? = null
     val listUrl = mutableListOf<String>()

@@ -10,15 +10,23 @@ import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.toPx
+import androidx.core.view.marginBottom
+import vn.icheck.android.R
+import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
 
 class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
+import vn.icheck.android.util.ick.toPx
+
+class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
     var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint
@@ -56,10 +64,10 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
         get() {
             if (isPassword == null) {
                 isPassword = when (inputType) {
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD -> true
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD -> true
-                    InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD -> true
-                    InputType.TYPE_TEXT_VARIATION_PASSWORD -> true
+                    TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD -> true
+                    TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD -> true
+                    TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD -> true
+                    TYPE_TEXT_VARIATION_PASSWORD -> true
                     else -> {
                         false
                     }
@@ -109,16 +117,34 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
         }
     }
 
+//    override fun setCompoundDrawablesWithIntrinsicBounds(left: Int, top: Int, right: Int, bottom: Int) {
+//        super.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+//        leftDrawable = ResourcesCompat.getDrawable(resources, left, null)
+//        rightDrawable = ResourcesCompat.getDrawable(resources, right, null)
+//    }
 
     override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         currentText = text.toString()
         setDrawableFocusable()
-        mError = null
+
         if (!text.isNullOrEmpty() && originalPadding != paddingBottom) {
             setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
             requestLayout()
         }
+
+        checkCenterViewMarginBottom()
+        if (originalPadding != paddingBottom) {
+            centerView?.let { view ->
+                (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+            }
+        }else {
+            centerView?.let { view ->
+                (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom
+            }
+        }
+
+        mError = null
     }
 
     private fun setDrawableFocusable() {
@@ -126,7 +152,7 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
             if (currentText.isNotEmpty() && isFocused) {
                 if (!isSetDrawable) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable
-                        ?: drawableClear, null)
+                            ?: drawableClear, null)
                 } else {
                     if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
@@ -153,6 +179,28 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
             } else {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable, null)
             }
+        }
+    }
+
+    private var centerView: View? = null
+    private var centerViewMarginBottom = 0
+
+    fun setCenterView(view: View) {
+        centerView = view
+        centerViewMarginBottom = view.marginBottom
+    }
+
+    fun getBottomPadding(): Int {
+        return if (originalPadding != paddingBottom) {
+            SizeHelper.size32
+        } else {
+            SizeHelper.size12
+        }
+    }
+
+    private fun checkCenterViewMarginBottom() {
+        if (centerViewMarginBottom == 0) {
+            centerViewMarginBottom = centerView?.marginBottom ?: 0
         }
     }
 
@@ -186,21 +234,12 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
         canvas?.apply {
             canvas.translate(scrollX.toFloat(), 0f)
             val bottom = height - paddingBottom + 2.5f.toPx()
+
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(Constant.getAccentRedColor(context))
+                mLinePaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
-                drawBitmap(
-                    mErrorDrawable!!.toBitmap(),
-                    0f,
-                    bottom,
-                    mErrorPaint
-                )
-                drawText(
-                    mError.toString(),
-                    26.dpToPx().toFloat(),
-                    (bottom + 15f.toPx()),
-                    mErrorTextPaint
-                )
+                drawBitmap(mErrorDrawable!!.toBitmap(), 0f, bottom, mErrorPaint)
+                drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
                     mLinePaint.setColor(Constant.getPrimaryColor(context))
@@ -208,24 +247,38 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
                     mLinePaint.setColor(Constant.getLineColor(context))
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
+
             }
+
             canvas.translate(0f, 0f)
         }
     }
 
     override fun setError(error: CharSequence?) {
         mError = error
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
+
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//        requestLayout()
+        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        requestLayout()
+
+        checkCenterViewMarginBottom()
+        centerView?.let { view ->
+            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+        }
     }
 
     override fun setError(error: CharSequence?, icon: Drawable?) {
         mError = error
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding)
+
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//        requestLayout()
+        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        requestLayout()
+
+        checkCenterViewMarginBottom()
+        centerView?.let { view ->
+            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+        }
     }
 }

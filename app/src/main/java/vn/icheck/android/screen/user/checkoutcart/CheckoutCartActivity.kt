@@ -1,12 +1,14 @@
 package vn.icheck.android.screen.user.checkoutcart
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_checkout_cart.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
@@ -28,20 +30,20 @@ import vn.icheck.android.util.kotlin.ActivityUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CheckoutCartActivity : BaseActivity<CheckoutCartPresenter>(), ICheckoutCartView {
+class CheckoutCartActivity : BaseActivityMVVM(), ICheckoutCartView {
     private val adapter = CheckoutCartAdapter(this)
-
+    private val presenter = CheckoutCartPresenter(this@CheckoutCartActivity)
     private val requestCreateUserAddress = 1
     private val requestSelectUserAddress = 2
     private val requestViewShop = 3
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_checkout_cart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_checkout_cart)
+        onInitView()
+    }
 
-    override val getPresenter: CheckoutCartPresenter
-        get() = CheckoutCartPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupView()
         setupRecyclerView()
@@ -77,6 +79,10 @@ class CheckoutCartActivity : BaseActivity<CheckoutCartPresenter>(), ICheckoutCar
 
     override fun onShowLoading() {
         DialogHelper.showLoading(this)
+    }
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@CheckoutCartActivity, isShow)
     }
 
     override fun onCloseLoading() {
@@ -160,7 +166,6 @@ class CheckoutCartActivity : BaseActivity<CheckoutCartPresenter>(), ICheckoutCar
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         if (adapter.isEmpty) {
             showShortError(errorMessage)
@@ -169,6 +174,9 @@ class CheckoutCartActivity : BaseActivity<CheckoutCartPresenter>(), ICheckoutCar
             adapter.setError(0, errorMessage, R.string.thu_lai)
         }
     }
+
+    override val mContext: Context
+        get() = this@CheckoutCartActivity
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

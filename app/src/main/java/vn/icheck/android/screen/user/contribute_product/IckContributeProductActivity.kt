@@ -33,7 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
@@ -60,7 +60,7 @@ import kotlin.math.abs
 const val CONTRIBUTE_REQUEST = 1
 
 @AndroidEntryPoint
-class IckContributeProductActivity : BaseCoroutineActivity() {
+class IckContributeProductActivity : BaseActivityMVVM() {
 
     companion object {
         fun start(context: Activity, barcode: String) {
@@ -1007,6 +1007,21 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 //            }
 //        })
 //    }
+
+    inline fun delayAfterAction(crossinline action: () -> Unit, timeout:Long = 200L) {
+        job = if (job?.isActive == true) {
+            job?.cancel()
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        } else {
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

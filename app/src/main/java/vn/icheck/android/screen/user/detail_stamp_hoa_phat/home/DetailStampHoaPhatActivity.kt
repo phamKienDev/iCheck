@@ -43,6 +43,7 @@ import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivi
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ContactUtils
 
 class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatListener {
@@ -220,8 +221,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
                     }
                 }
             } else {
-                val account = Intent(this, IckLoginActivity::class.java)
-                startActivity(account)
+                ActivityUtils.startActivity<IckLoginActivity>(this@DetailStampHoaPhatActivity)
             }
         }
 

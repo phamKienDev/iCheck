@@ -6,11 +6,13 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlarmManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.text.Html
 import android.text.Spannable
@@ -27,7 +29,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import kotlinx.android.synthetic.main.activity_detail_stamp_v6.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.holder.StampECommerceHolder
@@ -65,13 +67,9 @@ import vn.icheck.android.util.kotlin.GlideImageGetter
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.util.*
 
-class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailStampV6View {
+class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detail_stamp_v6
-
-    override val getPresenter: DetailStampV6Presenter
-        get() = DetailStampV6Presenter(this)
+    val presenter = DetailStampV6Presenter(this@DetailStampV6Activity)
 
     private var showVendor: Int? = null
     private var showDistributor: Int? = null
@@ -103,8 +101,16 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
     private var bannerAdapter: BannerV6Adapter? = null
     private lateinit var adapterConfigError: ICStampContactAdapter
 
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail_stamp_v6)
+        onInitView()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun onInitView() {
         setupView()
         initBanner()
         initUpdateLocation()
@@ -690,14 +696,14 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
                     }
                     isShow = true
                     textFab.animate()
-                        .translationY(0f)
-                        .setDuration(300)
-                        .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator?) {
-                                super.onAnimationEnd(animation)
-                                textFab.visibility = View.VISIBLE
-                            }
-                        })
+                            .translationY(0f)
+                            .setDuration(300)
+                            .setListener(object : AnimatorListenerAdapter() {
+                                override fun onAnimationEnd(animation: Animator?) {
+                                    super.onAnimationEnd(animation)
+                                    textFab.visibility = View.VISIBLE
+                                }
+                            })
                 }
                 scrollY > oldScrollY -> {
                     if (!isShow) {
@@ -787,9 +793,11 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@DetailStampV6Activity
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -798,15 +806,11 @@ class DetailStampV6Activity : BaseActivity<DetailStampV6Presenter>(), IDetailSta
                 presenter.onGetDataIntent(intent)
                 initGps()
             } else {
-                DialogHelper.showNotification(
-                    this@DetailStampV6Activity,
-                    R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi,
-                    false,
-                    object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                DialogHelper.showNotification(this@DetailStampV6Activity, R.string.vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_vi_tri_cua_thiet_bi, false, object : NotificationDialogListener {
+                    override fun onDone() {
+                        onBackPressed()
+                    }
+                })
             }
         }
 

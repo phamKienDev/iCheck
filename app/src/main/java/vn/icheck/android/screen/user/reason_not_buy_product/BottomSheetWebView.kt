@@ -13,12 +13,13 @@ import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.ViewHelper
 
-class BottomSheetWebView (context: Context) : FrameLayout(context) {
+class BottomSheetWebView(context: Context) : FrameLayout(context) {
 
-    private val mBottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context,R.style.BottomSheetDialog)
+    private val mBottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
     private var mCurrentWebViewScrollY = 0
 
     init {
@@ -30,15 +31,20 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     private fun inflateLayout(context: Context) {
         inflate(context, R.layout.bottom_sheet_dialog_reason_not_buy_product, this)
 
+        ICheckApplication.currentActivity()?.let { activity ->
+            layoutContainer.minimumHeight = activity.findViewById<View>(android.R.id.content).rootView.height
+        }
+
         mBottomSheetDialog.setContentView(this)
 
-        mBottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                ?.setBackgroundResource(android.R.color.transparent);
+        mBottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent);
     }
 
     private fun setupBottomSheetBehaviour() {
         (parent as? View)?.let { view ->
             BottomSheetBehavior.from(view).let { behaviour ->
+                behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+
                 behaviour.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {
 
@@ -58,7 +64,7 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     }
 
     private fun setupWebView() {
-        webViewUrl.onScrollChangedCallback = object : ObservableWebView.OnScrollChangeListener {
+        webView.onScrollChangedCallback = object : ObservableWebView.OnScrollChangeListener {
             override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
                 mCurrentWebViewScrollY = t
             }
@@ -69,23 +75,23 @@ class BottomSheetWebView (context: Context) : FrameLayout(context) {
     fun showWithUrl(url: String) {
         mBottomSheetDialog.show()
 
-        webViewUrl.settings.javaScriptEnabled = true
+        webView.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webViewUrl.settings.domStorageEnabled = true
-        webViewUrl.settings.allowFileAccessFromFileURLs = true
-        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webView.settings.domStorageEnabled = true
+        webView.settings.allowFileAccessFromFileURLs = true
+        webView.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
-        webViewUrl.loadUrl(url)
+        webView.loadUrl(url)
 
         var loadingFinished = true
         var redirect = false
 
-        webViewUrl.webViewClient = object : WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (!loadingFinished) {
                     redirect = true;

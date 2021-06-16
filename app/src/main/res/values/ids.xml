@@ -418,5 +418,6 @@
     <item name="tvDescription" type="id" />
     <item name="btnKeyboardNew" type="id" />
     <item name="btnKeyboardOld" type="id" />
+    <item name="layoutCustomer" type="id" />
     <item name="btnReview" type="id" />
 </resources>

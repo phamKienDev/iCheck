@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.Constant
@@ -24,21 +25,19 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 
 @AndroidEntryPoint
-class BookmarkHistoryActivity : AppCompatActivity() {
+class BookmarkHistoryActivity : BaseActivityMVVM() {
     private val bookmarkHistoryViewModel by viewModels<BookmarkHistoryViewModel>()
     private lateinit var binding: ActivityBookmarkHistoryBinding
     private val bookmarkHistoryAdapter = BookmarkHistoryAdapter()
-    private var job: Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookmarkHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupView()
+
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-        EventBus.getDefault().register(this)
-
-        setupView()
 
         binding.header.txtTitle simpleText "Sản phẩm yêu thích"
         binding.header.imgBack.setOnClickListener {

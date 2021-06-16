@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.updateaddress
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -10,7 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_create_user_address.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
@@ -29,18 +31,20 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class UpdateUserAddressActivity : BaseActivity<UpdateUserAddressPresenter>(), IUpdateUserAddressView, View.OnClickListener {
+class UpdateUserAddressActivity : BaseActivityMVVM(), IUpdateUserAddressView, View.OnClickListener {
     private val requestProvince = 1
     private val requestDistrict = 2
     private val requestWard = 3
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_create_user_address
+    val presenter = UpdateUserAddressPresenter(this@UpdateUserAddressActivity)
 
-    override val getPresenter: UpdateUserAddressPresenter
-        get() = UpdateUserAddressPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_create_user_address)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupView()
         setupListener()
@@ -93,6 +97,10 @@ class UpdateUserAddressActivity : BaseActivity<UpdateUserAddressPresenter>(), IU
 
     override fun onShowLoading() {
         DialogHelper.showLoading(this)
+    }
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@UpdateUserAddressActivity, isShow)
     }
 
     override fun onCloseLoading() {
@@ -174,10 +182,12 @@ class UpdateUserAddressActivity : BaseActivity<UpdateUserAddressPresenter>(), IU
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@UpdateUserAddressActivity
 
     override fun onClick(view: View?) {
         when (view?.id) {

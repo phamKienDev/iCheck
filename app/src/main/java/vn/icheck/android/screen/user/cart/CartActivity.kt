@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.cart
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -10,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.helper.DialogHelper
@@ -27,13 +29,16 @@ import vn.icheck.android.screen.user.checkoutcart.CheckoutCartActivity
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CartActivity : BaseActivity<CartPresenter>(), ICartView {
+class CartActivity : BaseActivityMVVM(), ICartView {
     private val adapter = CartParentAdapter(this)
-
+    private val presenter = CartPresenter(this@CartActivity)
     private val requestCheckout = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_cart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cart)
+        onInitView()
+    }
 
     override val getPresenter: CartPresenter
         get() = CartPresenter(this)
@@ -221,10 +226,16 @@ class CartActivity : BaseActivity<CartPresenter>(), ICartView {
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         swipeLayout.isRefreshing = false
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@CartActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@CartActivity, isShow)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

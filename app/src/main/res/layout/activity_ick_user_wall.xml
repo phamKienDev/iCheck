@@ -24,6 +24,7 @@
     <LinearLayout
         android:id="@+id/nav_bottom"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:visibility="visible">

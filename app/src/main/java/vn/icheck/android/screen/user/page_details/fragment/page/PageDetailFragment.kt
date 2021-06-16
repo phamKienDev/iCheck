@@ -5,7 +5,9 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,7 +46,6 @@ import vn.icheck.android.network.models.ICPageOverview
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.edit_review.EditReviewActivity
@@ -55,6 +56,8 @@ import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.Re
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
+import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
 
@@ -101,9 +104,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             return fragment
         }
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_page_detail
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_page_detail, container, false)
+    }
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -323,8 +326,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             DialogHelper.showDialogSuccessBlack(requireContext(), getString(R.string.ban_da_xoa_bai_viet_thanh_cong), null, 1000)
             adapter.deletePost(it)
         })
+
         viewModel.onPopupAds.observe(viewLifecycleOwner, {
-            DialogNotificationFirebaseAds.showPopupAds(requireActivity(),it)
+            DialogFragmentNotificationFirebaseAds.showPopupAds(requireActivity(),it)
         })
     }
 

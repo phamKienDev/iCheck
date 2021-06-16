@@ -100,19 +100,11 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
     }
 
     override fun onErrorIntent() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            DialogHelper.showNotification(this, "Occurred. Please try again", false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
-        } else {
-            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
-        }
+        DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+            override fun onDone() {
+                onBackPressed()
+            }
+        })
     }
 
     override fun onGetDataIntentSuccess(idDistributor: Long, productCode: String?, serial: String?, productId: Long?, objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant?, codeStamp: String?) {
@@ -124,13 +116,13 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
         mCodeStamp = codeStamp
     }
 
-    override fun onVerifiedPhoneSuccess(data: ICVerifiedPhone.Data) {
+    override fun onVerifiedPhoneSuccess(data: ICVerifiedPhone.Data, phone: String) {
         if (data.is_true == true) {
             hideSoftKeyboard()
             val intent = Intent(this, UpdateInformationFirstActivity::class.java)
             intent.putExtra(Constant.DATA_1, 1)
             intent.putExtra(Constant.DATA_2, mIdDistributor)
-            intent.putExtra(Constant.DATA_3, binding.edtPhone.text.toString())
+            intent.putExtra(Constant.DATA_3, phone)
             intent.putExtra(Constant.DATA_4, mProductCode)
             intent.putExtra(Constant.DATA_5, mSerial)
             intent.putExtra(Constant.DATA_6, mIdProduct)
@@ -138,32 +130,18 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
             intent.putExtra(Constant.DATA_8, mCodeStamp)
             startActivity(intent)
         } else {
-            if (StampDetailActivity.isVietNamLanguage == false) {
-                val obj = object : NotificationDialog(this, null, "The entered phone number does not match with the activated phone number of the stamp. Please try again!", getString(R.string.da_hieu), false) {
-                    override fun onDone() {
-                        dismiss()
-                    }
+            val obj = object : NotificationDialog(this, null, getString(R.string.so_dien_thoai_da_nhap_ko_khop), getString(R.string.da_hieu), false) {
+                override fun onDone() {
+                    dismiss()
                 }
-                obj.show()
-                obj.hideTitle()
-            } else {
-                val obj = object : NotificationDialog(this, null, getString(R.string.so_dien_thoai_da_nhap_ko_khop), getString(R.string.da_hieu), false) {
-                    override fun onDone() {
-                        dismiss()
-                    }
-                }
-                obj.show()
-                obj.hideTitle()
             }
+            obj.show()
+            obj.hideTitle()
         }
     }
 
     override fun onVerifiedPhoneFail() {
-        if (StampDetailActivity.isVietNamLanguage == false) {
-            showShortError("Occurred. Please try again")
-        } else {
-            showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-        }
+        showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
     }
 
     override fun showError(errorMessage: String) {

@@ -19,7 +19,7 @@ class UserFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     lateinit var viewModel: UserFollowPageViewModel
     lateinit var adapter: UserFollowPageAdapter
 
-    private val requestLogin = 1
+    private val requestLoginV2 = 1
     private var pageId: Any? = null
     private var isActivityVisible = true
 
@@ -92,14 +92,14 @@ class UserFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         if (isActivityVisible) {
             if (event.type == ICMessageEvent.Type.ON_LOG_IN) {
                 pageId = event.data
-                onRequireLogin(requestLogin)
+                onRequireLogin(requestLoginV2)
             }
         }
     }
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if(requestCode==requestLogin){
+        if(requestCode==requestLoginV2){
             if (pageId != null) {
                 ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(this, Constant.DATA_1, pageId!! as Long)
             } else {

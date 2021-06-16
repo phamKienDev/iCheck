@@ -37,5 +37,7 @@ data class ICGuaranteeCustomerDetail (
         var store_id: Long? = null
         @Expose
         var user_id: Long? = null
+        @Expose
+        val fields: MutableList<ICFieldGuarantee>? = null
     }
 }

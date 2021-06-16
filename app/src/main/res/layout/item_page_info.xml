@@ -45,7 +45,6 @@
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
-            android:hint="@string/dang_cap_nhat"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:textColor="@color/white"

@@ -22,6 +22,7 @@ import vn.icheck.android.screen.user.list_shop_variant.adapter.ListShopVariantAd
 import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
 import vn.icheck.android.screen.user.list_shop_variant.viewmodel.ListShopVariantViewModel
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
+import vn.icheck.android.util.kotlin.ActivityUtils
 
 class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
 
@@ -107,8 +108,7 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
         if (SessionManager.isUserLogged) {
             viewModel.addCart(id)
         } else {
-            val intent=Intent(this,IckLoginActivity::class.java)
-            startActivity(intent)
+            ActivityUtils.startActivity<IckLoginActivity>(this@ListShopVariantActivity)
         }
     }
 

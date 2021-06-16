@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.item_post_your_review_product.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
@@ -14,6 +15,7 @@ import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import java.io.File
 
@@ -22,9 +24,6 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
     val imgAdapter = PostImageCriteriaAdapter(listener)
 
     override fun bind(obj: ICCriteria) {
-        itemView.btn_post_review.background=ViewHelper.bgSecondaryCorners40(itemView.context)
-        itemView.edt_comment_review.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemView.context)
-
         val listCriteriaChild = mutableListOf<CriteriaChild>()
         for (item in obj.productCriteriaSet!!) {
             listCriteriaChild.add(CriteriaChild(
@@ -73,8 +72,9 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
                     } else {
                         ReviewProductV1Activity.message = itemView.edt_comment_review.text.toString()
                         ReviewProductV1Activity.listYourCriteria = criteria
-                        val intent = Intent(listener.mContext, IckLoginActivity::class.java)
-                        listener.mContext.startActivity(intent)
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            ActivityUtils.startActivity<IckLoginActivity>(activity)
+                        }
                     }
                 } else {
                     ToastUtils.showShortError(listener.mContext, "Vui lòng điển đầy đủ tiêu chí")

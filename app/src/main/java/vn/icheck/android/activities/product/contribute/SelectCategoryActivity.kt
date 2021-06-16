@@ -16,19 +16,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_select_category.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.activities.base.BaseICActivity
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.models.ICCategory
 
-class SelectCategoryActivity : BaseICActivity() {
+class SelectCategoryActivity : BaseActivityMVVM() {
 
     lateinit var categoryAdapter: CategoryAdapter
+    val compositeDisposable = CompositeDisposable()
     private var level = 1
 
     companion object {
@@ -104,6 +107,7 @@ class SelectCategoryActivity : BaseICActivity() {
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.dispose()
+        compositeDisposable.clear()
         instance = null
     }
 

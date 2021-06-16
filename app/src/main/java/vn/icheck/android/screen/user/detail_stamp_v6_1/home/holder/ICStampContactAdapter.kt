@@ -36,7 +36,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
             binding.tvTitle.text = obj.title
 
             binding.tvHotline.apply {
-                text = obj.hotline
+                text = context.getString(R.string.hotline_v2_xxx, obj.hotline ?: " ")
                 background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlineSecondary1Corners45(itemView.context)
                 setOnClickListener {
                     Constant.callPhone(obj.hotline)
@@ -44,7 +44,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
             }
 
             binding.tvEmail.apply {
-                text = obj.email
+                text = context.getString(R.string.email_v2_xxx, obj.email ?: " ")
                 background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlineSecondary1Corners45(itemView.context)
                 setOnClickListener {
                     Constant.sendEmail(obj.email)

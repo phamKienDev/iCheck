@@ -9,7 +9,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.databinding.ItemWrongStampBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
-import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICStampConfig
 
 class ICWrongStampHolder(parent: ViewGroup, val binding: ItemWrongStampBinding =

@@ -1,19 +1,22 @@
 package vn.icheck.android.screen.user.orderdetail
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
 import vn.icheck.android.screen.user.cart.CartActivity
@@ -33,16 +36,17 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailView, View.OnClickListener {
+class OrderDetailActivity : BaseActivityMVVM(), IOrderDetailView, View.OnClickListener {
     private val adapter = OrderDetailAdapter(this)
+    val presenter = OrderDetailPresenter(this@OrderDetailActivity)
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_order_detail
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_detail)
+        onInitView()
+    }
 
-    override val getPresenter: OrderDetailPresenter
-        get() = OrderDetailPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupView()
         setupRecyclerView()
@@ -78,6 +82,10 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
 
     override fun onShowLoading() {
         DialogHelper.showLoading(this)
+    }
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@OrderDetailActivity, isShow)
     }
 
     override fun onCloseLoading() {
@@ -256,6 +264,13 @@ class OrderDetailActivity : BaseActivity<OrderDetailPresenter>(), IOrderDetailVi
     override fun onOrderAgainSuccess() {
         startActivity<CartActivity>()
     }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@OrderDetailActivity
 
     override fun onClick(view: View?) {
         when (adapter.getOrderDetail?.status) {

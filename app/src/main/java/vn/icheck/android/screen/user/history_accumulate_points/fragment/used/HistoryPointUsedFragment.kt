@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.history_accumulate_points.fragment.used
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +21,9 @@ class HistoryPointUsedFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
     private val viewModel by viewModels<HistoryPointViewModel>()
     val adapter = HistoryPointAdapter(this, "used")
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_history_point
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_history_point, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

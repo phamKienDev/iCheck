@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.shopreview
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TableRow
 import androidx.appcompat.widget.AppCompatTextView
@@ -9,7 +11,7 @@ import com.willy.ratingbar.ScaleRatingBar
 import kotlinx.android.synthetic.main.activity_shop_review.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
@@ -28,19 +30,19 @@ import java.io.File
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewView, TakePhotoHelper.TakePhotoListener {
+class OrderReviewActivity : BaseActivityMVVM(), IOrderReviewView, TakePhotoHelper.TakePhotoListener {
     private val adapter = ShopReviewAdapter(1, this)
-
+    private val presenter = OrderReviewPresenter(this@OrderReviewActivity)
     private val takePhotoHelper = TakePhotoHelper(this)
     private val requestCameraPermission = 1
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_shop_review
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_shop_review)
+        onInitView()
+    }
 
-    override val getPresenter: OrderReviewPresenter
-        get() = OrderReviewPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupView()
         setupRecyclerView()
@@ -135,6 +137,10 @@ class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewVi
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@OrderReviewActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -179,10 +185,12 @@ class OrderReviewActivity : BaseActivity<OrderReviewPresenter>(), IOrderReviewVi
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@OrderReviewActivity
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
