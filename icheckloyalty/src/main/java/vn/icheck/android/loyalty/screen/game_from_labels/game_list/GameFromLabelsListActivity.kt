@@ -114,7 +114,7 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
     override fun onMessageEvent(event: ICMessageEvent) {
         super.onMessageEvent(event)
 
-        when(event.type){
+        when (event.type) {
             ICMessageEvent.Type.ON_UPDATE_POINT -> {
                 getData()
             }
@@ -137,18 +137,16 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
                     }
                 }
                 CampaignType.RECEIVE_GIFT -> {
-                    if (!obj.description.isNullOrEmpty()) {
-                        startActivity(Intent(this, WebViewActivity::class.java).apply {
-                            putExtra(ConstantsLoyalty.DATA_1, obj.description ?: "")
-                            putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
-                        })
-                    }
+                    startActivity(Intent(this, WebViewActivity::class.java).apply {
+                        putExtra(ConstantsLoyalty.DATA_1, obj.description ?: "")
+                        putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                    })
                 }
                 CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
                     if (obj.hasChanceCode != null) {
                         SharedLoyaltyHelper(this@GameFromLabelsListActivity).putBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM, obj.hasChanceCode)
 
-                        val item = obj.campaignGameUser?.firstOrNull ()
+                        val item = obj.campaignGameUser?.firstOrNull()
 
                         val campaign = ListGameCampaign(header_image_rotation = obj.headerImageRotation, background_rotation = obj.backgroundRotation)
 
