@@ -604,7 +604,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                tvCartCount.visibleOrInvisible(count != null)
 //                tvCartCount.text = count
 //            }
-            ICMessageEvent.Type.ON_LOG_IN -> {
+//            ICMessageEvent.Type.ON_LOG_IN -> {
 
 //                lifecycleScope.launch {
 //                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
@@ -613,12 +613,12 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                    }
 //                    homeAdapter.notifyDataSetChanged()
 //                    checkTheme()
-//                    refreshHomeData()
 //                    delay(400)
 //                    getReminders()
+//                    refreshHomeData()
 //                }
-            }
-            ICMessageEvent.Type.ON_LOG_OUT -> {
+//            }
+//            ICMessageEvent.Type.ON_LOG_OUT -> {
 //                lifecycleScope.launch {
 //                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
 //                    if (file.exists()) {
@@ -626,7 +626,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                    }
 //                    homeAdapter.notifyDataSetChanged()
 //                    checkTheme()
-//                    refreshHomeData()
 //                    delay(400)
 //                    getReminders()
 //                }
@@ -634,7 +633,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //
 //                layoutContainer.setTransition(R.id.no_reminder)
 //                tvCartCount.beGone()
-            }
+//            }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
                 if (isOpen) {
                     ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)

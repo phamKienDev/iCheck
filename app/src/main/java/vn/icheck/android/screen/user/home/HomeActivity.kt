@@ -630,9 +630,9 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
             SettingManager.themeSetting = themeSettingRes?.data
             SettingManager.setAppThemeColor(themeSettingRes?.data)
 
-//            startActivityAndFinish<HomeActivity>()
-            recreate()
 //            viewModel.downloadTheme()
+
+            recreate()
         }
     }
 
@@ -1115,9 +1115,10 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 )
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
+//                tvChatCount.visibility = View.GONE
+
                 ChatSdk.shareIntent(null, null, null, null, false)
 
-                tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
                 checkNewTheme()
                 clearFilter()
@@ -1129,13 +1130,13 @@ class HomeActivity : BaseActivity<HomePresenter>(), IHomeView, IScanHistoryView,
                 }
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
-                tv_username.text = SessionManager.session.user?.getName
-                tv_user_rank.text = SessionManager.session.user?.phone
-                Glide.with(this.applicationContext)
-                    .load(SessionManager.session.user?.avatar)
-                    .placeholder(R.drawable.ic_avatar_default_84px)
-                    .error(R.drawable.ic_avatar_default_84px)
-                    .into(imgAvatar)
+//                tv_username.text = SessionManager.session.user?.getName
+//                tv_user_rank.text = SessionManager.session.user?.phone
+//                Glide.with(this.applicationContext)
+//                    .load(SessionManager.session.user?.avatar)
+//                    .placeholder(R.drawable.ic_avatar_default_84px)
+//                    .error(R.drawable.ic_avatar_default_84px)
+//                    .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
                 ChatSdk.shareIntent(
