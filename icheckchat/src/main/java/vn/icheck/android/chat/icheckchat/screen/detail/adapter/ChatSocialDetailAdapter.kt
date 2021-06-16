@@ -34,6 +34,7 @@ import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_SENDER
 import vn.icheck.android.chat.icheckchat.databinding.ItemReceiverBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemSenderBinding
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCDetailMessage
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
@@ -206,7 +207,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvNameProduct.text = if (!obj.product?.name.isNullOrEmpty() && obj.product?.name?.contains("null") == false) {
                     obj.product?.name
                 } else {
-                    itemView.context.getString(R.string.ten_dang_cap_nhat)
+                    itemView.context.rText(R.string.ten_dang_cap_nhat)
                 }
 
                 checkNullOrEmpty(binding.tvBarcode, obj.product?.barcode)
@@ -214,7 +215,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvPrice.text = if (obj.product?.price != null && obj.product?.price != -1L) {
                     formatMoney(obj.product?.price)
                 } else {
-                    itemView.context.getString(R.string.gia_dang_cap_nhat)
+                    itemView.context.rText(R.string.gia_dang_cap_nhat)
                 }
 
                 binding.btnProductDetail.setOnClickListener {
@@ -257,14 +258,14 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
-                    binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
+                    binding.tvTime rText R.string.dang_gui
 //                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
                     binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
                 }
                 else -> {
                     binding.imgRetry.setVisible()
                     binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
-                    binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
+                    binding.tvTime rText R.string.loi_gui_tin_nhan
                     binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity)
                 }
             }
@@ -390,7 +391,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvNameProduct.text = if (!obj.product?.name.isNullOrEmpty() && obj.product?.name?.contains("null") == false) {
                     obj.product?.name
                 } else {
-                    itemView.context.getString(R.string.ten_dang_cap_nhat)
+                    itemView.context.rText(R.string.ten_dang_cap_nhat)
                 }
 
                 checkNullOrEmpty(binding.tvBarcode, obj.product?.barcode)
@@ -398,7 +399,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvPrice.text = if (obj.product?.price != null && obj.product?.price != -1L) {
                     formatMoney(obj.product?.price)
                 } else {
-                    itemView.context.getString(R.string.gia_dang_cap_nhat)
+                    itemView.context.rText(R.string.gia_dang_cap_nhat)
                 }
 
                 binding.btnProductDetail.setOnClickListener {
@@ -612,6 +613,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         val myClipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val myClip = ClipData.newPlainText("note_copy", text)
         myClipboard.setPrimaryClip(myClip)
-        context.showToastSuccess(context.getString(R.string.copy_success))
+        context.showToastSuccess(context.rText(R.string.copy_success))
     }
 }

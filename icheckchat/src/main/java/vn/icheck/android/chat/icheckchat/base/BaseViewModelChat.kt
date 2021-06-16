@@ -8,6 +8,7 @@ import retrofit2.HttpException
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.helper.FirebaseHelper
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
+import vn.icheck.android.chat.icheckchat.helper.RStringUtils
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCError
 import vn.icheck.android.chat.icheckchat.model.MCResponseCode
@@ -24,7 +25,7 @@ open class BaseViewModelChat : ViewModel() {
 
     fun <T> request(call: suspend () -> T) = liveData(Dispatchers.IO) {
         if (NetworkHelper.isNotConnected(ShareHelperChat.getApplicationByReflect())) {
-            emit(MCResult.errorNetwork(data = null, message = ShareHelperChat.getString(R.string.khong_co_mang)))
+            emit(MCResult.errorNetwork(data = null, message = RStringUtils.rText(R.string.khong_co_mang)))
             return@liveData
         }
 
@@ -46,13 +47,13 @@ open class BaseViewModelChat : ViewModel() {
         if (isConnected) {
             if (!dataEmpty) {
                 onError.postValue(MCError(message = message
-                        ?: ShareHelperChat.getString(R.string.error_default)))
+                        ?: RStringUtils.rText(R.string.error_default)))
             } else {
                 onError.postValue(MCError(title = title
-                        ?: ShareHelperChat.getString(R.string.khong_co_du_lieu)))
+                        ?: RStringUtils.rText(R.string.khong_co_du_lieu)))
             }
         } else {
-            onError.postValue(MCError(message = ShareHelperChat.getString(R.string.khong_co_mang)))
+            onError.postValue(MCError(message = RStringUtils.rText(R.string.khong_co_mang)))
         }
     }
 

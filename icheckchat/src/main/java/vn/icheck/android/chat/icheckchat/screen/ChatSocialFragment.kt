@@ -12,6 +12,7 @@ import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.recyclerview.adapter.ViewPagerAdapterChat
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
@@ -41,7 +42,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
             callback?.onClickLeftMenu()
         }
 
-        binding.toolbar.txtTitle.text = getString(R.string.tin_nhan)
+        binding.toolbar.txtTitle rText R.string.tin_nhan
 
         binding.toolbar.imgAction.setVisible()
 

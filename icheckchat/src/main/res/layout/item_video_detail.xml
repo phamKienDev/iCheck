@@ -33,7 +33,7 @@
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trình phát video lỗi"
+        android:text="@string/trinh_phat_video_loi"
         android:fontFamily="@font/barlow_medium"
         android:textColor="@color/white"
         android:padding="6dp"

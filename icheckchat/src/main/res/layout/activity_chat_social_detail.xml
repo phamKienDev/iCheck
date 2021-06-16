@@ -285,7 +285,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:background="@color/white"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            android:layout_marginStart="6dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -316,7 +317,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Các bạn sẽ không thể nhắn tin trong mục Chat\n Hãy bỏ chặn để tiếp tục cuộc trò chuyện này."
+            android:text="@string/cac_ban_se_khong_the_nhan_tin_trong_muc_chat_hay_bo_chan_de_tiep_tuc_cuoc_tro_chuyen_nay"
             android:textColor="@color/gray_75"
             android:textSize="14sp" />
 
@@ -330,7 +331,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Bỏ chặn"
+            android:text="@string/bo_chan"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
@@ -364,7 +365,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Các bạn sẽ không thể nhắn tin trong mục Chat"
+            android:text="@string/cac_ban_se_khong_the_nhan_tin_trong_muc_chat"
             android:textColor="@color/gray_75"
             android:textSize="14sp" />
 

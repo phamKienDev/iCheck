@@ -18,7 +18,6 @@ import vn.icheck.android.chat.icheckchat.base.view.loadImageUrlNotCrop
 import vn.icheck.android.chat.icheckchat.databinding.ItemMediaDetailBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemVideoDetailBinding
 import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
-import vn.icheck.android.chat.icheckchat.model.MCMedia
 
 class ImageDetailAdapter : BaseRecyclerView<MCExoMedia>() {
 

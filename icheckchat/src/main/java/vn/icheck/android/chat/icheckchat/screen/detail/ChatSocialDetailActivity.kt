@@ -49,6 +49,7 @@ import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBin
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.*
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
@@ -311,10 +312,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 binding.layoutBlock.setVisible()
                                 setGoneView(binding.layoutChat, binding.layoutUserBlock)
 
-                                binding.tvTitle.text = "Bạn đã chặn tin nhắn của ${conversation?.targetUserName}"
+                                binding.tvTitle.rText(R.string.ban_da_chan_tin_nhan_cua_s, conversation?.targetUserName)
 
                                 binding.btnUnBlock.setOnClickListener {
-                                    this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
+                                    this@ChatSocialDetailActivity.showConfirm(rText(R.string.bo_chan_tin_nhan), rText(R.string.message_unblock), rText(R.string.de_sau), rText(R.string.dong_y), false, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }
@@ -330,7 +331,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
+                                binding.tvUserTitle.rText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)
@@ -586,7 +587,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun formatMessage() {
         if (!adapterImage.isEmpty) {
             if (adapterImage.getListData.size > 20) {
-                showToastError(getString(R.string.chon_20_muc))
+                showToastError(rText(R.string.chon_20_muc))
                 return
             }
         }
@@ -733,7 +734,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
-                    showToastSuccess(getString(R.string.ban_da_bo_chan_tin_nhan_thanh_cong))
+                    showToastSuccess(rText(R.string.ban_da_bo_chan_tin_nhan_thanh_cong))
                     binding.layoutChat.setVisible()
                     binding.layoutBlock.setGone()
                     binding.layoutToolbar.imgAction.setVisible()
@@ -767,7 +768,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         binding.tvNameProduct.text = if (!product?.name.isNullOrEmpty()) {
                             product?.name
                         } else {
-                            getString(R.string.ten_dang_cap_nhat)
+                            rText(R.string.ten_dang_cap_nhat)
                         }
 
                         loadImageUrlRounded(binding.imgProduct, product?.image, R.drawable.ic_default_product_chat_vuong, dpToPx(4))
@@ -932,14 +933,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                     }
                 } else {
-                    showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                    showToastError(rText(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
             }
             requestScanBarcodePermission -> {
                 if (PermissionChatHelper.checkResult(grantResults)) {
                     scanBarcode()
                 } else {
-                    showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                    showToastError(rText(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
             }
         }
@@ -1056,7 +1057,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if ((adapterImage.getListData.size + 1) <= 20) {
                     adapterImage.setImage(file)
                 } else {
-                    showToastError(getString(R.string.chon_20_anh))
+                    showToastError(rText(R.string.chon_20_anh))
                 }
                 chooseImage()
             }
@@ -1066,7 +1067,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if ((adapterImage.getListData.size + file.size) <= 20) {
                     adapterImage.setListImage(file)
                 } else {
-                    showToastError(getString(R.string.chon_20_anh))
+                    showToastError(rText(R.string.chon_20_anh))
                 }
                 chooseImage()
             }
@@ -1083,7 +1084,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if ((adapterImage.getListData.size + 1) <= 20) {
                         adapterImage.setImage(file)
                     } else {
-                        showToastError(getString(R.string.chon_20_anh))
+                        showToastError(rText(R.string.chon_20_anh))
                     }
                     chooseImage()
                 }

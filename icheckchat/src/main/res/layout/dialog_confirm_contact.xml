@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="36dp"
@@ -29,7 +28,7 @@
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
-            android:text="Đồng bộ danh bạ"
+            android:text="@string/dong_bo_danh_ba"
             android:textColor="#212121"
             android:textSize="16sp"
             android:textStyle="normal"
@@ -70,7 +69,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Để Sau"
+            android:text="@string/de_sau"
             android:textAllCaps="false"
             android:textColor="#757575"
             android:textSize="16sp"
@@ -98,7 +97,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Đồng bộ"
+            android:text="@string/dong_bo"
             android:textAllCaps="false"
             android:textColor="#057DDA"
             android:textSize="16sp"
@@ -115,12 +114,13 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
-            android:text="Điều khoản sử dụng"
+            android:text="@string/dieu_khoan_su_dung"
             android:includeFontPadding="false"
             android:drawableRight="@drawable/ic_arrow_right_blue_24dp_chat"
             android:textColor="@color/colorPrimary"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/txtMessage" />
+            card_view:layout_constraintTop_toBottomOf="@+id/txtMessage"
+            android:drawableEnd="@drawable/ic_arrow_right_blue_24dp_chat" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

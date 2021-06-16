@@ -20,6 +20,7 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentContactBinding
 import vn.icheck.android.chat.icheckchat.dialog.ConfirmContactDialog
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.PermissionHelper
@@ -99,7 +100,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 syncContact()
             } else {
-                requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
+                requireContext().showToastError( rText(R.string.ban_chua_dang_nhap_vui_long_dang_nhap))
             }
         }, {
             getSystemSetting()
@@ -173,7 +174,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
 
                             if (clickGetData) {
-                                requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
+                                requireContext().showToastSuccess(rText(R.string.dong_bo_danh_ba_thanh_cong))
                             }
                         } else {
                             binding.recyclerView.setGone()
@@ -195,7 +196,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (PermissionHelper.checkResult(grantResults)) {
                 showDialog()
             } else {
-                requireContext().showToastError("Bạn chưa cấp đủ quyền!")
+                requireContext().showToastError(rText(R.string.ban_chua_cap_du_quyen))
             }
         }
     }
