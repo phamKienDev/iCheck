@@ -14,6 +14,7 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 
 class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
@@ -33,7 +34,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
         binding.layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
-        binding.toolbar.imgBack.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_left_menu_blue_24dp_chat,requireContext()))
+        binding.toolbar.imgBack.fillDrawableColor(R.drawable.ic_left_menu_blue_24dp_chat)
 
         binding.toolbar.imgBack.setOnClickListener {
             callback?.onClickLeftMenu()

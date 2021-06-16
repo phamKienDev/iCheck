@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
@@ -93,11 +94,9 @@ class AddShipAddressFragment : Fragment() {
         }
 
 
-        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,requireContext()).apply {
-            binding.edtQuan.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.edtTinhThanh.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.edtPhuongXa.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-        }
+        binding.edtQuan.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.edtTinhThanh.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.edtPhuongXa.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
     }
 
     private fun initBinding() {

@@ -16,6 +16,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
@@ -144,8 +145,7 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class SearchMoreHolder(parent: ViewGroup) : BaseViewHolder<ICSearchResult>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_more_holder, parent, false)) {
         override fun bind(obj: ICSearchResult) {
             itemView.rootView.background=ViewHelper.bgWhiteCorners4(itemView.context)
-            itemView.tvXemThem.setCompoundDrawablesWithIntrinsicBounds(0,0,
-                        ViewHelper.setImageColor(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context, ContextCompat.getColor(itemView.context,R.color.colorPrimary)),0)
+            itemView.tvXemThem.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
             if (obj.data != null) {
                 Handler().post{
                     itemView.beVisible()

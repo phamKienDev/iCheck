@@ -1359,6 +1359,25 @@ object WidgetUtils {
         }
     }
 
+    fun changePasswordInput(editText: FocusableEdittextLineColorUncheckPrimaryChecked) {
+        editText.apply {
+            if (isFocused) {
+                val mTransformationMethod = transformationMethod
+
+                inputType = if (inputType != InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD
+                } else {
+                    InputType.TYPE_CLASS_NUMBER
+                }
+
+                transformationMethod = mTransformationMethod
+
+                setSelection(length())
+            }
+        }
+    }
+
+
     fun setButtonKeyboardMargin(imgKeyboard: AppCompatImageView, edtPassword: FocusableEditText) {
         imgKeyboard.apply {
             visibleOrInvisible(edtPassword.isFocused)

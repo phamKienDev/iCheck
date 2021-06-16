@@ -33,7 +33,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -102,7 +102,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun setupToolbar() {
-        imgBack.setImageColorPrimary(R.drawable.ic_cancel_light_blue_24dp,this)
+        imgBack.fillDrawableColor()
         imgBack.setOnClickListener {
             onBackPressed()
         }

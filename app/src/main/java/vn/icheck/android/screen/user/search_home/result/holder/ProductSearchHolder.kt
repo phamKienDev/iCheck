@@ -17,6 +17,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -25,8 +26,8 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_product_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICProductTrend>) {
-        itemView.tv_xem_them.setCompoundDrawablesWithIntrinsicBounds(0,0,
-            ViewHelper.setImageColor(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context,ContextCompat.getColor(itemView.context,R.color.colorPrimary)),0)
+        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
+
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()

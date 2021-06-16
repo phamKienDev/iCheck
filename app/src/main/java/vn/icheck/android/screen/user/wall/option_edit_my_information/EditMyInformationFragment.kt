@@ -39,6 +39,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -188,17 +190,13 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
 
         binding.btnUpdate.background = ViewHelper.bgPrimaryCorners4(requireContext())
 
-        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,requireContext()).apply {
-            binding.txtProvince.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.txtDistrict.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.tvWard.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.txtChangePassword.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-        }
+        binding.txtProvince.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.txtDistrict.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.tvWard.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.txtChangePassword.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
 
-        ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_right_light_blue_24dp,requireContext()).apply {
-            binding.edtConnectFb.setCompoundDrawablesWithIntrinsicBounds(0,0,this,0)
-            binding.imgArrowDanhTinh.setImageResource(this)
-        }
+        binding.edtConnectFb.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
+        binding.imgArrowDanhTinh.fillDrawableColor(R.drawable.ic_arrow_right_light_blue_24dp)
 
         Constant.getDisableTextColor(requireContext()).apply {
             binding.edtLastname.setHintTextColor(this)

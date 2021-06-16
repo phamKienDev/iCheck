@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,7 @@ import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -52,11 +54,10 @@ import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.page_details.PageDetailViewModel
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
@@ -66,7 +67,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private var adapter = PageDetailAdapter(this, this, this)
 
     private var listContributionReport = mutableListOf<ICReportForm>()
-    private lateinit var dialog: ReportWrongContributionDialog
+    private lateinit var dialog: ReportDialog
 
     private var typeEditImage: Int? = null
     private var pageOverViewPosition = -1
@@ -126,8 +127,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        imgBack.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_back_blue_v2_24px,requireContext()))
-        imgAction.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,requireContext()))
+        imgBack.fillDrawableColor(R.drawable.ic_back_blue_v2_24px)
+        imgAction.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
 
         imgBack.setOnClickListener {
             activity?.onBackPressed()
@@ -302,9 +303,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             listContributionReport.clear()
             listContributionReport.addAll(it)
 
-            dialog = ReportWrongContributionDialog(listContributionReport, R.string.bao_cao_trang)
+            dialog = ReportDialog(listContributionReport, R.string.bao_cao_trang)
 
-            dialog.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+            dialog.setListener(object : ReportDialog.DialogClickListener {
                 override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                     viewModel.sendReportPage(listReason, message, listMessage)
                 }
@@ -316,7 +317,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             dialog.dismiss()
             if (!it.isNullOrEmpty()) {
                 ICheckApplication.currentActivity()?.let { activity ->
-                    val dialogFragment = ReportWrongContributionSuccessDialog(activity)
+                    val dialogFragment = ReportSuccessDialog(activity)
                     dialogFragment.show(it, "", context?.getString(R.string.report_wrong_contribution_success_page_title))
                 }
             }

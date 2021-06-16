@@ -22,7 +22,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_select_category.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
-import vn.icheck.android.activities.base.BaseICActivity
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNetworkClient

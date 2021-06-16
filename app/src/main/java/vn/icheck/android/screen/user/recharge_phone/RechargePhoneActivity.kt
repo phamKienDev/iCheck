@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,6 +36,7 @@ import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -87,7 +89,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     private fun initView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
         tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
-        edtPhone.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_phonebook_24dp,this),0)
+        edtPhone.fillDrawableEndText(R.drawable.ic_phonebook_24dp)
 
         if (SessionManager.isUserLogged) {
             tv1.visibility = View.VISIBLE

@@ -23,7 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -138,7 +138,7 @@ class ReportActivity : BaseActivityMVVM() {
                     list.add(ICReportForm(0, edtContent.text.toString()))
             }
 
-            val dialog = ReportWrongContributionSuccessDialog(this)
+            val dialog = ReportSuccessDialog(this)
             dialog.show(list, "order", "Cảm ơn bạn đã báo lỗi đơn hàng này!")
             dialog.dialog.setOnDismissListener {
                 finish()

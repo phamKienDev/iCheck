@@ -45,7 +45,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.fragments.ReviewTributeDialog
 import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
@@ -216,7 +216,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutAction.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        tvBuy.background = ViewHelper.bgPrimaryCorners4(this)
+        tvBuy.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this,R.color.colorPrimary),SizeHelper.size4.toFloat())
 
         ViewHelper.bgOutlinePrimary1Corners4(this).apply {
             btn_contact_not_found.background = this
@@ -263,14 +263,14 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         layoutStatus.visibility = View.VISIBLE
         layoutToolbarAlpha.alpha = 1f
         imgLike.beInvisible()
-        imgAction.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,this)
+        imgAction.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
     }
 
     private fun hideLayoutStatus() {
         layoutStatus.visibility = View.GONE
         layoutToolbarAlpha.alpha = 0f
         imgLike.beVisible()
-        imgAction.setImageColorPrimary(R.drawable.ic_more_light_blue_24dp,this)
+        imgAction.fillDrawableColor(R.drawable.ic_more_light_blue_24dp)
     }
 
     private fun setupViewModel() {

@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import vn.icheck.android.ichecklibs.WidgetHelper
-import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.icheckscanditv6.databinding.DialogBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.WidgetHelper
+import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 

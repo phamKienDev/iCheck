@@ -1,7 +1,6 @@
 package vn.icheck.android.component.product.npp.adapter
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.text.SpannableString
 import android.text.Spanned
@@ -33,6 +32,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.listdistributor.ListDistributorActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
@@ -93,12 +93,12 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
         var adapter = SocialNetworkAdapter("Grid")
 
         override fun bind(obj: ICPage) {
-            ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp, itemView.context).apply {
-                itemView.tvPhone.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                itemView.tvDangCapNhatSDT.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                itemView.tvAddress.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                itemView.tvMST.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-            }
+
+            itemView.tvPhone.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvDangCapNhatSDT.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvAddress.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvMST.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+
             initListener(obj)
 
             WidgetUtils.loadImageUrlRounded4(itemView.findViewById<AppCompatImageView>(R.id.imgAvatar), obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)

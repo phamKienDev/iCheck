@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.DialogPageInfoBinding
-import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.util.kotlin.GlideImageGetter
 
@@ -38,7 +38,7 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.root.background = ViewHelper.bgWhiteCornersTop16(dialog.context)
+        binding.root.background = ViewHelper.bgWhiteCornersTop16(requireContext())
 
         binding.tvName.text = obj.name
         binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district, obj.city, obj.country, null)
@@ -65,17 +65,7 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
         }
     }
 
-    private fun getColor(colorID: Int): Int {
-        return when (colorID) {
-            R.color.colorPrimary -> {
-                vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog.context)
-            }
-            R.color.colorNormalText -> {
-                vn.icheck.android.ichecklibs.Constant.getNormalTextColor(dialog.context)
-            }
-            else -> {
-                ContextCompat.getColor(dialog.context, colorID)
-            }
-        }
+    fun setData(obj: ICWidgetData) {
+        this.obj = obj
     }
 }

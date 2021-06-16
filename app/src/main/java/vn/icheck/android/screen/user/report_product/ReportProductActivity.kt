@@ -58,11 +58,11 @@ class ReportProductActivity : BaseActivityMVVM() {
     }
 
     private fun setupViewModel() {
-        viewModel.listData.observe(this, Observer {
+        viewModel.listData.observe(this, {
             initView(it)
         })
 
-        viewModel.listReportSuccess.observe(this, Observer {
+        viewModel.listReportSuccess.observe(this, {
             if (!it.isNullOrEmpty()) {
                 val dialogFragment = ProductReportDialog(it)
                 dialogFragment.setOnDoneListener(object : OnItemClickListener {
@@ -75,7 +75,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.statusCode.observe(this, Observer {
+        viewModel.statusCode.observe(this, {
             when (it) {
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
                     DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
@@ -99,7 +99,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.errorData.observe(this, Observer {
+        viewModel.errorData.observe(this, {
             showShortError(it)
         })
     }

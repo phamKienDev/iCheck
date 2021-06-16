@@ -398,7 +398,11 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvMessage.setGone()
             }
             obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
+
             binding.tvTime.text = obj.timeText
+            binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
+
+            binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
 
 
             setupProduct(obj)

@@ -1,11 +1,12 @@
 package vn.icheck.android.ichecklibs
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.text.InputType.*
-import android.os.Build
+import android.text.InputType
 import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet

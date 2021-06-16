@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.edtContent
@@ -25,14 +24,12 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.base.view.IBaseCreateQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
 import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.helper.ContactHelper
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.dialog.PermissionDialog
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -121,7 +118,6 @@ class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
         edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())

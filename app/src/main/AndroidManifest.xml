@@ -293,6 +293,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.list_friend_in_wall.ListFriendOfWallActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.wall.IckUserWallActivity"

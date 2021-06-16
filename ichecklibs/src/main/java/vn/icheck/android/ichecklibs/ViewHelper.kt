@@ -4,23 +4,25 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.*
+import android.graphics.drawable.shapes.OvalShape
 import android.os.Build
 import android.view.Gravity
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.StateListDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import vn.icheck.android.ichecklibs.util.dpToPx
 import kotlin.math.roundToInt
 
-
 object ViewHelper {
+
     fun createLayoutParams(): LinearLayout.LayoutParams {
         return LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
     }
@@ -336,22 +338,6 @@ object ViewHelper {
         return ScaleDrawable(drawable, gravity, 1f, 0f)
     }
 
-
-    /*
-    * SET màu drawable
-    * */
-    fun setImageColor(drawable: Drawable,color: Int): Drawable {
-        DrawableCompat.setTint(drawable, color)
-        return drawable
-    }
-
-    fun setImageColor(icon: Int, context: Context,color: Int): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, color)
-        }
-        return icon
-    }
-
     /*
     * StateListDrawable
     * */
@@ -443,6 +429,78 @@ object ViewHelper {
         }
     }
 
+    fun AppCompatTextView.fillDrawableStartText(idDrawable: Int, color: String?=Constant.primaryColor) {
+        val drawable=ContextCompat.getDrawable(this.context,idDrawable)
+
+        if (drawable!=null && !color.isNullOrBlank()) {
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        this.setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null)
+
+    }
+
+    fun AppCompatTextView.fillDrawableEndText(idDrawable: Int,color: String?=Constant.primaryColor) {
+        val drawable=ContextCompat.getDrawable(this.context,idDrawable)
+
+        if (drawable!=null && !color.isNullOrBlank()) {
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        this.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
+    }
+
+    fun AppCompatEditText.fillDrawableEndText(idDrawable: Int,color: String?=Constant.primaryColor) {
+        val drawable=ContextCompat.getDrawable(this.context,idDrawable)
+
+        if (drawable!=null && !color.isNullOrBlank()) {
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        this.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
+    }
+
+    fun fillDrawableColor(drawable: Drawable?,color: String?=Constant.primaryColor): Drawable? {
+        if(drawable!=null && !color.isNullOrBlank()){
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        return drawable
+    }
+
+    fun fillDrawableColor(icon: Int, context: Context,color: String?=Constant.primaryColor): Drawable? {
+        val drawable=ContextCompat.getDrawable(context,icon)
+        if(drawable!=null && !color.isNullOrBlank()){
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        return drawable
+    }
+
+    fun ImageView.fillDrawableColor(icon: Int, color: String?=Constant.primaryColor) {
+        val drawable=ContextCompat.getDrawable(context,icon)
+        if (!color.isNullOrBlank()) {
+            drawable?.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        this.setImageDrawable(drawable)
+    }
+
+    fun AppCompatImageButton.fillDrawableColor(icon: Int,color: String?=Constant.primaryColor) {
+        val drawable=ContextCompat.getDrawable(context,icon)
+        if(drawable!=null && !color.isNullOrBlank()){
+            drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
+        this.setBackgroundColor(Color.TRANSPARENT)
+        this.setImageDrawable(drawable)
+    }
+
+    fun ImageView.fillDrawableColor(color:String?=Constant.primaryColor) {
+        if (!color.isNullOrEmpty()) {
+            this.setColorFilter(Color.parseColor(color))
+        }
+    }
+
+    fun AppCompatImageButton.fillDrawableColor(color:String?=Constant.primaryColor) {
+        if (!color.isNullOrEmpty()) {
+            this.setColorFilter(Color.parseColor(color))
+        }
+    }
+
     /*
     * Primary Color
     * */
@@ -496,34 +554,6 @@ object ViewHelper {
 
     fun textColorPrimaryUnpressedSecondaryPressed(context: Context): ColorStateList {
         return createColorPressStateList(Constant.getPrimaryColor(context), Constant.getSecondaryColor(context))
-    }
-
-    fun setImageColorPrimary(drawable: Drawable, context: Context): Drawable {
-        DrawableCompat.setTint(drawable, Constant.getPrimaryColor(context))
-        return drawable
-    }
-
-    fun setImageColorPrimary(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
-        }
-        return icon
-    }
-
-    fun ImageView.setImageColorPrimary(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
-        }
-        this.setImageResource(icon)
-        return icon
-    }
-
-    fun AppCompatImageButton.setImageColorPrimary(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getPrimaryColor(context))
-        }
-        this.setImageResource(icon)
-        return icon
     }
 
     fun setCheckedPrimary(uncheck: Drawable,checked:Drawable, context: Context): Drawable {
@@ -896,19 +926,6 @@ object ViewHelper {
         return layerDrawble
     }
 
-
-    fun setImageColorLineColor(drawable: Drawable, context: Context): Drawable {
-        DrawableCompat.setTint(drawable, Constant.getLineColor(context))
-        return drawable
-    }
-
-    fun setImageColorLineColor(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getLineColor(context))
-        }
-        return icon
-    }
-
     fun bgProductItemBottemLeft(context: Context) = bgProductItem(context, left = 0, top = SizeHelper.size1, right = SizeHelper.size0_5, bottom = 0)
     fun bgProductItemBottemRight(context: Context) = bgProductItem(context, left = SizeHelper.size0_5, top = SizeHelper.size1, right = 0, bottom = 0)
     fun bgProductItemTopLeft(context: Context) = bgProductItem(context, left = 0, top = 0, right = SizeHelper.size0_5, bottom = 0)
@@ -922,6 +939,7 @@ object ViewHelper {
     fun bgAccentRedCorners4(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size4.toFloat())
     fun bgAccentRedCorners6(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size6.toFloat())
     fun bgAccentRedCorners24(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size24.toFloat())
+    fun bgAccentRedCornersTop16(context: Context) = createShapeDrawableRadiusTop(Constant.getAccentRedColor(context), SizeHelper.size16.toFloat())
 
 
     fun bgTransparentStrokeAccentRed0_5Corners4(context: Context) = createShapeDrawable(
@@ -1047,50 +1065,11 @@ object ViewHelper {
         Constant.getNormalTextColor(context)
     )
 
-    fun setImageColorNormalText(drawable: Drawable, context: Context): Drawable {
-        DrawableCompat.setTint(drawable, Constant.getNormalTextColor(context))
-        return drawable
-    }
-
-    fun setImageColorNormalText(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getNormalTextColor(context))
-        }
-        return icon
-    }
-
-    /*
-    * Second Text
-     */
-
-    fun setImageColorSecondText(drawable: Drawable, context: Context): Drawable {
-        DrawableCompat.setTint(drawable, Constant.getSecondTextColor(context))
-        return drawable
-    }
-
-    fun setImageColorSecondText(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getSecondTextColor(context))
-        }
-        return icon
-    }
 
 
     /*
     * Disable Text
     */
-
-    fun setImageColorDisableText(drawable: Drawable, context: Context): Drawable {
-        DrawableCompat.setTint(drawable, Constant.getDisableTextColor(context))
-        return drawable
-    }
-
-    fun setImageColorDisableText(icon: Int, context: Context): Int {
-        ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getDisableTextColor(context))
-        }
-        return icon
-    }
 
     fun textColorDisableTextUncheckLightBlueChecked(context: Context): ColorStateList {
         return createColorStateList(

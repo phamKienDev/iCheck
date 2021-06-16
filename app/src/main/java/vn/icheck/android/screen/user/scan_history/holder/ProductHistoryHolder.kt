@@ -15,6 +15,7 @@ import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -95,7 +96,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 }
             }
 
-            binding.tvBarcodeProduct.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setImageColorDisableText(R.drawable.ic_barcode_gray_18px,itemView.context),0,0,0)
+            binding.tvBarcodeProduct.fillDrawableStartText(R.drawable.ic_barcode_gray_18px,vn.icheck.android.ichecklibs.Constant.disableTextColor)
             if (!obj.product?.barcode.isNullOrEmpty()) {
                 binding.tvBarcodeProduct.beVisible()
                 binding.tvBarcodeProduct.text = obj.product?.barcode?.trim()

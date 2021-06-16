@@ -26,6 +26,8 @@ class BottomSheetWebView(context: Context) : FrameLayout(context) {
         inflateLayout(context)
         setupBottomSheetBehaviour()
         setupWebView()
+
+        linearLayout.background=ViewHelper.bgAccentRedCornersTop16(context)
     }
 
     private fun inflateLayout(context: Context) {

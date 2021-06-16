@@ -19,7 +19,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
-import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.Disposable
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R

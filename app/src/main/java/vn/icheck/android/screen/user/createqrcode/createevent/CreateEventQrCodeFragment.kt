@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_event_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -17,9 +16,8 @@ import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.createevent.presenter.CreateEventQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createevent.view.ICreateEventQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity

@@ -12,6 +12,7 @@ import vn.icheck.android.component.BottomModel
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SettingManager
 
 class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : BaseHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product_bottom_info, parent, false)) {
@@ -24,11 +25,10 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
         itemView.rcvContacSetting.adapter = adapter
         adapter.setListData(bottomModel.list)
 
-        ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp,itemView.context).apply {
-            itemView.tvPhone.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
-            itemView.tvEmail.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
-            itemView.tvMst.setCompoundDrawablesWithIntrinsicBounds(this,0,0,0)
-        }
+
+            itemView.tvPhone.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvEmail.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvEmail.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
 
         itemView.tvAddress.text = productContact.find { it.key == "product-contact.address" }?.value ?: itemView.context.getString(R.string.dia_chi_icheck)
         itemView.tvMst.text = itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.tax-code" }?.value ?: "0106875900")

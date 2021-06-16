@@ -23,7 +23,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager

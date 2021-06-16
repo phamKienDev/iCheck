@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_message_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -19,15 +18,13 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.createmessage.presenter.CreateMessageQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createmessage.view.ICreateMessageQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
 import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.helper.ContactHelper
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.dialog.PermissionDialog
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -72,7 +69,7 @@ class CreateMessageQrCodeFragment : BaseFragmentMVVM(), ICreateMessageQrCodeView
 
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
-        edtPhone.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_phonebook_24dp,requireContext()),0)
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.fillDrawableColor(R.drawable.ic_phonebook_24dp,requireContext()),null)
     }
 
     private fun initListener() {

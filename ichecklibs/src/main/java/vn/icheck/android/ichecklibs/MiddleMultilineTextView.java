@@ -1,16 +1,8 @@
 package vn.icheck.android.ichecklibs;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
 import android.util.AttributeSet;
-import android.widget.TextView;
-
-import androidx.core.content.ContextCompat;
 
 public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompatTextView {
 

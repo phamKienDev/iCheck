@@ -5,11 +5,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_answer_survey_success.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.screen.user.surveydetail.success.presenter.SurveyDetailSuccessPresenter
-import vn.icheck.android.screen.user.surveydetail.success.view.ISurveyDetailSuccessView
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.ichecklibs.ViewHelper
 
 /**
  * Created by VuLCL on 10/22/2019.

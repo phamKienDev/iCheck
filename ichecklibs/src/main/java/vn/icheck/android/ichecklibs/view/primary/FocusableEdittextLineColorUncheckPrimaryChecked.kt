@@ -6,27 +6,25 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.text.InputType
+import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.marginBottom
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.toPx
-import androidx.core.view.marginBottom
-import vn.icheck.android.R
-import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
 
 class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
-import vn.icheck.android.util.ick.toPx
 
-class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
     var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint
@@ -242,9 +240,9 @@ class FocusableEditText : AppCompatEditText {
                 drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Constant.getPrimaryColor(context))
+                    mLinePaint.color = Constant.getPrimaryColor(context)
                 } else {
-                    mLinePaint.setColor(Constant.getLineColor(context))
+                    mLinePaint.color = Constant.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
 

@@ -16,11 +16,8 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
-import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.createwifI.presenter.CreateWifiQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createwifI.view.ICreateWifiQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity

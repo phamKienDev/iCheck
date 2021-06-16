@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.product_detail.product.wrongcontribution
+package vn.icheck.android.screen.dialog
 
 import android.graphics.Color
 import android.graphics.drawable.StateListDrawable
@@ -26,10 +26,12 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.util.KeyboardUtils
 
-class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val title: Int? = null, val inputHint: Int? = null) : BaseBottomSheetDialogFragment() {
+class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = null, val inputHint: Int? = null) : BaseBottomSheetDialogFragment() {
 
     private lateinit var listener: DialogClickListener
 
@@ -55,7 +57,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
             layoutHeader.addView(AppCompatTextView(requireContext()).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, SizeHelper.size12, 0, 0, 0)
                 it.setBackgroundResource(ViewHelper.outValue.resourceId)
-                it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_cancel_light_blue_24dp, 0, 0, 0)
+                it.fillDrawableStartText(R.drawable.ic_cancel_light_blue_24dp)
 
                 it.setOnClickListener {
                     clickBtnDismiss()
@@ -66,7 +68,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
                     ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size36, 0),
                     null,
                     ViewHelper.createTypeface(requireContext(), R.font.barlow_semi_bold),
-                    vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()),
+                    Constant.getPrimaryColor(requireContext()),
                     18f,
                     1).also {
                 it.gravity = Gravity.CENTER
@@ -195,7 +197,7 @@ class ReportWrongContributionDialog(val listData: MutableList<ICReportForm>, val
         get() {
             return StateListDrawable().also {
                 it.addState(intArrayOf(-android.R.attr.state_checked), ContextCompat.getDrawable(requireContext(), R.drawable.ic_square_unchecked_light_blue_24dp))
-                it.addState(intArrayOf(android.R.attr.state_checked), ContextCompat.getDrawable(requireContext(), R.drawable.ic_square_checked_light_blue_24dp))
+                it.addState(intArrayOf(android.R.attr.state_checked), fillDrawableColor(R.drawable.ic_checkbox_on_24dp,requireContext()))
             }
         }
 

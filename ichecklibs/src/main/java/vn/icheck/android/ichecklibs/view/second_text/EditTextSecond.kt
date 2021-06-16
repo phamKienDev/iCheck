@@ -19,7 +19,7 @@ open class EditTextSecond : AppCompatEditText {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(Constant.getSecondTextColor(context))
         includeFontPadding=false
     }
 }

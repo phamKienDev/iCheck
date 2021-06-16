@@ -39,7 +39,7 @@ import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -67,7 +67,7 @@ import vn.icheck.android.screen.user.list_friend_in_wall.ListFriendOfWallActivit
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.listnotification.friendrequest.ListFriendRequestActivity
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.EDIT_MY_PUBLIC_INFO
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.screen.user.wall.OPEN_INFOR
@@ -319,12 +319,12 @@ class IckUserWallFragment : Fragment(), IPostListener {
                     if (!showToolbar) {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
                         binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
-                        binding.toolbar.btn_back.setImageColorPrimary(R.drawable.ic_back_blue_24px_new,requireContext())
+                        binding.toolbar.btn_back.fillDrawableColor(R.drawable.ic_back_blue_24px_new)
 
                         if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
-                            binding.notify.setImageColorPrimary(R.drawable.ic_home_blue_v2_24px,requireContext())
+                            binding.notify.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
                         } else {
-                            binding.notify.setImageColorPrimary(R.drawable.ic_homenoti_empty_blue_24px,requireContext())
+                            binding.notify.fillDrawableColor(R.drawable.ic_homenoti_empty_blue_24px)
                         }
                         binding.titleDiv.beVisible()
                         if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {
@@ -420,7 +420,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 }
             }
 
-            ReportWrongContributionSuccessDialog(requireContext()).apply {
+            ReportSuccessDialog(requireContext()).apply {
                 show(listReason)
             }
         })

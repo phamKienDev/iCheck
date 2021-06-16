@@ -9,7 +9,6 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import de.hdodenhof.circleimageview.CircleImageView
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -31,8 +30,8 @@ import vn.icheck.android.network.models.feed.ICAvatarOfFriend
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -54,7 +53,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
     lateinit var layoutListAvatar: LinearLayout
 
     private val productInteractor = ProductInteractor()
-    private var dialog: ReportWrongContributionDialog? = null
+    private var dialog: ReportDialog? = null
 
     private var clickVote: Boolean? = null
 
@@ -281,9 +280,9 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                     tvDownVote.isEnabled = true
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         dialog?.dismiss()
-                        dialog = ReportWrongContributionDialog(obj.data?.rows!!)
+                        dialog = ReportDialog(obj.data?.rows!!)
 
-                        dialog?.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                        dialog?.setListener(object : ReportDialog.DialogClickListener {
                             override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                                 sendReportContribute(false, model, listReason, message)
                             }
@@ -316,7 +315,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
 
                     if (!obj.data?.reports.isNullOrEmpty()) {
                         if (isVote != null && !isVote) {
-                            val dialogFragment = ReportWrongContributionSuccessDialog(itemView.context)
+                            val dialogFragment = ReportSuccessDialog(itemView.context)
 
                             if (!message.isNullOrEmpty()) {
                                 for (i in obj.data!!.reports.size - 1 downTo 0) {

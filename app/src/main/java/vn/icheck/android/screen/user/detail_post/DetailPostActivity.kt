@@ -12,6 +12,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -42,6 +43,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.base.SessionManager
@@ -152,6 +154,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun initView() {
         tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        edtEnter.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -421,7 +424,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
         if (show) {
-            imgCamera.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_camera_on_24px,this))
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_on_24px)
             view2.beVisible()
             imgClearImage.beVisible()
             cardViewImage.beVisible()
@@ -456,7 +459,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun showBtnSend(enable: Boolean) {
         if (enable) {
             imgSend.isEnabled = true
-            imgSend.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_chat_send_24px,this))
+            imgSend.fillDrawableColor(R.drawable.ic_chat_send_24px)
             containerEnter.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {
             imgSend.isEnabled = false

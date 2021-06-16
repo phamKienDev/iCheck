@@ -11,6 +11,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.view.normal_text.TextNormalMiddleMultiline
 import vn.icheck.android.network.models.ICCountry
 import vn.icheck.android.network.models.ICDistrict
 import vn.icheck.android.network.models.ICProvince
@@ -359,6 +360,17 @@ object TextHelper {
     }
 
     fun AppCompatTextView.setDrawbleNextEndText(text: String?, icon: Int) {
+        val drawable = ContextCompat.getDrawable(this.context, icon)
+        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+
+        val spannableString = SpannableString("$text  ") // cộng thêm khoảng trắng
+        val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
+
+        spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        this.text = spannableString
+    }
+
+    fun TextNormalMiddleMultiline.setDrawbleNextEndText(text: String?, icon: Int) {
         val drawable = ContextCompat.getDrawable(this.context, icon)
         drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 

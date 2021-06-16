@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.search_home.user.SearchUserAdapter
 import vn.icheck.android.util.ick.beGone
@@ -18,8 +19,7 @@ import vn.icheck.android.util.ick.beVisible
 
 class UserSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_users_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICSearchUser>) {
-        itemView.tv_xem_them.setCompoundDrawablesWithIntrinsicBounds(0,0,
-                    ViewHelper.setImageColor(R.drawable.ic_arrow_right_light_blue_24dp,itemView.context, ContextCompat.getColor(itemView.context,R.color.colorPrimary)),0)
+        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()

@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.product_detail.product.wrongcontribution
+package vn.icheck.android.screen.dialog
 
 import android.content.Context
 import android.graphics.Color
@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -27,7 +26,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
 
-class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: Boolean = true, val productId: Long = -1, val isContributed:Boolean = false) : BaseBottomSheetDialog(context, isCancelable) {
+class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, val productId: Long = -1, val isContributed:Boolean = false) : BaseBottomSheetDialog(context, isCancelable) {
 
     fun show(listReason: MutableList<ICReportForm>, type: String = "", title: String? = null, barcode: String? = null) {
         val contentView = LinearLayout(context).also { layoutParent ->

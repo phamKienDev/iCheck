@@ -42,7 +42,7 @@ import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -607,7 +607,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageColorPrimary(R.drawable.ic_camera_off_vector_24dp,this)
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_off_vector_24dp)
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }
@@ -615,7 +615,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun checkSendStatus() {
         if (edtContent.text.toString().trim().isNotEmpty() || imgCommentSend.tag != null) {
-            imgSend.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_chat_send_24px,this))
+            imgSend.fillDrawableColor(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
             layoutInputContent.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {

@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogCategoryContributeBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductViewModel
 import vn.icheck.android.screen.user.contribute_product.adapter.IckCategoryAdapter
@@ -61,6 +62,7 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.edtSearch.background= ViewHelper.bgGrayCorners4(requireContext())
+        binding.edtSearch.setTextColor(Constant.getNormalTextColor(requireContext()))
 
         ickContributeProductViewModel.listCategory.clear()
         ickContributeProductViewModel.listCategory.add(null)

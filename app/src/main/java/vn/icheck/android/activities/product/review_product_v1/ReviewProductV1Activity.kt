@@ -32,6 +32,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICNetworkClient
@@ -100,7 +101,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
         presenter.getBarcodeProduct(intent)
         WidgetUtils.setClickListener(this, img_choose_image, tv_answer_actor, img_send, tv_answer_actor, imgBack, container_comment)
 
-        linearLayoutActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        linearLayoutActor.background= ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         tv_answer_actor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         view28.background=ViewHelper.bgWhiteCornersTop16(this)
     }

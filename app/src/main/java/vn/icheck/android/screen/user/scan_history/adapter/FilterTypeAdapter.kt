@@ -4,11 +4,13 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_filter_type.view.*
 import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 
@@ -56,7 +58,7 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
         fun bindData(item: ICTypeHistory) {
             itemView.tvName.text = item.name
 
-            itemView.img_tick.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_tick_filter_history_blue_24,itemView.context))
+            itemView.img_tick.fillDrawableColor(R.drawable.ic_tick_filter_history_blue_24)
 
             if (item.select) {
                 itemView.layoutContent.background = ViewHelper.bgWhiteStrokePrimary1Corners4(itemView.context)

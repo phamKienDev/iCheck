@@ -59,6 +59,7 @@ import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.NotificationDialogListener
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.beGone
@@ -197,7 +198,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         })
         binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()
-        binding.layoutToolbar.imgAction.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_setting_blue_24dp_chat, this))
+        binding.layoutToolbar.imgAction.fillDrawableColor(R.drawable.ic_setting_blue_24dp_chat)
     }
 
     private fun setupView() {
@@ -211,6 +212,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
 
         binding.edtMessage.setTextColor(Constant.getNormalTextColor(this))
+        binding.tvMessage.setHintTextColor(Constant.getDisableTextColor(this))
     }
 
     @SuppressLint("ClickableViewAccessibility")

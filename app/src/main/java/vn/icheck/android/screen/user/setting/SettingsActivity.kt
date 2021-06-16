@@ -12,6 +12,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 
@@ -38,7 +39,7 @@ class SettingsActivity : BaseActivityMVVM() {
 
     private fun setupView() {
         btnReset.background = ViewHelper.bgWhiteStrokePrimary1Corners4(this)
-        tvClearCache.setCompoundDrawablesWithIntrinsicBounds(0,0,ViewHelper.setImageColorPrimary(R.drawable.ic_delete_24px,this),0)
+        tvClearCache.fillDrawableStartText(R.drawable.ic_delete_24px)
     }
 
     private fun initView() {

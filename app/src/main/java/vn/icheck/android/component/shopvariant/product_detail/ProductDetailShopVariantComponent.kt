@@ -64,7 +64,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
     @SuppressLint("SetTextI18n")
     fun bind(productRow: ICShopVariantV2) {
-        vg_shop_top.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
+        vg_shop_top.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
         tv_shop_name.text = productRow.name
 
         if (productRow.distance != null) {
@@ -188,7 +188,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
                         override fun onError(error: ICBaseResponse?) {
                             val message = error?.message
-                                    ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                             ToastUtils.showShortError(context, message)
                         }
                     })
@@ -196,6 +196,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
                     ICheckApplication.currentActivity()?.let { activity ->
                         ActivityUtils.startActivity<IckLoginActivity>(activity)
                     }
+                }
             }
         }
     }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.webkit.WebSettings
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_information_product.*
 import kotlinx.android.synthetic.main.toolbar_blue_v2.*
@@ -13,7 +12,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -33,7 +32,7 @@ class InformationProductActivity : BaseActivityMVVM() {
     }
 
     fun initView() {
-        imgBack.setImageColorPrimary(R.drawable.ic_cancel_blue_24px,this)
+        imgBack.fillDrawableColor()
 
         imgBack.setOnClickListener {
             onBackPressed()

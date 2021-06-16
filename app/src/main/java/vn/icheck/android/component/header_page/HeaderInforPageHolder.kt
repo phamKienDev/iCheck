@@ -13,7 +13,6 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
@@ -23,6 +22,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
@@ -124,7 +124,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
         itemView.imgAvaPage.setOnClickListener {
             if (!data.avatar.isNullOrEmpty()) {
                 val list = mutableListOf<ICMedia>()
-                list.add(ICMedia(data.avatar, if (data.avatar!!.contains(".mp4")) {
+                list.add(ICMedia(data.avatar, type= if (data.avatar!!.contains(".mp4")) {
                     Constant.VIDEO
                 } else {
                     Constant.IMAGE
@@ -149,6 +149,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
 
         itemView.btnPhu.apply {
             background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            fillDrawableStartText(R.drawable.ic_phone_blue_16dp)
             setOnClickListener {
                 val phone = data.pageDetail?.phone ?: ""
                 if (phone.isNotEmpty()) {
@@ -170,6 +171,8 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
 
         itemView.btnMore.apply {
             background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            fillDrawableStartText(R.drawable.ic_more_blue_16)
+
             setOnClickListener {
                 object : MoreActionPageBottomSheet(itemView.context, data) {
                     override fun onClickUnfollow() {

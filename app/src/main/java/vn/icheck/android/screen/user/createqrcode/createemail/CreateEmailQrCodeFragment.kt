@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.edtContent
@@ -20,10 +19,8 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.screen.user.createqrcode.base.fragment.BaseCreateQrCodeFragment
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.createemail.presenter.CreateEmailQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createemail.view.ICreateEmailQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity

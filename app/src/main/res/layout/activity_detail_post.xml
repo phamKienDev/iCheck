@@ -223,7 +223,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
-                android:textColor="@color/darkGray1"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"

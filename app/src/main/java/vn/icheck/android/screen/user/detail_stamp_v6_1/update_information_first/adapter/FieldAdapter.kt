@@ -13,7 +13,6 @@ import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.*
-import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper

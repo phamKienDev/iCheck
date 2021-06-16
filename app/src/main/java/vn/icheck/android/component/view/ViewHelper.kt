@@ -53,7 +53,8 @@ import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormal
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -727,7 +728,9 @@ object ViewHelper {
 
         layoutParent.addView(View(context).also {
             it.layoutParams = createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
+            if (Constant.primaryColor.isBlank()) {
+                it.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
+            }
         })
 
         layoutParent.addView(LinearLayout(context).also {
@@ -736,7 +739,9 @@ object ViewHelper {
 
             it.addView(View(context).also { view ->
                 view.layoutParams = createLayoutParams(SizeHelper.size12, LinearLayout.LayoutParams.MATCH_PARENT)
-                view.setBackgroundColor(Color.WHITE)
+                if (Constant.primaryColor.isBlank()) {
+                    view.setBackgroundColor(Color.WHITE)
+                }
             })
 
             it.addView(RecyclerView(context).also { recyclerView ->
@@ -2502,7 +2507,7 @@ object ViewHelper {
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                imgCamera.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,context)
+                fillDrawableColor(R.drawable.ic_arrow_down_blue_24dp,context)
             })
             it.addView(AppCompatTextView(context).also {
                 it.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
@@ -2867,7 +2872,7 @@ object ViewHelper {
                 it.text = parent.context.getString(R.string.xem_chi_tiet)
                 it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
                 it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f)
-                it.setCompoundDrawablesWithIntrinsicBounds(0, 0, vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_down_blue_24dp,parent.context ), 0)
+                it.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
                 it.includeFontPadding = false
             })
         }

@@ -1,10 +1,7 @@
 package vn.icheck.android.screen.user.listnotification
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +17,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.models.ICNotification
@@ -56,7 +53,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
             onBackPressed()
         }
 
-        imgAction.setImageColorPrimary(R.drawable.ic_read_all_light_blue_24dp,this)
+        imgAction.fillDrawableColor(R.drawable.ic_read_all_light_blue_24dp)
         imgAction.beVisible()
 
         imgAction.setOnClickListener {

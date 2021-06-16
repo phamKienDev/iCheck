@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
 import kotlinx.android.synthetic.main.item_contribute.view.imgAvatar
 import kotlinx.android.synthetic.main.item_contribute.view.tvName
-import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -34,8 +33,8 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -166,7 +165,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
     inner class ViewHolder(parent: ViewGroup, val fragmentManager: FragmentActivity) : BaseViewHolder<ICContribute>(LayoutInflater.from(parent.context).inflate(R.layout.item_contribute, parent, false)) {
         val interactor = ProductInteractor()
-        private var dialog: ReportWrongContributionDialog? = null
+        private var dialog: ReportDialog? = null
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICContribute) {
@@ -469,9 +468,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                     itemView.tvNo.isClickable = true
 
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        dialog = ReportWrongContributionDialog(obj.data?.rows!!)
+                        dialog = ReportDialog(obj.data?.rows!!)
 
-                        dialog?.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                        dialog?.setListener(object : ReportDialog.DialogClickListener {
                             override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                                 sendReportContribute(listReason, message, data, listMessage, view)
                             }
@@ -519,7 +518,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                             }
                         }
 
-                        val dialogFragment = ReportWrongContributionSuccessDialog(itemView.context, true, data.id, isContributed = didContribute)
+                        val dialogFragment = ReportSuccessDialog(itemView.context, true, data.id, isContributed = didContribute)
 
                         dialogFragment.show(listData, "contributor", null, data.data?.barcode)
 

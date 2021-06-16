@@ -36,7 +36,7 @@ class RelatedProductHolder(parent: ViewGroup, val viewPool: RecyclerView.Recycle
                 (getChildAt(1) as AppCompatTextView).run {
                     if (obj.listProduct.size > 4) {
                         beVisible()
-                        setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                        setTextColor(Constant.getSecondaryColor(context))
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         background = ContextCompat.getDrawable(itemView.context, R.color.transparent)
                         setOnClickListener {

@@ -2,11 +2,13 @@ package vn.icheck.android.screen.user.contribute_product.holder
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.TooltipCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -17,6 +19,8 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemSelectBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.category.OptionsItem
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.*
@@ -61,6 +65,10 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                 for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                     itemSelectBinding.groupSelect.addView(RadioButton(itemSelectBinding.root.context).apply {
                         text = item?.value
+                        setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(itemView.context),Constant.getNormalTextColor(itemView.context)))
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            buttonTintList=ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4),Constant.getPrimaryColor(itemView.context))
+                        }
                         if (item?.id == categoryAttributesModel.values) {
                             isChecked = true
                         }

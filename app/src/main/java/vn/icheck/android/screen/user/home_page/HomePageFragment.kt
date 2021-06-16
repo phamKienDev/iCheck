@@ -46,6 +46,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -80,7 +81,6 @@ import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.io.File
 
 /**
  * Created by VuLCL on 9/19/2019.
@@ -817,7 +817,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         group_notification.beVisible()
                         tv_show_all_reminders.text = "Xem tất cả lời nhắc (${viewModel.getRemindersCount()})"
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
-                        tv_action.setCompoundDrawablesWithIntrinsicBounds(0,0,vn.icheck.android.ichecklibs.ViewHelper.setImageColorPrimary(R.drawable.ic_arrow_right_light_blue_24dp,requireContext()),0)
+                        tv_action.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {
                             tv_action.text = it?.data?.rows?.firstOrNull()?.label
                         } else {

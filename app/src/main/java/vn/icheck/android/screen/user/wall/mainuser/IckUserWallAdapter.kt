@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -29,6 +28,7 @@ import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -165,7 +165,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         isFriendInvitationMeUser = null
 
         binding.tvRequestSent.background=ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
-        binding.btnSetting.setImageResource(ViewHelper.setImageColorPrimary(R.drawable.ic_btn_setting_blue,itemView.context))
+        binding.btnSetting.fillDrawableColor(R.drawable.ic_btn_setting_blue)
 
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)

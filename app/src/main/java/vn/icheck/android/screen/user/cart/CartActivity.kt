@@ -40,10 +40,8 @@ class CartActivity : BaseActivityMVVM(), ICartView {
         onInitView()
     }
 
-    override val getPresenter: CartPresenter
-        get() = CartPresenter(this)
 
-    override fun onInitView() {
+    fun onInitView() {
         setupToolbar()
         setupRecyclerView()
         setupSwipeLayout()

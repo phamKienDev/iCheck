@@ -15,6 +15,7 @@ import vn.icheck.android.component.product.enterprise.SocialNetworkAdapter
 import vn.icheck.android.databinding.ItemPageInfoBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICPage
@@ -40,12 +41,11 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
 
         fun bind(obj: ICPage) {
 
-            ViewHelper.setImageColorPrimary(R.drawable.ic_list_blue_12dp, itemView.context).apply {
-                binding.tvPhone.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                binding.tvDangCapNhatSDT.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                binding.tvAddress.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-                binding.tvMST.setCompoundDrawablesWithIntrinsicBounds(this, 0, 0, 0)
-            }
+            binding.tvPhone.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            binding.tvDangCapNhatSDT.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            binding.tvAddress.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            binding.tvMST.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+
 
             if (listData.size < 2) {
                 binding.container.layoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT)
