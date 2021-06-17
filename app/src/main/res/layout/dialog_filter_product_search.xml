@@ -142,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="@string/tat_ca"
             app:layout_constraintEnd_toStartOf="@id/img_clear_review"

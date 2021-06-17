@@ -66,6 +66,7 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
         super.onViewCreated(view, savedInstanceState)
         cityAdapter = CityAdapter(onCityClick)
         binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+        binding.edtSearch.background=ViewHelper.bgGrayCorners4(requireContext())
         binding.rcvNation.layoutManager = WrapContentLinearLayoutManager(requireContext())
         binding.rcvNation.adapter = cityAdapter
         when (type) {

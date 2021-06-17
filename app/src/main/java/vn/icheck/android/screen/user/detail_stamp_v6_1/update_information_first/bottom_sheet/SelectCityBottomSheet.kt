@@ -57,7 +57,7 @@ class SelectCityBottomSheet : BottomSheetDialogFragment(), ISelectCityView {
         presenter.setupAddressHelper()
         presenter.getListProvince()
 
-        edtSearch.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(requireContext())
+        edtSearch.background=ViewHelper.bgGrayCorners4(requireContext())
 
         initRecyclerView()
         listener()
