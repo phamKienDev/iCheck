@@ -205,7 +205,7 @@ class EditReviewViewModel : ViewModel() {
 
         val listImage = mutableListOf<ICMedia>()
         for (item in listImageString) {
-            listImage.add(ICMedia(item, if (item.contains(".mp4")) {
+            listImage.add(ICMedia(item, type = if (item.contains(".mp4")) {
                 Constant.VIDEO
             } else {
                 Constant.IMAGE
