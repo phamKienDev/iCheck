@@ -100,7 +100,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             }
 
             tv_all_review.text = rates
-            tv_all_review.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+            tv_all_review.setTextColor(Constant.getPrimaryColor(requireContext()))
             img_clear_review.visibility = View.VISIBLE
         }
     }
@@ -113,7 +113,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             img_clear_price.visibility = View.GONE
         } else {
             tv_price.setText(price)
-            tv_price.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+            tv_price.setTextColor(Constant.getPrimaryColor(requireContext()))
             img_clear_price.visibility = View.VISIBLE
         }
     }
