@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.adapter
 
+import android.graphics.Color
 import android.os.Handler
 import android.text.Html
 import android.view.LayoutInflater
@@ -382,7 +383,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setData(obj: ICObjectListMoreProductVerified) {
-            itemView.background = ContextCompat.getDrawable(itemView.context, Constant.getVerticalProductBackground(obj.item_type))
+            itemView.background = Constant.getVerticalProductBackground(obj.item_type,itemView.context)
             obj.image?.let {
                 val image = if (it.isNotEmpty()) {
                     if (it.startsWith("http")) {
@@ -414,7 +415,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_reason_not_buy_product.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class BottomSheetWebView(context: Context) : FrameLayout(context) {
 
@@ -25,6 +26,8 @@ class BottomSheetWebView(context: Context) : FrameLayout(context) {
         inflateLayout(context)
         setupBottomSheetBehaviour()
         setupWebView()
+
+        linearLayout.background=ViewHelper.bgAccentRedCornersTop16(context)
     }
 
     private fun inflateLayout(context: Context) {

@@ -38,6 +38,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.ICProductLink
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
@@ -110,9 +111,26 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun onInitView() {
+        setupView()
         initBanner()
         initUpdateLocation()
         listener()
+
+    }
+
+    private fun setupView() {
+        constraintLayout.background = ViewHelper.bgWhiteCornersBottom10(this)
+        textFab.background = ViewHelper.bgSecondaryCorners45(this)
+        tvMessageGuarantee.background = ViewHelper.bgOutlineSecondary1Corners8(this)
+        linearLayout.background = ViewHelper.bgAccentGreenCornersLeft45(this)
+
+        ViewHelper.bgSecondaryCornersTop10(this).apply {
+            constraintLayout1.background = this
+            constraintLayout2.background = this
+            layoutMoreVendor.background = this
+            layoutMoreDistributor.background = this
+        }
+
     }
 
     private fun initGps() {

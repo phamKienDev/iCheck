@@ -10,5 +10,4 @@
     android:drawablePadding="@dimen/size_10"
     android:gravity="center_vertical"
     android:textAlignment="gravity"
-    android:textColor="@drawable/state_text_color_check_field_guarantee"
     tools:text="checkbox" />

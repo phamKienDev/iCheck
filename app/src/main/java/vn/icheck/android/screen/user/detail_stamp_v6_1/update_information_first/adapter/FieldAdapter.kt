@@ -14,6 +14,8 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
@@ -138,6 +140,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvTitle.text = obj.name
             }
             binding.edtInput.apply {
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(Constant.getSecondTextColor(itemView.context))
                 hint = "Nhập " + obj.name
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
@@ -171,6 +175,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.tvTitleTextArea.text = obj.name
             }
             binding.edtTextArea.apply {
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(Constant.getSecondTextColor(itemView.context))
                 hint = "Nhập " + obj.name
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
@@ -201,6 +207,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinner.adapter = adapter
+                binding.spinner.background = ViewHelper.bgWhiteStrokeLineColor1Corners40(itemView.context)
 
                 val selectedPosition = if (!obj.string_values.isNullOrEmpty()) {
                     try {
@@ -288,6 +295,8 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             binding.edtInputDate.apply {
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(Constant.getSecondTextColor(itemView.context))
                 text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
 
                 setOnClickListener {

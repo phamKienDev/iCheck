@@ -10,6 +10,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICQuestions
 import vn.icheck.android.screen.user.surveydetail.answer.adapter.DetailSurveyQuestionAdapter
 import vn.icheck.android.screen.user.surveydetail.answer.presenter.SurveyDetailPresenter
@@ -33,6 +34,7 @@ class SurveyDetailActivity : BaseActivityMVVM(), ISurveyDetailView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         presenter.getData(intent)
         initListener()
     }
@@ -46,6 +48,11 @@ class SurveyDetailActivity : BaseActivityMVVM(), ISurveyDetailView {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnSend.background = ViewHelper.btnPrimaryCorners4(this)
+        btnSkip.background= ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
     }
 
     /**

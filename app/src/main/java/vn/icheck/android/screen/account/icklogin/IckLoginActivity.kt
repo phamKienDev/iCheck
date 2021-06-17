@@ -29,6 +29,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.*
@@ -91,6 +92,8 @@ class IckLoginActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         binding = ActivityIckLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.viewBackground.background=ViewHelper.bgWhiteCornersTop20(this)
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)

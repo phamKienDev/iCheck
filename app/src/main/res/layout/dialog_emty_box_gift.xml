@@ -8,11 +8,10 @@
     android:layout_marginStart="@dimen/size_18"
     android:layout_marginEnd="@dimen/size_18">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10
         android:id="@+id/layoutTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corner_white_10"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,29 +25,25 @@
             android:layout_marginTop="@dimen/size_19"
             tools:src="@drawable/ic_emty_box_shake" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_30"
-            android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Bạn chưa có lượt mở quà nào!" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_29"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_29"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <LinearLayout
@@ -58,7 +53,6 @@
             android:layout_marginLeft="@dimen/size_20"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginRight="@dimen/size_20"
-            android:background="@drawable/bg_border_gray_dotted_10_radius_10"
             android:orientation="vertical"
             android:paddingBottom="@dimen/size_12"/>
 
@@ -80,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
@@ -96,19 +89,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
-                android:layout_marginLeft="@dimen/size_8"
                 android:layout_weight="4"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
                 android:text="Danh sách quà"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadius10>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnClose"

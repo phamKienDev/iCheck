@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.product_of_shop_history
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -101,7 +102,8 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {
             getData()

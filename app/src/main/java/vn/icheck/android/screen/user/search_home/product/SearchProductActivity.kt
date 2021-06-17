@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.product
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -19,6 +20,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.screen.user.search_home.dialog.FilterPriceDialog
@@ -76,11 +78,14 @@ class SearchProductActivity : BaseActivityMVVM(), View.OnClickListener, IRecycle
             }
         }
 
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
+
         WidgetUtils.setClickListener(this, btn_product, btn_price, btn_verify, btn_review, imgClear, imgBack)
     }
 
     private fun initSwipeLayout() {
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipe_container.setOnRefreshListener {
             refreshData()
         }

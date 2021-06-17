@@ -2,14 +2,13 @@ package vn.icheck.android.component.product.npp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_list_distributor.view.*
 import vn.icheck.android.R
-import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.product.npp.adapter.DistributorAdapter
 import vn.icheck.android.network.models.ICPage
-import vn.icheck.android.ui.StartSnapHelper
-import vn.icheck.android.ui.layout.CustomGridLayoutManager
 
 class DistributorHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_distributor, parent, false)) {
 

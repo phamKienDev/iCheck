@@ -75,7 +75,8 @@ class PageManagementFragment : Fragment() {
     }
 
     private fun initSwipeLayout() {
-        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+        binding.swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.swipeLayout.setOnRefreshListener {
             getData()
         }

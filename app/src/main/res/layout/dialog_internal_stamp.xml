@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_corners_8">
+        android:background="@drawable/bg_white_corners_8"
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvInternalStamp"
@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/btn_white_corners_8"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:paddingTop="@dimen/size_14"

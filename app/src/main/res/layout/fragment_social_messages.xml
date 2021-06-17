@@ -12,15 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_no_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
             android:text="Bạn chưa có tin nhắn nào"
-            android:textColor="@color/colorSecondText"
-            app:drawableTopCompat="@drawable/no_message_placeholder"
+            android:drawableTop="@drawable/no_message_placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +34,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/bg_gray_f0_corners_4"
             android:drawableStart="@drawable/ic_search_gray_24dp"
             android:drawableLeft="@drawable/ic_search_gray_24dp"
             android:drawablePadding="@dimen/size_8"

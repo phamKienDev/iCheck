@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,8 +7,7 @@
     android:layout_marginStart="@dimen/size_12"
     android:layout_marginTop="@dimen/size_8"
     android:layout_marginEnd="@dimen/size_12"
-    android:layout_marginBottom="@dimen/size_8"
-    android:background="@drawable/bg_corners_white_4_border_05">
+    android:layout_marginBottom="@dimen/size_8">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgAvatar"
@@ -20,23 +19,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="#03A9F4" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvNameShop"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_7"
         android:layout_marginEnd="@dimen/size_7"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:singleLine="true"
-        android:textColor="#35384b"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toTopOf="@+id/imgAvatar"
         tools:text="Giày Việt fsdf dsf sdfsf dskfs fd fsd ffd jk sfd  jsfd j ksd fjkl;sd fjlk;" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvCountRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +41,6 @@
         android:drawableStart="@drawable/ic_start_alone_15_dp"
         android:drawablePadding="@dimen/size_5"
         android:fontFamily="@font/barlow_medium"
-        android:textColor="#4f4f4f"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/tvNameShop"
         app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
@@ -63,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@id/tvCountRating"
         tools:text="(999+)" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvGoMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,36 +68,32 @@
         android:drawablePadding="@dimen/size_4"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Chỉ đường"
-        android:textColor="#828282"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvCountReview" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/view"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="8.5dp"
-        android:background="#d8d8d8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/tvCountProductOfShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_12"
         android:paddingBottom="@dimen/size_11"
         android:drawableEnd="@drawable/ic_down_light_blue_18_px"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="#057dda"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view"
         tools:text="Có 12 sản phẩm có sẵn" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05>

@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -28,6 +27,8 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -40,8 +41,7 @@ import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
 
-class IckUserWallAdapter(val listener: IPostListener) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = arrayListOf<ICViewModel>()
     var friendListPos = -1
 
@@ -93,29 +93,11 @@ class IckUserWallAdapter(val listener: IPostListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ICViewTypes.PROFILE_USER -> ProfileUserHolder(
-                ItemUserProfileWallBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
-            ICViewTypes.FRIEND_WALL -> FriendWallHolder(
-                FriendInWallHolderBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            ICViewTypes.PROFILE_USER -> ProfileUserHolder(ItemUserProfileWallBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.FRIEND_WALL -> FriendWallHolder(FriendInWallHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.FRIEND_INVITATION_TYPE -> FriendRequestWallHolder(parent)
             ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
-            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(
-                ItemCreatePostBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
             else -> NullHolder(parent)
         }
@@ -170,8 +152,7 @@ class IckUserWallAdapter(val listener: IPostListener) :
     }
 }
 
-class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.ViewHolder(binding.root) {
 
     private var isMyFriendInvitationUser: Boolean? = null // mình gửi kết bạn cho người khác
     private var isMyFriend: Boolean? = null // bạn bè của mình
@@ -182,6 +163,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
         isMyFriendInvitationUser = null
         isMyFriend = null
         isFriendInvitationMeUser = null
+
+        binding.tvRequestSent.background=ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
+        binding.btnSetting.fillDrawableColor(R.drawable.ic_btn_setting_blue)
 
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)
@@ -257,6 +241,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
             binding.moreInfo.beVisible()
         }
 
+        binding.btnAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+        binding.imgSettings.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
+
         when (ickUserProfileModel.id) {
             SessionManager.session.user?.id -> showMainUser()
             else -> checkStatusFirebase(ickUserProfileModel)
@@ -325,11 +312,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                         binding.tvRequestSent.beGone()
                         binding.btnAddFriend.beGone()
                     }, 100)
-                    binding.btnSendMsg.background = ResourcesCompat.getDrawable(
-                        binding.root.context.resources,
-                        R.drawable.background_button_enable,
-                        null
-                    )
+                    binding.btnSendMsg.background = ViewHelper.bgPrimaryCorners4(itemView.context)
                     initClickElseUser()
                     binding.btnSendMsg.setTextColor(Color.WHITE)
                 }
@@ -349,12 +332,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
 
                     binding.groupMainUser.beGone()
                     binding.groupFriend.beVisible()
-                    binding.btnSendMsg.setTextColor(Color.parseColor("#057DDA"))
-                    binding.btnSendMsg.background = ResourcesCompat.getDrawable(
-                        binding.root.context.resources,
-                        R.drawable.bg_corners_4_light_blue_no_solid,
-                        null
-                    )
+                    ViewHelper.bgPrimaryCorners4(itemView.context)
+                    binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
+                    binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
                     binding.btnAddFriend.beVisible()
                 }
             }
@@ -386,12 +366,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                     })
                 } else {
                     binding.btnAddFriend.beGone()
-                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        0,
-                        0,
-                        0,
-                        0
-                    )
+                    binding.tvRequestSent.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
                     binding.tvRequestSent.beVisible()
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ADD_FRIEND)
@@ -422,12 +397,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                     binding.tvRequestSent.beGone()
                 }
                 else -> {
-                    binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        R.drawable.ic_add_white_12px,
-                        0,
-                        0,
-                        0
-                    )
+                    binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_add_white_12px, 0, 0, 0)
                     binding.tvAddFriend.setText("Kết bạn")
                     binding.btnAddFriend.beVisible()
                     binding.tvRequestSent.beGone()
@@ -468,10 +438,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
 
 class CreatePostHolder(val binding: ItemCreatePostBinding) : RecyclerView.ViewHolder(binding.root) {
     init {
-        binding.userAvatar.loadImageWithHolder(
-            SessionManager.session.user?.avatar,
-            R.drawable.ic_user_svg
-        )
+        binding.userAvatar.loadImageWithHolder(SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
         binding.textView45.setOnClickListener {
             it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                 putExtra(USER_WALL_BROADCAST, USER_WALL_CREATE_POST)

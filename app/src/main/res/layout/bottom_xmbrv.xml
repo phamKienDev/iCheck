@@ -24,18 +24,15 @@
             app:srcCompat="@drawable/small_logo_icheck" />
     </LinearLayout>
 
-    <Button
+    <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
         android:id="@+id/btn_xall"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/btn_white_outline_blue_1_corners_36"
         android:fontFamily="sans-serif-medium"
         android:text="Xem tất cả đánh giá"
         android:textAllCaps="false"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_14" />
-
 </LinearLayout>

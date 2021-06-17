@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICCardViewWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="36dp"
     android:layout_marginEnd="36dp"
-    card_view:cardBackgroundColor="@color/white"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="false">
@@ -16,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,26 +24,23 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:text="Đồng bộ danh bạ"
-            android:textColor="#212121"
             android:textSize="16sp"
             android:textStyle="normal"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/txtMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:text="@string/dksd"
@@ -63,16 +59,14 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/txtMessage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@id/btnDisagree"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="Để Sau"
             android:textAllCaps="false"
-            android:textColor="#757575"
             android:textSize="16sp"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@id/viewCenter"
@@ -90,7 +84,7 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/viewBottom" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@id/btnAgree"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -100,7 +94,6 @@
             android:includeFontPadding="false"
             android:text="Đồng bộ"
             android:textAllCaps="false"
-            android:textColor="#057DDA"
             android:textSize="16sp"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@id/viewCenter"
@@ -108,7 +101,7 @@
             card_view:layout_constraintStart_toEndOf="@id/viewCenter"
             card_view:layout_constraintTop_toTopOf="@id/viewCenter" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tv_dksd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,9 +111,8 @@
             android:text="Điều khoản sử dụng"
             android:includeFontPadding="false"
             android:drawableRight="@drawable/ic_arrow_right_blue_24dp_chat"
-            android:textColor="@color/colorPrimary"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/txtMessage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICCardViewWhite>

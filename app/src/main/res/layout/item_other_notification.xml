@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:background="@android:color/white"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical">
-    <TextView
-        android:layout_marginTop="@dimen/size_10"
-        android:layout_marginStart="@dimen/size_12"
+
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thông báo khác"
-        android:textColor="#3C5A99"
-        android:fontFamily="@font/barlow_medium"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_10"
+        android:text="@string/thong_bao_khac"
         android:textSize="@dimen/font_18"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:id="@+id/title"
-        android:layout_marginLeft="@dimen/size_12" />
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
@@ -35,7 +33,6 @@
             android:id="@id/imgAvatar"
             android:layout_width="@dimen/size_36"
             android:layout_height="@dimen/size_36"
-            android:background="@drawable/bg_outline_gray_1_corners_4"
             android:padding="@dimen/size_1"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_circle_avatar_default"
@@ -62,45 +59,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="3"
             android:ellipsize="end"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@id/imgOption"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="(Thông báo liên quan đến điểm)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@id/tvMessage"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="Lorem ipsum dolor sit amet, conse ctetura dipiscing elit, sed do eiusmod tempor..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvDate"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvMessage"

@@ -101,6 +101,7 @@
     <string name="qua_cua_toi">Quà của tôi</string>
     <string name="mua_ma_the_dien_thoai">Mua mã thẻ điện thoại</string>
     <string name="bo_qua_khao_sat">Bỏ qua khảo sát</string>
+    <string name="loai_giay_to">Loại giấy tờ</string>
     <string name="ban_chac_chan_bo_qua_khao_sat_nay_chu">Bạn chắc chắn bỏ qua khảo sát này chứ?</string>
     <string name="trang_chu">Trang chủ</string>
     <string name="lich_su">Lịch sử</string>
@@ -286,6 +287,7 @@
     <string name="dang_tai_tep">Đang tải tệp…</string>
     <string name="verified">Verified</string>
     <string name="sponsor_feed_introtext"><![CDATA[%s… <font color="#3c5a99">Xem thêm</font>]]></string>
+    <string name="vui_long_dang_ky_hoac_dang_nhap">Vui lòng Đăng ký hoặc Đăng nhập</string>
     <string name="huong_dan_quet_san_pham_icheck">Hướng dẫn quét sản phẩm iCheck</string>
     <string name="buoc_1">Bước 1</string>
     <string name="buoc_2">Bước 2</string>
@@ -737,6 +739,7 @@
     <string name="share_chat_content">Bài chia sẻ này sẽ được chia sẻ tới tin nhắn của bất kì ai bạn chọn</string>
     <string name="share_more_title">Chia sẻ khác</string>
     <string name="share_more_content">Bạn có thể chia sẻ bài viết này tới nhiều nơi khác để bạn bè, người thân biết</string>
+
     <string name="binh_luan_voi_tu_cach">Bình luận với tư cách:</string>
     <string name="hoi_dap_voi_tu_cach">Hỏi đáp với tư cách:</string>
     <string name="ban_da_tu_mon_qua_nay">Bạn đã từ chối món quà này</string>
@@ -779,6 +782,7 @@
     <string name="xac_thuc_danh_tinh">Xác thực danh tính</string>
     <string name="xac_thuc_san_pham">Xác thực sản phẩm</string>
     <string name="chung_minh_nhan_dan">Chứng minh nhân dân</string>
+    <string name="loi_thong_tin">Lỗi thông tin</string>
     <string name="can_cuoc_cong_dan">Căn cước công dân</string>
     <string name="mat_truoc_cccd">Mặt trước CCCD</string>
     <string name="mat_sau_cccd">Mặt sau CCCD</string>
@@ -925,6 +929,10 @@
     <string name="chua_dinh_danh">Chưa định danh</string>
     <string name="dinh_danh_ngay">Định danh ngay</string>
     <string name="thuong_mai_dien_tu">Thương mại điện tử</string>
+    <string name="he_thong">Hệ thống</string>
+    <string name="noi_dung_bao_hanh">Nội dung bảo hành</string>
+    <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
+    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
     <string name="doi_ban_phiim">Đổi bàn phím</string>
     <string name="ban_phim_chu">Bàn phím chữ</string>
     <string name="ban_phim_so">Bàn phím số</string>
@@ -934,7 +942,6 @@
     <string name="canh_bao_down_line_xxx">Cảnh báo!\n%s</string>
     <string name="so_lan_quet">Số lần quét</string>
     <string name="so_nguoi_quet">Số người quét</string>
-    <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
     <string name="thoi_gian_bao_hanh_v2">Thời gian bảo hành:</string>
     <string name="han_bao_hanh_v2">Hạn bảo hành:</string>
     <string name="so_ngay_bao_hanh_con_lai_v2">Số ngày bảo hành còn lại:</string>
@@ -944,7 +951,6 @@
     <string name="trang_thai_v2">Trạng thái:</string>
     <string name="tinh_trang_v2">Tình trạng:</string>
     <string name="tinh_trang_v2_xxx">Tình trạng: %s</string>
-    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
     <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
     <string name="ho_va_ten_v2">Họ và tên:</string>
     <string name="ho_va_ten">Họ và tên</string>

@@ -177,6 +177,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
                     }
                 }
                 SettingManager.themeSetting = themeSettingRes?.data
+                SettingManager.setAppThemeColor(themeSettingRes?.data)
             }
             if (domainMarketingRes?.data?.rows != null) {
                 for (i in domainMarketingRes!!.data!!.rows.size - 1 downTo 1) {

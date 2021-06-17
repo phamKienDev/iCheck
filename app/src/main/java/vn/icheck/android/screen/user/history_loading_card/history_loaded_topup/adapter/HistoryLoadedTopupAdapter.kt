@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_history_loaded_topup.view.*
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
@@ -13,8 +12,8 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
-import vn.icheck.android.network.models.recharge_phone.IC_RESP_HistoryBuyTopup
 import vn.icheck.android.screen.user.history_loading_card.history_loaded_topup.view.IHistoryLoadedTopupView
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -139,7 +138,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
     class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
-
+            itemView.layoutImg.background= ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
             itemView.tvNameNetwork.text = "Nạp thẻ ${item.provider}"
 
             if (item.denomination is String) {
@@ -181,7 +180,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

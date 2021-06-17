@@ -6,17 +6,27 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.product_detail_mbtt2.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 
 class MbttHolder(view: View) : BaseHolder(view) {
 
     @SuppressLint("SetTextI18n")
     fun bind(obj: MbttModel) {
+        itemView.progressbar.progressDrawable = ViewHelper.progressPrimaryBackgroundTransparentCorners8(itemView.context)
+
         showVoteLayout()
         hideLayoutProgress()
+
+        ViewHelper.bgOutlinePrimary1Corners4(itemView.context).apply {
+            itemView.btn_yes.background = this
+            itemView.btn_no.background = this
+        }
 
         setOnClick(R.id.btn_yes) { view ->
             view.isClickable = false
@@ -54,27 +64,29 @@ class MbttHolder(view: View) : BaseHolder(view) {
             tvYes.text = "$totalYes%"
             tvNo.text = "$totalNo%"
 
+            val primaryColor = Constant.getPrimaryColor(itemView.context)
+
             if (obj.icTransparency.isVoted!!) {
                 progress.progress = totalYes
                 progress.rotation = 0f
 
-                tvYes.setTextColor(Color.parseColor("#057DDA"))
-                textHintYes.setTextColor(Color.parseColor("#057DDA"))
+                tvYes.setTextColor(primaryColor)
+                textHintYes.setTextColor(primaryColor)
                 tvYes.textSize = 16f
 
-                tvNo.setTextColor(Color.parseColor("#757575"))
-                textHintNo.setTextColor(Color.parseColor("#757575"))
+                tvNo.setTextColor(Constant.getSecondTextColor(itemView.context))
+                textHintNo.setTextColor(Constant.getSecondTextColor(itemView.context))
                 tvNo.textSize = 14f
             } else {
                 progress.progress = totalNo
                 progress.rotation = 180f
 
-                tvYes.setTextColor(Color.parseColor("#757575"))
-                textHintYes.setTextColor(Color.parseColor("#757575"))
+                tvYes.setTextColor(Constant.getSecondTextColor(itemView.context))
+                textHintYes.setTextColor(Constant.getSecondTextColor(itemView.context))
                 tvYes.textSize = 14f
 
-                tvNo.setTextColor(Color.parseColor("#057DDA"))
-                textHintNo.setTextColor(Color.parseColor("#057DDA"))
+                tvNo.setTextColor(primaryColor)
+                textHintNo.setTextColor(primaryColor)
                 tvNo.textSize = 16f
             }
         } else {

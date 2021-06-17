@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -17,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.adapters.BottomReviewsAdapter
 import vn.icheck.android.adapters.BottomReviewsAdapter.Companion.TYPE_PROGRESS
 import vn.icheck.android.adapters.BottomReviewsAdapter.Companion.TYPE_XMB
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.util.text.ReviewPointText
 
@@ -30,7 +28,7 @@ class ProductReviewsBottomDialog: BottomSheetDialogFragment() {
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteCornersTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         return inflater.inflate(R.layout.bottom_ctsp_srv, container, false)

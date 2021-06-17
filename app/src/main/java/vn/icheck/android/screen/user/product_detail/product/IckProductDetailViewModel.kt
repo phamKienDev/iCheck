@@ -27,7 +27,7 @@ import vn.icheck.android.component.noimage.NoImageModel
 import vn.icheck.android.component.product.certifications.CertificationsModel
 import vn.icheck.android.component.product.emty_qa.EmptyQAModel
 import vn.icheck.android.component.product.enterprise.EnterpriseModelV2
-import vn.icheck.android.component.product.header.ProductHeaderModelV2
+import vn.icheck.android.component.product.header.ProductHeaderModel
 import vn.icheck.android.component.product.infor_contribution.InformationContributionModel
 import vn.icheck.android.component.product.mbtt.MbttModel
 import vn.icheck.android.component.product.notverified.ProductNotVerifiedModel
@@ -57,7 +57,6 @@ import vn.icheck.android.network.models.product_detail.ICManager
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.home_page.model.ICListHomeItem
 import vn.icheck.android.screen.user.product_detail.product.model.IckReviewSummaryModel
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.kotlin.HideWebUtils
 
@@ -470,7 +469,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             infoProduct = basicProduct
             productDetail?.barcode = basicProduct.barcode ?: ""
             layout.viewType = ICViewTypes.HEADER_TYPE
-            layout.data = ProductHeaderModelV2(basicProduct, productDetail)
+            layout.data = ProductHeaderModel(basicProduct, productDetail)
             onAddLayout.value = layout
         }
     }
@@ -659,7 +658,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                         } else {
                             EnterpriseModelV2(owner!!.apply {
                                 icon = R.drawable.ic_not_verified_24px
-                                background = R.color.colorDisableText
+                                background = R.color.grayB4
                             })
                         }
                     }
@@ -739,7 +738,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                 } else {
                     owner!!.apply {
                         icon = R.drawable.ic_not_verified_24px
-                        background = R.color.colorDisableText
+                        background = R.color.grayB4
                     }
                 }
             }
@@ -756,7 +755,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                 newLayout.viewType = ICViewTypes.ENTERPRISE_TYPE
                 newLayout.data = productDetail.unverifiedOwner?.apply {
                     icon = R.drawable.ic_not_verified_24px
-                    background = R.color.colorDisableText
+                    background = R.color.grayB4
                 }
                 onAddLayout.value = newLayout
             }

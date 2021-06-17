@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.setting.SettingsActivity"
     tools:viewBindingIgnore="true">
-
     <include layout="@layout/toolbar_blue_v2" />
 
     <View
@@ -17,21 +15,19 @@
         android:layout_height="@dimen/size_4"
         android:background="@drawable/shadow_bottom" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:text="@string/thong_bao"
-        android:textColor="@color/colorSecondary" />
+        android:text="@string/thong_bao" />
 
-    <RelativeLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_8"
-        android:background="@color/white">
+        android:layout_marginTop="@dimen/size_8">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,9 +35,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Tin tức"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -53,15 +47,14 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/tv"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +63,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Chương trình mới"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -85,15 +76,14 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/textView1"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,9 +92,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Tin nhắn"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -116,23 +104,21 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
-    </RelativeLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:text="Hệ thống"
-        android:textColor="@color/colorSecondary" />
+        android:text="@string/he_thong" />
 
-    <RelativeLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_8"
-        android:background="@color/white">
+        android:layout_marginTop="@dimen/size_8">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,9 +126,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Rung"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -154,15 +138,14 @@
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view12"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/tvv"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView111"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,9 +154,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:fontFamily="@font/barlow_medium"
             android:text="Âm thanh"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -185,15 +166,14 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginRight="@dimen/size_12"
             app:srcCompat="@drawable/ic_switch_off_24px" />
-    </RelativeLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>
 
-    <RelativeLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_20"
-        android:background="@color/white">
+        android:layout_marginTop="@dimen/size_20">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/textViewAbc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,10 +184,9 @@
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
             android:text="Xóa cache"
-            android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvClearCache"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -219,20 +198,18 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14"
             tools:text="300Mb" />
 
-    </RelativeLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>
 
-    <RelativeLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_7"
-        android:visibility="gone"
-        android:background="@color/white">
+        android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -242,10 +219,9 @@
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
             android:text="Ngôn ngữ:"
-            android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -255,7 +231,6 @@
             android:layout_toRightOf="@id/textView"
             android:fontFamily="@font/barlow_semi_bold"
             android:text="Tiếng Việt"
-            android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -276,13 +251,12 @@
             android:layout_marginRight="@dimen/size_12"
             android:src="@drawable/ic_arrow_down_light_blue_24px" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_below="@+id/textView"
-            android:layout_marginLeft="@dimen/size_12"
-            android:background="#D8D8D8" />
+            android:layout_marginLeft="@dimen/size_12" />
 
         <RelativeLayout
             android:id="@+id/layoutEN"
@@ -295,7 +269,7 @@
             android:layout_marginBottom="@dimen/size_15"
             android:visibility="gone">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/appCompatTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -303,10 +277,9 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/barlow_medium"
                 android:text="Language:"
-                android:textColor="@color/black_21_v2"
                 android:textSize="@dimen/font_14" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvLanguageEN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -315,7 +288,6 @@
                 android:layout_toRightOf="@id/appCompatTextView"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="English"
-                android:textColor="@color/black_21_v2"
                 android:textSize="@dimen/font_14" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -336,20 +308,18 @@
                 android:src="@drawable/ic_arrow_down_light_blue_24px"
                 android:visibility="invisible" />
         </RelativeLayout>
-    </RelativeLayout>
-    <androidx.appcompat.widget.AppCompatTextView
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>
+
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_38"
         android:layout_marginTop="@dimen/size_30"
         android:layout_marginRight="@dimen/size_38"
-        android:background="@drawable/bg_corner_4_light_blue_white"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
         android:text="Đặt lại mặc định"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

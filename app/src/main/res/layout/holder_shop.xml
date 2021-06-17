@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_5"
-    android:layout_marginBottom="@dimen/size_5"
-    android:background="@color/white">
+    android:layout_marginBottom="@dimen/size_5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vg_shop_top"
@@ -14,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_border_gray_4dp_item_shop_variant">
+        android:layout_marginEnd="@dimen/size_12">
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@+id/tv_shop_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,33 +24,30 @@
             android:layout_marginEnd="@dimen/size_14"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Công ty TNHH Kính Mắt Quang Hưng fsd lkjfd jklafds  jklafsdljk asfdljk; asdf ;klafsd lkjafds ;lka ;fweljk" />
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_distance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tv_shop_name"
             app:layout_constraintStart_toStartOf="@+id/tv_shop_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_shop_name"
             tools:text="Khoảng cách: 3km" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="9.5dp"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="#d8d8d8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_distance" />
@@ -95,21 +90,18 @@
                 android:minWidth="@dimen/size_90"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ui.view.TextBarlowSemiBold
+                <vn.icheck.android.ichecklibs.view.accent.accentred.TextBarlowSemiBoldAccentRed
                     android:id="@+id/tv_sale_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:textColor="@color/colorAccentRed"
                     android:textSize="@dimen/font_16"
                     tools:text="23,004,000đ" />
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.disable_text.TextDisableBarlowMedium
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
-                    android:textColor="#b4b4b4"
                     android:textSize="@dimen/font_12"
                     tools:text="23,504,000đ" />
             </LinearLayout>
@@ -120,22 +112,18 @@
                 android:layout_height="@dimen/size_32"
                 android:layout_gravity="center|end"
                 android:layout_marginStart="@dimen/size_55"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <vn.icheck.android.ui.view.TextBarlowSemiBold
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_location_item_shop_variant"
                     android:drawablePadding="@dimen/size_8"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center_vertical"
                     android:text="Chỉ đường"
-                    android:textColor="#057dda"
                     android:textSize="@dimen/font_16" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -147,10 +135,10 @@
                 android:layout_marginEnd="@dimen/size_10"
                 android:visibility="gone">
 
-                <vn.icheck.android.ui.view.TextBarlowSemiBold
+                <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+                    android:id="@+id/viewLocation2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:drawableStart="@drawable/ic_location_item_shop_variant"
                     android:gravity="center"
                     android:paddingStart="@dimen/size_11"
@@ -164,11 +152,10 @@
                 android:layout_height="@dimen/size_32"
                 android:layout_gravity="center|end"
                 android:layout_marginStart="@dimen/size_38"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:gravity="center"
                 android:visibility="gone">
 
-                <vn.icheck.android.ui.view.TextBarlowSemiBold
+                <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
                     android:id="@+id/tvSubAddToCart"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -177,7 +164,7 @@
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="Thêm vào giỏ hàng"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_16" />
 
             </LinearLayout>
@@ -194,22 +181,22 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
             android:id="@+id/tv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_5"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             android:textStyle="bold"
             tools:text="4,3" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:text="/5"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
-</FrameLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>

@@ -9,6 +9,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.screen.user.qr_code_marketing.presenter.QrCodeMarketingPresenter
@@ -24,6 +25,9 @@ class QrCodeMarketingActivity : BaseActivityMVVM(), IQrCodeMarketingView {
     }
 
     fun onInitView() {
+        imgLogo.background=ViewHelper.bgWhiteStrokeSecondary1Corners10(this)
+        imgBanner.background=ViewHelper.bgWhiteCornersTop10(this)
+
         presenter.createQrCodeMarketing(SessionManager.session.user, SettingManager.clientSetting, imgBanner, tvMess, btnJoin, this@QrCodeMarketingActivity, imgLogo)
         initListener()
     }

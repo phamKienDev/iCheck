@@ -23,7 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -55,6 +55,7 @@ class ReportActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(ReportViewModel::class.java)
         initToolbar()
+        setupView()
         initData()
     }
 
@@ -66,6 +67,11 @@ class ReportActivity : BaseActivityMVVM() {
             selectReason()
         }
         tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: "Báo cáo"
+    }
+
+    private fun setupView() {
+        edtContent.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        btnDone.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun initData() {
@@ -90,8 +96,8 @@ class ReportActivity : BaseActivityMVVM() {
                         radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                         radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                         radioButton.setTextColor(ViewHelper.createColorStateList(
-                                ContextCompat.getColor(this, R.color.colorSecondText),
-                                ContextCompat.getColor(this, R.color.colorNormalText)))
+                                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this),
+                                vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this)))
                         radioButton.includeFontPadding = false
                         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         radioButton.maxLines = 1
@@ -132,7 +138,7 @@ class ReportActivity : BaseActivityMVVM() {
                     list.add(ICReportForm(0, edtContent.text.toString()))
             }
 
-            val dialog = ReportWrongContributionSuccessDialog(this)
+            val dialog = ReportSuccessDialog(this)
             dialog.show(list, "order", "Cảm ơn bạn đã báo lỗi đơn hàng này!")
             dialog.dialog.setOnDismissListener {
                 finish()

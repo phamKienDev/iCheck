@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_search_location.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPoints
 import vn.icheck.android.screen.user.createqrcode.createlocation.view.ICreateLocationQrCodeView
 
@@ -36,6 +37,7 @@ class SearchLocationAdapter(private val listener: ICreateLocationQrCodeView) : R
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(result: ICPoints.Predictions) {
+            itemView.rootView.background=ViewHelper.btnWhite(itemView.context)
             itemView.txtTitle.text = result.mainText
             itemView.txtContent.text = result.secondaryText
 

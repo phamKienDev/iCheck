@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_add_more_turn.view.*
 import kotlinx.android.synthetic.main.item_message_more_turn.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
-class AddMoreTurnAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AddMoreTurnAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val listData = mutableListOf<String>()
 
@@ -70,9 +72,8 @@ class AddMoreTurnAdapter(val context : Context) : RecyclerView.Adapter<RecyclerV
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: String) {
-
+            itemView.appCompatTextView43.background = ViewHelper.bgAccentCyanCorners4(itemView.context)
         }
-
     }
 
     class MessageHolder(view: View) : RecyclerView.ViewHolder(view) {

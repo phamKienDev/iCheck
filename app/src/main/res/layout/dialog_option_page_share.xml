@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_corners_top_16"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,14 +23,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Tùy chọn trang chia sẻ"
-            android:textColor="#057dda"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,10 +36,9 @@
             app:layout_constraintTop_toTopOf="@id/imgCancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8" />
+        android:layout_height="@dimen/size_1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@id/recyclerView"
@@ -50,4 +46,4 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_4"
         android:paddingBottom="@dimen/size_4" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

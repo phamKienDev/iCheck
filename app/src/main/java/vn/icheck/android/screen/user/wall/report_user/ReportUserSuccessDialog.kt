@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.wall.report_user
 
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +18,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogReportUserSuccessBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.ichecklibs.util.dpToPx
 
@@ -56,42 +57,45 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                 if (item.data?.name != "Khác") {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
-                        background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                        background = ViewHelper.bgGrayCorners32(requireContext())
                         setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Color.parseColor("#212121"))
+                        setTextColor(Constant.getNormalTextColor(context))
                     })
                 } else if(item.content.isNullOrEmpty()) {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
                         setText(item.data?.name)
-                        background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                        background = ViewHelper.bgGrayCorners32(requireContext())
                         setPadding(8.dpToPx())
                         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Color.parseColor("#212121"))
+                        setTextColor(Constant.getNormalTextColor(context))
                     })
                 }
             }
             if (item.content.isNotEmpty()) {
                 binding.linearLayout5.addView(TextView(requireContext()).apply {
                     setText(item.content)
-                    background = ResourcesCompat.getDrawable(resources, R.drawable.bg_text_report_success, null)
+                    background = ViewHelper.bgGrayCorners32(requireContext())
                     setPadding(8.dpToPx())
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                         setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                     }
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                    setTextColor(Color.parseColor("#212121"))
+                    setTextColor(Constant.getNormalTextColor(context))
                 })
             }
         }
-        binding.btnDone.setOnClickListener {
-            dismiss()
+        binding.btnDone.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                dismiss()
+            }
         }
     }
 }

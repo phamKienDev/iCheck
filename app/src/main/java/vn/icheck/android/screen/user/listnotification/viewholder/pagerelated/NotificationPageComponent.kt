@@ -13,6 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICNotificationPage
 
 class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNotificationPage>>(createView(parent.context)) {
@@ -29,7 +30,7 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.setColor(ContextCompat.getColor(context, R.color.darkGray6))
+                    paint.setColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)
@@ -41,16 +42,16 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
 
         private fun createView(context: Context): LinearLayout {
             return LinearLayout(context).also { layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // Text title
                 layoutParent.addView(ViewHelper.createText(context,
                         ViewHelper.createLayoutParams(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        ContextCompat.getColor(context, R.color.colorSecondary),
+                        vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
                         18f
                 ).also {
                     it.setPadding(0, 0, SizeHelper.size12, 0)

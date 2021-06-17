@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGray6"
     tools:context="vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity">
 
     <!--Toolbar-->
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:gravity="center"
-            android:text="Mua thẻ điện thoại"
-            android:textColor="@color/colorPrimary" />
+            android:text="Mua thẻ điện thoại" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgActionHistoryTopup"
@@ -43,7 +40,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_history_24px" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <LinearLayout
         android:id="@id/layoutError"
@@ -72,27 +69,23 @@
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICButtonSecondaryBgWhiteStrokeBlue1
             android:id="@+id/btnAgainError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_40"
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_40"
-            android:background="@drawable/bg_corner_solid_white_strokke_blue"
             android:fontFamily="sans-serif-medium"
             android:text="Thử Lại"
-            android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
-
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/darkGray6"
         android:fillViewport="true"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout10"
@@ -107,19 +100,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2
+                <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Nhà mạng"
-                    android:textColor="#3c5a99" />
+                    android:text="Nhà mạng" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvNetwork"
@@ -139,14 +131,13 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.TextSubheader2
+                <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Mệnh giá"
-                    android:textColor="#3c5a99" />
+                    android:text="Mệnh giá" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvCardValue"
@@ -159,62 +150,56 @@
 
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextSubheader2
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondSubheader2
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Chú ý:"
-                android:textColor="#757575" />
+                android:text="Chú ý:" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_10"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:text="@string/sub_message_topup"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout10"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/white"
         android:elevation="@dimen/size_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <vn.icheck.android.ichecklibs.view.TextSubheader2
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondSubheader2
             android:id="@+id/tvSubPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:text="Thành tiền"
-            android:textColor="#757575"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextSubheader2
+        <vn.icheck.android.ichecklibs.view.primary.TextSubheader2Primary
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:gravity="end"
             android:hint="0 đ"
-            android:textColor="#057dda"
-            android:textColorHint="#057dda"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSubPrice"
             app:layout_constraintTop_toTopOf="@id/tvSubPrice" />
@@ -223,7 +208,6 @@
             android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/state_click_payment"
             android:text="Thanh toán"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_20"
@@ -239,4 +223,4 @@
             app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

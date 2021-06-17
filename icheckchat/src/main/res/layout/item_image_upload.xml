@@ -23,7 +23,6 @@
         android:padding="25dp"
         android:visibility="invisible"
         android:src="@drawable/ic_video_white_40dp_chat"
-        android:background="@drawable/bg_corner_4_black_opacity_50"
         app:layout_constraintBottom_toBottomOf="@id/imgUpload"
         app:layout_constraintEnd_toEndOf="@id/imgUpload"
         app:layout_constraintStart_toStartOf="@id/imgUpload"

@@ -16,6 +16,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.RelationshipHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
@@ -213,11 +214,11 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
             tvFollow.run {
                 if (isFollow) {
                     text = "Đang theo dõi"
-                    background = ContextCompat.getDrawable(context, R.drawable.bg_gray_f0_corners_4)
-                    setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
+                    setTextColor(Constant.getSecondTextColor(context))
                 } else {
                     text = "Theo dõi"
-                    background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                     setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
                 }
             }

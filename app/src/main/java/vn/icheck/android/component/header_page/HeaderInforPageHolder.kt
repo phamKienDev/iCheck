@@ -13,7 +13,6 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
@@ -22,6 +21,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICPageOverview
@@ -35,7 +36,7 @@ import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.Serializable
 
-class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_header_infor_page, parent, false)) {
+class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_header_infor_page, parent, false)) {
     private val listAvatarFollower = mutableListOf<String>()
     private var isFollow: Boolean? = null
     fun bind(data: ICPageOverview) {
@@ -88,6 +89,8 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             itemView.viewbg.beGone()
         }
 
+        itemView.btnChinh.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+
         WidgetUtils.loadImageUrl(itemView.imgAvaPage, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         WidgetUtils.loadImageUrl(itemView.user_avatar, data.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
         if (data.isVerify) {
@@ -121,7 +124,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
         itemView.imgAvaPage.setOnClickListener {
             if (!data.avatar.isNullOrEmpty()) {
                 val list = mutableListOf<ICMedia>()
-                list.add(ICMedia(data.avatar, if (data.avatar!!.contains(".mp4")) {
+                list.add(ICMedia(data.avatar, type= if (data.avatar!!.contains(".mp4")) {
                     Constant.VIDEO
                 } else {
                     Constant.IMAGE
@@ -138,52 +141,61 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
 
         itemView.btnChinh.setOnClickListener {
             if (itemView.tvChinh.text.contains("Theo dõi")) {
-                view.followAndUnFollowPage(data)
+                listener.followAndUnFollowPage(data)
             } else {
                 ChatSocialDetailActivity.createRoomChat(it.context, data.id ?: -1, "page")
             }
         }
 
-        itemView.btnPhu.setOnClickListener {
-            val phone = data.pageDetail?.phone ?: ""
-            if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+        itemView.btnPhu.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            fillDrawableStartText(R.drawable.ic_phone_blue_16dp)
+            setOnClickListener {
+                val phone = data.pageDetail?.phone ?: ""
+                if (phone.isNotEmpty()) {
+                    DialogHelper.showConfirm(itemView.context, ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone)), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
+                        }
 
-                    override fun onAgree() {
-                        phone.startCallPhone()
-                    }
-                })
+                        override fun onAgree() {
+                            phone.startCallPhone()
+                        }
+                    })
 
-            } else {
-                DialogHelper.showDialogErrorBlack(itemView.context, itemView.context.getString(R.string.sdt_dang_cap_nhat))
+                } else {
+                    DialogHelper.showDialogErrorBlack(itemView.context, itemView.context.getString(R.string.sdt_dang_cap_nhat))
+                }
             }
         }
 
-        itemView.btnMore.setOnClickListener {
-            object : MoreActionPageBottomSheet(itemView.context, data) {
-                override fun onClickUnfollow() {
-                    view.followAndUnFollowPage(data)
-                }
+        itemView.btnMore.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            fillDrawableStartText(R.drawable.ic_more_blue_16)
 
-                override fun onClickStateNotification() {
-                    if (!data.unsubscribeNotice) {
-                        view.subcribeNotification(data)
-                    } else {
-                        view.unSubcribeNotification(data)
+            setOnClickListener {
+                object : MoreActionPageBottomSheet(itemView.context, data) {
+                    override fun onClickUnfollow() {
+                        listener.followAndUnFollowPage(data)
                     }
-                }
 
-                override fun onClickReportPage() {
-                    if (SessionManager.isUserLogged) {
-                        view.onShowReportForm()
-                    }else{
-                        view.onRequireLogin()
+                    override fun onClickStateNotification() {
+                        if (!data.unsubscribeNotice) {
+                            listener.subcribeNotification(data)
+                        } else {
+                            listener.unSubcribeNotification(data)
+                        }
                     }
-                }
-            }.show()
+
+                    override fun onClickReportPage() {
+                        if (SessionManager.isUserLogged) {
+                            listener.onShowReportForm()
+                        } else {
+                            listener.onRequireLogin()
+                        }
+                    }
+                }.show()
+            }
         }
 
         itemView.imgEditAvatar.setOnClickListener {

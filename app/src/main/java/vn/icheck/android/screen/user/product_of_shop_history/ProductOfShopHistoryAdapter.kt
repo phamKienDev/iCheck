@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
@@ -147,13 +146,13 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#212121"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#B4B4B4"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 }
@@ -161,12 +160,12 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#212121"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(Color.parseColor("#B4B4B4"))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
@@ -191,7 +190,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

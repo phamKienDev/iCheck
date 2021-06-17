@@ -41,21 +41,19 @@
         android:layout_marginTop="-25dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/layoutBottom"
-            android:background="@drawable/bg_corner_top_white_25">
+            android:layout_above="@id/layoutBottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/appCompatTextView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:text="Hãy chọn một hình may mắn để mở!"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_14"
-                android:fontFamily="@font/barlow_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,14 +84,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
             android:id="@id/layoutBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:background="@color/white"
             android:elevation="@dimen/size_8">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +101,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvSubCountGift"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,7 +113,6 @@
                     android:drawablePadding="@dimen/size_6"
                     android:gravity="center_vertical"
                     android:text="Bạn có "
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -135,28 +131,23 @@
                     app:layout_constraintStart_toEndOf="@+id/tvSubCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvSubCountGift" />
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:text=" lượt mở quà "
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintStart_toEndOf="@+id/tvCountGift"
                     app:layout_constraintTop_toTopOf="@+id/tvCountGift" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                     android:id="@+id/tvAddMoreTurn"
                     android:layout_width="@dimen/size_95"
                     android:layout_height="@dimen/size_32"
                     android:layout_marginEnd="@dimen/size_20"
-                    android:layout_marginRight="@dimen/size_20"
-                    android:background="@drawable/bg_more_turn"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="Thêm lượt"
-                    android:textColor="#057dda"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCountGift"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +155,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
     </RelativeLayout>
 

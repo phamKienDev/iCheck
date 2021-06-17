@@ -5,12 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_48"
         android:layout_marginTop="@dimen/size_8"
-        android:textColor="@color/colorSecondary"
         tools:text="Xem thêm 12 trả lời khác" />
 </LinearLayout>

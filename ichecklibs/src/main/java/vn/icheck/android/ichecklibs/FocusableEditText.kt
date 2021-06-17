@@ -1,8 +1,12 @@
 package vn.icheck.android.ichecklibs
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.text.InputType
 import android.text.InputType.*
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
@@ -16,7 +20,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.marginBottom
 import vn.icheck.android.ichecklibs.util.dpToPx
 
-class FocusableEditText : AppCompatEditText {
+open class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
     var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint
@@ -85,7 +89,7 @@ class FocusableEditText : AppCompatEditText {
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
+        mErrorTextPaint.color = Constant.getAccentRedColor(context)
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
@@ -193,7 +197,7 @@ class FocusableEditText : AppCompatEditText {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
             if (event.rawX > right - totalPaddingRight) {
-                if (isSetDrawable) {
+                if (inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                         PasswordTransformationMethod()
@@ -228,9 +232,9 @@ class FocusableEditText : AppCompatEditText {
                 drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
-                    mLinePaint.color = Color.parseColor("#057DDA")
+                    mLinePaint.color = Constant.getPrimaryColor(context)
                 } else {
-                    mLinePaint.color = Color.parseColor("#D8D8D8")
+                    mLinePaint.color = Constant.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
 

@@ -9,7 +9,6 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,6 +32,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICNetworkClient
@@ -100,10 +100,15 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
         initRecyclerViewImageComment()
         presenter.getBarcodeProduct(intent)
         WidgetUtils.setClickListener(this, img_choose_image, tv_answer_actor, img_send, tv_answer_actor, imgBack, container_comment)
+
+        linearLayoutActor.background= ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        view28.background=ViewHelper.bgWhiteCornersTop16(this)
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipe_layout.setOnRefreshListener { getData() }
     }
@@ -300,7 +305,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
 
         KeyboardUtils.showSoftInput(edt_enter_message)
 
-        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.binh_luan_xxx, nameOwner))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_xxx, nameOwner)))
 
         img_send.setOnClickListener {
             if (edt_enter_message.text.toString().isNotEmpty()) {

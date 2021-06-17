@@ -39,7 +39,7 @@
                 android:layout_marginStart="@dimen/size_10"
                 android:orientation="vertical">
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,10 +47,9 @@
                     android:ellipsize="end"
                     android:textSize="@dimen/font_14"
                     android:minLines="2"
-                    android:textColor="#212121"
                     tools:text="Brightening Pore Facial Cleanser" />
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tvNameBusiness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,7 +57,6 @@
                     android:textSize="@dimen/font_12"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:textColor="#757575"
                     tools:text="Innisfree Official" />
 
             </LinearLayout>

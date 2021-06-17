@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/viewTop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
-        android:background="@color/gray"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -70,14 +69,13 @@
         app:layout_constraintStart_toStartOf="@id/tvName"
         tools:text="x2" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvProductPrice"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:gravity="end"
         android:includeFontPadding="false"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"

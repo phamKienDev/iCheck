@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_10"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,46 +12,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_8">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvOrderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:drawableEndCompat="@drawable/ic_mission_gift_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mã đơn: CDJA56BHC" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_3"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@id/tvOrderId"
             app:layout_constraintTop_toBottomOf="@id/tvOrderId"
             tools:text="Ngày tạo đơn: 12:43, 14/02/2020" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvCancelOrder"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/size_3"
             android:layout_marginEnd="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/huy_don"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvTime"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,15 +70,14 @@
         android:paddingBottom="@dimen/size_10"
         android:visibility="visible">
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/viewTop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginStart="@dimen/size_12"
-            android:background="@color/gray"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
             android:id="@+id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +85,6 @@
             android:layout_marginTop="@dimen/size_5"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorPrimary"
             tools:text="4 sản phẩm khác" />
     </LinearLayout>
 
@@ -104,28 +95,24 @@
         android:layout_marginBottom="@dimen/size_10"
         android:orientation="horizontal">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvError"
             android:layout_width="@dimen/size_130"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_8"
             android:text="@string/bao_loi"
-            android:textColor="@color/light_blue"
             android:textSize="@dimen/font_16" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_weight="1"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
@@ -135,4 +122,4 @@
             android:textSize="@dimen/font_16" />
     </LinearLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

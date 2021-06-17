@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.wall.updatephone
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.databinding.FragmentConfirmChangePhoneBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 
 class IckConfirmChangePhoneFragment:Fragment() {
@@ -42,8 +42,10 @@ class IckConfirmChangePhoneFragment:Fragment() {
     }
 
     private fun initViews() {
+        binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
+
         val text = String.format("<p>Mã xác nhận OTP đã được gửi đến\n" +
-                "số điện thoại <span style='color:#3C5A99'>%s</span></p>", args.phone)
+                "số điện thoại <span style='color:${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}'>%s</span></p>", args.phone)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textView25.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
         } else {
@@ -65,7 +67,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
 
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(Color.parseColor("#3C5A99"))
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
                     binding.tvTimer.text = "Gửi lại mã"
                 } catch (e: Exception) {
                     this.cancel()

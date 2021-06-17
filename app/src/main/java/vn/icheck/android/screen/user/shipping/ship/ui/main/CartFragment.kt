@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.shipping.ship.ui.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,10 @@ import androidx.lifecycle.observe
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentCartBinding
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 import vn.icheck.android.screen.user.shipping.ship.adpter.adapter.CartItemsAdapter
+import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 
@@ -39,6 +39,7 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showLoadingTimeOut(30000)
         binding.btnConfirm.enable()
+        binding.toolbar.root.setBackgroundColor(Color.WHITE)
         cartItemsAdapter = CartItemsAdapter(viewModel.arrayCart, {
             viewModel.addItemIntoCart(it).observe(viewLifecycleOwner) { response ->
                 if (response.statusCode == "200") {
@@ -93,7 +94,7 @@ class CartFragment : Fragment() {
         }
         binding.rcvCart.adapter = cartItemsAdapter
         getCart()
-        binding.btnBack.setOnClickListener {
+        binding.toolbar.imgBack.setOnClickListener {
             requireActivity().finish()
         }
         binding.btnConfirm.setOnClickListener {
@@ -110,7 +111,7 @@ class CartFragment : Fragment() {
                 binding.btnConfirm.beGone()
                 binding.divider16.beGone()
                 binding.cartNoItem.beVisible()
-                binding.textView26 simpleText "Giỏ hàng"
+                binding.toolbar.txtTitle simpleText "Giỏ hàng"
                 binding.groupItems.beGone()
             } else {
                 binding.btnConfirm.beVisible()
@@ -125,7 +126,7 @@ class CartFragment : Fragment() {
                             value ?: 0
                         }
 //                binding.tvQuantity simpleText "$total sản phẩm"
-                binding.textView26 simpleText "Giỏ hàng ($total)"
+                binding.toolbar.txtTitle simpleText "Giỏ hàng ($total)"
 
                 val arrNewCart = arrayListOf<ItemCartItem>()
                 if (!it.data?.firstOrNull()?.itemCart.isNullOrEmpty()) {

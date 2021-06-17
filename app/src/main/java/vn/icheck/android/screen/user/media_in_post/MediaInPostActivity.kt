@@ -28,7 +28,6 @@ import vn.icheck.android.component.view.ViewHelper.delayTimeoutClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.criterias.ICReviewBottom
@@ -119,6 +118,9 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
         SessionManager.session.user?.let {
             WidgetUtils.loadImageUrl(imgAvatarSend, it.avatar)
         }
+
+        layoutComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+
         postScreen = intent.getStringExtra(Constant.DATA_4)
         downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
@@ -220,7 +222,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     tvContent,
                     2,
                     getString(R.string.xem_chi_tiet),
-                    "#FFB800"
+                    vn.icheck.android.ichecklibs.Constant.getAccentYellowCode
                 )
             }
             tvLike.setCompoundDrawablesWithIntrinsicBounds(

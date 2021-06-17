@@ -5,25 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_search_result.*
+import kotlinx.android.synthetic.main.item_search_more_holder.view.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.models.*
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
+import vn.icheck.android.network.models.ICProductTrend
+import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
-import vn.icheck.android.screen.user.search_home.page.SearchPageActivity
-import vn.icheck.android.screen.user.search_home.result.holder.*
+import vn.icheck.android.screen.user.search_home.result.holder.NotResultHolder
+import vn.icheck.android.screen.user.search_home.result.holder.ProductSearchHolder
+import vn.icheck.android.screen.user.search_home.result.holder.SetTypeSearchHolder
+import vn.icheck.android.screen.user.search_home.result.holder.UserSearchHolder
 import vn.icheck.android.screen.user.search_home.result.model.ICSearchResult
-import vn.icheck.android.screen.user.search_home.review.SearchReviewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.kotlin.ActivityUtils
 
 class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICSearchResult>()
@@ -141,6 +144,8 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class SearchMoreHolder(parent: ViewGroup) : BaseViewHolder<ICSearchResult>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_more_holder, parent, false)) {
         override fun bind(obj: ICSearchResult) {
+            itemView.rootView.background=ViewHelper.bgWhiteCorners4(itemView.context)
+            itemView.tvXemThem.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
             if (obj.data != null) {
                 Handler().post{
                     itemView.beVisible()

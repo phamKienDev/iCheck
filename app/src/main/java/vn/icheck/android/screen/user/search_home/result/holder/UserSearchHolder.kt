@@ -2,14 +2,16 @@ package vn.icheck.android.screen.user.search_home.result.holder
 
 import android.os.Handler
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_users_search_result_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.screen.user.search_home.user.SearchUserAdapter
 import vn.icheck.android.util.ick.beGone
@@ -17,6 +19,7 @@ import vn.icheck.android.util.ick.beVisible
 
 class UserSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_users_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICSearchUser>) {
+        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()
@@ -28,6 +31,8 @@ class UserSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.Rec
                 itemView.tv_xem_them.beVisible()
             }
         }
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
+
         val listSecond = mutableListOf<ICSearchUser>()
         for (i in 0 until if (list.size > 3) {
             3

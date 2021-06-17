@@ -1,49 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGray6"
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.specialoffer.SpecialOfferPVCardActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Chương trình ưu đãi"
-            android:textColor="@color/colorPrimary" />
-    </FrameLayout>
+            android:text="Chương trình ưu đãi" />
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <WebView
         android:id="@id/webViewUrl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/size_8"
-        android:background="@color/white">
+        android:elevation="@dimen/size_8">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/btnAction"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_12"
@@ -52,7 +49,6 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="@color/white"
@@ -63,6 +59,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="CTA ( không cố định)" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

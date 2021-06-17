@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".screen.user.list_campaign.ListCampaignActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="@dimen/size_44"
         android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,15 +28,13 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             android:text="Sự kiện đang chờ bạn!" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICSwipeRefreshLayoutWhite
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:visibility="gone">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -46,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/size_2"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICSwipeRefreshLayoutWhite>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
@@ -71,4 +67,4 @@
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

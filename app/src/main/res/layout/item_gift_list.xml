@@ -28,7 +28,6 @@
         android:layout_marginStart="@dimen/size_14"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_13"
-        android:background="@drawable/vertical_gray_line"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_image"
         app:layout_constraintTop_toTopOf="parent" />

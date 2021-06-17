@@ -4,11 +4,15 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import vn.icheck.android.R
+import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.util.DimensionUtil
 
 class IndicatorLineHorizontal : LinearLayout {
 
@@ -46,7 +50,7 @@ class IndicatorLineHorizontal : LinearLayout {
                 }
 
                 background = if (i == current) {
-                    ContextCompat.getDrawable(context, R.drawable.bg_indicator_selected)
+                    ViewHelper.bgWhiteCorners14(context)
                 } else {
                     ContextCompat.getDrawable(context, R.drawable.bg_indicator_not_select)
                 }
@@ -67,7 +71,7 @@ class IndicatorLineHorizontal : LinearLayout {
             override fun onPageSelected(position: Int) {
                 if (position != current) {
                     getChildAt(current)?.background = ContextCompat.getDrawable(context, R.drawable.bg_indicator_not_select)
-                    getChildAt(position)?.background = ContextCompat.getDrawable(context, R.drawable.bg_indicator_selected)
+                    getChildAt(position)?.background = ViewHelper.bgWhiteCorners14(context)
                     current = position
                 }
             }
@@ -88,7 +92,7 @@ class IndicatorLineHorizontal : LinearLayout {
             override fun onPageSelected(position: Int) {
                 if (position != current) {
                     getChildAt(current)?.background = ContextCompat.getDrawable(context, R.drawable.bg_indicator_not_select)
-                    getChildAt(position)?.background = ContextCompat.getDrawable(context, R.drawable.bg_indicator_selected)
+                    getChildAt(position)?.background = ViewHelper.bgWhiteCorners14(context)
                     current = position
                 }
             }

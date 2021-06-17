@@ -109,6 +109,8 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
+    api 'com.romandanylyk:pageindicatorview:1.0.3'
+
 
     //paging library
     //Paging

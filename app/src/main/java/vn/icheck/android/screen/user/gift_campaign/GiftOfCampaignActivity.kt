@@ -10,6 +10,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.LOGO
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.screen.user.gift_campaign.adapter.GiftOfCampaignAdapter
 import vn.icheck.android.util.ick.beGone
@@ -33,6 +34,9 @@ class GiftOfCampaignActivity : BaseActivityGame(), IRecyclerViewCallback {
         initRecyclerView()
         initSwipeLayout()
         initListener()
+
+        layoutNoData.background=ViewHelper.bgWhiteCornersTop20(this)
+        recyclerView.background=ViewHelper.bgWhiteCornersTop20(this)
     }
 
     private fun initToolbar(){

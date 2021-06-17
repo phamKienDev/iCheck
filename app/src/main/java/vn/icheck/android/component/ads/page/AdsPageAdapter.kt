@@ -1,6 +1,5 @@
 package vn.icheck.android.component.ads.page
 
-import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -35,7 +35,6 @@ import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import kotlin.random.Random
 
 class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
@@ -111,7 +110,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
@@ -212,6 +211,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 }
 
             }
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
@@ -304,6 +304,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {
@@ -374,10 +375,10 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             }
             Constant.PAGE_CHANGE_SUBCRIBE -> { // Chuyển đổi tham gia
                 if (isFollow) {
-                    tvButton.setTextColor(Color.parseColor("#757575"))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(tvButton.context))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
-                    tvButton.setTextColor(Color.parseColor("#057DDA"))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tvButton.context))
                     tvButton.setText(R.string.theo_doi)
                 }
             }

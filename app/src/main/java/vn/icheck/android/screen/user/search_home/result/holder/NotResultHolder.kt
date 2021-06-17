@@ -10,8 +10,11 @@ import vn.icheck.android.R
 class NotResultHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_not_result_holder, parent, false)) {
 
     fun setListener(listener:View.OnClickListener?) {
-        itemView.tvCreate.setOnClickListener {
+        itemView.tvCreate.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
 //            listener?.onClick(itemView.tvCreate)
+            }
         }
     }
 }

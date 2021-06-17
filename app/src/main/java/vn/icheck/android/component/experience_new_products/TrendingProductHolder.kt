@@ -4,10 +4,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.R
 import vn.icheck.android.component.experience_new_products.adapter.ExperienceNewProductsAdapter
 import vn.icheck.android.component.experience_new_products.adapter.HomeCategoryHorizontalAdapter
+import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.ACTION_PRODUCT_DETAIL
 import vn.icheck.android.databinding.HolderTrendingProductBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.ick.getLayoutInflater
 
 class TrendingProductHolder(parent: ViewGroup, val binding: HolderTrendingProductBinding = HolderTrendingProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)):RecyclerView.ViewHolder(binding.root) {
@@ -59,6 +62,7 @@ class TrendingProductHolder(parent: ViewGroup, val binding: HolderTrendingProduc
                 experienceNewProductsAdapter.setData(obj)
                 binding.rcvTrendingProduct.adapter = experienceNewProductsAdapter
             }
+            binding.tvMore.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.getDrawableFillColor(R.drawable.ic_arrow_right_light_blue_24dp,Constant.getAccentBlueCode),null)
             binding.tvMore.setOnClickListener {
                 it.context.sendBroadcast(Intent("home").apply {
                     putExtra("home_action", icExperienceNewProducts.listCategory?.firstOrNull {category ->

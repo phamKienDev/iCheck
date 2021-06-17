@@ -25,6 +25,8 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import java.util.*
@@ -63,6 +65,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
 
         initRecyclerView()
         initSwipeLayout()
+        initView()
         initListener()
         initEditText()
         setOnClick()
@@ -74,6 +77,9 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initSwipeLayout() {
+        val primary=Constant.getPrimaryColor(requireContext())
+        binding.swipeRefresh.setColorSchemeColors(primary,primary,primary)
+
         binding.swipeRefresh.isEnabled = ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -83,6 +89,10 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
         binding.swipeRefresh.post {
             getData()
         }
+    }
+
+    private fun initView() {
+        binding.edtSearch.setTextColor(Constant.getNormalTextColor(requireContext()))
     }
 
     private fun initListener() {

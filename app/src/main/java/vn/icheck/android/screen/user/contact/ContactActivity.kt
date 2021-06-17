@@ -22,8 +22,8 @@ class ContactActivity : BaseActivityMVVM() {
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
         TrackingAllHelper.trackContactViewed()
-        binding.header.tvTitle simpleText "Liên hệ và hỗ trợ"
-        binding.header.icBack.setOnClickListener {
+        binding.header.txtTitle simpleText "Liên hệ và hỗ trợ"
+        binding.header.imgBack.setOnClickListener {
             finish()
         }
         SettingHelper.getSystemSetting(null, "app-contact", object : ISettingListener {

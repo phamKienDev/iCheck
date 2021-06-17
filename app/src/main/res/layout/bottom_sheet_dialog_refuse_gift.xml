@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,12 +22,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Lý do từ chối nhận quà"
-            android:textColor="#057dda"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +34,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="#d8d8d8" />
+        android:layout_height="@dimen/size_1"/>
 
     <LinearLayout
         android:id="@+id/layoutCheckbox"
@@ -55,7 +53,6 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:textSize="@dimen/font_14"
-        android:background="@drawable/rectangle_corner_stroke_gray_4"
         android:fontFamily="@font/barlow_medium"
         android:gravity="top|start"
         android:hint="Mô tả nội dung khác"
@@ -77,7 +74,6 @@
         android:layout_marginBottom="@dimen/size_12"
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:text="Gửi báo cáo"/>
 
 </LinearLayout>

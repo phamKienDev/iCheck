@@ -32,7 +32,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             obj.name
         }
 
-        binding.imgDetail.setImageResource(if (obj.background == R.color.colorDisableText) {
+        binding.imgDetail.setImageResource(if (obj.background == R.color.grayB4) {
             R.drawable.ic_arrow_right_gray_28px
         } else {
             R.drawable.ic_arrow_right_white_bg_blue_28px
@@ -116,7 +116,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
             setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
         }
 
-        binding.imgDetail.setImageResource(if (obj.background == R.color.colorDisableText) {
+        binding.imgDetail.setImageResource(if (obj.background == R.color.grayB4) {
             R.drawable.ic_arrow_right_gray_28px
         } else {
             R.drawable.ic_arrow_right_white_bg_blue_28px

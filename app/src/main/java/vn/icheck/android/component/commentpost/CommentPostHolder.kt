@@ -17,6 +17,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
@@ -151,7 +152,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         binding.tvLike.setTextColor(if (isLike != null) {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         } else {
-            ContextCompat.getColor(itemView.context, R.color.black_50)
+            vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context)
         })
     }
 

@@ -6,14 +6,14 @@
     android:background="@color/white"
     android:layout_height="@dimen/size_44">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@id/imgBack"
         android:layout_width="@dimen/size_44"
         android:layout_height="match_parent"
         android:background="?android:attr/selectableItemBackground"
         app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,6 @@
         android:ellipsize="end"
         android:gravity="center"
         android:singleLine="true"
-        android:textColor="@color/colorPrimary"
         tools:text="Tiêu đề" />
 
     <androidx.appcompat.widget.AppCompatImageButton

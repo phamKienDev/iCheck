@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context="vn.icheck.android.screen.user.exclusive_privileges_detail.ExclusivePrivilegesDetailActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
         android:alpha="0"
-        android:background="@color/white"
         android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,9 +31,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Đặc quyền riêng"
-            android:textColor="@color/colorPrimary" />
-    </FrameLayout>
+            android:text="Đặc quyền riêng" />
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -70,42 +67,37 @@
                 app:layout_constraintStart_toStartOf="@id/imgExclusive"
                 app:layout_constraintTop_toTopOf="@id/imgExclusive" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:id="@+id/appCompatTextView17"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgExclusive"
                 tools:text="Chào hè quét mã nhận ngay quà khủng" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/appCompatTextView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_8"
                 android:fontFamily="@font/barlow_medium"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView17"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView17"
                 tools:text="Hết hạn sau 29 ngày" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/appCompatTextView32"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_17"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView27"
@@ -128,20 +120,18 @@
             <View
                 android:layout_width="0.5dp"
                 android:layout_height="0dp"
-                android:background="#b4b4b4"
+                android:background="@color/grayB4"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView34"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/appCompatTextView32" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvSubTimeEnd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/appCompatTextView32"
@@ -157,23 +147,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvSubTimeEnd"
                 tools:text="22:59 13/09/2020" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/view26"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="15.5dp"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="#d8d8d8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/appCompatTextView34" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#212121"
                 android:layout_marginTop="@dimen/size_16"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintTop_toBottomOf="@+id/view26"
@@ -210,4 +197,4 @@
 
     </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

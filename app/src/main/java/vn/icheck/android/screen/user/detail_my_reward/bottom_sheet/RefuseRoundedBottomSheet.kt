@@ -7,16 +7,19 @@ import android.os.Handler
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.*
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_refuse_gift.*
 import vn.icheck.android.R
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.model.ICNameId
 
 class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
@@ -55,8 +58,15 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
         initView()
         listener()
+    }
+
+    private fun setupView() {
+        btnSendRefuse.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(btnSendRefuse.context)
+        edtContent.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeGrayD4Corners4(btnSendRefuse.context)
     }
 
     private fun initView() {
@@ -72,8 +82,8 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
                 radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
-                        ContextCompat.getColor(requireContext(), R.color.colorSecondText),
-                        ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
+                        Constant.getNormalTextColor(requireContext()),
+                        Constant.getNormalTextColor(requireContext())))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 radioButton.maxLines = 1

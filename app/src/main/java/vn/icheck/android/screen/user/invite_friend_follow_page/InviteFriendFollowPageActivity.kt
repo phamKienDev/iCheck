@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.invite_friend_follow_page
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.content.ContextCompat
@@ -16,6 +17,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICFriendNofollowPage
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.util.ick.beGone
@@ -53,26 +55,19 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         listenerData()
     }
 
-    private fun initSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
-        swipeLayout.setOnRefreshListener {
-            findListUser(edtSearch.text.toString())
-        }
-    }
-
     private fun initView() {
         img_back.setOnClickListener {
             onBackPressed()
         }
 
         dispose = RxTextView.textChangeEvents(edtSearch)
-                .skipInitialValue()
-                .distinctUntilChanged()
-                .debounce(600, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { key ->
-                    findListUser(key.text().toString())
-                }
+            .skipInitialValue()
+            .distinctUntilChanged()
+            .debounce(600, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { key ->
+                findListUser(key.text().toString())
+            }
 
         tvInvite.setOnClickListener {
             viewModel.inivitUserFollowPage(listSelected)
@@ -80,6 +75,16 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
 
         img_clear.setOnClickListener {
             edtSearch.setText("")
+        }
+
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+    }
+
+    private fun initSwipeLayout() {
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
+        swipeLayout.setOnRefreshListener {
+            findListUser(edtSearch.text.toString())
         }
     }
 
@@ -174,7 +179,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
     override fun getListSeleted(selected: MutableList<ICUser>) {
         if (isInvite) {
             if (!selected.isNullOrEmpty()) {
-                tvInvite.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                tvInvite.background = ViewHelper.bgPrimaryCorners4(this@InviteFriendFollowPageActivity)
                 tvInvite.isEnabled = true
             } else {
                 tvInvite.background = ContextCompat.getDrawable(this, R.drawable.bg_gray_b4_corners_4)

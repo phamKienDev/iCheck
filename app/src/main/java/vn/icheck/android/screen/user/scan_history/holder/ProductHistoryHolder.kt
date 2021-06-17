@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.scan_history.holder
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -46,13 +47,13 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#212121"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     }
@@ -60,12 +61,12 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#212121"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
@@ -95,6 +96,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 }
             }
 
+            binding.tvBarcodeProduct.fillDrawableStartText(R.drawable.ic_barcode_gray_18px,vn.icheck.android.ichecklibs.Constant.disableTextColor)
             if (!obj.product?.barcode.isNullOrEmpty()) {
                 binding.tvBarcodeProduct.beVisible()
                 binding.tvBarcodeProduct.text = obj.product?.barcode?.trim()
@@ -111,6 +113,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.tvCountShop.visibility = View.INVISIBLE
             binding.layoutShop.visibility = View.GONE
         }
+
+        binding.btnSearchNear.background=ViewHelper.bgAccentCyanCornersTop8(binding.btnSearchNear.context)
 
         if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE

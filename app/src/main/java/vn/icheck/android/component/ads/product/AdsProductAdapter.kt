@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import vn.icheck.android.ICheckApplication
@@ -23,6 +22,7 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -94,9 +94,9 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 )
             }
             Constant.ADS_HORIZONTAL_TYPE -> {
-                if(fullScreen){
+                if (fullScreen) {
                     ViewHolderHorizontalMore(ItemAdsProductHorizontalMoreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-                }else{
+                } else {
                     ViewHolderHorizontal(ItemAdsProductHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false))
                 }
             }
@@ -123,7 +123,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             is ViewHolderHorizontal -> {
                 holder.bind(listData[position])
             }
-            is ViewHolderHorizontalMore ->{
+            is ViewHolderHorizontalMore -> {
                 holder.bind(listData[position])
             }
         }
@@ -135,6 +135,8 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
+            binding.imgImage.background = ViewHelper.bgWhiteCorners4(binding.imgImage.context)
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
@@ -270,13 +272,12 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
     }
 
 
-
     inner class ViewHolderHorizontal(val binding: ItemAdsProductHorizontalBinding) : BaseVideoViewHolder(binding.root) {
         fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,
@@ -357,10 +358,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (obj.owner?.verified == true) {
                 itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(
-                        obj.owner?.name,
-                        R.drawable.ic_verified_16px
-                    )
+                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
                 }, 100)
             } else {
                 binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {
@@ -470,6 +468,9 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
+
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
+            binding.btnAction.setTextColor(ViewHelper.textColorPrimaryUnpressedSecondaryPressed(itemView.context))
 
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
@@ -661,12 +662,11 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
     }
 
 
-
     inner class ViewHolderGrid(val binding: ItemAdsProductGridBinding) :
         BaseViewHolder<ICAdsData>(binding.root) {
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
-
+            binding.tvAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.tvAction.context)
             if (!SettingManager.themeSetting?.theme?.productOverlayImage.isNullOrEmpty()) {
                 WidgetUtils.loadImageUrlFitCenter(
                     binding.productOverlayImage,

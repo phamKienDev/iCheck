@@ -20,6 +20,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
@@ -102,17 +103,23 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
             startActivity(intent)
         }
 
-        btn_again.setOnClickListener {
-            for (act in BuyMobileCardV2Activity.listActivities) {
-                act.finish()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+        btn_again.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                for (act in BuyMobileCardV2Activity.listActivities) {
+                    act.finish()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+                }
             }
         }
 
-        btn_charge.setOnClickListener {
-            val chargePhone = Intent(Intent.ACTION_DIAL)
-            chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
-            startActivity(chargePhone)
+        btn_charge.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                val chargePhone = Intent(Intent.ACTION_DIAL)
+                chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
+                startActivity(chargePhone)
+            }
         }
 
         tv_serial.setOnTouchListener(OnTouchListener { v, event ->

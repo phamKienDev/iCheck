@@ -18,6 +18,8 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.util.concurrent.TimeUnit
 
 /**
@@ -37,6 +39,7 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setContentView(R.layout.activity_list_friend_request)
 
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupViewModel()
         setupSwipeLayout()
@@ -51,6 +54,10 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         }
 
         txtTitle.setText(R.string.loi_moi_ket_ban)
+    }
+
+    private fun setupView() {
+        edtSearch.background = ViewHelper.bgGrayCorners4(this)
     }
 
     private fun setupRecyclerView() {
@@ -74,7 +81,7 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, R.color.darkGray6)
+            paint.color = ContextCompat.getColor(this@ListFriendRequestActivity, vn.icheck.android.ichecklibs.R.color.grayF0)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)
@@ -98,7 +105,8 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             getListFriend()
@@ -111,13 +119,13 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
     private fun setupListener() {
         dispose = RxTextView.textChangeEvents(edtSearch)
-                .skipInitialValue()
-                .distinctUntilChanged()
-                .debounce(600, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    getListFriend()
-                }
+            .skipInitialValue()
+            .distinctUntilChanged()
+            .debounce(600, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                getListFriend()
+            }
     }
 
     private fun getListFriend() {

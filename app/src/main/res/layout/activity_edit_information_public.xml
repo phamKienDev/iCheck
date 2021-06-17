@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:paddingTop="@dimen/size_16"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.option_edit_information_public.EditInformationPublicActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,10 +29,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <!--Layout Empty Information-->
     <LinearLayout
@@ -50,13 +47,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_empty_information_wall" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"
-            android:fontFamily="@font/barlow_medium"
             android:text="Thông tin cá nhân của bạn chưa được cập nhật"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -66,7 +61,6 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_38"
             android:layout_marginEnd="@dimen/size_12"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="Cập nhật thông tin cá nhân"
@@ -76,24 +70,21 @@
     </LinearLayout>
 
     <!--Layout Data-->
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/layoutData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@color/white"
         android:orientation="vertical"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Thông tin công khai là những thông tin cá nhân bạn cho phép người khác nhìn thấy trên trang cá nhân của mình."
-            android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -270,5 +261,5 @@
 
         <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    </LinearLayout>
-</LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

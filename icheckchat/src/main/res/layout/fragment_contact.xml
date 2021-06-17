@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                 android:id="@+id/btnMergeRequest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,7 +32,6 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_14"
                 android:text="@string/dong_bo_danh_ba"
-                android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 android:visibility="gone" />
 
@@ -56,28 +55,24 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_no_contact_chat" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:singleLine="true"
-                    android:text="@string/khong_co_ket_qua_nao_trong_danh_ba"
-                    android:textColor="@color/black_21" />
+                    android:text="@string/khong_co_ket_qua_nao_trong_danh_ba" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvMessageContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/dong_bo_danh_ba_de_trao_doi"
-                    android:textColor="@color/black_21"
                     android:visibility="gone" />
 
                 <LinearLayout
@@ -87,7 +82,6 @@
                     android:layout_marginStart="38dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="38dp"
-                    android:background="@drawable/bg_corner_4_light_blue"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="gone">

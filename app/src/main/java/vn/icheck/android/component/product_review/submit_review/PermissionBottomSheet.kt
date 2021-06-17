@@ -19,6 +19,7 @@ import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICPage
@@ -34,7 +35,7 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteCornersTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         return inflater.inflate(R.layout.dialog_select_permission_user, container, false)
@@ -116,7 +117,8 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
             return PermissionHolder(parent)
         }
 
-        inner class PermissionHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_select_permission, parent, false)) {
+        inner class PermissionHolder(parent: ViewGroup) :
+            RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_select_permission, parent, false)) {
             fun bind(obj: ICCommentPermission) {
                 if (selectedPermission == null) {
                     selectedPermission = obj
@@ -124,17 +126,21 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
 
                 itemView.tvName.text = obj.name
 
-                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, if (obj.id == selectedPermission!!.id) {
-                    R.drawable.ic_checkbox_single_on_24px
-                } else {
-                    0
-                }, 0)
+                itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, if (obj.id == selectedPermission!!.id) {
+                        R.drawable.ic_checkbox_single_on_24px
+                    } else {
+                        0
+                    }, 0
+                )
 
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, if (obj.type == Constant.USER) {
-                    R.drawable.ic_avatar_default_84px
-                } else {
-                    R.drawable.ic_business_v2
-                })
+                WidgetUtils.loadImageUrl(
+                    itemView.imgAvatar, obj.avatar, if (obj.type == Constant.USER) {
+                        R.drawable.ic_avatar_default_84px
+                    } else {
+                        R.drawable.ic_business_v2
+                    }
+                )
 
                 itemView.setOnClickListener {
                     if (selectedPermission != obj) {

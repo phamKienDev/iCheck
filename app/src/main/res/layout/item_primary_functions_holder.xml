@@ -28,7 +28,7 @@
         android:minLines="2"
         android:layout_marginLeft="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
-        android:textColor="@color/black_21_v2"
+        android:textColor="@color/black_21"
         android:layout_marginBottom="@dimen/size_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

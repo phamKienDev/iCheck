@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_email_qr_code.edtContent
@@ -20,6 +19,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.createemail.presenter.CreateEmailQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createemail.view.ICreateEmailQrCodeView
@@ -52,6 +52,7 @@ class CreateEmailQrCodeFragment : BaseFragmentMVVM(), ICreateEmailQrCodeView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtEmail)
     }
@@ -64,6 +65,10 @@ class CreateEmailQrCodeFragment : BaseFragmentMVVM(), ICreateEmailQrCodeView {
         }
     }
 
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+    }
+
     private fun initListener() {
         btnCreate.setOnClickListener {
             presenter.validData(edtEmail.text.toString().trim(), edtTitle.text.toString().trim(),
@@ -74,21 +79,21 @@ class CreateEmailQrCodeFragment : BaseFragmentMVVM(), ICreateEmailQrCodeView {
     override fun onInvalidEmail(error: String) {
         tvMessageEmail.visibility = View.VISIBLE
         tvMessageEmail.text = error
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtEmail.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtEmail.requestFocus()
     }
 
     override fun onInvalidTitle(error: String) {
         tvMessageTitle.visibility = View.VISIBLE
         tvMessageTitle.text = error
-        edtTitle.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtTitle.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtTitle.requestFocus()
     }
 
     override fun onInvalidContent(error: String) {
         tvMessageContent.visibility = View.VISIBLE
         tvMessageContent.text = error
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 
@@ -96,9 +101,9 @@ class CreateEmailQrCodeFragment : BaseFragmentMVVM(), ICreateEmailQrCodeView {
         tvMessageEmail.visibility = View.GONE
         tvMessageTitle.visibility = View.GONE
         tvMessageContent.visibility = View.GONE
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtTitle.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtTitle.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtEmail.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEmail.context)
+        edtTitle.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEmail.context)
+        edtTitle.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtEmail.context)
         KeyboardUtils.hideSoftInput(edtContent)
 
         val intent = Intent(requireContext(), CreateQrCodeSuccessActivity::class.java)

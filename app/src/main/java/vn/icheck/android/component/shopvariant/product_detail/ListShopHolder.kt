@@ -5,18 +5,17 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.list_shop_variant.ListShopVariantActivity
-import vn.icheck.android.ui.view.TextBarlowSemiBold
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class ListShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVariant(parent.context)) {
@@ -50,15 +49,15 @@ class ListShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVari
                     layoutMoreShop.layoutParams = ViewHelper.createLayoutParams32Dp(SizeHelper.size28, SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
                     layoutMoreShop.orientation = LinearLayout.VERTICAL
                     layoutMoreShop.gravity = Gravity.CENTER
-                    layoutMoreShop.background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_no_solid)
+                    layoutMoreShop.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
                     layoutMoreShop.addView(TextBarlowSemiBold(context).also { text ->
                         text.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                        text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                        text.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                         text.gravity = Gravity.CENTER
                         text.setText(R.string.xem_tat_ca_diem_ban)
-                        text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                        text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                     })
 
                     layoutMoreShop.setOnClickListener {

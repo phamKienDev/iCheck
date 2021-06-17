@@ -10,6 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 
 class ReasonReportAdapter(val listData: MutableList<ICReportForm>) : RecyclerView.Adapter<ReasonReportAdapter.ViewHolder>() {
@@ -33,9 +34,9 @@ class ReasonReportAdapter(val listData: MutableList<ICReportForm>) : RecyclerVie
             fun createView(context: Context): AppCompatTextView {
                 return ViewHelper.createText(context,
                         ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0, SizeHelper.size4, SizeHelper.size6, SizeHelper.size4),
-                            ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.darkGray6), SizeHelper.size32.toFloat()),
+                            ViewHelper.createShapeDrawable(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size32.toFloat()),
                         ViewHelper.createTypeface(context, R.font.barlow_medium),
-                        ContextCompat.getColor(context, R.color.colorNormalText),
+                        Constant.getNormalTextColor(context),
                         14f).also {
                     it.setPadding(SizeHelper.size16, SizeHelper.size6, SizeHelper.size16, SizeHelper.size6)
                 }

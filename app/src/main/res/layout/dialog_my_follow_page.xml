@@ -6,17 +6,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewBgWhiteRadius10
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_corner_white_10" />
+        android:layout_gravity="center" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/bg_white_corners_top_16"
         android:orientation="vertical"
         android:paddingBottom="@dimen/size_12">
 
@@ -38,7 +36,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvFollowTitle"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -48,7 +46,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -56,16 +53,14 @@
                 app:layout_constraintTop_toTopOf="@id/imgFollow"
                 android:text="@string/bo_theo_doi" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvFollowContent"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvFollowTitle"
                 app:layout_constraintStart_toStartOf="@id/tvFollowTitle"
@@ -91,7 +86,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvReportTitle"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -102,27 +97,24 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="@string/bao_cao_trang"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvReportContent"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:text="@string/post_report_option_content"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="@id/tvReportTitle"
                 app:layout_constraintStart_toStartOf="@id/tvReportTitle"
                 app:layout_constraintTop_toBottomOf="@id/tvReportTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>
 </LinearLayout>

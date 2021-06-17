@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_back"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
@@ -17,13 +17,12 @@
         app:layout_constraintTop_toTopOf="@+id/textView22"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalHeader
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
         android:text="Tạo mật khẩu mới"
-        android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +58,7 @@
                 android:layout_marginTop="@dimen/size_32"
                 android:layout_marginEnd="@dimen/size_32">
 
-                <vn.icheck.android.ui.edittext.FocusableEditText
+                <vn.icheck.android.ichecklibs.FocusableEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,7 +93,7 @@
                 android:layout_marginTop="@dimen/size_32"
                 android:layout_marginEnd="@dimen/size_32">
 
-                <vn.icheck.android.ui.edittext.FocusableEditText
+                <vn.icheck.android.ichecklibs.FocusableEditText
                     android:id="@+id/edtRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -124,7 +123,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"

@@ -20,6 +20,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
@@ -50,7 +51,13 @@ class DirectSurveyDialog(context: Context, private val ads: ICAds) : BaseDialog(
             checkButton(survey)
         }
 
+        setupView()
         setupListener()
+    }
+
+    private fun setupView() {
+        linearLayout.background=ViewHelper.bgSecondaryCornersTop10(context)
+        btnRight.background=ViewHelper.btnSecondaryCorners26(context)
     }
 
     private fun initQuestion() {

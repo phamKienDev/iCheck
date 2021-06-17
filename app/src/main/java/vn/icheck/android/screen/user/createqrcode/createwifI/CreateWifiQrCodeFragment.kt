@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_wifi_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -17,6 +16,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.createwifI.presenter.CreateWifiQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.createwifI.view.ICreateWifiQrCodeView
@@ -49,6 +49,7 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initSecurityView()
         initListener()
         focusView(edtName)
@@ -60,6 +61,10 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }
 
     private fun initSecurityView() {
@@ -99,25 +104,25 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
 
     override fun onInValidNameSuccess() {
         tvMessageName.visibility = View.GONE
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
     }
 
     override fun onInValidName(error: String) {
         tvMessageName.visibility = View.VISIBLE
         tvMessageName.text = error
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtName.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtName.requestFocus()
     }
 
     override fun onInValidPasswordSuccess() {
         tvMessagePassword.visibility = View.GONE
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPassword.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPassword.context)
     }
 
     override fun onInValidPassword(error: String) {
         tvMessagePassword.visibility = View.VISIBLE
         tvMessagePassword.text = error
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtPassword.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtPassword.requestFocus()
     }
 
@@ -125,8 +130,8 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
         tvMessageName.visibility = View.GONE
         tvMessagePassword.visibility = View.GONE
 
-        edtName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtPassword.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
+        edtPassword.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtName.context)
 
         KeyboardUtils.hideSoftInput(edtName)
 

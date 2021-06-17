@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Handler
 import android.text.Editable
@@ -56,6 +57,9 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
 import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.NotificationDialogListener
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.beGone
@@ -157,6 +161,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
+        setupView()
         initRecyclerView()
         initEditText()
         getPackageSticker()
@@ -191,10 +196,23 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
             })
         })
-
+        binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()
+        binding.layoutToolbar.imgAction.fillDrawableColor(R.drawable.ic_setting_blue_24dp_chat)
+    }
 
-        binding.layoutToolbar.imgAction.setImageResource(R.drawable.ic_setting_blue_24dp_chat)
+    private fun setupView() {
+        binding.layoutEditText.background = ViewHelper.bgGrayF0Corners4()
+        binding.btnUnBlock.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.tvNewMessage.background = ViewHelper.bgWhiteStrokeLineColor1Corners4(this)
+
+        binding.imgScan.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_scan_gray_24dp_chat,R.drawable.ic_scan_white_24dp_chat, this), null, null, null)
+        binding.imgCamera.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_camera_off_24dp_chat,R.drawable.ic_camera_off_vector_24dp, this), null, null, null)
+        binding.imgSticker.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_emoji_20dp_chat,R.drawable.ic_imoji_fc_24dp_chat, this), null, null, null)
+        binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
+
+        binding.edtMessage.setTextColor(Constant.getNormalTextColor(this))
+        binding.tvMessage.setHintTextColor(Constant.getDisableTextColor(this))
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -244,10 +262,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.imgSend.isChecked = !s?.trim().isNullOrEmpty() || binding.layoutProduct.isVisible && product != null
                 binding.imgSend.isEnabled = !s?.trim().isNullOrEmpty() || binding.layoutProduct.isVisible && product != null
 
+
                 if (s.isNullOrEmpty()) {
-                    binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_gray)
+                    binding.layoutEditText.background = ViewHelper.bgGrayF0Corners4()
                 } else {
-                    binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_no_solid_light_blue)
+                    binding.layoutEditText.background = ViewHelper.bgOutlinePrimary1Corners4(this@ChatSocialDetailActivity)
                 }
             }
 
@@ -315,15 +334,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutToolbar.imgAction.setVisible()
 
         viewModel.getChatRoom(key,
-                { obj ->
-                    if (obj.value != null) {
+            { obj ->
+                if (obj.value != null) {
 
-                        if (obj.child("members").hasChildren()) {
-                            for (item in obj.child("members").children) {
-                                if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
-                                    toId = item.child("source_id").value.toString()
-                                    toType = item.child("type").value.toString()
-                                    inboxUserID = toId
+                    if (obj.child("members").hasChildren()) {
+                        for (item in obj.child("members").children) {
+                            if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
+                                toId = item.child("source_id").value.toString()
+                                toType = item.child("type").value.toString()
+                                inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
 
@@ -347,16 +366,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
 
-                                    })
+                                })
+                            } else {
+                                deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
+                                    item.child("deleted_at").value.toString().toLong()
                                 } else {
-                                    deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
-                                        item.child("deleted_at").value.toString().toLong()
-                                    } else {
-                                        -1
-                                    }
+                                    -1
                                 }
                             }
                         }
+                    }
 
                         getChatMessage(key)
                         listenChangeMessage(key)

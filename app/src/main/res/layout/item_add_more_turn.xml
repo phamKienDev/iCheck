@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/view"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="#d8d8d8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,17 +26,15 @@
         app:layout_constraintTop_toBottomOf="@id/view"
         tools:src="@mipmap/ic_launcher" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/appCompatTextView41"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:maxLines="1"
         android:singleLine="true"
         android:ellipsize="end"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@+id/appCompatTextView43"
         app:layout_constraintStart_toEndOf="@+id/appCompatImageView5"
@@ -58,29 +55,23 @@
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView41"
         tools:text="2" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="lượt"
         android:layout_marginStart="@dimen/size_3"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"
         app:layout_constraintStart_toEndOf="@+id/tvCountTurn"
         app:layout_constraintTop_toTopOf="@+id/tvCountTurn" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/appCompatTextView43"
         android:layout_width="@dimen/size_95"
         android:layout_height="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_more_turn"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
-        android:textColor="#057dda"
         android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountTurn"
         app:layout_constraintEnd_toEndOf="parent"

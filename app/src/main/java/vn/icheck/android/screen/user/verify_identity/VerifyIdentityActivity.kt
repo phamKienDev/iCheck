@@ -41,7 +41,6 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify_identity)
-
         viewModel = ViewModelProvider(this).get(VerifyIdentityViewModel::class.java)
         initView()
         listenerData()
@@ -122,7 +121,11 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         txtTitle.text = getString(R.string.xac_thuc_danh_tinh)
         txtTitle.typeface = ViewHelper.createTypeface(this, R.font.barlow_semi_bold)
 
+        tvErrorVerify.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedCorners6(this)
+
         viewModel.typeCard = tvSelectPassport.text.toString()
+
+        tvSelectPassport.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
 
         WidgetUtils.setClickListener(this, imgBack, tvSelectPassport, imgCameraFront, imgCameraAfter, tvComplete, tvGuide)
     }
@@ -273,7 +276,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun checkImageCmnd() {
         if (viewModel.afterImage != null && viewModel.frontImage != null) {
-            tvComplete.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+            tvComplete.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@VerifyIdentityActivity)
             tvComplete.isEnabled = true
         } else {
             tvComplete.setBackgroundResource(R.drawable.bg_gray_b4_corners_4)

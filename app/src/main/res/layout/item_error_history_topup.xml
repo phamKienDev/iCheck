@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -15,17 +14,15 @@
         android:scaleType="centerInside"
         tools:src="@drawable/ic_error_request" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
-        app:fontFamily="@font/barlow_medium"
         tools:text="Bạn chưa mua thẻ nào!" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/txtMessage2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +31,6 @@
         android:layout_marginEnd="@dimen/size_60"
         android:visibility="invisible"
         android:gravity="center"
-        android:lineSpacingExtra="@dimen/font_6"
-        android:textColor="#757575" />
+        android:lineSpacingExtra="@dimen/font_6" />
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

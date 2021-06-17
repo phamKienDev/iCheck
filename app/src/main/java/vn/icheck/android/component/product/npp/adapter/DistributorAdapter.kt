@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_distributor.view.*
@@ -30,6 +31,8 @@ import vn.icheck.android.component.product.enterprise.SocialNetworkAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.listdistributor.ListDistributorActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
@@ -53,19 +56,22 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         if (listData.size < 2) {
-            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
-                it.setMargins(SizeHelper.size10, 0, SizeHelper.size10, 0)
-            }
+            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams =
+                ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+                    it.setMargins(SizeHelper.size10, 0, SizeHelper.size10, 0)
+                }
         } else {
-            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size320, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
-                it.setMargins(SizeHelper.size10, 0, 0, 0)
-            }
+            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams =
+                ConstraintLayout.LayoutParams(SizeHelper.size320, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+                    it.setMargins(SizeHelper.size10, 0, 0, 0)
+                }
         }
 
         if (holder.adapterPosition == 3) {
-            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size170, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
-                it.setMargins(SizeHelper.size10, 0, 0, 0)
-            }
+            holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout1).layoutParams =
+                ConstraintLayout.LayoutParams(SizeHelper.size170, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+                    it.setMargins(SizeHelper.size10, 0, 0, 0)
+                }
             holder.itemView.findViewById<LinearLayout>(R.id.layoutMore).visibility = View.VISIBLE
             holder.itemView.findViewById<ConstraintLayout>(R.id.constraintLayout).visibility = View.INVISIBLE
 
@@ -88,8 +94,12 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
 
         override fun bind(obj: ICPage) {
 
-            initListener(obj)
+            itemView.tvPhone.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvDangCapNhatSDT.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvAddress.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+            itemView.tvMST.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
 
+            initListener(obj)
 
             WidgetUtils.loadImageUrlRounded4(itemView.findViewById<AppCompatImageView>(R.id.imgAvatar), obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
 
@@ -100,7 +110,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
 //            if (obj.verified == true) {
-            itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.colorPrimary)
+            itemView.findViewById<View>(R.id.viewBackground).setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
             itemView.findViewById<AppCompatImageView>(R.id.imgDetail).setImageResource(R.drawable.ic_arrow_right_white_bg_blue_28px)
 //            } else {
 //                itemView.findViewById<View>(R.id.viewBackground).setBackgroundResource(R.color.darkGray2)
@@ -177,16 +187,23 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
             override fun onClick(view: View) {
-                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thong_bao), itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_so, text), itemView.context.getString(R.string.huy), itemView.context.getString(R.string.dong_y), true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
-                    }
+                DialogHelper.showConfirm(
+                    itemView.context,
+                    itemView.context.getString(R.string.thong_bao),
+                    itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_so, text),
+                    itemView.context.getString(R.string.huy),
+                    itemView.context.getString(R.string.dong_y),
+                    true,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {
+                        }
 
-                    override fun onAgree() {
-                        val intent = Intent(Intent.ACTION_DIAL)
-                        intent.data = Uri.parse("tel:${text}")
-                        ICheckApplication.currentActivity()?.startActivity(intent)
-                    }
-                })
+                        override fun onAgree() {
+                            val intent = Intent(Intent.ACTION_DIAL)
+                            intent.data = Uri.parse("tel:${text}")
+                            ICheckApplication.currentActivity()?.startActivity(intent)
+                        }
+                    })
             }
         }
 

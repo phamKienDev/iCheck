@@ -11,6 +11,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
@@ -42,6 +43,9 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
 
     fun onInitView() {
         txtTitle.text = "Thông tin khách hàng"
+
+        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+
         presenter.getDataIntent(intent)
         listener()
     }

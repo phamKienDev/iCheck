@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_10"
     android:layout_marginRight="@dimen/size_12"
-    android:background="@drawable/bg_corners_white_4"
     android:gravity="center"
     android:visibility="gone"
     android:paddingTop="@dimen/size_10"
     android:paddingBottom="@dimen/size_10">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvXemThem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"

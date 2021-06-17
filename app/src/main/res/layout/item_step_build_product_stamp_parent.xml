@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_12"
-    android:background="@color/white"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +19,6 @@
         android:paddingBottom="@dimen/size_12"
         android:singleLine="true"
         android:text="Truy xuất nguồn gốc Trứng"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,7 +53,6 @@
                 android:layout_height="@dimen/size_28"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
-                android:background="@drawable/bg_corner_white_5"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -102,4 +99,4 @@
             android:layout_gravity="end"
             android:src="@drawable/img_egg_default"/>
     </LinearLayout>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

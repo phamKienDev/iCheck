@@ -18,6 +18,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -37,12 +38,19 @@ class CreatePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
         setContentView(R.layout.activity_pvcombank)
 
         viewModel = ViewModelProvider(this).get(CreatePVCardViewModel::class.java)
+        setupView()
         initView()
         initData()
     }
 
+    private fun setupView() {
+        tvSkip.background = ViewHelper.bgWhiteStrokePrimary1Corners4(this)
+    }
+
     private fun initView() {
         typeCreate = intent.getBooleanExtra(Constant.DATA_1, true)
+
+        tvContinue.background = ViewHelper.bgPrimaryCorners4(this)
 
         if (typeCreate) {
             txtTitle.text = getString(R.string.tao_the_moi)
@@ -186,7 +194,7 @@ class CreatePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun setButtonCoutinue() {
         if (checkbox.isChecked) {
-            tvContinue.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+            tvContinue.background = ViewHelper.bgPrimaryCorners4(this@CreatePVCardActivity)
             tvContinue.isEnabled = true
         } else {
             tvContinue.setBackgroundResource(R.drawable.bg_corner_gray_4)

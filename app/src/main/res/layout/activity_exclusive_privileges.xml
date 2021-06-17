@@ -7,20 +7,19 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.exclusive_privileges.ExclusivePrivilegesActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,18 +28,16 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Đặc quyền riêng"
-            android:textColor="@color/colorPrimary" />
-    </FrameLayout>
+            android:text="Đặc quyền riêng" />
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRecylerViewWhite
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="@dimen/size_12"
         android:paddingTop="@dimen/size_10"
         android:paddingEnd="@dimen/size_12"
-        android:background="@color/white"
         tools:listitem="@layout/item_exlusive_privileges"/>
 
 </LinearLayout>

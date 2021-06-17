@@ -6,16 +6,13 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
         android:id="@+id/textView53"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:fontFamily="@font/barlow_medium"
         android:text="Sản phẩm nổi bật"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,12 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView53" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/div_horizontal_product"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginTop="@dimen/size_12"
-        android:background="#F0F0F0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView53" />

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_6"
     android:layout_marginEnd="@dimen/size_6"
-    android:layout_marginBottom="@dimen/size_6"
-    android:background="@drawable/bg_corner_gray_solid_white">
+    android:layout_marginBottom="@dimen/size_6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
             app:layout_constraintStart_toStartOf="@id/surfaceView"
             app:layout_constraintTop_toTopOf="@id/surfaceView" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,9 +50,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_10"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:maxLines="2"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,4 +58,4 @@
             app:layout_constraintTop_toBottomOf="@id/surfaceView"
             tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>

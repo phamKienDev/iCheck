@@ -51,7 +51,7 @@ object ReviewPointText {
             when {
                 total >= 9 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", total))
-                    setTextColor(Color.parseColor("#057DDA"))
+                    setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
                 }
                 total >= 8 -> {
                     text = ICheckApplication.getInstance().getString(R.string.x_tuyet_voi, String.format("%.1f", total))
@@ -78,8 +78,9 @@ object ReviewPointText {
             when {
                 point >= 4.5 -> {
                     text = context.getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", point * 2))
-                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                    setTextColor(primaryColor)
+                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }
                 point >= 4 -> {
                     text = context.getString(R.string.x_tuyet_voi, String.format("%.1f", point * 2))
@@ -110,8 +111,9 @@ object ReviewPointText {
             when {
                 point >= 4.5 -> {
                     text = context.getString(R.string.tren_ca_tuyet_voi)
-                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                    setTextColor(primaryColor)
+                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }
                 point >= 4 -> {
                     text = context.getString(R.string.tuyet_voi)

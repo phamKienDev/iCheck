@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,33 +31,28 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginLeft="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="@string/luot"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvCount"
             app:layout_constraintStart_toEndOf="@id/tvCount"
             app:layout_constraintTop_toTopOf="@id/tvCount" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@id/tvProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
@@ -66,14 +61,13 @@
             app:layout_constraintTop_toTopOf="@id/tvCount"
             tools:text="Tiến độ: 43%" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_6"
-            android:background="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/tvCount" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -90,7 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -98,9 +92,7 @@
             android:layout_marginLeft="@dimen/size_10"
             android:layout_marginTop="@dimen/size_2"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@id/tvStatus"
             app:layout_constraintStart_toEndOf="@id/imgIcon"
@@ -108,22 +100,20 @@
             app:layout_constraintTop_toTopOf="@id/imgIcon"
             tools:text="Thực hiện khảo sát" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvStatus"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvName"
             tools:text="5/5" />
 
-        <ProgressBar
+        <vn.icheck.android.ichecklibs.view.accent.accentyellow.ProgressBarAccentYellowMission
             android:id="@id/progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="@dimen/size_0"
@@ -135,7 +125,6 @@
             android:max="100"
             android:progress="30"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:progressDrawable="@drawable/progress_yellow"
             app:layout_constraintBottom_toBottomOf="@id/imgIcon"
             app:layout_constraintEnd_toEndOf="@id/imgStatus"
             app:layout_constraintStart_toStartOf="@id/tvName" />

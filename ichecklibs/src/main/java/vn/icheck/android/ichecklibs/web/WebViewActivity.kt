@@ -1,16 +1,15 @@
 package vn.icheck.android.ichecklibs.web
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.util.Patterns
 import android.webkit.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*

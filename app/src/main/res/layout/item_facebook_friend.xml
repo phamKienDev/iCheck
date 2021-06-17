@@ -20,12 +20,12 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_9"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="@color/grayLoyalty"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgRank" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,10 +34,8 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/avatar"
@@ -48,7 +46,6 @@
         android:id="@+id/tvChat"
         android:layout_width="@dimen/size_100"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_4"
@@ -59,12 +56,11 @@
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintStart_toStartOf="@+id/tvName" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/darkGray6"
         app:layout_constraintTop_toBottomOf="@id/avatar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

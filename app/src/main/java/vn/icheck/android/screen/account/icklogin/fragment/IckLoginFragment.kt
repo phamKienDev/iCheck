@@ -23,6 +23,8 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.visibleOrGone
@@ -68,27 +70,33 @@ class IckLoginFragment : BaseFragmentMVVM() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnLogin.disable()
+        setupView()
         TrackingAllHelper.trackLoginStart()
-        binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
+        binding.edtPhone.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
 //                if (s.toString().startsWith("84")) {
 //                    binding.edtPhone.setText(s.toString().replace("84","0", true))
 //                    binding.edtPhone.setSelection(1)
 //                }
-                if (s.toString().isNotEmpty()) {
-                    binding.edtPhone.setPadding(24.dpToPx(), 0, 0, 20.dpToPx())
-                } else {
-                    binding.edtPhone.setPadding(0, 0, 0, 20.dpToPx())
+                    if (s.toString().isNotEmpty()) {
+                        binding.edtPhone.setPadding(24.dpToPx(), 0, 0, 20.dpToPx())
+                    } else {
+                        binding.edtPhone.setPadding(0, 0, 0, 20.dpToPx())
+                    }
+                    checkForm()
                 }
-                checkForm()
-            }
-        })
-        binding.edtPassword.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
-                checkForm()
-            }
-        })
+            })
+        }
+        binding.edtPassword.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
+                    checkForm()
+                }
+            })
+        }
         binding.btnLoginFacebook.setOnSingleClickListener {
             loginManager.logInWithReadPermissions(this, listOf("public_profile"))
         }
@@ -121,10 +129,13 @@ class IckLoginFragment : BaseFragmentMVVM() {
 
             }
         }
-        binding.btnLoginOtp.setOnSingleClickListener {
-            requireActivity().forceHideKeyboard()
-            val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(LOGIN_OTP)
-            findNavController().navigate(action)
+        binding.btnLoginOtp.apply {
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            setOnSingleClickListener {
+                requireActivity().forceHideKeyboard()
+                val action = IckLoginFragmentDirections.actionIckLoginFragmentToIckLoginOtpFragment(LOGIN_OTP)
+                findNavController().navigate(action)
+            }
         }
         binding.btnForgotPw.setOnSingleClickListener {
             requireActivity().forceHideKeyboard()
@@ -152,6 +163,12 @@ class IckLoginFragment : BaseFragmentMVVM() {
         })
 
         setupListener()
+    }
+
+    private fun setupView() {
+        binding.btnLogin.disable()
+        binding.btnLoginFacebook.background = ViewHelper.bgBtnFacebook(requireContext())
+        binding.edtPassword.setHintTextColor(Constant.getDisableTextColor(requireContext()))
     }
 
     private fun setupListener() {

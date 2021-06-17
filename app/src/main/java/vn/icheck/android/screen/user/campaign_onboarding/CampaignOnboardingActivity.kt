@@ -45,6 +45,7 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
 
         viewModel = ViewModelProvider(this).get(CampaignOnboardingViewModel::class.java)
         initToolbar()
+        setupView()
         initRecyclerview()
         initData()
     }
@@ -53,6 +54,10 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnActionBack.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(this)
     }
 
     private fun initRecyclerview() {
@@ -96,14 +101,14 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                     setUpWebView(it.onboardLanding ?: "")
 
                     btnActionBack.beGone()
-                    var color = it.btnColor ?: "#057DDA"
+                    var color = it.btnColor ?: vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode
                     if (!color.startsWith("#")) {
                         color = "#$color"
                     }
                     try {
                         btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor(color), SizeHelper.size4.toFloat())
                     } catch (e: IllegalArgumentException) {
-                        btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor("#057DDA"), SizeHelper.size4.toFloat())
+                        btnActionContinue.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this), SizeHelper.size4.toFloat())
                     }
                     btnActionContinue.text = it.btnName ?: ""
 
@@ -142,26 +147,26 @@ class CampaignOnboardingActivity : BaseActivityMVVM() {
                 btnActionBack.beGone()
 
                 btnActionContinue.text = getString(R.string.tiep_tuc)
-                btnActionContinue.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnActionContinue.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@CampaignOnboardingActivity)
                 recyclerview.scrollToPosition(0)
             }
             btnPosition < it?.onboardCTA?.size?.minus(1) ?: 0 -> {
                 btnActionBack.beVisible()
 
                 btnActionContinue.text = getString(R.string.tiep_tuc)
-                btnActionContinue.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnActionContinue.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@CampaignOnboardingActivity)
                 recyclerview.scrollToPosition(btnPosition)
             }
             btnPosition == it?.onboardCTA?.size?.minus(1) ?: 0 -> {
                 btnActionBack.beGone()
-                var color = it?.btnColor ?: "#057DDA"
+                var color = it?.btnColor ?: vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode
                 if (!color.startsWith("#")) {
                     color = "#$color"
                 }
                 try {
                     btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor(color), SizeHelper.size4.toFloat())
                 } catch (e: IllegalArgumentException) {
-                    btnActionContinue.background = ViewHelper.createShapeDrawable(Color.parseColor("#057DDA"), SizeHelper.size4.toFloat())
+                    btnActionContinue.background = ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this), SizeHelper.size4.toFloat())
                 }
                 btnActionContinue.text = it?.btnName ?: ""
                 recyclerview.scrollToPosition(it?.onboardCTA?.size?.minus(1) ?: 0)

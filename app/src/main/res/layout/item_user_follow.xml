@@ -20,8 +20,6 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginEnd="@dimen/size_8"
-        android:layout_marginRight="@dimen/size_8"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
@@ -43,32 +41,26 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/btnDaGuiLoiMoi"
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginEnd="@dimen/size_8"
-        android:background="@drawable/bg_corner_f0f0f0_4"
         android:gravity="center"
         android:text="Đã gửi lời mời"
-        android:textColor="#757575"
-        android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgAvatar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/btnMessenger"
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginEnd="@dimen/size_8"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:text="Nhắn tin"
-        android:textColor="#057dda"
-        android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
@@ -89,26 +81,22 @@
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toTopOf="@+id/imgAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/size_4"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_related_friend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_medium"
-            android:textColor="#757575"
             android:textSize="@dimen/font_12"
             tools:text="12 bạn chung" />
     </LinearLayout>

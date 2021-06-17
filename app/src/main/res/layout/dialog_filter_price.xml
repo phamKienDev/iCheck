@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog"
     android:paddingBottom="@dimen/size_20">
 
     <include
         android:id="@+id/layoutHeader"
         layout="@layout/layout_title_filter_search" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider31"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_all"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -32,13 +30,12 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/tat_ca"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider31" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider32"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
@@ -47,12 +44,11 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_all" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_friend"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -63,13 +59,12 @@
         android:layout_marginRight="@dimen/size_14"
         android:fontFamily="@font/barlow_medium"
         android:text="@string/tu_gia_thap_nhat"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider32" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider33"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
@@ -78,12 +73,11 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_friend" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_friend_2"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_24"
@@ -95,13 +89,12 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/tu_gia_cao_nhat"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider33" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider34"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
@@ -110,26 +103,21 @@
         android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_friend_2" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/tv_clear"
         android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider34" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

@@ -25,6 +25,7 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -61,7 +62,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
                 it.setMargins(SizeHelper.size12, SizeHelper.size12, SizeHelper.size12, 0)
             }
             itemView.setPadding(0, 0, 0, SizeHelper.size16)
-            itemView.setBackgroundResource(R.drawable.bg_corners_white_4_border_05)
+            itemView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
         } else {
             (itemView as ConstraintLayout).layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
                 it.setMargins(0, SizeHelper.size1, 0, 0)
@@ -97,6 +98,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         itemView.tvTime.text = TimeHelper.convertDateTimeSvToCurrentDay2(obj.createdAt)
 
         checkLikeReview(obj)
+        itemView.tvComment.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         itemView.tvComment.text = if (obj.commentCount > 100) {
             "100+"
         } else {
@@ -112,7 +114,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         } else {
             itemView.tvContent.beVisible()
             itemView.tvContent.text = if (obj.content!!.length > 120) {
-                Html.fromHtml(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120)))
+                Html.fromHtml(ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120))))
             } else {
                 obj.content
             }
@@ -155,6 +157,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun setupProduct(obj: ICPost) {
+        itemView.containerMeta.background=ViewHelper.bgGrayCorners4(itemView.context)
         if (obj.meta != null) {
             if (ICheckApplication.currentActivity() is IckProductDetailActivity) {
                 itemView.containerMeta.beGone()
@@ -249,6 +252,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
     }
 
     private fun checkLikeReview(objReview: ICPost) {
+        itemView.tvLike.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(if (objReview.expressive != null) {
             R.drawable.ic_like_12px
         } else {

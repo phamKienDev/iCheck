@@ -7,28 +7,25 @@
     android:layout_height="match_parent"
     android:background="@color/black_20">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
         android:id="@+id/layoutSuccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_corners_top_16"
         app:behavior_hideable="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvTitleSuccess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgCloseSuccess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,12 +38,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitleSuccess" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/size_9"
-            android:background="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/tvTitleSuccess" />
 
         <LinearLayout
@@ -63,25 +59,21 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:drawableTop="@drawable/ic_gift_list_mission_success" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="@string/that_tuyet_voi"
-                android:textColor="#057dda"
                 android:textSize="@dimen/font_18" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_15"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/size_4"
                 android:text="@string/gift_list_mission_success_message"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -92,7 +84,6 @@
                 android:layout_marginTop="@dimen/size_25"
                 android:layout_marginEnd="@dimen/size_38"
                 android:layout_marginBottom="@dimen/size_20"
-                android:background="@drawable/btn_light_blue_corners_4"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -100,7 +91,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/bottomSheet"
@@ -118,25 +109,22 @@
             android:layout_height="@dimen/size_90"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
             android:id="@id/layoutContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/size_90"
-            android:background="@drawable/bg_white_corners_top_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,12 +141,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/viewLine2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -173,6 +160,6 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/viewLine2" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/linearLayout"
     android:layout_height="wrap_content"
-    android:background="@drawable/ick_bg_top_corner_20"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,16 +24,14 @@
             android:paddingBottom="@dimen/size_13"
             android:src="@drawable/ic_outline_clear_lightblue_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvTitle"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             tools:text="Tổng quan về công ty" />
 
@@ -46,15 +44,14 @@
             android:paddingBottom="@dimen/size_13" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
 
     <ViewStub
         android:id="@+id/baseVs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:layout_marginBottom="@dimen/size_30"/>
+        android:layout_marginBottom="@dimen/size_30" />
 </LinearLayout>

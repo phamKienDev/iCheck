@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_my_gift.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.screen.user.mygift.fragment.reward_item_v2.MyGiftsViewModel
@@ -32,9 +33,19 @@ class MyGiftActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         TrackingAllHelper.tagMyGiftBoxClick()
         viewModel = ViewModelProvider(this).get(MyGiftsViewModel::class.java)
 
+        setupView()
         initRecyclerView()
         initSwipeLayout()
         initListener()
+    }
+
+    private fun setupView() {
+        ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
+            tvMyGift.setTextColor(this)
+            tvGiftReward.setTextColor(this)
+        }
+        line.background=ViewHelper.bgWhiteMyGiftTitle(this)
+        line1.background=ViewHelper.bgWhiteMyGiftTitle(this)
     }
 
     private fun initRecyclerView() {

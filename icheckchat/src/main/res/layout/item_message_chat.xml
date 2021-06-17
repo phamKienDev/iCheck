@@ -13,25 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMessageTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:textColor="#757575" />
+        android:gravity="center" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMessageBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:textColor="#757575" />
+        android:gravity="center"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@+id/btnDefault"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +39,5 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:singleLine="true"
-        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 </LinearLayout>

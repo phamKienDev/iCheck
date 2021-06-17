@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -509,7 +510,7 @@ class LayoutImageInPostComponent : ConstraintLayout {
             it.setMargins(0, SizeHelper.size5, 0, 0)
         }
         text.text = "+${list.size - 2} ảnh"
-        text.setTextColor(Color.parseColor("#FFFFFF"))
+        text.setTextColor(ContextCompat.getColor(context,R.color.white))
         text.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
         text.includeFontPadding = false
         text.gravity = Gravity.CENTER

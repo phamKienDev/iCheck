@@ -18,6 +18,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.ui.view.RatioImageView
@@ -111,7 +112,9 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                 // Text product name
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also { params ->
                     params.topMargin = SizeHelper.size10
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorNormalText), 14f, 2))
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getNormalTextColor(context), 14f, 2))
+
+                val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
 
                 // layout rating
                 layoutParent.addView(LinearLayout(context).also { layoutRating ->
@@ -125,21 +128,21 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                     layoutRating.addView(LayoutInflater.from(context).inflate(R.layout.rating_bar_12dp, layoutRating, false))
 
                     // Text point
-                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorPrimary), 12f))
+                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), primaryColor, 12f))
 
                     // Text total review
-                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorSecondText), 12f))
+                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getSecondTextColor(context), 12f))
                 })
 
                 // Text price
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also { params ->
                     params.topMargin = SizeHelper.size6
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_semi_bold), ContextCompat.getColor(context, R.color.colorPrimary), 14f))
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_semi_bold), primaryColor, 14f))
 
                 // Text verified
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT).also { params ->
                     params.topMargin = SizeHelper.size4
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.green_text_verified_product), 14f).also {
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getAccentGreenColor(context), 14f).also {
                     it.compoundDrawablePadding = SizeHelper.size2
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     it.setText(R.string.verified)

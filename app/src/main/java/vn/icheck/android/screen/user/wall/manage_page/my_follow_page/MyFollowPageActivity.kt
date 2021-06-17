@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +53,8 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initView() {
+        edtSearch.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(this)
+
         img_back.setOnClickListener {
             onBackPressed()
         }
@@ -66,7 +69,8 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         DialogHelper.showLoading(this)
 
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipe_layout.setOnRefreshListener {
             getData()
         }

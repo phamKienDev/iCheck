@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.search_home.user
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -20,6 +21,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -56,6 +58,8 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
         private var isFriendInvitationMeUser: Boolean? = null
 
         override fun bind(obj: ICSearchUser) {
+            itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            itemView.tvMessage.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
             itemView.tvTitle.apply {
                 text = obj.getName
@@ -173,7 +177,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
                         itemView.btnConfirm.isEnabled = true
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                        itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corners_4_light_blue_solid)
+                        itemView.btnConfirm.background = ViewHelper.bgPrimaryCorners4(itemView.context)
                         itemView.btnConfirm.text = "Đồng ý kết bạn"
                         itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
@@ -189,9 +193,9 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
                         itemView.btnConfirm.isEnabled = false
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                        itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
+                        itemView.btnConfirm.background = ViewHelper.bgGrayCorners4(itemView.context)
                         itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                        itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                        itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
 
                         itemView.btnConfirm.visibility = View.VISIBLE
                         itemView.tvMessage.visibility = View.INVISIBLE
@@ -201,7 +205,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
                         itemView.btnConfirm.isEnabled = true
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add_white_12dp, 0, 0, 0)
-                        itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corners_4_light_blue_solid)
+                        itemView.btnConfirm.background = ViewHelper.bgPrimaryCorners4(itemView.context)
                         itemView.btnConfirm.setText(R.string.ket_ban)
                         itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 

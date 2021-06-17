@@ -1,12 +1,16 @@
 package vn.icheck.android.screen.dialog
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_setting_point.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class CointSettingDialog(context: Context, var type: Int, val begin: String, val end: String) : BaseBottomSheetDialog(context, R.layout.dialog_setting_point, true) {
 
@@ -15,8 +19,12 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
             setButton(true)
         }
 
+        setupView()
+
         dialog.txtBegin.text = begin
         dialog.txtEnd.text = end
+
+
 
         when (type) {
             1 -> {
@@ -88,6 +96,23 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
         dialog.show()
     }
 
+    private fun setupView() {
+        dialog.txtSettingAgain.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        dialog.txtBegin.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+        dialog.txtEnd.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
+
+        dialog.txtBegin.setTextColor(Constant.getNormalTextColor(dialog.context))
+        dialog.txtEnd.setTextColor(Constant.getNormalTextColor(dialog.context))
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ViewHelper.createColorStateList(ContextCompat.getColor(dialog.context,R.color.grayB4),Constant.getPrimaryColor(dialog.context)).apply {
+                dialog.radioAll.buttonTintList=this
+                dialog.radioXuRa.buttonTintList=this
+                dialog.radioXuVao.buttonTintList=this
+            }
+        }
+    }
+
     private fun settingAgain() {
         type = 0
         dialog.radioAll.isChecked = true
@@ -98,12 +123,12 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
 
     private fun setButton(type: Boolean) {
         if (type) {
-            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.colorPrimary))
-            dialog.txtSettingAgain.setBackgroundResource(R.drawable.bg_corners_4_light_blue_no_solid)
+            dialog.txtSettingAgain.setTextColor( Constant.getPrimaryColor(dialog.context))
+            dialog.txtSettingAgain.background = ViewHelper.bgOutlinePrimary1Corners4(dialog.context)
             dialog.txtSettingAgain.isEnabled = true
         } else {
-            dialog.txtSettingAgain.setTextColor(ContextCompat.getColor(dialog.context, R.color.colorDisableText))
-            dialog.txtSettingAgain.setBackgroundResource(R.drawable.bg_border_gray_4dp_shop)
+            dialog.txtSettingAgain.setTextColor(Constant.getDisableTextColor(dialog.context))
+            dialog.txtSettingAgain.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
             dialog.txtSettingAgain.isEnabled = false
         }
     }

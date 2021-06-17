@@ -16,14 +16,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRecylerViewWhite
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:visibility="gone"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/size_30"
+                android:visibility="gone"
                 tools:itemCount="1"
                 tools:listitem="@layout/item_header_the_winner" />
 
@@ -40,31 +39,27 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_default_the_winner" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_16"
                     android:layout_marginBottom="@dimen/size_16"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!"
-                    android:textColor="@color/colorSecondText" />
+                    android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                     android:id="@+id/btnMission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/size_38"
                     android:layout_marginRight="@dimen/size_38"
-                    android:background="@drawable/bg_corners_4_light_blue_no_solid"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:paddingTop="@dimen/size_9"
                     android:paddingBottom="@dimen/size_9"
                     android:text="Xem thêm các thử thách"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>
@@ -95,26 +90,25 @@
             android:visibility="invisible" />
     </FrameLayout>
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         android:paddingTop="@dimen/size_41"
         android:paddingBottom="@dimen/size_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -124,7 +118,6 @@
             android:gravity="center"
             android:singleLine="true"
             android:text="Xếp hạng"
-            android:textColor="#057DDA"
             android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -134,7 +127,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="invisible" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"

@@ -8,26 +8,23 @@
     android:layout_marginBottom="@dimen/size_10"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_total_gifts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
-        android:fontFamily="@font/barlow_medium"
         android:paddingBottom="@dimen/size_8"
-        android:textColor="#757575"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Sản phẩm quà: 12"
         tools:visibility="visible" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/constraintLayout11"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +48,13 @@
             android:layout_width="@dimen/size_1"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/size_10"
-            android:background="@drawable/line_dotted_vertical_gray_2"
             app:layout_constraintBottom_toBottomOf="@id/imgProduct"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
             tools:layout_conversion_absoluteHeight="@dimen/size_92"
             tools:layout_conversion_absoluteWidth="@dimen/size_2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +65,6 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="@color/black_21_v2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/view"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
@@ -77,7 +72,7 @@
             tools:layout_conversion_absoluteWidth="286dp"
             tools:text="Bánh trung thu đậu xanh (quà ship tận nơi) (tối đa 2 dòng)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tvPage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,7 +82,6 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
             app:layout_constraintHorizontal_bias="0.0"
@@ -95,13 +89,12 @@
             app:layout_constraintTop_toBottomOf="@id/tvProduct"
             tools:text="Từ Công ty cổ phần iCheck (tối đa 1 dòng)..." />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@+id/tvState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_4"
-            android:background="@drawable/gray_stroke_corner_4"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:paddingLeft="@dimen/size_16"
@@ -109,7 +102,6 @@
             android:paddingRight="@dimen/size_16"
             android:paddingBottom="@dimen/size_4"
             android:singleLine="true"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
             app:layout_constraintStart_toEndOf="@+id/view"
@@ -119,18 +111,16 @@
             tools:layout_conversion_absoluteWidth="@dimen/size_85"
             tools:text="Đã từ chối" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@+id/tv_gift_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:background="@drawable/gray_stroke_corner_4"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/tvState"
             app:layout_constraintTop_toBottomOf="@+id/tvPage" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 </androidx.constraintlayout.widget.ConstraintLayout>

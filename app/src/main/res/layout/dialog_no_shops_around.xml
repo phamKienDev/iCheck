@@ -7,12 +7,12 @@
     android:layout_gravity="center">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_white_corners_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/img_seller" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/appCompatTextView36"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -45,7 +45,6 @@
                 android:singleLine="true"
                 android:text="@string/khong_co_diem_ban_nao_gan_ban"
                 android:textAlignment="center"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -116,13 +115,12 @@
                 app:layout_constraintTop_toTopOf="@+id/appCompatImageView12"
                 android:text="Bạn muốn mua sản phẩm này?" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                 android:id="@id/txtChat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#057dda"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView38"
