@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Giá sản phẩm" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.ImageViewBgTransparentRadius4
+    <ImageView
         android:id="@+id/btn_add"
         android:layout_width="@dimen/size_34"
         android:layout_height="@dimen/size_34"
@@ -41,6 +41,7 @@
         android:layout_height="@dimen/size_34"
         android:layout_marginEnd="@dimen/size_4"
         android:layout_marginRight="@dimen/size_4"
+        android:background="@drawable/bg_gray_f0_corners_4"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:minWidth="@dimen/size_62"
@@ -50,9 +51,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_add"
         app:layout_constraintEnd_toStartOf="@+id/btn_add"
         app:layout_constraintTop_toTopOf="@+id/btn_add"
-        tools:text="5" />
+        tools:text="5"
+        />
 
-    <vn.icheck.android.ichecklibs.view.line_color.ImageViewBgTransparentRadius4
+    <ImageView
         android:id="@+id/btn_subtract"
         android:layout_width="@dimen/size_34"
         android:layout_height="@dimen/size_34"

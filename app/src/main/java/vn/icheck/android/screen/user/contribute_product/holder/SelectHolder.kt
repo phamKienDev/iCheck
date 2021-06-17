@@ -2,16 +2,13 @@ package vn.icheck.android.screen.user.contribute_product.holder
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.balloon.*
 import vn.icheck.android.R
@@ -23,7 +20,10 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.category.OptionsItem
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.setCustomChecked
+import vn.icheck.android.util.ick.simpleText
 
 class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerView.ViewHolder(itemSelectBinding.root) {
     var balloon: Balloon? = null
@@ -109,13 +109,44 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                 if (categoryAttributesModel.categoryItem.options?.firstOrNull()?.id != 0) {
                     categoryAttributesModel.categoryItem.options?.add(0, OptionsItem(0, itemView.context.getString(R.string.tuy_chon)))
                 }
-                ArrayAdapter(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, categoryAttributesModel.categoryItem.options ?: arrayListOf())
+                object : ArrayAdapter<OptionsItem>(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
+                    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                        val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
+                        checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
+                        checkedTextView.setTextColor(Constant.getNormalTextColor(context))
+                        return checkedTextView
+                    }
+
+                    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                        val textView=super.getView(position, convertView, parent) as TextView
+                        textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
+                        textView.setTextColor(Constant.getNormalTextColor(context))
+                        return textView
+                    }
+                }
             } else {
-                ArrayAdapter(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, listOf(OptionsItem(0, itemView.context.getString(R.string.tuy_chon))))
+                object : ArrayAdapter<OptionsItem>(itemSelectBinding.root.context, android.R.layout.simple_spinner_item, listOf(OptionsItem(0, itemView.context.getString(R.string.tuy_chon)))) {
+                    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                        val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
+                        checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
+                        checkedTextView.setTextColor(Constant.getNormalTextColor(context))
+                        return checkedTextView
+                    }
+
+                    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                        val textView=super.getView(position, convertView, parent) as TextView
+                        textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
+                        textView.setTextColor(Constant.getNormalTextColor(context))
+                        return textView
+                    }
+                }
             }
 
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemSelectBinding.spinner.adapter = arrAdapter
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                itemSelectBinding.spinner.backgroundTintList=ViewHelper.createColorStateList(Constant.getPrimaryColor(itemView.context),Constant.getPrimaryColor(itemView.context))
+            }
             for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                 if (categoryAttributesModel.values is Double) {
                     if (item?.id == (categoryAttributesModel.values as Double).toInt()) {
