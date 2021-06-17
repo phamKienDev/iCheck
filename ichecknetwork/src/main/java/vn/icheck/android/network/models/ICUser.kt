@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Build
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import java.io.Serializable
 
 class ICUser : Serializable {
@@ -171,7 +173,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhoneOnly()
             } else {
-                "Chưa cập nhật"
+                RStringUtils.rText(R.string.chua_cap_nhat)
             }
         }
 
@@ -183,7 +185,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhonePVCombank()
             } else {
-                "Chưa cập nhật"
+                RStringUtils.rText(R.string.chua_cap_nhat)
             }
         }
 
@@ -195,7 +197,7 @@ class ICUser : Serializable {
 
             }.toString()
         } else {
-            "Chưa cập nhật"
+            RStringUtils.rText(R.string.chua_cap_nhat)
         }
     }
 
@@ -207,10 +209,10 @@ class ICUser : Serializable {
                             .insert(4, " ")
                 }.toString()
             } catch (e: Exception) {
-                "Chưa cập nhật"
+                RStringUtils.rText(R.string.chua_cap_nhat)
             }
         } else {
-            "Chưa cập nhật"
+            RStringUtils.rText(R.string.chua_cap_nhat)
         }
     }
 
@@ -218,23 +220,23 @@ class ICUser : Serializable {
         return if (phone != null) {
             phone.toString()
         } else {
-            "Chưa cập nhật"
+            RStringUtils.rText(R.string.chua_cap_nhat)
         }
     }
 
     fun getUserLevelName(): String {
         return when (rank?.level) {
             2 -> {
-                "Thành viên Bạc"
+                RStringUtils.rText(R.string.thanh_vien_bac)
             }
             3 -> {
-                "Thành viên Vàng"
+                RStringUtils.rText(R.string.thanh_vien_vang)
             }
             4 -> {
-                "Thành viên Kim Cương"
+                RStringUtils.rText(R.string.thanh_vien_kim_cuong)
             }
             else -> {
-                "Thành viên Chuẩn"
+                RStringUtils.rText(R.string.thanh_vien_chuan)
             }
         }
     }

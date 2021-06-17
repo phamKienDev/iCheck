@@ -42,4 +42,10 @@
     <string name="application_or_client_secret_invalid">application - clientId or client secret invalid</string>
     <string name="application_permission_denied">application - permission denied</string>
     <string name="co_tin_nhan_moi">Có tin nhắn mới</string>
+    <string name="khong_tai_duoc_du_lieu_vui_long_thu_lai">Không tải được dữ liệu. Vui lòng thử lại.</string>
+    <string name="chua_cap_nhat">Chưa cập nhật</string>
+    <string name="thanh_vien_bac">Thành viên Bạc</string>
+    <string name="thanh_vien_vang">Thành viên Vàng</string>
+    <string name="thanh_vien_kim_cuong">Thành viên Kim Cương</string>
+    <string name="thanh_vien_chuan">Thành viên Chuẩn</string>
 </resources>

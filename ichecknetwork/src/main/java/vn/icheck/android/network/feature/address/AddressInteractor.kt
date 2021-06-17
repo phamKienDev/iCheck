@@ -3,6 +3,8 @@ package vn.icheck.android.network.feature.address
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.ICDistrict
@@ -59,7 +61,7 @@ class AddressInteractor : BaseInteractor() {
                         },
                         {
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = rText(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -87,7 +89,7 @@ class AddressInteractor : BaseInteractor() {
                         },
                         {
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = rText(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)

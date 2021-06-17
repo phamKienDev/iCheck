@@ -1,6 +1,8 @@
 package vn.icheck.android.network.models
 
 import com.google.gson.annotations.Expose
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import java.io.Serializable
 
 class ICPage : Serializable {
@@ -95,5 +97,5 @@ class ICPage : Serializable {
     val location: ICLocation? = null
 
     val getName: String
-        get() = name ?: "Chưa cập nhật"
+        get() = name ?: RStringUtils.rText(R.string.chua_cap_nhat)
 }

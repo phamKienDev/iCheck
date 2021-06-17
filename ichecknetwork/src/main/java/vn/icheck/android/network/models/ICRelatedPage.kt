@@ -3,6 +3,8 @@ package vn.icheck.android.network.models
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import java.io.Serializable
 
 data class ICRelatedPage(
@@ -16,6 +18,6 @@ data class ICRelatedPage(
 ) : Serializable {
     val getName: String
         get() {
-            return name ?: "Chưa cập nhật"
+            return name ?: RStringUtils.rText(R.string.chua_cap_nhat)
         }
 }
