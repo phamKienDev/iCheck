@@ -72,7 +72,7 @@ class InformationProductActivity : BaseActivityMVVM() {
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
             allowUniversalAccessFromFileURLs = true
-            defaultFontSize = 14.spToPx()
+            defaultFontSize = 14
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

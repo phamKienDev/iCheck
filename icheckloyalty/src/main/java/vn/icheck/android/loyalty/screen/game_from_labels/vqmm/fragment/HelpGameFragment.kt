@@ -43,7 +43,7 @@ class HelpGameFragment : Fragment() {
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.allowUniversalAccessFromFileURLs = true
-        webView.settings.defaultFontSize = 16.spToPx()
+        webView.settings.defaultFontSize = 16
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
