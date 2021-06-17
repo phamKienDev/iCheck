@@ -243,7 +243,7 @@ class WebViewActivity : BaseActivityMVVM() {
                 binding.webView.loadUrl(url)
             }
         } else {
-            binding.webView.settings.defaultFontSize = 14f.spToPx().toInt()
+            binding.webView.settings.defaultFontSize = 14
             binding.webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 

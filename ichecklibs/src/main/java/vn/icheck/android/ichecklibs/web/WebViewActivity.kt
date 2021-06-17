@@ -185,7 +185,7 @@ class WebViewActivity : AppCompatActivity() {
                 webViewUrl.loadUrl(url)
             }
         } else {
-            webViewUrl.settings.defaultFontSize = 14.dpToPx()
+            webViewUrl.settings.defaultFontSize = 14
             webViewUrl.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 
