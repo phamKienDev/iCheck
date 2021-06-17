@@ -20,13 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvNameShop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_23"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#4f4f4f"
         android:textSize="@dimen/font_16"
         android:singleLine="true"
         android:ellipsize="end"
