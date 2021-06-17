@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.dialog_receive_gift_success.*
 import kotlinx.android.synthetic.main.item_receive_gift_success.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -109,15 +110,19 @@ class DialogReceiveGiftSuccess(
             }
         }
 
-        tvTitle.text = title ?: "Chúc mừng bạn"
+        tvTitle.apply {
+            text = title ?: context.rText(R.string.chuc_mung_ban)
+        }
 
         WidgetHelper.loadImageUrl(imgGift, image)
 
-        tvGift.text = nameGift ?: getString(R.string.dang_cap_nhat)
+        tvGift.text = nameGift ?: rText(R.string.dang_cap_nhat)
 
-        tvMessage.text = message ?: "Cảm ơn bạn đã tham gia sự kiện"
+        tvMessage.apply {
+            text = message ?: context.rText(R.string.cam_on_ban_da_tham_gia_su_kien)
+        }
 
-        tvNameCampaign.text = nameCampaign ?: getString(R.string.dang_cap_nhat)
+        tvNameCampaign.text = nameCampaign ?: rText(R.string.dang_cap_nhat)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -127,7 +132,7 @@ class DialogReceiveGiftSuccess(
             setOnClickListener {
                 startActivity(Intent(activity, WebViewActivity::class.java).apply {
                     putExtra(ConstantsLoyalty.DATA_1, message)
-                    putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                    putExtra(ConstantsLoyalty.DATA_3, context.rText(R.string.thong_tin_chuong_trinh))
                 })
             }
         }
@@ -135,7 +140,7 @@ class DialogReceiveGiftSuccess(
         btnViewGift.run {
             when {
                 isCoin -> {
-                    text = "Quản lý Xu"
+                    text = context.rText(R.string.quan_ly_xu)
 
                     setOnClickListener {
                         dismiss()
@@ -143,7 +148,7 @@ class DialogReceiveGiftSuccess(
                     }
                 }
                 isVoucher -> {
-                    text = "Nhận quà"
+                    text = context.rText(R.string.nhan_qua)
 
                     setOnClickListener {
                         dismiss()
@@ -155,7 +160,7 @@ class DialogReceiveGiftSuccess(
                 }
                 else -> {
                     if (listGift.isNullOrEmpty()) {
-                        text = "Xem quà"
+                        text = context.rText(R.string.xem_qua)
 
                         setOnClickListener {
                             dismiss()
@@ -165,14 +170,14 @@ class DialogReceiveGiftSuccess(
                         if (listGift.size > 1) {
                             recyclerView.adapter = DialogReceiveGiftAdapter(listGift)
 
-                            text = "Xem kho quà"
+                            text = context.rText(R.string.xem_kho_qua)
 
                             setOnClickListener {
                                 dismiss()
                                 LoyaltySdk.openActivity("my_rewards")
                             }
                         } else {
-                            text = "Xem quà"
+                            text = context.rText(R.string.xem_qua)
 
                             setOnClickListener {
                                 dismiss()
@@ -213,35 +218,35 @@ class DialogReceiveGiftSuccess(
                     }
                 }
 
-                dialog.findViewById<AppCompatTextView>(R.id.tvTitle).text = title ?: "Chúc mừng bạn"
+                dialog.findViewById<AppCompatTextView>(R.id.tvTitle).text = title ?: rText(R.string.chuc_mung_ban)
 
                 WidgetHelper.loadImageUrl(dialog.findViewById<AppCompatImageView>(R.id.imgGift), image)
 
                 dialog.findViewById<AppCompatTextView>(R.id.tvGift).text = nameGift
-                        ?: getString(R.string.dang_cap_nhat)
+                        ?: rText(R.string.dang_cap_nhat)
 
                 dialog.findViewById<AppCompatTextView>(R.id.tvMessage).text = message
-                        ?: "Cảm ơn bạn đã tham gia sự kiện"
+                        ?: rText(R.string.cam_on_ban_da_tham_gia_su_kien)
 
                 dialog.findViewById<AppCompatTextView>(R.id.tvNameCampaign).text = nameCampaign
-                        ?: getString(R.string.dang_cap_nhat)
+                        ?: rText(R.string.dang_cap_nhat)
 
                 dialog.findViewById<RecyclerView>(R.id.recyclerView).layoutManager = LinearLayoutManager(context)
 
 
                 dialog.findViewById<AppCompatTextView>(R.id.btnViewGift).run {
                     if (isCoin) {
-                        text = "Quản lý Xu"
+                        text = context.rText(R.string.quan_ly_xu)
                     } else {
                         if (listGift.isNullOrEmpty()) {
-                            text = "Xem quà"
+                            text = context.rText(R.string.xem_qua)
                         } else {
                             if (listGift.size > 1) {
                                 dialog.findViewById<RecyclerView>(R.id.recyclerView).adapter = DialogReceiveGiftAdapter(listGift)
 
-                                text = "Xem kho quà"
+                                text = context.rText(R.string.xem_kho_qua)
                             } else {
-                                text = "Xem quà"
+                                text = context.rText(R.string.xem_qua)
                             }
                         }
                     }
@@ -254,12 +259,12 @@ class DialogReceiveGiftSuccess(
             shareIntent.type = "*/*"
             val mBitmap = screenShot(viewGroup)
             viewGroup.removeView(viewGroup.findViewById<ViewGroup>(R.id.root_shot))
-            val path = MediaStore.Images.Media.insertImage(activity.contentResolver, mBitmap, "Anh chup man hinh", null)
+            val path = MediaStore.Images.Media.insertImage(activity.contentResolver, mBitmap, rText(R.string.anh_chup_man_hinh), null)
             val uri = Uri.parse(path)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Chúc mừng ${SessionManager.session.user?.name} " + "đã trúng quà khi tham gia sự kiện của iCheck!")
-            startActivity(Intent.createChooser(shareIntent, "Chia sẻ qua app"))
+            shareIntent.putExtra(Intent.EXTRA_TEXT, rText(R.string.chuc_mung_s_da_chung_qua_khi_tham_gia_su_kien_cua_icheck, SessionManager.session.user?.name))
+            startActivity(Intent.createChooser(shareIntent, rText(R.string.chia_se_qua_app)))
         }
     }
 

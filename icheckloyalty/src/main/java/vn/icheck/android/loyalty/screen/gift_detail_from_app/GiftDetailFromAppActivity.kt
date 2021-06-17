@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -89,7 +90,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
         viewModel.onSuccess.observe(this@GiftDetailFromAppActivity, { obj ->
             swipeLayout.isRefreshing = false
-            txtTitle.text = obj.name ?: "Chi tiết quà"
+            txtTitle.text = obj.name ?: rText(R.string.chi_tiet_qua)
 
             setUpButton(obj)
 
@@ -132,7 +133,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     when {
                         obj.voucher.can_use == true -> {
                             btnUsed.apply {
-                                text = "Dùng ngay"
+                                text = context.rText(R.string.dung_ngay)
 
                                 setOnClickListener {
                                     startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
@@ -145,10 +146,10 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                         }
                         obj.voucher.can_mark_use == true -> {
                             btnUsed.apply {
-                                text = "Đánh dấu sử dụng"
+                                text = context.rText(R.string.danh_dau_su_dung)
 
                                 setOnClickListener {
-                                    showCustomErrorToast(this@GiftDetailFromAppActivity, "Chưa có sự kiện")
+                                    showCustomErrorToast(this@GiftDetailFromAppActivity, context.rText(R.string.chua_co_su_kien))
                                 }
                             }
                         }
@@ -172,7 +173,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
 
         btnCancel.setOnClickListener {
-            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, "Từ chối nhận quà", "Bạn sẽ không thể nhận quà này nếu\nxác nhận từ chối", "Hủy", "Xác nhận", false) {
+            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, rText(R.string.tu_choi_nhan_qua), rText(R.string.ban_se_khong_the_nhan_qua_nay_neu_xac_nhan_tu_choi), rText(R.string.huy), rText(R.string.xac_nhan), false) {
                 override fun onDisagree() {
 
                 }

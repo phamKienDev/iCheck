@@ -73,7 +73,7 @@
                 android:layout_weight="1.5"
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
-                android:text="Loại quà"
+                android:text="@string/loai_qua"
                 android:textColor="@color/darkGray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -100,7 +100,7 @@
                 android:layout_weight="1.5"
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
-                android:text="Trạng thái"
+                android:text="@string/trang_thai"
                 android:textColor="@color/darkGray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -129,7 +129,7 @@
                 android:layout_weight="1.5"
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
-                android:text="Hạn nhận quà"
+                android:text="@string/han_nhan_qua"
                 android:textColor="@color/darkGray1" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"
             android:fontFamily="@font/roboto_bold"
-            android:text="Thông tin quà"
+            android:text="@string/thong_tin_qua"
             android:textColor="@color/darkGray1" />
 
         <WebView
@@ -173,7 +173,7 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
-                android:text="Mã nhận thưởng của bạn"
+                android:text="@string/ma_nhan_thuong_cua_ban"
                 android:textColor="@color/darkGray1" />
 
             <androidx.appcompat.widget.AppCompatTextView

@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.vqmm.history
 
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.base.BaseViewModel
@@ -32,7 +33,7 @@ class HistoryGameViewModel : BaseViewModel<ICKItemReward>() {
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa nhập mã dự thưởng nào", "Thử nhập ngay vận may biết đâu tới", "Nhập mã thêm lượt quay", R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
+                        setErrorEmpty(R.drawable.ic_default_loyalty, rText(R.string.ban_chua_nhap_ma_du_thuong_nao), rText(R.string.thu_nhap_ngay_van_may_biet_dau_toi), rText(R.string.nhap_ma_them_luot_quay), R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }
@@ -64,7 +65,7 @@ class HistoryGameViewModel : BaseViewModel<ICKItemReward>() {
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_default_loyalty, "Bạn chưa quét mã QR nào", "Thử quét ngay vận may biết đâu tới", "Quét mã QR thêm lượt ngay", R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
+                        setErrorEmpty(R.drawable.ic_default_loyalty, rText(R.string.ban_chua_quet_ma_qr_nao), rText(R.string.thu_quet_ngay_van_may_biet_dau_toi), rText(R.string.quet_ma_qr_them_luot_ngay), R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }

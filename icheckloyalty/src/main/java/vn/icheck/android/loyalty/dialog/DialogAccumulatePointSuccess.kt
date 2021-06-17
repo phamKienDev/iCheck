@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import kotlinx.android.synthetic.main.dialog_accumulate_point_success.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -35,10 +36,12 @@ abstract class DialogAccumulatePointSuccess(
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UPDATE_POINT))
         }
 
-        tvPoint.text = if (!pointName.isNullOrEmpty()) {
-            "${TextHelper.formatMoneyPhay(point)} $pointName"
-        } else {
-            "${TextHelper.formatMoneyPhay(point)} Điểm tích lũy"
+        tvPoint.apply {
+            text = if (!pointName.isNullOrEmpty()) {
+                "${TextHelper.formatMoneyPhay(point)} $pointName"
+            } else {
+                context.rText(R.string.s_diem_tich_luy, TextHelper.formatMoneyPhay(point))
+            }
         }
 
         tvMessage.text = message

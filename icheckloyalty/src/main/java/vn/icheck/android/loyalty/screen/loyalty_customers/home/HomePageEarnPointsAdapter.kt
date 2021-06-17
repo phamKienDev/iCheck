@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_header_earn_long_term_points.view.*
 import kotlinx.android.synthetic.main.item_header_earn_long_term_points.view.tvPoint
 import kotlinx.android.synthetic.main.item_transaction_history.view.*
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -115,13 +116,13 @@ internal class HomePageEarnPointsAdapter(private val banner: String?, private va
             WidgetHelper.loadImageUrl(itemView.imgBanner, banner)
 
             val name = if (obj.customer?.name.isNullOrEmpty()) {
-                "Chào ${SessionManager.session.user?.name},"
+                rText(R.string.chao_s, SessionManager.session.user?.name)
             } else {
-                "Chào ${obj.customer?.name},"
+                rText(R.string.chao_s, obj.customer?.name)
             }
 
             itemView.tvNameUser.text = if (name.contains("null")) {
-                "Chào bạn,"
+                rText(R.string.chao_ban)
             } else {
                 name
             }

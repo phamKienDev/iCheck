@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_loyalty_points_history.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.screen.loyalty_customers.history.adapter.FilterAdapter
@@ -95,7 +96,7 @@ class LoyaltyPointsHistoryActivity : BaseActivityGame() {
                     "$month"
                 }
                 giftShopViewModel.calendar.set(year, month, dayOfMonth)
-                val s = "Tháng $months/$year"
+                val s = rText(R.string.thang_s_d,months,year)
                 giftShopViewModel.setTime()
                 edt_time.setText(s)
                 giftShopViewModel.addOnlyFilter(s)
@@ -118,7 +119,7 @@ class LoyaltyPointsHistoryActivity : BaseActivityGame() {
         }
         rcv_transactions.adapter = pointsHistoryAdapter
         giftShopViewModel.countLiveData.observe(this, Observer {
-            tv_total_transactions.text = "Lịch sử giao dịch (${it})"
+            tv_total_transactions.rText(R.string.lich_su_giao_dich_d, it)
         })
         lifecycleScope.launch {
             giftShopViewModel.getTransactionsHistory().collectLatest {

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_redemption_history.view.*
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -93,7 +94,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
             itemView.tvDate.text = if (obj.created_at.isNullOrEmpty()) {
                 itemView.context.getString(R.string.dang_cap_nhat)
             } else {
-                "Thời gian đổi: ${TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_at)}"
+                rText(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_at))
             }
 
             WidgetHelper.loadImageUrl(itemView.imgGiftFromVendor, obj.gift?.image?.medium, R.drawable.emty_reward)
@@ -126,23 +127,23 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
                             data.voucher = obj.voucher
 
-                            data.titleDate = "Hạn sử dụng"
+                            data.titleDate = rText(R.string.han_su_dung)
 
                             if (obj.voucher?.checked_condition?.status == false) {
                                 if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
 
-                                    data.titleDate = "Có hiệu lực từ"
+                                    data.titleDate = rText(R.string.co_hieu_luc_tu)
 
                                     data.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
 
-                                    data.statusChange = "Chưa có hiệu lực"
+                                    data.statusChange = rText(R.string.chua_co_hieu_luc)
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.orange)
 
                                     data.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    data.statusChange = "Hết lượt sử dụng"
+                                    data.statusChange = rText(R.string.het_luot_su_dung)
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
 
@@ -151,8 +152,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
                                     data.dateChange = ""
 
-                                    data.statusChange = "Hết hạn sử dụng"
-
+                                    data.statusChange = rText(R.string.het_han_su_dung)
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
 
                                     data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
@@ -161,17 +161,17 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
                                 data.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
 
-                                if (data.dateChange == "Còn lại ") {
+                                if (data.dateChange == rText(R.string.con_lai_)) {
 
                                     data.dateChange = ""
 
-                                    data.statusChange = "Hết hạn sử dụng"
+                                    data.statusChange = rText(R.string.het_han_su_dung)
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.errorColor)
 
                                     data.colorBackground = R.drawable.bg_corner_30_red_opacity_02
                                 } else {
-                                    data.statusChange = "Có thể sử dụng"
+                                    data.statusChange = rText(R.string.co_the_su_dung)
 
                                     data.colorText = ContextCompat.getColor(itemView.context, R.color.green2)
 
@@ -189,28 +189,28 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                         when (obj.winner?.status) {
                             "new" -> {
                                 data.state = 1
-                                text = "Chờ xác nhận"
+                                text = rText(R.string.cho_xac_nhan)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "waiting_receive_gift" -> {
                                 data.state = 2
                                 visibility = View.VISIBLE
-                                text = "Chờ giao"
+                                text = rText(R.string.cho_giao)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "received_gift" -> {
                                 data.state = 3
                                 visibility = View.VISIBLE
-                                text = "Đã nhận quà"
+                                text = rText(R.string.da_nhan_qua)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                                 setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                             }
                             "refused_gift" -> {
                                 data.state = 4
                                 visibility = View.VISIBLE
-                                text = "Từ chối"
+                                text = rText(R.string.tu_choi)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
@@ -244,7 +244,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
             }
 
             itemView.tvDate.text = if (!obj.win_at.isNullOrEmpty()) {
-                "Thời gian đổi: ${TimeHelper.convertDateTimeSvToTimeDateVn(obj.win_at)}"
+                rText(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.win_at))
             } else {
                 default
             }
@@ -261,22 +261,22 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
                                 if (obj.voucher?.checked_condition?.code == "START_TIME_CAN_USE") {
 
-                                    text = "Chưa có hiệu lực"
+                                    text = rText(R.string.chua_co_hieu_luc)
                                     setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                                 } else if (obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher?.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
-                                    text = "Hết lượt sử dụng"
+                                    text = rText(R.string.het_luot_su_dung)
                                     setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                     setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                 } else {
 
-                                    text = "Hết hạn sử dụng"
+                                    text = rText(R.string.het_han_su_dung)
                                     setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                     setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                 }
                             } else {
-                                text = "Có thể sử dụng"
+                                text = rText(R.string.co_the_su_dung)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                                 setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                             }
@@ -288,22 +288,22 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                     itemView.tvState.run {
                         when (obj.status) {
                             "new" -> {
-                                text = "Chờ xác nhận"
+                                text = rText(R.string.cho_xac_nhan)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "waiting_receive_gift" -> {
-                                text = "Chờ giao"
+                                text = rText(R.string.cho_giao)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
                             "received_gift" -> {
-                                text = "Đã nhận quà"
+                                text = rText(R.string.da_nhan_qua)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                                 setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                             }
                             "refused_gift" -> {
-                                text = "Từ chối"
+                                text = rText(R.string.tu_choi)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }

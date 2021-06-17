@@ -14,6 +14,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_onboard_landing.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.room.database.LoyaltyDatabase
@@ -44,7 +45,7 @@ class LandingPageFragment(private val landingPage: String?, private val titleBut
         if (!landingPage.isNullOrEmpty()) {
             loadWebView(landingPage)
         } else {
-            object : DialogNotification(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, "Ok", false) {
+            object : DialogNotification(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, rText(R.string.ok), false) {
                 override fun onDone() {
                     findNavController().popBackStack()
                 }

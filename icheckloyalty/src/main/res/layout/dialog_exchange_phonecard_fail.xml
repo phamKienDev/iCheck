@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:textColor="#434343"
                 android:textSize="16sp"
-                android:text="Nạp thẻ thất bại" />
+                android:text="@string/nap_the_that_bai" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessage"
@@ -53,7 +53,7 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:fontFamily="@font/roboto_regular"
-                android:text="Có lỗi trong quá trình nạp thẻ\nBạn vui lòng thử lại sau" />
+                android:text="@string/co_loi_trong_qua_trinh_nap_the_vui_long_thu_lai_sau" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnDefault"
@@ -69,7 +69,7 @@
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
                 android:layout_marginBottom="@dimen/size_20"
-                android:text="Quét tiếp"
+                android:text="@string/quet_tiep"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>

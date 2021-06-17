@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -71,7 +72,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 "PHONE_CARD" -> {
                 }
                 "RECEIVE_STORE" -> {
-                    btnDoiQua.text = "Hướng dẫn đổi quà"
+                    btnDoiQua rText R.string.huong_dan_doi_qua
                 }
                 "PRODUCT" -> {
                     layoutPhiVanChuyen.setVisible()
@@ -96,9 +97,9 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 }
                             } else {
                                 DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
-                                        R.drawable.ic_error_scan_game, "Bạn không đủ điểm đổi quà!",
-                                        "Tích cực tham gia các chương trình của\nnhãn hàng để nhận điểm Thành viên nhé",
-                                        null, "Tích điểm ngay", false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                        R.drawable.ic_error_scan_game, rText(R.string.ban_khong_du_diem_doi_qua),
+                                        rText(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
+                                        null, rText(R.string.tich_diem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(data: ICKNone?) {
                                                 startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
@@ -120,17 +121,22 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 }
                             } else {
                                 if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
-                                    DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
-                                            "Nhập mã được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_nhap, "Nhập mã ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                    DialogHelperGame.dialogNotEnoughPoints(
+                                        this,
+                                        rText(R.string.ban_khong_du_diem_roi),
+                                        rText(R.string.nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe),
+                                        R.drawable.ic_onboarding_nhap,
+                                        rText(R.string.nhap_ma_ngay),
+                                        true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                             object : IClickButtonDialog<ICKNone> {
                                                 override fun onClickButtonData(obj: ICKNone?) {
 
                                                     Handler().postDelayed({
                                                         DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
                                                                 R.drawable.ic_nhap_ma_cong_diem,
-                                                                "Nhập mã được dán trên sản phẩm\nđể nhận điểm tích lũy đổi quà!",
-                                                                getString(R.string.nhap_ma_vao_day),
-                                                                "Vui lòng nhập mã code", campaignID, R.drawable.bg_gradient_button_orange_yellow,
+                                                                rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
+                                                                rText(R.string.nhap_ma_vao_day_i),
+                                                                rText(R.string.vui_long_nhap_ma_code), campaignID, R.drawable.bg_gradient_button_orange_yellow,
                                                                 object : IClickButtonDialog<ICKAccumulatePoint> {
                                                                     override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
@@ -162,8 +168,8 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                                 }
                                             })
                                 } else {
-                                    DialogHelperGame.dialogNotEnoughPoints(this, "Bạn không đủ điểm rồi!",
-                                            "Quét tem QRcode được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!", R.drawable.ic_onboarding_scan, "Quét tem ngay", true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                    DialogHelperGame.dialogNotEnoughPoints(this, rText(R.string.ban_khong_du_diem_roi),
+                                            rText(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, rText(R.string.quet_tem_ngay), true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                             object : IClickButtonDialog<ICKNone> {
                                                 override fun onClickButtonData(obj: ICKNone?) {
                                                     LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
@@ -198,7 +204,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                     tvDateTime.text = obj?.dateChange
 
-                    if (obj?.statusChange?.contains("Hết lượt sử dụng") == true){
+                    if (obj?.statusChange?.contains(rText(R.string.het_luot_su_dung)) == true){
                         tvTitleDate.setInvisible()
                         tvDateTime.setInvisible()
                     }else{
@@ -217,7 +223,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                     btnDoiQua.apply {
                         when {
                             obj?.voucher?.can_use == true -> {
-                                text = "Dùng ngay"
+                                text = context.rText(R.string.dung_ngay)
 
                                 setOnClickListener {
                                     startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
@@ -228,10 +234,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 }
                             }
                             obj?.voucher?.can_mark_use == true -> {
-                                text = "Đánh dấu đã dùng"
+                                text = context.rText(R.string.danh_dau_da_dung)
 
                                 setOnClickListener {
-                                    showCustomErrorToast(this@DetailGiftLoyaltyActivity, "Chưa có sự kiện")
+                                    showCustomErrorToast(this@DetailGiftLoyaltyActivity, context.rText(R.string.chua_co_su_kien))
                                 }
                             }
                             else -> {
@@ -251,29 +257,29 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         tvVanChuyen.text = when (obj?.gift?.type) {
             "ICOIN" -> {
-                "Quà Xu iCheck"
+                rText(R.string.qua_xu_icheck)
             }
             "PHONE_CARD" -> {
-                "Quà thẻ cào"
+                rText(R.string.qua_the_cao)
             }
             "RECEIVE_STORE" -> {
-                "Quà đổi tại cửa hàng"
+                rText(R.string.qua_doi_tai_cua_hang)
             }
             "PRODUCT" -> {
-                "Quà giao tận nơi"
+                rText(R.string.qua_giao_tan_noi)
             }
             "VOUCHER" -> {
-                "Quà voucher"
+                rText(R.string.qua_voucher)
             }
             else -> {
-                "Quà tinh thần"
+                rText(R.string.qua_tinh_than)
             }
         }
 
         tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
             obj?.gift?.name
         } else {
-            getString(R.string.dang_cap_nhat)
+            rText(R.string.dang_cap_nhat)
         }
 
         tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
@@ -281,7 +287,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         tvPoin.text = if (obj?.points != null) {
             TextHelper.formatMoneyPhay(obj?.points)
         } else {
-            getString(R.string.dang_cap_nhat)
+            rText(R.string.dang_cap_nhat)
         }
 
         tvDetailGift.settings.javaScriptEnabled = true
@@ -308,25 +314,25 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         tvStatus.run {
             when (state) {
                 1 -> {
-                    text = "Chờ xác nhận"
+                    text = context.rText(R.string.cho_xac_nhan)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }
                 2 -> {
                     setVisible()
-                    text = "Chờ giao"
+                    text = context.rText(R.string.cho_giao)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }
                 3 -> {
                     setVisible()
-                    text = "Đã nhận quà"
+                    text = context.rText(R.string.da_nhan_qua)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
                     setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                 }
                 4 -> {
                     setVisible()
-                    text = "Từ chối"
+                    text = context.rText(R.string.tu_choi)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }

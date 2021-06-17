@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_the_winner_point.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -37,7 +38,7 @@ class TheWinnerPointActivity : BaseActivityGame(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle.text = "Top người trúng thưởng"
+        txtTitle rText R.string.top_nguoi_trung_thuong
 
         btnNhapMa.setOnClickListener {
             DialogHelperGame.scanOrEnterAccumulatePoint(this@TheWinnerPointActivity, viewModel.collectionID)

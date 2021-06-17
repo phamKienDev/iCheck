@@ -204,7 +204,7 @@ class ReportActivity : BaseActivityMVVM() {
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
                 listData[i].name?.let {
-                    if (it != "Khác" && it != "Lý do khác")
+                    if ((it != "Khác" && it != "Lý do khác")||(it != rText(R.string.khac) && it != rText(R.string.ly_do_khac)))
                         listMessage.add(it)
                 }
             }

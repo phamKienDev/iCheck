@@ -16,7 +16,8 @@
         android:drawableLeft="@drawable/ic_clear_16px"
         android:padding="@dimen/size_12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/size_4" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
@@ -29,7 +30,8 @@
         android:padding="@dimen/size_12"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/size_4" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView2"
@@ -38,7 +40,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Mã ưu đãi"
+        android:text="@string/ma_uu_dai"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/tvClose"
@@ -141,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2.5"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Mã ưu đãi"
+                        android:text="@string/ma_uu_dai"
                         android:textColor="@color/colorSecondText"
                         android:textSize="14sp" />
 
@@ -155,7 +157,7 @@
                         android:drawableRight="@drawable/ic_drawable_eyes_checked"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center_vertical"
-                        android:text="FBSHBDIA3NCDJS"
+                        android:text="@string/FBSHBDIA3NCDJS"
                         android:textColor="#85C440"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -171,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2.5"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Hạn sử dụng"
+                        android:text="@string/han_su_dung"
                         android:textColor="@color/colorSecondText"
                         android:textSize="14sp" />
 
@@ -181,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:text="24/05/2020"
+                        android:text="@string/date"
                         android:textColor="@color/colorNormalText"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -197,7 +199,7 @@
         android:gravity="center"
         android:includeFontPadding="false"
         android:lineHeight="@dimen/size_20"
-        android:text="Đưa mã QR này cho nhân viên cửa hàng\nđể sử dụng ưu đãi"
+        android:text="@string/dua_ma_qr_nay_cho_nhan_vien_cua_hang_de_su_dung_uu_dai"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"

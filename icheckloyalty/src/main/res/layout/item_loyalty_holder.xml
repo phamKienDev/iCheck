@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_10"
-            android:text="Mã dự thưởng chương trình:"
+            android:text="@string/ma_du_thuong_chuong_trinh"
             android:textColor="@color/darkGray1"
             android:textSize="14sp" />
 

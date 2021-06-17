@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history.fragment
 
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.base.BaseViewModel
@@ -34,13 +35,13 @@ class PointHistoryAllViewModel : BaseViewModel<ICKPointHistory>() {
                     if (obj.data?.rows.isNullOrEmpty()) {
                         when (type) {
                             "accumulate-points" -> {
-                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, "Bạn chưa có lịch sử tích điểm", "", "Tích điểm ngay", R.drawable.bg_gradient_button_orange_yellow, R.color.white)
+                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, rText(R.string.ban_chua_co_lich_su_tich_diem), "", rText(R.string.tich_diem_ngay), R.drawable.bg_gradient_button_orange_yellow, R.color.white)
                             }
                             "exchange-gift" -> {
-                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, "Bạn chưa có lịch sử tiêu điểm", "", "Đổi quà ngay", R.drawable.bg_gradient_button_orange_yellow, R.color.white)
+                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, rText(R.string.ban_chua_co_lich_su_tieu_diem), "", rText(R.string.doi_qua_ngay), R.drawable.bg_gradient_button_orange_yellow, R.color.white)
                             }
                             else -> {
-                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, "Bạn chưa có lịch sử", "", "Tích điểm ngay", R.drawable.bg_gradient_button_orange_yellow, R.color.white)
+                                setErrorEmpty(R.drawable.ic_point_loyalty_empty, rText(R.string.ban_chua_co_lich_su), "", rText(R.string.tich_diem_ngay), R.drawable.bg_gradient_button_orange_yellow, R.color.white)
                             }
                         }
                     } else {

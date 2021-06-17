@@ -48,7 +48,9 @@ class GiftDetailFromAppViewModel : BaseViewModel<Any>() {
         repository.getDetailGiftWinner(collectionID, object : ICApiListener<ICKResponse<ICKGift>> {
             override fun onSuccess(obj: ICKResponse<ICKGift>) {
                 if (obj.statusCode == 200) {
-                    onSuccess.postValue(obj.data)
+                    obj.data?.let {
+                        onSuccess.postValue(it)
+                    }
                 } else {
                     checkError(true, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }

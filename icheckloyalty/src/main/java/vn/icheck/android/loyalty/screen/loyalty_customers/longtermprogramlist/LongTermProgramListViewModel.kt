@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.loyalty_customers.longtermprogramlist
 
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.base.BaseViewModel
@@ -33,7 +34,7 @@ class LongTermProgramListViewModel : BaseViewModel<ICKLongTermProgram>() {
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         onSetData.postValue(obj.data?.rows)
                     } else {
-                        setErrorEmpty(R.drawable.ic_error_emty_history_topup, "Hiện tại bạn chưa là thành viên của thương hiệu nào", "", "", 0, R.color.white)
+                        setErrorEmpty(R.drawable.ic_error_emty_history_topup, rText(R.string.hien_tai_ban_chua_la_thanh_vien_cua_thuong_hieu_nao), "", "", 0, R.color.white)
                     }
                 } else {
                     onAddData.postValue(obj.data?.rows ?: mutableListOf())

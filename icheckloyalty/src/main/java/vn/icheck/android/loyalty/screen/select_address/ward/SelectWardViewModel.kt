@@ -2,6 +2,8 @@ package vn.icheck.android.loyalty.screen.select_address.ward
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ApplicationHelper
@@ -57,7 +59,7 @@ class SelectWardViewModel : BaseViewModel<ICWard>() {
 
                 if (!isLoadMore) {
                     if (obj.rows.isNullOrEmpty()) {
-                        onEmptyString.postValue("Chưa có dữ liệu!")
+                        onEmptyString.postValue(rText(R.string.chua_co_du_lieu))
                     } else {
                         onSetData.postValue(obj.rows)
                     }

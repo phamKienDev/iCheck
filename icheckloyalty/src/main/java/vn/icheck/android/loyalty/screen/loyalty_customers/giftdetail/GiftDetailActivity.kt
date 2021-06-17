@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_gift_detail.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -123,7 +124,7 @@ class GiftDetailActivity : BaseActivityGame() {
 
         viewModel.setData.observe(this, Observer {
             swipeLayout.isRefreshing = false
-            txtTitle.text = it?.gift?.name ?: "Quà tặng đổi thưởng"
+            txtTitle.text = it?.gift?.name ?: rText(R.string.qua_tang_doi_thuong)
 
             adapter?.setData(it)
         })

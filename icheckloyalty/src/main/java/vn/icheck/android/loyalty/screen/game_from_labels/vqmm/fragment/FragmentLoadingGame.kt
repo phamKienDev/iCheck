@@ -31,6 +31,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_loading_game.*
 import kotlinx.coroutines.*
 import retrofit2.HttpException
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.SizeHelper
 import vn.icheck.android.loyalty.helper.ToastHelper
@@ -94,7 +95,7 @@ class FragmentLoadingGame : Fragment() {
                     try {
                         newArr.awaitAll()
                     } catch (e: Exception) {
-                        ToastHelper.showShortError(requireContext(), "Đã xảy ra lỗi vui lòng thử lại sau")
+                        ToastHelper.showShortError(requireContext(), rText(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                         findNavController().popBackStack()
                     }
                 }

@@ -49,7 +49,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đã kết thúc."
+            android:text="@string/da_ket_thuc"
             android:gravity="center_horizontal" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:gravity="center_horizontal"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:text="Cảm ơn bạn đã tham gia sự kiện này. Hy vọng bạn sẽ đồng hành cùng chúng tôi  trong nhiều sự kiện sắp tới!"
+            android:text="@string/cam_on_ban_da_tham_gia_su_kien_nay"
             android:textAlignment="center"
             android:textColor="#434343" />
 
@@ -74,7 +74,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_btn_blue_corner_4"
-            android:text="Xem kho quà"
+            android:text="@string/xem_kho_qua"
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>

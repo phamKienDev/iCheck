@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
@@ -50,30 +51,32 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
             checkNullOrEmpty(itemView.tvNameShop, obj.shop_name)
             checkNullOrEmpty(itemView.tvNameGift, obj.name)
 
-            itemView.tvCategoryGift.text = when (obj.rewardType) {
-                "spirit" -> {
-                    itemView.tvCode.setVisible()
-                    "Tinh thần"
-                }
-                "PRODUCT_IN_SHOP" -> {
-                    itemView.tvCode.setVisible()
-                    "Quà nhận tại cửa hàng"
-                }
-                "CARD" -> {
-                    itemView.tvCode.setVisible()
-                    "Quà thẻ cào"
-                }
-                "product" -> {
-                    itemView.tvCode.setVisible()
-                    "Hiện vật"
-                }
-                "VOUCHER" -> {
-                    itemView.layoutMaDuThuong.setGone()
-                    itemView.tvCode.setGone()
-                    "Voucher"
-                }
-                else -> {
-                    ""
+            itemView.tvCategoryGift.apply {
+                text = when (obj.rewardType) {
+                    "spirit" -> {
+                        itemView.tvCode.setVisible()
+                        context.rText(R.string.tinh_than)
+                    }
+                    "PRODUCT_IN_SHOP" -> {
+                        itemView.tvCode.setVisible()
+                        context.rText(R.string.qua_nhan_tai_cua_hang)
+                    }
+                    "CARD" -> {
+                        itemView.tvCode.setVisible()
+                        context.rText(R.string.qua_the_cao)
+                    }
+                    "product" -> {
+                        itemView.tvCode.setVisible()
+                        context.rText(R.string.hien_vat)
+                    }
+                    "VOUCHER" -> {
+                        itemView.layoutMaDuThuong.setGone()
+                        itemView.tvCode.setGone()
+                        context.rText(R.string.voucher)
+                    }
+                    else -> {
+                        ""
+                    }
                 }
             }
 
@@ -81,29 +84,29 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 itemView.layoutStatusGift.setGone()
 
                 if (obj.voucher != null) {
-                    itemView.tvTitleDate.text = "Hạn sử dụng"
+                    itemView.tvTitleDate rText R.string.han_su_dung
 
                     if (obj.voucher.checked_condition?.status == false) {
 
                         if (obj.voucher.checked_condition?.code == "START_TIME_CAN_USE") {
 
-                            itemView.tvTitleDate.text = "Có hiệu lực từ"
+                            itemView.tvTitleDate rText R.string.co_hieu_luc_tu
 
                             itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
 
-                            itemView.tvStatus.text = "Chưa có hiệu lực"
+                            itemView.tvStatus rText R.string.chua_co_hieu_luc
 
                         } else if (obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
 
                             itemView.layoutDate.setGone()
 
-                            itemView.tvStatus.text = "Hết lượt sử dụng"
+                            itemView.tvStatus rText R.string.het_luot_su_dung
 
                         } else {
 
                             itemView.tvTimeGift.text = ""
 
-                            itemView.tvStatus.text = "Hết hạn sử dụng"
+                            itemView.tvStatus rText R.string.het_han_su_dung
                         }
 
                     } else {
@@ -111,14 +114,12 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                         itemView.tvTimeGift.text = TimeHelper.timeGiftVoucher(obj.voucher)
 
                         itemView.tvStatus.apply {
-
-                            text = if (itemView.tvTimeGift.text.toString() == "Còn lại ") {
+                            text = if (itemView.tvTimeGift.text.toString() == context.rText(R.string.con_lai)) {
 
                                 itemView.tvTimeGift.text = ""
-                                "Hết hạn sử dụng"
+                                context.rText(R.string.het_han_su_dung)
                             } else {
-
-                                "Có thể sử dụng"
+                                context.rText(R.string.co_the_su_dung)
                             }
                         }
                     }
@@ -126,10 +127,10 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                     when (obj.state) {
                         1 -> {
-                            itemView.tvStatus.text = "Chờ xác nhận"
+                            itemView.tvStatus rText R.string.cho_xac_nhan
                         }
                         3 -> {
-                            itemView.tvStatus.text = "Từ chối"
+                            itemView.tvStatus rText R.string.tu_choi
                         }
                     }
 
@@ -139,32 +140,32 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 when (obj.state) {
                     1 -> {
                         itemView.layoutStatusGift.setGone()
-                        itemView.tvStatus.text = "Chưa nhận"
+                        itemView.tvStatus rText R.string.chua_nhan
                     }
                     2 -> {
-                        itemView.tvStatus.text = "Đã nhận quà"
+                        itemView.tvStatus rText R.string.da_nhan_qua
 
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.green2))
-                            text = "Đã nhận quà"
+                            text = context.rText(R.string.da_nhan_qua)
                         }
                     }
                     3 -> {
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.errorColor))
-                            text = "Bạn đã từ chối nhận quà này"
+                            text = context.rText(R.string.ban_da_tu_choi_nhan_qua_nay)
                         }
-                        itemView.tvStatus.text = "Bạn đã từ chối nhận quà này"
+                        itemView.tvStatus rText(R.string.ban_da_tu_choi_nhan_qua_nay)
                     }
                     4 -> {
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.green2))
-                            text = "Bạn đã xác nhận ship quà này"
+                            text = context.rText(R.string.ban_da_xac_nhan_ship_qua_nay)
                         }
-                        itemView.tvStatus.text = "Chờ giao"
+                        itemView.tvStatus rText R.string.cho_giao
                     }
                     else -> {
                         itemView.layoutStatusGift.setGone()

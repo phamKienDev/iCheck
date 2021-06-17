@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_point_history.view.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
@@ -50,21 +51,21 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                 }
 
                 itemView.tvHintSerial.text = if (!type) {
-                    "Số serial:"
+                    itemView.context.rText(R.string.so_serial)
                 } else {
-                    "Mã code:"
+                    itemView.context.rText(R.string.ma_code)
                 }
 
                 itemView.tvSerial.run {
                     text = if (!type) {
                         if (obj.serial.isNullOrEmpty()) {
-                            context.getString(R.string.dang_cap_nhat)
+                            context.rText(R.string.dang_cap_nhat)
                         } else {
                             obj.serial
                         }
                     } else {
                         if (obj.code.isNullOrEmpty()) {
-                            context.getString(R.string.dang_cap_nhat)
+                            context.rText(R.string.dang_cap_nhat)
                         } else {
                             obj.code
                         }
@@ -75,14 +76,14 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                     }
                 }
 
-                itemView.tvTime.text = "Thời gian nhận"
+                itemView.tvTime rText R.string.thoi_gian_nhan
             } else {
                 itemView.tvPoint.run {
                     text = TextHelper.formatMoneyPhay(obj.points)
                     setTextColor(ContextCompat.getColor(context, R.color.colorAccentRed))
                 }
 
-                itemView.tvHintSerial.text = "Nội dung:"
+                itemView.tvHintSerial rText R.string.noi_dung
 
                 itemView.tvSerial.text = if (obj.message.isNullOrEmpty()) {
                     itemView.context.getString(R.string.dang_cap_nhat)
@@ -95,13 +96,13 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                 }
 
 
-                itemView.tvTime.text = "Thời gian đổi:"
+                itemView.tvTime rText R.string.thoi_gian_doi
             }
 
             itemView.tvDate.text = if (!obj.created_at.isNullOrEmpty()) {
                 TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_at)
             } else {
-                itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.context.rText(R.string.dang_cap_nhat)
             }
         }
     }
