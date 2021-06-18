@@ -80,7 +80,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
         android:padding="@dimen/size_14"
-        android:text="@string/dong_bo_danh_bah"
+        android:text="@string/dong_bo_danh_ba"
         android:textColor="@color/colorPrimary"
         android:visibility="gone"
         app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
