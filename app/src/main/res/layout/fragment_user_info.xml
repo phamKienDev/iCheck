@@ -21,7 +21,7 @@
             android:layout_marginLeft="@dimen/size_44"
             android:layout_marginTop="@dimen/size_30"
             android:focusableInTouchMode="true"
-            android:src="@drawable/user_placeholder"
+            android:src="@drawable/ic_avatar_default_84dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

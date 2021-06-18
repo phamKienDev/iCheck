@@ -70,6 +70,11 @@ class CreateMessageQrCodeFragment : BaseFragmentMVVM(), ICreateMessageQrCodeView
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
         edtPhone.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.fillDrawableColor(R.drawable.ic_phonebook_24dp,requireContext()),null)
+
+        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
+            edtPhone.background=this
+            edtContent.background=this
+        }
     }
 
     private fun initListener() {

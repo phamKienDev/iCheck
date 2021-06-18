@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_suggest_follow_friend.view.*
 import kotlinx.android.synthetic.main.item_suggest_item_page.view.*
@@ -85,7 +84,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     listFriend.add(friend.avatar ?: "")
                 }
                 val icUser = ICAvatarOfFriend(listFriend, obj.count)
-                itemView.img_list_avatar.bind(icUser, null, true, R.drawable.ic_avatar_default_84px)
+                itemView.img_list_avatar.bind(icUser, null, true, R.drawable.ic_avatar_default_84dp)
             }
 
             if (obj.count > 0) {

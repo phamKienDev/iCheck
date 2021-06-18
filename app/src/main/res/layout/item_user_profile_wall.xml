@@ -99,7 +99,7 @@
                 android:text="Nhắn tin"
                 android:textSize="@dimen/font_16" />
 
-            <ImageView
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@+id/img_settings"
                 android:layout_width="@dimen/size_70"
                 android:layout_height="@dimen/size_35"
@@ -285,7 +285,7 @@
         android:layout_width="@dimen/size_115"
         android:layout_height="@dimen/size_115"
         android:layout_marginTop="@dimen/size_80"
-        android:src="@drawable/ic_avatar_default_84px"
+        android:src="@drawable/ic_avatar_default_84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

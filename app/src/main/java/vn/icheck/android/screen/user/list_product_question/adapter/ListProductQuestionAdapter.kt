@@ -227,7 +227,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
             }
 
             if (obj.page == null) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.apply {
                     text = obj.user?.getName

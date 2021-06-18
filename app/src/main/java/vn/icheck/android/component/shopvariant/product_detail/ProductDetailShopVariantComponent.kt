@@ -22,6 +22,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beGone
@@ -65,6 +66,9 @@ class ProductDetailShopVariantComponent : LinearLayout {
     @SuppressLint("SetTextI18n")
     fun bind(productRow: ICShopVariantV2) {
         vg_shop_top.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
+        layoutLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+        tvChiDuong.fillDrawableStartText(R.drawable.ic_location_item_shop_variant)
+
         tv_shop_name.text = productRow.name
 
         if (productRow.distance != null) {

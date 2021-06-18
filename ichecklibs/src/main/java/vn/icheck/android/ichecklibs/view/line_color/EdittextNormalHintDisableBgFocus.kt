@@ -25,7 +25,6 @@ class EdittextNormalHintDisableBgFocus : EdittextNormalHintDisable {
 
     private fun setup() {
         background = ViewHelper.bgEdtSelectorFocusLineColor1(context)
-
         setPadding(SizeHelper.size5,SizeHelper.size5,SizeHelper.size5,SizeHelper.size5)
     }
 }

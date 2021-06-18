@@ -69,7 +69,7 @@ class LayoutFeedComment : FrameLayout {
     }
 
     fun setData(avatar: ICThumbnail) {
-        WidgetUtils.loadImageUrl(getChildAt(0) as CircleImageView, avatar.medium, R.drawable.ic_circle_avatar_default)
+        WidgetUtils.loadImageUrl(getChildAt(0) as CircleImageView, avatar.medium, R.drawable.ic_user_svg)
     }
 
     fun setOnAvatarClick(listener: OnClickListener) {

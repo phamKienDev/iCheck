@@ -87,12 +87,12 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
             }
 
             if (SettingManager.getPostPermission() == null) {
-                WidgetUtils.loadImageUrl(imgPermission, data.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgPermission, data.user?.avatar, R.drawable.ic_avatar_default_84dp)
             } else {
                 val error = if (SettingManager.getPostPermission()?.type == Constant.PAGE) {
                     R.drawable.ic_business_v2
                 } else {
-                    R.drawable.ic_avatar_default_84px
+                    R.drawable.ic_avatar_default_84dp
                 }
                 WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar
                         ?: "", error)

@@ -11,6 +11,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.history.ICSuggestStoreHistory
 import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.base.holder.LongMessageHolder
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -147,9 +149,12 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
     class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICSuggestStoreHistory) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, item.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px)
-            itemView.tvNameShop.text = item.name
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvNameShop.text = item.name ?: itemView.context.getString(R.string.dang_cap_nhat)
             itemView.tvCountRating.text = String.format("%.1f", item.rating)
+
+            itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.Constant.secondaryColor)
+
+            itemView.tvCountProductOfShop.fillDrawableEndText(R.drawable.ic_down_light_blue_18_px)
             itemView.tvCountProductOfShop.text = "Có ${item.numProductSell} sản phẩm có sẵn"
         }
     }

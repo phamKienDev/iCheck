@@ -62,7 +62,7 @@
             android:text="Số điện thoại bạn muốn chia sẻ"
             android:textSize="@dimen/font_12" />
 
-        <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"

@@ -21,10 +21,10 @@ class CommentPostStickerHolder(parent: ViewGroup, val listener: ICommentPostView
         }
 
         if (obj.page != null) {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_user_svg)
             itemView.tvTitle.text = obj.page?.name
         } else {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_user_svg)
             itemView.tvTitle.text = obj.user?.name
         }
 

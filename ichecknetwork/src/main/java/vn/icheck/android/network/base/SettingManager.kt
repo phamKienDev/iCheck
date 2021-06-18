@@ -89,25 +89,30 @@ object SettingManager {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
     }
 
-    fun setAppThemeColor(icThemeSetting: ICThemeSetting?){
-        if (icThemeSetting?.theme!=null) {
-            Constant.appBackgroundColor= icThemeSetting.theme.appBackgroundColor ?:""
-            Constant.popupBackgroundColor= icThemeSetting.theme.popupBackgroundColor ?: ""
-            Constant.primaryColor= icThemeSetting.theme.primaryColor ?:""
-            Constant.secondaryColor= icThemeSetting.theme.secondaryColor ?:""
-            Constant.normalTextColor= icThemeSetting.theme.normalTextColor ?:""
-            Constant.secondTextColor= icThemeSetting.theme.secondTextColor ?:""
-            Constant.disableTextColor= icThemeSetting.theme.disableTextColor ?:""
-            Constant.lineColor= icThemeSetting.theme.lineColor ?:""
+    fun setAppThemeColor(icThemeSetting: ICThemeSetting?) {
+
+        if (icThemeSetting?.theme != null) {
+            Constant.appBackgroundColor = icThemeSetting.theme.appBackgroundColor ?: ""
+
+            Constant.popupBackgroundColor = icThemeSetting.theme.popupBackgroundColor ?: ""
+
+            Constant.primaryColor = icThemeSetting.theme.primaryColor ?: ""
+            Constant.secondaryColor = icThemeSetting.theme.secondaryColor ?: ""
+
+            Constant.normalTextColor = icThemeSetting.theme.normalTextColor ?: ""
+            Constant.secondTextColor = icThemeSetting.theme.secondTextColor ?: ""
+            Constant.disableTextColor = icThemeSetting.theme.disableTextColor ?: ""
+
+            Constant.lineColor = icThemeSetting.theme.lineColor ?: ""
         } else {
-            Constant.appBackgroundColor=""
-            Constant.popupBackgroundColor=""
-            Constant.primaryColor=""
-            Constant.secondaryColor=""
-            Constant.normalTextColor=""
-            Constant.secondTextColor=""
-            Constant.disableTextColor=""
-            Constant.lineColor=""
+            Constant.appBackgroundColor = ""
+            Constant.popupBackgroundColor = ""
+            Constant.primaryColor = ""
+            Constant.secondaryColor = ""
+            Constant.normalTextColor = ""
+            Constant.secondTextColor = ""
+            Constant.disableTextColor = ""
+            Constant.lineColor = ""
         }
 
 //            Constant.appBackgroundColor="#85c440"

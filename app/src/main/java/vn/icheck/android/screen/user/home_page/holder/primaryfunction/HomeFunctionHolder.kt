@@ -177,7 +177,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                 binding.avatarUser.apply {
                     avatarSize = SizeHelper.size32
                     rankSize = SizeHelper.size12
-                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
+                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84dp)
 
                     setOnClickListener {
                         if (SessionManager.isUserLogged) {

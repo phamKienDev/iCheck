@@ -191,7 +191,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 WidgetUtils.loadImageUrl(
                     imgAvatar,
                     it.user!!.avatar,
-                    R.drawable.ic_avatar_default_84px
+                    R.drawable.ic_avatar_default_84dp
                 )
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)

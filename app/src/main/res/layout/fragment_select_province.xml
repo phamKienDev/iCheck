@@ -10,7 +10,7 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue" />
 
-    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"

@@ -18,7 +18,7 @@ import vn.icheck.android.util.ui.GlideUtil
 class ReviewsCommentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductReviews.Comments>(LayoutInflater.from(parent.context).inflate(R.layout.comment_holder_v1, parent, false)) {
 
     override fun bind(obj: ICProductReviews.Comments) {
-        WidgetUtils.loadImageUrl(itemView.ava, obj.owner?.avatarThumb?.small, R.drawable.ic_circle_avatar_default)
+        WidgetUtils.loadImageUrl(itemView.ava, obj.owner?.avatarThumb?.small, R.drawable.ic_user_svg)
         itemView.ava.setOnClickListener {
             showDetailUser(obj.customerId)
         }

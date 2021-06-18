@@ -56,11 +56,8 @@ class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView 
     }
 
     private fun initView() {
-          edtSearch.apply {
-              setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this@SelectProvinceStampActivity))
-              background= ViewHelper.bgTransparentStrokeLineColor1Corners4(this@SelectProvinceStampActivity)
-          }
-      }
+          edtSearch.background= ViewHelper.bgTransparentStrokeLineColor1Corners4(this@SelectProvinceStampActivity)
+    }
 
     private fun initRecyclerView() {
         recyclerView.adapter = adapter

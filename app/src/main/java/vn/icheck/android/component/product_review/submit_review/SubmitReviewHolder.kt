@@ -28,7 +28,6 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -85,7 +84,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
         if (SettingManager.getPostPermission() != null) {
             WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (SettingManager.getPostPermission()?.type == Constant.USER) {
-                R.drawable.ic_avatar_default_84px
+                R.drawable.ic_avatar_default_84dp
             } else {
                 R.drawable.ic_business_v2
             })
@@ -177,7 +176,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 override fun getPermission(permission: ICCommentPermission?) {
                     if (permission != null) {
                         WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (permission.type == Constant.USER) {
-                            R.drawable.ic_user_orange_circle
+                            R.drawable.ic_user_svg
                         } else {
                             R.drawable.ic_business_v2
                         })

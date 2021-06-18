@@ -111,7 +111,7 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
             }
         } else {
             File.createTempFile(
-                    "JPEG_${timeStamp}_", /* prefix */
+                    "IMG_${timeStamp}_", /* prefix */
                     ".jpg", /* suffix */
                     storageDir /* directory */
             ).apply {
@@ -149,35 +149,6 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int) {
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                requestImage -> {
-                    if (saveImageToGallery) {
-                        val f = getFile()
-                        MediaStore.Images.Media.insertImage(context?.contentResolver, BitmapFactory.decodeFile(f?.path), f?.name, "");
-                        if (onTakeImageSuccess != null) {
-                            onTakeImageSuccess!!(f)
-                        }
-                    } else {
-                        if (onTakeImageSuccess != null) {
-                            onTakeImageSuccess!!(getPhotoFile)
-                        } else {
-                            callback.onTakeMediaSuccess(getPhotoFile)
-                        }
-                    }
-                }
-                requestVideo -> {
-                    if (onTakeImageSuccess != null) {
-                        onTakeImageSuccess!!(getVideoFile)
-                    } else {
-                        callback.onTakeMediaSuccess(getVideoFile)
-                    }
-                }
-            }
-        }
-    }
-
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
@@ -189,11 +160,6 @@ class TakeMediaHelper(val activity: Activity?, val callback: TakeCameraListener,
                             onTakeImageSuccess!!(f)
                         }
                     } else {
-//                        if (onTakeImageSuccess != null) {
-//                            onTakeImageSuccess!!(getPhotoFile)
-//                        } else {
-//                            callback.onTakeMediaSuccess(getPhotoFile)
-//                        }
                         if (onTakeImageSuccess != null) {
                             onTakeImageSuccess!!(data?.getSerializableExtra("result") as File)
                         } else {

@@ -153,7 +153,7 @@ class ProductQuestionsAdapter(val listener: IProductQuestionsView) : RecyclerVie
 
             when (obj.actor.type) {
                 "user" -> {
-                    WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_user_orange_circle)
+                    WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_user_svg)
                 }
                 "page" -> {
                     WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_business_v2)

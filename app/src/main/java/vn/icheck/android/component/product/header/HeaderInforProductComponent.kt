@@ -31,7 +31,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
         }
         itemView.img_share.apply {
             background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
-            fillDrawableColor(R.drawable.ic_share_product_24dp,itemView.context)
+            this.fillDrawableColor(R.drawable.ic_share_product_24dp)
         }
 
         when (productHeaderModel.icBarcodeProduct.type) {

@@ -122,7 +122,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     imgListAvatar.visibility = View.GONE
                 } else {
                     imgListAvatar.visibility = View.VISIBLE
-                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84px)
+                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84dp)
                 }
             }
 
@@ -179,7 +179,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         fun bind(obj: ICSearchUser) {
             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
             itemView.tvMessage.background = vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
-            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
+            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84dp)
 
             itemView.tvTitle.apply {
                 text = obj.getName

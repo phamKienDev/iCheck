@@ -97,10 +97,10 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             }
         } else {
             if (obj.data?.contribution == null) {
-                WidgetUtils.loadImageUrl(imgAvatarUser, "", R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgAvatarUser, "", R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
                 tvNameUser.text = itemView.context.getString(R.string.chua_cap_nhat)
             } else {
-                WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
                 if (obj.data!!.contribution?.user?.kycStatus == 2) {
                     tvNameUser.setDrawbleNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
                     Handler().postDelayed({

@@ -34,8 +34,6 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setupViewModel()
         setupRecyclerView()
         setupSwipeLayout()
-
-        edt_search.setTextColor(Constant.getNormalTextColor(this))
     }
 
     private fun setupToolbar() {

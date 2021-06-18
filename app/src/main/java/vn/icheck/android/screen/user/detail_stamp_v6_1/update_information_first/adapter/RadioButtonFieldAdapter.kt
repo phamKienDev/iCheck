@@ -1,12 +1,15 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.adapter
 
 import android.content.ClipData
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemRadioButtonFieldBinding
 import kotlinx.android.synthetic.main.item_radio_button_field.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
@@ -29,10 +32,17 @@ class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>, var checked
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ValueFItem) {
-            binding.tvRadio.setTextColor(ViewHelper.textColorNormalCheckedSecondUnchecked(itemView.context))
-            binding.tvRadio.text = item.value
+            binding.tvRadio.apply {
+                setTextColor(ViewHelper.textColorNormalCheckedSecondUnchecked(itemView.context))
 
-            binding.tvRadio.isChecked = item.isChecked
+                val drawable=ViewHelper.createCheckedDrawable(
+                    ContextCompat.getDrawable(itemView.context,R.drawable.ic_radio_un_checked_gray_24dp),
+                    ViewHelper.fillDrawableColor(ContextCompat.getDrawable(itemView.context,R.drawable.ic_radio_checked_blue_24dp)))
+                setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null)
+
+                text = item.value
+                isChecked = item.isChecked
+            }
             if (item.isChecked) {
                 checkedPosition = adapterPosition
             }

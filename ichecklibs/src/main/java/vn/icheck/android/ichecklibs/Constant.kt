@@ -12,14 +12,17 @@ object Constant {
 
     var primaryColor: String = ""
     var secondaryColor: String = ""
+
     var accentBlueColor: String = ""
     var accentGreenColor: String = ""
     var accentRedColor: String = ""
     var accentCyanColor: String = ""
     var accentYellowColor: String = ""
+
     var normalTextColor: String = ""
     var secondTextColor: String = ""
     var disableTextColor: String = ""
+
     var lineColor: String = ""
     var appBackgroundColor: String = ""
     var popupBackgroundColor: String = ""

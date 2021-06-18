@@ -79,7 +79,7 @@ class CommentReviewAdapter(val reviewPosition: Int, val listener: IReviewProduct
             val vgUserAvatar = itemView.findViewById<ViewGroup>(R.id.user_avatar)
             val avatar = vgUserAvatar.getChildAt(0) as CircleImageView
             if (obj.owner != null) {
-                WidgetUtils.loadImageUrl(avatar, obj.owner!!.avatarThumb?.small, R.drawable.user_placeholder)
+                WidgetUtils.loadImageUrl(avatar, obj.owner!!.avatarThumb?.small, R.drawable.ic_avatar_default_84dp)
                 itemView.tv_name.text = obj.owner!!.name
                 itemView.tv_name.setOnClickListener {
                 }

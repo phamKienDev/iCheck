@@ -375,7 +375,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (obj.type == Constant.PAGE) {
             WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_business_v2)
         } else {
-            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_svg)
         }
     }
 
@@ -383,7 +383,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (SessionManager.isUserLogged) {
             imgAvatar.beVisible()
             tvArrow.beVisible()
-            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
         } else {
             imgAvatar.beGone()
             tvArrow.beGone()

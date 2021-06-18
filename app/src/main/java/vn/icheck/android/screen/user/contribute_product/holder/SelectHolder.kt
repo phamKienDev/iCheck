@@ -113,14 +113,22 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
                         checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        checkedTextView.setTextColor(Constant.getNormalTextColor(context))
+                        checkedTextView.setTextColor(if (checkedTextView.text==itemView.context.getString(R.string.tuy_chon)) {
+                            Constant.getDisableTextColor(context)
+                        }else{
+                            Constant.getNormalTextColor(context)
+                        })
                         return checkedTextView
                     }
 
                     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val textView=super.getView(position, convertView, parent) as TextView
                         textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        textView.setTextColor(Constant.getNormalTextColor(context))
+                        textView.setTextColor(if (textView.text==itemView.context.getString(R.string.tuy_chon)) {
+                            Constant.getDisableTextColor(context)
+                        }else{
+                            Constant.getNormalTextColor(context)
+                        })
                         return textView
                     }
                 }
@@ -129,14 +137,14 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
                         checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        checkedTextView.setTextColor(Constant.getNormalTextColor(context))
+                        checkedTextView.setTextColor(Constant.getDisableTextColor(context))
                         return checkedTextView
                     }
 
                     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val textView=super.getView(position, convertView, parent) as TextView
                         textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        textView.setTextColor(Constant.getNormalTextColor(context))
+                        textView.setTextColor(Constant.getDisableTextColor(context))
                         return textView
                     }
                 }
