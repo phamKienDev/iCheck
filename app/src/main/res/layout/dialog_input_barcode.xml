@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:fontFamily="sans-serif"
-        android:text="@string/nha_ma_duoc_in_tren_san_pham"
+        android:text="@string/nhap_ma_duoc_in_tren_san_pham"
         android:textColor="#b4b4b4"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"

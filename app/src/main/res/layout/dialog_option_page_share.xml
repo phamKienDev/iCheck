@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Tùy chọn trang chia sẻ"
+            android:text="@string/tuy_chon_trang_chia_se"
             android:textColor="#057dda"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"

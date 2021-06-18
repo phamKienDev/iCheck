@@ -56,7 +56,7 @@
         android:layout_marginRight="@dimen/size_20"
         android:background="@drawable/button_remove"
         android:gravity="center"
-        android:text="Xoá"
+        android:text="@string/xoa"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

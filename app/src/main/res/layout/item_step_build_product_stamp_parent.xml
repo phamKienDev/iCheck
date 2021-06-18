@@ -19,7 +19,6 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_12"
         android:singleLine="true"
-        android:text="Truy xuất nguồn gốc Trứng"
         android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18" />
 
@@ -76,7 +75,6 @@
                 android:fontFamily="@font/roboto_medium"
                 android:includeFontPadding="false"
                 android:maxLines="2"
-                android:text="Tự chủ nguồn cám sạch - an toàn - title tối đa 2 dòng)..."
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>

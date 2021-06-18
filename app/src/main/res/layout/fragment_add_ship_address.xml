@@ -22,7 +22,7 @@
         android:layout_marginEnd="@dimen/size_50"
         android:layout_marginRight="@dimen/size_50"
         android:fontFamily="@font/barlow_medium"
-        android:text="Thêm mới địa chỉ"
+        android:text="@string/them_moi_dia_chi"
         android:textColor="#057DDA"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
-        android:text="Hoàn tất"
+        android:text="@string/hoan_tat"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Họ (*)"
+                android:text="@string/ho_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -110,14 +110,14 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
                 android:background="@drawable/gray_stroke_corner_4"
-                android:hint="Nhập họ người nhận"
+                android:hint="@string/nhap_ho_nguoi_nhan"
                 android:inputType="textPersonName" />
             <TextView
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Tên đệm và tên (*)"
+                android:text="@string/ten_dem_va_ten_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -132,14 +132,14 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
                 android:background="@drawable/gray_stroke_corner_4"
-                android:hint="Nhập tên đệm và tên người nhận"
+                android:hint="@string/nhap_ten_dem_va_ten_nguoi_nhan"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Số điện thoại (*)"
+                android:text="@string/so_dien_thoai_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
             <vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
                 android:background="@drawable/gray_stroke_corner_4"
-                android:hint="Nhập số điện thoại người nhận"
+                android:hint="@string/nhap_so_dien_thoai_nguoi_nhan"
                 android:inputType="phone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -167,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_medium"
-                    android:text="Tỉnh thành (*)"
+                    android:text="@string/tinh_thanh_bat_buoc"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toStartOf="@+id/textView87"
@@ -180,7 +180,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_medium"
-                    android:text="Quận huyện (*)"
+                    android:text="@string/quan_huyen_bat_buoc"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -197,7 +197,7 @@
                     android:ems="10"
                     android:focusable="false"
                     android:fontFamily="@font/barlow_medium"
-                    android:hint="Tùy chọn"
+                    android:hint="@string/tuy_chon"
                     android:inputType="textPersonName"
                     android:padding="@dimen/size_8"
                     android:textColor="#212121"
@@ -220,7 +220,7 @@
                     android:ems="10"
                     android:focusable="false"
                     android:fontFamily="@font/barlow_medium"
-                    android:hint="Tùy chọn"
+                    android:hint="@string/tuy_chon"
                     android:inputType="textPersonName"
                     android:padding="@dimen/size_8"
                     android:textColor="#212121"
@@ -236,7 +236,7 @@
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Xã phường (*)"
+                android:text="@string/xa_phuong_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
             <vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
@@ -251,14 +251,14 @@
                 android:id="@+id/edt_phuong_xa"
                 android:focusable="false"
                 android:background="@drawable/gray_stroke_corner_4"
-                android:hint="Tùy chọn"
+                android:hint="@string/tuy_chon"
                 android:inputType="textPersonName"
                 app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector" />
             <TextView
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Địa chỉ (*)"
+                android:text="@string/dia_chi_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
             <vn.icheck.android.ichecklibs.view.edit_text.CornerErrorEditText
@@ -272,7 +272,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:textColor="#212121"
                 android:background="@drawable/gray_stroke_corner_4"
-                android:hint="Nhập địa chỉ cụ thể"
+                android:hint="@string/nhap_dia_chi_cu_the"
                 android:inputType="textPersonName" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

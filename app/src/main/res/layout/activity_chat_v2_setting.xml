@@ -111,7 +111,7 @@
         android:textColor="#434343"
         android:textSize="@dimen/font_14"
         android:layout_marginStart="@dimen/size_8"
-        android:text="Thành viên (0)" />
+        android:text="@string/thanh_vien_0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_members"
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/size_16"
-            android:text="Thông báo tin nhắn mới"
+            android:text="@string/thong_bao_tin_nhan_moi"
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_14" />
 
@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/size_16"
-            android:text="Cho phép thêm thành viên"
+            android:text="@string/cho_phep_them_thanh_vien"
             android:textColor="#35384B" />
         <Switch
             android:id="@+id/switch_add_mem"
@@ -180,7 +180,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_16"
-        android:text="Xoá cuộc hội thoại"
+        android:text="@string/xoa_cuoc_hoi_thoai"
         android:textColor="#EB5757"
         android:textSize="@dimen/font_14" />
     <View

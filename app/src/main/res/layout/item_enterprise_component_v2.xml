@@ -119,7 +119,7 @@
             android:includeFontPadding="false"
             android:textColor="#B4B4B4"
             android:textSize="@dimen/font_14"
-            android:text="Số điện thoại đang cập nhật" />
+            android:text="@string/so_dien_thoai_dang_cap_nhat" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAddress"
@@ -156,7 +156,7 @@
                 android:includeFontPadding="false"
                 android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
-                android:text="Đang cập nhật"/>
+                android:text="@string/dang_cap_nhat"/>
 
         </LinearLayout>
     </LinearLayout>

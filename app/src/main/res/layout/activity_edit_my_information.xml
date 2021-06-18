@@ -232,7 +232,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title_Seccond"
-                    android:text="Họ" />
+                    android:text="@string/ho" />
 
                 <vn.icheck.android.ui.edittext.OldFocusableEditText
                     android:id="@+id/edt_lastname"
@@ -243,7 +243,7 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:ellipsize="end"
-                    android:hint="Nhập họ"
+                    android:hint="@string/nhap_ho"
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"
@@ -263,7 +263,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title_Seccond"
-                    android:text="Tên" />
+                    android:text="@string/ten" />
 
                 <vn.icheck.android.ui.edittext.OldFocusableEditText
                     android:id="@+id/edt_firstname"
@@ -273,7 +273,7 @@
                     android:layout_marginRight="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="Nhập tên đệm và tên"
+                    android:hint="@string/nhap_ten_dem_va_ten"
                     android:inputType="textCapWords"
                     android:maxLength="30"
                     android:textColorHint="#b4b4b4"

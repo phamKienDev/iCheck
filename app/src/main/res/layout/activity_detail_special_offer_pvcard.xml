@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Chương trình ưu đãi"
+            android:text="@string/chuong_trinh_uu_dai"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
 

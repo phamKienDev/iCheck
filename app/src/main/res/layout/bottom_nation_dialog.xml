@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Chọn quốc gia"
+            android:text="@string/chon_quoc_gia"
             android:textColor="#057DDA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
         android:drawableLeft="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
-        android:hint="Tìm kiếm"
+        android:hint="@string/tim_kiem"
         android:padding="@dimen/size_6"
         android:textSize="@dimen/font_16" />
 

@@ -18,8 +18,7 @@
         android:drawablePadding="@dimen/size_8"
         android:paddingEnd="@dimen/size_8"
         android:paddingRight="@dimen/size_8"
-        android:text="Đánh giá khách quan của bạn sẽ là
-đóng góp không nhỏ cho cộng đồng!"
+        android:text="@string/danh_gia_khach_quan_cua_ban_se_la_dong_gop_khong_nho_cho_cong_dong"
         android:textAlignment="center"
         android:textColor="#3C5A99" />
 
@@ -76,7 +75,7 @@
             android:background="@drawable/bg_gray_stroke_corner_10"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="Viết đánh giá"
+            android:hint="@string/viet_danh_gia"
             android:textSize="@dimen/font_14"
             android:inputType="textMultiLine"
             android:lines="3"
@@ -94,7 +93,7 @@
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_8"
         android:background="@drawable/bg_blue_corners_40"
-        android:text="Gửi đánh giá"
+        android:text="@string/gui_danh_gia"
         android:layout_marginBottom="@dimen/size_12"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

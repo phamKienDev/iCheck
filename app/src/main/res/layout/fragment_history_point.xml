@@ -42,7 +42,7 @@
                     android:layout_marginTop="@dimen/size_28"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
-                    android:text="Bạn chưa dùng điểm nào"
+                    android:text="@string/ban_chua_dung_diem_nao"
                     android:textColor="@color/black_21_v2"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>

@@ -134,7 +134,7 @@
                         android:drawablePadding="@dimen/size_5"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
-                        android:text="Giỏ hàng"
+                        android:text="@string/gio_hang"
                         android:textColor="#4f4f4f"
                         android:textSize="@dimen/font_14"
                         android:textStyle="normal"

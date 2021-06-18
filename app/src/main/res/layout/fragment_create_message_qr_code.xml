@@ -69,7 +69,7 @@
                 android:layout_marginTop="@dimen/size_16"
                 android:lineSpacingExtra="@dimen/font_14"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Số điện thoại"
+                android:text="@string/so_dien_thoai"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -85,7 +85,7 @@
                 android:drawableEnd="@drawable/ic_phonebook_24px"
                 android:drawableRight="@drawable/ic_phonebook_24px"
                 android:gravity="start|center"
-                android:hint="Bắt buộc"
+                android:hint="@string/bat_buoc"
                 android:inputType="phone"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
@@ -118,7 +118,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Nội dung tin nhắn"
+                android:text="@string/noi_dung_tin_nhan"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -132,7 +132,7 @@
                 android:background="@drawable/bg_corner_gray_solid_white"
                 android:gravity="top|start"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nội dung"
+                android:hint="@string/noi_dung"
                 android:paddingStart="@dimen/size_10"
                 android:paddingTop="@dimen/size_6"
                 android:paddingEnd="@dimen/size_10"

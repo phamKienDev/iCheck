@@ -36,7 +36,7 @@
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:singleLine="true"
-            android:text="Bạn đã hết lượt mở quà rồi!"
+            android:text="@string/ban_da_het_luot_mo_qua_roi"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -49,7 +49,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
+            android:text="@string/hoan_thanh_cac_thu_thach_sau_de_nhan_them_luot_mo_qua_moi_nao"
             android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
@@ -83,7 +83,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
-                android:text="Thực hiện thử thách"
+                android:text="@string/thuc_hien_thu_thach"
                 android:textColor="#057dda"
                 android:textSize="@dimen/font_16" />
 
@@ -96,7 +96,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
-                android:text="Danh sách quà"
+                android:text="@string/danh_sach_qua"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>

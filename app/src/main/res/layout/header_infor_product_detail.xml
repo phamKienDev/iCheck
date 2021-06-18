@@ -76,7 +76,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Tên đang cập nhật"
+        android:text="@string/ten_dang_cap_nhat"
         android:textColor="#b4b4b4"
         android:textSize="@dimen/font_16"
         android:textStyle="italic"
@@ -111,14 +111,14 @@
                 android:textStyle="italic"
                 android:textSize="@dimen/font_14"
                 android:textColor="#b4b4b4"
-                android:text="Giá đang cập nhật"/>
+                android:text="@string/gia_dang_cap_nhat"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_7"
                 android:layout_marginRight="@dimen/size_7"
-                android:text="Cập nhật ngay"
+                android:text="@string/cap_nhat_ngay"
                 android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_20"
                 android:visibility="gone"

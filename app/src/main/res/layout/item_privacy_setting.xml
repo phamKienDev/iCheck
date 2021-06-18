@@ -40,7 +40,7 @@
                 android:paddingEnd="@dimen/size_12"
                 android:layout_height="wrap_content"
                 tools:checked="true"
-                android:text="Bạn bè của tôi" />
+                android:text="@string/ban_be_cua_toi" />
 
             <RadioButton
                 android:layout_marginTop="@dimen/size_12"
@@ -51,7 +51,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tất cả mọi người" />
+                android:text="@string/tat_ca_moi_nguoi" />
 
             <RadioButton
                 android:paddingStart="@dimen/size_12"
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chỉ mình tôi" />
+                android:text="@string/chi_minh_toi" />
         </RadioGroup>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

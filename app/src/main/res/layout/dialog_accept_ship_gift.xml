@@ -31,7 +31,7 @@
             android:layout_marginEnd="@dimen/size_8"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="Cảm ơn bạn đã sử dụng dịch vụ của iCheck.\nCửa hàng sẽ liên lạc với bạn sớm để xác nhận đơn quà này!"
+            android:text="@string/cam_on_ban_da_su_dung_dich_vu_cua_icheck_n_cua_hang_se_lien_lac_voi_ban_som_de_xac_nhan_don_qua_nay"
             android:textAlignment="center"
             android:textColor="#434343"
             android:textSize="@dimen/font_14"
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Xem chi tiết đơn hàng"
+            android:text="@string/xem_chi_tiet_don_hang"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />

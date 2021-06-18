@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:ems="10"
-            android:hint="Tìm kiếm bạn bè"
+            android:hint="@string/tim_kiem_ban_be"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textSize="@dimen/font_14" />
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16"
-        android:text="Gợi ý bạn bè"
+        android:text="@string/goi_y_ban_be"
         android:textColor="@android:color/black"
         android:textSize="@dimen/font_14" />
 

@@ -41,7 +41,7 @@
                 android:layout_marginBottom="@dimen/size_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Bạn đã đánh dấu dùng mã này"
+                android:text="@string/ban_da_danh_dau_dung_ma_nay"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/font_14" />
 

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_16"
-            android:text="Cảm ơn đánh giá của bạn!"
+            android:text="@string/cam_on_danh_gia_cua_ban"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_16"
@@ -43,7 +43,7 @@
             android:layout_marginStart="@dimen/size_32"
             android:layout_marginEnd="@dimen/size_32"
             android:padding="@dimen/size_8"
-            android:text="Hãy chia sẻ đánh giá này với người thân, bạn bè, đóng góp cho cộng đồng sử dụng sản phẩm chính hãng nhé"
+            android:text="@string/hay_chia_se_danh_gia_nay_voi_nguoi_than_ban_be_dong_gop_cho_cong_dong_su_dung_san_pham_chinh_hang_nhe"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@id/imageView28"
             app:layout_constraintStart_toStartOf="@id/imageView28"
@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@id/textView70"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/imageView28"
-            android:text="Chia sẻ ngay"
+            android:text="@string/chia_se_ngay"
             android:textColor="@android:color/white"
             android:visibility="visible" />
 

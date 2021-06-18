@@ -65,7 +65,7 @@
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
-            android:text="Chăm sóc khách hàng"
+            android:text="@string/cham_soc_khac_hang"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +100,7 @@
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
-            android:text="Email "
+            android:text="@string/email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider11" />
 
@@ -136,7 +136,7 @@
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
-            android:text="Facebook"
+            android:text="@string/facebook"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider17" />
 

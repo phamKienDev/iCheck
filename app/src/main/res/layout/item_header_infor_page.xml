@@ -63,7 +63,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Doanh nghiệp"
+            android:text="@string/doanh_nghiep"
             android:textColor="#3c5a99"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@id/imgAvaPage"
@@ -195,7 +195,7 @@
             <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sản phẩm"
+                android:text="@string/san_pham"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
 
@@ -219,7 +219,7 @@
             <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đánh giá"
+                android:text="@string/danh_gia"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
 
@@ -243,7 +243,7 @@
             <vn.icheck.android.ui.view.TextBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lượt quét"
+                android:text="@string/luot_quet"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14" />
 
@@ -270,7 +270,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Đăng bài mới"
+            android:text="@string/dang_bai_moi"
             android:textColor="#3C5A99"
             android:textSize="@dimen/font_18"
             app:layout_constraintStart_toStartOf="parent"
@@ -299,7 +299,7 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:gravity="center_vertical"
-            android:text="Hãy chia sẻ những thông tin hữu ích nào!"
+            android:text="@string/hay_chia_se_nhung_thong_tin_huu_ich_nao"
             android:textColor="#B4B4B4"
             app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
             app:layout_constraintEnd_toEndOf="parent"

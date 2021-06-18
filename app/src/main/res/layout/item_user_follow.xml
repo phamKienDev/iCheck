@@ -37,7 +37,7 @@
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="Kết bạn"
+            android:text="@string/ket_ban"
             android:textColor="@color/white"
             android:textSize="@dimen/font_14" />
 
@@ -50,7 +50,7 @@
         android:layout_marginEnd="@dimen/size_8"
         android:background="@drawable/bg_corner_f0f0f0_4"
         android:gravity="center"
-        android:text="Đã gửi lời mời"
+        android:text="@string/da_gui_loi_moi"
         android:textColor="#757575"
         android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
@@ -66,7 +66,7 @@
         android:layout_marginEnd="@dimen/size_8"
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
-        android:text="Nhắn tin"
+        android:text="@string/nhan_tin"
         android:textColor="#057dda"
         android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"

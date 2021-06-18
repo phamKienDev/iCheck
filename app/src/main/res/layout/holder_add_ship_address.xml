@@ -15,7 +15,7 @@
         android:layout_marginBottom="@dimen/size_12"
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
-        android:text="Thêm địa chỉ mới"
+        android:text="@string/them_dia_chi_moi"
         android:textColor="#057DDA"
         app:drawableLeftCompat="@drawable/ic_add_blue_24px"
         app:drawableStartCompat="@drawable/ic_add_blue_24px"

@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Tin tức"
+            android:text="@string/tin_tuc"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -71,7 +71,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Chương trình mới"
+            android:text="@string/chuong_trinh_moi"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -103,7 +103,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Tin nhắn"
+            android:text="@string/tin_nhan"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
-        android:text="Hệ thống"
+        android:text="@string/he_thong"
         android:textColor="@color/colorSecondary" />
 
     <RelativeLayout
@@ -141,7 +141,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Rung"
+            android:text="@string/rung"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -172,7 +172,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Âm thanh"
+            android:text="@string/am_thanh"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -203,7 +203,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xóa cache"
+            android:text="@string/xoa_cache"
             android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
@@ -241,7 +241,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Ngôn ngữ:"
+            android:text="@string/ngon_ngu_colon"
             android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
@@ -254,7 +254,7 @@
             android:layout_marginBottom="@dimen/size_15"
             android:layout_toRightOf="@id/textView"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Tiếng Việt"
+            android:text="@string/tieng_viet"
             android:textColor="@color/black_21_v2"
             android:textSize="@dimen/font_14" />
 
@@ -302,7 +302,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Language:"
+                android:text="@string/language_colon"
                 android:textColor="@color/black_21_v2"
                 android:textSize="@dimen/font_14" />
 
@@ -314,7 +314,7 @@
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_toRightOf="@id/appCompatTextView"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="English"
+                android:text="@string/english"
                 android:textColor="@color/black_21_v2"
                 android:textSize="@dimen/font_14" />
 
@@ -349,7 +349,7 @@
         android:gravity="center"
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
-        android:text="Đặt lại mặc định"
+        android:text="@string/dat_lai_mac_dinh"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16" />
 </LinearLayout>

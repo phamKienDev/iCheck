@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_72"
             android:gravity="center"
-            android:text="Tiếp nhận thông tin thành công"
+            android:text="@string/tiep_nhan_thong_tin_thanh_cong"
             android:textColor="#212121" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginEnd="@dimen/size_18"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="Đơn hàng của bạn sẽ được iCheck giao tới bạn trong 2-4 ngày tới" />
+            android:text="@string/don_hang_cua_ban_se_duoc_icheck_giao_toi_ban_trong_2_4_ngay_toi" />
 
         <TextView
             android:id="@+id/btn_observe"
@@ -54,7 +54,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:padding="@dimen/size_8"
-            android:text="Theo dõi đơn hàng"
+            android:text="@string/theo_doi_don_hang"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_16" />
     </LinearLayout>

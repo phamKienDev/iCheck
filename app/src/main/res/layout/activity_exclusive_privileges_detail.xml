@@ -33,7 +33,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Đặc quyền riêng"
+            android:text="@string/dac_quyen_rieng"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
@@ -204,7 +204,7 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_16"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Đổi thưởng"
+            android:text="@string/doi_thuong"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16" />
 

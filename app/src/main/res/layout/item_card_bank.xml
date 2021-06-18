@@ -376,7 +376,7 @@
                     android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Mở khóa thẻ"
+                    android:text="@string/mo_khoa_the"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
@@ -390,7 +390,7 @@
                     android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Khóa thẻ"
+                    android:text="@string/khoa_the"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
@@ -404,7 +404,7 @@
                     android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Thông tin thẻ"
+                    android:text="@string/thong_tin_the"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
@@ -417,7 +417,7 @@
                     android:drawablePadding="@dimen/size_6"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Đổi mật khẩu"
+                    android:text="@string/doi_mat_khau"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
@@ -433,7 +433,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Đặt làm thẻ chính"
+                android:text="@string/dat_lam_the_chinh"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone" />
@@ -451,7 +451,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Thẻ mặc định"
+                android:text="@string/the_mac_dinh"
                 android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone" />

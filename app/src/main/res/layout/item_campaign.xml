@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:text="Thời gian"
+                    android:text="@string/thoi_gian"
                     android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 

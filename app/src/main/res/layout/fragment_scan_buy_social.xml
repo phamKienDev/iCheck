@@ -57,7 +57,7 @@
                 android:paddingEnd="@dimen/size_15"
                 android:paddingRight="@dimen/size_15"
                 android:paddingBottom="@dimen/size_9"
-                android:text="Nhập mã bằng tay"
+                android:text="@string/nhap_ma_bang_tay"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="@+id/imgClose"
@@ -168,7 +168,7 @@
             android:layout_marginTop="@dimen/size_20"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:text="Tạm tính:"
+            android:text="@string/tam_tinh"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +205,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imgCart"
             app:layout_constraintStart_toEndOf="@id/tvPrice"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="GIỎ HÀNG" />
+            android:text="@string/gio_hang_upcase" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCountProduct"

@@ -206,7 +206,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
+                android:text="@string/lien_he_icheck"
                 android:textColor="#057dda"
                 android:textSize="@dimen/font_16" />
 
@@ -221,7 +221,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Đóng góp thông tin"
+                android:text="@string/dong_gop_thong_tin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
@@ -236,7 +236,7 @@
             android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Liên hệ iCheck"
+            android:text="@string/lien_he_icheck"
             android:textColor="#057dda"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
@@ -261,7 +261,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
+                android:text="@string/lien_he_icheck"
                 android:textColor="#057dda"
                 android:textSize="@dimen/font_16" />
 
@@ -275,7 +275,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ doanh nghiệp"
+                android:text="@string/lien_he_doanh_nghiep"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
@@ -322,7 +322,7 @@
                 android:drawablePadding="@dimen/size_7"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Đánh giá"
+                android:text="@string/danh_gia"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_12" />
         </LinearLayout>

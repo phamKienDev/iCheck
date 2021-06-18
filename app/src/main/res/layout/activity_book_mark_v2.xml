@@ -35,7 +35,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Sản phẩm đã thích"
+            android:text="@string/san_pham_da_thich"
             android:textColor="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -66,7 +66,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:hint="Tìm kiếm..."
+        android:hint="@string/tim_kiem_x"
         android:textColor="@color/black_21_v2"
         android:paddingLeft="@dimen/size_12"
         android:paddingRight="@dimen/size_10"

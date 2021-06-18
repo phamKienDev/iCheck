@@ -28,7 +28,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Chương trình ưu đãi"
+            android:text="@string/chuong_trinh_uu_dai"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
     </FrameLayout>

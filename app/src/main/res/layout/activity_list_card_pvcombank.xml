@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Danh sách thẻ"
+            android:text="@string/danh_sach_the"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
 

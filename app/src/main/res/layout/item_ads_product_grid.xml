@@ -56,7 +56,7 @@
         android:gravity="top|start"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
-        android:text="Tên đang cập nhật"
+        android:text="@string/ten_dang_cap_nhat"
         android:textColor="#b4b4b4"
         android:textSize="@dimen/font_14"
         android:textStyle="italic"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_14"
-            android:text="Giá đang cập nhật"
+            android:text="@string/gia_dang_cap_nhat"
             android:textColor="#b4b4b4"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
@@ -155,7 +155,7 @@
             android:drawableLeft="@drawable/ic_home_verify_16dp"
             android:drawablePadding="@dimen/size_2"
             android:lineSpacingExtra="@dimen/font_14"
-            android:text="Verified"
+            android:text="@string/verified"
             android:textColor="@color/colorAccentGreen"
             android:textSize="@dimen/font_12" />
 

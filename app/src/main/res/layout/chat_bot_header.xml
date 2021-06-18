@@ -73,7 +73,7 @@
         android:drawableEnd="@drawable/ic_send_light_blue_24px"
         android:drawablePadding="@dimen/size_12"
         android:padding="@dimen/size_8"
-        android:text="Tôi muốn mua sản phẩm "
+        android:text="@string/toi_muon_mua_san_pham"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

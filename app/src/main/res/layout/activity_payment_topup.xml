@@ -30,7 +30,7 @@
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:gravity="center"
-            android:text="Thanh toán"
+            android:text="@string/thanh_toan"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
@@ -47,7 +47,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Hình thức thanh toán"
+            android:text="@string/hinh_thuc_thanh_toan"
             android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Chi tiết giao dịch"
+            android:text="@string/chi_tiet_giao_dich"
             android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
             android:layout_marginTop="@dimen/size_13"
             android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Thành tiền:"
+            android:text="@string/thanh_tien_colon"
             android:textColor="#057dda"
             android:textSize="@dimen/font_14"
             android:textStyle="normal"
@@ -160,7 +160,7 @@
             android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Xác nhận thanh toán"
+            android:text="@string/xac_nhan_thanh_toan"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16" />
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Bạn có thắc mắc gì về sản phẩm này không?"
+        android:text="@string/ban_co_thac_mac_gi_ve_san_pham_khong"
         android:textColor="#212121"
         android:textSize="@dimen/font_14" />
 
@@ -28,7 +28,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Sản phẩm này hiện chưa có câu hỏi nào. Hãy đặt\ncâu hỏi để cùng thảo luận ở đây nhé!"
+        android:text="@string/san_pham_nay_hien_chua_co_cau_hoi_nao_hay_dat_n_cau_hoi_de_cung_thao_luan_o_day_nhe"
         android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 
@@ -44,7 +44,7 @@
         android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_8"
-        android:text="Đặt câu hỏi"
+        android:text="@string/dat_cau_hoi"
         android:textColor="#057dda"
         android:textSize="@dimen/font_16" />
 

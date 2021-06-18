@@ -53,7 +53,7 @@
             android:layout_marginBottom="@dimen/size_20"
             android:background="@drawable/bg_corner_4_light_blue_white"
             android:gravity="center"
-            android:text="Quay lại"
+            android:text="@string/quay_lai"
             android:visibility="gone"
             android:textColor="@color/light_blue" />
 

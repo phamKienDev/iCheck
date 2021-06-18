@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:focusableInTouchMode="true"
-            android:text="Đóng góp thông tin"
+            android:text="@string/dong_gop_thong_tin"
             android:textColor="#057DDA"
             android:textSize="@dimen/font_18" />
     </LinearLayout>
@@ -58,7 +58,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Thông tin sản phẩm"
+                android:text="@string/thong_tin_san_pham"
                 android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
@@ -179,7 +179,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
-                android:text="Mã sản phẩm (*) "
+                android:text="@string/ma_san_pham_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -207,7 +207,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="Tên sản phẩm (*)"
+                android:text="@string/ten_san_pham_bat_buoc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -221,7 +221,7 @@
                 android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập tên sản phẩm"
+                android:hint="@string/nhap_ten_san_pham"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
@@ -233,7 +233,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="Giá sản phẩm"
+                android:text="@string/gia_san_pham"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -248,7 +248,7 @@
                 android:maxLines="1"
                 android:fontFamily="@font/barlow_medium"
                 android:inputType="number"
-                android:hint="Nhập giá sản phẩm"
+                android:hint="@string/nhap_gia_san_pham"
                 android:maxLength="11"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
@@ -261,7 +261,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="Danh mục"
+                android:text="@string/danh_muc"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -285,7 +285,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:fontFamily="@font/barlow_medium"
-                    android:hint="Chọn danh mục"
+                    android:hint="@string/chon_danh_muc"
                     android:padding="@dimen/size_8"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
@@ -310,7 +310,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Thông tin doanh nghiệp"
+                android:text="@string/thong_tin_doanh_nghiep"
                 android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
@@ -321,7 +321,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Tên doanh nghiệp"
+                android:text="@string/ten_doanh_nghiep"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -335,7 +335,7 @@
                 android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập tên doanh nghiệp"
+                android:hint="@string/nhap_ten_doanh_nghiep"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
@@ -348,7 +348,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Địa chỉ "
+                android:text="@string/dia_chi"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -362,7 +362,7 @@
                 android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập địa chỉ"
+                android:hint="@string/nhap_dia_chi"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
                 android:textColorHint="#B4B4B4"
@@ -375,7 +375,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Số điện thoại"
+                android:text="@string/so_dien_thoai"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -390,7 +390,7 @@
                 android:digits="0123456789"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập số điện thoại"
+                android:hint="@string/nhap_so_dien_thoai"
                 android:inputType="phone"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
@@ -404,7 +404,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Email"
+                android:text="@string/email"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -418,7 +418,7 @@
                 android:background="@drawable/bg_edt_ick_contribute_product"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập email"
+                android:hint="@string/nhap_email"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
@@ -432,7 +432,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Mã số thuế"
+                android:text="@string/ma_so_thue"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_12" />
 
@@ -447,7 +447,7 @@
                 android:digits="0123456789"
                 android:ems="10"
                 android:fontFamily="@font/barlow_medium"
-                android:hint="Nhập mã số thuế"
+                android:hint="@string/nhap_ma_so_thue"
                 android:inputType="number"
                 android:padding="@dimen/size_8"
                 android:textColor="#212121"
@@ -465,7 +465,7 @@
                 android:drawableLeft="@drawable/ic_google_24px"
                 android:drawablePadding="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Tìm kiếm ngay với Google"
+                android:text="@string/tìm_kiem_ngay_voi_google"
                 android:textColor="#3C5A99"
                 android:textSize="@dimen/font_14" />
 
@@ -482,7 +482,7 @@
                 android:background="@drawable/background_button_enable"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Hoàn tất"
+                android:text="@string/hoan_tat"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />

@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/size_44"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Nạp thẻ điện thoại"
+            android:text="@string/nap_the_dien_thoai"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
 
@@ -83,7 +83,7 @@
             android:layout_marginEnd="@dimen/size_40"
             android:background="@drawable/bg_corner_solid_white_strokke_blue"
             android:fontFamily="sans-serif-medium"
-            android:text="Thử Lại"
+            android:text="@string/thu_lai"
             android:textColor="#3c5a99"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
@@ -122,7 +122,7 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:drawableEnd="@drawable/ic_phonebook_24px"
                     android:fontFamily="@font/barlow_medium"
-                    android:hint="Nhập số điện thoại"
+                    android:hint="@string/nhap_so_dien_thoai"
                     android:inputType="number"
                     android:paddingBottom="@dimen/size_18"
                     android:textColorHint="#b4b4b4"
@@ -141,7 +141,7 @@
                     android:visibility="visible"
                     android:fontFamily="@font/barlow_medium"
                     android:paddingStart="@dimen/size_3"
-                    android:text="Lưu ý: Không cần nhập số điện thoại của bạn nếu nạp cho bạn"
+                    android:text="@string/luu_y_khong_can_nhap_so_dien_thoai_cua_ban_neu_nap_cho_ban"
                     android:textColor="#757575"
                     android:textSize="@dimen/font_12"
                     android:paddingLeft="@dimen/size_3" />
@@ -163,7 +163,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:text="Nhà mạng"
+                    android:text="@string/nha_mang"
                     android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16" />
 
@@ -192,7 +192,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:text="Mệnh giá"
+                    android:text="@string/menh_gia"
                     android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16" />
 
@@ -213,7 +213,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="Chú ý:"
+                android:text="@string/chu_y"
                 android:textColor="#757575"
                 android:textSize="@dimen/font_16" />
 
@@ -253,7 +253,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Thành tiền"
+            android:text="@string/thanh_tien"
             android:textColor="#757575"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
@@ -283,7 +283,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/state_click_payment"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Thanh toán"
+            android:text="@string/thanh_toan"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"

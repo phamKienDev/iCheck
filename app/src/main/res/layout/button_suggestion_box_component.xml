@@ -54,7 +54,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         app:buttonTextSize="@dimen/font_14"
-        android:text="Lựa chọn"
+        android:text="@string/lua_chon"
         android:padding="@dimen/size_4"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/imgBackground"

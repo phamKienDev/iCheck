@@ -70,7 +70,7 @@
             android:layout_marginEnd="@dimen/size_32"
             android:layout_marginBottom="@dimen/size_20"
             android:background="@drawable/bg_blue_corners_40"
-            android:text="Chỉ đường"
+            android:text="@string/chi_duong"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

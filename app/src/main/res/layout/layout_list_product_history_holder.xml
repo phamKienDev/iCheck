@@ -54,7 +54,6 @@
             android:ellipsize="end"
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
-            android:text="Giày thể thao cao cổ Converse hàng Limited size 42"
             android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"

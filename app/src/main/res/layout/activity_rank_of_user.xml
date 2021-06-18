@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_6"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Điểm hiện tại: 150,450"
+            android:text="@string/diem_hien_tai"
             android:textColor="@color/white"
             android:textSize="@dimen/font_14" />
 
@@ -205,7 +205,7 @@
                         android:layout_marginBottom="@dimen/size_20"
                         android:drawableTop="@drawable/ic_homeheader_gift_50px"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Quà của tôi"
+                        android:text="@string/qua_cua_toi"
                         android:textColor="#212121"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -220,7 +220,7 @@
                         android:drawableTop="@drawable/ic_homeheader_campaign_50dp"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center"
-                        android:text="Sự kiện"
+                        android:text="@string/su_kien"
                         android:textColor="#212121"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@+id/tvMyGift"
@@ -241,7 +241,7 @@
                         android:layout_marginBottom="@dimen/size_20"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center"
-                        android:text="Quyền lợi thành viên"
+                        android:text="@string/quyen_loi_thanh_vien"
                         android:textColor="#057dda"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -269,7 +269,7 @@
                     android:paddingTop="@dimen/size_16"
                     android:paddingEnd="@dimen/size_12"
                     android:paddingBottom="@dimen/size_17"
-                    android:text="Hướng dẫn thăng hạng"
+                    android:text="@string/huong_dan_thang_hang"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_arrow_right_gray_14" />
@@ -291,7 +291,7 @@
                     android:paddingTop="@dimen/size_16"
                     android:paddingEnd="@dimen/size_12"
                     android:paddingBottom="@dimen/size_16"
-                    android:text="Câu hỏi thường gặp"
+                    android:text="@string/cau_hoi_thuong_gap"
                     android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 

@@ -36,7 +36,7 @@
         android:ems="10"
         android:fontFamily="@font/barlow_medium"
         android:gravity="start|top"
-        android:hint="Mô tả nội dung báo cáo"
+        android:hint="@string/mo_ta_noi_dung_bao_cao"
         android:inputType="textMultiLine"
         android:lines="3"
         android:padding="@dimen/size_8"

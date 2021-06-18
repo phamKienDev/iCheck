@@ -142,7 +142,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
-        android:text="Nhập địa chỉ nhận hàng"
+        android:text="@string/nhap_dia_chi_nhan_hang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn chưa có sản phẩm nào trong giỏ hàng" />
+            android:text="@string/ban_chua_co_san_pham_nao_trong_gio_hang" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

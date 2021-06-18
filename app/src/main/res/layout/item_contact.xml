@@ -39,7 +39,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_invite_btn"
             android:paddingTop="@dimen/size_2"
-            android:text="Mời"
+            android:text="@string/moi"
             android:textAlignment="center"
             android:textColor="#3C5A99"
             android:visibility="gone" />

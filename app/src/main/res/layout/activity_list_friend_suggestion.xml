@@ -29,7 +29,7 @@
         android:drawableLeft="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
-        android:hint="Tìm kiếm"
+        android:hint="@string/tim_kiem"
         android:padding="@dimen/size_6"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"

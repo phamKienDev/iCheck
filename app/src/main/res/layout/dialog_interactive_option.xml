@@ -97,7 +97,7 @@
                 style="@style/Interactive_Option_Item"
                 android:drawableStart="@drawable/ic_turn_off_notification_40dp"
                 android:drawableLeft="@drawable/ic_turn_off_notification_40dp"
-                android:text="Tắt thông báo cho đối tượng này" />
+                android:text="@string/tat_thong_bao_cho_doi_tuong_nay" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/Interactive_Option_Item"

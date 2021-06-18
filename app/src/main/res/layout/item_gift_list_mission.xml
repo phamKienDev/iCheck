@@ -44,7 +44,7 @@
             android:layout_marginLeft="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:text="@string/luot"
+            android:text="@string/luot_upcase"
             android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvCount"

@@ -65,7 +65,7 @@
                 android:background="@drawable/bg_gray_f0_corners_4"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Đã gửi lời mời "
+                android:text="@string/da_gui_loi_moi"
                 android:textColor="#757575"
                 android:visibility="gone" />
 
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/barlow_medium"
-                    android:text="Kết bạn"
+                    android:text="@string/ket_ban"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_add_white_12px"
@@ -105,7 +105,7 @@
                 android:background="@drawable/bg_corners_4_light_blue_no_solid"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Nhắn tin"
+                android:text="@string/nhan_tin"
                 android:textColor="#057DDA"
                 android:textSize="@dimen/font_16" />
 
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:text="Đánh giá sản phẩm"
+                    android:text="@string/danh_gia_san_pham"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:text="Button"
+                android:text="@string/button"
                 app:srcCompat="@drawable/ic_btn_setting_blue" />
         </LinearLayout>
 
@@ -184,7 +184,7 @@
                 android:drawablePadding="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
-                android:text="Sống tại"
+                android:text="@string/song_tai"
                 android:textSize="@dimen/font_12" />
 
             <TextView
@@ -216,7 +216,7 @@
                 android:drawablePadding="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
-                android:text="Tài khoản"
+                android:text="@string/tai_khoan"
                 android:textSize="@dimen/font_12" />
 
             <TextView
@@ -247,7 +247,7 @@
                 android:drawablePadding="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
-                android:text="Đang theo dõi"
+                android:text="@string/dang_theo_doi"
                 android:textSize="@dimen/font_12" />
 
             <TextView
@@ -278,7 +278,7 @@
                 android:drawablePadding="@dimen/size_6"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
-                android:text="Người theo dõi"
+                android:text="@string/nguoi_theo_doi"
                 android:textSize="@dimen/font_12" />
 
             <TextView
@@ -302,7 +302,7 @@
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
             android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xem thêm thông tin cá nhân"
+            android:text="@string/xem_them_thong_tin_ca_nhan"
             android:textColor="#3C5A99" />
 
     </LinearLayout>

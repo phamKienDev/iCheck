@@ -51,7 +51,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="Quà tặng đang cập nhật"
+                    android:text="@string/qua_tang_dang_cap_nhat"
                     android:textColor="@color/black_21_v2"
                     android:textSize="@dimen/font_14" />
 
@@ -62,7 +62,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Thực hiện các thử thách để nhận lượt\nmở quà tương ứng nhé"
+                    android:text="@string/thuc_hien_cac_thu_thach_de_nhan_luot_n_mo_qua_tuong_ung_nhe"
                     android:textColor="@color/colorSecondText"
                     android:textSize="@dimen/font_14" />
             </LinearLayout>

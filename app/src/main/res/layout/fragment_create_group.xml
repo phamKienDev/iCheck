@@ -55,7 +55,7 @@
         android:textColor="#3C5A99"
         android:textSize="@dimen/font_18"
         android:layout_marginStart="@dimen/size_16"
-        android:text="Thông tin nhóm" />
+        android:text="@string/thong_tin_nhom" />
 
     <EditText
         android:id="@+id/edt_group_name"
@@ -65,7 +65,7 @@
         android:layout_marginEnd="@dimen/size_16"
         android:background="@drawable/bg_group_name"
         android:layout_marginTop="@dimen/size_8"
-        android:hint="Tên nhóm (Bắt buộc)"
+        android:hint="@string/ten_nhom_bat_buoc"
         android:textSize="@dimen/font_14"
         android:inputType="textPersonName"
         android:paddingBottom="@dimen/size_10"

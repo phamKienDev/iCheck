@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Bộ lọc"
+        android:text="@string/bo_loc"
         android:textColor="#057dda"
         app:layout_constraintBottom_toBottomOf="@+id/imgCloseDrawer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnUncheckAll"
-        android:text="Bỏ chọn"
+        android:text="@string/bo_chon"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:fontFamily="@font/barlow_regular"

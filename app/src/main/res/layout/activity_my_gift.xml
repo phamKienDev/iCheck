@@ -64,7 +64,7 @@
                 android:checked="true"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Hộp quà"
+                android:text="@string/hop_qua"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
@@ -93,7 +93,7 @@
                 android:checked="false"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Quà hiện vật"
+                android:text="@string/qua_hien_vat"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Bạn chưa có quà tặng nào"
+                android:text="@string/ban_chua_co_qua_tang_nao"
                 android:visibility="gone" />
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

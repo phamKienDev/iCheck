@@ -104,7 +104,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="Xu"
+                    android:text="@string/xu"
                     android:textColor="#FFB800"
                     android:textSize="@dimen/font_16" />
 

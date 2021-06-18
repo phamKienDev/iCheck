@@ -91,7 +91,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Nạp cho số:"
+            android:text="@string/nap_cho_so_colon"
             android:textColor="#757575"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"

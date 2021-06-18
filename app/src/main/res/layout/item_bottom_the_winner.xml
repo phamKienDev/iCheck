@@ -19,7 +19,7 @@
         android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:text="Cập nhật mới nhất"
+        android:text="@string/cap_nhat_moi_nhat"
         android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_16"
         android:visibility="gone" />

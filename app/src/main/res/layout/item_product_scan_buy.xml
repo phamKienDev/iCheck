@@ -152,7 +152,7 @@
         android:paddingEnd="@dimen/size_20"
         android:paddingRight="@dimen/size_20"
         android:paddingBottom="@dimen/size_8"
-        android:text="Thêm vào giỏ hàng"
+        android:text="@string/them_vao_gio_hang"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/tvPrice"
         app:layout_constraintStart_toStartOf="@+id/btnUnAdd"

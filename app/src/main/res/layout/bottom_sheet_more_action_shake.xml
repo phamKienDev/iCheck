@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Thử thách nhận thêm lượt mở quà"
+            android:text="@string/thu_thach_nhan_them_luot_mo_qua"
             android:textColor="#212121"
             android:maxLines="1"
             android:ellipsize="end"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Lịch sử mở quà"
+            android:text="@string/lich_su_mo_qua"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Quà tặng đang chờ bạn"
+            android:text="@string/qua_tang_dang_cho_ban"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xếp hạng người chơi"
+            android:text="@string/xep_hang_nguoi_choi"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 
@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
             android:fontFamily="@font/barlow_medium"
-            android:text="Thông tin sự kiện"
+            android:text="@string/thong_tin_su_kien"
             android:textColor="#212121"
             android:textSize="@dimen/font_14" />
 

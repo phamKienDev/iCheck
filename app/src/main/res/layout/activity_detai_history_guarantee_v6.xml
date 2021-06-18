@@ -21,7 +21,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
-        android:text="Thông tin khách hàng"
+        android:text="@string/thong_tin_khach_hang"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
@@ -72,7 +72,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="sans-serif"
-        android:text="Thông tin bảo hành"
+        android:text="@string/thong_tin_bao_hanh"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal" />
@@ -161,7 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Nội dung bảo hành"
+        android:text="@string/noi_dung_bao_hanh"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"

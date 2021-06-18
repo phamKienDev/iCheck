@@ -98,7 +98,7 @@
                     android:drawablePadding="@dimen/size_5"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Sắp xếp: Mới nhất"
+                    android:text="@string/sap_xep_moi_nhat"
                     android:textColor="#757575"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +124,7 @@
                     android:layout_marginBottom="@dimen/size_12"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_horizontal|end"
-                    android:text="Lọc theo"
+                    android:text="@string/loc_theo"
                     android:textColor="#757575"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -187,7 +187,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:paddingTop="@dimen/size_7"
                         android:paddingBottom="@dimen/size_7"
-                        android:text="Mới nhất"
+                        android:text="@string/moi_nhat"
                         android:textColor="#757575"
                         android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
@@ -203,7 +203,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:paddingTop="@dimen/size_7"
                         android:paddingBottom="@dimen/size_7"
-                        android:text="Cũ nhất"
+                        android:text="@string/cu_nhat"
                         android:textColor="#757575"
                         android:textSize="@dimen/font_16" />
 
@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
+                android:text="@string/de_hien_thi_du_lieu_vui_long_bat_gps"
                 android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14" />
 

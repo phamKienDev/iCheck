@@ -37,7 +37,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14"
-            android:text="Xem tất cả" />
+            android:text="@string/xem_tat_ca" />
 
     </LinearLayout>
 

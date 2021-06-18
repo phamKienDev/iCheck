@@ -219,7 +219,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title_Seccond"
-                    android:text="Họ" />
+                    android:text="@string/ho" />
 
                 <TextView
                     android:id="@+id/edt_first_name"
@@ -239,7 +239,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title_Seccond"
-                    android:text="Tên" />
+                    android:text="@string/ten" />
 
                 <TextView
                     android:id="@+id/edt_last_name"
@@ -468,7 +468,7 @@
                         android:paddingRight="@dimen/size_8"
                         android:textColor="@color/colorAccentGreen"
                         android:paddingBottom="@dimen/size_3"
-                        android:text="Đã xác thực"
+                        android:text="@string/da_xac_thuc"
                         android:textSize="@dimen/font_14"
                         android:visibility="gone"
                         tools:visibility="visible" />

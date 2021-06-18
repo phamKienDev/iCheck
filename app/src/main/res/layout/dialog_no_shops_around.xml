@@ -114,7 +114,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView12"
                 app:layout_constraintTop_toTopOf="@+id/appCompatImageView12"
-                android:text="Bạn muốn mua sản phẩm này?" />
+                android:text="@string/ban_muon_mua_san_pham_nay" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/txtChat"
@@ -127,7 +127,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView38"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView38"
-                android:text="Đặt hàng với iCheck để được tư vấn!" />
+                android:text="@string/dat_hang_voi_icheck_de_duoc_tu_van" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

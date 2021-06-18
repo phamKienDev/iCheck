@@ -18,7 +18,7 @@
         android:textStyle="normal"
         android:layout_margin="@dimen/size_16"
         android:textColor="#828282"
-        android:text="Không thể truy cập. Vui lòng thử lại sau"
+        android:text="@string/khong_the_truy_cap_vui_long_thu_lai_sau"
         />
 
     <TextView
@@ -29,7 +29,7 @@
         android:background="@drawable/bg_corner_solid_white_strokke_blue"
         android:fontFamily="sans-serif-medium"
         android:padding="@dimen/size_16"
-        android:text="Trang Chủ"
+        android:text="@string/trang_chu"
         android:textAlignment="center"
         android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"

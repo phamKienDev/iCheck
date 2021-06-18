@@ -41,7 +41,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="Số dư tài khoản"
+                android:text="@string/so_du_tai_khoan"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintStart_toStartOf="@id/viewBlue"
@@ -112,7 +112,7 @@
                         android:drawableTop="@drawable/ic_pv_home_recharge_54px"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Nạp tiền"
+                        android:text="@string/nap_tien"
                         android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
@@ -126,7 +126,7 @@
                         android:drawableTop="@drawable/ic_pv_home_list_card_54px"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Danh sách thẻ"
+                        android:text="@string/danh_sach_the"
                         android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
@@ -140,7 +140,7 @@
                         android:drawableTop="@drawable/ic_pv_home_edit_card_54px"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Sửa tài khoản"
+                        android:text="@string/sua_tai_khoan"
                         android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
 
@@ -154,7 +154,7 @@
                         android:drawableTop="@drawable/ic_disable_pv_home_newcard_54px"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Tạo thêm thẻ"
+                        android:text="@string/tao_them_the"
                         android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_12" />
                 </LinearLayout>
@@ -216,7 +216,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Định danh tài khoản"
+                        android:text="@string/dinh_danh_tai_khoan"
                         android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
@@ -242,7 +242,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Chương trình ưu đãi"
+                        android:text="@string/chuong_trinh_uu_dai"
                         android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
@@ -268,7 +268,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Chính sách sử dụng"
+                        android:text="@string/chinh_sach_su_dung"
                         android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
@@ -294,7 +294,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Liên hệ"
+                        android:text="@string/lien_he"
                         android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 
@@ -321,7 +321,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Lịch sử giao dịch"
+                        android:text="@string/lich_su_giao_dich"
                         android:textColor="@color/colorNormalText" />
                 </androidx.cardview.widget.CardView>
 

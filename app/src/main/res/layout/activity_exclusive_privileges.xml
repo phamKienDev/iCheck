@@ -29,7 +29,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Đặc quyền riêng"
+            android:text="@string/dac_quyen_rieng"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
 

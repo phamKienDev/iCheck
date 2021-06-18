@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
-        android:text="Nhập mã OTP"
+        android:text="@string/nhap_ma_otp"
         android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:lineHeight="@dimen/size_20"
-                android:text="Mã xác nhận OTP đã dược gửi đến
-        số điện thoại của bạn"
+                android:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_so_dien_thoai_cua_ban"
                 android:textAlignment="center"
                 android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
@@ -82,7 +81,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="Gửi lại mã (60s)"
+                android:text="@string/gui_lai_ma_60s"
                 android:textColor="#757575" />
 
         </LinearLayout>
@@ -92,7 +91,7 @@
         android:id="@+id/textView92"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

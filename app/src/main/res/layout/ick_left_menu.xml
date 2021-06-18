@@ -65,7 +65,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Lịch sử nạp thẻ &amp; Dịch vụ"
+                        android:text="@string/lich_su_nap_the_dich_vu"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"
-                        android:text="Sản phẩm yêu thích"
+                        android:text="@string/san_pham_yeu_thich"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -147,7 +147,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="iCheck Xu"
+                        android:text="@string/icheck_xu"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -174,7 +174,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Hạng thành viên"
+                        android:text="@string/hang_thanh_vien"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -211,7 +211,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Quản lý trang"
+                        android:text="@string/quan_ly_trang"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -239,7 +239,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Tạo QR Code"
+                        android:text="@string/tao_qr_code"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -304,7 +304,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Cấu hình"
+                        android:text="@string/cau_hinh"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -333,7 +333,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Trợ giúp và hỗ trợ"
+                    android:text="@string/tro_giup_va_ho_tro"
                     android:textColor="@color/black" />
 
                 <View
@@ -353,7 +353,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Hướng dẫn sử dụng"
+                    android:text="@string/huong_dan_su_dung"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -375,7 +375,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Điều khoản sử dụng"
+                    android:text="@string/dieu_khoan_su_dung"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -397,7 +397,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Câu hỏi thường gặp"
+                    android:text="@string/cau_hoi_thuong_gap"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -419,7 +419,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Liên hệ và hỗ trợ"
+                    android:text="@string/lien_he_ho_tro"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -441,7 +441,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
-                    android:text="Thông tin ứng dụng"
+                    android:text="@string/thong_tin_ung_dung"
                     android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
@@ -464,7 +464,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:padding="@dimen/size_16"
-                android:text="Đăng xuất"
+                android:text="@string/dang_xuat"
                 android:textColor="@color/black" />
 
 
@@ -578,7 +578,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:fontFamily="@font/barlow_medium"
                     android:paddingTop="@dimen/size_6"
-                    android:text="Đơn mua"
+                    android:text="@string/don_mua"
                     android:textColor="#212121"
                     app:drawableStartCompat="@drawable/ic_cart_red" />
 
@@ -593,7 +593,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="end"
                     android:paddingTop="@dimen/size_6"
-                    android:text="Lịch sử mua hàng"
+                    android:text="@string/lich_su_mua_hang"
                     app:drawableEndCompat="@drawable/ic_arrow_right_gray_24dp" />
             </LinearLayout>
 

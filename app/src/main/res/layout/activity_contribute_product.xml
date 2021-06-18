@@ -35,7 +35,7 @@
             android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Đóng góp thông tin"
+            android:text="@string/dong_gop_thong_tin"
             android:textAlignment="center"
             android:textColor="@color/darkBlue"
             android:textSize="@dimen/font_18" />
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginBottom="@dimen/size_12"
-                android:text="Thông tin sản phẩm"
+                android:text="@string/thong_tin_san_pham"
                 android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_16"
-                android:hint="Nhập tên sản phẩm (bắt buộc) "
+                android:hint="@string/nhap_ten_san_pham_bat_buoc"
                 android:inputType="textPersonName"
                 android:textColor="@color/darkGray1" />
 
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
                 android:textColor="@color/darkGray1"
-                android:hint="Nhập giá sản phẩm"
+                android:hint="@string/nhap_gia_san_pham"
                 android:inputType="number" />
 
             <TextView
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_12"
                 android:drawableEnd="@drawable/ic_down_blue_18px"
-                android:text="Chọn danh mục"
+                android:text="@string/chon_danh_muc"
                 android:textColor="#434343" />
 
             <LinearLayout
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:text="Thêm mô tả sản phẩm"
+                    android:text="@string/them_mo_ta_san_pham"
                     android:drawableStart="@drawable/ic_add_gray_24px"
                     android:drawablePadding="@dimen/size_13"
                     android:textColor="@color/darkGray3" />
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_12"
-                android:text="Thông tin doanh nghiệp"
+                android:text="@string/thong_tin_doanh_nghiep"
                 android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18" />
 
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:textColor="@color/darkGray1"
-                android:hint="Tên doanh nghiệp"
+                android:hint="@string/ten_doanh_nghiep"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:textColor="@color/darkGray1"
-                android:hint="Địa chỉ doanh nghiệp"
+                android:hint="@string/dia_chi_doanh_nghiep"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -199,7 +199,7 @@
                 android:digits="0123456789"
                 android:ems="10"
                 android:textColor="@color/darkGray1"
-                android:hint="Số điện thoại"
+                android:hint="@string/so_dien_thoai"
                 android:inputType="number" />
 
             <EditText
@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:textColor="@color/darkGray1"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -220,7 +220,7 @@
                 android:digits="0123456789"
                 android:ems="10"
                 android:textColor="@color/darkGray1"
-                android:hint="Mã số thuế"
+                android:hint="@string/ma_so_thue"
                 android:inputType="number" />
 
             <Button
@@ -232,7 +232,7 @@
                 android:layout_marginBottom="@dimen/size_32"
                 android:layout_marginTop="@dimen/size_12"
                 android:background="@drawable/bg_gray_corner_20dp"
-                android:text="Hoàn tất"
+                android:text="@string/hoan_tat"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />

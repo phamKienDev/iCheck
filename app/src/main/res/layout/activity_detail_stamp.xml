@@ -39,7 +39,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="Xác thực sản phẩm"
+                android:text="@string/xac_thuc_san_pham"
                 android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal"
@@ -108,7 +108,7 @@
                 android:layout_marginEnd="@dimen/size_40"
                 android:background="@drawable/bg_corner_solid_white_strokke_blue"
                 android:fontFamily="sans-serif-medium"
-                android:text="Thử Lại"
+                android:text="@string/thu_lai"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_16"
                 android:textStyle="normal" />
@@ -379,7 +379,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/size_8"
                             android:layout_marginTop="@dimen/size_10"
-                            android:text="Mã dự thưởng chương trình:"
+                            android:text="@string/ma_du_thuong_chuong_trinh_colon"
                             android:textColor="@color/darkGray1"
                             android:textSize="@dimen/font_14" />
 
@@ -413,7 +413,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_edit_code"
                                 android:gravity="center"
-                                android:hint="Nhập mã dự thưởng"
+                                android:hint="@string/nhap_ma_du_thuong"
                                 android:inputType="textCapCharacters"
                                 android:singleLine="true"
                                 android:textAllCaps="true"
@@ -424,7 +424,7 @@
                                 android:layout_width="@dimen/size_83"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/btn_check_code"
-                                android:text="Check mã"
+                                android:text="@string/check_ma"
                                 android:textAllCaps="false"
                                 android:textColor="@color/colorPrimary" />
 
@@ -685,7 +685,7 @@
                                     android:drawablePadding="@dimen/size_5"
                                     android:fontFamily="sans-serif-medium"
                                     android:gravity="center"
-                                    android:text="Giỏ hàng"
+                                    android:text="@string/gio_hang"
                                     android:textColor="#4f4f4f"
                                     android:textSize="@dimen/font_14"
                                     android:textStyle="normal"

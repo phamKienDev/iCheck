@@ -158,7 +158,7 @@
                 android:layout_marginStart="@dimen/size_24"
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
-                android:text="Email"
+                android:text="@string/email"
                 android:textColor="#434343"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />

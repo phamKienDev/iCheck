@@ -20,7 +20,7 @@
             android:textSize="@dimen/font_18"
             android:textColor="@color/darkBlue"
             android:fontFamily="sans-serif-medium"
-            android:text="Giao dịch thành công"
+            android:text="@string/giao_dich_thanh_cong"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:text="Nhà mạng:"
+            android:text="@string/nha_mang_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Tổng thanh toán:"
+            android:text="@string/tong_thanh_toan_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Hình thức thanh toán:"
+            android:text="@string/hinh_thuc_thanh_toan_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView51"
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
@@ -142,7 +142,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ví iCoin"
+            android:text="@string/vi_icoin"
             android:textSize="@dimen/font_14"
             android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
@@ -164,7 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:text="MÃ THẺ"
+            android:text="@string/ma_the_upcase"
             android:textColor="#3C5A99"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Số seri:"
+            android:text="@string/so_seri_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView76"
             app:layout_constraintTop_toBottomOf="@+id/textView76" />
@@ -184,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Mã nạp:"
+            android:text="@string/ma_nap_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView77"
             app:layout_constraintTop_toBottomOf="@+id/textView77" />
@@ -237,7 +237,7 @@
         android:layout_marginStart="@dimen/size_32"
         android:layout_marginTop="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_32"
-        android:text="Trải nghiệm này tuyệt vời chứ? Vui lòng đánh giá trải nghiệm của bạn"
+        android:text="@string/trai_nghiem_nay_tuyet_voi_chu_vui_long_danh_gia_trai_nghiem_cua_ban"
         android:textAlignment="center"
         android:textColor="#717E8E"
         android:visibility="gone" />
@@ -267,7 +267,7 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_weight="1"
             android:background="@drawable/bg_blue_corners_40_solid_white"
-            android:text="Mua mã thẻ khác"
+            android:text="@string/mua_ma_the_khac"
             android:textAllCaps="false"
             android:layout_marginBottom="@dimen/size_8"
             android:textColor="#3C5A99" />
@@ -279,7 +279,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_blue_corners_40"
             android:layout_marginBottom="@dimen/size_8"
-            android:text="Nạp ngay"
+            android:text="@string/nap_ngay"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
     </LinearLayout>

@@ -20,7 +20,7 @@
         android:layout_marginRight="@dimen/size_48"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Bạn chưa có mã QR nào"
+        android:text="@string/ban_chua_co_ma_qr_nao"
         android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 

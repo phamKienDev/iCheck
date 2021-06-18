@@ -47,7 +47,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Hoàn thành các thử thách sau để nhận thêm lượt mở quà mới nào:"
+            android:text="@string/hoan_thanh_cac_thu_thach_sau_de_nhan_them_luot_mo_qua_moi_nao"
             android:textColor="#757575"
             android:textSize="@dimen/font_14" />
 
@@ -85,7 +85,7 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:text="Thực hiện thử thách"
+                android:text="@string/thuc_hien_thu_thach"
                 android:textColor="@color/light_blue"
                 android:textSize="@dimen/font_16"
                 android:visibility="visible" />
@@ -103,7 +103,7 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:text="Danh sách quà"
+                android:text="@string/danh_sach_qua"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>

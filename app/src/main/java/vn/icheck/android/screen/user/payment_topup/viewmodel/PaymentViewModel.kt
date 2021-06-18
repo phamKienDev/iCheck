@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.payment_topup.viewmodel
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
@@ -47,9 +46,9 @@ class PaymentViewModel : BaseViewModel() {
 
         val listValue = mutableListOf<ICNameValue>()
         if (type == 1) {
-            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu), ICheckApplication.getString(R.string.nap_the_dien_thoai)))
+            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu_colon), ICheckApplication.getString(R.string.nap_the_dien_thoai)))
         } else {
-            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu), ICheckApplication.getString(R.string.mua_ma_the_dien_thoai)))
+            listValue.add(ICNameValue(ICheckApplication.getString(R.string.dich_vu_colon), ICheckApplication.getString(R.string.mua_ma_the_dien_thoai)))
         }
         listValue.add(ICNameValue(ICheckApplication.getString(R.string.nha_mang_colon), card?.provider))
         if (type == 1) {
@@ -59,13 +58,13 @@ class PaymentViewModel : BaseViewModel() {
                         replace(0, 2, "0")
                     }.toString()
                 }
-                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so), replacePhone))
+                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so_colon), replacePhone))
             } else {
-                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so), phoneNumber))
+                listValue.add(ICNameValue(ICheckApplication.getString(R.string.nap_cho_so_colon), phoneNumber))
             }
         }
         listValue.add(ICNameValue(ICheckApplication.getString(R.string.menh_gia), ICheckApplication.getString(R.string.s_d, TextHelper.formatMoneyPhay(value?.toLong()))))
-        listValue.add(ICNameValue(ICheckApplication.getString(R.string.phi_dich_vu), ICheckApplication.getString(R.string.mien_phi)))
+        listValue.add(ICNameValue(ICheckApplication.getString(R.string.phi_dich_vu_colon), ICheckApplication.getString(R.string.mien_phi)))
 
 //        dataIntent.postValue(ICPaymentLocal(value, card?.serviceId, card, listValue, phoneNumber, type))
         dataIntent.postValue(ICPaymentLocal(value, card, listValue, phoneNumber, type))

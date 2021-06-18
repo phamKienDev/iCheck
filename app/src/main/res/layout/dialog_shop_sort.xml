@@ -21,7 +21,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_17"
             android:paddingBottom="@dimen/size_17"
-            android:text="Sắp xếp theo"
+            android:text="@string/sap_xep_theo"
             android:textColor="@color/colorDisableText"
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
@@ -41,7 +41,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Mặc định"
+            android:text="@string/mac_dinh"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
@@ -61,7 +61,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Giá: thấp - cao"
+            android:text="@string/gia_thap_cao"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
@@ -81,7 +81,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Giá: cao - thấp"
+            android:text="@string/gia_cao_thap"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
@@ -101,7 +101,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Mới nhất"
+            android:text="@string/moi_nhat"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
@@ -120,7 +120,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Bán chạy nhất"
+            android:text="@string/ban_chay_nhat"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="normal" />
@@ -149,7 +149,7 @@
             android:includeFontPadding="false"
             android:paddingTop="@dimen/size_14"
             android:paddingBottom="@dimen/size_14"
-            android:text="Đóng"
+            android:text="@string/dong"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/font_18"
             android:textStyle="bold" />

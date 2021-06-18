@@ -144,7 +144,7 @@
                         android:drawablePadding="@dimen/size_8"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:text="Chỉ đường"
+                        android:text="@string/chi_duong"
                         android:textColor="#057dda"
                         android:textSize="@dimen/font_16" />
 
@@ -188,7 +188,7 @@
                         android:drawablePadding="@dimen/size_16"
                         android:gravity="center_vertical"
                         android:singleLine="true"
-                        android:text="Thêm vào giỏ hàng"
+                        android:text="@string/them_vao_gio_hang"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/font_16" />
 

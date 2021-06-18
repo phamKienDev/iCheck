@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Xác nhận mở thẻ"
+            android:text="@string/xac_nhan_mo_the"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
 
@@ -47,7 +47,7 @@
                 android:layout_marginTop="@dimen/size_40"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Nhập mã OTP"
+                android:text="@string/nhap_ma_otp"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_20" />
 
@@ -87,7 +87,7 @@
                 android:paddingTop="@dimen/size_5"
                 android:paddingEnd="@dimen/size_10"
                 android:paddingBottom="@dimen/size_5"
-                android:text="Gửi lại mã (60s)"
+                android:text="@string/gui_lai_ma_60s"
                 android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
 
@@ -112,7 +112,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
-            android:text="Xác nhận" />
+            android:text="@string/xac_nhan" />
 
     </LinearLayout>
 </LinearLayout>

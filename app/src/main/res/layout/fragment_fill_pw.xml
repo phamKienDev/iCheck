@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
-        android:text="Tạo mật khẩu mới"
+        android:text="@string/tao_mat_khau_moi"
         android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="@dimen/size_63"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:text="Hãy ghi nhớ mật khẩu cận thận nhé!" />
+                android:text="@string/hay_ghi_nho_mat_khau_can_than_nhe" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:focusableInTouchMode="true"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
-                    android:hint="Nhập mật khẩu"
+                    android:hint="@string/nhap_mat_khau"
                     android:inputType="numberPassword"
                     android:paddingStart="@dimen/size_64"
                     android:paddingBottom="@dimen/size_20"
@@ -102,7 +102,7 @@
                     android:focusableInTouchMode="true"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
-                    android:hint="Nhập lại mật khẩu"
+                    android:hint="@string/nhap_lai_mat_khau"
                     android:inputType="numberPassword"
                     android:paddingStart="@dimen/size_64"
                     android:paddingBottom="@dimen/size_20"
@@ -132,7 +132,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"
-        android:text="Tạo mật khẩu mới"
+        android:text="@string/tao_mat_khau_moi"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

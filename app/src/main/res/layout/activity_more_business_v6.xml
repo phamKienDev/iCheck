@@ -32,7 +32,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="sans-serif"
-                android:text="Thông tin "
+                android:text="@string/thong_tin"
                 android:textColor="#3c5a99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="normal" />
@@ -276,7 +276,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_8"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Sản phẩm xác thực"
+                    android:text="@string/san_pham_xac_thuc"
                     android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"

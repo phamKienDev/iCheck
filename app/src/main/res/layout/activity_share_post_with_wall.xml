@@ -95,7 +95,7 @@
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center"
                         android:lineSpacingExtra="@dimen/font_14"
-                        android:text="Riêng tư"
+                        android:text="@string/rieng_tu"
                         android:textColor="#757575"
                         android:textSize="@dimen/font_12" />
 
@@ -111,7 +111,7 @@
                     android:layout_marginRight="@dimen/size_12"
                     android:background="@null"
                     android:fontFamily="@font/barlow_medium"
-                    android:hint="Bạn cảm thấy bài viết này thế nào?"
+                    android:hint="@string/ban_cam_thay_bai_viet_nay_the_nao"
                     android:textColor="#212121"
                     android:textColorLink="#757575"
                     android:textSize="@dimen/font_14"
@@ -155,7 +155,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_8"
                         android:fontFamily="@font/barlow_semi_bold"
-                        android:text="Hà Linh"
                         android:textColor="#212121"
                         android:textSize="@dimen/font_16"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -282,7 +281,7 @@
             android:gravity="center"
             android:paddingBottom="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Chia sẻ"
+            android:text="@string/chia_se"
             android:textColor="#057dda"
             android:textSize="@dimen/font_16" />
 

@@ -17,7 +17,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_14"
-        android:text="Thông tin được đóng góp bởi"
+        android:text="@string/thong_tin_duoc_dong_gop_boi"
         android:textColor="#757575"
         android:textSize="@dimen/font_12"
         app:layout_constraintTop_toTopOf="parent" />
@@ -216,7 +216,7 @@
         android:lineSpacingExtra="@dimen/font_6"
         android:paddingTop="@dimen/size_5"
         android:paddingBottom="@dimen/size_5"
-        android:text="Chỉnh sửa đóng góp"
+        android:text="@string/chinh_sua_dong_gop"
         android:textColor="#057dda"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"

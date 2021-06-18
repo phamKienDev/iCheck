@@ -85,7 +85,7 @@
         android:layout_gravity="center"
         android:textColor="@color/colorSecondary"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Xem chi tiết"
+        android:text="@string/xem_chi_tiet"
         />
 
 </LinearLayout>

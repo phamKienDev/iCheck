@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Thông tin thêm"
+            android:text="@string/thong_tin_them"
             android:textColor="#057DDA" />
 
         <ImageView

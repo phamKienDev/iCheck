@@ -88,7 +88,7 @@
         android:paddingLeft="@dimen/size_12"
         android:paddingTop="@dimen/size_2"
         android:paddingBottom="@dimen/size_2"
-        android:text="Xem chi tiết"
+        android:text="@string/xem_chi_tiet"
         android:textColor="@color/white"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/viewLine"

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Cảm ơn bạn đã báo cáo người dùng này!"
+        android:text="@string/cam_on_ban_da_bao_cao_nguoi_dung_nay"
         android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginRight="@dimen/size_64"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Đội ngũ iCheck sẽ kiểm tra và giải quyết báo cáo của bạn sớm."
+        android:text="@string/feed_report_success_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView41" />
@@ -66,7 +66,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:fontFamily="@font/barlow_medium"
-        android:text="Nội dung báo cáo:"
+        android:text="@string/noi_dung_bao_cao_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
@@ -93,7 +93,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
-        android:text="Xong"
+        android:text="@string/xong"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

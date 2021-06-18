@@ -39,7 +39,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:fontFamily="@font/barlow_medium"
-        android:hint="Chọn ngày tháng năm"
+        android:hint="@string/chon_ngay_thang_nam"
         android:padding="@dimen/size_8"
         android:textColor="#212121"
         android:textColorHint="#B4B4B4"

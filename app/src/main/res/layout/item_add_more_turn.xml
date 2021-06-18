@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="lượt"
+        android:text="@string/luot"
         android:layout_marginStart="@dimen/size_3"
         android:textColor="#757575"
         android:textSize="@dimen/font_14"

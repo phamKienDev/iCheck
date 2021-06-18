@@ -65,7 +65,7 @@
             android:layout_marginTop="@dimen/size_16"
             android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_14"
-            android:text="Số điện thoại bạn muốn chia sẻ"
+            android:text="@string/so_dien_thoai_ban_muon_chia_se"
             android:textColor="#212121"
             android:textSize="@dimen/font_12" />
 
@@ -81,7 +81,7 @@
             android:drawableRight="@drawable/ic_phonebook_24px"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center|start"
-            android:hint="Bắt buộc"
+            android:hint="@string/bat_buoc"
             android:inputType="phone"
             android:paddingStart="@dimen/size_10"
             android:paddingEnd="@dimen/size_10"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
-        android:text="Xoá bookmark?"
+        android:text="@string/xoa_bookmark"
         android:textAlignment="center"
         android:textColor="#35384B"
         android:textSize="@dimen/font_18" />
@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_20"
-        android:text="Bạn có chắc muốn xoá sản phẩm này khỏi danh sách bookmark không?"
+        android:text="@string/ban_co_chac_muon_xoa_san_pham_nay_khoi_danh_sach_bookmark_khong"
         android:textAlignment="center"
         android:textColor="#4F4F4F" />
 
@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:paddingTop="@dimen/size_12"
             android:paddingBottom="@dimen/size_12"
-            android:text="Không"
+            android:text="@string/khong"
             android:textAlignment="center"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />
@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:paddingTop="@dimen/size_12"
             android:paddingBottom="@dimen/size_12"
-            android:text="Có"
+            android:text="@string/co"
             android:textAlignment="center"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16" />

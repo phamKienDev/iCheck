@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="Hủy"
+            android:text="@string/huy"
             android:textColor="#757575"
             android:textSize="@dimen/font_16"
             app:layout_constraintTop_toTopOf="parent" />

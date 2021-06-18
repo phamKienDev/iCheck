@@ -250,7 +250,7 @@
                         android:singleLine="true"
                         android:drawableStart="@drawable/ic_add_to_cart_item_shop_variant"
                         android:drawablePadding="@dimen/size_16"
-                        android:text="Thêm vào giỏ hàng"
+                        android:text="@string/them_vao_gio_hang"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/font_16" />
 

@@ -60,7 +60,7 @@
         android:gravity="center"
         android:drawableEnd="@drawable/ic_arrow_down_light_blue_accent_24px"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Xem thêm"
+        android:text="@string/xem_them"
         android:textColor="@color/colorAccentBlue" />
 
     <View

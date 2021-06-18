@@ -113,7 +113,7 @@
                     android:layout_marginEnd="@dimen/size_40"
                     android:background="@drawable/bg_corner_solid_white_strokke_blue"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Thử Lại"
+                    android:text="@string/thu_lai"
                     android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />

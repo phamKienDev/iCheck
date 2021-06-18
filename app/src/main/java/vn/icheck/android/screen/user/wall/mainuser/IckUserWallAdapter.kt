@@ -384,7 +384,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                if (binding.tvAddFriend.text == binding.tvAddFriend.context.rText(R.string.dong_y_ket_ban)) {
+                if ((binding.tvAddFriend.text == binding.tvAddFriend.context.rText(R.string.dong_y_ket_ban)||binding.tvAddFriend.text == "Đồng ý kết bạn")) {
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })

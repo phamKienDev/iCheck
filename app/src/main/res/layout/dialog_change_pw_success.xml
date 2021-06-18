@@ -41,7 +41,7 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
-                android:text="Bạn đã thay đổi mật khẩu thành công!"
+                android:text="@string/ban_da_thay_doi_mat_khau_thanh_cong"
                 android:textAlignment="center"
                 android:textColor="#212121"
                 android:textSize="@dimen/font_16" />
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
-                android:text="Hãy ghi nhớ mật khẩu cận thận nhé!"
+                android:text="@string/hay_ghi_nho_mat_khau_can_than_nhe"
                 android:textAlignment="center"
                 android:textColor="#757575" />
 
@@ -76,7 +76,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:padding="@dimen/size_12"
-                    android:text="Về trang chủ"
+                    android:text="@string/ve_trang_chu"
                     android:textColor="#057DDA"
                     android:textSize="@dimen/font_16" />
 
@@ -89,7 +89,7 @@
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:padding="@dimen/size_12"
-                    android:text="Đăng nhập lại"
+                    android:text="@string/dang_nhap_lai"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>

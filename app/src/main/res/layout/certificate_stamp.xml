@@ -15,7 +15,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_20"
         android:textColor="#3C5A99"
-        android:text="Chứng chỉ chứng nhận" />
+        android:text="@string/chung_chi_chung_nhan" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_cccn"

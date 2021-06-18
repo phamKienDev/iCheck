@@ -83,7 +83,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                     ContextCompat.getColor(context, R.color.colorSecondText),
                     14f).also {
                 if (type!="order") {
-                    it.setText(R.string.noi_dung_bao_cao)
+                    it.setText(R.string.noi_dung_bao_cao_colon)
                 }else{
                     it.setText(R.string.noi_dung_bao_loi)
                 }

@@ -13,7 +13,7 @@
         android:fontFamily="@font/barlow_medium"
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
-        android:text="Lọc mã quét"
+        android:text="@string/loc_ma_quet"
         android:textColor="#212121"
         android:textSize="@dimen/font_14" />
 
@@ -34,7 +34,7 @@
         android:drawableEnd="@drawable/ic_arrow_down_gray_10dp"
         android:drawablePadding="@dimen/size_4"
         android:fontFamily="@font/barlow_medium"
-        android:text="Hiển thị thêm"
+        android:text="@string/hien_thi_them"
         android:textColor="#757575"
         android:textSize="@dimen/font_12" />
 

@@ -22,7 +22,7 @@
         android:gravity="center"
         android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
-        android:text="Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn" />
+        android:text="@string/khong_ket_qua_tim_kiem" />
 
     <TextView
         android:id="@+id/tvCreate"
@@ -36,7 +36,7 @@
         android:paddingRight="@dimen/size_66"
         android:visibility="gone"
         android:paddingBottom="@dimen/size_10"
-        android:text="Thử lại với từ khoá khác"
+        android:text="@string/thu_lai_voi_tu_khoa_khac"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
 </LinearLayout>

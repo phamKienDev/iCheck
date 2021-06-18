@@ -28,7 +28,7 @@
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Liên hệ Doanh nghiệp"
+            android:text="@string/lien_he_doanh_nghiep"
             android:textColor="#057dda"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +163,7 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Nhắn tin"
+            android:text="@string/nhan_tin"
             android:textColor="#057dda"
             android:textSize="@dimen/font_14" />
     </LinearLayout>

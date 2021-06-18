@@ -21,7 +21,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_60"
         android:fontFamily="@font/barlow_medium"
-        android:text="Cập nhật thông tin và hình ảnh sản phẩm"
+        android:text="@string/cap_nhat_thong_tin_va_hinh_anh_san_pham"
         android:textColor="#b4b4b4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

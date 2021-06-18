@@ -46,7 +46,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
             android:visibility="invisible"
-            android:text="Tên đang cập nhật" />
+            android:text="@string/ten_dang_cap_nhat" />
 
         <vn.icheck.android.ui.view.TextBarlowSemiBold
             android:id="@+id/tvNameProduct"

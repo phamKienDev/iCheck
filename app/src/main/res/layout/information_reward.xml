@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Địa chỉ đến lấy quà"
+            android:text="@string/dia_chi_den_lay_qua"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14" />
 
@@ -65,7 +65,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Thông tin quà"
+            android:text="@string/thong_tin_qua"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_14" />
 

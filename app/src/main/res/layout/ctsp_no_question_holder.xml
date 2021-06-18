@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_12"
-        android:text="Hỏi đáp về sản phẩm (0)"
+        android:text="@string/hoi_dap_ve_san_pham_0"
         android:textAlignment="center"
         android:textColor="#3C5A99"
         android:textSize="@dimen/font_18" />
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_12"
-        android:text="Hiện chưa có câu hỏi cho sản phẩm này"
+        android:text="@string/hien_chua_co_cau_hoi_cho_san_pham_nay"
         android:textAlignment="center"
         android:textColor="#4F4F4F" />
 

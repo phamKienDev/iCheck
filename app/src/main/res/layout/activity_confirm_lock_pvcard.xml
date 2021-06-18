@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Xác nhận khóa thẻ"
+            android:text="@string/xac_nhan_khoa_the"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
     </FrameLayout>
@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/size_40"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
-            android:text="Nhập mã pin của thẻ"
+            android:text="@string/nhap_ma_pin_cua_the"
             android:textColor="#212121"
             android:textSize="@dimen/font_20" />
 
@@ -91,7 +91,7 @@
                 android:background="@drawable/bg_corner_gray_topup_4"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="Xác nhận" />
+                android:text="@string/xac_nhan" />
 
         </LinearLayout>
     </LinearLayout>

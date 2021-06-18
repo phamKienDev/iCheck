@@ -49,7 +49,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Tiếp tục thực hiện thử thách để \n ghi danh lên bảng vàng xếp hạng nào!"
+                    android:text="@string/tiep_tuc_thuc_hien_thu_thach_de_ghi_danh_len_bang_vang_tiep_nao"
                     android:textColor="@color/colorSecondText" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -63,7 +63,7 @@
                     android:includeFontPadding="false"
                     android:paddingTop="@dimen/size_9"
                     android:paddingBottom="@dimen/size_9"
-                    android:text="Xem thêm các thử thách"
+                    android:text="@string/xem_them_cac_thu_thach"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
@@ -123,7 +123,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Xếp hạng"
+            android:text="@string/xep_hang"
             android:textColor="#057DDA"
             android:textStyle="normal" />
 
