@@ -8,7 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICProductReviews
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.activities.product.review_product_v1.holder.ListReviewHolder
 import vn.icheck.android.activities.product.review_product_v1.holder.PostReviewProductHolder
 import vn.icheck.android.screen.user.review_product.holder.YourReviewHolder

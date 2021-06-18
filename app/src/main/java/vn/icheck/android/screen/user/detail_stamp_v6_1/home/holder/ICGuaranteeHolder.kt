@@ -11,6 +11,12 @@ import vn.icheck.android.network.models.ICWidgetData
 class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = ItemGuaranteeBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICWidgetData>(binding.root) {
 
     override fun bind(obj: ICWidgetData) {
+        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context).apply {
+            binding.tvTime.setHintTextColor(this)
+            binding.tvEnd.setHintTextColor(this)
+            binding.tvRemaining.setHintTextColor(this)
+            binding.tvActivate.setHintTextColor(this)
+        }
         binding.tvTime.text = itemView.context.getString(R.string.xxx_ngay, (obj.guaranteeDay ?: 0).toString())
         binding.tvEnd.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.expireDate)
         binding.tvRemaining.text = itemView.context.getString(R.string.xxx_ngay, (obj.dayRemaining ?: 0).toString())

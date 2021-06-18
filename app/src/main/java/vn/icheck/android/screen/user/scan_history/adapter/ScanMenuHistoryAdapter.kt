@@ -7,7 +7,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.network.models.history.ICTypeHistory
-import vn.icheck.android.screen.user.campaign.holder.base.ShortMessageHolder
+import vn.icheck.android.base.holder.ShortMessageHolder
 import vn.icheck.android.screen.user.scan_history.holder.FilterShopHistoryHolder
 import vn.icheck.android.screen.user.scan_history.holder.FilterTypeHistoryHolder
 import vn.icheck.android.screen.user.scan_history.holder.ToolbarMenuHolder

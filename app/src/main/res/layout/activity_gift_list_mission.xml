@@ -31,9 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_4"
             android:layout_marginLeft="@dimen/size_4"
-            android:background="?android:attr/selectableItemBackground"
             android:padding="@dimen/size_8"
-            android:src="@drawable/ic_cancel_light_blue_24dp"
+            app:srcCompat="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleSuccess"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitleSuccess" />

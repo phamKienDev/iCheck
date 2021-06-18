@@ -23,6 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
@@ -126,6 +127,7 @@ class ListMissionActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
+        imgCloseSuccess.fillDrawableColor()
         btnAction.background = ViewHelper.btnPrimaryCorners4(this)
     }
 

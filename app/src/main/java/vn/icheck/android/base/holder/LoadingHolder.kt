@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.campaign.holder.base
+package vn.icheck.android.base.holder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

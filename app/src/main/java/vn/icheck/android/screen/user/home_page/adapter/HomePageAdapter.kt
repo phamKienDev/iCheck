@@ -17,7 +17,6 @@ import vn.icheck.android.component.ads.product.AdsProductHolder
 import vn.icheck.android.component.banner.SlideBannerV2Holder
 import vn.icheck.android.component.collection.horizontal.CollectionHorizontalHolder
 import vn.icheck.android.component.collection.survey.CollectionSurveyHolder
-import vn.icheck.android.component.collection.survey.CollectionSurveySuccessHolder
 import vn.icheck.android.component.collection.survey.ISurveyListener
 import vn.icheck.android.component.collection.vertical.CollectionVerticalHolder
 import vn.icheck.android.component.experience_new_products.ExperienceNewProductsViewHolder
@@ -43,7 +42,7 @@ import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.campaign.calback.IBannerV2Listener
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.campaign.calback.IProductNeedReviewListener
-import vn.icheck.android.screen.user.campaign.holder.base.ShortMessageHolder
+import vn.icheck.android.base.holder.ShortMessageHolder
 import vn.icheck.android.screen.user.home_page.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.holder.primaryfunction.HomeFunctionHolder
 import vn.icheck.android.screen.user.home_page.model.ICListHomeItem

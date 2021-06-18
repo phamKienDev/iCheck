@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemMessageResultBinding
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICWidgetData
@@ -42,7 +43,7 @@ class ICMessageResultHolder(parent: ViewGroup, val binding: ItemMessageResultBin
                 binding.container.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.colorBackgroundGray))
                 binding.tvTitle.beGone()
                 binding.tvContent.apply {
-                    setTextColor(getColor(R.color.colorSecondText))
+                    setTextColor(Constant.getSecondTextColor(itemView.context))
                     text = obj.text
                 }
                 binding.tvStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)

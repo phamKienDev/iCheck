@@ -109,6 +109,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
 
         binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
+        binding.tvViewVerifiedPhoneNumber.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this))
     }
 
 

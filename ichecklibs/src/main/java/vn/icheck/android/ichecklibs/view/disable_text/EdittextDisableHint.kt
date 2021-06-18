@@ -26,6 +26,6 @@ open class EdittextDisableHint : AppCompatEditText {
 
     private fun setup() {
         setHintTextColor(Constant.getDisableTextColor(context))
-        includeFontPadding = false
+
     }
 }

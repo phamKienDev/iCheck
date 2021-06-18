@@ -186,7 +186,6 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 }
 
             }).show((it as AppCompatActivity).supportFragmentManager, null)
-
         }
     }
 
