@@ -66,14 +66,16 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                 itemView.tvDate.text = timeString
             } else {
                 itemView.tvDate.visibility = View.GONE
+                itemView.imgUpcoming.setInvisible()
+                itemView.layoutRight.setVisible()
+                itemView.tvDateRight.setVisible()
+                itemView.tvPlay.setGone()
+                itemView.tvPoint.setGone()
 
                 when (obj.type) {
                     CampaignType.ACCUMULATE_POINT -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
                         itemView.tvPoint.setVisible()
                         itemView.tvPlay.setGone()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
                             if (obj.statisticWinnerAccumulatePoint?.get(0)?.points != null) {
@@ -86,16 +88,11 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         }
                     }
                     CampaignType.RECEIVE_GIFT -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+
                     }
                     CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
                         itemView.tvPoint.setGone()
                         itemView.tvPlay.setVisible()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
@@ -111,9 +108,7 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         }
                     }
                     else -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+
                     }
                 }
 

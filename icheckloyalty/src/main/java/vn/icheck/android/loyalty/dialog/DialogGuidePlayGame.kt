@@ -17,9 +17,9 @@ abstract class DialogGuidePlayGame(context: Context) : BaseDialog(context, R.sty
     @SuppressLint("SetTextI18n")
     override fun onInitView() {
         tvMessage.text = if (SharedLoyaltyHelper(context).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)){
-            "Quét mã vạch được dán\ntrên bao bì sản phẩm để nhận lượt\nquay may mắn!"
+            "Quét mã vạch được dán\ntrên bao bì sản phẩm để nhận thêm lượt\nquay nhé!"
         }else{
-            "Quét mã QRcode được dán\ntrên bao bì sản phẩm để nhận lượt\nquay may mắn!"
+            "Quét tem QRcode được dán\ntrên bao bì sản phẩm để nhận thêm lượt\nquay nhé!"
         }
         imgClose.setOnClickListener {
             dismiss()

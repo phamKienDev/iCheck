@@ -183,7 +183,7 @@ class FragmentLuckyWheelGame : Fragment() {
                 ICMessageEvent.Type.UPDATE_COUNT_GAME -> {
                     update = true
 
-                    if (event.data != null){
+                    if (event.data != null) {
                         val count = event.data as Long?
                         luckyGameViewModel.updatePlay(count?.toInt())
                     }
@@ -500,7 +500,7 @@ class FragmentLuckyWheelGame : Fragment() {
                                             findNavController().navigate(action)
                                         }
                                     }.show()
-                                }else{
+                                } else {
                                     object : DialogOotGame(requireContext(),
                                             "Tiếc quá, bạn không có lượt quay nào!",
                                             "Quét tem để nhận thêm lượt quay và có cơ hội\ntrúng hàng ngàn giải thưởng hấp dẫn nào!",
@@ -529,9 +529,9 @@ class FragmentLuckyWheelGame : Fragment() {
     }
 
     private fun initViews() {
-        if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)){
+        if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)) {
             btnHistory.setGone()
-        }else{
+        } else {
             btnHistory.setVisible()
         }
 
@@ -544,17 +544,17 @@ class FragmentLuckyWheelGame : Fragment() {
             if (!spinning) {
                 it.startAnimation(scaleAnimation)
                 lifecycleScope.launch {
-                    delay(240)
+//                    delay(240)
                     if (SharedLoyaltyHelper(requireContext()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM)) {
                         val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToNmdtDialogFragment(args.campaignId, luckyGameViewModel.currentCount)
                         findNavController().navigate(action)
                     } else {
                         object : DialogGuidePlayGame(requireContext()) {
                             override fun onClick() {
-                                if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)){
+                                if (SharedLoyaltyHelper(requireContext()).getBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR)) {
                                     LoyaltySdk.openActivity("go_to_home_and_open_scan")
                                     finishActivity(this@FragmentLuckyWheelGame.requireActivity())
-                                }else{
+                                } else {
                                     LoyaltySdk.openActivity("scan?typeLoyalty=mini_game&campaignId=${args.campaignId}&nameCampaign=${args.campaignName}&nameShop=${args.shopName}&avatarShop=${args.avatarShop}&currentCount=${luckyGameViewModel.currentCount}")
                                 }
                             }
@@ -567,7 +567,7 @@ class FragmentLuckyWheelGame : Fragment() {
             if (!spinning) {
                 it.startAnimation(scaleAnimation)
                 lifecycleScope.launch {
-                    delay(240)
+                    btnDSQua.isEnabled = false
                     val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToListOfGiftReceived(args.campaignId, luckyGameViewModel.currentCount)
                     findNavController().navigate(action)
                 }
@@ -576,8 +576,9 @@ class FragmentLuckyWheelGame : Fragment() {
         btnTheWinner.setOnClickListener {
             if (!spinning) {
                 it.startAnimation(scaleAnimation)
+
                 lifecycleScope.launch {
-                    delay(240)
+                    btnTheWinner.isEnabled = false
                     val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToFragmentListUserWin(args.campaignId, args.campaignName, luckyGameViewModel.currentCount)
                     findNavController().navigate(action)
                 }
@@ -587,7 +588,7 @@ class FragmentLuckyWheelGame : Fragment() {
             if (!spinning) {
                 it.startAnimation(scaleAnimation)
                 lifecycleScope.launch {
-                    delay(240)
+                    btnQA.isEnabled = false
                     val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToHelpGameFragment(args.description, luckyGameViewModel.currentCount)
                     findNavController().navigate(action)
                 }
@@ -595,6 +596,7 @@ class FragmentLuckyWheelGame : Fragment() {
         }
         btnHistory.setOnClickListener {
             if (!spinning) {
+                btnHistory.isEnabled = false
                 val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToHistoryGameFragment(args.campaignId, luckyGameViewModel.currentCount)
                 findNavController().navigate(action)
             }
@@ -757,5 +759,13 @@ class FragmentLuckyWheelGame : Fragment() {
             }
         })
         listImageView[pos].startAnimation(alphaAnim)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        btnTheWinner.isEnabled = true
+        btnQA.isEnabled = true
+        btnHistory.isEnabled = true
+        btnDSQua.isEnabled = true
     }
 }
