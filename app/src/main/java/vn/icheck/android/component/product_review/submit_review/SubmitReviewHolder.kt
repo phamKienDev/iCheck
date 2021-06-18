@@ -247,7 +247,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             }.apply {
                 if (!this.isNullOrEmpty()) {
                     val value = this[this.keys.first()] ?: ""
-                    listMedia.add(ICMedia(value, if (value.contains(".mp4")) {
+                    listMedia.add(ICMedia(value, type = if (value.contains(".mp4")) {
                         Constant.VIDEO
                     } else {
                         Constant.IMAGE
