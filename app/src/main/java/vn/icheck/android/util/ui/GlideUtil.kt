@@ -33,8 +33,8 @@ class GlideUtil {
         fun loadAva(url: String?, imageView: ImageView) {
             Glide.with(ICheckApplication.getInstance()).load(url).centerCrop()
                     .error(R.drawable.ic_error_load_url)
-                    .placeholder(R.drawable.user_placeholder)
-                    .error(R.drawable.user_placeholder)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
+                    .error(R.drawable.ic_avatar_default_84dp)
                     .apply(RequestOptions().transform(RoundedCorners(DimensionUtil.convertDpToPixel(10f, imageView.context).toInt()))).into(imageView)
         }
 

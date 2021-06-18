@@ -37,7 +37,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -479,7 +478,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 //
         if (SessionManager.isUserLogged) {
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COIN_AND_RANK))
-            WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
 
             tv_username.apply {
                 text = user?.getName
@@ -513,7 +512,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         } else {
             background.setImageResource(R.drawable.left_menu_bg)
             img_rank_user.beGone()
-            imgAvatar.setImageResource(R.drawable.ic_avatar_default_84px)
+            imgAvatar.setImageResource(R.drawable.ic_avatar_default_84dp)
 
             tv_username.apply {
                 text = Build.MODEL

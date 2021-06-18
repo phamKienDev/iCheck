@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -154,7 +153,6 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun initView() {
         tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
-        edtEnter.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -180,7 +178,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             getData()
         }
 
-        WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84px)
+        WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84dp)
 
         WidgetUtils.setClickListener(this, imgBack, imgAction, imgEmoji, imgCamera, imgSelectPermission, imgAvatar,
                 imgSend, tvActor, layoutPermission, imgClearImage)
@@ -220,7 +218,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     if (item.type == Constant.PAGE) {
                         WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
                     } else {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_orange_circle)
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
                     }
                     viewModel.setPermission(item)
                 }

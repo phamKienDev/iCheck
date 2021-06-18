@@ -134,15 +134,15 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
             if (ickUserWallViewModel.photoType == TAKE_AVATAR) {
                 Glide.with(binding.imgAvatar.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(binding.imgAvatar)
                 ickUserWallViewModel.avatar = file
             } else {
                 Glide.with(binding.imgBackground.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(binding.imgBackground)
                 ickUserWallViewModel.wall = file
             }
@@ -548,8 +548,8 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
             }
             Glide.with(requireContext().applicationContext)
                     .load(user.data?.avatar)
-                    .error(R.drawable.ic_avatar_default_84px)
-                    .placeholder(R.drawable.ic_avatar_default_84px)
+                    .error(R.drawable.ic_avatar_default_84dp)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
                     .into(binding.imgAvatar)
             if (!user.data?.firstName.isNullOrEmpty()) {
                 binding.edtFirstname.setText(user.data?.firstName)

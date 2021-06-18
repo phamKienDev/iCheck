@@ -96,7 +96,6 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 }
             }
 
-            binding.tvBarcodeProduct.fillDrawableStartText(R.drawable.ic_barcode_gray_18px,vn.icheck.android.ichecklibs.Constant.disableTextColor)
             if (!obj.product?.barcode.isNullOrEmpty()) {
                 binding.tvBarcodeProduct.beVisible()
                 binding.tvBarcodeProduct.text = obj.product?.barcode?.trim()
@@ -125,8 +124,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 binding.avaShop.setImageResource(R.drawable.ic_error_load_shop_40_px)
             }
 
-            binding.tvNameShop.text = obj.nearestShop?.shop?.name
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            binding.tvNameShop.text = obj.nearestShop?.shop?.name ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
                 TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)

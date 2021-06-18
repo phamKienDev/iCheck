@@ -12,7 +12,7 @@
         android:id="@+id/imgItem"
         android:layout_width="@dimen/size_28"
         android:layout_height="@dimen/size_28"
-        android:src="@drawable/ic_circle_avatar_default"
+        android:src="@drawable/ic_user_svg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

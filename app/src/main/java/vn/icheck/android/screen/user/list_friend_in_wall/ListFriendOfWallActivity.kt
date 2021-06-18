@@ -31,6 +31,7 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.simpleText
 import java.util.concurrent.TimeUnit
 
@@ -66,7 +67,6 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     private fun initView() {
         txtTitle.text = "Danh sách bạn bè"
         edtSearch.background=ViewHelper.bgGrayCorners4(this)
-        edtSearch.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
     }
 
     private fun listener() {
@@ -237,7 +237,6 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     override fun goToChat(item: ICUserFollowWall) {
         ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
-//        SocialChatActivity.createRoomChat(this, item.id)
     }
 
     override fun goToAddFriend(item: ICUserFollowWall, position: Int) {
@@ -268,9 +267,12 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun showBottomSheetMoreAction(item: ICUserFollowWall, position: Int) {
+        this.forceHideKeyboard()
+
         positionList = position
         nameItem = item.getUserName()
         itemId = item.id
+
         object : MoreListFriendDialog(this, item) {
             override fun onClickUnfollow() {
                 dialog.dismiss()

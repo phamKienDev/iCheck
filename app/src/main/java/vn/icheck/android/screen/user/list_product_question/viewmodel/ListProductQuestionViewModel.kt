@@ -255,7 +255,7 @@ class ListProductQuestionViewModel : ViewModel() {
         val listPermission = mutableListOf<ICCommentPermission>()
 
         SessionManager.session.user?.let { user ->
-            listPermission.add(ICCommentPermission(user.id, user.avatar, user.name))
+            listPermission.add(ICCommentPermission(user.id, user.avatar, user.getName))
         }
         onSetPermission.postValue(listPermission)
         pageInteractor.getMyOwnerPage(null, 20, offset, object : ICNewApiListener<ICResponse<ICListResponse<ICPage>>> {

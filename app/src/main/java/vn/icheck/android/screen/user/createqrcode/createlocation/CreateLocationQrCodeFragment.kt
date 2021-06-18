@@ -92,7 +92,6 @@ class CreateLocationQrCodeFragment : BaseFragmentMVVM(), OnMapReadyCallback, ICr
 
     private fun setupView() {
         edtSearch.background=ViewHelper.bgWhiteCorners4(requireContext())
-        edtSearch.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(requireContext()))
 
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
     }

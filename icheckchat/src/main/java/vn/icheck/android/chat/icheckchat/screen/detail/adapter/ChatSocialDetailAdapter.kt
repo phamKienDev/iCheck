@@ -200,6 +200,8 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         private fun setupView() {
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
 
+            binding.layoutProduct.background=ViewHelper.bgGrayCorners10(itemView.context)
+
             binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
             binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
             binding.btnProductDetail.background = ViewHelper.bgPrimaryCorners4(itemView.context)

@@ -62,7 +62,6 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.edtSearch.background= ViewHelper.bgGrayCorners4(requireContext())
-        binding.edtSearch.setTextColor(Constant.getNormalTextColor(requireContext()))
 
         ickContributeProductViewModel.listCategory.clear()
         ickContributeProductViewModel.listCategory.add(null)

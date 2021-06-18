@@ -78,8 +78,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             avatar?.let {
                 Glide.with(it.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(it)
             }
         }
@@ -156,8 +156,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         ickLoginViewModel.facebookAvatar?.let {
             Glide.with(view.context.applicationContext)
                     .load(it)
-                    .placeholder(R.drawable.user_placeholder)
-                    .error(R.drawable.user_placeholder)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
+                    .error(R.drawable.ic_avatar_default_84dp)
                     .into(binding.userAva)
         }
         if (!ickLoginViewModel.facebookUsername.isNullOrEmpty()) {

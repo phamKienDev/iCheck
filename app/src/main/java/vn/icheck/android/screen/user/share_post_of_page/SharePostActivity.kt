@@ -67,7 +67,7 @@ class SharePostActivity : BaseActivityMVVM() {
         })
 
         viewmodel.user.observe(this, Observer {
-            avatarUser.setData(it.avatar, it.level, R.drawable.ic_avatar_default_84px)
+            avatarUser.setData(it.avatar, it.level, R.drawable.ic_avatar_default_84dp)
             tvName.text = it.getName
         })
 

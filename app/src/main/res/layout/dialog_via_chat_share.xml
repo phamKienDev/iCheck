@@ -149,7 +149,7 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_34"

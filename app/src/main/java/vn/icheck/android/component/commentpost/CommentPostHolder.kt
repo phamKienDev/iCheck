@@ -17,7 +17,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
@@ -51,7 +50,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
             binding.tvTitle.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {

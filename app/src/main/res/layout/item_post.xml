@@ -81,7 +81,7 @@
                 app:layout_constraintStart_toStartOf="@id/layoutName"
                 tools:text="43 phút trước" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@id/imgMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -293,7 +293,7 @@
                 app:civ_border_width="@dimen/size_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_circle_avatar_default" />
+                tools:src="@drawable/ic_user_svg" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgLevel"

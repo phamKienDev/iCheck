@@ -35,13 +35,12 @@
 
         </RelativeLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginTop="@dimen/size_10"
             android:text="Mã dự thưởng chương trình:"
-            android:textColor="@color/darkGray1"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -49,14 +48,12 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/size_8">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                 android:id="@+id/loyalty_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
-                android:textColor="@color/colorSecondary"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 tools:text="Vui cùng C2 - Nhận ngàn quà tặng" />
         </LinearLayout>
 
@@ -68,11 +65,12 @@
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/size_8">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edittext"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/barlow_medium"
                 android:background="@drawable/bg_gray_corner_left_top_bottom_4dp"
                 android:gravity="center_vertical"
                 android:hint="@string/nhap_ma_du_thuong"
@@ -80,22 +78,20 @@
                 android:paddingStart="@dimen/size_12"
                 android:paddingLeft="@dimen/size_12"
                 android:textAllCaps="true"
-                android:textColor="#434343"
-                android:textColorHint="#828282"
                 android:textSize="14sp"
                 tools:ignore="RtlSymmetry" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <vn.icheck.android.ichecklibs.view.primary.ButtonPrimary
                 android:id="@+id/btnCheckCode"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_light_blue_15_corner_right_top_bottom_4dp"
                 android:gravity="center"
+                android:fontFamily="@font/barlow_medium"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
                 android:text="@string/check_ma"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary" />
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </LinearLayout>

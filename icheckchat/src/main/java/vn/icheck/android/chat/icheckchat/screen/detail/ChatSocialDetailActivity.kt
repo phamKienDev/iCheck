@@ -211,7 +211,6 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.imgSticker.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_emoji_20dp_chat,R.drawable.ic_imoji_fc_24dp_chat, this), null, null, null)
         binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
 
-        binding.edtMessage.setTextColor(Constant.getNormalTextColor(this))
         binding.tvMessage.setHintTextColor(Constant.getDisableTextColor(this))
     }
 

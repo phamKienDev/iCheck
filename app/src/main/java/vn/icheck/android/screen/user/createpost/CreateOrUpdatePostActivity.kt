@@ -127,7 +127,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
         } else {
             SessionManager.session.user?.let { user ->
                 imgStatus.setRankUser(user.rank?.level)
-                WidgetUtils.loadImageUrl(imgAvatar, user.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgAvatar, user.avatar, R.drawable.ic_avatar_default_84dp)
                 tvName.apply {
                     text = user.getName
                     if (user.kycStatus == 2) {
@@ -371,7 +371,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                 image.scaleType = ImageView.ScaleType.FIT_CENTER
                 image.adjustViewBounds = true
 
-                WidgetUtils.loadImageFile(image, file)
+//                WidgetUtils.loadImageFile(image, file)
                 image.loadImageFromVideoFile(file, null)
             })
 
@@ -526,7 +526,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaHelper.onActivityResult(requestCode, resultCode)
+        takeMediaHelper.onActivityResult(requestCode, resultCode,data)
 
         if (requestCode == requestScanProduct) {
             if (resultCode == Activity.RESULT_OK) {

@@ -61,6 +61,10 @@ class CreateTextQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+
+        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
+            edtContent.background=this
+        }
     }
 
     private fun initListener() {

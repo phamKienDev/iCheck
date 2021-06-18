@@ -66,7 +66,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,6 @@
                 android:inputType="phone"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
@@ -94,7 +93,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +105,6 @@
                 android:paddingStart="@dimen/size_16"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
@@ -121,7 +119,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +131,6 @@
                 android:paddingStart="@dimen/size_16"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
@@ -261,7 +258,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -273,7 +270,6 @@
                 android:paddingStart="@dimen/size_16"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
@@ -288,7 +284,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextDisableHintBgWhiteRadius40
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtShop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -301,7 +297,6 @@
                 android:paddingStart="@dimen/size_16"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:textColor="#000000"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 

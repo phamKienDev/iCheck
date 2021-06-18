@@ -24,6 +24,8 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -34,8 +36,6 @@ import vn.icheck.android.network.models.post.ICImageInPost
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -63,7 +63,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
-            WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
             binding.tvName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {

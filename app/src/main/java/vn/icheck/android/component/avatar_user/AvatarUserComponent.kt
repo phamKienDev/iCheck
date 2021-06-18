@@ -83,7 +83,7 @@ class AvatarUserComponent : LinearLayout {
         }
 
         (getChildAt(1) as CircleImageView).run {
-            WidgetUtils.loadImageUrl(this, avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(this, avatar, R.drawable.ic_user_svg)
         }
 
 

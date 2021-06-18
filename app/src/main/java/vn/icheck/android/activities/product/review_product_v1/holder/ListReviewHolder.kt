@@ -40,10 +40,10 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     override fun bind(obj: ICProductReviews.ReviewsRow) {
         if (obj.owner == null) {
-            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text =""
         } else {
-            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text = obj.owner.name
         }
 

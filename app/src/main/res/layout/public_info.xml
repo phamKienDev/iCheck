@@ -519,7 +519,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/size_2"
             app:layout_constraintBottom_toTopOf="@id/layoutCenter"

@@ -217,7 +217,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                itemView.img_list_avatar.bind(ICAvatarOfFriend(listAvatarFollower, data.followers!!.size), 2, false, R.drawable.ic_avatar_default_84px)
+                itemView.img_list_avatar.bind(ICAvatarOfFriend(listAvatarFollower, data.followers!!.size), 2, false, R.drawable.ic_avatar_default_84dp)
             }
 
             val listName = mutableListOf<String>()

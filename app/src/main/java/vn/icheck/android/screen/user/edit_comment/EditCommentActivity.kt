@@ -81,7 +81,7 @@ class EditCommentActivity : BaseActivityMVVM() {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
             } else {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
             }
 
@@ -101,7 +101,7 @@ class EditCommentActivity : BaseActivityMVVM() {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
             } else {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
             }
 

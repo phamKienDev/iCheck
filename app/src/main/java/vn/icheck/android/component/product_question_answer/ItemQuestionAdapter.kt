@@ -97,7 +97,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
             }
 
             if (obj.page == null) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.apply {
                     text = obj.user?.getName

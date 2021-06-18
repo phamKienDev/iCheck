@@ -27,7 +27,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
 
     override fun bind(obj: ICCheckoutOrder) {
         itemView.viewDot.background=ViewHelper.lineDottedHorizontalSecondary()
-        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_circle_avatar_default, R.drawable.ic_circle_avatar_default, SizeHelper.size12)
+        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_user_svg, R.drawable.ic_user_svg, SizeHelper.size12)
         itemView.tvName.text = obj.shop.name
 
         if (obj.sub_total < obj.shop.min_order_value ?: 0) {

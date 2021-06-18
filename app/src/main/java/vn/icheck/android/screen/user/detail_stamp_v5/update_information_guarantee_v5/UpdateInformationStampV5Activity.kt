@@ -44,7 +44,7 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
     fun onInitView() {
         txtTitle.text = "Thông tin khách hàng"
 
-        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+        setupView()
 
         presenter.getDataIntent(intent)
         listener()
@@ -52,6 +52,18 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
 
     override fun isRegisterEventBus(): Boolean {
         return true
+    }
+
+    private fun setupView() {
+        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+
+        ViewHelper.bgWhiteStrokeLineColor1Corners40(this).apply {
+            edtPhone.background=this
+            edtName.background=this
+            edtEmail.background=this
+            edtAddress.background=this
+            edtShop.background=this
+        }
     }
 
     private fun listener() {

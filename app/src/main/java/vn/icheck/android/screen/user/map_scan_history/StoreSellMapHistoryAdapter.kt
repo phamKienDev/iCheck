@@ -71,7 +71,7 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
             binding.imgPin.fillDrawableColor(Constant.normalTextColor)
             binding.imgPhone.fillDrawableColor(Constant.normalTextColor)
 
-            binding.tvKhoangCach.fillDrawableStartText(R.drawable.ic_gps_off_18_px,Constant.disableTextColor)
+            binding.tvKhoangCach.fillDrawableStartText(R.drawable.ic_gps_off_18_px,Constant.secondTextColor)
 
             binding.layoutParent.layoutParams = if (listData.size > 1){
                 RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {

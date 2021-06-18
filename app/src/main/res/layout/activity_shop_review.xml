@@ -38,7 +38,7 @@
                 android:layout_marginTop="@dimen/size_15"
                 android:layout_marginEnd="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,6 @@
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:padding="@dimen/size_8"
-                android:textColor="#434343"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 

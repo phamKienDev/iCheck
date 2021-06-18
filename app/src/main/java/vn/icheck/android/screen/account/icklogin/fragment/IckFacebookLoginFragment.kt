@@ -34,8 +34,8 @@ class IckFacebookLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(requireContext().applicationContext)
                 .load(ickLoginViewModel.facebookAvatar)
-                .placeholder(R.drawable.ic_avatar_default_84px)
-                .error(R.drawable.ic_avatar_default_84px)
+                .placeholder(R.drawable.ic_avatar_default_84dp)
+                .error(R.drawable.ic_avatar_default_84dp)
                 .into(binding.userAvatar)
         binding.tvUsername.text = ickLoginViewModel.facebookUsername
         binding.edtPhone.apply {

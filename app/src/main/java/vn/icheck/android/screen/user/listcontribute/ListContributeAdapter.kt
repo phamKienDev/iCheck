@@ -174,7 +174,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
             itemView.tvName.setTextColor(Constant.getNormalTextColor(itemView.context))
 
             itemView.imgAvatar.run {
-                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
 
                 setOnClickListener {
                     IckUserWallActivity.create(obj.user?.id, itemView.context)

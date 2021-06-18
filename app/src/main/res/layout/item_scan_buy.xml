@@ -106,7 +106,7 @@
                 android:layout_width="@dimen/size_24"
                 android:layout_height="@dimen/size_24"
                 android:layout_marginStart="@dimen/size_8"
-                tools:src="@drawable/ic_circle_avatar_default" />
+                tools:src="@drawable/ic_user_svg" />
 
             <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvShopName"
