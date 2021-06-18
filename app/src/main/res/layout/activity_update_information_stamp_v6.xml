@@ -24,18 +24,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvViewVerifiedPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất."
                 android:textAlignment="center"
-                android:textColor="#828282"
                 android:textSize="@dimen/font_13"
                 android:textStyle="normal"
                 android:visibility="visible"/>

@@ -13,7 +13,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 
 class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

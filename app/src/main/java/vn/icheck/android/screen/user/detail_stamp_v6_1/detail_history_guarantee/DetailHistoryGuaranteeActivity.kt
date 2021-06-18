@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
@@ -21,7 +20,8 @@ import vn.icheck.android.databinding.ItemDetailHistoryGuaranteeBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.DialogHelper
-import vn.icheck.android.ichecklibs.view.TextBody1
+import vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
+import vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICResp_Note_Guarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.adapter.ListNoteHistoryAdapter
@@ -54,9 +54,16 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
     }
 
     private fun setupView() {
-        tvCustomerInfor.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
-        tvWarrantyInfor.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
-        tvProgressWarranty.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
+        vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this).apply {
+            tvNameCustomer.setHintTextColor(this)
+            tvPhoneCustomer.setHintTextColor(this)
+            tvMailCustomer.setHintTextColor(this)
+            tvAddressCustomer.setHintTextColor(this)
+            tvTimeGuarantee.setHintTextColor(this)
+            tvNameStoreGuarantee.setHintTextColor(this)
+            tvStateGuarantee.setHintTextColor(this)
+            tvReturnTimeGuarantee.setHintTextColor(this)
+        }
     }
 
     private fun initRecyclerview() {
@@ -98,8 +105,10 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
         tvPhoneCustomer.text = item.customer?.phone
         tvMailCustomer.text = item.customer?.email
         tvAddressCustomer.text = item.customer?.address
+
         for (field in item.customer?.fields ?: mutableListOf()) {
             val binding = ItemDetailHistoryGuaranteeBinding.inflate(LayoutInflater.from(this), layoutCustomer, false)
+            binding.tvContent.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this))
             binding.tvTitle.text = field.name
             if (field.type == "date") {
                 binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
@@ -183,26 +192,24 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
                 topMargin = SizeHelper.size8
             }
 
-            addView(TextBody1(context).apply {
+            addView(TextBody1Second(context).apply {
                 layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f).apply {
                     marginEnd = SizeHelper.size12
                 }
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warranty_blue_18px, 0, 0, 0)
                 compoundDrawablePadding = SizeHelper.size8
-                setTextColor(ContextCompat.getColor(context, R.color.darkGray3))
                 textSize = 14f
                 text = title
             })
 
-            addView(TextBody1(context).apply {
+            addView(TextBody1Normal(context).apply {
                 layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT)
                 compoundDrawablePadding = SizeHelper.size8
-                setTextColor(ContextCompat.getColor(context, R.color.black2))
-                setHintTextColor(ContextCompat.getColor(context, R.color.black2))
                 gravity = Gravity.END
                 textAlignment = View.TEXT_ALIGNMENT_GRAVITY
                 textSize = 14f
 
+                setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this@DetailHistoryGuaranteeActivity))
                 setHint(R.string.dang_cap_nhat)
                 text = content
             })

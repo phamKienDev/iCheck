@@ -4,17 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_error_history_topup.view.*
-import kotlinx.android.synthetic.main.item_load_more.view.*
 import kotlinx.android.synthetic.main.item_history_suggestion_store.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
 import vn.icheck.android.network.models.history.ICSuggestStoreHistory
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

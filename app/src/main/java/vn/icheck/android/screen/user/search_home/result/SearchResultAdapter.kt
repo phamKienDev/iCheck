@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_search_more_holder.view.*
 import org.greenrobot.eventbus.EventBus
@@ -19,7 +18,7 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.search_home.result.holder.NotResultHolder
 import vn.icheck.android.screen.user.search_home.result.holder.ProductSearchHolder
 import vn.icheck.android.screen.user.search_home.result.holder.SetTypeSearchHolder

@@ -1521,14 +1521,13 @@ object ViewHelper {
                 it.scaleType = ImageView.ScaleType.CENTER_INSIDE
             })
 
-            layoutParent.addView(createText(context,
-                    createLayoutParams().also { params ->
-                        params.topMargin = SizeHelper.size16
-                    },
-                    null,
-                    createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.darkGray3),
-                    14f).also {
+            layoutParent.addView(TextSecondBarlowMedium(context).also {
+                it.layoutParams =createLayoutParams().also { params ->
+                    params.topMargin = SizeHelper.size16
+                }
+                it.includeFontPadding = false
+                it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+                it.ellipsize = TextUtils.TruncateAt.END
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
 
@@ -2460,7 +2459,7 @@ object ViewHelper {
                 edt.setBackgroundColor(Color.TRANSPARENT)
                 edt.gravity = Gravity.TOP
                 edt.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf"))
-                edt.setHintTextColor(Constant.getSecondTextColor(context))
+                edt.setHintTextColor(Constant.getDisableTextColor(context))
                 edt.setTextColor(Constant.getNormalTextColor(context))
                 edt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
             })
@@ -2507,7 +2506,7 @@ object ViewHelper {
             })
             it.addView(AppCompatImageView(context).also { imgCamera ->
                 imgCamera.layoutParams = createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                fillDrawableColor(R.drawable.ic_arrow_down_blue_24dp,context)
+                imgCamera.fillDrawableColor(R.drawable.ic_arrow_down_blue_24dp)
             })
             it.addView(AppCompatTextView(context).also {
                 it.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)

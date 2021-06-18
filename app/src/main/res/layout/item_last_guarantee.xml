@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10">
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
@@ -38,19 +38,16 @@
             android:drawableStart="@drawable/ic_clock_blue_14dp"
             android:drawablePadding="@dimen/size_12"
             android:text="@string/thoi_gian_v2"
-            android:textColor="@color/darkGray3"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
             android:id="@id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:hint="@string/dang_cap_nhat"
             android:textAlignment="gravity"
-            android:textColor="@color/black2"
-            android:textColorHint="@color/black2"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="3 năm" />
@@ -61,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10">
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
@@ -69,11 +66,10 @@
             android:drawableStart="@drawable/ic_warranty_blue_14dp"
             android:drawablePadding="@dimen/size_12"
             android:text="@string/dia_diem_bao_hanh"
-            android:textColor="@color/darkGray3"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
             android:id="@id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,8 +77,6 @@
             android:hint="@string/dang_cap_nhat"
             android:text="29/04/2020"
             android:textAlignment="gravity"
-            android:textColor="@color/black2"
-            android:textColorHint="@color/black2"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
@@ -92,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10">
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
@@ -100,11 +94,10 @@
             android:drawableStart="@drawable/ic_calendar_blue_14dp"
             android:drawablePadding="@dimen/size_12"
             android:text="@string/trang_thai_v2"
-            android:textColor="@color/darkGray3"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
             android:id="@id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,8 +105,6 @@
             android:hint="@string/dang_cap_nhat"
             android:text="20/11/2018"
             android:textAlignment="gravity"
-            android:textColor="@color/black2"
-            android:textColorHint="@color/black2"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
@@ -123,7 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10">
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
@@ -131,11 +122,10 @@
             android:drawableStart="@drawable/ic_clock_blue_14dp"
             android:drawablePadding="@dimen/size_12"
             android:text="@string/tinh_trang_v2"
-            android:textColor="@color/darkGray3"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
             android:id="@id/tvState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -143,8 +133,6 @@
             android:hint="@string/dang_cap_nhat"
             android:text="15 ngày"
             android:textAlignment="gravity"
-            android:textColor="@color/black2"
-            android:textColorHint="@color/black2"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>

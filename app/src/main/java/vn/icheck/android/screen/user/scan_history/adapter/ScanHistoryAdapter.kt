@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_load_more.view.*
 import org.greenrobot.eventbus.EventBus
@@ -12,7 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.base.holder.ActionMessageHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.SizeHelper

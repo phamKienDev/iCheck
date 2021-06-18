@@ -64,12 +64,11 @@
         app:layout_constraintEnd_toEndOf="@id/edtBarcode"
         app:layout_constraintTop_toTopOf="@id/edtBarcode" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="Nhập mã được in trên sản phẩm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

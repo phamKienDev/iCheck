@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.page_details.fragment.product
 
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ import vn.icheck.android.component.product.horizontal_product.ListProductHorizon
 import vn.icheck.android.component.product.related_product.RelatedProductHolder
 import vn.icheck.android.component.product.related_product.RelatedProductModel
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 
 class ProductOfPageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<RelatedProductModel>()

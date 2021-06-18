@@ -4,11 +4,9 @@ import android.graphics.Color
 import android.view.Gravity
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.view.TextHeader
 

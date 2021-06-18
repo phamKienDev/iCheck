@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.callback.IRecyclerViewSearchCallback
 import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.search_home.result.holder.NotResultHolder
 
 abstract class RecyclerViewSearchAdapter<T>(open val listener: IRecyclerViewSearchCallback? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

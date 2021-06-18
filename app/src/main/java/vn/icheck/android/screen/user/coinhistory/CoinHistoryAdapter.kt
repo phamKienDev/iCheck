@@ -1,13 +1,11 @@
 package vn.icheck.android.screen.user.coinhistory
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_header_coin_history.view.*
 import kotlinx.android.synthetic.main.item_history_transaction_pv_combank.view.*
@@ -22,7 +20,7 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICCoinHistory
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 
 class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

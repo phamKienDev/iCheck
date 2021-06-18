@@ -16,7 +16,7 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.orderdetail.view.IOrderDetailView
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager

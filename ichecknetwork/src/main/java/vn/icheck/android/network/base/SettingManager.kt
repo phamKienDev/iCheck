@@ -91,42 +91,42 @@ object SettingManager {
 
     fun setAppThemeColor(icThemeSetting: ICThemeSetting?){
 
-            if (icThemeSetting?.theme!=null) {
-                Constant.appBackgroundColor= icThemeSetting.theme.appBackgroundColor ?:""
-
-                Constant.popupBackgroundColor= icThemeSetting.theme.popupBackgroundColor ?: ""
-
-                Constant.primaryColor= icThemeSetting.theme.primaryColor ?:""
-                Constant.secondaryColor= icThemeSetting.theme.secondaryColor ?:""
-
-                Constant.normalTextColor= icThemeSetting.theme.normalTextColor ?:""
-                Constant.secondTextColor= icThemeSetting.theme.secondTextColor ?:""
-                Constant.disableTextColor= icThemeSetting.theme.disableTextColor ?:""
-
-                Constant.lineColor= icThemeSetting.theme.lineColor ?:""
-            } else {
-                Constant.appBackgroundColor=""
-                Constant.popupBackgroundColor=""
-                Constant.primaryColor=""
-                Constant.secondaryColor=""
-                Constant.normalTextColor=""
-                Constant.secondTextColor=""
-                Constant.disableTextColor=""
-                Constant.lineColor=""
-            }
-
-//            Constant.appBackgroundColor="#85c440"
+//            if (icThemeSetting?.theme!=null) {
+//                Constant.appBackgroundColor= icThemeSetting.theme.appBackgroundColor ?:""
 //
-//            Constant.popupBackgroundColor="#35c759"
+//                Constant.popupBackgroundColor= icThemeSetting.theme.popupBackgroundColor ?: ""
 //
-//            Constant.primaryColor="#FFB800"
-//            Constant.secondaryColor="#bb6bd9"
+//                Constant.primaryColor= icThemeSetting.theme.primaryColor ?:""
+//                Constant.secondaryColor= icThemeSetting.theme.secondaryColor ?:""
 //
-//            Constant.normalTextColor="#CCF1FC"
-//            Constant.secondTextColor="#FBBB00"
-//            Constant.disableTextColor="#EB5757"
+//                Constant.normalTextColor= icThemeSetting.theme.normalTextColor ?:""
+//                Constant.secondTextColor= icThemeSetting.theme.secondTextColor ?:""
+//                Constant.disableTextColor= icThemeSetting.theme.disableTextColor ?:""
 //
-//            Constant.lineColor="#ff1616"
+//                Constant.lineColor= icThemeSetting.theme.lineColor ?:""
+//            } else {
+//                Constant.appBackgroundColor=""
+//                Constant.popupBackgroundColor=""
+//                Constant.primaryColor=""
+//                Constant.secondaryColor=""
+//                Constant.normalTextColor=""
+//                Constant.secondTextColor=""
+//                Constant.disableTextColor=""
+//                Constant.lineColor=""
+//            }
+
+            Constant.appBackgroundColor="#85c440"
+
+            Constant.popupBackgroundColor="#35c759"
+
+            Constant.primaryColor="#FFB800"
+            Constant.secondaryColor="#bb6bd9"
+
+            Constant.normalTextColor="#CCF1FC"
+            Constant.secondTextColor="#CC1E1E"
+            Constant.disableTextColor="#EB5757"
+
+            Constant.lineColor="#ff1616"
     }
 
     val getDeviceID: String

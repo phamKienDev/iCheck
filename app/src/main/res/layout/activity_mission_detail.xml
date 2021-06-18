@@ -96,16 +96,14 @@
                                     android:textSize="@dimen/font_12"
                                     tools:text="Thời gian còn lại" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                                     android:id="@id/tvDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/size_2"
                                     android:ellipsize="end"
-                                    android:fontFamily="@font/barlow_semi_bold"
                                     android:includeFontPadding="false"
                                     android:singleLine="true"
-                                    android:textColor="@color/light_blue"
                                     android:textSize="@dimen/font_14"
                                     tools:text="2 ngày, 14 giờ 12 phút" />
                             </LinearLayout>

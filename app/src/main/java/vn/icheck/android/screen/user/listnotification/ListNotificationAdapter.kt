@@ -8,7 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.home_page.model.ICHomeItem
 import vn.icheck.android.component.friendrequest.FriendRequestComponent
 import vn.icheck.android.component.friendsuggestion.FriendSuggestionComponent

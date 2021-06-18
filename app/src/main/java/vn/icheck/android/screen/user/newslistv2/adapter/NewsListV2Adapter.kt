@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.newslistv2.adapter
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +8,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.news.NewsListV2Holder
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICNews
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.newslistv2.NewsListMessageViewHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 
 class NewsListV2Adapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

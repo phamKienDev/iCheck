@@ -46,19 +46,20 @@
         app:drawableStartCompat="@drawable/ic_gps_off_24dp"
         tools:text="0979 999 888 0979 999 888 0979 999 888 0979 999 888 0979 999 888 0979 999 888" />
 
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/tv_page_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
+        android:textColor="@color/colorPrimary"
         android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/ic_register_name_gray_24px"
         android:drawablePadding="@dimen/size_8"
         android:gravity="center_vertical"
         tools:text="0979 999 888" />
 
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/tv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,11 +68,12 @@
         android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/ic_register_mail_gray_24px"
         android:drawablePadding="@dimen/size_8"
+        android:textColor="@color/colorPrimary"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         tools:text="contact@cocacola.vn" />
 
-    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/tv_website"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,6 +81,7 @@
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:drawablePadding="@dimen/size_10"
+        android:textColor="@color/colorPrimary"
         android:gravity="center_vertical"
         app:drawableLeftCompat="@drawable/ic_web_gray_24px"
         app:drawableStartCompat="@drawable/ic_web_gray_24px"

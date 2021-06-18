@@ -15,9 +15,10 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.DistrictsItem
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
-import vn.icheck.android.screen.user.selectdistrict.adapter.SelectDistrictStampAdapter
+import vn.icheck.android.screen.user.detail_stamp_v6_1.selectdistrictstamp.adapter.SelectDistrictStampAdapter
 import vn.icheck.android.screen.user.selectdistrict.presenter.SelectDistrictStampPresenter
 import vn.icheck.android.screen.user.selectdistrict.view.SelectDistrictStampView
 import java.util.concurrent.TimeUnit
@@ -37,6 +38,7 @@ class SelectDistrictStampActivity : BaseActivityMVVM(), SelectDistrictStampView 
 
     fun onInitView() {
         initToolbar()
+        initView()
         initRecyclerView()
         initListener()
 
@@ -52,6 +54,13 @@ class SelectDistrictStampActivity : BaseActivityMVVM(), SelectDistrictStampView 
         }
         imgBack.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun initView() {
+        edtSearch.apply {
+            setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this@SelectDistrictStampActivity))
+            background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this@SelectDistrictStampActivity)
         }
     }
 
