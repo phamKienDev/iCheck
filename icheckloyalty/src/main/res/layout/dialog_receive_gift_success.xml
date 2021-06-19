@@ -9,7 +9,7 @@
     android:gravity="center"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/transparent"
+    android:background="@color/black_60"
     android:orientation="vertical"
     android:paddingStart="@dimen/size_12"
     android:paddingEnd="@dimen/size_12">
