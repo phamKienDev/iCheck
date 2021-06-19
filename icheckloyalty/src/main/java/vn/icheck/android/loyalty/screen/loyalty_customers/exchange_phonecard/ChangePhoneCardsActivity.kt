@@ -14,6 +14,7 @@ import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.dialog.DialogNotification
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
+import vn.icheck.android.loyalty.helper.ValidHelper
 import vn.icheck.android.loyalty.model.TopupServices
 import vn.icheck.android.loyalty.utils.KeyboardUtils
 
@@ -76,7 +77,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
             override fun onSelected(obj: TopupServices.Service) {
                 services = obj
                 when {
-                    edtPhone.text.toString().isNotEmpty() && edtPhone.text.toString().trim().length == 10 -> {
+                    edtPhone.text.toString().isNotEmpty() && ValidHelper.validPhoneNumber(this@ChangePhoneCardsActivity, edtPhone.text.toString().trim()).isNullOrEmpty() -> {
                         btnAccept.setBackgroundResource(R.drawable.bg_gradient_button_blue)
 
                         btnAccept.setOnClickListener {

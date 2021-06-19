@@ -2,36 +2,38 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.selectprovincestamp
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_select_province.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.CitiesItem
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.selectprovincestamp.adapter.SelectProvinceStampAdapter
 import vn.icheck.android.screen.user.selectprovincestamp.presenter.SelectProvinceStampPresenter
 import vn.icheck.android.screen.user.selectprovincestamp.view.SelectProvinceStampView
 import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
-class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>(), SelectProvinceStampView {
+class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView {
     private val adapter = SelectProvinceStampAdapter(this)
-
+    private val presenter = SelectProvinceStampPresenter(this@SelectProvinceStampActivity)
     private var disposable: Disposable? = null
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_select_province
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_select_province)
+        onInitView()
+    }
 
-    override val getPresenter: SelectProvinceStampPresenter
-        get() = SelectProvinceStampPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         initRecyclerView()
         initListener()
@@ -41,7 +43,7 @@ class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>()
 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
+        if (StampDetailActivity.isVietNamLanguage == false) {
             txtTitle rText R.string.select_city
         } else {
             txtTitle.setText(R.string.chon_tinh_thanh_pho)
@@ -74,6 +76,10 @@ class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>()
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@SelectProvinceStampActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -95,7 +101,6 @@ class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>()
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         if (adapter.isListNotEmpty) {
             showShortError(errorMessage)
@@ -103,6 +108,9 @@ class SelectProvinceStampActivity : BaseActivity<SelectProvinceStampPresenter>()
             adapter.setError(errorMessage)
         }
     }
+
+    override val mContext: Context
+        get() = this@SelectProvinceStampActivity
 
     override fun onDestroy() {
         disposable?.dispose()

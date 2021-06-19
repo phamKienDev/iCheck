@@ -15,12 +15,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_map_google.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 
-class MapGoogleActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapGoogleActivity : BaseActivityMVVM(), OnMapReadyCallback {
 
     private var mMap: GoogleMap? = null
 

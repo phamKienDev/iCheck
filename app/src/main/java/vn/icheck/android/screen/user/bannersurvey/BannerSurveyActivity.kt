@@ -1,7 +1,9 @@
 package vn.icheck.android.screen.user.bannersurvey
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_banner_survey.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
@@ -32,16 +34,18 @@ import vn.icheck.android.util.kotlin.ToastUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurveyView {
+class BannerSurveyActivity : BaseActivityMVVM(), IBannerSurveyView {
     private var isSuccess = false
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_banner_survey
+    val presenter = BannerSurveyPresenter(this@BannerSurveyActivity)
 
-    override val getPresenter: BannerSurveyPresenter
-        get() = BannerSurveyPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_banner_survey)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         initToolbar()
         presenter.getData(intent)
     }
@@ -275,9 +279,15 @@ class BannerSurveyActivity : BaseActivity<BannerSurveyPresenter>(), IBannerSurve
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         ToastUtils.showShortError(this@BannerSurveyActivity, errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@BannerSurveyActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@BannerSurveyActivity, isShow)
     }
 
     override fun onPause() {

@@ -26,7 +26,6 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
-import vn.icheck.android.screen.user.social_chat.SocialChatActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils

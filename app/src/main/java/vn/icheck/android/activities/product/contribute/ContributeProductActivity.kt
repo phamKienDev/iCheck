@@ -36,6 +36,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_contribute_product.*
@@ -43,31 +44,32 @@ import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import vn.icheck.android.R
-import vn.icheck.android.activities.base.BaseICActivity
 import vn.icheck.android.adapters.ContributeImageAdapter
 import vn.icheck.android.adapters.base.BaseHolder
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.loading.LoadingDialog
+import vn.icheck.android.databinding.NullHolderBinding
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.models.ICBarcodeProductV2
 import vn.icheck.android.network.models.ICInformationTitles
 import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
-import vn.icheck.android.screen.account.home.AccountActivity
-import vn.icheck.android.util.kotlin.ToastUtils
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.ick.logError
+import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.pick_image.PickImageDialog
 import vn.icheck.android.util.text.HtmlImageGetter
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
-import kotlin.collections.HashMap
 
-class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoListener {
+class ContributeProductActivity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListener {
     private val takePhotoHelper = TakePhotoHelper(this)
     private val requestCameraPermission = 3
+    val compositeDisposable = CompositeDisposable()
 
     lateinit var contributeImageAdapter: ContributeImageAdapter
     lateinit var descriptionAdapter: DescriptionAdapter
@@ -135,7 +137,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
                 contributeProductIntent.putExtra("productId", productId)
                 activity.startActivityForResult(contributeProductIntent, requestCode)
             } else {
-                AccountActivity.start(activity)
+                ActivityUtils.startActivity<IckLoginActivity>(activity)
             }
         }
     }
@@ -144,7 +146,7 @@ class ContributeProductActivity : BaseICActivity(), TakePhotoHelper.TakePhotoLis
         super.onDestroy()
         instance = null
         compositeDisposable.dispose()
-
+        compositeDisposable.clear()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -924,7 +926,7 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             BUTTON -> DescriptionButton.create(parent)
-            NULL -> NullHolder.create(parent)
+            NULL -> NullHolder(parent)
             INFO -> InfoHolder.create(parent)
             else -> DescriptionButton.create(parent)
         }
@@ -1001,11 +1003,13 @@ class DescriptionAdapter(val listChild: List<DescriptionChild>) : RecyclerView.A
     }
 }
 
-class NullHolder(view: View) : BaseHolder(view) {
+class NullHolder(parent: ViewGroup, val binding: NullHolderBinding =
+        NullHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        BaseHolder(binding.root) {
+
     companion object {
         fun create(parent: ViewGroup): NullHolder {
-            return NullHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.null_holder, parent, false))
+            return NullHolder(parent)
         }
     }
 }

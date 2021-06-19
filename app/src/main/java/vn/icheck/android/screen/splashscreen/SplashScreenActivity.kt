@@ -1,18 +1,17 @@
 package vn.icheck.android.screen.splashscreen
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import vn.icheck.android.BuildConfig
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.checktheme.CheckThemeActivity
-import vn.icheck.android.screen.dialog.DialogNotificationFirebaseAds
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.tracking.TrackingAllHelper
@@ -23,7 +22,7 @@ import vn.icheck.android.tracking.insider.InsiderHelper
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class SplashScreenActivity : Activity() {
+class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,15 +84,8 @@ class SplashScreenActivity : Activity() {
 
     private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
         ActivityHelper.startActivityAndFinish<HomeActivity>(this)
-
         Handler().postDelayed({
-            ICheckApplication.currentActivity()?.apply {
-                object : DialogNotificationFirebaseAds(this, image, htmlText, link, schema) {
-                    override fun onDismiss() {
-
-                    }
-                }.show()
-            }
+            DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
         }, 2000)
     }
 

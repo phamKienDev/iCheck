@@ -6,6 +6,8 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -14,7 +16,7 @@ import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.base.fragment.CoroutineFragment
+import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
@@ -23,6 +25,11 @@ import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.visibleOrGone
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
+import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
+import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -41,9 +48,10 @@ import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
+import android.view.ViewTreeObserver.OnGlobalLayoutListener as OnGlobalLayoutListener1
 
 @AndroidEntryPoint
-class IckLoginFragment : CoroutineFragment() {
+class IckLoginFragment : BaseFragmentMVVM() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
 
     @Inject
@@ -156,6 +164,7 @@ class IckLoginFragment : CoroutineFragment() {
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
             WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
         }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
 
         binding.btnKeyboard.setOnClickListener {
             WidgetUtils.changePasswordInput(binding.edtPassword)
@@ -197,12 +206,12 @@ class IckLoginFragment : CoroutineFragment() {
                     })
                 } else {
                     showFocus()
-                    showError(loginRes?.msg)
+                    requireContext().showShortErrorToast(loginRes?.msg)
                 }
             })
         } catch (e: Exception) {
             showFocus()
-            showError(e.localizedMessage)
+            requireContext().showShortErrorToast(e.localizedMessage)
             dismissLoadingScreen()
         }
     }

@@ -593,6 +593,7 @@
         <item name="android:drawablePadding">@dimen/size_2</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textColor">@color/darkGray1</item>
+        <item name="android:textColorHint">@color/darkGray1</item>
         <item name="android:layout_marginTop">@dimen/size_12</item>
         <item name="android:textStyle">normal</item>
     </style>

@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.ichecklibs.util.rText
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -45,6 +46,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
     private fun initToolbar() {
         imgBack.setOnClickListener {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
             onBackPressed()
         }
     }
@@ -218,10 +220,14 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
     }
 
     override fun onMessageEvent(event: ICMessageEvent) {
-        if (event.type == ICMessageEvent.Type.BACK) {
-            getData()
-        } else {
-            super.onMessageEvent(event)
+        when (event.type) {
+            ICMessageEvent.Type.BACK -> {
+                getData()
+            }
+            ICMessageEvent.Type.BACK_UPDATE -> {
+                getData()
+            }
+            else -> super.onMessageEvent(event)
         }
     }
 

@@ -110,4 +110,11 @@
     <string name="co_loi_khi_gui_email">Có lỗi khi gửi email, vui lòng thử lại sau</string>
     <string name="application_or_client_secret_invalid">application - clientId or client secret invalid</string>
     <string name="application_permission_denied">application - permission denied</string>
+    <string name="chon_anh">Chọn ảnh</string>
+    <string name="chup_anh">Chụp ảnh</string>
+    <string name="quay_video">Quay video</string>
+    <string name="bo_qua">Bỏ qua</string>
+    <string name="xong">Xong</string>
+    <string name="chon_anh_video">Chọn ảnh, video</string>
+    <string name="serial_v2_xxx">Serial: %s</string>
 </resources>

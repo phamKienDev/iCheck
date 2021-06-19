@@ -1,7 +1,6 @@
 package vn.icheck.android.loyalty.screen.gift_detail_voucher
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +13,6 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
-import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKScanVoucher
 
@@ -157,8 +155,8 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                 }
             }
 
-            itemView.webView.settings.javaScriptEnabled = true
-            itemView.webView.loadDataWithBaseURL(null, obj.desc
+            itemView.webViewUrl.settings.javaScriptEnabled = true
+            itemView.webViewUrl.loadDataWithBaseURL(null, obj.desc
                     ?: "", "text/html; charset=utf-8", "UTF-8", null)
 
             WidgetHelper.loadImageUrl(itemView.imgAvatar, obj.shop_image)

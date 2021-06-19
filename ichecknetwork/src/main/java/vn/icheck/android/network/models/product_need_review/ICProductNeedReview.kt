@@ -3,7 +3,6 @@ package vn.icheck.android.network.models.product_need_review
 import com.google.gson.annotations.Expose
 import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.ICOwner
-import vn.icheck.android.network.models.ICThumbnail
 import java.io.Serializable
 
 data class ICProductNeedReview(
@@ -17,5 +16,5 @@ data class ICProductNeedReview(
         @Expose var visibled: Boolean? = null,
         @Expose var rating: Float = 0F,
         @Expose var owner: ICOwner? = null,
-        @Expose var categoryIds : MutableList<Int>? = null
+        @Expose var categoryIds: MutableList<Int>? = null
 ) : Serializable

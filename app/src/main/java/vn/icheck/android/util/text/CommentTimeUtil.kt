@@ -48,7 +48,7 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
             if (differenceHours > 24 && diff < 2) {
                 return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (diff > 2){
-                return vn.icheck.android.helper.TimeHelper.convertDateTimeSvToDateVn(timeS).toString()
+                return vn.icheck.android.helper.TimeHelper.convertDateTimeSvToTimeDateVnPhay(timeS).toString()
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return if (differenceHours >= 1) {

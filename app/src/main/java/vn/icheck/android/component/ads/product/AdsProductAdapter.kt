@@ -203,7 +203,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.price))
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
@@ -391,7 +391,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.price))
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
@@ -590,7 +590,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.price))
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
@@ -728,7 +728,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (obj.price != null) {
                 binding.tvPrice.apply {
                     beVisible()
-                    text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.price))
+                    text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                 }
                 binding.tvPriceUpdating.beGone()
             } else {

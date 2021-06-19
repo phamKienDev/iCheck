@@ -2,7 +2,9 @@ package vn.icheck.android.activities.product.review_product_v1
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
@@ -17,29 +19,30 @@ import kotlinx.android.synthetic.main.activity_review_product_v1.*
 import kotlinx.android.synthetic.main.item_base_send_message_product.*
 import vn.icheck.android.R
 import vn.icheck.android.activities.product.review_product_v1.adapter.HorizontalImageSendAdapter
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.activities.product.review_product_v1.adapter.ReviewProductAdapter
+import vn.icheck.android.activities.product.review_product_v1.holder.ListReviewHolder
+import vn.icheck.android.activities.product.review_product_v1.holder.PostReviewProductHolder
+import vn.icheck.android.activities.product.review_product_v1.presenter.ReviewProductPresenter
+import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
+import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
+import vn.icheck.android.activities.product.review_v1.ReviewTributeV1Dialog
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.IHorizontalImageSendListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.ICShare
-import vn.icheck.android.activities.product.review_product_v1.adapter.ReviewProductAdapter
-import vn.icheck.android.activities.product.review_product_v1.holder.ListReviewHolder
-import vn.icheck.android.activities.product.review_product_v1.holder.PostReviewProductHolder
-import vn.icheck.android.screen.user.review_product.model.ICReviewProduct
-import vn.icheck.android.activities.product.review_product_v1.presenter.ReviewProductPresenter
-import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
-import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
-import vn.icheck.android.activities.product.review_v1.ReviewTributeV1Dialog
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
+import vn.icheck.android.screen.user.review_product.model.ICReviewProduct
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.KeyboardUtils
@@ -47,7 +50,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewPointText
 import java.io.File
 
-class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewProductView, TakePhotoHelper.TakePhotoListener, View.OnClickListener, IHorizontalImageSendListener {
+class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhotoHelper.TakePhotoListener, View.OnClickListener, IHorizontalImageSendListener {
 
     private val adapter = ReviewProductAdapter(this)
     private val imageCommentAdapter = HorizontalImageSendAdapter(this)
@@ -58,12 +61,7 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
     private var product: ICBarcodeProductV1? = null
     private var reviewStartInsider = true
     val shareDialog = ReviewTributeV1Dialog()
-
-    override val getLayoutID: Int
-        get() = R.layout.activity_review_product_v1
-
-    override val getPresenter: ReviewProductPresenter
-        get() = ReviewProductPresenter(this)
+    private val presenter = ReviewProductPresenter(this@ReviewProductV1Activity)
 
     companion object {
         //post criteria
@@ -87,7 +85,14 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
         }
     }
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_review_product_v1)
+
+        onInitView()
+    }
+
+    fun onInitView() {
         DialogHelper.showShimmer(shimmer_view_container)
         initRecyclerView()
         initEdittext()
@@ -369,7 +374,7 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
 
     override fun onShowDetailUser(id: Long?, type: String?) {
         if (type == "user" && id != null) {
-            IckUserWallActivity.create(id,this)
+            IckUserWallActivity.create(id, this)
         }
         if (type == "page" && id != null) {
             PageDetailActivity.start(this, id, Constant.PAGE_ENTERPRISE_TYPE)
@@ -385,6 +390,17 @@ class ReviewProductV1Activity : BaseActivity<ReviewProductPresenter>(), IReviewP
             product?.let { TrackingAllHelper.trackProductReviewStart(it) }
             reviewStartInsider = false
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ReviewProductV1Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ReviewProductV1Activity, isShow)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

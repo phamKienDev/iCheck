@@ -2,23 +2,36 @@ package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_update_information_first.*
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
+import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.databinding.ActivityUpdateInformationFirstBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.helper.ValidHelper
+import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.select_variant.SelectVariantActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.selectdistrictstamp.SelectDistrictStampActivity
@@ -26,29 +39,19 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.selectprovincestamp.Selec
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.adapter.FieldAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.presenter.UpdateInformationFirstPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.view.IUpdateInformationFirstView
-import vn.icheck.android.screen.user.selectprovince.SelectProvinceActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.viewmodel.UpdateInformationFirstViewModel
+import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.ick.rHintText
 import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
-class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresenter>(), IUpdateInformationFirstView {
+@AndroidEntryPoint
+class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFirstView {
+    private lateinit var binding: ActivityUpdateInformationFirstBinding
+    private val viewModel by viewModels<UpdateInformationFirstViewModel>()
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_update_information_first
-
-    override val getPresenter: UpdateInformationFirstPresenter
-        get() = UpdateInformationFirstPresenter(this)
-
-    private var mProductCode: String? = null
-    private var mVariantName: String? = null
-    private var mId: Long? = null
-    private var mProductId: Long? = null
-    private var mIdVariantSelected: Long? = null
-    private var cityId: Int? = null
-    private var districtId: Int? = null
-
-    private var typeUpdateCustomer: Int? = null
+    private val presenter = UpdateInformationFirstPresenter(this)
 
     private var isChangeData: Boolean? = false
     private var requestChangeData = 1
@@ -58,199 +61,421 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     private var disposable: Disposable? = null
 
-    private var adapter = FieldAdapter()
+    private var customerVariantAdapter = FieldAdapter()
+    private var guaranteeVariantAdapter = FieldAdapter()
 
-    @SuppressLint("SetTextI18n")
-    override fun onInitView() {
-        DetailStampActivity.listActivities.add(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityUpdateInformationFirstBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        runOnUiThread {
-            if (DetailStampActivity.isVietNamLanguage == false) {
-                txtTitle rText R.string.customer_information
-                tvLabelInforCustomer rText R.string.customer_information
-                tvViewVerifiedPhoneNumber rText R.string.customer_information
-                tvViewForceUpdate rText R.string.you_have_to_update_personal_information_to_active_warranty
-                tvSubPhone rText R.string.phone_number_bat_buoc
-                tvSubName rText R.string.name
-                tvSubTinhThanh rText R.string.city
-                tvSubHuyen rText R.string.district
-                tvCities rText R.string.option
-                tvDistricts rText R.string.option
-                tvSubAddress rText R.string.address
-                btnUpdate rText R.string.update
-                edtPhone.apply {
-                    hint = context.rText(R.string.enter_phone_number)
-                }
-                edtName.apply {
-                    hint = context.rText(R.string.enter_name)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.enter_email)
-                }
-                edtAddress.apply {
-                    hint = context.rText(R.string.enter_address)
-                }
-                tvSubProductCode rText R.string.product_code
-                edtProductCode.apply {
-                    hint = context.rText(R.string.enter_product_code)
-                }
-                tvSubProductVariant rText R.string.variation_code
-                edtVariant.apply {
-                    hint = context.rText(R.string.enter_variation_code)
-                }
-                tvTitleField rText R.string.received_information
-            } else {
-                txtTitle rText R.string.thong_tin_khach_hang
-                tvLabelInforCustomer rText R.string.thong_tin_khach_hang
-                tvViewVerifiedPhoneNumber rText R.string.cap_nhat_thong_tin_khach_hang_de_nhan_cac_uu_dai_va_cham_soc_tot_nhat
-                tvViewForceUpdate rText R.string.ban_phai_nhap_thong_tin_ca_nhan_de_kich_hoat_bao_hanh
-                tvSubPhone rText R.string.so_dien_thoai_bat_buoc
-                tvSubName rText R.string.ho_va_ten
-                tvSubTinhThanh rText R.string.tinh_thanh
-                tvSubHuyen rText R.string.huyen
-                tvCities rText R.string.tuy_chon
-                tvDistricts rText R.string.tuy_chon
-                tvSubAddress rText R.string.dia_chi
-                btnUpdate rText R.string.cap_nhat
-                edtPhone.apply {
-                    hint = context.rText(R.string.nhap_so_dien_thoai)
-                }
-                edtName.apply {
-                    hint = context.rText(R.string.nhap_ho_ten)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.nhap_email)
-                }
-                edtAddress.apply {
-                    hint = context.rText(R.string.nhap_dia_chi)
-                }
-                tvSubProductCode rText R.string.ma_hieu_san_pham
-                edtProductCode.apply {
-                    hint = context.rText(R.string.nhap_ma_hieu_san_pham)
-                }
-                tvSubProductVariant rText R.string.ma_bien_the
-                edtVariant.apply {
-                    hint = context.rText(R.string.nhap_bien_the_san_pham)
-                }
-                tvTitleField rText R.string.thong_tin_tiep_nhan
-            }
-        }
+        StampDetailActivity.listActivities.add(this)
 
-        listener()
-        presenter.getDataByIntent(intent)
+        setupToolbar()
+        setupListener()
+        setupSearchCustomer()
+        checkData()
     }
 
-    private fun listener() {
-        imgBack.setOnClickListener {
-            if (isChangeData == true) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            }
+    private fun setupToolbar() {
+        binding.layoutToolbar.imgBack.setOnClickListener {
             onBackPressed()
-
         }
 
-        btnUpdate.setOnClickListener {
-            val body = getBody()
-
-            if (body == null) {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    showShortError(rText(R.string.please_fill_in_the_required_fields))
-                } else {
-                    showShortError(rText(R.string.ban_can_nhap_cac_truong_yeu_cau))
-                }
-                return@setOnClickListener
-            }
-
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtProductCode.text.toString(), mIdVariantSelected, typeUpdateCustomer, body)
-        }
-
-        layoutSelectCity.setOnClickListener {
-            val intent = Intent(this, SelectProvinceStampActivity::class.java)
-            startActivityForResult(intent, requestSelectProvince)
-        }
-
-        layoutSelectDistrict.setOnClickListener {
-            val intent = Intent(this, SelectDistrictStampActivity::class.java)
-            intent.putExtra(Constant.DATA_1, cityId)
-            startActivityForResult(intent, requestSelectDistrict)
-        }
-
-        edtVariant.setOnClickListener {
-            val intent = Intent(this, SelectVariantActivity::class.java)
-            intent.putExtra(Constant.DATA_1, mProductId)
-            startActivityForResult(intent, requestSelectVariant)
-        }
-
-        searchCustomer()
+        binding.layoutToolbar.txtTitle.setText(R.string.thong_tin_khach_hang)
     }
 
-    private fun getBody(): HashMap<String, Any>? {
+    private fun setupListener() {
+        binding.layoutSelectCity.setOnClickListener {
+//            val intent = Intent(this, SelectProvinceStampActivity::class.java)
+//            startActivityForResult(intent, requestSelectProvince)
+            startActivityForResult<SelectProvinceStampActivity>(requestSelectProvince)
+        }
+
+        binding.layoutSelectDistrict.setOnClickListener {
+//            val intent = Intent(this, SelectDistrictStampActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, cityId)
+//            startActivityForResult(intent, requestSelectDistrict)
+            presenter.cityId?.let {
+                startActivityForResult<SelectDistrictStampActivity, Int>(Constant.DATA_1, it, requestSelectDistrict)
+            }
+        }
+
+        binding.edtVariant.setOnClickListener {
+            val intent = Intent(this, SelectVariantActivity::class.java)
+            intent.putExtra(Constant.DATA_1, viewModel.productID)
+            startActivityForResult(this, intent, requestSelectVariant)
+        }
+
+        binding.btnUpdate.setOnClickListener {
+            updateUserInfo()
+        }
+    }
+
+    private fun showInputDataError() {
+        showShortError("Bạn cần nhập các trường yêu cầu")
+    }
+
+    private fun setupSearchCustomer() {
+        disposable = RxTextView.afterTextChangeEvents(binding.edtPhone)
+                .skipInitialValue()
+                .debounce(1000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    viewModel.updateType = if (!viewModel.phoneNumber.isNullOrEmpty() && binding.edtPhone.text.toString() != viewModel.phoneNumber) {
+                        2
+                    } else {
+                        1
+                    }
+                    searchGuaranteeCustomerDetail(binding.edtPhone.text.toString())
+                }, {
+                    logError(it)
+                })
+    }
+
+    private fun stopSerchCustomer() {
+        disposable?.dispose()
+        disposable = null
+    }
+
+    private fun checkData() {
+        viewModel.productID = intent.getLongExtra(Constant.DATA_6, 0)
+        viewModel.updateType = intent.getIntExtra(Constant.DATA_1, 0)
+        viewModel.distributorID = intent.getLongExtra(Constant.DATA_2, 0)
+        viewModel.phoneNumber = intent.getStringExtra(Constant.DATA_3)
+        viewModel.productCode = intent.getStringExtra(Constant.DATA_4)
+        viewModel.serial = intent.getStringExtra(Constant.DATA_5) ?: ""
+        viewModel.objVariant = try {
+            intent.getSerializableExtra(Constant.DATA_7) as ICVariantProductStampV6_1.ICVariant.ICObjectVariant?
+        } catch (e: Exception) {
+            null
+        }
+        viewModel.barcode = intent.getStringExtra(Constant.DATA_8) ?: ""
+
+        if (viewModel.updateType != 0) {
+            getProductVariant()
+        } else {
+            DialogHelper.showNotification(this@UpdateInformationFirstActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false,
+                    object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
+        }
+    }
+
+    private fun getProductVariantError(message: String) {
+        DialogHelper.showConfirm(this@UpdateInformationFirstActivity, message, false, object : ConfirmDialogListener {
+            override fun onDisagree() {
+                onBackPressed()
+            }
+
+            override fun onAgree() {
+                getProductVariant()
+            }
+        })
+    }
+
+    private fun getProductVariant() {
+        if (NetworkHelper.isNotConnected(this)) {
+            getProductVariantError(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            return
+        }
+
+        lifecycleScope.launch {
+            var productVariant: ICVariantProductStampV6_1? = null
+            var customerVariant: MutableList<ICFieldGuarantee>? = null
+            var guaranteeVariant: MutableList<ICFieldGuarantee>? = null
+
+            withContext(Dispatchers.IO) {
+                val listSync = mutableListOf<Deferred<Any>>()
+
+                if (viewModel.productID != 0L) {
+                    listSync.add(async {
+                        productVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getProductVariant() }
+                    })
+                }
+                if (viewModel.barcode.isNotEmpty()) {
+                    listSync.add(async {
+                        customerVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getCustomerVariant() }
+                    })
+                }
+                if (viewModel.updateType == 1 || viewModel.updateType == 2) {
+                    listSync.add(async {
+                        guaranteeVariant = withTimeoutOrNull(APIConstants.REQUEST_TIME) { viewModel.getGuaranteeVariant() }
+                    })
+                }
+
+                listSync.awaitAll()
+            }
+
+            withContext(Dispatchers.Main) {
+                if (!productVariant?.data?.products.isNullOrEmpty()) {
+                    binding.tvSubProductCode.visibility = View.GONE
+                    binding.edtProductCode.visibility = View.GONE
+                    binding.tvSubProductVariant.visibility = View.VISIBLE
+                    binding.edtVariant.visibility = View.VISIBLE
+                } else {
+                    binding.tvSubProductCode.visibility = View.VISIBLE
+                    binding.edtProductCode.visibility = View.VISIBLE
+                    binding.tvSubProductVariant.visibility = View.GONE
+                    binding.edtVariant.visibility = View.GONE
+                }
+
+                /*
+                * Thông tin động của user
+                * */
+                customerVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
+                }
+
+                if (!customerVariant.isNullOrEmpty()) {
+                    binding.rcvCustomerVariant.apply {
+                        beVisible()
+                        layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false)
+                        adapter = customerVariantAdapter
+                    }
+                    customerVariantAdapter.addData(customerVariant!!)
+                } else {
+                    binding.rcvCustomerVariant.visibility = View.GONE
+                }
+
+                /*
+                * Thông tin động của bảo hành
+                * */
+                guaranteeVariant?.let { variant ->
+                    for (i in variant.size - 1 downTo 0) {
+                        if (variant[i].status == 0) {
+                            variant.removeAt(i)
+                        }
+                    }
+                }
+
+                if (!guaranteeVariant.isNullOrEmpty()) {
+                    binding.tvTitleField.visibility = View.VISIBLE
+                    binding.rcvField.apply {
+                        beVisible()
+                        binding.rcvField.layoutManager = CustomLinearLayoutManager(this@UpdateInformationFirstActivity, LinearLayoutManager.VERTICAL, false)
+                        binding.rcvField.adapter = guaranteeVariantAdapter
+                    }
+                    guaranteeVariantAdapter.addData(guaranteeVariant!!)
+                } else {
+                    binding.tvTitleField.visibility = View.GONE
+                    binding.rcvField.visibility = View.GONE
+                }
+
+                when (viewModel.updateType) {
+                    1 -> {
+                        //show layout ForceUpdate
+                        binding.tvViewForceUpdate.visibility = View.VISIBLE
+                        binding.edtProductCode.setText(viewModel.productCode)
+                        binding.edtVariant.setText(viewModel.objVariant?.extra)
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            binding.edtPhone.setText(viewModel.phoneNumber)
+                        } else {
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                binding.edtPhone.setText(phone)
+                            }
+                        }
+                    }
+                    2 -> {
+                        //getData customer ve va show len view
+                        binding.tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
+                        binding.edtProductCode.setText(viewModel.productCode)
+                        binding.edtVariant.setText(viewModel.objVariant?.extra)
+                        if (!viewModel.phoneNumber.isNullOrEmpty()) {
+                            binding.edtPhone.setText(viewModel.phoneNumber)
+                        } else {
+                            val phone = SessionManager.session.user?.phone
+                            if (!phone.isNullOrEmpty()) {
+                                binding.edtPhone.setText(phone)
+                            }
+                        }
+                    }
+                    else -> {
+                        binding.tvSubProductCode.visibility = View.GONE
+                        binding.edtProductCode.visibility = View.GONE
+                        binding.tvSubProductVariant.visibility = View.GONE
+                        binding.edtVariant.visibility = View.GONE
+
+                        SessionManager.session.user?.let { user ->
+                            stopSerchCustomer()
+                            binding.edtPhone.setText(user.phone)
+                            setupSearchCustomer()
+
+                            binding.edtName.setText(Constant.getName(user.last_name, user.first_name, ""))
+                            binding.edtEmail.setText(user.email)
+                            binding.tvCities.text = user.city?.name
+                            binding.tvDistricts.text = user.district?.name
+                            presenter.cityId = user.city?.id?.toInt()
+                            presenter.districtId = user.district?.id
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun searchGuaranteeCustomerDetail(phoneNumber: String) {
+        viewModel.getGuaranteeCustomerDetail(phoneNumber).observe(this, {
+            when (it.status) {
+                Status.LOADING -> {
+                    if (it.message.isNullOrEmpty()) {
+                        DialogHelper.showLoading(this@UpdateInformationFirstActivity)
+                    } else {
+                        DialogHelper.closeLoading(this@UpdateInformationFirstActivity)
+                    }
+                }
+                Status.ERROR_NETWORK -> {
+                    showLongError(ICheckApplication.getError(it.message))
+                    resetCustomerInfo()
+                }
+                Status.ERROR_REQUEST -> {
+                    showLongError(R.string.khong_tim_thay_tai_khoan)
+                    resetCustomerInfo()
+                }
+                Status.SUCCESS -> {
+                    val customer = it.data?.data?.customer
+
+                    if (customer != null) {
+                        setCustomerInfo(customer)
+                    } else {
+                        resetCustomerInfo()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun setCustomerInfo(customer: ICGuaranteeCustomerDetail.ICGuaranteeCustomer) {
+        customer.city?.let {
+            if (it > 0) {
+                presenter.cityId = it
+                presenter.onGetNameCity(customer.city)
+            }
+        }
+
+        customer.district?.let {
+            if (it > 0) {
+                presenter.districtId = it
+                presenter.onGetNameDistricts(customer.district)
+            }
+        }
+
+        if (!customer.name.isNullOrEmpty()) {
+            binding.edtName.setText(customer.name)
+        }
+
+        stopSerchCustomer()
+        if (!customer.phone.isNullOrEmpty()) {
+            binding.edtPhone.setText(customer.phone)
+        }
+        setupSearchCustomer()
+
+        if (!customer.email.isNullOrEmpty()) {
+            binding.edtEmail.setText(customer.email)
+        }
+
+        if (!customer.address.isNullOrEmpty()) {
+            binding.edtAddress.setText(customer.address)
+        }
+
+        if (!viewModel.productCode.isNullOrEmpty()) {
+            binding.edtProductCode.setText(viewModel.productCode)
+        }
+
+        if (!viewModel.objVariant?.extra.isNullOrEmpty()) {
+            binding.edtVariant.setText(viewModel.objVariant?.extra)
+        }
+
+        customer.fields?.let { customerField ->
+            for (field in customerVariantAdapter.listData) {
+                customerField.find { it.key == field.key }?.let { find ->
+                    if (field.type == "checkbox" || field.type == "select") {
+                        find.string_values?.split(",")?.let { listSelected ->
+                            try {
+                                for (i in (field.valueF ?: mutableListOf()).indices) {
+                                    if (listSelected.find { it.toInt() == i } != null) {
+                                        field.valueF!![i].isChecked = true
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    } else {
+                        field.string_values = find.string_values
+                    }
+                }
+            }
+
+            customerVariantAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun resetCustomerInfo() {
+        binding.edtName.setText("")
+        binding.edtEmail.setText("")
+        binding.edtAddress.setText("")
+    }
+
+    private fun getBody(listData: MutableList<ICFieldGuarantee>): HashMap<String, Any>? {
         val body = hashMapOf<String, Any>()
 
-        for (item in adapter.listData) {
+        for (item in listData) {
             if (item.type == "input") {
                 if (item.require == 1) {
-                    if (item.inputContent.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputContent.isNullOrEmpty()) {
-                    body[item.key] = item.inputContent!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "textarea") {
                 if (item.require == 1) {
-                    if (item.inputArea.isNullOrEmpty()) {
+                    if (item.string_values.isNullOrEmpty()) {
                         return null
                     }
                 }
-                if (!item.inputArea.isNullOrEmpty()) {
-                    body[item.key] = item.inputArea!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "date") {
-                if (item.require == 1) {
-                    if (item.date.isNullOrEmpty()) {
-                        return null
-                    }
+                if (item.require == 1 && item.string_values.isNullOrEmpty()) {
+                    return null
                 }
-                if (!item.date.isNullOrEmpty()) {
-                    body[item.key] = item.date!!
+                if (!item.string_values.isNullOrEmpty()) {
+                    body[item.key] = item.string_values!!
                 }
             }
 
             if (item.type == "select") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        var value: String? = null
-                        for (select in item.valueF!!) {
-                            if (select.isChecked) {
-                                value = select.value
-                            }
-                        }
-                        if (value == null) {
-                            return null
-                        }
-                        body[item.key] = value
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
 
             if (item.type == "checkbox") {
-                if (item.require == 1) {
-                    if (!item.valueF.isNullOrEmpty()) {
-                        val list = mutableListOf<String>()
-                        for (checkbox in item.valueF!!) {
-                            if (checkbox.isChecked) {
-                                list.add(checkbox.value!!)
-                            }
-                        }
-                        if (list.isNotEmpty()) {
-                            body[item.key] = list
-                        }
-                    }
+                val stringBuilder = getInputValue(item.valueF)
+                if (item.require == 1 && stringBuilder.isEmpty()) {
+                    return null
+                }
+                if (stringBuilder.isNotEmpty()) {
+                    body[item.key] = stringBuilder
                 }
             }
         }
@@ -258,147 +483,82 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         return body
     }
 
-    private fun searchCustomer() {
-        disposable = RxTextView.afterTextChangeEvents(edtPhone)
-                .skipInitialValue()
-                .debounce(1000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (mId != null) {
-                        presenter.searchInforCustomer(mId!!, edtPhone.text.toString())
-                    }
-                }, {
-                    logError(it)
-                })
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onSearchCustomerFail() {
-        runOnUiThread {
-            edtName.setText("")
-            edtEmail.setText("")
-            edtAddress.setText("")
-            if (DetailStampActivity.isVietNamLanguage == false) {
-                edtPhone.apply {
-                    hint = context.rText(R.string.enter_phone_number)
+    private fun getInputValue(list: MutableList<ValueFItem>?): String {
+        val stringBuilder = StringBuilder()
+        for (item in list ?: mutableListOf()) {
+            if (item.isChecked) {
+                if (stringBuilder.isNotEmpty()) {
+                    stringBuilder.append(",")
                 }
-                edtName.apply {
-                    hint = context.rText(R.string.enter_name)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.enter_email)
-                }
-                tvCities rText R.string.option
-                tvDistricts rText R.string.option
-                edtAddress.apply {
-                    hint = context.rText(R.string.enter_address)
-                }
-            } else {
-                edtPhone.apply {
-                    hint = context.rText(R.string.nhap_so_dien_thoai)
-                }
-                edtName.apply {
-                    hint = context.rText(R.string.nhap_ho_ten)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.nhap_email)
-                }
-                tvCities rText R.string.tuy_chon
-                tvDistricts rText R.string.tuy_chon
-                edtAddress.apply {
-                    hint = context.rText(R.string.nhap_dia_chi)
-                }
+                stringBuilder.append(item.id)
             }
         }
+        return stringBuilder.toString()
     }
 
-    override fun onGetDataVariantSuccess(products: MutableList<ICVariantProductStampV6_1.ICVariant.ICObjectVariant>, productId: Long) {
-        mProductId = productId
-        edtVariant.visibility = View.VISIBLE
-        tvSubProductVariant.visibility = View.VISIBLE
-        tvSubProductCode.visibility = View.GONE
-        edtProductCode.visibility = View.GONE
-        presenter.getDataByIntentSecond(intent)
-    }
-
-    override fun onGetDataVariantFail() {
-        tvSubProductCode.visibility = View.VISIBLE
-        edtProductCode.visibility = View.VISIBLE
-        edtVariant.visibility = View.GONE
-        tvSubProductVariant.visibility = View.GONE
-        presenter.getDataByIntentSecond(intent)
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onGetDataIntentSuccess(type: Int, id: Long, phoneNumber: String?, productCode: String?, objVariant: ICVariantProductStampV6_1.ICVariant.ICObjectVariant?) {
-        typeUpdateCustomer = type
-        mVariantName = objVariant?.extra
-        mIdVariantSelected = objVariant?.id
-        mProductCode = productCode
-
-        when (type) {
-            1 -> {
-                if (id != null) {
-                    mId = id
-                }
-                //show layout ForceUpdate
-                tvViewForceUpdate.visibility = View.VISIBLE
-                edtProductCode.setText(productCode)
-                edtVariant.setText(mVariantName)
-                phoneNumber?.let {
-                    presenter.getInforCustomer(id, it)
-                }
-
-            }
-            2 -> {
-                if (id != null) {
-                    mId = id
-                }
-                //getData customer ve va show len view
-                tvViewVerifiedPhoneNumber.visibility = View.VISIBLE
-                edtProductCode.setText(productCode)
-                edtVariant.setText(mVariantName)
-                phoneNumber?.let {
-                    presenter.getInforCustomer(id, it)
-                }
-            }
-            3 -> {
-                imgBack.visibility = View.GONE
-                tvSubProductCode.visibility = View.GONE
-                edtProductCode.visibility = View.GONE
-                tvSubProductVariant.visibility = View.GONE
-                edtVariant.visibility = View.GONE
-                edtPhone.setText(SessionManager.session.user?.phone)
-                edtName.setText(SessionManager.session.user?.first_name + SessionManager.session.user?.last_name)
-                edtEmail.setText(SessionManager.session.user?.email)
-                tvCities.text = SessionManager.session.user?.city?.name
-                tvDistricts.text = SessionManager.session.user?.district?.name
-                presenter.cityId = SessionManager.session.user?.city?.id?.toInt()
-                presenter.districtId = SessionManager.session.user?.district?.id
-            }
+    private fun updateUserInfo() {
+        val customerData = getBody(customerVariantAdapter.listData)
+        if (customerData == null) {
+            showInputDataError()
+            return
         }
-    }
 
-    override fun onGetFieldListGuareanteeSuccess(data: MutableList<ICFieldGuarantee>) {
-        if (!data.isNullOrEmpty()) {
-            tvTitleField.visibility = View.VISIBLE
-            rcvField.visibility = View.VISIBLE
-            initRecyclerView()
-            adapter.addData(data)
-        } else {
-            tvTitleField.visibility = View.GONE
-            rcvField.visibility = View.GONE
+        val guaranteeData = getBody(guaranteeVariantAdapter.listData)
+        if (guaranteeData == null) {
+            showInputDataError()
+            return
         }
-    }
 
-    private fun initRecyclerView() {
-        rcvField.layoutManager = LinearLayoutManager(this)
-        rcvField.adapter = adapter
-    }
+        val name = binding.edtName.text.toString().trim()
+        val phone = binding.edtPhone.text.toString().trim()
+        val email = binding.edtEmail.text.toString().trim()
+        val address = binding.edtAddress.text.toString().trim()
 
-    override fun onGetFieldListGuareanteeFail() {
-        tvTitleField.visibility = View.GONE
-        rcvField.visibility = View.GONE
+        val validName = ValidHelper.validName(this, name)
+        if (validName != null) {
+            showLongError(validName)
+            return
+        }
+
+        val validPhone = ValidHelper.validPhoneNumber(this, phone)
+        if (validPhone != null) {
+            showLongError(validPhone)
+            return
+        }
+
+        if (presenter.cityId ?: 0 <= 0) {
+            showLongError(getString(R.string.tinh_thanh_khong_duoc_de_trong))
+            return
+        }
+
+        if (presenter.districtId ?: 0 <= 0) {
+            showLongError(getString(R.string.quan_huyen_khong_duoc_de_trong))
+            return
+        }
+
+        if (address.isEmpty()) {
+            showLongError(getString(R.string.dia_chi_khong_duoc_de_trong))
+            return
+        }
+
+        val user = ICUpdateCustomerGuarantee(name, phone, email, address, presenter.districtId, presenter.cityId, customerData)
+
+        if (viewModel.serial.isEmpty()) {
+            finishActivity(RESULT_OK, Intent().apply {
+                putExtra(Constant.DATA_1, user)
+            })
+            return
+        }
+
+        presenter.validUpdateInformationGuarantee(
+                user = user,
+                productCode = binding.edtProductCode.text.toString(),
+                variant = viewModel.objVariant?.id,
+                customerData = customerData,
+                guaranteeData = guaranteeData,
+                barcode = viewModel.barcode,
+                updateType = viewModel.updateType,
+                serial = viewModel.serial)
     }
 
     override fun onGetDetailStampSuccess(obj: ICDetailStampV6_1) {
@@ -406,204 +566,26 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
     }
 
-    override fun onGetDataError(errorType: Int) {
-        when (errorType) {
-            Constant.ERROR_INTERNET -> {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, rText(R.string.checking_network_please_try_again), false, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
-
-                        override fun onAgree() {
-                            presenter.getDataByIntent(intent)
-                        }
-                    })
-                } else {
-                    DialogHelper.showConfirm(this@UpdateInformationFirstActivity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai, false, object : ConfirmDialogListener {
-                        override fun onDisagree() {
-                            onBackPressed()
-                        }
-
-                        override fun onAgree() {
-                            presenter.getDataByIntent(intent)
-                        }
-                    })
-                }
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onGetDataDetailCustomeFail() {
-        typeUpdateCustomer = 2
-
-        runOnUiThread {
-            edtName.setText("")
-            edtEmail.setText("")
-            edtAddress.setText("")
-            if (DetailStampActivity.isVietNamLanguage == false) {
-                edtPhone.apply {
-                    hint = context.rText(R.string.enter_phone_number)
-                }
-                edtName.apply {
-                    hint = context.rText(R.string.enter_name)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.enter_email)
-                }
-                tvCities rText R.string.option
-                tvDistricts rText R.string.option
-                edtAddress.apply {
-                    hint = context.rText(R.string.enter_address)
-                }
-            } else {
-                edtPhone.apply {
-                    hint = context.rText(R.string.nhap_so_dien_thoai)
-                }
-                edtName.apply {
-                    hint = context.rText(R.string.nhap_ho_ten)
-                }
-                edtEmail.apply {
-                    hint = context.rText(R.string.nhap_email)
-                }
-                tvCities rText R.string.tuy_chon
-                tvDistricts rText R.string.tuy_chon
-                edtAddress.apply {
-                    hint = context.rText(R.string.nhap_dia_chi)
-                }
-            }
-        }
-    }
-
-    override fun onGetDataDetailCustomeSuccess(customer: ICDetailCustomerGuranteeVerified.ICDetailCustomerGurantee.ICObjectCustomerGurantee) {
-        runOnUiThread {
-            customer.city?.let {
-                if (it > 0) {
-                    presenter.cityId = it
-                    presenter.onGetNameCity(customer.city)
-                }
-            }
-
-            customer.district?.let {
-                if (it > 0) {
-                    presenter.districtId = it
-                    presenter.onGetNameDistricts(customer.district)
-                }
-            }
-
-            if (!customer.name.isNullOrEmpty()) {
-                edtName.setText(customer.name)
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtName rHintText R.string.enter_name
-                } else {
-                    edtName rHintText R.string.nhap_ho_ten
-                }
-            }
-
-            disposable?.dispose()
-            disposable = null
-
-            if (!customer.phone.isNullOrEmpty()) {
-                edtPhone.setText(customer.phone)
-
-                typeUpdateCustomer = if (edtPhone.text.toString() != customer.phone) {
-                    2
-                } else {
-                    1
-                }
-
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtPhone rHintText R.string.enter_phone_number
-                } else {
-                    edtPhone rHintText R.string.nhap_so_dien_thoai
-                }
-            }
-            searchCustomer()
-
-            if (!customer.email.isNullOrEmpty()) {
-                edtEmail.setText(customer.email)
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtEmail rHintText R.string.enter_email
-                } else {
-                    edtEmail rHintText R.string.nhap_email
-                }
-            }
-
-            if (!customer.address.isNullOrEmpty()) {
-                edtAddress.setText(customer.address)
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtAddress rHintText R.string.enter_address
-                } else {
-                    edtAddress rHintText R.string.nhap_dia_chi
-                }
-            }
-
-            if (!mProductCode.isNullOrEmpty()) {
-                edtProductCode.setText(mProductCode)
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtProductCode rHintText R.string.enter_product_code
-                } else {
-                    edtProductCode rHintText R.string.nhap_ma_hieu_san_pham
-                }
-            }
-
-            if (!mVariantName.isNullOrEmpty()) {
-                edtVariant.setText(mVariantName)
-            } else {
-                if (DetailStampActivity.isVietNamLanguage == false) {
-                    edtVariant rHintText R.string.enter_variation_code
-                } else {
-                    edtVariant rHintText R.string.nhap_bien_the_san_pham
-                }
-            }
-        }
-    }
-
     override fun onGetNameCitySuccess(obj: ICNameCity) {
-        tvCities.text = obj.data?.name
+        presenter.cityId = obj.data?.id
+        binding.tvCities.text = obj.data?.name
     }
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameCityFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
-            tvCities rText R.string.option
-        } else {
-            tvCities rText R.string.tuy_chon
-        }
+        binding.tvCities.text = ""
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
-        tvDistricts.text = obj.data?.name
+        binding.tvDistricts.text = obj.data?.name
     }
 
     @SuppressLint("SetTextI18n")
     override fun onGetNameDistrictFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
-            tvDistricts rText R.string.option
-        } else {
-            tvDistricts rText R.string.tuy_chon
-        }
+        binding.tvDistricts.text = ""
     }
 
-    override fun onErrorPhone(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorName(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorEmail(message: String) {
-        showShortError(message)
-    }
-
-    override fun onErrorAddress(message: String) {
+    override fun onShowError(message: String) {
         showShortError(message)
     }
 
@@ -613,69 +595,39 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
     @SuppressLint("SetTextI18n")
     override fun onSetCityName(name: String, id: Int) {
-        tvCities.text = name
+        binding.tvCities.text = name
         presenter.cityId = id
-        cityId = id
-
-        if (DetailStampActivity.isVietNamLanguage == false) {
-            tvDistricts rText R.string.option
-        } else {
-            tvDistricts rText R.string.tuy_chon
-        }
+        binding.tvDistricts.text = ""
     }
 
     override fun onSetDistrictName(name: String, id: Int) {
-        tvDistricts.text = name
+        binding.tvDistricts.text = name
         presenter.districtId = id
-        districtId = id
     }
 
-    override fun onSendOtpGuaranteeSuccess(name: String, phone: String, email: String, cityId: Int?, districtId: Int?, address: String, productCode: String, mSerial: String?, variant: Long?, body: HashMap<String, Any>) {
-        val obj = ICUpdateCustomerGuarantee()
-        if (!name.isEmpty()) {
-            obj.name = name
-        }
-        obj.phone = phone
-        if (!email.isEmpty()) {
-            obj.email = email
-        }
-        if (!address.isEmpty()) {
-            obj.address = address
-        }
-        if (cityId != null) {
-            obj.city = cityId
-        }
-        if (districtId != null) {
-            obj.district = districtId
-        }
+    override fun onSendOtpGuaranteeSuccess(user: ICUpdateCustomerGuarantee, productCode: String,
+                                           variant: Long?, customerData: HashMap<String, Any>,
+                                           guaranteeData: HashMap<String, Any>) {
 
         val intent = Intent(this, VerifyOTPGuaranteeActivity::class.java)
-        intent.putExtra(Constant.DATA_1, obj)
-        intent.putExtra(Constant.DATA_2, mSerial)
+        intent.putExtra(Constant.DATA_1, user)
+        intent.putExtra(Constant.DATA_2, viewModel.serial)
         intent.putExtra(Constant.DATA_3, productCode)
         intent.putExtra(Constant.DATA_4, variant)
-        intent.putExtra(Constant.DATA_5, body)
-        startActivityForResult(intent, requestChangeData)
+        intent.putExtra(Constant.DATA_5, guaranteeData)
+        startActivityForResult(this, intent, requestChangeData)
     }
 
-    override fun updateInformationCusomterGuaranteeSuccess() {
-        for (act in DetailStampActivity.listActivities) {
+    override fun updateInformationCusomterGuaranteeSuccess(user: ICUpdateCustomerGuarantee) {
+        for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            if (DetailStampActivity.isVietNamLanguage == false) {
-                showShortSuccess(rText(R.string.successfully_updated))
-            } else {
-                showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
-            }
+            showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
         }
     }
 
     override fun updateInformationCusomterGuaranteeFail() {
-        if (DetailStampActivity.isVietNamLanguage == false) {
-            showShortError(rText(R.string.occurred_please_try_again))
-        } else {
-            showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-        }
+        showShortError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -684,6 +636,15 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 requestChangeData -> {
+                    val user = try {
+                        data?.getSerializableExtra(Constant.DATA_1) as ICUpdateCustomerGuarantee?
+                    } catch (e: Exception) {
+                        null
+                    }
+
+                    setResult(RESULT_OK, Intent().apply {
+                        putExtra(Constant.DATA_1, user)
+                    })
                     isChangeData = true
                 }
 
@@ -697,25 +658,35 @@ class UpdateInformationFirstActivity : BaseActivity<UpdateInformationFirstPresen
 
                 requestSelectVariant -> {
                     val variantName = data?.getStringExtra(Constant.DATA_1)
-                    mIdVariantSelected = data?.getLongExtra(Constant.DATA_2, 0L)
-                    edtVariant.setText(variantName)
+                    viewModel.objVariant?.id = data?.getLongExtra(Constant.DATA_2, 0L)
+                    binding.edtVariant.setText(variantName)
                 }
             }
         }
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
         showShortError(errorMessage)
     }
 
+    override val mContext: Context
+        get() = this
+
+    override fun onShowLoading(isShow: Boolean) {
+
+    }
+
     override fun onBackPressed() {
-        if (typeUpdateCustomer == 1 || typeUpdateCustomer == 2) {
-            super.onBackPressed()
-            if (isChangeData == true) {
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            }
+        super.onBackPressed()
+
+        if (isChangeData == true) {
+            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
         }
+//        if (viewModel.updateType == 1 || viewModel.updateType == 2) {
+//            if (isChangeData == true) {
+//                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+//            }
+//        }
     }
 
     override fun onDestroy() {

@@ -40,8 +40,8 @@ open class BaseViewModel<T> : ViewModel() {
         }
     }
 
-    fun setErrorEmpty(icon: Int, title: String, message: String, textButton: String, backgroundButton: Int, colorButton: Int) {
-        onErrorEmpty.postValue(ICKError(icon, title, message, textButton, backgroundButton, colorButton))
+    fun setErrorEmpty(icon: Int, title: String, message: String, textButton: String, backgroundButton: Int, colorButton: Int, colorMessage: Int? = null) {
+        onErrorEmpty.postValue(ICKError(icon, title, message, textButton, backgroundButton, colorButton, colorMessage))
     }
 
     fun checkError(isConnected: Boolean, message: String? = null) {

@@ -26,6 +26,8 @@
     <string name="khong_co_ket_noi_mang_vui_long_thu_lai_sau">Không có kết nối mạng. Vui lòng thử lại sau</string>
     <string name="de_hien_thi_du_lieu_vui_long_bat_gps">Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS</string>
     <string name="so_dien_thoai_khong_duoc_de_trong">Số điện thoại không được để trống</string>
+    <string name="tinh_thanh_khong_duoc_de_trong">Tỉnh thành không được để trống</string>
+    <string name="quan_huyen_khong_duoc_de_trong">Quận/Huyện không được để trống</string>
     <string name="so_dien_thoai_co_chua_ky_tu_dac_biet">Số điện thoại có chứa ký tự đăc biệt</string>
     <string name="so_dien_thoai_khong_dung_dinh_dang">Số điện thoại không đúng định dạng</string>
     <string name="khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen">Không thể thực hiện tác vụ vì bạn chưa cấp đủ quyền</string>
@@ -36,6 +38,7 @@
     <string name="quen_mat_khau">Quên mật khẩu</string>
     <string name="ban_gap_van_de_voi_dang_nhap">Bạn gặp vấn đề về đăng nhập?</string>
     <string name="so_dien_thoai">Số điện thoại</string>
+    <string name="so_dien_thoai_kich_hoat">Số điện thoại kích hoạt</string>
     <string name="mat_khau">Mật khẩu</string>
     <string name="tra_loi_xxx"><![CDATA[Trả lời  <b><font color="#3c5a99">%s</font></b>]]></string>
     <string name="binh_luan_xxx"><![CDATA[Bình luận  <b><font color="#3c5a99">%s</font></b>]]></string>
@@ -68,6 +71,7 @@
     <string name="email">Email</string>
     <string name="ngay_sinh">Ngày sinh</string>
     <string name="quan_huyen">Quận/Huyện</string>
+    <string name="quan_huyen_bat_buoc">Quận/Huyện (*)</string>
     <string name="ho_khong_duoc_de_trong">Họ không được để trống</string>
     <string name="ten_khong_duoc_de_trong">Tên không được để trống</string>
     <string name="ten_khong_hop_le">Tên không hợp lệ</string>
@@ -206,6 +210,7 @@
     <string name="nhap_email">Nhập email</string>
     <string name="nhap_dia_chi">Nhập địa chỉ</string>
     <string name="nhap_ho">Nhập họ</string>
+    <string name="nhap_ho_va_ten">Nhập họ và tên</string>
     <string name="nhap_ten">Nhập tên</string>
     <string name="nhap_ngay_sinh">Nhập ngày sinh</string>
     <string name="update_profile_gift_facebook">Liên kết ngay để nhận 1 hộp quà từ iCheck nhé</string>
@@ -226,6 +231,8 @@
     <string name="xac_nhan_mat_khau">Xác nhận mật khẩu</string>
     <string name="doi_mat_khau_khong_thanh_cong_vui_long_thu_lai">Đổi mật khẩu không thành công. Vui lòng thử lại.</string>
     <string name="cap_nhat_thong_tin">Cập nhật thông tin</string>
+    <string name="cap_nhat_thong_tin_khach_hang_en">Update customer information</string>
+    <string name="cap_nhat_thong_tin_khach_hang">Cập nhật thông tin khách hàng</string>
     <string name="ngay_sinh_khong_duoc_de_trong">Ngày sinh không được để trống</string>
     <string name="ngay_sinh_khong_duoc_lon_hon_thoi_gian_hien_tai">Ngày sinh không được lớn hơn thời gian hiện tại</string>
     <string name="vui_long_chon_tinh_thanh">Vui lòng chọn Tỉnh thành</string>
@@ -252,6 +259,7 @@
     <string name="d_nguoi_theo_doi">%d Người theo dõi</string>
     <string name="s_nguoi_theo_doi">%s Người theo dõi</string>
     <string name="xxx_nguoi">%s người</string>
+    <string name="xxx_ngay">%s ngày</string>
     <string name="vui_long_dang_nhap_tai_khoan_cua_ban">Vui lòng đăng nhập tài khoản của bạn</string>
     <string name="thu_lai">Thử Lại</string>
     <string name="bat_gps">Bật GPS</string>
@@ -304,6 +312,7 @@
     <string name="vui_long_vao_phan_cai_dat_va_cho_phep_ung_dung_su_dung_camera_va_vi_tri_cua_thiet_bi">Vui lòng vào phần cài đặt và cho phép ứng dụng sử dụng camera và vị trí của thiết bị</string>
     <string name="nhap_ma_bang_tay">Nhập mã bằng tay</string>
     <string name="ma_san_pham">Mã sản phẩm</string>
+    <string name="nha_ma_duoc_in_tren_san_pham">Nhập mã được in trên sản phẩm</string>
     <string name="gui_ma_upcase">GỬI MÃ</string>
     <string name="vuot_len_de_xem_chi_tiet">Vuốt lên để xem chi tiết</string>
     <string name="quanh_day_chua_co_cua_hang_nao_ban_san_pham_nay">Quanh đây chưa có cửa hàng nào bán sản phẩm này</string>
@@ -347,6 +356,8 @@
     <string name="bo_loc">Bộ lọc</string>
     <string name="xong">Xong</string>
     <string name="thoi_gian">Thời gian</string>
+    <string name="thoi_gian_v2">Thời gian:</string>
+    <string name="thoi_gian_v2_xxx">Thời gian: %s</string>
     <string name="thoi_gian_dien_ra">Thời gian diễn ra</string>
     <string name="tu_ngay">Từ ngày</string>
     <string name="den_ngay">Đến ngày</string>
@@ -653,6 +664,7 @@
     <string name="email_icheck"><![CDATA[Email: <font color="#057dda">%s</font>]]></string>
     <string name="ma_so_thue_icheck">MST: %s</string>
     <string name="hotline_dang_ky"><![CDATA[Hotline đăng ký: <font color="#057dda">%s</font>]]></string>
+    <string name="hotline_v2_xxx">Hotline: %s</string>
     <string name="dang_ky_ma_so_ma_vach">Đăng ký mã số mã vạch</string>
     <string name="thong_tin_thuong_pham">Thông tin thương phẩm</string>
     <string name="tem_dien_tu_chong_gia">Tem điện tử chống giả</string>
@@ -800,6 +812,7 @@
     <string name="dang_bai">Đăng bài</string>
     <string name="khong_co_loi_moi_ket_ban_nao">Không có lời mời kết bạn nào</string>
     <string name="xac_thuc_danh_tinh">Xác thực danh tính</string>
+    <string name="xac_thuc_san_pham">Xác thực sản phẩm</string>
     <string name="chung_minh_nhan_dan">Chứng minh nhân dân</string>
     <string name="can_cuoc_cong_dan">Căn cước công dân</string>
     <string name="mat_truoc_cccd">Mặt trước CCCD</string>
@@ -811,7 +824,6 @@
     <string name="cac_ban_da_tro_thanh_ban_be">Các bạn đã trở thành bạn bè</string>
     <string name="vui_long_nhap_noi_dung">Vui lòng nhập nội dung</string>
     <string name="tong_quan">Tổng quan</string>
-    <string name="gioi_thieu">Giới thiệu</string>
     <string name="bai_viet">Bài viết</string>
     <string name="ban_chua_co_ban_be_nao">Bạn chưa có bạn bè nào!</string>
     <string name="ban_chua_co_thong_bao_nao">Bạn chưa có thông báo nào</string>
@@ -867,6 +879,7 @@
     <string name="toi_dong_y_voi_dieu_khoan_nay">Tôi đồng ý với điều khoản này</string>
     <string name="tao_the_moi">Tạo thẻ mới</string>
     <string name="quay_lai">Quay lại</string>
+    <string name="gioi_thieu">Giới thiệu</string>
     <string name="uy_quyen_ung_dung">Ủy quyền ứng dụng</string>
     <string name="tat_ca_tien_ich">Tất cả tiện ích</string>
     <string name="ban_muon_khoa_the_nay">Bạn muốn khóa thẻ này?</string>
@@ -921,7 +934,7 @@
     <string name="chua_co_danh_gia">Chưa có đánh giá</string>
     <string name="cai_dat_quyen_rieng_tu">Cài đặt quyền riêng tư</string>
     <string name="mua_tai_nha_san_xuat">Mua tại\n nhà sản xuất</string>
-    <string name="dang_ky_mua_hang_chinh_hang">Đăng ký mua \nhàng chính hãng</string>
+    <string name="lien_he_n_doanh_nghiep">Liên hệ\nDoanh nghiệp</string>
     <string name="diem_ban_gan_day_xxx">Điểm bán gần đây (%d)</string>
     <string name="diem_ban_gan_day">Điểm bán gần đây</string>
     <string name="d_diem_ban_gan_day">%d Điểm bán gần đây</string>
@@ -1809,4 +1822,51 @@
         <item>Tháng mười hai</item>
     </string-array>
 
+    <string name="san_pham_chinh_hang_uppercase">SẢN PHẨM CHÍNH HÃNG</string>
+    <string name="canh_bao_uppercase">CẢNH BÁO!</string>
+    <string name="canh_bao_down_line_xxx">Cảnh báo!\n%s</string>
+    <string name="so_lan_quet">Số lần quét</string>
+    <string name="so_nguoi_quet">Số người quét</string>
+    <string name="thong_tin_bao_hanh">Thông tin bảo hành</string>
+    <string name="thoi_gian_bao_hanh_v2">Thời gian bảo hành:</string>
+    <string name="han_bao_hanh_v2">Hạn bảo hành:</string>
+    <string name="so_ngay_bao_hanh_con_lai_v2">Số ngày bảo hành còn lại:</string>
+    <string name="ngay_kich_hoat_bao_hanh_v2">Ngày kích hoạt bảo hành:</string>
+    <string name="lich_su_bao_hanh_gan_nhat">Lịch sử bảo hành gần nhất</string>
+    <string name="dia_diem_bao_hanh">Địa điểm bảo hành</string>
+    <string name="trang_thai_v2">Trạng thái:</string>
+    <string name="tinh_trang_v2">Tình trạng:</string>
+    <string name="tinh_trang_v2_xxx">Tình trạng: %s</string>
+    <string name="thong_tin_khach_hang">Thông tin khách hàng</string>
+    <string name="tien_do_bao_hanh">Tiến độ bảo hành</string>
+    <string name="ho_va_ten_v2">Họ và tên:</string>
+    <string name="ho_va_ten">Họ và tên</string>
+    <string name="ho_va_ten_bat_buoc">Họ và tên (*)</string>
+    <string name="so_dien_thoai_v2">Số điện thoại:</string>
+    <string name="email_v2">Email:</string>
+    <string name="email_v2_xxx">Email: %s</string>
+    <string name="dia_chi_v2">Địa chỉ:</string>
+    <string name="diem_bao_hanh_v2">Điểm bảo hành:</string>
+    <string name="ngay_hen_tra_v2">Ngày hẹn trả:</string>
+    <string name="nha_san_xuat">"Nhà sản xuất"</string>
+    <string name="nha_phan_phoi">Nhà phân phối</string>
+    <string name="de_hien_thi_du_lieu_cua_hang_vui_long_bat_gps">Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS</string>
+    <string name="dia_chi_xxx_stamp_v61">Địa chỉ: %s</string>
+    <string name="gioi_thieu_xxx_stamp_v61">Giới thiệu: %s</string>
+    <string name="ma_gln_xxx_stamp_v61">Mã GLN: %s</string>
+    <string name="dien_thoai_xxx_stamp_v61">Điện thoại: %s</string>
+    <string name="email_xxx_stamp_v61">Email: %s</string>
+    <string name="website_xxx_stamp_v61">Website: %s</string>
+    <string name="thong_bao_nhap_thong_tin_ca_nhan_stamp_v61">Bạn phải nhập thông tin cá nhân để kích hoạt bảo hành.\nNhà sản xuất có quyền từ chối bảo hành nếu thông tin\nkhông chính xác.</string>
+    <string name="thong_bao_nhap_thong_tin_khach_hang_stamp_v61">Cập nhật thông tin khách hàng để nhận các ưu đãi\nvà chăm sóc tốt nhất.</string>
+    <string name="ma_hieu_san_pham">Mã hiệu sản phẩm</string>
+    <string name="nhap_ma_hieu_san_pham">Nhập mã hiệu sản phẩm</string>
+    <string name="ma_bien_the">Mã biến thể</string>
+    <string name="nhap_bien_the_san_pham">Nhập biến thể sản phẩm</string>
+    <string name="thong_tin_tiep_nhan">Thông tin tiếp nhận</string>
+    <string name="chon_ngay_thang">Chọn ngày tháng</string>
+    <string name="tieu_de_xac_nhan_so_dien_thoai_stamp_v61">Nhập số điện thoại đã kích hoạt bảo hành trước đây\ncho sản phẩm này trước khi cập nhận tông tin mới</string>
+    <string name="xac_thuc">Xác thực</string>
+    <string name="da_hieu">Đã hiểu</string>
+    <string name="xac_thuc_so_dien_thoai">Xác thực số điện thoại</string>
 </resources>

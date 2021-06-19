@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_history_guarantee.view.*
+import kotlinx.android.synthetic.main.item_history_guarantee_v5.view.*
 import kotlinx.android.synthetic.main.item_message.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
@@ -36,7 +36,7 @@ class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : Recycle
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            itemType -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_history_guarantee, parent, false))
+            itemType -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_history_guarantee_v5, parent, false))
             else -> ErrorHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_message, parent, false))
         }
     }

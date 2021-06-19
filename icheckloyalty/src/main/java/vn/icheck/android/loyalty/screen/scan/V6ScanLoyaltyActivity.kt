@@ -361,7 +361,8 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
     }
 
     private fun initTakeImageDialog() {
-        takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
+        takeImageDialog = TakeMediaDialog()
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, saveImageToGallery = false)
     }
 
     private fun initBarcodeCapture() {

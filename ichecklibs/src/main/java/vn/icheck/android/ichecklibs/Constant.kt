@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.net.MailTo
 import android.net.Uri
 import java.util.regex.Pattern
 
@@ -62,6 +63,17 @@ object Constant {
     const val PAGE = "page"
     const val ENTERPRISE = "enterprise"
     const val SHOP = "shop"
+
+    /*
+    ScreenCode Popup
+     */
+
+    const val SCAN = "scan"
+    const val HOME = "home"
+    const val PAGE_VERIFY = "page_verified"
+    const val PAGE_UNVERIFIED = "page_unverified"
+    const val PRODUCT_UNVERIFIED = "product_unverified"
+    const val PRODUCT_VERIFY = "product_verified"
 
     const val PAGE_BRAND_TYPE = 1 // Nhãn hàng
     const val PAGE_EXPERT_TYPE = 2 // Chuyên gia
@@ -201,6 +213,21 @@ object Constant {
         return "<html>$head<body>$bodyHTML</body></html>"
     }
 
+    fun getHtmlTextNotPadding(content:String):String{
+        val head = "<head><style> img{max-width: 100% !important; width: 100% !important; height: auto !important;}</style></head>"
+
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                head+
+                "\n" +
+                "<body style=\"margin: 0; padding: 0; overflow: hidden\">\n" +
+                content +
+                "</body>\n" +
+                "\n" +
+                "</html>"
+    }
+
+
     fun formatPhone(phone: String?): String? {
         return if (phone?.length ?: 0 >= 10) {
             StringBuilder(phone!!).insert(phone.length - 3, " ").insert(phone.length - 6, " ").toString()
@@ -259,5 +286,43 @@ object Constant {
         }
 
         return stringBuilder.toString()
+    }
+
+    fun sendMail(context: Context, value: String?) {
+        if (!value.isNullOrEmpty()) {
+            var mail = when {
+                value.startsWith("MAILTO") -> {
+                    value.replace("MAILTO", "mailto")
+                }
+                else -> {
+                    value.replace("mailto:email", "mailto")
+                }
+            }
+            val mailTo = MailTo.parse(mail)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/html"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(mailTo.to))
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTo.subject)
+            intent.putExtra(Intent.EXTRA_CC, mailTo.cc)
+            intent.putExtra(Intent.EXTRA_TEXT, mailTo.body)
+            context.startActivity(intent)
+        }
+    }
+
+    fun isNullOrEmpty(value: String?): Boolean {
+        return when {
+            value.isNullOrEmpty() -> true
+            value.contains("null") -> true
+            else -> false
+        }
+    }
+
+    fun getName(lastName: String?, firstName: String?, default: String = ""): String {
+        return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
+            "${lastName ?: ""} ${firstName ?: ""}".trim()
+        } else {
+            default
+        }
     }
 }

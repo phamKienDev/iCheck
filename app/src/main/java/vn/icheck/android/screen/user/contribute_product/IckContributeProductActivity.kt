@@ -26,15 +26,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
+import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseCoroutineActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
@@ -60,7 +60,7 @@ import kotlin.math.abs
 const val CONTRIBUTE_REQUEST = 1
 
 @AndroidEntryPoint
-class IckContributeProductActivity : BaseCoroutineActivity() {
+class IckContributeProductActivity : BaseActivityMVVM() {
 
     companion object {
         fun start(context: Activity, barcode: String) {
@@ -126,7 +126,7 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
     var currentMediaDialog: TakeMediaDialog? = null
 
     //    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false, showBottom = true)
-    private val takeImageDialog = TakeMediaDialog(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
+    private val takeImageDialog = TakeMediaDialog()
 
     val ickContributeProductViewModel: IckContributeProductViewModel by viewModels()
     val ickCategoryBottomDialog = IckCategoryBottomDialog()
@@ -143,7 +143,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                     when (it) {
                         TAKE_IMAGE -> {
                             val position = intent.getIntExtra(TAKE_IMAGE, 0)
-                            val imageDialog = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
+                            val imageDialog = TakeMediaDialog()
+                            imageDialog.setListener(this@IckContributeProductActivity, object : TakeMediaListener {
                                 override fun onPickMediaSucess(file: File) {
                                     ickContributeProductViewModel.categoryAttributes[position].values = file
                                     categoryAttributesAdapter.notifyItemChanged(position)
@@ -172,7 +173,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                         }
                         ADD_IMAGE -> {
                             val position = intent.getIntExtra(ADD_IMAGE, 0)
-                            val imageDialog2 = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
+                            val imageDialog2 = TakeMediaDialog()
+                            imageDialog2.setListener(this@IckContributeProductActivity, object : TakeMediaListener {
                                 override fun onPickMediaSucess(file: File) {
                                     ickContributeProductViewModel.listImageModel.add(ImageModel(file))
                                     listImageAdapter.notifyDataSetChanged()
@@ -216,7 +218,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
                             parent = intent.getIntExtra(PARENT_POSITION, 0)
                             try {
                                 val categoryAttributesModel = ickContributeProductViewModel.categoryAttributes[parent]
-                                val imageDialog2 = TakeMediaDialog(this@IckContributeProductActivity, object : TakeMediaListener {
+                                val imageDialog2 = TakeMediaDialog()
+                                imageDialog2.setListener(this@IckContributeProductActivity, object : TakeMediaListener {
                                     override fun onPickMediaSucess(file: File) {
 
                                         if (categoryAttributesModel.categoryItem.type == "image-single") {
@@ -342,6 +345,8 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
         instance = this
         listImageAdapter = ListImageAdapter(ickContributeProductViewModel.listImageModel)
         binding.rcvImages.adapter = listImageAdapter
+
+        takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
 
         binding.textView4.text = intent.getStringExtra(TITLE) ?: rText(R.string.dong_gop_san_pham)
 
@@ -1002,6 +1007,21 @@ class IckContributeProductActivity : BaseCoroutineActivity() {
 //            }
 //        })
 //    }
+
+    inline fun delayAfterAction(crossinline action: () -> Unit, timeout:Long = 200L) {
+        job = if (job?.isActive == true) {
+            job?.cancel()
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        } else {
+            lifecycleScope.launch {
+                action()
+                delay(timeout)
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

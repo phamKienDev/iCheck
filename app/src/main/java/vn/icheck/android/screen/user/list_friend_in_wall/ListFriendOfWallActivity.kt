@@ -236,11 +236,6 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun goToChat(item: ICUserFollowWall) {
-        if (ListConversationFragment.isOpenChat) {
-            ListConversationFragment.finishAllChat()
-            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_FINISH_ALL_CHAT))
-            finishActivity()
-        }
         ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
 //        SocialChatActivity.createRoomChat(this, item.id)
     }

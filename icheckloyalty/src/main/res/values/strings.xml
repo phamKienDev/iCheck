@@ -51,6 +51,7 @@
     <string name="ma_du_thuong_chuong_trinh">Mã dự thưởng chương trình:</string>
     <string name="xac_nhan">Xác nhận</string>
     <string name="nhap_so_dien_thoai">Nhập số điện thoại</string>
+    <string name="ma_du_thuong_khong_duoc_de_trong_vui_long_kiem_tra_lai">"Mã dự thưởng không được để trống\nVui lòng kiểm tra lại"</string>
     <string name="doi_diem_tich_luy_de_nhan_nhung_phan_qua_cuc_cool_nhe">Đổi điểm tích lũy để nhận\nnhững phần quà cực cool nhé!</string>
     <string name="nhap_ma_cong_diem">Nhập mã cộng điểm</string>
     <string name="nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe">Nhập mã được dán trên bao bì\nsản phẩm để nhận điểm tích lũy đổi quà nhé!</string>

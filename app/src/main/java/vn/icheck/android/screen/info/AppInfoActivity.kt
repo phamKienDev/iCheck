@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityAppInfoBinding
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.util.ick.*
 
-class AppInfoActivity : AppCompatActivity() {
+class AppInfoActivity : BaseActivityMVVM() {
 
     lateinit var binding: ActivityAppInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {

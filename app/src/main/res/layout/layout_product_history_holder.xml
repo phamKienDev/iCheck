@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_18"
-                android:drawableStart="@drawable/ic_barcode_blue_18px"
+                android:drawableStart="@drawable/ic_barcode_gray_18px"
                 android:drawablePadding="@dimen/size_4"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"

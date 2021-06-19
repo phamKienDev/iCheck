@@ -121,7 +121,7 @@ class WebViewActivity : AppCompatActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView(url: String, title: String?) {
-        webView.settings.apply {
+        webViewUrl.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
@@ -182,16 +182,16 @@ class WebViewActivity : AppCompatActivity() {
 //                    urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
 //                }
 
-                webView.loadUrl(urlBuilder.build().toString(), header)
+                webViewUrl.loadUrl(urlBuilder.build().toString(), header)
             } else {
-                webView.loadUrl(url)
+                webViewUrl.loadUrl(url)
             }
         } else {
-            webView.settings.defaultFontSize = 14.dpToPx()
-            webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
+            webViewUrl.settings.defaultFontSize = 14.dpToPx()
+            webViewUrl.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.url?.let { url ->
@@ -216,7 +216,7 @@ class WebViewActivity : AppCompatActivity() {
             }
         }
 
-        webView.webChromeClient = object : WebChromeClient() {
+        webViewUrl.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest?) {
                 if (request != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     for (permission in request.resources) {
@@ -266,7 +266,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_su_dung_camera_cua_ban, URL(webView.url).host), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_su_dung_camera_cua_ban, URL(webViewUrl.url).host), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()
@@ -402,8 +402,8 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack() && !url.contains("dev.qcheck.vn")) {
-            webView.goBack()
+        if (webViewUrl.canGoBack() && !url.contains("dev.qcheck.vn")) {
+            webViewUrl.goBack()
         } else {
             super.onBackPressed()
         }

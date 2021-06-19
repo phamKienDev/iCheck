@@ -1,7 +1,6 @@
 package vn.icheck.android.icheckscanditv6
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +8,13 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import vn.icheck.android.icheckscanditv6.databinding.IckBarcodeBottomBinding
+import vn.icheck.android.ichecklibs.WidgetHelper
+import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 
 class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     private var onBarCodeDismiss: OnBarCodeDismiss? = null
-    private var _binding: IckBarcodeBottomBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: IckBarcodeBottomBinding
 
     companion object {
         fun show(fragmentManager: FragmentManager, isCancel: Boolean, listener: OnBarCodeDismiss) {
@@ -51,13 +50,8 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 //    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
+        binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     interface OnBarCodeDismiss {
@@ -90,7 +84,20 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
                 submitBarcode()
             }
         }
+
+        setupListener()
     }
+
+    private fun setupListener() {
+        binding.edtBarcode.setOnFocusChangeListener { _, _ ->
+            WidgetHelper.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtBarcode)
+        }
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetHelper.changePasswordInput(binding.edtBarcode)
+        }
+    }
+
 
     private fun submitBarcode() {
         if (binding.submitBarcode.isEnabled) {

@@ -21,12 +21,14 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.FragmentQrAndBarcodeOfMeBinding
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
@@ -36,7 +38,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.*
 
-class MyQrActivity : AppCompatActivity() {
+class MyQrActivity : BaseActivityMVVM() {
     lateinit var binding: FragmentQrAndBarcodeOfMeBinding
     private var user: ICUser? = null
     private var setting: ICClientSetting? = null
@@ -45,7 +47,8 @@ class MyQrActivity : AppCompatActivity() {
     var qrHeight = 200.dpToPx()
     val viewModel by viewModels<V6ViewModel>()
 
-    companion object{
+
+    companion object {
         fun createOnly(context: Context) {
             context.startActivity(Intent(context, MyQrActivity::class.java).apply {
                 putExtra(Constant.DATA_1, 3)
@@ -108,7 +111,9 @@ class MyQrActivity : AppCompatActivity() {
         listKey.add("MY_QR_CAMPAIGN_DESCRIPTION")
         listKey.add("MY_QR_CAMPAIGN_BANNER")
         binding.btnScan.setOnClickListener {
-            simpleStartActivity(V6ScanditActivity::class.java)
+            val intent = Intent(this, V6ScanditActivity::class.java)
+            intent.putExtra("fromMyQr", true)
+            ActivityHelper.startActivity(this, intent)
             finish()
         }
         viewModel.getMyID()

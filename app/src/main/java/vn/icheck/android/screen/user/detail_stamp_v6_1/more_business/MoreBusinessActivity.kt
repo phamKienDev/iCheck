@@ -1,21 +1,23 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.more_business
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_more_business.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import kotlinx.android.synthetic.main.toolbar_blue.imgBack
-import kotlinx.android.synthetic.main.toolbar_blue.txtTitle
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectDistributor
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectVendor
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.adapter.MoreProductVerifiedInBusinessAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.presenter.MoreBusinessPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreBusinessView
@@ -23,15 +25,11 @@ import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActi
 import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 
-class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusinessView {
+class MoreBusinessActivity : BaseActivityMVVM(), IMoreBusinessView {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_more_business
+    val presenter = MoreBusinessPresenter(this@MoreBusinessActivity)
 
-    override val getPresenter: MoreBusinessPresenter
-        get() = MoreBusinessPresenter(this)
-
-    private var adapterSuggestion = MoreProductVerifiedInBusinessAdapter(this,DetailStampActivity.isVietNamLanguage)
+    private var adapterSuggestion = MoreProductVerifiedInBusinessAdapter(this,StampDetailActivity.isVietNamLanguage)
 
     private var objVendor: ICObjectVendor? = null
     private var objDistributor: ICObjectDistributor? = null
@@ -41,7 +39,13 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
     private var mId: Long? = null
     private val requestPhone = 1
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_more_business)
+        onInitView()
+    }
+
+    fun onInitView() {
         presenter.getDataIntent(intent)
         initRecyclerViewMoreProduct()
         listener()
@@ -115,6 +119,17 @@ class MoreBusinessActivity : BaseActivity<MoreBusinessPresenter>(), IMoreBusines
                 startActivity(intent)
             }
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@MoreBusinessActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@MoreBusinessActivity, isShow)
     }
 
     override fun onLoadMore() {

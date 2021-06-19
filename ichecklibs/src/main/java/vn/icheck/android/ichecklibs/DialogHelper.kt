@@ -83,6 +83,22 @@ object DialogHelper {
         }
     }
 
+    fun showLoading(fragment: Fragment, isShowLoading: Boolean) {
+        if (isShowLoading) {
+            showLoading(fragment)
+        } else {
+            closeLoading(fragment)
+        }
+    }
+
+    fun showLoading(activity: Activity, isShowLoading: Boolean) {
+        if (isShowLoading) {
+            showLoading(activity)
+        } else {
+            closeLoading(activity)
+        }
+    }
+
     fun showLoading(fragment: Fragment) {
         if (fragment.isVisible) {
             showLoading(fragment.requireActivity())

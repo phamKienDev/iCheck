@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_help_game.*
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 
@@ -42,7 +43,7 @@ class HelpGameFragment : Fragment() {
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.allowUniversalAccessFromFileURLs = true
-        webView.settings.defaultFontSize = 24
+        webView.settings.defaultFontSize = 16.spToPx()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING

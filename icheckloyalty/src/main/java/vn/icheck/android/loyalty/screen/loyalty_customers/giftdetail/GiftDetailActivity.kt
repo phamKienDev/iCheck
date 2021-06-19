@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_gift_detail.*
 import vn.icheck.android.ichecklibs.util.rText
+import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -66,6 +67,9 @@ class GiftDetailActivity : BaseActivityGame() {
 
     private fun initToolbar() {
         imgBack.setOnClickListener {
+            if (type == 0) {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
+            }
             onBackPressed()
         }
     }
@@ -143,6 +147,9 @@ class GiftDetailActivity : BaseActivityGame() {
             }
             ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
                 ChangePhoneCardsActivity.start(this, event.data as Long, ConstantsLoyalty.TDDH, requestCard)
+            }
+            ICMessageEvent.Type.BACK_UPDATE -> {
+                viewModel.getDetailGift()
             }
         }
     }

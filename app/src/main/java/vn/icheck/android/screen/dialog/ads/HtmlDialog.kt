@@ -21,13 +21,13 @@ class HtmlDialog(context: Context, private val data: String, private val isUrl: 
 
     private fun initData() {
         @SuppressLint("SetJavaScriptEnabled")
-        webView?.settings?.javaScriptEnabled = true
+        webViewUrl?.settings?.javaScriptEnabled = true
 
         if (isUrl) {
             txtTitle?.text = data
-            webView?.loadUrl(data)
+            webViewUrl?.loadUrl(data)
         } else {
-            webView?.loadDataWithBaseURL("", data, "text/html", "UTF-8", "")
+            webViewUrl?.loadDataWithBaseURL("", data, "text/html", "UTF-8", "")
         }
     }
 

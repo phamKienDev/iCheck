@@ -1,6 +1,8 @@
 package vn.icheck.android.screen.user.listproductcategory
 
+import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -8,15 +10,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_list_product_category.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICCategory
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.listproductcategory.adapter.ListProductCategoryAdapter
 import vn.icheck.android.screen.user.listproductcategory.presenter.ListProductCategoryPresenter
 import vn.icheck.android.screen.user.listproductcategory.view.IListProductCategoryView
-import vn.icheck.android.screen.user.mall.MallFragment
 import vn.icheck.android.screen.user.mall.adapter.MallCategoryHorizontalAdapter
 
 /**
@@ -24,32 +26,24 @@ import vn.icheck.android.screen.user.mall.adapter.MallCategoryHorizontalAdapter
  * 0974815770
  * hungphp@icheck.vn
  */
-class ListProductCategoryActivity : BaseActivity<ListProductCategoryPresenter>(), IListProductCategoryView {
+class ListProductCategoryActivity : BaseActivityMVVM(), IListProductCategoryView {
     private val adapter = ListProductCategoryAdapter(this)
     private val categoryHorizontalAdapter = MallCategoryHorizontalAdapter()
+    private val presenter = ListProductCategoryPresenter(this@ListProductCategoryActivity)
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_list_product_category
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list_product_category)
+        onInitView()
+    }
 
-    override val getPresenter: ListProductCategoryPresenter
-        get() = ListProductCategoryPresenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         setupToolBar()
         setupRecyclerView()
         setupSwipeLayout()
     }
 
     private fun setupToolBar() {
-        if (MallFragment.nameCategory.isNullOrEmpty()) {
-            DialogHelper.showNotification(this, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
-        } else {
-            txtTitle.text = MallFragment.nameCategory
-        }
         imgBack.setOnClickListener {
             onBackPressed()
         }
@@ -147,5 +141,16 @@ class ListProductCategoryActivity : BaseActivity<ListProductCategoryPresenter>()
             recyclerViewHorizontal.adapter = categoryHorizontalAdapter
             categoryHorizontalAdapter.setData(obj)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@ListProductCategoryActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@ListProductCategoryActivity, isShow)
     }
 }

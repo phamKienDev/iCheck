@@ -15,11 +15,14 @@ import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.provider.CalendarContract
 import android.provider.ContactsContract
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -47,7 +50,7 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPh
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 import vn.icheck.android.screen.user.detail_stamp_v5.home.DetailStampV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v6.home.DetailStampV6Activity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
+import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.history_search.HistorySearchActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.scan_history.adapter.ScanHistoryAdapter
@@ -101,9 +104,9 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
     }
-
-    override val getLayoutID: Int
-        get() = R.layout.fragment_scan_history
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_scan_history, container, false)
+    }
 
     override fun isRegisterEventBus(): Boolean {
         return true
@@ -204,7 +207,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             if (it.code.isNullOrEmpty()) {
                 checkStampQr(codeQr)
             } else {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it.code!!)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it.code!!)
             }
         })
 
@@ -232,7 +235,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             }
 
             override fun onGoToDetail(code: String?) {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, codeStamp)
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, codeStamp)
             }
 
             override fun onGoToSms(target: String?, content: String?) {
@@ -283,8 +286,8 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             Constant.isMarketingStamps(it) -> {
                 WebViewActivity.start(requireActivity(), it, 1, null, true)
             }
-            it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
-                ActivityUtils.startActivity<DetailStampActivity, String>(requireActivity(), Constant.DATA, it)
+            it.contains("dev-qcheck.icheck.vn") || it.contains("qcheck-dev.vn") || it.contains("qcheck.vn") || it.contains("qrcode.icheck.com.vn") -> {
+                ActivityUtils.startActivity<StampDetailActivity, String>(requireActivity(), Constant.DATA, it)
             }
             it.contains("ktra.vn") -> {
                 var path = URL(it).path

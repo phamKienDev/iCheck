@@ -33,7 +33,7 @@ class HistoryGameViewModel : BaseViewModel<ICKItemReward>() {
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_default_loyalty, rText(R.string.ban_chua_nhap_ma_du_thuong_nao), rText(R.string.thu_nhap_ngay_van_may_biet_dau_toi), rText(R.string.nhap_ma_them_luot_quay), R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white)
+                        setErrorEmpty(R.drawable.ic_default_loyalty, rText(R.string.ban_chua_nhap_ma_du_thuong_nao), rText(R.string.thu_nhap_ngay_van_may_biet_dau_toi), rText(R.string.nhap_ma_them_luot_quay), R.drawable.bg_corner_53_no_solid_stroke_1, R.color.white, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }

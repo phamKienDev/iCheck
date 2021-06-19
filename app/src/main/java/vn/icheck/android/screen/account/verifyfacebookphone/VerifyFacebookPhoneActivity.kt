@@ -1,10 +1,12 @@
 package vn.icheck.android.screen.account.verifyfacebookphone
 
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_verify_facebook_phone.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.screen.account.registerfacebookphone.RegisterFacebookPhoneActivity
@@ -19,15 +21,18 @@ import vn.icheck.android.util.kotlin.WidgetUtils
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class VerifyFacebookPhoneActivity : BaseActivity<VerifyFacebookPhonePresenter>(), IVerifyFacebookPhoneView {
+class VerifyFacebookPhoneActivity : BaseActivityMVVM(), IVerifyFacebookPhoneView {
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_verify_facebook_phone
+    private val presenter = VerifyFacebookPhonePresenter(this@VerifyFacebookPhoneActivity)
 
-    override val getPresenter: VerifyFacebookPhonePresenter
-        get() = VerifyFacebookPhonePresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_verify_facebook_phone)
 
-    override fun onInitView() {
+        onInitView()
+    }
+
+    fun onInitView() {
         setupToolbar()
         initListener()
         presenter.getData(intent)
@@ -61,6 +66,10 @@ class VerifyFacebookPhoneActivity : BaseActivity<VerifyFacebookPhonePresenter>()
         DialogHelper.showLoading(this)
     }
 
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@VerifyFacebookPhoneActivity, isShow)
+    }
+
     override fun onCloseLoading() {
         DialogHelper.closeLoading(this)
     }
@@ -73,8 +82,10 @@ class VerifyFacebookPhoneActivity : BaseActivity<VerifyFacebookPhonePresenter>()
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
     }
+
+    override val mContext: Context
+        get() = this@VerifyFacebookPhoneActivity
 }

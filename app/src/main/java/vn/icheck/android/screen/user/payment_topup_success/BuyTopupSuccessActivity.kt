@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_buy_topup_success.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
@@ -20,7 +21,7 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.ick.rText
 
-class BuyTopupSuccessActivity : AppCompatActivity() {
+class BuyTopupSuccessActivity : BaseActivityMVVM() {
     lateinit var viewModel: PaymentViewModel
     private var vnPayType = false
 

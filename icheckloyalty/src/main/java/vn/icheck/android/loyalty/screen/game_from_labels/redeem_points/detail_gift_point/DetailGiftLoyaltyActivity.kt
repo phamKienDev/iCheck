@@ -3,9 +3,12 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.detail_g
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
+import kotlinx.android.synthetic.main.item_redemption_history.view.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
@@ -23,8 +26,11 @@ import vn.icheck.android.loyalty.screen.voucher.VoucherLoyaltyActivity
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 class DetailGiftLoyaltyActivity : BaseActivityGame() {
+    private val viewModel by viewModels<DetailGiftLoyaltyViewModel>()
 
     private val requestCard = 111
+
+    private var type = 1
 
     override val getLayoutID: Int
         get() = R.layout.activity_detail_gift_loyalty
@@ -38,20 +44,45 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     override fun onInitView() {
         StatusBarHelper.setOverStatusBarDark(this@DetailGiftLoyaltyActivity)
+        viewModel.collectionID = intent.getLongExtra(ConstantsLoyalty.DATA_1, -1)
+        type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
+
         initToolbar()
-        initListener()
+        loadDataServer()
+
+        if (type != 1) {
+            viewModel.getDetailGift()
+        } else {
+            initListener()
+        }
     }
 
     private fun initToolbar() {
         imgBack.setOnClickListener {
+
+            if (type != 1) {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_UPDATE))
+            }
             onBackPressed()
         }
+    }
+
+    private fun loadDataServer() {
+        viewModel.onSuccess.observe(this@DetailGiftLoyaltyActivity, {
+            loadDataDetailGift(it)
+        })
+
+        viewModel.onError.observe(this@DetailGiftLoyaltyActivity, {
+            runOnUiThread {
+                showShortErrorToast(it.title)
+                ActivityHelper.finishActivity(this)
+            }
+        })
     }
 
     @SuppressLint("SetTextI18n", "SetJavaScriptEnabled")
     private fun initListener() {
         campaignID = intent.getLongExtra(ConstantsLoyalty.DATA_3, -1)
-        val type = intent.getIntExtra(ConstantsLoyalty.DATA_7, 1) // phân biệt vào từ màn lịch sử hay không?
 
         tvDateTime.text = if (!obj?.export_gift_from.isNullOrEmpty() && !obj?.export_gift_to.isNullOrEmpty()) {
             TimeHelper.convertDateTimeSvToDateVn(obj?.export_gift_to)
@@ -59,59 +90,64 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             getString(R.string.dang_cap_nhat)
         }
 
-        setStatusGift(obj?.state)
-
-        if (type == 1) {
-            tvStatus.setGone()
-            layoutCountGift.setVisible()
-            btnDoiQua.setVisible()
-            layoutPhiVanChuyen.setGone()
-            when (obj?.gift?.type) {
-                "ICOIN" -> {
-                }
-                "PHONE_CARD" -> {
-                }
-                "RECEIVE_STORE" -> {
-                    btnDoiQua rText R.string.huong_dan_doi_qua
-                }
-                "PRODUCT" -> {
-                    layoutPhiVanChuyen.setVisible()
-                }
-                "VOUCHER" -> {
-                }
-                else -> {
-                    btnDoiQua.setGone()
-                }
+        tvStatus.setGone()
+        layoutCountGift.setVisible()
+        btnDoiQua.setVisible()
+        layoutPhiVanChuyen.setGone()
+        when (obj?.gift?.type) {
+            "ICOIN" -> {
             }
+            "PHONE_CARD" -> {
+            }
+            "RECEIVE_STORE" -> {
+                btnDoiQua rText R.string.huong_dan_doi_qua
+            }
+            "PRODUCT" -> {
+                layoutPhiVanChuyen.setVisible()
+            }
+            "VOUCHER" -> {
+            }
+            else -> {
+                btnDoiQua.setGone()
+            }
+        }
 
-            btnDoiQua.setOnClickListener {
-                if (obj?.points != null) {
-                    when (obj?.gift?.type) {
-                        "RECEIVE_STORE" -> {
-                            DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
-                        }
-                        "PHONE_CARD" -> {
-                            if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
-                                obj?.let { data ->
-                                    DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
-                                }
-                            } else {
-                                DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
-                                        R.drawable.ic_error_scan_game, rText(R.string.ban_khong_du_diem_doi_qua),
-                                        rText(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
-                                        null, rText(R.string.tich_diem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
-                                        object : IClickButtonDialog<ICKNone> {
-                                            override fun onClickButtonData(data: ICKNone?) {
-                                                startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
-                                                    putExtra(ConstantsLoyalty.DATA_1, campaignID)
-                                                })
-                                            }
-                                        }, object : IDismissDialog {
-                                    override fun onDismiss() {
+        btnDoiQua.isEnabled = SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) > 0
 
-                                    }
-                                })
+        btnDoiQua.background = if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) > 0) {
+            ContextCompat.getDrawable(this, R.drawable.bg_gradient_button_orange_yellow)
+        } else {
+            ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
+        }
+
+        btnDoiQua.setOnClickListener {
+            if (obj?.points != null) {
+                when (obj?.gift?.type) {
+                    "RECEIVE_STORE" -> {
+                        DialogHelperGame.dialogTutorialLoyalty(this, R.drawable.bg_gradient_button_orange_yellow)
+                    }
+                    "PHONE_CARD" -> {
+                        if (obj?.points!! <= SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.POINT_USER_LOYALTY)) {
+                            obj?.let { data ->
+                                DialogHelperGame.dialogConfirmExchangeGifts(this@DetailGiftLoyaltyActivity, data, campaignID)
                             }
+                        } else {
+                            DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
+                                    R.drawable.ic_error_scan_game, rText(R.string.ban_khong_du_diem_doi_qua),
+                                    rText(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
+                                    null, rText(R.string.tich_diem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                    object : IClickButtonDialog<ICKNone> {
+                                        override fun onClickButtonData(data: ICKNone?) {
+                                            startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
+                                                putExtra(ConstantsLoyalty.DATA_1, campaignID)
+                                            })
+                                        }
+                                    }, object : IDismissDialog {
+                                override fun onDismiss() {
+
+                                }
+                            })
+                        }
 //                        viewModel.postExchangeCardGift()
                         }
                         else -> {
@@ -131,131 +167,290 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                             object : IClickButtonDialog<ICKNone> {
                                                 override fun onClickButtonData(obj: ICKNone?) {
 
-                                                    Handler().postDelayed({
-                                                        DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
-                                                                R.drawable.ic_nhap_ma_cong_diem,
-                                                                rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
-                                                                rText(R.string.nhap_ma_vao_day_i),
-                                                                rText(R.string.vui_long_nhap_ma_code), campaignID, R.drawable.bg_gradient_button_orange_yellow,
-                                                                object : IClickButtonDialog<ICKAccumulatePoint> {
-                                                                    override fun onClickButtonData(obj: ICKAccumulatePoint?) {
+                                                Handler().postDelayed({
+                                                    DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
+                                                            R.drawable.ic_nhap_ma_cong_diem,
+                                                            rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
+                                                            rText(R.string.nhap_ma_vao_day_i),
+                                                            rText(R.string.vui_long_nhap_ma_code), campaignID, R.drawable.bg_gradient_button_orange_yellow,
+                                                            object : IClickButtonDialog<ICKAccumulatePoint> {
+                                                                override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
-                                                                        /**
-                                                                         * Dialog Nhập mã thành công
-                                                                         */
+                                                                    /**
+                                                                     * Dialog Nhập mã thành công
+                                                                     */
 
-                                                                        Handler().postDelayed({
-                                                                            DialogHelperGame.dialogAccumulatePointSuccess(this@DetailGiftLoyaltyActivity,
-                                                                                    obj?.point, obj?.statistic?.owner?.logo?.medium,
-                                                                                    obj?.statistic?.owner?.name,
-                                                                                    obj?.statistic?.campaign_id,
-                                                                                    GameFromLabelsListActivity.name,
-                                                                                    R.drawable.bg_gradient_button_orange_yellow, null,
-                                                                                    object : IClickButtonDialog<Long> {
-                                                                                        override fun onClickButtonData(obj: Long?) {
+                                                                    Handler().postDelayed({
+                                                                        DialogHelperGame.dialogAccumulatePointSuccess(this@DetailGiftLoyaltyActivity,
+                                                                                obj?.point, obj?.statistic?.owner?.logo?.medium,
+                                                                                obj?.statistic?.owner?.name,
+                                                                                obj?.statistic?.campaign_id,
+                                                                                GameFromLabelsListActivity.name,
+                                                                                R.drawable.bg_gradient_button_orange_yellow, null,
+                                                                                object : IClickButtonDialog<Long> {
+                                                                                    override fun onClickButtonData(obj: Long?) {
 
-                                                                                        }
+                                                                                    }
 
-                                                                                    }, object : IDismissDialog {
-                                                                                override fun onDismiss() {
+                                                                                }, object : IDismissDialog {
+                                                                            override fun onDismiss() {
 
-                                                                                }
-                                                                            })
-                                                                        }, 300)
-                                                                    }
-                                                                })
-                                                    }, 300)
-                                                }
-                                            })
-                                } else {
-                                    DialogHelperGame.dialogNotEnoughPoints(this, rText(R.string.ban_khong_du_diem_roi),
-                                            rText(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, rText(R.string.quet_tem_ngay), true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
-                                            object : IClickButtonDialog<ICKNone> {
-                                                override fun onClickButtonData(obj: ICKNone?) {
-                                                    LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
-                                                }
-                                            })
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    showLongError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                }
-            }
-        } else {
-            layoutPhiVanChuyen.setGone()
-            btnDoiQua.setGone()
-            layoutCountGift.setGone()
-            tvStatus.setVisible()
-
-            when (obj?.gift?.type) {
-                "ICOIN" -> {
-                }
-                "PHONE_CARD" -> {
-                }
-                "RECEIVE_STORE" -> {
-                    tvStatus.setGone()
-                }
-                "PRODUCT" -> {
-                }
-                "VOUCHER" -> {
-                    tvTitleDate.text = obj?.titleDate
-
-                    tvDateTime.text = obj?.dateChange
-
-                    if (obj?.statusChange?.contains(rText(R.string.het_luot_su_dung)) == true){
-                        tvTitleDate.setInvisible()
-                        tvDateTime.setInvisible()
-                    }else{
-                        tvTitleDate.setVisible()
-                        tvDateTime.setVisible()
-                    }
-
-                    tvStatus.apply {
-                        text = obj?.statusChange
-                        setTextColor(obj?.colorText ?: 0)
-                        setBackgroundResource(obj?.colorBackground ?: 0)
-                    }
-
-                    btnDoiQua.setVisible()
-
-                    btnDoiQua.apply {
-                        when {
-                            obj?.voucher?.can_use == true -> {
-                                text = context.rText(R.string.dung_ngay)
-
-                                setOnClickListener {
-                                    startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
-                                        putExtra(ConstantsLoyalty.DATA_1, obj?.voucher?.code)
-                                        putExtra(ConstantsLoyalty.DATA_2, obj?.dateChange)
-                                        putExtra(ConstantsLoyalty.DATA_3, obj?.gift?.owner?.logo?.thumbnail)
-                                    })
-                                }
-                            }
-                            obj?.voucher?.can_mark_use == true -> {
-                                text = context.rText(R.string.danh_dau_da_dung)
-
-                                setOnClickListener {
-                                    showCustomErrorToast(this@DetailGiftLoyaltyActivity, context.rText(R.string.chua_co_su_kien))
-                                }
-                            }
-                            else -> {
-                                setGone()
+                                                                            }
+                                                                        })
+                                                                    }, 300)
+                                                                }
+                                                            })
+                                                }, 300)
+                                            }
+                                        })
+                            } else {
+                                DialogHelperGame.dialogNotEnoughPoints(this, rText(R.string.ban_khong_du_diem_roi),
+                                        rText(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, rText(R.string.quet_tem_ngay), true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                        object : IClickButtonDialog<ICKNone> {
+                                            override fun onClickButtonData(obj: ICKNone?) {
+                                                LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
+                                            }
+                                        })
                             }
                         }
                     }
                 }
-                else -> {
-                    tvStatus.setGone()
-                }
+            } else {
+                showLongError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
+
         WidgetHelper.loadImageUrl(imgBanner, intent.getStringExtra(ConstantsLoyalty.DATA_2))
 
         WidgetHelper.loadImageUrl(imgProduct, obj?.gift?.image?.medium)
 
         tvVanChuyen.text = when (obj?.gift?.type) {
+            "ICOIN" -> {
+                "Quà Xu iCheck"
+            }
+            "PHONE_CARD" -> {
+                "Quà thẻ cào"
+            }
+            "RECEIVE_STORE" -> {
+                "Quà đổi tại cửa hàng"
+            }
+            "PRODUCT" -> {
+                "Quà giao tận nơi"
+            }
+            "VOUCHER" -> {
+                "Quà voucher"
+            }
+            else -> {
+                "Quà tinh thần"
+            }
+        }
+
+        tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
+            obj?.gift?.name
+        } else {
+            getString(R.string.dang_cap_nhat)
+        }
+
+        tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
+
+        tvPoin.text = if (obj?.points != null || obj?.box_gift?.points != null) {
+            TextHelper.formatMoneyPhay(obj?.points ?: obj?.box_gift?.points)
+        } else {
+            getString(R.string.dang_cap_nhat)
+        }
+
+        tvDetailGift.settings.javaScriptEnabled = true
+        tvDetailGift.loadData(obj?.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
+
+        WidgetHelper.loadImageUrl(imgAvatar, obj?.gift?.owner?.logo?.medium)
+
+        tvNameShop.text = if (!obj?.gift?.owner?.name.isNullOrEmpty()) {
+            obj?.gift?.owner?.name
+        } else {
+            getString(R.string.dang_cap_nhat)
+        }
+
+    }
+
+    private fun setStatusGift(status: String?) {
+        tvStatus.run {
+            when (status) {
+                "new" -> {
+                    text = "Chờ xác nhận"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                "waiting_receive_gift" -> {
+                    setVisible()
+                    text = "Chờ giao"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                "received_gift" -> {
+                    setVisible()
+                    text = "Đã nhận quà"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
+                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
+                }
+                "refused_gift" -> {
+                    setVisible()
+                    text = "Từ chối"
+                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
+                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
+                }
+                else -> {
+                    setGone()
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n", "SetJavaScriptEnabled")
+    private fun loadDataDetailGift(obj: ICKBoxGifts) {
+        if (obj.gift?.type == "VOUCHER") {
+
+            if (obj.voucher != null) {
+
+                obj.titleDate = "Hạn sử dụng"
+
+                if (obj.voucher?.checked_condition?.status == false) {
+                    when (obj.voucher?.checked_condition?.code) {
+                        "START_TIME_CAN_USE" -> {
+                            obj.titleDate = "Có hiệu lực từ"
+
+                            obj.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
+
+                            obj.statusChange = "Chưa có hiệu lực"
+
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange)
+
+                            obj.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
+                        }
+                        "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                            obj.statusChange = "Hết lượt sử dụng"
+
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
+                        "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                            obj.dateChange = ""
+
+                            obj.statusChange = "Đã bị khóa"
+
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
+                        else -> {
+                            obj.dateChange = ""
+
+                            obj.statusChange = "Hết hạn sử dụng"
+
+                            obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+
+                            obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                        }
+                    }
+                } else {
+
+                    obj.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
+
+                    if (obj.dateChange == "Còn lại ") {
+
+                        obj.dateChange = ""
+
+                        obj.statusChange = "Hết hạn sử dụng"
+
+                        obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
+
+                        obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
+                    } else {
+                        obj.statusChange = "Có thể sử dụng"
+
+                        obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2)
+
+                        obj.colorBackground = R.drawable.bg_corner_30_green_opacity_02
+                    }
+                }
+            }
+        }
+
+        setStatusGift(obj.status)
+
+        layoutPhiVanChuyen.setGone()
+        btnDoiQua.setGone()
+        layoutCountGift.setGone()
+        tvStatus.setVisible()
+
+        when (obj.gift?.type) {
+            "ICOIN" -> {
+            }
+            "PHONE_CARD" -> {
+            }
+            "RECEIVE_STORE" -> {
+                tvStatus.setGone()
+            }
+            "PRODUCT" -> {
+            }
+            "VOUCHER" -> {
+                tvTitleDate.text = obj.titleDate
+
+                tvDateTime.text = obj.dateChange
+
+                if (obj.statusChange?.contains(rText(R.string.het_luot_su_dung)) == true) {
+                    tvTitleDate.setInvisible()
+                    tvDateTime.setInvisible()
+                } else {
+                    tvTitleDate.setVisible()
+                    tvDateTime.setVisible()
+                }
+
+                tvStatus.apply {
+                    text = obj.statusChange
+                    setTextColor(obj.colorText ?: 0)
+                    setBackgroundResource(obj.colorBackground ?: 0)
+                }
+
+                btnDoiQua.setVisible()
+                btnDoiQua.isEnabled = true
+
+                btnDoiQua.apply {
+                    when {
+                        obj.voucher?.can_use == true -> {
+                            text = context.rText(R.string.dung_ngay)
+
+                            setOnClickListener {
+                                startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
+                                    putExtra(ConstantsLoyalty.DATA_1, obj.voucher?.code)
+                                    putExtra(ConstantsLoyalty.DATA_2, obj.dateChange)
+                                    putExtra(ConstantsLoyalty.DATA_3, obj.gift?.owner?.logo?.thumbnail)
+                                })
+                            }
+                        }
+                        obj.voucher?.can_mark_use == true -> {
+                            text = context.rText(R.string.danh_dau_da_dung)
+
+                            setOnClickListener {
+                                showCustomErrorToast(this@DetailGiftLoyaltyActivity, context.rText(R.string.chua_co_su_kien))
+                            }
+                        }
+                        else -> {
+                            setGone()
+                        }
+                    }
+                }
+            }
+            else -> {
+                tvStatus.setGone()
+            }
+        }
+
+        WidgetHelper.loadImageUrl(imgBanner, intent.getStringExtra(ConstantsLoyalty.DATA_2))
+
+        WidgetHelper.loadImageUrl(imgProduct, obj.gift?.image?.medium)
+
+        tvVanChuyen.text = when (obj.gift?.type) {
             "ICOIN" -> {
                 rText(R.string.qua_xu_icheck)
             }
@@ -276,90 +471,52 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             }
         }
 
-        tvProduct.text = if (!obj?.gift?.name.isNullOrEmpty()) {
-            obj?.gift?.name
+        tvProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
+            obj.gift?.name
         } else {
             rText(R.string.dang_cap_nhat)
         }
 
         tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
 
-        tvPoin.text = if (obj?.points != null) {
-            TextHelper.formatMoneyPhay(obj?.points)
+        tvPoin.text = if (obj.points != null || obj.box_gift?.points != null) {
+            TextHelper.formatMoneyPhay(obj.points ?: obj.box_gift?.points)
         } else {
             rText(R.string.dang_cap_nhat)
         }
 
         tvDetailGift.settings.javaScriptEnabled = true
-        tvDetailGift.loadData(obj?.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
+        tvDetailGift.loadData(obj.gift?.description ?: "", "text/html; charset=utf-8", "UTF-8")
 
-        WidgetHelper.loadImageUrl(imgAvatar, obj?.gift?.owner?.logo?.medium)
+        WidgetHelper.loadImageUrl(imgAvatar, obj.owner?.logo?.medium)
 
-        tvNameShop.text = if (!obj?.gift?.owner?.name.isNullOrEmpty()) {
-            obj?.gift?.owner?.name
+        tvNameShop.text = if (!obj.owner?.name.isNullOrEmpty()) {
+            obj.owner?.name
         } else {
             getString(R.string.dang_cap_nhat)
         }
-
-        btnDoiQua.isEnabled = SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) > 0
-
-        btnDoiQua.background = if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) > 0) {
-            ContextCompat.getDrawable(this, R.drawable.bg_gradient_button_orange_yellow)
-        } else {
-            ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
-        }
     }
-
-    private fun setStatusGift(state: Int?) {
-        tvStatus.run {
-            when (state) {
-                1 -> {
-                    text = context.rText(R.string.cho_xac_nhan)
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                2 -> {
-                    setVisible()
-                    text = context.rText(R.string.cho_giao)
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                3 -> {
-                    setVisible()
-                    text = context.rText(R.string.da_nhan_qua)
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
-                    setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
-                }
-                4 -> {
-                    setVisible()
-                    text = context.rText(R.string.tu_choi)
-                    setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
-                    setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
-                }
-                else -> {
-                    setGone()
-                }
-            }
-        }
-    }
-
 
     @SuppressLint("SetTextI18n")
     override fun onMessageEvent(event: ICMessageEvent) {
-        super.onMessageEvent(event)
-        when(event.type){
-            ICMessageEvent.Type.ON_COUNT_GIFT -> {
+
+        when {
+            event.type == ICMessageEvent.Type.ON_COUNT_GIFT -> {
                 tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
-                if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) <= 0){
+                if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT) <= 0) {
                     btnDoiQua.isEnabled = false
                     btnDoiQua.background = ContextCompat.getDrawable(this, R.drawable.bg_gray_corner_20dp)
                 }
             }
-            ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
+            event.type == ICMessageEvent.Type.EXCHANGE_PHONE_CARD -> {
                 if (event.data is Long) {
                     ChangePhoneCardsActivity.start(this, event.data, ConstantsLoyalty.TDNH, campaignID, requestCard)
                 }
             }
+            type != 1 && event.type == ICMessageEvent.Type.BACK_UPDATE -> {
+                viewModel.getDetailGift()
+            }
+            else -> super.onMessageEvent(event)
         }
     }
 
@@ -390,6 +547,8 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
     override fun onDestroy() {
         super.onDestroy()
-        obj = null
+        if (type == 1) {
+            obj = null
+        }
     }
 }

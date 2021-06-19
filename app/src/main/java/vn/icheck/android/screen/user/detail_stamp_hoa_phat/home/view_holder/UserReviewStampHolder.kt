@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.ctsp_customer_rv_holder.view.*
 import vn.icheck.android.R
-import vn.icheck.android.activities.product.review_v1.EditReviewV1Activity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.network.models.v1.ImageChild
+import vn.icheck.android.network.models.v1.ICImage
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.EditReviewImgV1Adapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
@@ -21,7 +20,7 @@ import vn.icheck.android.util.ick.rText
 
 class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICCriteria>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_customer_rv_holder, parent, false)) {
 
-    private val listImg = mutableListOf<ImageChild>()
+    private val listImg = mutableListOf<ICImage>()
     val listCriteriaChild = mutableListOf<CriteriaChild>()
 
     override fun bind(obj: ICCriteria) {
@@ -31,7 +30,7 @@ class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHead
         itemView.customer_rating.rating = obj.customerEvaluation?.averagePoint!!
         if (obj.customerEvaluation?.imageThumbs!!.isNotEmpty()) {
             for (i in obj.customerEvaluation?.imageThumbs!!.indices) {
-                listImg.add(ImageChild(obj.customerEvaluation?.imageThumbs!![i].thumbnail))
+                listImg.add(ICImage(obj.customerEvaluation?.imageThumbs!![i].thumbnail))
             }
             val imgAdapter = EditReviewImgV1Adapter(listImg)
             itemView.findViewById<RecyclerView>(R.id.rcv_image).layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)

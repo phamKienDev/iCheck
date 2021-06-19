@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_brand_page.*
 import kotlinx.android.synthetic.main.toolbar_blue_v2.*
 import vn.icheck.android.R
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.screen.user.brand.adapter.BrandPageAdapter
 import vn.icheck.android.util.ick.rText
@@ -18,7 +19,7 @@ import vn.icheck.android.util.kotlin.ToastUtils
  * 0974815770
  * hungphp@icheck.vn
  */
-class BrandPageActivity : AppCompatActivity(), IRecyclerViewCallback {
+class BrandPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     val adapter = BrandPageAdapter(this)
     lateinit var viewModel: BrandPageViewModel
 

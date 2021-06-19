@@ -1,28 +1,32 @@
 package vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee_v6.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.presenter.DetaiHistoryGuaranteeV6Presenter
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.view.IDetaiHistoryGuaranteeV6View
 import vn.icheck.android.util.ick.rText
 
-class DetaiHistoryGuaranteeV6Activity : BaseActivity<DetaiHistoryGuaranteeV6Presenter>(), IDetaiHistoryGuaranteeV6View {
+class DetaiHistoryGuaranteeV6Activity : BaseActivityMVVM(), IDetaiHistoryGuaranteeV6View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_detai_history_guarantee_v6
+    val presenter = DetaiHistoryGuaranteeV6Presenter(this@DetaiHistoryGuaranteeV6Activity)
 
-    override val getPresenter: DetaiHistoryGuaranteeV6Presenter
-        get() = DetaiHistoryGuaranteeV6Presenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detai_history_guarantee_v6)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         presenter.getDataIntent(intent)
         txtTitle rText R.string.chi_tiet_bao_hanh
         listener()
@@ -88,5 +92,16 @@ class DetaiHistoryGuaranteeV6Activity : BaseActivity<DetaiHistoryGuaranteeV6Pres
             tvSubInforGuarantee.visibility = View.GONE
             layoutInforGuarantee.visibility = View.GONE
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@DetaiHistoryGuaranteeV6Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@DetaiHistoryGuaranteeV6Activity, isShow)
     }
 }

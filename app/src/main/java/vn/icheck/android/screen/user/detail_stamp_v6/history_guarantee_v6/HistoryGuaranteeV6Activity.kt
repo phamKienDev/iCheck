@@ -1,12 +1,16 @@
 package vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6
 
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_history_guarantee_v6.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6.ObjectLogHistoryV6
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity
@@ -15,17 +19,19 @@ import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.presen
 import vn.icheck.android.screen.user.detail_stamp_v6.history_guarantee_v6.view.IHistoryGuaranteeV6View
 import vn.icheck.android.util.ick.rText
 
-class HistoryGuaranteeV6Activity : BaseActivity<HistoryGuaranteeV6Presenter>(),IHistoryGuaranteeV6View {
+class HistoryGuaranteeV6Activity : BaseActivityMVVM(),IHistoryGuaranteeV6View {
+
+    val presenter = HistoryGuaranteeV6Presenter(this@HistoryGuaranteeV6Activity)
 
     private lateinit var adapter: HistoryGuaranteeV6Adapter
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_history_guarantee_v6
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history_guarantee_v6)
+        onInitView()
+    }
 
-    override val getPresenter: HistoryGuaranteeV6Presenter
-        get() = HistoryGuaranteeV6Presenter(this)
-
-    override fun onInitView() {
+    fun onInitView() {
         presenter.getDataIntent(intent)
         listener()
         initRecyclerView()
@@ -56,6 +62,17 @@ class HistoryGuaranteeV6Activity : BaseActivity<HistoryGuaranteeV6Presenter>(),I
         }else{
             adapter.setError(Constant.ERROR_EMPTY)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@HistoryGuaranteeV6Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@HistoryGuaranteeV6Activity, isShow)
     }
 
     override fun getDataIntentError(errorType: Int) {

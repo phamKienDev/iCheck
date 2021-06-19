@@ -13,7 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampInteractor
+import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
@@ -26,7 +26,7 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.model.ICStampIte
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.model.ICViewType
 
 class DetailStampThinhLongViewModel : ViewModel() {
-    private val interactor = DetailStampInteractor()
+    private val interactor = DetailStampRepository()
     private val productInteraction = ProductInteractor()
 
     var onSetbookmark = MutableLiveData<Boolean>()

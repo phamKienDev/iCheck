@@ -12,7 +12,6 @@ import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.loyalty.helper.TimeHelper
-import vn.icheck.android.loyalty.helper.TimeHelper.millisecondEffectiveTime
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGift
 
@@ -88,25 +87,29 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                     if (obj.voucher.checked_condition?.status == false) {
 
-                        if (obj.voucher.checked_condition?.code == "START_TIME_CAN_USE") {
+                        when(obj.voucher.checked_condition?.code){
+                            "START_TIME_CAN_USE" -> {
+                                itemView.tvTitleDate rText R.string.co_hieu_luc_tu
 
-                            itemView.tvTitleDate rText R.string.co_hieu_luc_tu
+                                itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
 
-                            itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
+                                itemView.tvStatus rText R.string.chua_co_hieu_luc
+                            }
+                            "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
+                                itemView.layoutDate.setGone()
 
-                            itemView.tvStatus rText R.string.chua_co_hieu_luc
+                                itemView.tvStatus rText R.string.het_luot_su_dung
+                            }
+                            "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
+                                itemView.tvTimeGift.text = ""
 
-                        } else if (obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_VOUCHER" || obj.voucher.checked_condition?.code == "MAX_NUM_OF_USED_CUSTOMER") {
+                                itemView.tvStatus rText R.string.da_bi_khoa
+                            }
+                            else -> {
+                                itemView.tvTimeGift.text = ""
 
-                            itemView.layoutDate.setGone()
-
-                            itemView.tvStatus rText R.string.het_luot_su_dung
-
-                        } else {
-
-                            itemView.tvTimeGift.text = ""
-
-                            itemView.tvStatus rText R.string.het_han_su_dung
+                                itemView.tvStatus rText R.string.het_han_su_dung
+                            }
                         }
 
                     } else {
@@ -177,8 +180,8 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
             }
 
             if (!obj.desc.isNullOrEmpty()) {
-                itemView.webView.settings.javaScriptEnabled = true
-                itemView.webView.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
+                itemView.webViewUrl.settings.javaScriptEnabled = true
+                itemView.webViewUrl.loadData(obj.desc, "text/html; charset=utf-8", "UTF-8")
             }
 
             itemView.tvCode.text = obj.id.toString()

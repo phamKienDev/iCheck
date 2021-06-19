@@ -3,16 +3,18 @@ package vn.icheck.android.activities.product.review_product_v1.holder
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.item_post_your_review_product.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
+import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
+import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
-import vn.icheck.android.screen.account.home.AccountActivity
-import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
-import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
+import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import java.io.File
 
@@ -69,7 +71,9 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
                     } else {
                         ReviewProductV1Activity.message = itemView.edt_comment_review.text.toString()
                         ReviewProductV1Activity.listYourCriteria = criteria
-                        AccountActivity.start(listener.mContext)
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            ActivityUtils.startActivity<IckLoginActivity>(activity)
+                        }
                     }
                 } else {
                     ToastUtils.showShortError(listener.mContext, listener.mContext.getString(R.string.vui_long_dien_day_du_tieu_chi))

@@ -8,7 +8,6 @@ import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 
-
 fun Context.getDeviceWidth() = this.resources.displayMetrics.widthPixels
 
 fun Context.getDeviceHeight() = this.resources.displayMetrics.heightPixels

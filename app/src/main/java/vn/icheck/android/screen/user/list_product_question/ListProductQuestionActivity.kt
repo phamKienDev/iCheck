@@ -74,7 +74,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private val permissionImage = 1
     private val requestEditQuestion = 1
-    private val requestLogin = 2
+    private val requestLoginV2 = 2
 
     private val takeMediaListener = object : TakeMediaListener {
         override fun onPickMediaSucess(file: File) {
@@ -522,7 +522,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
                     if (SessionManager.isUserLogged) {
                         viewModel.send(imgAvatar.tag as ICCommentPermission?, tvActor.tag as Long?, layoutImage.tag, edtContent.text.toString())
                     } else {
-                        onRequireLogin(requestLogin)
+                        onRequireLogin(requestLoginV2)
                     }
                 }
             }
@@ -575,7 +575,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     override fun onRequireLoginSuccess(requestCode: Int) {
         super.onRequireLoginSuccess(requestCode)
-        if (requestCode == requestLogin) {
+        if (requestCode == requestLoginV2) {
             checkUserLogin()
             viewModel.getData()
             viewModel.getListPermission()

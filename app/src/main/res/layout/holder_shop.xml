@@ -24,14 +24,14 @@
             android:layout_marginStart="@dimen/size_64"
             android:layout_marginTop="@dimen/size_5"
             android:layout_marginEnd="@dimen/size_14"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="#3c5a99"
-            android:maxLines="1"
-            android:singleLine="true"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Công ty TNHH Kính Mắt Quang Hưng" />
+            tools:text="Công ty TNHH Kính Mắt Quang Hưng fsd lkjfd jklafds  jklafsdljk asfdljk; asdf ;klafsd lkjafds ;lka ;fweljk" />
 
         <vn.icheck.android.ui.view.TextBarlowMedium
             android:id="@+id/tv_distance"
@@ -99,8 +99,8 @@
                     android:id="@+id/tv_sale_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccentRed"
                     android:fontFamily="@font/barlow_semi_bold"
+                    android:textColor="@color/colorAccentRed"
                     android:textSize="@dimen/font_16"
                     tools:text="23,004,000đ" />
 
@@ -108,8 +108,8 @@
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b4b4b4"
                     android:fontFamily="@font/barlow_medium"
+                    android:textColor="#b4b4b4"
                     android:textSize="@dimen/font_12"
                     tools:text="23,504,000đ" />
             </LinearLayout>
@@ -145,7 +145,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/size_25"
                 android:layout_marginEnd="@dimen/size_10"
-                android:visibility="gone" >
+                android:visibility="gone">
 
                 <vn.icheck.android.ui.view.TextBarlowSemiBold
                     android:layout_width="wrap_content"
@@ -154,7 +154,7 @@
                     android:drawableStart="@drawable/ic_location_item_shop_variant"
                     android:gravity="center"
                     android:paddingStart="@dimen/size_11"
-                    android:paddingEnd="@dimen/size_11"/>
+                    android:paddingEnd="@dimen/size_11" />
 
             </LinearLayout>
 
@@ -172,10 +172,10 @@
                     android:id="@+id/tvSubAddToCart"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
                     android:drawableStart="@drawable/ic_add_to_cart_item_shop_variant"
                     android:drawablePadding="@dimen/size_16"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
                     android:text="@string/them_vao_gio_hang"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/font_16" />

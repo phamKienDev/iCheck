@@ -2,15 +2,18 @@ package vn.icheck.android.screen.user.createqrcode.success
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_create_qr_code_success.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
@@ -22,17 +25,19 @@ import vn.icheck.android.util.ick.rText
  * Phone: 0986495949
  * Email: vulcl@icheck.vn
  */
-class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>(), ICreateQrCodeSuccessView {
+class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView {
     private val requestSave = 1
     private val requestShare = 2
 
-    override val getLayoutID: Int
-        get() = R.layout.fragment_create_qr_code_success
+    val presenter = CreateQrCodeSuccessPresenter(this@CreateQrCodeSuccessActivity)
 
-    override val getPresenter: CreateQrCodeSuccessPresenter
-        get() = CreateQrCodeSuccessPresenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_create_qr_code_success)
+        onInitView()
+    }
 
-    override fun onInitView() {
+    fun onInitView() {
         presenter.getData(intent)
         initListener()
     }
@@ -107,9 +112,15 @@ class CreateQrCodeSuccessActivity : BaseActivity<CreateQrCodeSuccessPresenter>()
     }
 
     override fun showError(errorMessage: String) {
-        super.showError(errorMessage)
 
         showShortError(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@CreateQrCodeSuccessActivity
+
+    override fun onShowLoading(isShow: Boolean) {
+        vn.icheck.android.ichecklibs.DialogHelper.showLoading(this@CreateQrCodeSuccessActivity, isShow)
     }
 
     @Suppress("DEPRECATION")

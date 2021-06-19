@@ -359,6 +359,16 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
             setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
+            if (ChatSocialDetailActivity.toType == "user") {
+                binding.imgAvatarUser.setBackgroundResource(0)
+            } else {
+                if (ChatSocialDetailActivity.isVerified) {
+                    binding.imgAvatarUser.setBackgroundResource(R.drawable.ic_bg_avatar_page)
+                } else {
+                    binding.imgAvatarUser.setBackgroundResource(0)
+                }
+            }
+
             if (!obj.content.isNullOrEmpty()) {
                 if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
                     binding.tvMessage.setGone()
@@ -403,7 +413,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
 
                 binding.btnProductDetail.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
             }
         }
@@ -561,10 +571,17 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
 
             if (obj.content!!.contains("icheck://")) {
                 val positionStart = obj.content!!.indexOf("icheck://")
-                val positionEnd = obj.content!!.indexOf(" ", positionStart)
 
-                val schema = if (positionEnd != -1) {
-                    obj.content!!.substring(positionStart, positionEnd)
+                var lastPosition = 0
+                for (i in positionStart until obj.content!!.length) {
+                    if (obj.content!![i] == ' ' || obj.content!![i] == '\n') {
+                        lastPosition = i
+                        break
+                    }
+                }
+
+                val schema = if (lastPosition != 0) {
+                    obj.content!!.substring(positionStart, lastPosition)
                 } else {
                     obj.content!!
                 }
@@ -574,7 +591,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 text = Html.fromHtml(content)
 
                 setOnClickListener {
-                    ChatSdk.openActivity(schema)
+                    openActivity(schema)
                 }
             } else {
                 text = obj.content!!.replace("\r", "\n")

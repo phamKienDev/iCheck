@@ -55,22 +55,22 @@ class LandingPageFragment(private val landingPage: String?, private val titleBut
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView(url: String) {
-        webView.settings.javaScriptEnabled = true
+        webViewUrl.settings.javaScriptEnabled = true
         @Suppress("DEPRECATION")
-        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccessFromFileURLs = true
-        webView.settings.useWideViewPort = true
-        webView.settings.loadWithOverviewMode = true
-        webView.settings.allowUniversalAccessFromFileURLs = true
+        webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webViewUrl.settings.domStorageEnabled = true
+        webViewUrl.settings.allowFileAccessFromFileURLs = true
+        webViewUrl.settings.useWideViewPort = true
+        webViewUrl.settings.loadWithOverviewMode = true
+        webViewUrl.settings.allowUniversalAccessFromFileURLs = true
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            webViewUrl.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
         }
 
-        webView.loadUrl(url)
+        webViewUrl.loadUrl(url)
 
-        webView.webViewClient = object : WebViewClient() {
+        webViewUrl.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     view.loadUrl(request.url.toString())

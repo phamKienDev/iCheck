@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.R
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.ActivityContactBinding
@@ -14,9 +15,8 @@ import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.*
 
-class ContactActivity : AppCompatActivity() {
+class ContactActivity : BaseActivityMVVM() {
     private lateinit var binding: ActivityContactBinding
-    var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

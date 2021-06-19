@@ -1,18 +1,22 @@
 package vn.icheck.android.screen.user.detail_stamp_v6.more_business_v6
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_more_business_v6.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectBusinessV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectOtherProductV6
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
@@ -24,19 +28,20 @@ import vn.icheck.android.ui.layout.CustomGridLayoutManager
 import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 
-class MoreBusinessV6Activity : BaseActivity<MoreBusinessV6Presenter>(), IMoreBusinessV6View {
+class MoreBusinessV6Activity : BaseActivityMVVM(), IMoreBusinessV6View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_more_business_v6
-
-    override val getPresenter: MoreBusinessV6Presenter
-        get() = MoreBusinessV6Presenter(this)
-
+    val presenter = MoreBusinessV6Presenter(this@MoreBusinessV6Activity)
     private var adapterSuggestion = MoreProductVerifiedInBusinessV6Adapter(this)
 
     private val requestPhone = 1
 
-    override fun onInitView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_more_business_v6)
+        onInitView()
+    }
+
+    fun onInitView() {
         initRecyclerViewMoreProduct()
         presenter.getDataIntent(intent)
         listener()
@@ -128,6 +133,17 @@ class MoreBusinessV6Activity : BaseActivity<MoreBusinessV6Presenter>(), IMoreBus
         if (!item.sku.isNullOrEmpty()) {
             IckProductDetailActivity.start(this,item.sku!!)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@MoreBusinessV6Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@MoreBusinessV6Activity, isShow)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

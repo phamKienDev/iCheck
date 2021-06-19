@@ -1,17 +1,18 @@
 package vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_history_guarantee_v5.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.base.activity.BaseActivity
+import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6.ObjectLogHistoryV6
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.adapter.HistoryGuaranteeV5Adapter
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.presenter.HistoryGuaranteeV5Presenter
@@ -19,17 +20,19 @@ import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.view.I
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity
 import vn.icheck.android.util.ick.rText
 
-class HistoryGuaranteeV5Activity : BaseActivity<HistoryGuaranteeV5Presenter>(), IHistoryGuaranteeV5View {
+class HistoryGuaranteeV5Activity : BaseActivityMVVM(), IHistoryGuaranteeV5View {
 
-    override val getLayoutID: Int
-        get() = R.layout.activity_history_guarantee_v5
+    val presenter = HistoryGuaranteeV5Presenter(this@HistoryGuaranteeV5Activity)
 
-    override val getPresenter: HistoryGuaranteeV5Presenter
-        get() = HistoryGuaranteeV5Presenter(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_history_guarantee_v5)
+        onInitView()
+    }
 
     private lateinit var adapter: HistoryGuaranteeV5Adapter
 
-    override fun onInitView() {
+    fun onInitView() {
         presenter.getDataIntent(intent)
         listener()
         initRecyclerView()
@@ -67,5 +70,16 @@ class HistoryGuaranteeV5Activity : BaseActivity<HistoryGuaranteeV5Presenter>(), 
         }else{
             adapter.setError(Constant.ERROR_EMPTY)
         }
+    }
+
+    override fun showError(errorMessage: String) {
+        showLongErrorToast(errorMessage)
+    }
+
+    override val mContext: Context
+        get() = this@HistoryGuaranteeV5Activity
+
+    override fun onShowLoading(isShow: Boolean) {
+        DialogHelper.showLoading(this@HistoryGuaranteeV5Activity, isShow)
     }
 }
