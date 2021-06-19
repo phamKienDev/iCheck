@@ -16,9 +16,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.adapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.viewmodel.WarrantyHistoryViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.presenter.HistoryGuaranteePresenter
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {

@@ -3,7 +3,6 @@ package vn.icheck.android.network.models
 import com.google.gson.annotations.Expose
 import vn.icheck.android.ichecklibs.util.RStringUtils
 import vn.icheck.android.network.R
-import vn.icheck.android.ichecklibs.R
 import java.io.Serializable
 
 open class ICPage : Serializable {

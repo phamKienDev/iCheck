@@ -48,12 +48,6 @@
     <string name="copy_success">Copy thành công</string>
     <string name="chon_20_anh">Chỉ được chọn tối đa 20 ảnh</string>
     <string name="chon_20_muc">Chỉ được chọn tối đa 20 mục</string>
-    <string name="chon_anh">Chọn ảnh</string>
-    <string name="chup_anh">Chụp ảnh</string>
-    <string name="quay_video">Quay video</string>
-    <string name="bo_qua">Bỏ qua</string>
-    <string name="xong">Xong</string>
-    <string name="chon_anh_video">Chọn ảnh, video</string>
     <string name="s_phut_truoc">%s phút trước</string>
     <string name="ban_chua_dang_nhap_vui_long_dang_nhap">Bạn chưa đăng nhập! Vui lòng đăng nhập!</string>
     <string name="ban_chua_cap_du_quyen">Bạn chưa cấp đủ quyền!</string>

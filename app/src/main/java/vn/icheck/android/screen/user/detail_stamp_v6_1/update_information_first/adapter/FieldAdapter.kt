@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
@@ -173,7 +174,6 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             binding.edtTextArea.apply {
                 hint = context.rText(R.string.nhap_s, obj.name)
-            }
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
                 addTextChangedListener(textWatcher)

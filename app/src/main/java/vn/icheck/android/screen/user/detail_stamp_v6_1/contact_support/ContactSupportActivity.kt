@@ -17,7 +17,6 @@ import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICSupport
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 

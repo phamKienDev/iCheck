@@ -16,7 +16,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.DetailStampActivity
 import vn.icheck.android.util.ick.rText
 
 class SelectVariantActivity : BaseActivityMVVM(), ISelectVariantView {

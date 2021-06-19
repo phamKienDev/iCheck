@@ -18,7 +18,6 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetailHistoryGuaranteeActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
-import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.view.IHistoryGuaranteeView
 import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
