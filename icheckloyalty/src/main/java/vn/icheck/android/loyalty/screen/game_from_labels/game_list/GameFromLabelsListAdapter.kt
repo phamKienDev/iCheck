@@ -13,9 +13,11 @@ import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
+import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGame
 import vn.icheck.android.loyalty.screen.web.WebViewActivity
+import vn.icheck.android.loyalty.sdk.CampaignType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,14 +66,16 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                 itemView.tvDate.text = timeString
             } else {
                 itemView.tvDate.visibility = View.GONE
+                itemView.imgUpcoming.setInvisible()
+                itemView.layoutRight.setVisible()
+                itemView.tvDateRight.setVisible()
+                itemView.tvPlay.setGone()
+                itemView.tvPoint.setGone()
 
                 when (obj.type) {
-                    "accumulate_point" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
+                    CampaignType.ACCUMULATE_POINT -> {
                         itemView.tvPoint.setVisible()
                         itemView.tvPlay.setGone()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
                             if (obj.statisticWinnerAccumulatePoint?.get(0)?.points != null) {
@@ -83,17 +87,12 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                             itemView.tvPoint.text = "${0} Điểm"
                         }
                     }
-                    "receive_gift" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+                    CampaignType.RECEIVE_GIFT -> {
+
                     }
-                    "mini_game" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
+                    CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
                         itemView.tvPoint.setGone()
                         itemView.tvPlay.setVisible()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
@@ -109,9 +108,7 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         }
                     }
                     else -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+
                     }
                 }
 
@@ -119,6 +116,13 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             }
 
             itemView.setOnClickListener {
+
+                if (obj.type == "mini_game_qr_mar") {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
+                } else {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
+                }
+
                 clickListener.onClick(obj)
             }
         }

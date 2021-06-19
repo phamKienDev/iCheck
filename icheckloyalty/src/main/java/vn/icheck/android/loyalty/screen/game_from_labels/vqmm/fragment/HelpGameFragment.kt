@@ -51,9 +51,9 @@ class HelpGameFragment : Fragment() {
     }
 
     private fun setData() {
-        val html = args.description
+        val html = args.description.replace("null", "")
 
-        if (html.isNotEmpty()) {
+        if (!html.isEmpty()) {
             webView.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
         } else {
 //            DialogHelper.showNotification(requireContext(), R.string.thong_bao, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {

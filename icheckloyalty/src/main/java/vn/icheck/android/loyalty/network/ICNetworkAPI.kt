@@ -24,6 +24,9 @@ interface ICNetworkAPI {
     @GET
     fun getCampaign(@Url url: String, @Query("target") barcode: String): Observable<ICKResponse<ICKLoyalty>>
 
+    @GET
+    fun getCampaignQrMar(@Url url: String): Observable<ICKResponse<ICKLoyalty>>
+
     @POST
     fun postRefuseGift(@Url url: String, @Body body: HashMap<String, Any>): Observable<ICKResponse<ICKWinner>>
 
