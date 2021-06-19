@@ -12,6 +12,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.campaign.ICGiftOfCampaign
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -60,6 +61,7 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
         override fun bind(obj: ICGiftOfCampaign) {
 
             itemView.tvCountGift.text = "${obj.rewardTotal} Quà"
+            itemView.tvPrice.background=ViewHelper.bgGrayCornersTopRight12BottomRight12(itemView.context)
 
             when (type) {
                 ICViewTypes.PRODUCT_CAMPAIGN_TYPE -> {

@@ -48,16 +48,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_medium"
                         android:includeFontPadding="false"
                         android:text="@string/xin_chao"
-                        android:textColor="#757575"
                         android:textSize="@dimen/font_12" />
 
-                    <vn.icheck.android.ui.view.TextBarlowSemiBold
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                         android:id="@id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -67,12 +65,11 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:textAlignment="gravity"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_16"
                         tools:text="Mai Lan Nguyễn" />
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
                     android:id="@+id/tvHide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,11 +78,10 @@
                     android:includeFontPadding="false"
                     android:maxLines="1"
                     android:text="***"
-                    android:textColor="#FFB800"
                     android:textSize="@dimen/font_16"
                     android:visibility="visible" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
                     android:id="@+id/tvIcheckXu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -93,11 +89,10 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:maxLines="1"
-                    android:textColor="#FFB800"
                     android:textSize="@dimen/font_16"
                     android:visibility="gone" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_3"
@@ -105,7 +100,6 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="Xu"
-                    android:textColor="#FFB800"
                     android:textSize="@dimen/font_16" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -120,13 +114,12 @@
                     tools:targetApi="lollipop" />
             </LinearLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0_5"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:layout_marginEnd="@dimen/size_12"
-                android:background="@color/gray" />
+                android:layout_marginEnd="@dimen/size_12" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/rcvPrimary"

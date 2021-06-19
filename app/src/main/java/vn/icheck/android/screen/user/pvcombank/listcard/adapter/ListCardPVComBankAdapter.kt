@@ -17,6 +17,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemCardBankBinding
 import vn.icheck.android.databinding.ItemErrorPvcombankBinding
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankListener
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -117,13 +118,15 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
         }
     }
 
-    inner class ViewHolder(parent: ViewGroup, val binding: ItemCardBankBinding = ItemCardBankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICListCardPVBank>(binding.root) {
+    inner class ViewHolder(parent: ViewGroup, val binding: ItemCardBankBinding = ItemCardBankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        BaseViewHolder<ICListCardPVBank>(binding.root) {
         private var expDate = ""
         private var validFrom = ""
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICListCardPVBank) {
             listener(obj)
+            binding.tvUsed.background = ViewHelper.bgWhiteStrokeGreen1Corners4(binding.tvUsed.context)
 
             if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
                 val repYear = obj.expDate!!.substring(0, 4)
@@ -206,8 +209,11 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
                 }
             }
 
-            binding.btnUseDefault.setOnClickListener {
-                listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+            binding.btnUseDefault.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+                }
             }
 
             binding.tvLockCard.setOnClickListener {
@@ -224,7 +230,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
 
             binding.tvInfoCard.setOnClickListener {
                 if (item.cardMasking?.contains("*") == true) {
-                   listener.onClickShow(item, absoluteAdapterPosition)
+                    listener.onClickShow(item, absoluteAdapterPosition)
                 }
             }
             binding.tvActionAuthen.setOnClickListener {
@@ -233,9 +239,13 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
         }
     }
 
-    inner class ErrorHolder(parent: ViewGroup, val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<Int>(binding.root) {
+    inner class ErrorHolder(
+        parent: ViewGroup,
+        val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    ) : BaseViewHolder<Int>(binding.root) {
 
         override fun bind(obj: Int) {
+            binding.btnTryAgain.background=ViewHelper.bgOutlineSecondary1Corners6(itemView.context)
             when (obj) {
                 Constant.ERROR_EMPTY -> {
                     binding.btnTryAgain.visibility = View.INVISIBLE

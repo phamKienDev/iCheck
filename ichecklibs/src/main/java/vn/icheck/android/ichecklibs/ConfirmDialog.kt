@@ -39,7 +39,7 @@ abstract class ConfirmDialog(
 
     fun onInitView() {
         if (colorTitle != null)
-            binding.txtTitle.setTextColor(ContextCompat.getColor(context, colorTitle))
+            binding.txtTitle.setTextColor(getColor(colorTitle))
 
         if (!title.isNullOrEmpty()) {
             binding.txtTitle.beVisible()
@@ -49,7 +49,7 @@ abstract class ConfirmDialog(
         }
 
         if (colorMessage != null)
-            binding.txtMessage.setTextColor(ContextCompat.getColor(context, colorMessage))
+            binding.txtMessage.setTextColor(getColor(colorMessage))
 
         if (!message.isNullOrEmpty()) {
             binding.txtMessage.beVisible()
@@ -66,10 +66,10 @@ abstract class ConfirmDialog(
             binding.btnAgree.text = Html.fromHtml(agree)
 
         if (colorDisagree != null)
-            binding.btnDisagree.setTextColor(ContextCompat.getColor(context, colorDisagree))
+            binding.btnDisagree.setTextColor(getColor(colorDisagree))
 
         if (colorAgree != null)
-            binding.btnAgree.setTextColor(ContextCompat.getColor(context, colorAgree))
+            binding.btnAgree.setTextColor(getColor(colorAgree))
 
         binding.btnDisagree.setOnClickListener {
             dismiss()
@@ -79,6 +79,20 @@ abstract class ConfirmDialog(
         binding.btnAgree.setOnClickListener {
             dismiss()
             onAgree()
+        }
+    }
+
+    private fun getColor(color: Int): Int {
+        return when (color) {
+            R.color.colorPrimary -> {
+                Constant.getPrimaryColor(context)
+            }
+            R.color.colorSecondary -> {
+                Constant.getSecondaryColor(context)
+            }
+            else -> {
+                ContextCompat.getColor(context, color)
+            }
         }
     }
 

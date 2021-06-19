@@ -40,10 +40,13 @@ class SuggestTopicActivity : BaseActivityMVVM(), ISuggestTopicView {
 
     private fun initView() {
         StatusBarUtils.setOverStatusBarDark(this)
-
-        btn_skip.setOnClickListener {
-            finish()
-            startClearTopActivity(HomeActivity::class.java)
+        textView25.background=vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCornersTop16(this)
+        btn_skip.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                finish()
+                startClearTopActivity(HomeActivity::class.java)
+            }
         }
     }
 
@@ -96,7 +99,7 @@ class SuggestTopicActivity : BaseActivityMVVM(), ISuggestTopicView {
 
     override fun onGetListTopicSelected(list: MutableList<ICSuggestTopic>) {
         if (list.size >= 3) {
-            btn_tiep_tuc.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+            btn_tiep_tuc.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(this@SuggestTopicActivity)
             btn_tiep_tuc.isEnabled = true
         } else {
             btn_tiep_tuc.background = ContextCompat.getDrawable(this, R.drawable.bg_darkgray2_corners_4)

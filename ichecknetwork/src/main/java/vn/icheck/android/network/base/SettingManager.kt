@@ -1,6 +1,7 @@
 package vn.icheck.android.network.base
 
 import com.google.gson.Gson
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.network.models.ICConfigUpdateApp
@@ -86,6 +87,46 @@ object SettingManager {
 
     fun setDeviceID(deviceID: String) {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
+    }
+
+    fun setAppThemeColor(icThemeSetting: ICThemeSetting?){
+
+            if (icThemeSetting?.theme!=null) {
+                Constant.appBackgroundColor= icThemeSetting.theme.appBackgroundColor ?:""
+
+                Constant.popupBackgroundColor= icThemeSetting.theme.popupBackgroundColor ?: ""
+
+                Constant.primaryColor= icThemeSetting.theme.primaryColor ?:""
+                Constant.secondaryColor= icThemeSetting.theme.secondaryColor ?:""
+
+                Constant.normalTextColor= icThemeSetting.theme.normalTextColor ?:""
+                Constant.secondTextColor= icThemeSetting.theme.secondTextColor ?:""
+                Constant.disableTextColor= icThemeSetting.theme.disableTextColor ?:""
+
+                Constant.lineColor= icThemeSetting.theme.lineColor ?:""
+            } else {
+                Constant.appBackgroundColor=""
+                Constant.popupBackgroundColor=""
+                Constant.primaryColor=""
+                Constant.secondaryColor=""
+                Constant.normalTextColor=""
+                Constant.secondTextColor=""
+                Constant.disableTextColor=""
+                Constant.lineColor=""
+            }
+
+//            Constant.appBackgroundColor="#85c440"
+//
+//            Constant.popupBackgroundColor="#35c759"
+//
+//            Constant.primaryColor="#FFB800"
+//            Constant.secondaryColor="#bb6bd9"
+//
+//            Constant.normalTextColor="#CCF1FC"
+//            Constant.secondTextColor="#FBBB00"
+//            Constant.disableTextColor="#EB5757"
+//
+//            Constant.lineColor="#ff1616"
     }
 
     val getDeviceID: String

@@ -17,6 +17,8 @@ import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.tracking.TrackingAllHelper
@@ -31,12 +33,17 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookmarkHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupView()
+
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-        binding.header.tvTitle simpleText "Sản phẩm yêu thích"
-        binding.header.icBack.setOnClickListener {
+
+        binding.header.txtTitle simpleText "Sản phẩm yêu thích"
+        binding.header.imgBack.setOnClickListener {
             finish()
         }
+
         lifecycleScope.launch {
             bookmarkHistoryViewModel.getBookmarks().collectLatest {
                 bookmarkHistoryAdapter.submitData(it)
@@ -99,6 +106,11 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
                 }
             }
         }
+    }
+
+    private fun setupView() {
+        binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(this))
+        binding.edtSearch.setTextColor(Constant.getNormalTextColor(this))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

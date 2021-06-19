@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.model.chat.ChatConversation
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.APIConstants
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeUnit
 
 object RelationshipManager {
     const val FRIEND_LIST_UPDATE = 1
-    var lastUpdate:Long = System.currentTimeMillis()
+    var lastUpdate: Long = System.currentTimeMillis()
 
     /**
      * Total follow of main user
@@ -63,9 +64,6 @@ object RelationshipManager {
      * My Friend invitation database actions
      */
 
-    fun checkMyFriendInvitation(userId: Long): Boolean {
-        return AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(userId) != null
-    }
 
     fun removeMyFriendInvitation(userId: Long) {
         AppDatabase.getDatabase().myFriendInvitationUserIdDao().deleteUserById(userId)
@@ -209,7 +207,7 @@ object RelationshipManager {
         }
     }
 
-    private val friendInvitationMeListener =  object : ValueEventListener {
+    private val friendInvitationMeListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             clearAllFriendInvitationMe()
             if (snapshot.hasChildren()) {
@@ -288,7 +286,7 @@ object RelationshipManager {
                             keyRoom = item.child("key_room").value.toString()
                             unreadCount = item.child("unread_count").value as Long? ?: 0L
                             time = item.child("last_activity").child("time").value as Long?
-                                    ?: System.currentTimeMillis()
+                                ?: System.currentTimeMillis()
                             lastMessage = item.child("last_activity").child("content").value.toStringNotNull()
 
                         }
@@ -338,7 +336,7 @@ object RelationshipManager {
                 if (snapshot.hasChildren()) {
                     conversation.targetUserName = snapshot.child("name").value.toString()
                     conversation.isOnline = if (snapshot.child("is_online").value !is Boolean) false else snapshot.child("is_online").value as Boolean?
-                            ?: false
+                        ?: false
                     conversation.imageTargetUser = snapshot.child("image").value.toString()
                     updateConversation(conversation)
                 }
@@ -376,8 +374,8 @@ object RelationshipManager {
             myNotifyReference.addValueEventListener(myNotifyListener)
             // Chat
             myConversation
-                    .orderByChild("last_activity/time")
-                    .addValueEventListener(myConversationListener)
+                .orderByChild("last_activity/time")
+                .addValueEventListener(myConversationListener)
 
             chatSenders.child("user|${SessionManager.session.user?.id}").addValueEventListener(mainUserListener)
         }
@@ -394,27 +392,27 @@ object RelationshipManager {
         try {
 //            val httpLoggingInterceptor = HttpLoggingInterceptor()
             val okHttpClient = OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .addInterceptor { chain ->
-                        val request = chain.request().newBuilder()
-                                .addHeader("Authorization", "Bearer ${SessionManager.session.token}")
-                                .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
-                                .addHeader("appVersion", SettingManager.appVersion)
-                                .build()
-                        val hasMultipart = request.headers.names().contains("multipart")
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor { chain ->
+                    val request = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer ${SessionManager.session.token}")
+                        .addHeader("device-id", DeviceUtils.getUniqueDeviceId())
+                        .addHeader("appVersion", SettingManager.appVersion)
+                        .build()
+                    val hasMultipart = request.headers.names().contains("multipart")
 //                        if (hasMultipart) httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE) else httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-                        chain.proceed(request)
-                    }
+                    chain.proceed(request)
+                }
 //                    .addInterceptor(httpLoggingInterceptor)
-                    .build()
+                .build()
             val api = Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
-                    .baseUrl(APIConstants.socialHost)
-                    .build()
-                    .create(ICKApi::class.java)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .baseUrl(APIConstants.socialHost)
+                .build()
+                .create(ICKApi::class.java)
             val request = hashMapOf<String, Any?>()
             request["token"] = SessionManager.session.firebaseToken
             val response = api.updateFirebaseToken(request)
@@ -434,7 +432,7 @@ object RelationshipManager {
                             val body = HashMap<String, Any?>()
                             body["platform"] = "android"
                             body["deviceId"] = DeviceUtils.getUniqueDeviceId()
-                            body["deviceToken"] =  token
+                            body["deviceToken"] = token
 //                val requestBody = body.toString().toRequestBody("application/json".toMediaTypeOrNull())
                             api.loginDevice(body)
                         }
@@ -466,23 +464,23 @@ object RelationshipManager {
         // Relationship
         val id = FirebaseAuth.getInstance().currentUser?.uid
         friendInvitationReference = firebaseDatabase
-                .getReference("relationships/$id/myFriendInvitationUserIdList")
+            .getReference("relationships/$id/myFriendInvitationUserIdList")
         friendInvitationMeReference = firebaseDatabase
-                .getReference("relationships/$id/friendInvitationMeUserIdList")
+            .getReference("relationships/$id/friendInvitationMeUserIdList")
         friendListReference = firebaseDatabase
-                .getReference("relationships/$id/myFriendIdList")
+            .getReference("relationships/$id/myFriendIdList")
         myFollowingUsersReference = firebaseDatabase
-                .getReference("relationships/$id/myFollowingUserIdList")
+            .getReference("relationships/$id/myFollowingUserIdList")
         myFollowedUserReference = firebaseDatabase
-                .getReference("relationships/$id/userFollowingMeIdList")
+            .getReference("relationships/$id/userFollowingMeIdList")
         // Notifications
         myNotifyReference = firebaseDatabase
-                .getReference("reaction-noti/$id/unseenCount")
+            .getReference("reaction-noti/$id/unseenCount")
         // Chat
         chatSenders = firebaseDatabase
-                .getReference("chat-senders")
+            .getReference("chat-senders")
         myConversation = firebaseDatabase
-                .getReference("chat-conversations/user|$id")
+            .getReference("chat-conversations/user|$id")
 
     }
 

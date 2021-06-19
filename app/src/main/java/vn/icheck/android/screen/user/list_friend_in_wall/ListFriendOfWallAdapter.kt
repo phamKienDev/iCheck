@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 
 class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -169,6 +170,21 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
+            itemView.imgMore.fillDrawableColor(R.drawable.ic_more_disable_24dp)
+            itemView.btnRefuseFriend.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            }
+
+            vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                itemView.tvChat.background = this
+                itemView.tvAddFriend.background = this
+                itemView.layoutAccept.background = this
+            }
+
+            itemView.tvSendRequest.apply {
+                background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
+            }
+
             when (item.userRelationStatus) {
                 //Chưa là bạn bè
                 1 -> {
@@ -224,7 +240,7 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            itemView.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            itemView.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

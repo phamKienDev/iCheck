@@ -8,8 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_edit_information_public.*
-import kotlinx.android.synthetic.main.activity_edit_information_public.imgBack
-import kotlinx.android.synthetic.main.activity_edit_information_public.txtTitle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
@@ -20,7 +18,9 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.USER_WALL_BROADCAST
 import vn.icheck.android.constant.USER_WALL_EDIT_PERSONAL
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserPublicInfor
+import vn.icheck.android.util.kotlin.StatusBarUtils
 
 class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
 
@@ -33,26 +33,13 @@ class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
         setContentView(R.layout.activity_edit_information_public)
         initView()
         initRecyclerView()
+        listener()
         listenerGetData()
         viewModel.getPublicInfor()
-        listener()
-    }
-
-    private fun listener() {
-        imgBack.setOnClickListener {
-            onBackPressed()
-        }
-
-        btnUpdateInfor.setOnClickListener {
-            setResult(RESULT_OK)
-            sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
-                putExtra(USER_WALL_BROADCAST, USER_WALL_EDIT_PERSONAL)
-            })
-            finish()
-        }
     }
 
     private fun initView() {
+        StatusBarUtils.setOverStatusBarLight(this)
         txtTitle.text = "Chỉnh sửa thông tin công khai"
     }
 
@@ -60,6 +47,23 @@ class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
         adapter = ListPrivacyPublicAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+    }
+
+    private fun listener() {
+        imgBack.setOnClickListener {
+            onBackPressed()
+        }
+
+        btnUpdateInfor.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                setResult(RESULT_OK)
+                sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
+                    putExtra(USER_WALL_BROADCAST, USER_WALL_EDIT_PERSONAL)
+                })
+                finish()
+            }
+        }
     }
 
     private fun listenerGetData() {

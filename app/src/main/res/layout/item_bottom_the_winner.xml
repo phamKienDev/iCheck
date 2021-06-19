@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical"
     android:paddingLeft="@dimen/size_16"
     android:paddingRight="@dimen/size_16">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginBottom="@dimen/size_6"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
         android:text="Cập nhật mới nhất"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_16"
         android:visibility="gone" />
 
@@ -70,16 +67,14 @@
             app:layout_constraintTop_toBottomOf="@id/tvName"
             tools:text="+84 97 954 ****" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvDate"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toEndOf="@id/tvPhone"
             app:layout_constraintStart_toStartOf="@+id/tvPhone"
@@ -93,11 +88,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginTop="@dimen/size_10"
-            android:background="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/imgReward" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

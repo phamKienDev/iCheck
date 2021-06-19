@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.selectuseraddress
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_select_address.*
@@ -12,6 +13,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICAddress
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.createuseraddress.CreateUserAddressActivity
@@ -42,6 +44,7 @@ class SelectUserAddressActivity : BaseActivityMVVM(), ISelectUserAddressView {
 
     fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupSwipeRefreshLayout()
         setupListener()
@@ -58,13 +61,18 @@ class SelectUserAddressActivity : BaseActivityMVVM(), ISelectUserAddressView {
         }
     }
 
+    private fun setupView() {
+        btnDone.background=ViewHelper.btnSecondaryCorners26(this)
+    }
+
     private fun setupRecyclerView() {
         adapter.setMessage(0, getString(R.string.ban_khong_co_dia_chi_nao), null)
         recyclerView.adapter = adapter
     }
 
     private fun setupSwipeRefreshLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             getListAddress()

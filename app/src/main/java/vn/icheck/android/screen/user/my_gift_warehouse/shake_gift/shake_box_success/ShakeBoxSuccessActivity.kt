@@ -30,6 +30,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
@@ -81,6 +82,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     private fun initView() {
         ListShakeGridBoxActivity.numberGiftUser--
+
+        btnMyGift.background=ViewHelper.bgWhiteCorners4(this)
     }
 
     private fun setupStatusBar() {
@@ -164,7 +167,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             tvThank.text =
                 Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
-                imgLogo.borderColor = ContextCompat.getColor(this, R.color.gray)
+                imgLogo.borderColor = ContextCompat.getColor(this, R.color.grayD8)
                 imgLogo.borderWidth = SizeHelper.size2
             } else {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.white)

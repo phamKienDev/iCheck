@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_link_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -15,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.base.view.IBaseCreateQrCodeView
 import vn.icheck.android.screen.user.createqrcode.success.CreateQrCodeSuccessActivity
@@ -46,6 +46,7 @@ class CreateLinkQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtContent)
     }
@@ -58,6 +59,10 @@ class CreateLinkQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
         }
     }
 
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+    }
+
     private fun initListener() {
         btnCreate.setOnClickListener {
             presenter.validLink(edtContent.text.toString().trim())
@@ -66,7 +71,7 @@ class CreateLinkQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtContent.context)
         KeyboardUtils.hideSoftInput(edtContent)
         val intent = Intent(requireContext(),CreateQrCodeSuccessActivity::class.java)
         intent.putExtra(Constant.DATA_1,text)
@@ -76,7 +81,7 @@ class CreateLinkQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
     override fun showError(errorMessage: String) {
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ContextCompat.getDrawable(requireContext(),R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 

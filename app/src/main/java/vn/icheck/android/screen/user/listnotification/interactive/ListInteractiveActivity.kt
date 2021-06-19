@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.listnotification.interactive
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -33,7 +34,7 @@ class ListInteractiveActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+//        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -78,7 +79,8 @@ class ListInteractiveActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

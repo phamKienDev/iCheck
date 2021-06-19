@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.dialog_share_review.*
 import vn.icheck.android.R
 import vn.icheck.android.component.popup_view.BasePopupView
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class ReviewTributeDialog(context:Context) : BasePopupView(context, R.style.DialogTheme){
 
@@ -26,9 +27,12 @@ class ReviewTributeDialog(context:Context) : BasePopupView(context, R.style.Dial
     }
 
     override fun onInitView() {
-        btn_share.setOnClickListener {
-            dismiss()
-            onAction?.onShare()
+        btn_share.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                dismiss()
+                onAction?.onShare()
+            }
         }
     }
 

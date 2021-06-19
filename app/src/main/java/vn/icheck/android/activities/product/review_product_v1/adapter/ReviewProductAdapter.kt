@@ -164,7 +164,7 @@ class ReviewProductAdapter(val listener: IReviewProductView) : RecyclerView.Adap
                 }
             }
             is LoadingHolder -> {
-                holder.itemView.setBackgroundColor(holder.itemView.resources.getColor(R.color.white))
+                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(holder.itemView.context))
                 if (!isLoading) {
                     isLoading = true
                     listener.onLoadmore()
@@ -175,6 +175,9 @@ class ReviewProductAdapter(val listener: IReviewProductView) : RecyclerView.Adap
                 holder.listener(View.OnClickListener {
                     listener.onClickTryAgain()
                 })
+            }
+            is HeaderReviewHolder->{
+                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(holder.itemView.context))
             }
 
         }

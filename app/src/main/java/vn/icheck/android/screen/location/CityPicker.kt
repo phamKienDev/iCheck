@@ -1,12 +1,12 @@
 package vn.icheck.android.screen.location
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
@@ -26,6 +26,8 @@ import vn.icheck.android.R
 import vn.icheck.android.WrapContentLinearLayoutManager
 import vn.icheck.android.databinding.BottomNationDialogBinding
 import vn.icheck.android.databinding.ItemCityBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.network.model.location.CityResponse
 import vn.icheck.android.util.AfterTextWatcher
@@ -48,7 +50,7 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
         dialog?.setOnShowListener {
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet = bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-            bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
+            dialog?.context?.let { it1 -> bottomSheet?.background = ViewHelper.bgWhiteCornersTop16(it1) }
             BottomSheetBehavior.from(bottomSheet!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
         _binding = BottomNationDialogBinding.inflate(inflater, container, false)
@@ -63,6 +65,8 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cityAdapter = CityAdapter(onCityClick)
+        binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+        binding.edtSearch.background=ViewHelper.bgGrayCorners4(requireContext())
         binding.rcvNation.layoutManager = WrapContentLinearLayoutManager(requireContext())
         binding.rcvNation.adapter = cityAdapter
         when (type) {

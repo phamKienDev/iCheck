@@ -90,7 +90,7 @@ class CollectionListProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<IC
             val layoutParent = LinearLayout(context)
             layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size6, 0, SizeHelper.size6)
             layoutParent.orientation = LinearLayout.VERTICAL
-            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            layoutParent.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
 
             // Layout title
             layoutParent.addView(ViewHelper.createTitleWidthViewMore(context))

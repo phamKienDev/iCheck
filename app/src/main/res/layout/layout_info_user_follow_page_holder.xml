@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,26 +23,22 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                 android:id="@+id/tv_count_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/colorSecondary" />
+                android:text="TextView" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Lượt thích bài viết"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="@dimen/size_1"
-            android:layout_height="@dimen/size_20"
-            android:background="@color/gray" />
+            android:layout_height="@dimen/size_20"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -53,27 +48,23 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
                 android:id="@+id/tv_count_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/colorSecondary" />
+                android:text="TextView" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:text="Số người theo dõi"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,38 +79,32 @@
             android:gravity="center_horizontal" />
     </LinearLayout>
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="Mời bạn bè theo dõi trang này"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_16" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/textView73"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_24"
         android:layout_marginTop="@dimen/size_5"
         android:layout_marginRight="@dimen/size_24"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInvite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_22"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:drawableStart="@drawable/ic_user_follow_page_18dp"
-        android:drawableLeft="@drawable/ic_user_follow_page_18dp"
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_semi_bold"
         android:paddingStart="@dimen/size_24"
@@ -131,10 +116,10 @@
         android:text="Mời bạn bè"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
-    <View
+
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_10"
-        android:background="@color/darkGray6"/>
+        android:layout_height="@dimen/size_10"/>
 
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

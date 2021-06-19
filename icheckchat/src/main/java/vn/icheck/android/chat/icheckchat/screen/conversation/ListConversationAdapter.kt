@@ -15,6 +15,8 @@ import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_CONVERSATION
 import vn.icheck.android.chat.icheckchat.databinding.ItemConversationBinding
 import vn.icheck.android.chat.icheckchat.model.MCConversation
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import java.util.*
 
 class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerView<MCConversation>(callback) {
@@ -88,6 +90,8 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: MCConversation) {
+            binding.tvCountMessage.background=ViewHelper.bgAccentRedCorners4(itemView.context)
+
             binding.imgMuteNotification.setGone()
 
             checkNullOrEmpty(binding.tvNameUser, obj.targetUserName)
@@ -136,13 +140,13 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     else -> {
                         binding.tvCountMessage.setGone()
                         binding.tvCountMessage.text = "${obj.unreadCount}"
-                        binding.layout.setBackgroundColor(Color.WHITE)
+                        binding.layout.setBackgroundColor(Constant.getAppBackgroundWhiteColor(binding.layout.context))
                     }
                 }
             } else {
                 binding.tvCountMessage.setGone()
                 binding.tvCountMessage.text = "0"
-                binding.layout.setBackgroundColor(Color.WHITE)
+                binding.layout.setBackgroundColor(Constant.getAppBackgroundWhiteColor(binding.layout.context))
             }
 
             binding.imgMuteNotification.apply {
@@ -182,13 +186,13 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                     else -> {
                         binding.tvCountMessage.setGone()
                         binding.tvCountMessage.text = "${obj.unreadCount}"
-                        binding.layout.setBackgroundColor(Color.WHITE)
+                        binding.layout.setBackgroundColor(Constant.getAppBackgroundWhiteColor(binding.layout.context))
                     }
                 }
             } else {
                 binding.tvCountMessage.setGone()
                 binding.tvCountMessage.text = "0"
-                binding.layout.setBackgroundColor(Color.WHITE)
+                binding.layout.setBackgroundColor(Constant.getAppBackgroundWhiteColor(binding.layout.context))
             }
         }
     }

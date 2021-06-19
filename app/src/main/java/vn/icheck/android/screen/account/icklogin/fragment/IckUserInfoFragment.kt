@@ -24,6 +24,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -102,6 +104,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         super.onViewCreated(view, savedInstanceState)
         binding.root.requestFocus()
 
+        binding.btnGenderMale.setTextColor(Constant.getDisableTextColor(requireContext()))
+
         takeImageListener.avatar = binding.userAva
         ickLoginViewModel.setGender(1)
         binding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->
@@ -160,9 +164,18 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             binding.tvFirstname.setText(ickLoginViewModel.facebookUsername)
             ickLoginViewModel.setFirstName(ickLoginViewModel.facebookUsername)
         }
-        binding.edtTinh.enableRightClick = false
-        binding.edtQuan.enableRightClick = false
-        binding.edtPhuongXa.enableRightClick = false
+        binding.edtTinh.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtQuan.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtPhuongXa.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            enableRightClick = false
+        }
         binding.edtTinh.setOnClickListener {
             hideKeyboard()
             if (cityPicker?.isVisible == true) {
@@ -251,10 +264,13 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                 ickLoginViewModel.setLastName(s?.trim().toString())
             }
         })
-        binding.edtEmailInput.addTextChangedListener {
+        binding.edtEmailInput.apply {
+            setHintTextColor(Constant.getDisableTextColor(context))
+            addTextChangedListener {
 //            binding.tvErrorEmail.beGone()
-            if (it?.trim().toString().isValidEmail()) {
-                ickLoginViewModel.setEmail(it?.trim().toString())
+                if (it?.trim().toString().isValidEmail()) {
+                    ickLoginViewModel.setEmail(it?.trim().toString())
+                }
             }
         }
         binding.edtMgt.addTextChangedListener {
@@ -275,21 +291,27 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         binding.edtDiaChi.addTextChangedListener {
             ickLoginViewModel.setAddress(it?.trim().toString())
         }
-        binding.btnContinue.setOnClickListener {
-            if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
-                if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
-                    finalStep()
-                } else {
-                    binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
+        binding.btnContinue.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
+                    if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
+                        finalStep()
+                    } else {
+                        binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
 //                    binding.tvErrorEmail.beVisible()
-                    return@setOnClickListener
+                        return@setOnClickListener
+                    }
                 }
+                finalStep()
             }
-            finalStep()
         }
-        binding.btnSkip.setOnClickListener {
-            hideKeyboard()
-            ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+        binding.btnSkip.apply {
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            setOnClickListener {
+                hideKeyboard()
+                ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+            }
         }
         hideKeyboard()
     }

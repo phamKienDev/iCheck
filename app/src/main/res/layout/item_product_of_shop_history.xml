@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,8 +7,7 @@
     android:layout_marginStart="@dimen/size_12"
     android:layout_marginTop="@dimen/size_8"
     android:layout_marginEnd="@dimen/size_12"
-    android:layout_marginBottom="@dimen/size_8"
-    android:background="@drawable/bg_corners_white_4_border_05">
+    android:layout_marginBottom="@dimen/size_8">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgAvatar"
@@ -22,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="#03A9F4" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvNameShop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +31,6 @@
         android:fontFamily="@font/barlow_regular"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
@@ -91,4 +89,4 @@
         app:layout_constraintTop_toTopOf="@+id/tvCountReview"
         tools:text="8930123456789" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05>

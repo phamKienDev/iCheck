@@ -24,6 +24,9 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICShopVariantV2
@@ -72,9 +75,12 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     view.onClickShowMap(item)
                 }
 
-                holder.itemView.layoutAddToCart.setOnClickListener {
-                    if (item.id != null) {
-                        view.onClickAddToCart(item.id!!)
+                holder.itemView.layoutAddToCart.apply {
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                    setOnClickListener {
+                        if (item.id != null) {
+                            this@ListShopVariantAdapter.view.onClickAddToCart(item.id!!)
+                        }
                     }
                 }
             }
@@ -121,10 +127,13 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     itemView.layoutAddToCart.visibility = View.GONE
                 }
 
-                if (item.isOffline == true) {
-                    itemView.layoutLocation.visibility = View.VISIBLE
-                } else {
-                    itemView.layoutLocation.visibility = View.GONE
+                itemView.layoutLocation.apply {
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+                    if (item.isOffline == true) {
+                        beVisible()
+                    } else {
+                        beGone()
+                    }
                 }
             }
 
@@ -180,6 +189,8 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                 itemView.tv_sale_price?.beInvisible()
                 itemView.tv_price?.beInvisible()
             }
+
+            itemView.viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
         }
 
         private fun initAdapterService() {

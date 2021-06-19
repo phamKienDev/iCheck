@@ -22,6 +22,10 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
@@ -33,10 +37,15 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
     var balloon: Balloon? = null
     var pasteBalloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
+        itemGroupBinding.edtInfo.apply {
+            background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemGroupBinding.edtInfo.context)
+            setHintTextColor(Constant.getDisableTextColor(itemView.context))
+        }
+
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)
-                setBackgroundColorResource(R.color.colorPrimary)
+                setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
                 setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
                 setBalloonAnimation(BalloonAnimation.OVERSHOOT)
             }
@@ -44,7 +53,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                 if (!itemGroupBinding.edtInfo.text.isNullOrEmpty()) {
                     ICheckApplication.currentActivity()?.let { act ->
                         val clipboard = act.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText(null,itemGroupBinding.edtInfo.text.toString())
+                        val clip = ClipData.newPlainText(null, itemGroupBinding.edtInfo.text.toString())
                         clipboard.setPrimaryClip(clip)
                         it.context.showShortSuccessToast("Sao chép thành công")
                         pasteBalloon?.dismiss()
@@ -76,7 +85,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                         } else {
                             itemGroupBinding.edtInfo.setText(pasteData)
                         }
-                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text.length)
+                        itemGroupBinding.edtInfo.setSelection(itemGroupBinding.edtInfo.text!!.length)
                     }
                     pasteBalloon?.dismiss()
                 }
@@ -87,7 +96,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
 //            TooltipCompat.setTooltipText(itemGroupBinding.imgHelp,null)
         } else {
 //            TooltipCompat.setTooltipText(itemGroupBinding.imgHelp,categoryAttributesModel.categoryItem.description)
-            balloon = createBalloon(itemView.context){
+            balloon = createBalloon(itemView.context) {
                 setLayout(R.layout.item_popup)
                 setHeight(BalloonSizeSpec.WRAP)
                 setWidth(BalloonSizeSpec.WRAP)

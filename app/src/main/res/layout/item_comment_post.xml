@@ -12,7 +12,7 @@
         android:layout_width="@dimen/size_30"
         android:layout_height="@dimen/size_30"
         android:layout_marginTop="@dimen/size_6"
-        app:civ_border_color="@color/gray"
+        app:civ_border_color="@color/grayD8"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,36 +43,34 @@
         app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_dark_gray_6_corners_4"
+            android:background="@drawable/bg_gray_f0_corners_4"
             android:orientation="vertical"
             android:padding="@dimen/size_8">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="middle"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:drawablePadding="@dimen/size_4"
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:textAlignment="gravity"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Trần  Văn  Lâm Trần Văn Lâm" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 tools:text="Tôi thấy loại này hơi đắt so với giá thị trường. Có nhiều chỗ bán rẻ hơn thì đó có phải hàng fake k?" />
         </LinearLayout>
@@ -104,44 +102,38 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
         app:layout_constraintTop_toBottomOf="@id/layoutContent"
         tools:text="7 phút trước" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@id/tvLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/thich"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvTime"
         app:layout_constraintTop_toTopOf="@id/tvTime" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@id/tvAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/tra_loi"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvLike"

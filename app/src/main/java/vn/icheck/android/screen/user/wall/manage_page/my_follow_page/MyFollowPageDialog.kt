@@ -22,8 +22,8 @@ import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.room.dao.PageFollowDao
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
@@ -60,8 +60,8 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     dialog?.dismiss()
                     ICheckApplication.currentActivity()?.let { activity ->
-                        val reportDialog = ReportWrongContributionDialog(obj.data?.rows!!, R.string.bao_cao_trang)
-                        reportDialog.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                        val reportDialog = ReportDialog(obj.data?.rows!!, R.string.bao_cao_trang)
+                        reportDialog.setListener(object : ReportDialog.DialogClickListener {
                             override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                                 DialogHelper.showLoading(this@MyFollowPageDialog)
                                 //sent report
@@ -78,7 +78,7 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
                                             }
                                         }
                                         reportDialog.dismiss()
-                                        ReportWrongContributionSuccessDialog(activity).show(listData, "", ICheckApplication.getInstance().getString(R.string.report_wrong_contribution_success_page_title))
+                                        ReportSuccessDialog(activity).show(listData, "", ICheckApplication.getInstance().getString(R.string.report_wrong_contribution_success_page_title))
                                     }
 
                                     override fun onError(error: ICResponseCode?) {

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F0F0F0">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -56,7 +55,7 @@
                         android:layout_marginTop="@dimen/size_12"
                         android:src="@drawable/ic_lsnt" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
@@ -65,8 +64,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Lịch sử nạp thẻ &amp; Dịch vụ"
-                        android:textColor="@color/black" />
+                        android:text="Lịch sử nạp thẻ &amp; Dịch vụ" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,7 +85,7 @@
                         android:layout_marginTop="@dimen/size_12"
                         android:src="@drawable/ic_yeu_thich" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
@@ -96,17 +94,14 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
                         android:gravity="center_vertical"
-                        android:text="Sản phẩm yêu thích"
-                        android:textColor="@color/black" />
+                        android:text="Sản phẩm yêu thích" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
                         android:layout_marginLeft="@dimen/size_12"
                         android:drawablePadding="@dimen/size_4"
-                        android:fontFamily="@font/barlow_medium"
-                        android:textColor="#757575"
                         android:textSize="@dimen/font_12"
                         android:visibility="gone"
                         tools:text="4 sản phẩm" />
@@ -139,7 +134,7 @@
                         android:layout_margin="@dimen/size_12"
                         app:srcCompat="@drawable/ic_leftmenu_xu_26dp" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
@@ -147,8 +142,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="iCheck Xu"
-                        android:textColor="@color/black" />
+                        android:text="iCheck Xu" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -167,15 +161,14 @@
                         android:layout_margin="@dimen/size_12"
                         app:srcCompat="@drawable/ic_leftmenu_standard_26dp" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Hạng thành viên"
-                        android:textColor="@color/black" />
+                        android:text="Hạng thành viên" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -203,7 +196,7 @@
                         android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_qlt" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/size_12"
@@ -211,8 +204,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Quản lý trang"
-                        android:textColor="@color/black" />
+                        android:text="Quản lý trang" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,7 +223,7 @@
                         android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_create_qr" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
@@ -239,8 +231,7 @@
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Tạo QR Code"
-                        android:textColor="@color/black" />
+                        android:text="Tạo QR Code" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -297,15 +288,14 @@
                         android:layout_margin="@dimen/size_12"
                         android:src="@drawable/ic_setting_left" />
 
-                    <TextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_12"
                         android:layout_marginEnd="@dimen/size_12"
                         android:layout_marginBottom="@dimen/size_12"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="Cấu hình"
-                        android:textColor="@color/black" />
+                        android:text="Cấu hình" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -321,7 +311,7 @@
                 android:orientation="vertical"
                 tools:visibility="visible">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/tv_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -330,7 +320,6 @@
                     android:drawableEnd="@drawable/ic_arrow_down_gray_24dp"
                     android:drawableRight="@drawable/ic_arrow_down_gray_24dp"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Trợ giúp và hỗ trợ"
@@ -345,16 +334,14 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_hdsd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Hướng dẫn sử dụng"
-                    android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -367,16 +354,14 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_dksd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Điều khoản sử dụng"
-                    android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -389,16 +374,14 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_chtg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Câu hỏi thường gặp"
-                    android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -411,16 +394,14 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_lhic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Liên hệ và hỗ trợ"
-                    android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -433,39 +414,36 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tv_ttud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_vertical"
                     android:padding="@dimen/size_16"
                     android:text="Thông tin ứng dụng"
-                    android:textColor="#757575"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
             </LinearLayout>
 
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tv_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:layout_marginBottom="@dimen/size_30"
                 android:background="@drawable/bg_white_corners_4"
+                android:layout_marginBottom="@dimen/size_30"
                 android:drawableStart="@drawable/ic_logout_red"
                 android:drawableLeft="@drawable/ic_logout_red"
                 android:drawablePadding="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:padding="@dimen/size_16"
-                android:text="Đăng xuất"
-                android:textColor="@color/black" />
+                android:text="Đăng xuất" />
 
 
         </LinearLayout>
@@ -516,7 +494,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imgAvatar"
                 app:srcCompat="@drawable/ic_leftmenu_avatar_standard_36dp" />
 
-            <vn.icheck.android.ichecklibs.view.TextTitle
+            <vn.icheck.android.ui.view.TextTitleSecondary
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -524,27 +502,24 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:textAlignment="gravity"
-                android:textColor="#3C5A99"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
                 tools:text="Shop Xinh"
                 tools:visibility="visible" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tv_user_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:textColor="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username"
                 tools:text="0988 789 789 • Thành viên chuẩn"
                 tools:visibility="visible" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/div_1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
@@ -553,7 +528,6 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:background="#D8D8D8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_rank" />
@@ -567,7 +541,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/div_1">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
@@ -576,13 +550,11 @@
                     android:layout_marginBottom="@dimen/size_15"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:paddingTop="@dimen/size_6"
                     android:text="Đơn mua"
-                    android:textColor="#212121"
                     app:drawableStartCompat="@drawable/ic_cart_red" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/size_12"
@@ -590,7 +562,6 @@
                     android:layout_marginRight="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_15"
                     android:layout_weight="1"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="end"
                     android:paddingTop="@dimen/size_6"
                     android:text="Lịch sử mua hàng"
@@ -601,4 +572,4 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>

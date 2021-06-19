@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_remider_36px" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tv_show_all_reminders"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,9 +55,8 @@
                 android:layout_marginEnd="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="Xem tất cả lời nhắc"
-                android:textColor="@color/colorAccentRed"
-                app:drawableEndCompat="@drawable/ic_arrow_down_blue_24px_vector"
-                app:drawableRightCompat="@drawable/ic_arrow_down_blue_24px_vector"
+                app:drawableEndCompat="@drawable/ic_arrow_down_blue_24dp"
+                app:drawableRightCompat="@drawable/ic_arrow_down_blue_24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
@@ -90,7 +89,7 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/ic_reminder_item" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tv_reminder_content"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -100,15 +99,13 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginRight="@dimen/size_12"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_medium"
                     android:maxLines="2"
-                    android:textColor="#212121"
                     app:layout_constraintEnd_toStartOf="@id/imageView14"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Bạn có 1 đơn hàng 800.000 đ thanh toán tại VinMarrt+ ( tối đa 2 dòng)..." />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                     android:id="@+id/tv_action"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -118,9 +115,7 @@
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginRight="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:lines="1"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_16"
                     app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -226,10 +221,9 @@
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@id/tvCartCount"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_22"
             android:layout_height="@dimen/size_22"
             android:layout_marginStart="@dimen/size_24"
-            android:background="@drawable/bg_home_notification"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
@@ -262,7 +256,6 @@
             android:layout_width="@dimen/size_22"
             android:layout_height="@dimen/size_22"
             android:layout_marginStart="@dimen/size_18"
-            android:background="@drawable/bg_home_cart"
             android:gravity="center"
             android:includeFontPadding="false"
             android:textAlignment="gravity"
@@ -289,7 +282,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0.0"
-        android:background="@drawable/bg_red_corner_6"
         android:elevation="@dimen/size_10"
         android:fontFamily="@font/barlow_medium"
         android:outlineProvider="none"

@@ -59,6 +59,8 @@ class EditCommentActivity : BaseActivityMVVM() {
     private fun setupToolbar() {
         layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
+        edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+
         txtTitle.setText(R.string.chinh_sua_binh_luan)
         txtTitle.typeface = ViewHelper.createTypeface(this, R.font.barlow_semi_bold)
 

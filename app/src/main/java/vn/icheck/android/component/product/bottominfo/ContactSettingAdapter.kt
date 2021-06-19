@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contact_setting.view.*
 import vn.icheck.android.R
 import vn.icheck.android.component.product.ProductDetailListener
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICClientSetting
 
 class ContactSettingAdapter(val listener: ProductDetailListener) : RecyclerView.Adapter<ContactSettingAdapter.ViewHolder>() {
@@ -38,6 +39,7 @@ class ContactSettingAdapter(val listener: ProductDetailListener) : RecyclerView.
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICClientSetting) {
+            itemView.tvName.background=ViewHelper.bgWhiteCornersLeft20(itemView.context)
             when(item.key){
                 "product-detail.dang-ky-ma-vach" -> {
                     itemView.tvName.text = itemView.context.getString(R.string.dang_ky_ma_so_ma_vach)

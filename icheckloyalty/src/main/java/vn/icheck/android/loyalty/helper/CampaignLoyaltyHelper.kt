@@ -310,7 +310,7 @@ object CampaignLoyaltyHelper {
                        barcode: String? = null, code: String? = null,
                        nameCampaign: String,
                        campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-                       listener: IRemoveHolderInputLoyaltyListener? = null
+                       listener: IRemoveHolderInputLoyaltyListener?=null
     ) {
         CampaignRepository().postReceiveGift(barcode, code, campaignId, campaignCode, giftCode, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
@@ -392,10 +392,9 @@ object CampaignLoyaltyHelper {
             code: String? = null,
             target: String? = null,
             campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-            listener: IRemoveHolderInputLoyaltyListener? = null
+            listener: IRemoveHolderInputLoyaltyListener?=null
     ) {
-        CampaignRepository().postGameGift(data.id
-                ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
+        CampaignRepository().postGameGift(data.id ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
             override fun onSuccess(obj: ICKResponse<DataReceiveGameResp>) {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {

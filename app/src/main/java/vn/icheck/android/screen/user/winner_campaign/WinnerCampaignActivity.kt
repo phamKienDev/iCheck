@@ -40,8 +40,11 @@ class WinnerCampaignActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        btnMission.setOnClickListener {
-            viewModel.campaignId?.let { id -> ListMissionActivity.show(this, id) }
+        btnMission.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                viewModel.campaignId?.let { id -> ListMissionActivity.show(this@WinnerCampaignActivity, id) }
+            }
         }
     }
 
@@ -72,7 +75,9 @@ class WinnerCampaignActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             adapter.resetData()
             getData()
         }
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.post {
             getData()

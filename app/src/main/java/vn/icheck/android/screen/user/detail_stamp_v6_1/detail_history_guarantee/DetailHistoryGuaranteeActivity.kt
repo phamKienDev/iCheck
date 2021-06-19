@@ -45,11 +45,18 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
         txtTitle.text = "Chi tiết bảo hành"
         tvCustomerInfor.text = "Thông tin khách hàng"
         tvWarrantyInfor.text = "Thông tin bảo hành"
+        setupView()
 
         initRecyclerview()
         setupListener()
 
         presenter.getObjectIntent(intent)
+    }
+
+    private fun setupView() {
+        tvCustomerInfor.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
+        tvWarrantyInfor.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
+        tvProgressWarranty.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this))
     }
 
     private fun initRecyclerview() {

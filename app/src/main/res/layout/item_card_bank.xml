@@ -183,23 +183,20 @@
                 android:layout_marginBottom="@dimen/size_12"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/so_du_the"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_16" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
                     android:id="@+id/tvAvlBalance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center|end"
                     tools:text="254.241.000 đ"
-                    android:textColor="#ffb800"
                     android:textSize="@dimen/font_20" />
             </LinearLayout>
 
@@ -211,14 +208,12 @@
                 android:layerType="software"
                 android:src="@drawable/line_dotted_horizontal_gray" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_16"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/thong_tin_the"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16" />
 
             <LinearLayout
@@ -231,23 +226,19 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/so_the"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tvNumberCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="end"
                     tools:text="2541 1145 1114 2225"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -259,12 +250,11 @@
 
             </LinearLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="@dimen/size_16"
-                android:layout_marginEnd="@dimen/size_16"
-                android:background="#d8d8d8" />
+                android:layout_marginEnd="@dimen/size_16" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,23 +266,19 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/han_su_dung"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tvExpDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="end"
                     tools:text="10/28"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -304,12 +290,11 @@
 
             </LinearLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="@dimen/size_16"
-                android:layout_marginEnd="@dimen/size_16"
-                android:background="#d8d8d8" />
+                android:layout_marginEnd="@dimen/size_16"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -321,12 +306,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:text="@string/trang_thai_the"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
                 <LinearLayout
@@ -346,18 +329,15 @@
                         android:textColor="#EB5757"
                         android:textSize="@dimen/font_14" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                         android:id="@+id/tvActionAuthen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="end"
                         android:src="@drawable/ic_copy_24px"
                         android:text="@string/dinh_danh_ngay"
-                        android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/font_14" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -367,58 +347,50 @@
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginBottom="@dimen/size_16">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvUnLockCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_unlock_32_px"
                     android:drawablePadding="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Mở khóa thẻ"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvLockCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
                     android:drawablePadding="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Khóa thẻ"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvInfoCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_lock_32_px"
                     android:drawablePadding="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Thông tin thẻ"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvChangePassword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_pv_changepass_32_px"
                     android:drawablePadding="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
                     android:text="Đổi mật khẩu"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
             </LinearLayout>
@@ -430,7 +402,6 @@
                 android:layout_marginStart="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="Đặt làm thẻ chính"
@@ -438,7 +409,7 @@
                 android:textSize="@dimen/font_16"
                 android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
                 android:id="@id/tvUsed"
                 android:layout_width="@dimen/size_89"
                 android:layout_height="@dimen/size_20"
@@ -447,12 +418,10 @@
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_16"
                 android:layout_marginBottom="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_green"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Thẻ mặc định"
-                android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_12"
                 android:visibility="gone" />
         </LinearLayout>

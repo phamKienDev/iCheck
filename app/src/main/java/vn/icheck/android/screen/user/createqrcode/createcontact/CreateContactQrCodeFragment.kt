@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_contact_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -19,6 +18,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.createcontact.presenter.CreateContactQrCodePresenter
@@ -53,6 +53,7 @@ class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtPhone)
     }
@@ -63,6 +64,11 @@ class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(null,null, ViewHelper.fillDrawableColor(R.drawable.ic_phonebook_24dp,requireContext()),null)
     }
 
     private fun initListener() {
@@ -101,51 +107,51 @@ class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView
 
     override fun onInvalidPhoneSuccess() {
         tvMessagePhone.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
     }
 
     override fun onInvalidPhone(error: String) {
         tvMessagePhone.visibility = View.VISIBLE
         tvMessagePhone.text = error
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtPhone.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtPhone.requestFocus()
     }
 
     override fun onInvalidFirstNameSuccess() {
         tvMessageFirstName.visibility = View.GONE
-        edtFirstName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtFirstName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtFirstName.context)
     }
 
     override fun onInvalidFirstName(error: String) {
         tvMessageFirstName.visibility = View.VISIBLE
         tvMessageFirstName.text = error
-        edtFirstName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtFirstName.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtFirstName.requestFocus()
     }
 
     override fun onInvalidLastNameSuccess() {
         tvMessageLastName.visibility = View.GONE
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtLastName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtLastName.context)
     }
 
     override fun onInvalidLastName(error: String) {
         tvMessageLastName.visibility = View.VISIBLE
         tvMessageLastName.text = error
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtLastName.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtLastName.requestFocus()
     }
 
     override fun onInvalidEmail(error: String) {
         tvMessageEmail.visibility = View.VISIBLE
         tvMessageEmail.text = error
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtEmail.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtEmail.requestFocus()
     }
 
     override fun onInvalidAddress(error: String) {
         tvMessageAddress.visibility = View.VISIBLE
         tvMessageAddress.text = error
-        edtAddress.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtAddress.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtAddress.requestFocus()
     }
 
@@ -154,10 +160,10 @@ class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView
         tvMessageLastName.visibility = View.GONE
         tvMessageEmail.visibility = View.GONE
         tvMessageAddress.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtLastName.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtEmail.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtAddress.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
+        edtLastName.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
+        edtEmail.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
+        edtAddress.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
 
         KeyboardUtils.hideSoftInput(edtPhone)
 

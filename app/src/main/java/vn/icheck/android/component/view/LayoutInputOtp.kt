@@ -19,6 +19,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICLayoutOtp
 
 class LayoutInputOtp : LinearLayout {
@@ -53,7 +54,7 @@ class LayoutInputOtp : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, SizeHelper.size60, SizeHelper.size8, SizeHelper.size60, 0),
                 null,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                Constant.getSecondTextColor(context),
                 14f).also {
             it.gravity = Gravity.CENTER_HORIZONTAL
         })
@@ -88,21 +89,19 @@ class LayoutInputOtp : LinearLayout {
             })
 
             // Text send
-            layoutCenter.addView(ViewHelper.createText(context,
+            layoutCenter.addView(ViewHelper.createTextSendOtpLogin(context,
                     ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0, SizeHelper.size24, 0, 0),
                     ViewHelper.outValue.resourceId,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    ContextCompat.getColorStateList(context, R.color.text_send_otp_login),
                     14f).also {
                 it.setPadding(SizeHelper.size24, SizeHelper.size8, SizeHelper.size24, SizeHelper.size8)
             })
         })
 
-        addView(ViewHelper.createText(context,
+        addView(ViewHelper.createTextSendOtpLogin(context,
                 ViewHelper.createLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0, SizeHelper.size24, 0, 0),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                ContextCompat.getColorStateList(context, R.color.text_send_otp_login),
                 14f).also {
             it.setPadding(SizeHelper.size24, SizeHelper.size8, SizeHelper.size24, SizeHelper.size8)
         })
@@ -206,11 +205,11 @@ class LayoutInputOtp : LinearLayout {
 
         when (receiveOtpType) {
             CALL_PHONE_TYPE -> {
-                sendToPhoneMessage = context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber))
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_sms)
             }
             SEND_SMS_TYPE -> {
-                sendToPhoneMessage = context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber))
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_cuoc_goi)
             }
             else -> {

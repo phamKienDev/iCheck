@@ -10,31 +10,27 @@
     android:paddingEnd="@dimen/size_12"
     android:paddingBottom="@dimen/size_16">
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/dang_cap_nhat"
-        android:textColor="@color/colorSecondary"
-        android:textColorHint="@color/colorSecondary"
         android:textSize="@dimen/font_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="90,000đ" />
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:hint="@string/dang_cap_nhat"
-        android:textColor="@color/colorNormalText"
-        android:textColorHint="@color/colorNormalText"
         android:textSize="@dimen/font_16"
         app:layout_constraintTop_toBottomOf="@+id/tvPrice"
         tools:text="Điện thoại IPHONE 7 PLUS hàng nguyên hộp chưa active - 100% NEW (không giới hạn dòng)" />
 
-    <vn.icheck.android.ui.view.TextBarlowMedium
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,8 +39,6 @@
         android:drawablePadding="@dimen/size_8"
         android:gravity="center_vertical"
         android:hint="@string/dang_cap_nhat"
-        android:textColor="@color/colorSecondText"
-        android:textColorHint="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -59,11 +53,10 @@
         app:layout_constraintEnd_toStartOf="@+id/tvCountry"
         app:layout_constraintTop_toTopOf="@+id/tvCountry" />
 
-    <vn.icheck.android.ui.view.TextBarlowMedium
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvBarcode"
         app:layout_constraintEnd_toEndOf="parent"

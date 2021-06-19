@@ -10,7 +10,7 @@
     android:background="@drawable/bg_checkout_gray_corner_10"
     android:padding="@dimen/size_8">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,6 @@
         android:includeFontPadding="false"
         android:maxWidth="250dp"
         android:singleLine="true"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_14"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,14 +34,13 @@
         app:layout_constraintStart_toEndOf="@id/tvName"
         app:layout_constraintTop_toTopOf="@id/tvName" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_11"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/tvName"
@@ -50,12 +48,11 @@
         app:layout_constraintTop_toTopOf="@id/tvName"
         tools:text="0987 654 321" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/btn_white_outline_blue_1_corners_36"
         android:drawableStart="@drawable/ic_outline_place_blue_18px"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"
@@ -65,7 +62,6 @@
         android:paddingEnd="@dimen/size_16"
         android:paddingBottom="@dimen/size_6"
         android:text="@string/them_dia_chi"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@id/tvName"

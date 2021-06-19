@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 
 /**
  * Created by VuLCL on 6/9/2020.
@@ -33,10 +34,12 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setupViewModel()
         setupRecyclerView()
         setupSwipeLayout()
+
+        edt_search.setTextColor(Constant.getNormalTextColor(this))
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+//        layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -71,14 +74,15 @@ class ListFriendSuggestionActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         adapter.disableLoadMore()
         val horizontalDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         horizontalDecoration.setDrawable(ShapeDrawable().apply {
-            paint.color = ContextCompat.getColor(this@ListFriendSuggestionActivity, R.color.darkGray6)
+            paint.color = Constant.getLineColor(this@ListFriendSuggestionActivity)
             intrinsicHeight = SizeHelper.size1
         })
         recyclerView.addItemDecoration(horizontalDecoration)
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

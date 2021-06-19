@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".screen.user.search_home.user.SearchUserActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -37,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filer"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -55,11 +54,10 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
                     android:textAlignment="gravity"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filer_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,11 +75,10 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/tinh_thanh_pho"
                     android:textAlignment="gravity"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_filter_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +96,6 @@
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/gioi_tinh"
                     android:textAlignment="gravity"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
@@ -125,7 +121,7 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@id/swipeLayout"

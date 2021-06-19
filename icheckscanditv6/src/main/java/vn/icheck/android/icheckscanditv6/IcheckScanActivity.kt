@@ -161,7 +161,8 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
                             scanImage.set(false)
                             offCamera()
                             runOnUiThread {
-                                DialogHelper.showNotification(this@IcheckScanActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
+                                DialogHelper.showNotification(this@IcheckScanActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object :
+                                    NotificationDialogListener {
 
                                     override fun onDone() {
                                         resetCamera()
@@ -224,7 +225,7 @@ class IcheckScanActivity : AppCompatActivity(), BarcodeCaptureListener {
     private fun checkIsScan() {
         if (intent.getBooleanExtra("scan_only", false)) {
             viewModel.scanOnly = true
-            _binding?.btnMyCode.beGone()
+            _binding?.btnMyCode?.visibility = View.GONE
             _binding?.btnQm.beGone()
         } else {
             viewModel.scanOnly = false

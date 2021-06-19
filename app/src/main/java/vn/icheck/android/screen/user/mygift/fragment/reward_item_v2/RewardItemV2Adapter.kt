@@ -13,6 +13,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
@@ -143,6 +144,9 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
 
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(LayoutInflater.from(parent.context).inflate(R.layout.item_item_reward_v2, parent, false)) {
         override fun bind(obj: ICItemReward) {
+            itemView.view.background=ViewHelper.lineDottedVerticalLineColor(itemView.context)
+            itemView.tvState.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+            itemView.tv_gift_state.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
             if (bindingAdapterPosition == 0 && obj.totalGifts != 0) {
                 itemView.tv_total_gifts.beVisible()
                 itemView.tv_total_gifts simpleText "Sản phẩm quà: ${obj.totalGifts}"
@@ -175,7 +179,7 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#757575>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.Constant.getSecondTextCode}}>Từ </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }

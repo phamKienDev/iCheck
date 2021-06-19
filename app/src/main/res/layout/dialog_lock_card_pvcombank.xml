@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_20">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,12 +27,11 @@
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:text="@string/icheck_thong_bao"
-            android:textColor="#212121"
             android:textSize="@dimen/font_18"
             android:textStyle="normal"
             card_view:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +42,6 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
-            android:textColor="@color/colorNormalText"
             card_view:layout_constraintTop_toBottomOf="@id/txtTitle"
             tools:text="Thẻ bị tạm khóa sẽ không thể sử dụng để thanh toán, giao dịch online, POS... Bạn có thể mở khóa lại thẻ trên ứng dụng này." />
 
@@ -55,17 +53,14 @@
             android:background="#33000000"
             card_view:layout_constraintTop_toBottomOf="@id/txtMessage" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@id/btnDisagree"
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_0"
-            android:background="@drawable/btn_white_left_bottom_corners_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/de_sau"
             android:textAllCaps="false"
-            android:textColor="#757575"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@id/viewCenter"
@@ -83,18 +78,15 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/viewBottom" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/btnAgree"
             android:layout_width="@dimen/size_0"
             android:layout_height="@dimen/size_0"
             android:layout_weight="1"
-            android:background="@drawable/btn_white_right_bottom_corners_8"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/dong_y"
             android:textAllCaps="false"
-            android:textColor="#057DDA"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             card_view:layout_constraintBottom_toBottomOf="@id/viewCenter"

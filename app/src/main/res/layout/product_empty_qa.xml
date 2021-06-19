@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,40 +11,32 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_product_empty_qa" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Bạn có thắc mắc gì về sản phẩm này không?"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Sản phẩm này hiện chưa có câu hỏi nào. Hãy đặt\ncâu hỏi để cùng thảo luận ở đây nhé!"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnQueston"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_8"
         android:text="Đặt câu hỏi"
-        android:textColor="#057dda"
         android:textSize="@dimen/font_16" />
-
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

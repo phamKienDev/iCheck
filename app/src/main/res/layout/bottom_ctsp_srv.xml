@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_score"
@@ -22,12 +21,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="8.6" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_quality"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_16"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
@@ -59,14 +57,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_outline_clear_black_24px" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.accent.accentblue.ViewAccentBlue
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@color/colorAccentBlue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_score" />
@@ -90,4 +87,4 @@
             android:layout_marginEnd="@dimen/size_32"
             android:layout_marginBottom="@dimen/size_1" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

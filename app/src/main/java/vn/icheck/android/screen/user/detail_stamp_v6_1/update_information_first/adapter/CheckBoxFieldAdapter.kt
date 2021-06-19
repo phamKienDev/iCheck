@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemRowCheckboxFieldBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
 class CheckBoxFieldAdapter (val listData: MutableList<ValueFItem>) : RecyclerView.Adapter<CheckBoxFieldAdapter.ViewHolder>() {
@@ -26,6 +27,7 @@ class CheckBoxFieldAdapter (val listData: MutableList<ValueFItem>) : RecyclerVie
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ValueFItem) {
+            binding.tvCheck.setTextColor(ViewHelper.textColorNormalCheckedSecondUnchecked(itemView.context))
             binding.tvCheck.text = item.value
 
             binding.tvCheck.isChecked = item.isChecked

@@ -24,6 +24,7 @@ import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Act
 import vn.icheck.android.adapters.ImageSliderAdapter.Companion.TYPE_CCCN
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
@@ -68,6 +69,9 @@ class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_review_v1)
         instance = this
+
+        setupView()
+
         intent.getStringExtra("img")?.let {
             Glide.with(this.applicationContext).load(it).placeholder(R.drawable.error_load_image).into(img_product)
         }
@@ -125,6 +129,11 @@ class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListen
                 rcv_image.layoutManager = LinearLayoutManager(this@EditReviewV1Activity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
+    }
+
+    private fun setupView() {
+        edt_nrv_comment.background = ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        btn_nrv_send.background = ViewHelper.bgSecondaryCorners40(this)
     }
 
 

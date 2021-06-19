@@ -26,6 +26,7 @@ import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
@@ -57,11 +58,11 @@ class ReportProductActivity : BaseActivityMVVM() {
     }
 
     private fun setupViewModel() {
-        viewModel.listData.observe(this, Observer {
+        viewModel.listData.observe(this, {
             initView(it)
         })
 
-        viewModel.listReportSuccess.observe(this, Observer {
+        viewModel.listReportSuccess.observe(this, {
             if (!it.isNullOrEmpty()) {
                 val dialogFragment = ProductReportDialog(it)
                 dialogFragment.setOnDoneListener(object : OnItemClickListener {
@@ -74,7 +75,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.statusCode.observe(this, Observer {
+        viewModel.statusCode.observe(this, {
             when (it) {
                 ICMessageEvent.Type.ON_NO_INTERNET -> {
                     DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
@@ -98,7 +99,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        viewModel.errorData.observe(this, Observer {
+        viewModel.errorData.observe(this, {
             showShortError(it)
         })
     }
@@ -113,7 +114,7 @@ class ReportProductActivity : BaseActivityMVVM() {
                     radioButton.layoutParams = ViewHelper.createLayoutParams()
                     radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
-                    radioButton.setTextColor(ViewHelper.createColorStateList(ContextCompat.getColor(this, R.color.colorSecondText), ContextCompat.getColor(this, R.color.colorNormalText)))
+                    radioButton.setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(this), Constant.getNormalTextColor(this)))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1
@@ -137,8 +138,8 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.gray), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), ContextCompat.getColor(this, R.color.colorNormalText), 14f).also {
-            it.setHintTextColor(ContextCompat.getColor(this, R.color.colorDisableText))
+        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.grayD8), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), Constant.getNormalTextColor(this), 14f).also {
+            it.setHintTextColor(Constant.getDisableTextColor(this))
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)

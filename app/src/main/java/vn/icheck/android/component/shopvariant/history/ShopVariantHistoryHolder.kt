@@ -22,6 +22,7 @@ import vn.icheck.android.helper.AddToCartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
@@ -51,6 +52,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         initListener(obj)
         initRemove(obj)
 
+        itemView.linearLayoutContainer.background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.context)
+
         itemView.imgDelete.visibility = View.INVISIBLE
         itemView.progressHistory.visibility = View.INVISIBLE
 
@@ -67,10 +70,13 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvNameProduct.text = itemView.context.getString(R.string.dang_cap_nhat)
         }
 
-        if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
-            itemView.tvAddToCart.visibility = View.VISIBLE
-        } else {
-            itemView.tvAddToCart.visibility = View.INVISIBLE
+        itemView.tvAddToCart.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            visibility = if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
         }
 
         if (!obj.product?.barcode.isNullOrEmpty()) {
@@ -129,6 +135,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         } else {
             itemView.tvTime.visibility = View.GONE
         }
+
+        itemView.layoutShop.background=ViewHelper.bgGrayF5StrokeLineColor0_5CornersBottom4(itemView.context)
 
         if (obj.shop?.id == null || obj.shop?.id == 0L) {
             itemView.layoutShop.visibility = View.GONE

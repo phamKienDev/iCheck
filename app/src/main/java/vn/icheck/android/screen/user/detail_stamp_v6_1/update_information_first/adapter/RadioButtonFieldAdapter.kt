@@ -1,9 +1,13 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.adapter
 
+import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.databinding.ItemRadioButtonFieldBinding
+import kotlinx.android.synthetic.main.item_radio_button_field.view.*
+import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
 class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>, var checkedPosition: Int = -1) : RecyclerView.Adapter<RadioButtonFieldAdapter.ViewHolder>() {
@@ -25,6 +29,7 @@ class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>, var checked
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ValueFItem) {
+            binding.tvRadio.setTextColor(ViewHelper.textColorNormalCheckedSecondUnchecked(itemView.context))
             binding.tvRadio.text = item.value
 
             binding.tvRadio.isChecked = item.isChecked

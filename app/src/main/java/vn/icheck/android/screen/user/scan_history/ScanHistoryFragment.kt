@@ -42,6 +42,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -113,11 +114,18 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
     }
 
     private fun initView() {
+        setupView()
+
         viewModel.getData()
 
         swipe_container.setOnRefreshListener {
             getData()
         }
+    }
+
+    private fun setupView() {
+        tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(requireContext())
+        btnGps.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     fun getData(isLogout: Boolean? = false) {
@@ -729,12 +737,12 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             ICMessageEvent.Type.ON_TICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_24px)
                 imgDot.beVisible()
-                tvFilter.setTextColor(Color.parseColor("#057DDA"))
+                tvFilter.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
             }
             ICMessageEvent.Type.ON_UNTICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_gray_24_px)
                 imgDot.beInvisible()
-                tvFilter.setTextColor(Color.parseColor("#757575"))
+                tvFilter.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 listType.clear()
@@ -760,7 +768,8 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
         if (!isCreateView) {
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
-            swipe_container.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+            swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
             if (!checkAllowPermission || !NetworkHelper.isOpenedGPS(requireContext())) {
                 containerGps.visibility = View.VISIBLE

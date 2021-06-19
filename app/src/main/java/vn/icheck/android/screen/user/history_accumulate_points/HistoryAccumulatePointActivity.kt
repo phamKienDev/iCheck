@@ -19,6 +19,7 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_history_accumulate_point)
 
         initToolbar()
+        setupView()
         initTabLayout(intent?.getIntExtra(Constant.DATA_1, -1))
     }
 
@@ -27,6 +28,10 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        tabLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
     }
 
     val listFragment: MutableList<ICFragment>

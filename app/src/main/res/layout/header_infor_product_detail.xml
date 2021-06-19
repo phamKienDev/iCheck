@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:animateLayoutChanges="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_tags"
@@ -20,8 +19,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_share"
@@ -32,7 +30,7 @@
             android:layout_marginRight="@dimen/size_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_share_product" />
+            tools:srcCompat="@drawable/ic_share_product_24dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_fav"
@@ -40,7 +38,6 @@
             android:layout_height="@dimen/size_32"
             android:layout_marginEnd="@dimen/size_10"
             android:layout_marginRight="@dimen/size_10"
-            android:background="@drawable/bg_corner_gray_4_no_solid"
             android:padding="@dimen/size_6"
             app:layout_constraintBottom_toBottomOf="@+id/img_share"
             app:layout_constraintEnd_toStartOf="@+id/img_share"
@@ -49,7 +46,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_product_name"
         style="@style/barlow_text"
         android:layout_width="match_parent"
@@ -59,14 +56,13 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:textColor="#212121"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_fav"
         tools:text="Tinh chất dưỡng trắng 3IN1 Whitening Serum - KAESUNG LOVESKIN - 24K Gold" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvNameUpdating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +73,6 @@
         android:layout_marginRight="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="Tên đang cập nhật"
-        android:textColor="#b4b4b4"
         android:textSize="@dimen/font_16"
         android:textStyle="italic"
         android:visibility="gone" />
@@ -101,58 +96,51 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:visibility="gone"
-                android:textStyle="italic"
+                android:text="Giá đang cập nhật"
                 android:textSize="@dimen/font_14"
-                android:textColor="#b4b4b4"
-                android:text="Giá đang cập nhật"/>
+                android:textStyle="italic"
+                android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_7"
                 android:layout_marginRight="@dimen/size_7"
                 android:text="Cập nhật ngay"
-                android:textColor="@color/colorAccentGreen"
                 android:textSize="@dimen/font_20"
                 android:visibility="gone"
                 app:fontFamily="@font/barlow_semi_bold" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#3C5A99"
                 android:textSize="@dimen/font_20"
                 tools:text="890,000đ" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                 android:id="@+id/tvGiaNiemYet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_2"
-                android:layout_marginLeft="@dimen/size_2"
                 android:layout_marginTop="@dimen/size_2"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
                 android:text="(Giá niêm yết)"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_bulkhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_2"
                 android:layout_marginStart="@dimen/size_7"
                 android:layout_marginLeft="@dimen/size_7"
+                android:layout_marginTop="@dimen/size_2"
                 android:layout_marginEnd="@dimen/size_7"
                 android:layout_marginRight="@dimen/size_7"
                 app:srcCompat="@drawable/ic_bulkhead_12px" />
@@ -164,20 +152,18 @@
                 android:layout_marginTop="@dimen/size_2"
                 tools:srcCompat="@drawable/vn_flag" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tv_nation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:layout_marginLeft="@dimen/size_5"
                 android:layout_marginTop="@dimen/size_2"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#757575"
                 tools:text="Việt Nam" />
 
         </LinearLayout>
 
-        <vn.icheck.android.ui.view.TextBarlowMedium
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@id/tvBarcode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -185,11 +171,10 @@
             android:drawableStart="@drawable/ic_barcode_gray_24px"
             android:drawableLeft="@drawable/ic_barcode_gray_24px"
             android:drawablePadding="@dimen/size_4"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="105604364600" />
 
     </LinearLayout>
 
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

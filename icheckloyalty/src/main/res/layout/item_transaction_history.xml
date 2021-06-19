@@ -87,5 +87,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@color/gray" />
+        android:background="@color/grayLoyalty" />
 </LinearLayout>

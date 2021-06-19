@@ -21,6 +21,7 @@ import vn.icheck.android.constant.CAMPAIGN_ID
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.LOGO
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICGridBoxShake
@@ -61,6 +62,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         listenerGetData()
         initRecycleView()
         listener()
+
+        constraintLayout.background=ViewHelper.bgWhiteCornersTop25(this)
 
         val campaign = intent?.getSerializableExtra(Constant.DATA_1)
         if (campaign != null) {
@@ -171,6 +174,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+
+        tvAddMoreTurn.background=ViewHelper.bgAccentCyanCorners4(this)
 
         tvAddMoreTurn.setOnClickListener {
             viewModel.idCampaign?.let { id ->

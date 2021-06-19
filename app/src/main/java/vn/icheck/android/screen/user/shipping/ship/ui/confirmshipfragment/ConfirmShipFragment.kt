@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.shipping.ship.ui.confirmshipfragment
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -22,6 +21,7 @@ import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.report.ReportActivity
@@ -48,6 +48,11 @@ class ConfirmShipFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
+
+        binding.toolbar.txtTitle simpleText "Xác nhận giao hàng"
+
         if (viewModel.arrayCart.isEmpty()) {
             binding.btnConfirm simpleText "Thanh toán"
         }
@@ -66,7 +71,9 @@ class ConfirmShipFragment : Fragment() {
                     }
                 })
             }
-            binding.btnConfirm.setOnClickListener {
+            binding.btnConfirm.apply {
+                background = ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
                 showLoadingTimeOut(10000)
                 if (viewModel.arrayCart.isNotEmpty()) {
                     viewModel.purchase(binding.edtNotes.text.trim().toString()).observe(viewLifecycleOwner, {
@@ -106,7 +113,7 @@ class ConfirmShipFragment : Fragment() {
                             requireContext().showShortErrorToast(checkout.message)
                         }
 
-                    })
+                        })
 //                    viewModel.confirmShip().observe(viewLifecycleOwner, {
 //                        if (it.statusCode == "200") {
 //                            viewModel.checkout().observe(viewLifecycleOwner, { checkout ->
@@ -125,9 +132,10 @@ class ConfirmShipFragment : Fragment() {
 //                            dismissLoadingScreen()
 //                        }
 //                    })
+                    }
                 }
             }
-            binding.btnBack.setOnClickListener {
+            binding.toolbar.imgBack.setOnClickListener {
                 viewModel.moveToChoose()
             }
             binding.tvChange.setOnClickListener {
@@ -199,7 +207,7 @@ class ConfirmShipFragment : Fragment() {
             binding.textView91.beVisible()
         } else {
             showLoadingTimeOut(10000)
-            binding.btnBack.setOnClickListener {
+            binding.toolbar.imgBack.setOnClickListener {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK_TO_SHAKE))
                 requireActivity().finish()
             }
@@ -210,8 +218,14 @@ class ConfirmShipFragment : Fragment() {
 
     }
 
+    private fun setupView() {
+        binding.tvReport.background = ViewHelper.btnWhiteStrokePrimary1Corners4(requireContext())
+        binding.edtNotes.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
+        binding.edtNotes.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(requireContext()))
+    }
+
     private fun getDetailOrder() {
-        binding.textView26 simpleText "Thông tin đơn hàng"
+        binding.toolbar.txtTitle simpleText "Thông tin đơn hàng"
         binding.imgStatus.beVisible()
         viewModel.getDetailOrder().observe(viewLifecycleOwner, {
             it.data?.let { detailOrderResponse ->
@@ -260,7 +274,7 @@ class ConfirmShipFragment : Fragment() {
                     binding.groupNote.beGone()
                 } else {
                     val ss = SpannableString("Ghi chú: ${detailOrderResponse.note}")
-                    ss.setSpan(ForegroundColorSpan(Color.parseColor("#b4b4b4")), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    ss.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext())), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     binding.groupNote.beVisible()
                     binding.edtNotes.isFocusable = false
                     binding.edtNotes.isFocusableInTouchMode = false
@@ -272,8 +286,8 @@ class ConfirmShipFragment : Fragment() {
                     0, 2 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_pending)
                         binding.btnConfirm simpleText "Hủy đơn"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#057DDA"))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+                        binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
                             DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
@@ -297,8 +311,8 @@ class ConfirmShipFragment : Fragment() {
                     3, 4 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipping)
                         binding.btnConfirm simpleText "Hủy đơn"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
+                        binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
                         binding.btnConfirm.alpha = 0.7f
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener(null)
@@ -311,16 +325,16 @@ class ConfirmShipFragment : Fragment() {
                     5 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipped)
                         binding.btnConfirm simpleText "Đánh giá đơn hàng"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()))
+                        binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
                         binding.textView91 simpleText "Thời gian nhận hàng"
                         binding.tvShipTime simpleText detailOrderResponse.completedAt?.getHourMinutesTime()
                     }
                     6, 7 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_cancelled)
                         binding.btnConfirm simpleText "Mua lại đơn này"
-                        binding.btnConfirm.setTextColor(Color.parseColor("#057DDA"))
-                        binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
+                        binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+                        binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
                         binding.textView91 simpleText "Thời gian hủy đơn"
                         binding.tvShipTime simpleText detailOrderResponse.cancelledAt?.getHourMinutesTime()
                         binding.btnConfirm.setOnClickListener {

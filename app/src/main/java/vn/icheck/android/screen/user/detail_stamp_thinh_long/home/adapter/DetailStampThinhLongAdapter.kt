@@ -2,15 +2,13 @@ package vn.icheck.android.screen.user.detail_stamp_thinh_long.home.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.activities.product.contribute.NullHolder
 import vn.icheck.android.base.holder.ListStampECommerceHolder
 import vn.icheck.android.callback.ItemClickListener
+import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.network.models.ICProductLink
-import vn.icheck.android.network.models.ICRelatedProduct
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectInfo
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.models.v1.ICRelatedProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.*

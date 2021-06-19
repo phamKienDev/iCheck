@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/review_1_widget"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/size_12">
 
@@ -98,12 +97,11 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_1_comment" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ViewLineDotted
                 android:id="@+id/view24"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_5"
                 android:layout_marginTop="@dimen/size_8"
-                android:background="@drawable/dotted"
                 android:layerType="software"
                 app:layout_constraintEnd_toEndOf="@id/tv_1_time"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_1_name"
@@ -121,24 +119,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/rcv_rating"
                 tools:visibility="visible">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                     android:id="@+id/detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_down_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Xem chi tiết đánh giá"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14" />
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                     android:id="@+id/coplapse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_up_blue_18px"
                     android:fontFamily="sans-serif-medium"
                     android:text="Thu gọn"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_14"
                     android:visibility="gone" />
             </LinearLayout>
@@ -226,4 +222,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

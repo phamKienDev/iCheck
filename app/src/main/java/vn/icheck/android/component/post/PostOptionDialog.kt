@@ -27,7 +27,7 @@ import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.network.models.ICUserPost
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
+import vn.icheck.android.screen.dialog.ReportDialog
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.simpleText
@@ -308,8 +308,8 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                         DialogHelper.closeLoading(activity)
 
                         obj.data?.rows?.let { list ->
-                            ReportWrongContributionDialog(list, R.string.bao_cao_bai_viet).apply {
-                                setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                            ReportDialog(list, R.string.bao_cao_bai_viet).apply {
+                                setListener(object : ReportDialog.DialogClickListener {
                                     override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                                         dismiss()
                                         reportPost(objPost, listReason, message, listMessage)

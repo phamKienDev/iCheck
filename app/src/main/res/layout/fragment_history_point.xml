@@ -36,14 +36,13 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_group_120dp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_28"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="Bạn chưa dùng điểm nào"
-                    android:textColor="@color/black_21_v2"
                     android:textSize="@dimen/font_16" />
             </LinearLayout>
         </LinearLayout>

@@ -1,5 +1,6 @@
 package vn.icheck.android.activities.product.review_product_v1.holder
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.item_post_your_review_product.view.*
@@ -8,6 +9,7 @@ import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Act
 import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity

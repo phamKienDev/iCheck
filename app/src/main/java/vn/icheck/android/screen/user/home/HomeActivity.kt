@@ -22,6 +22,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatCheckedTextView
@@ -47,6 +48,7 @@ import kotlinx.android.synthetic.main.right_menu_history.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -148,6 +150,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
+            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -161,6 +164,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
+            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -186,6 +190,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         isOpen = true
         WelcomeActivity.isWelcome = false
 
+        setupView()
         setupViewPager()
         setupTabListener()
         checkPermission()
@@ -201,6 +206,16 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         ringtoneHelper = RingtoneHelper(this)
         AndroidSchedulers.mainThread()
         INSTANCE = this
+    }
+
+    private fun setupView() {
+        drawerLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
+        vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
+            tvHome.setTextColor(this)
+            tvFeed.setTextColor(this)
+            tvHistory.setTextColor(this)
+            tvChat.setTextColor(this)
+        }
     }
 
 
@@ -307,8 +322,33 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     }
 
     private fun setupTabListener() {
-        WidgetUtils.setClickListener(this, tvHome, tvFeed, imgScanQr, tvHistory, tvChat, imgAvatar, tv_logout, tv_help, help_root, btn_rank_user, tv_hdsd, layoutSetting,
-                tv_dksd, tv_chtg, tv_lhic, group_history_topup, btnCreateQr, tv_ttud, btn_icheck_xu, layoutOrder, btn_manage_page, group_favorite_products, btnApply, tv_username)
+        WidgetUtils.setClickListener(
+            this,
+            tvHome,
+            tvFeed,
+            imgScanQr,
+            tvHistory,
+            tvChat,
+            imgAvatar,
+            tv_logout,
+            tv_help,
+            help_root,
+            btn_rank_user,
+            tv_hdsd,
+            layoutSetting,
+            tv_dksd,
+            tv_chtg,
+            tv_lhic,
+            group_history_topup,
+            btnCreateQr,
+            tv_ttud,
+            btn_icheck_xu,
+            layoutOrder,
+            btn_manage_page,
+            group_favorite_products,
+            btnApply,
+            tv_username
+        )
     }
 
     private fun checkPermission() {
@@ -318,7 +358,11 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             }
 
             override fun onRequestPermission() {
-                PermissionHelper.checkPermission(this@HomeActivity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), requestLocationPermission)
+                PermissionHelper.checkPermission(
+                    this@HomeActivity,
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
+                    requestLocationPermission
+                )
             }
 
             override fun onPermissionNotAllow() {
@@ -448,7 +492,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             }
             tv_logout.visibility = View.VISIBLE
             tv_user_rank.text = user?.getPhoneAndRank()
-            tv_user_rank.setTextColor(Color.parseColor("#757575"))
+            tv_user_rank.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
             img_rank_user.beVisible()
             background.loadImageWithHolder(SessionManager.session.user?.background, R.drawable.left_menu_bg)
             when (user?.rank?.level) {
@@ -476,20 +520,19 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             tv_user_rank.visibility = View.VISIBLE
-            tv_user_rank.setTextColor(Color.parseColor("#212121"))
+            tv_user_rank.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>", Html.FROM_HTML_MODE_COMPACT))
-                spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap), Html.FROM_HTML_MODE_COMPACT))
+                spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-                spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                tv_user_rank.text = spannableString
+                spannableString.setSpan(loginClickable, 22, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                tv_user_rank.setText(spannableString, TextView.BufferType.SPANNABLE)
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             } else {
-                val spannableString = SpannableString(Html.fromHtml("Vui lòng <font color=#057DDA><u>Đăng kí</u></font> hoặc <font color=#057DDA><u>Đăng nhập</u></font>"))
+                val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap)))
+                spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-                spannableString.setSpan(registerClickable, 8, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                spannableString.setSpan(loginClickable, 23, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableString.setSpan(loginClickable, 22, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 tv_user_rank.text = spannableString
                 tv_user_rank.movementMethod = LinkMovementMethod.getInstance()
             }
@@ -502,9 +545,9 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         val theme = SettingManager.themeSetting?.theme
 
         if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.colorDisableText), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.grayB4), Color.parseColor(theme!!.bottomBarSelectedTextColor))
         } else {
-            ContextCompat.getColorStateList(this@HomeActivity, R.color.text_color_home_tab)
+            vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
         }.apply {
             tvHome.setTextColor(this)
             tvFeed.setTextColor(this)
@@ -515,40 +558,52 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
         if (homeBitmap != null) {
-            tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvHome.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_home_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(homeBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvHome.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_home_page_27), null, null)
         }
 
         val feedBitmap = BitmapFactory.decodeFile(path + FileHelper.newsIcon)
         if (feedBitmap != null) {
-            tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvFeed.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_feed_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(feedBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvFeed.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_feed_27), null, null)
         }
 
         val historyBitmap = BitmapFactory.decodeFile(path + FileHelper.historyIcon)
         if (historyBitmap != null) {
-            tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvHistory.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_history_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(historyBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvHistory.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_history_27), null, null)
         }
 
         val chatBitmap = BitmapFactory.decodeFile(path + FileHelper.messageIcon)
         if (chatBitmap != null) {
-            tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ViewHelper.createDrawableStateList(
+            tvChat.setCompoundDrawablesWithIntrinsicBounds(
+                null, ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_bottombar_chat_unchecked_27dp)!!,
-                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))),
-                    null, null)
+                    BitmapDrawable(resources, Bitmap.createScaledBitmap(chatBitmap, SizeHelper.size27, SizeHelper.size27, false))
+                ),
+                null, null
+            )
         } else {
             tvChat.setCompoundDrawablesWithIntrinsicBounds(null, ContextCompat.getDrawable(this@HomeActivity, R.drawable.ic_selected_chat_27), null, null)
         }
@@ -561,14 +616,15 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         }
     }
 
-    private fun checkkNewTheme() {
+    private fun checkNewTheme() {
         lifecycleScope.async {
             val file = File(FileHelper.getPath(this@HomeActivity) + FileHelper.imageFolder)
             if (file.exists()) {
                 FileHelper.deleteTheme(file)
             }
             SettingManager.themeSetting = null
-            setupTheme()
+//            setupTheme()
+            SettingManager.setAppThemeColor(null)
 
             val themeSettingRes = try {
                 withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
@@ -576,8 +632,11 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 null
             }
             SettingManager.themeSetting = themeSettingRes?.data
+            SettingManager.setAppThemeColor(themeSettingRes?.data)
 
-            viewModel.downloadTheme()
+//            viewModel.downloadTheme()
+
+            recreate()
         }
     }
 
@@ -616,11 +675,17 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     }
 
     override fun onLogoutFalse() {
-        DialogHelper.showNotification(this@HomeActivity, null, R.string.dang_xuat_khong_thanh_cong_vui_long_thu_lai, R.string.thu_lai, false, object : NotificationDialogListener {
-            override fun onDone() {
-                presenter.loginAnonymous()
-            }
-        })
+        DialogHelper.showNotification(
+            this@HomeActivity,
+            null,
+            R.string.dang_xuat_khong_thanh_cong_vui_long_thu_lai,
+            R.string.thu_lai,
+            false,
+            object : NotificationDialogListener {
+                override fun onDone() {
+                    presenter.loginAnonymous()
+                }
+            })
     }
 
     override fun showError(errorMessage: String) {
@@ -1048,14 +1113,21 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
                 }
 
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
+                ChatSdk.shareIntent(
+                    SessionManager.session.firebaseToken,
+                    SessionManager.session.user?.id,
+                    SessionManager.session.token,
+                    DeviceUtils.getUniqueDeviceId(),
+                    SessionManager.isUserLogged
+                )
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
+//                tvChatCount.visibility = View.GONE
+
                 ChatSdk.shareIntent(null, null, null, null, false)
 
-                tvChatCount.visibility = View.GONE
                 RelationshipManager.removeListener()
-                checkkNewTheme()
+                checkNewTheme()
                 clearFilter()
 
                 checkLoginOrLogoutChat(false)
@@ -1065,17 +1137,23 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 }
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
-                tv_username.text = SessionManager.session.user?.getName
-                tv_user_rank.text = SessionManager.session.user?.phone
-                Glide.with(this.applicationContext)
-                        .load(SessionManager.session.user?.avatar)
-                        .placeholder(R.drawable.ic_avatar_default_84px)
-                        .error(R.drawable.ic_avatar_default_84px)
-                        .into(imgAvatar)
+//                tv_username.text = SessionManager.session.user?.getName
+//                tv_user_rank.text = SessionManager.session.user?.phone
+//                Glide.with(this.applicationContext)
+//                    .load(SessionManager.session.user?.avatar)
+//                    .placeholder(R.drawable.ic_avatar_default_84px)
+//                    .error(R.drawable.ic_avatar_default_84px)
+//                    .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
-                ChatSdk.shareIntent(SessionManager.session.firebaseToken, SessionManager.session.user?.id, SessionManager.session.token, DeviceUtils.getUniqueDeviceId(), SessionManager.isUserLogged)
-                checkkNewTheme()
+                ChatSdk.shareIntent(
+                    SessionManager.session.firebaseToken,
+                    SessionManager.session.user?.id,
+                    SessionManager.session.token,
+                    DeviceUtils.getUniqueDeviceId(),
+                    SessionManager.isUserLogged
+                )
+                checkNewTheme()
                 clearFilter()
                 checkLoginOrLogoutChat(true)
             }
@@ -1206,6 +1284,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         super.onDestroy()
         stopLocationUpdates()
         isOpen = false
+        viewModelStore.clear()
         RelationshipManager.removeListener()
         INSTANCE = null
     }

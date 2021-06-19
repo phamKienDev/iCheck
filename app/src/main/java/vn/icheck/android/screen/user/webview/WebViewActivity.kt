@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +18,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.View
 import android.webkit.*
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
@@ -405,7 +407,8 @@ class WebViewActivity : BaseActivityMVVM() {
             val hotline = SettingManager.clientSetting?.hotline ?: "0902195488"
             val spannable = SpannableString(getString(R.string.ma_qr_khong_phai_do_icheck_phat_hanh, hotline))
 
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(p0: View) {
                     val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$hotline"))

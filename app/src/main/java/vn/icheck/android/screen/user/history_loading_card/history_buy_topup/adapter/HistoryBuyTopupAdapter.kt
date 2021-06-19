@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
 import kotlinx.android.synthetic.main.item_history_buy_topup.view.*
@@ -15,6 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -162,6 +162,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
+            itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
 
             itemView.tvNameNetwork.text = "Thẻ ${item.provider}"
 
@@ -234,7 +235,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

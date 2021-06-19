@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog"
     android:paddingBottom="@dimen/size_20">
 
     <include
         android:id="@+id/layoutHeader"
         layout="@layout/layout_title_filter_search" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider27"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_select_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,9 +28,7 @@
         android:drawableStart="@drawable/ic_product_verified_check"
         android:drawableLeft="@drawable/ic_product_verified_check"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="Sản phẩm đã xác thực"
-        android:textColor="#212121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27" />
 
@@ -45,17 +41,15 @@
         android:thumb="@drawable/ic_filer_switch_thumb_selector"
         app:layout_constraintBottom_toBottomOf="@+id/tv_select_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_select_location"
-        app:track="@drawable/ic_filer_switch_track_selector" />
+        app:layout_constraintTop_toTopOf="@id/tv_select_location" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider28"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_13"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_select_location" />
@@ -69,7 +63,7 @@
         android:paddingRight="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider28">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_select_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,21 +75,17 @@
             android:drawableStart="@drawable/ic_price_tag"
             android:drawableLeft="@drawable/ic_price_tag"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="Giá từ"
-            android:textColor="#212121"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/tat_ca"
-            android:textColor="#757575"
             app:layout_constraintEnd_toStartOf="@id/img_clear_price"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 
@@ -111,13 +101,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_price" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider29"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerPrice" />
@@ -131,7 +120,7 @@
         android:paddingRight="@dimen/size_4"
         app:layout_constraintTop_toBottomOf="@id/divider29">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView40"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,9 +132,7 @@
             android:drawableStart="@drawable/ic_star_black"
             android:drawableLeft="@drawable/ic_star_black"
             android:drawablePadding="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:text="@string/danh_gia"
-            android:textColor="#212121"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider29" />
 
@@ -155,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:text="@string/tat_ca"
             app:layout_constraintEnd_toStartOf="@id/img_clear_review"
@@ -173,32 +159,27 @@
             app:layout_constraintTop_toTopOf="@+id/tv_all_review" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider30"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerReview" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/tv_clear"
         android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider30" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

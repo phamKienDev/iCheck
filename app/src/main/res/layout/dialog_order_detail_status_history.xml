@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_10"
     android:layout_marginEnd="@dimen/size_10"
     android:layout_marginBottom="@dimen/size_12"
-    android:background="@drawable/bg_white_corners_8"
     android:paddingBottom="@dimen/size_20">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
         android:text="@string/trang_thai_don_hang"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +64,7 @@
         android:text="@string/da_nhan_hang"
         android:textAlignment="gravity"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="gone"
@@ -74,4 +72,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tableLayout" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8>

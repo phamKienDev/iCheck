@@ -21,6 +21,8 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.ui.view.RatioImageView
@@ -121,6 +123,8 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                 it.minLines = 2
             })
 
+            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+
             /* Layout Rating */
             layoutParent.addView(LinearLayout(context).also { layoutRating ->
                 layoutRating.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size5, SizeHelper.size6, 0)
@@ -138,20 +142,18 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                     tvRate.layoutParams = rateParams
                     tvRate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                     tvRate.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                    tvRate.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                    tvRate.setTextColor(primaryColor)
                     tvRate.includeFontPadding = false
                     tvRate.isSingleLine = true
                     tvRate.text = "0,0"
                 })
 
                 // Text total review
-                layoutRating.addView(AppCompatTextView(context).also { tvReviewCount ->
+                layoutRating.addView(TextSecondBarlowMedium(context).also { tvReviewCount ->
                     tvReviewCount.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                         it.setMargins(SizeHelper.size4, 0, 0, 0)
                     }
                     tvReviewCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
-                    tvReviewCount.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
-                    tvReviewCount.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                     tvReviewCount.includeFontPadding = false
                     tvReviewCount.isSingleLine = true
                 })
@@ -163,7 +165,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                 tvPrice.layoutParams = priceParams
                 tvPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 tvPrice.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
-                tvPrice.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                tvPrice.setTextColor(primaryColor)
                 tvPrice.includeFontPadding = false
                 tvPrice.isSingleLine = true
                 tvPrice.ellipsize = TextUtils.TruncateAt.END
@@ -177,7 +179,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
                 tvVerified.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 tvVerified.includeFontPadding = false
                 tvVerified.setText(R.string.verified)
-                tvVerified.setTextColor(ContextCompat.getColor(context, R.color.green_text_verified_product))
+                tvVerified.setTextColor(Constant.getAccentGreenColor(context))
                 tvVerified.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 tvVerified.gravity = Gravity.CENTER_VERTICAL
             })

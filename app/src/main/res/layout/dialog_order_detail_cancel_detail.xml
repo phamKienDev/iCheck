@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,9 @@
     android:layout_marginStart="@dimen/size_10"
     android:layout_marginEnd="@dimen/size_10"
     android:layout_marginBottom="@dimen/size_12"
-    android:background="@drawable/bg_white_corners_8"
     android:paddingBottom="@dimen/size_20">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
         android:text="@string/trang_thai_don_hang"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_18"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +83,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,7 +92,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="Người mua" />
@@ -113,7 +110,7 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,7 +119,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="14:32, 30/02/2019" />
@@ -141,14 +137,13 @@
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@id/tvNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
-                android:textColor="#3c5a99"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
                 tools:text="Không thích mua nữa" />
@@ -168,11 +163,11 @@
         android:text="@string/dat_lai_don_nay"
         android:textAlignment="gravity"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutContent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius8>

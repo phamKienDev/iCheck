@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.list_product_question
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +12,6 @@ import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.android.synthetic.main.activity_list_product_question.imgBack
@@ -20,11 +20,6 @@ import kotlinx.android.synthetic.main.activity_list_product_question.rcvChildEmo
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvParentEmoji
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvPermission
 import kotlinx.android.synthetic.main.item_base_send_message_product_v2.*
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgAvatar
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgCamera
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgEmoji
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgSend
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.tvActor
 import vn.icheck.android.R
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -37,6 +32,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -151,12 +147,18 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_product_question)
 
+        setupView()
         setupListener()
         setupRecyclerView()
         setRecyclerViewPermission()
         setupSwipeLayout()
         setupViewModel()
         checkUserLogin()
+    }
+
+    private fun setupView() {
+        containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        edtContent.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
     }
 
     private fun setupListener() {
@@ -227,7 +229,8 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true
@@ -421,11 +424,11 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     override fun onAnswer(obj: ICProductQuestion) {
         tvActor.visibility = View.VISIBLE
-        tvActor.text = Html.fromHtml(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
+        tvActor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
             obj.user!!.getName
         } else {
             obj.page!!.getName
-        }))
+        })))
         tvActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         edtContent.requestFocus()

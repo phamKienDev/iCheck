@@ -7,44 +7,38 @@
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.confirmlockcard.ConfirmLockPVCardActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:fontFamily="@font/barlow_semi_bold"
             android:text="Xác nhận khóa thẻ"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_40"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
             android:text="Nhập mã pin của thẻ"
-            android:textColor="#212121"
             android:textSize="@dimen/font_20" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +50,7 @@
             android:layout_marginEnd="@dimen/size_52"
             android:layout_marginRight="@dimen/size_52">
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
                 android:id="@+id/edt_pin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +61,6 @@
                 android:inputType="textPassword"
                 android:paddingBottom="@dimen/size_20"
                 android:textAlignment="center"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,5 +87,5 @@
                 android:text="Xác nhận" />
 
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 </LinearLayout>

@@ -67,6 +67,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 //            View.GONE
 //        }
 
+        itemView.tvBuyNow.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
 
         //PRODUCT
 

@@ -17,13 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
             android:id="@id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_span="2"
             android:text="@string/thong_tin_bao_hanh"
-            android:textColor="@color/colorSecondary"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>
 
@@ -106,7 +105,7 @@
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextBody1
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextBody1AccentRed
             android:id="@id/tvRemaining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,8 +113,6 @@
             android:hint="@string/dang_cap_nhat"
             android:text="15 ngày"
             android:textAlignment="gravity"
-            android:textColor="@color/colorAccentRed"
-            android:textColorHint="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toTopOf="parent" />
     </TableRow>

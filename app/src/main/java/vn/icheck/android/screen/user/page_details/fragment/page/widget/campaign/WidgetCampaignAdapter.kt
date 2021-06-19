@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -48,16 +49,16 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                 if (obj.state is String) {
                     when (obj.state) {
                         "running" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
+                            setTextColor(Constant.getAccentRedColor(itemView.context))
                             text = "Đang diễn ra"
                         }
                         "finished" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.black_21_v2))
+                            setTextColor(Constant.getNormalTextColor(context))
                             text = "Đã kết thúc"
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }
                         else -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                            setTextColor(Constant.getSecondTextColor(itemView.context))
                             text = TimeHelper.convertDateSvToDateVn(obj.startTime)
                         }
                     }

@@ -33,6 +33,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -101,15 +102,16 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, SizeHelper.size16, 0, 0)
-
-        imgBack.setImageResource(R.drawable.ic_cancel_light_blue_24dp)
+        imgBack.fillDrawableColor()
         imgBack.setOnClickListener {
             onBackPressed()
         }
     }
 
     private fun setupView() {
+        tvViewMore.background=vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        edtContent.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
@@ -310,7 +312,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
             productLayout.setPadding(SizeHelper.size4, SizeHelper.size6, SizeHelper.size26, SizeHelper.size6)
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.darkGray6), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.basicInfo?.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name
@@ -338,7 +340,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             parent.tag = product.id
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.darkGray6), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name

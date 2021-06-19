@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityDetailMyRewardBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.models.campaign.DetailRewardData
@@ -64,6 +64,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
             showShortErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
             dismissLoadingScreen()
         })
+
+        setupView()
         listener()
         listenerGetData()
 
@@ -76,6 +78,16 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 binding.toolbar.simpleVisibleAnim()
                 binding.toolbarAlpha.simpleGoneAnim()
             }
+        }
+    }
+
+    private fun setupView() {
+        binding.btnRefuse.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        binding.tvAddress.background = ViewHelper.bgAccentCyanCorners4(this)
+        ViewHelper.bgPrimaryCorners4(this).apply {
+            binding.btnShare.background = this
+            binding.btnAcceptDaLay.background = this
+            binding.btnFollowGift.background = this
         }
     }
 
@@ -151,11 +163,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse simpleText "Số serial"
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
-                    binding.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvState.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvState simpleText data.dataRps?.pin
                     binding.tvRefuseDes simpleText data.dataRps?.serial
                     binding.tvState.setTextSize(14f)
-                    binding.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvRefuseDes.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvTime simpleText "Hạn sử dụng"
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
@@ -170,14 +182,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                                     dismissLoadingScreen()
                                     showShortSuccessToast(getString(R.string.ban_da_danh_dau_nap_the_nay))
                                     getData()
-    //                                binding.layoutBottom.beGone()
-    //                                binding.imgLogo.alpha = 0.5f
-    //                                binding.imgUsed.beVisible()
-    //                                binding.tvState.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvTime simpleText "Ngày dùng"
-    //                                binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
-    //                                binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
+                                    //                                binding.layoutBottom.beGone()
+                                    //                                binding.imgLogo.alpha = 0.5f
+                                    //                                binding.imgUsed.beVisible()
+                                    //                                binding.tvState.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvTime simpleText "Ngày dùng"
+                                    //                                binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                                    //                                binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
                                 })
                             } catch (e: Exception) {
                                 dismissLoadingScreen()
@@ -200,10 +212,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                         binding.layoutBottom.beGone()
                         binding.imgLogo.alpha = 0.5f
                         binding.imgUsed.beVisible()
-                        binding.tvState.setTextColor(Color.parseColor("#757575"))
-                        binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvState.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvTime simpleText "Ngày dùng"
-                        binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
                     }
 
@@ -301,7 +313,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao simpleText "Đã xác nhận giao quà"
-                    binding.tvMathecao.setTextColor(Color.parseColor("#057DDA"))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                     binding.tvTime.beInvisible()
@@ -321,7 +333,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao simpleText "Giao quà thành công"
-                    binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
@@ -339,7 +351,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Bạn đã từ chối nhận quà này"
-                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentRed))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentRedColor(binding.tvMathecao.context))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
@@ -352,7 +364,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao simpleText "Giao quà thành công"
-                binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
@@ -367,8 +379,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
                         binding.tvTime simpleText "Loại quà"
                         binding.tvTimeDes simpleText "Quà giao tận nơi"
-                        binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
-                        binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
+                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.layoutBottom.beGone()
                         binding.btnAcceptDaLay.setOnClickListener {
                             TrackingAllHelper.tagGiftDeliveryStarted(viewModel.detailReward?.data?.campaignId, viewModel.detailReward?.data?.name)

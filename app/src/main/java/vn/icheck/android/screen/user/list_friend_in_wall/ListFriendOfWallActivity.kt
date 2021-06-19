@@ -13,19 +13,18 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_list_friend_of_wall.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.util.KeyboardUtils
@@ -49,7 +48,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     private var itemId: Long? = null
 
-    private lateinit var dialog: ReportWrongContributionDialog
+    private lateinit var dialog: ReportDialog
 
     private var disposable: Disposable? = null
 
@@ -66,6 +65,8 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     private fun initView() {
         txtTitle.text = "Danh sách bạn bè"
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+        edtSearch.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
     }
 
     private fun listener() {
@@ -135,10 +136,10 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             })
 
             viewModel.listReport.observe(this, Observer {
-                dialog = ReportWrongContributionDialog(it, R.string.bao_cao_nguoi_dung_nay, R.string.mo_ta_noi_dung_bao_cao)
+                dialog = ReportDialog(it, R.string.bao_cao_nguoi_dung_nay, R.string.mo_ta_noi_dung_bao_cao)
                 dialog.show(supportFragmentManager, dialog.tag)
 
-                dialog.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                dialog.setListener(object : ReportDialog.DialogClickListener {
                     override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                         viewModel.sendReportuser(itemId, listReason, listMessage, message)
                     }
@@ -147,7 +148,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
             viewModel.reportSuccess.observe(this, Observer {
                 dialog.dismiss()
-                val dialogFragment = ReportWrongContributionSuccessDialog(this)
+                val dialogFragment = ReportSuccessDialog(this)
                 dialogFragment.show(it, "")
             })
 

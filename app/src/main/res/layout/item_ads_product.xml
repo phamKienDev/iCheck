@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGray" />
+        android:layout_height="@dimen/size_10"/>
 
     <LinearLayout
         android:id="@+id/layoutTitle"
@@ -19,25 +17,22 @@
         android:layout_marginTop="@dimen/size_10"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_weight="1"
-            tools:text="Title"
-            android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/font_18"
-            app:fontFamily="@font/barlow_semi_bold" />
+            android:text="Title"
+            android:textSize="@dimen/font_18" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@id/btnMore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/size_12"
             android:gravity="center"
-            android:text="@string/xem_them"
-            android:textColor="@color/colorSecondary"
+            android:text="Xem thêm"
             android:textSize="@dimen/font_14"
             app:fontFamily="@font/barlow_semi_bold" />
 
@@ -89,4 +84,4 @@
             app:layout_constraintEnd_toEndOf="@id/viewBackground"
             app:layout_constraintTop_toTopOf="@id/viewBackground" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</LinearLayout >

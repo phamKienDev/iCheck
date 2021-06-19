@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.coinhistory
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -64,7 +65,8 @@ class CoinHistoryActivity : BaseActivityMVVM(), ICoinHistoryView {
     }
 
     private fun initSwipelayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.isRefreshing = true
 

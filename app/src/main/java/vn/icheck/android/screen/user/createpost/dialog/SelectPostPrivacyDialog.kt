@@ -3,11 +3,11 @@ package vn.icheck.android.screen.user.createpost.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_create_or_update_post.*
 import kotlinx.android.synthetic.main.dialog_select_post_privacy.*
 import kotlinx.android.synthetic.main.dialog_select_post_privacy_item.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPrivacy
 
 abstract class SelectPostPrivacyDialog(context: Context, private val listPrivacy: MutableList<ICPrivacy>) : BaseBottomSheetDialog(context, R.layout.dialog_select_post_privacy, true) {
@@ -20,6 +20,8 @@ abstract class SelectPostPrivacyDialog(context: Context, private val listPrivacy
     }
 
     private fun setupView() {
+        dialog.btnDone.background = ViewHelper.bgPrimaryCorners4(dialog.context)
+
         dialog.layoutContent.apply {
             for (i in 0 until listPrivacy.size) {
                 val parent = LayoutInflater.from(context).inflate(R.layout.dialog_select_post_privacy_item, this, false) as ViewGroup

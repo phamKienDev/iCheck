@@ -12,11 +12,10 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
-        android:background="@drawable/bg_gray_f0_corners_4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,9 +24,7 @@
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:singleLine="true"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgGift"
@@ -45,32 +42,28 @@
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvNamePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_3"
         android:layout_marginLeft="@dimen/size_3"
         android:textSize="@dimen/font_12"
-        android:textColor="@color/colorSecondText"
         tools:text="Công ty Cổ Phần iCheck (1 dòng)"
         android:singleLine="true"
-        android:fontFamily="@font/barlow_medium"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="@+id/imgLogoPage"
         app:layout_constraintStart_toEndOf="@+id/imgLogoPage"
         app:layout_constraintTop_toTopOf="@+id/imgLogoPage" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:singleLine="true"
-        android:fontFamily="@font/barlow_medium"
         android:ellipsize="end"
         android:textSize="@dimen/font_12"
-        android:textColor="@color/colorSecondText"
         tools:text="12:45, 12/05/2020"
         app:layout_constraintStart_toStartOf="@+id/imgLogoPage"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoPage" />
@@ -79,7 +72,6 @@
         android:id="@+id/tvAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_green_corners_top_left"
         android:drawableEnd="@drawable/ic_keyboard_arrow_right_white_24dp"
         android:drawableRight="@drawable/ic_keyboard_arrow_right_white_24dp"
         android:fontFamily="@font/barlow_medium"
@@ -93,12 +85,12 @@
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/viewLine"
         app:layout_constraintEnd_toEndOf="parent" />
-    <View
+
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/viewLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginLeft="@dimen/size_12"
-        android:background="@color/darkGray6"
         android:layout_marginTop="@dimen/size_8"
         app:layout_constraintTop_toBottomOf="@id/imgGift"
         android:layout_marginStart="@dimen/size_12" />

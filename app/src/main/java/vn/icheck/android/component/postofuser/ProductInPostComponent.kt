@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.post.ICProductInPost
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -28,7 +29,7 @@ class ProductInPostComponent : LinearLayout {
 
     private fun createView() {
         orientation = HORIZONTAL
-        background = ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.darkGray6), SizeHelper.size4.toFloat())
+        background = ViewHelper.createShapeDrawable(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size4.toFloat())
         setPadding(SizeHelper.size4, SizeHelper.size4, SizeHelper.size4, SizeHelper.size4)
 
         // Image logo
@@ -53,7 +54,7 @@ class ProductInPostComponent : LinearLayout {
                     ViewHelper.createLayoutParams(),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    ContextCompat.getColor(context, R.color.colorSecondText),
+                    Constant.getSecondTextColor(context),
                     14f,
                     1))
         })

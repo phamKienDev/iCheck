@@ -7,32 +7,28 @@
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.mygift.MyGiftActivity">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:elevation="@dimen/size_4"
-        android:background="@color/white">
+        android:elevation="@dimen/size_4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/qua_cua_toi"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/font_18" />
+            android:text="@string/qua_cua_toi" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgAction"
@@ -41,14 +37,13 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:visibility="gone"
-        android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="@dimen/size_0"
@@ -66,7 +61,6 @@
                 android:gravity="center"
                 android:text="Hộp quà"
                 android:textAlignment="center"
-                android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -74,7 +68,6 @@
                 android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_my_gift_title"
                 android:checked="true"
                 android:gravity="center" />
         </LinearLayout>
@@ -95,7 +88,6 @@
                 android:gravity="center"
                 android:text="Quà hiện vật"
                 android:textAlignment="center"
-                android:textColor="@color/text_color_my_gift_title"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatCheckedTextView
@@ -103,19 +95,17 @@
                 android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_3"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_my_gift_title"
                 android:checked="false"
                 android:gravity="center" />
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <!--    <vn.icheck.android.helper.ViewPagerNoScroll-->
-<!--        android:id="@+id/viewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <!--        android:id="@+id/viewPager"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent" />-->
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray
         android:id="@+id/swipeLayout"
-        android:background="@color/darkGray6"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -138,14 +128,13 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_no_gift" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tv_no_gift"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="Bạn chưa có quà tặng nào"
                 android:visibility="gone" />
         </LinearLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray>
 </LinearLayout>

@@ -108,15 +108,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
             context.startActivityForResult(i, requestCode)
         }
 
-        fun scanOnlyLoyalty(
-            context: FragmentActivity,
-            type: String,
-            campaignId: Long,
-            nameCampaign: String?,
-            nameShop: String?,
-            avatarShop: String?,
-            currentCount: Int?
-        ) {
+        fun scanOnlyLoyalty(context: FragmentActivity,
+                            type: String,
+                            campaignId: Long,
+                            nameCampaign: String?,
+                            nameShop: String?,
+                            avatarShop: String?,
+                            currentCount: Int?) {
             val i = Intent(context, V6ScanditActivity::class.java)
             i.putExtra("loyalty_only", true)
             i.putExtra("type", type)
@@ -216,18 +214,13 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                             scanImage.set(false)
                             offCamera()
                             runOnUiThread {
-                                DialogHelper.showNotification(
-                                    this@V6ScanditActivity,
-                                    R.string.thong_bao,
-                                    R.string.khong_thay_ma_vach,
-                                    true,
-                                    object : NotificationDialogListener {
+                                DialogHelper.showNotification(this@V6ScanditActivity, R.string.thong_bao, R.string.khong_thay_ma_vach, true, object : NotificationDialogListener {
 
-                                        override fun onDone() {
-                                            resetCamera()
-                                        }
+                                    override fun onDone() {
+                                        resetCamera()
+                                    }
 
-                                    })
+                                })
                             }
                             frameSource.removeListener(this)
                         } else {
@@ -742,10 +735,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         val avatarShop = intent.getStringExtra("avatarShop")
                         val currentCount = intent.getIntExtra("currentCount", -1)
 
-                        ScanLoyaltyHelper.checkCodeScanLoyalty(
-                            this@V6ScanditActivity, type
-                                ?: "", nc, campaignId, nameCampaign, nameShop, avatarShop, currentCount
-                        ) { stop ->
+                        ScanLoyaltyHelper.checkCodeScanLoyalty(this@V6ScanditActivity, type
+                                ?: "", nc, campaignId, nameCampaign, nameShop, avatarShop, currentCount) { stop ->
                             if (stop) {
                                 offCamera()
                             } else {
@@ -827,7 +818,8 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
                                 override fun onError(error: ICResponseCode?) {
                                     TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
-                                    showShortErrorToast(error?.message)
+                                    error?.message?.let { showDurationErrorToast(it,3000) }
+                                    enableCapture()
                                 }
                             })
 

@@ -14,13 +14,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" />
 
-    <vn.icheck.android.ui.view.TextBarlowMedium
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
         android:includeFontPadding="false"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         tools:text="11 Bạn bè Facebook đang sử dụng iCheck" />
 

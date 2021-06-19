@@ -24,17 +24,15 @@
         app:layout_constraintStart_toEndOf="@id/avatar_friend"
         app:layout_constraintTop_toTopOf="@id/avatar_friend">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:maxLines="1"
             android:gravity="center_vertical"
+            android:maxLines="1"
             android:textAlignment="gravity"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Xuyến Đỗ" />
     </FrameLayout>
@@ -53,7 +51,6 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
         android:text="Nhắn tin"
@@ -69,7 +66,6 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
@@ -97,21 +93,18 @@
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_28"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@drawable/bg_corner_4_gray"
         android:gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
         app:layout_constraintStart_toStartOf="@id/layoutName"
         app:layout_constraintTop_toBottomOf="@id/layoutName">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="Đã gửi lời mời"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -130,11 +123,10 @@
         app:layout_constraintTop_toBottomOf="@id/layoutName">
 
         <LinearLayout
+            android:id="@+id/layoutAccept"
             android:layout_width="@dimen/size_100"
             android:layout_height="@dimen/size_28"
             android:layout_marginEnd="@dimen/size_5"
-            android:layout_marginRight="@dimen/size_5"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -157,28 +149,23 @@
                 app:layout_constraintTop_toBottomOf="@id/layoutName" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/btnRefuseFriend"
             android:layout_width="@dimen/size_100"
             android:layout_height="@dimen/size_28"
             android:layout_marginStart="@dimen/size_5"
-            android:layout_marginLeft="@dimen/size_5"
-            android:background="@drawable/bg_corner_4_light_blue_white"
             android:gravity="center"
-            android:lineSpacingExtra="@dimen/font_6"
             android:text="Xác nhận"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/avatar_friend"
             app:layout_constraintStart_toStartOf="@id/layoutName"
             app:layout_constraintTop_toBottomOf="@id/layoutName" />
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/placeholder_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/avatar_friend" />
 </androidx.constraintlayout.widget.ConstraintLayout>

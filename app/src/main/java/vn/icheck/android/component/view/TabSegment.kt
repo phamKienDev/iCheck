@@ -14,6 +14,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 
 
 class TabSegment : FrameLayout {
@@ -31,7 +33,7 @@ class TabSegment : FrameLayout {
         val view = View(context)
         view.layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT)
         view.id = R.id.indicator
-        view.setBackgroundResource(R.drawable.bg_blue_corners_40)
+        view.background=ViewHelper.bgSecondaryCorners40(context)
         addView(view)
 
         val tabLayout = TabLayout(context)
@@ -42,7 +44,7 @@ class TabSegment : FrameLayout {
         tabLayout.setSelectedTabIndicator(null)
         tabLayout.setSelectedTabIndicatorHeight(0)
         tabLayout.tabRippleColor = null
-        tabLayout.setTabTextColors(ContextCompat.getColor(context, R.color.colorSecondary), ContextCompat.getColor(context, R.color.white))
+        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), Constant.getAppBackgroundWhiteColor(context))
 
         addView(tabLayout)
     }
@@ -70,7 +72,7 @@ class TabSegment : FrameLayout {
                     if (i == 0) {
                         tabTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                     } else {
-                        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                        tabTextView.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                     }
                 }
             }
@@ -87,7 +89,7 @@ class TabSegment : FrameLayout {
                     for (i in 0 until tabChildsCount) {
                         val tabViewChild = vgTab.getChildAt(i)
                         if (tabViewChild is TextView) {
-                            tabViewChild.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                            tabViewChild.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                         }
                     }
                 }

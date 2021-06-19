@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +15,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCategory
 import vn.icheck.android.network.models.ICCompany
 import vn.icheck.android.network.models.ICMissionDetail
@@ -47,9 +47,14 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         StatusBarUtils.setOverStatusBarLight(this)
 
         screenFrom = intent.getStringExtra(Constant.DATA_2)
+        setupView()
         setNestedScrollView()
         setupViewModel()
         WidgetUtils.setClickListener(this, tvAllProduct, tvAllCategory, tvAllCompany, imgBack)
+    }
+
+    private fun setupView() {
+        btnConfirm.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun setNestedScrollView() {
@@ -159,7 +164,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_gray_d8)
+                progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(this)
             }
             1 -> { // Đang tham gia
                 // Hiển thị thời gian còn lại
@@ -176,7 +181,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_yellow)
+                progressBar.progressDrawable = ViewHelper.progressbarAccentYellowMission(this)
             }
             2 -> { // Đã hoàn thành
                 // Hiển thị thời gian hoàn thành
@@ -193,20 +198,20 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_yellow)
+                progressBar.progressDrawable = ViewHelper.progressbarAccentYellowMission(this)
             }
             else -> { // Thất bại
                 layoutHeader.visibility = View.GONE
                 progressBar.isEnabled = false
                 tvEnded.visibility = View.VISIBLE
-                tvProgress.setTextColor(ContextCompat.getColor(this, R.color.colorSecondText))
+                tvProgress.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this))
 
                 if (obj.image.isNullOrEmpty()) {
                     imgIcon.setImageResource(Constant.getMissionFailedIcon(obj.event))
                 } else {
                     WidgetUtils.loadImageUrl(imgIcon, obj.image)
                 }
-                progressBar.progressDrawable = ContextCompat.getDrawable(this, R.drawable.progress_gray_d8)
+                progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(this)
             }
         }
     }
@@ -369,7 +374,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvProduct, rcvProduct.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllProduct.text = getString(R.string.xem_tat_ca)
-                    tvAllProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
             R.id.tvAllCategory -> {
@@ -380,7 +385,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvCategory, rcvCategory.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllCategory.text = getString(R.string.xem_tat_ca)
-                    tvAllCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
             R.id.tvAllCompany -> {
@@ -391,7 +396,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
                 } else {
                     WidgetUtils.changeViewHeight(rcvCompany, rcvCompany.layoutParams.height, SizeHelper.dpToPx(310), 300)
                     tvAllCompany.text = getString(R.string.xem_tat_ca)
-                    tvAllCompany.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                    tvAllCompany.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                 }
             }
         }

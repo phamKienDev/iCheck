@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/darkGray6"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,27 +57,23 @@
                 app:layout_constraintTop_toTopOf="@id/imgLogo"
                 android:src="@drawable/img_code_used" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                 android:id="@id/tvNameProduct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_10"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgLogo"
                 app:layout_constraintTop_toTopOf="@id/imgLogo"
                 tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...)" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvCongty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
                 app:layout_constraintStart_toStartOf="@id/tvNameProduct"
@@ -94,13 +89,11 @@
             android:layout_marginTop="@dimen/size_48"
             android:layout_marginEnd="@dimen/size_27">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_4"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:textColor="#057dda"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,15 +101,13 @@
                 tools:text="Đã xác nhận ship quà"
                 tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvRefuse"
                 android:layout_width="@dimen/size_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginBottom="@dimen/size_4"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,13 +115,11 @@
                 tools:text="Lý do"
                 tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                 android:id="@+id/tvRefuseDes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@id/tvRefuse"
@@ -139,14 +128,12 @@
                 tools:text="Lý do: Phí ship quá cao"
                 tools:visibility="visible" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvTime"
                 android:layout_width="@dimen/size_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
-                android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,4 +158,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

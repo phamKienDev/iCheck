@@ -24,6 +24,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.bannersurvey.presenter.BannerSurveyPresenter
 import vn.icheck.android.screen.user.bannersurvey.view.IBannerSurveyView
@@ -47,7 +48,9 @@ class BannerSurveyActivity : BaseActivityMVVM(), IBannerSurveyView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         presenter.getData(intent)
+
     }
 
     private fun initToolbar() {
@@ -56,6 +59,13 @@ class BannerSurveyActivity : BaseActivityMVVM(), IBannerSurveyView {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnRight.background = ViewHelper.btnSecondaryCorners6(this)
+        btnHome.background = ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        btnLeft.background = ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        linearLayout.background = ViewHelper.bgSecondaryCornersTop10(this)
     }
 
     private fun initQuestion() {

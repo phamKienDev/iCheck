@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_filter_type.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.models.history.ICTypeHistory
-import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
 
 class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: IScanHistoryView) : RecyclerView.Adapter<FilterTypeAdapter.ViewHolder>() {
@@ -56,14 +58,16 @@ class FilterTypeAdapter(var listData: MutableList<ICTypeHistory>, val listener: 
         fun bindData(item: ICTypeHistory) {
             itemView.tvName.text = item.name
 
+            itemView.img_tick.fillDrawableColor(R.drawable.ic_tick_filter_history_blue_24)
+
             if (item.select) {
-                itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_light_blue_white)
+                itemView.layoutContent.background = ViewHelper.bgWhiteStrokePrimary1Corners4(itemView.context)
                 itemView.img_tick.visibility = View.VISIBLE
-                itemView.tvName.setTextColor(Color.parseColor("#057DDA"))
+                itemView.tvName.setTextColor(Constant.getPrimaryColor(itemView.context))
             } else {
-                itemView.layoutContent.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_4_f2f2f2)
+                itemView.layoutContent.background = ViewHelper.bgGrayCorners4(itemView.context)
                 itemView.img_tick.visibility = View.INVISIBLE
-                itemView.tvName.setTextColor(Color.parseColor("#757575"))
+                itemView.tvName.setTextColor(Color.parseColor(Constant.getSecondTextCode))
             }
 
             itemView.layoutContent.setOnClickListener {

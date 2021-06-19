@@ -12,11 +12,9 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.network.models.ICPaymentType
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
-import vn.icheck.android.screen.user.payment_topup.PaymentTopupActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<ICRechargePhone>) : RecyclerView.Adapter<PaymentTypeAdapter.ViewHolder>() {
@@ -75,12 +73,12 @@ class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<
 
             if (selectedPosition != adapterPosition) {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_un_checked_gray_24dp)
-                itemView.tvNameType.setTextColor(Color.parseColor("#757575"))
-                itemView.tvValue.setTextColor(Color.parseColor("#757575"))
+                itemView.tvNameType.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                itemView.tvValue.setTextColor(Color.parseColor(Constant.getSecondTextCode))
             } else {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_on_24dp)
-                itemView.tvNameType.setTextColor(Color.parseColor("#212121"))
-                itemView.tvValue.setTextColor(Color.parseColor("#212121"))
+                itemView.tvNameType.setTextColor(Constant.getNormalTextColor(itemView.context))
+                itemView.tvValue.setTextColor(Constant.getNormalTextColor(itemView.context))
             }
 
             WidgetUtils.loadImageUrlRounded(itemView.imgType, item.agent?.avatar, SizeHelper.size4)

@@ -12,17 +12,14 @@
         android:layout_gravity="bottom"
         tools:src="@mipmap/ic_launcher"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@id/tvMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
         android:layout_marginStart="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_10"
         android:textSize="@dimen/font_14"
         android:maxLines="3"
         android:ellipsize="end"
         tools:text="Cho em hỏi sản phẩm còn hàng không ạ? Em rất muốn mua sản phẩm này (Tối đa 3 dòng thôi nhé)...mdsamd sadopaskdpsak skad kasdlk;salskd las;kdsa;ld kdls;a kd;sakd las;dk als;dkl;sa" />
-
-
 </LinearLayout>

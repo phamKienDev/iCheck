@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.list_product_review
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -103,7 +104,9 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
             onBackPressed()
         }
 
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
+
         swipe_container.setOnRefreshListener {
             getData()
             adapter.setRefeshTextReview(true)

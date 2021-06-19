@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.search_home.user
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -18,6 +19,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICProvince
@@ -69,6 +71,7 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
                     refreshData()
                 }
 
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
         WidgetUtils.setClickListener(this, btn_filer, btn_filer_location, btn_filter_gender, imgBack, imgClear)
     }
 
@@ -80,7 +83,8 @@ class SearchUserActivity : BaseActivityMVVM(), IRecyclerViewSearchCallback, View
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipeLayout.setOnRefreshListener {
             refreshData()
         }

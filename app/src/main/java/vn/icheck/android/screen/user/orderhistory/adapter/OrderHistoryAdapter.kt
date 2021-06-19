@@ -19,7 +19,10 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.network.base.*
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.order.OrderInteractor
 import vn.icheck.android.network.models.ICOrderHistoryV2
 import vn.icheck.android.network.models.ICRespID
@@ -112,24 +115,30 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             }
 
 
-            itemView.tvError.setOnClickListener {
-                ICheckApplication.currentActivity()?.let {
-                    ReportActivity.start(ReportActivity.order, obj.id, "Báo lỗi đơn hàng", it)
+            itemView.tvError.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let {
+                        ReportActivity.start(ReportActivity.order, obj.id, "Báo lỗi đơn hàng", it)
+                    }
                 }
             }
 
-            itemView.tvConfirm.setOnClickListener {
-                DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+            itemView.tvConfirm.apply {
+                background = ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
-
-                    override fun onAgree() {
-                        obj.id?.let { id ->
-                            updateStatusOrder(id, OrderHistoryActivity.delivered)
                         }
-                    }
-                })
+
+                        override fun onAgree() {
+                            obj.id?.let { id ->
+                                updateStatusOrder(id, OrderHistoryActivity.delivered)
+                            }
+                        }
+                    })
+                }
             }
 
             itemView.tvCancelOrder.setOnClickListener {

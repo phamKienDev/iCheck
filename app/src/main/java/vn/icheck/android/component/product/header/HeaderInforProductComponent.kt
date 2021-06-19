@@ -3,7 +3,6 @@ package vn.icheck.android.component.product.header
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.header_infor_product_detail.view.*
 import org.greenrobot.eventbus.EventBus
@@ -13,19 +12,26 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 
 class HeaderInforProductComponent(view: View, val listener: ProductDetailListener) : BaseHolder(view) {
     private var toggle: Boolean = false
 
-    fun bind(productHeaderModel: ProductHeaderModelV2) {
+    fun bind(productHeaderModel: ProductHeaderModel) {
         itemView.img_fav.apply {
+            background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
             if (productHeaderModel.icBarcodeProduct.isBookMark == true) {
                 setImageResource(R.drawable.ic_like_on_24dp)
             } else {
                 setImageResource(R.drawable.ic_like_off_24dp)
             }
+        }
+        itemView.img_share.apply {
+            background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
+            fillDrawableColor(R.drawable.ic_share_product_24dp,itemView.context)
         }
 
         when (productHeaderModel.icBarcodeProduct.type) {
@@ -92,7 +98,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
             itemView.tvGiaNiemYet.beVisible()
             itemView.tvPriceUpdating.beGone()
             itemView.tv_price.text = TextHelper.formatMoneyPhay(productHeaderModel.icBarcodeProduct.price) + "đ"
-            itemView.tv_price.setTextColor(ContextCompat.getColor(itemView.context,R.color.colorSecondary))
+            itemView.tv_price.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context))
         } else {
             itemView.tvPriceUpdating.beVisible()
             itemView.tv_price.beGone()

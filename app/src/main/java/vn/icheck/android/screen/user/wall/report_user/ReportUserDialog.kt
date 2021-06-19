@@ -16,6 +16,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.databinding.DialogReportUserBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
@@ -85,21 +86,23 @@ class ReportUserDialog : CoroutineBottomSheetDialogFragment() {
                 this@ReportUserDialog.dismiss()
             }
         }
-        binding.btnSendReport.setOnClickListener {
-            delayAction({
-                val filter = ickUserWallViewModel.arrReport.firstOrNull {
-                    it.checked
-                }
-                if (filter != null) {
-                    ickUserWallViewModel.sendReportUser().observe(viewLifecycleOwner, {
-                        ickUserWallViewModel.showSuccessReport.postValue(1)
-                        dismiss()
-                    })
-                } else {
-                    requireContext().showShortErrorToast("Vui lòng chọn ít nhất một lý do")
-                }
-            })
-
+        binding.btnSendReport.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                delayAction({
+                    val filter = ickUserWallViewModel.arrReport.firstOrNull {
+                        it.checked
+                    }
+                    if (filter != null) {
+                        ickUserWallViewModel.sendReportUser().observe(viewLifecycleOwner, {
+                            ickUserWallViewModel.showSuccessReport.postValue(1)
+                            dismiss()
+                        })
+                    } else {
+                        requireContext().showShortErrorToast("Vui lòng chọn ít nhất một lý do")
+                    }
+                })
+            }
         }
     }
 }

@@ -61,7 +61,6 @@
         android:id="@id/viewBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@drawable/ick_bg_top_corner_20"
         app:layout_constraintBottom_toBottomOf="@id/nav_host_fragment_login"
         app:layout_constraintTop_toTopOf="@id/nav_host_fragment_login" />
 

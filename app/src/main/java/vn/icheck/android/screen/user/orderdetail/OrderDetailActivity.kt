@@ -17,6 +17,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.orderdetail.adapter.OrderDetailAdapter
@@ -47,9 +48,11 @@ class OrderDetailActivity : BaseActivityMVVM(), IOrderDetailView, View.OnClickLi
 
     fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         WidgetUtils.setClickListener(this, btnActionOne, btnActionTwo)
         presenter.getID(intent)
+
     }
 
     private fun setupToolbar() {
@@ -58,6 +61,11 @@ class OrderDetailActivity : BaseActivityMVVM(), IOrderDetailView, View.OnClickLi
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnActionOne.background = ViewHelper.btnSecondaryCorners26(this)
+        btnActionTwo.background = ViewHelper.btnWhiteStroke1Corners36(this)
     }
 
     private fun setupRecyclerView() {

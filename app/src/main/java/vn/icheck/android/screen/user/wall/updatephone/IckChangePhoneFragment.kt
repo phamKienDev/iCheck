@@ -2,17 +2,18 @@ package vn.icheck.android.screen.user.wall.updatephone
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentChangePhoneBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.AfterTextWatcher
 
@@ -33,13 +34,16 @@ class IckChangePhoneFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.scrollView.background=ViewHelper.bgWhiteCornersTop20(requireContext())
+        binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
+
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.imgClear.visibility = View.VISIBLE
-                binding.divider20.background = ColorDrawable(Color.parseColor("#057DDA"))
+                binding.divider20.background = ColorDrawable(Constant.getPrimaryColor(requireContext()))
             } else {
                 binding.imgClear.visibility = View.INVISIBLE
-                binding.divider20.background = ColorDrawable(Color.parseColor("#F0F0F0"))
+                binding.divider20.background = ColorDrawable(ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.grayF0))
             }
         }
         binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {

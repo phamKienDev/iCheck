@@ -13,6 +13,7 @@ import vn.icheck.android.ichecklibs.DialogHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.user.createqrcode.content.CreateQrCodeContentActivity
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 /**

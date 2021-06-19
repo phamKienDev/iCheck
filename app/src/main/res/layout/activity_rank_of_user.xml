@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0"
     android:clickable="true"
     android:focusable="true">
 
@@ -23,7 +22,7 @@
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginTop="@dimen/size_16"
         android:padding="@dimen/size_12"
         android:src="@drawable/ic_back_black_28px"
         app:layout_constraintStart_toStartOf="@id/imgBanner"
@@ -34,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_30"
-        android:layout_marginTop="@dimen/size_25"
+        android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_30"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -63,8 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxHeight="@dimen/size_8"
-                android:minHeight="@dimen/size_8"
-                android:progressDrawable="@drawable/standard_progress_bar_rank" />
+                android:minHeight="@dimen/size_8" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@id/imgLevel"
@@ -157,31 +155,29 @@
                         app:layout_constraintTop_toTopOf="@+id/tvPoint"
                         tools:src="@drawable/ic_arrow_right_standard_8" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvNameRank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_5"
                         tools:text="Thành viên Chuẩn"
-                        android:textColor="#757575"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
                         app:layout_constraintStart_toStartOf="@+id/tvPoint"
                         app:layout_constraintTop_toBottomOf="@+id/tvPoint" />
 
-                    <View
+                    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                         android:id="@+id/view"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/size_1"
                         android:layout_marginStart="@dimen/size_33"
                         android:layout_marginTop="@dimen/size_15"
                         android:layout_marginEnd="@dimen/size_33"
-                        android:background="#d8d8d8"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                         android:id="@+id/tvMessageUpRank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -191,44 +187,39 @@
                         android:gravity="center"
                         android:lineSpacingExtra="@dimen/font_4_8"
                         tools:text="Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm 345.000 điểm để đạt Thành viên Bạc"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/view" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                         android:id="@+id/tvMyGift"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_16"
                         android:layout_marginBottom="@dimen/size_20"
                         android:drawableTop="@drawable/ic_homeheader_gift_50px"
-                        android:fontFamily="@font/barlow_medium"
                         android:text="Quà của tôi"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/tvMission"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvMessageUpRank" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                         android:id="@+id/tvMission"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/ic_homeheader_campaign_50dp"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center"
                         android:text="Sự kiện"
-                        android:textColor="#212121"
                         android:textSize="@dimen/font_12"
                         app:layout_constraintBottom_toBottomOf="@+id/tvMyGift"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvMyGift"
                         app:layout_constraintTop_toTopOf="@+id/tvMyGift" />
 
-                    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+                    <vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
                         android:id="@+id/tvBenefit"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_36"
@@ -242,7 +233,6 @@
                         android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center"
                         android:text="Quyền lợi thành viên"
-                        android:textColor="#057dda"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -252,50 +242,44 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/white"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/btn_how_to_rank_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_arrow_right_gray_14"
-                    android:fontFamily="@font/barlow_medium"
                     android:paddingStart="@dimen/size_12"
                     android:paddingTop="@dimen/size_16"
                     android:paddingEnd="@dimen/size_12"
                     android:paddingBottom="@dimen/size_17"
                     android:text="Hướng dẫn thăng hạng"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     android:drawableRight="@drawable/ic_arrow_right_gray_14" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#d8d8d8"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginEnd="@dimen/size_12"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:layout_width="match_parent"
                     android:id="@+id/tv_frequently_asked"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_arrow_right_gray_14"
-                    android:fontFamily="@font/barlow_medium"
                     android:paddingStart="@dimen/size_12"
                     android:paddingTop="@dimen/size_16"
                     android:paddingEnd="@dimen/size_12"
                     android:paddingBottom="@dimen/size_16"
                     android:text="Câu hỏi thường gặp"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14" />
 
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

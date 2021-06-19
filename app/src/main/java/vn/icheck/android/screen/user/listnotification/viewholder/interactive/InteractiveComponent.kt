@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.screen.user.listnotification.interactive.ListInteractiveActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -58,9 +59,9 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
 
         private fun createView(context: Context): LinearLayout {
             return LinearLayout(context).also { layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size5, 0, SizeHelper.size5)
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also { layoutTitle ->
@@ -68,11 +69,13 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
                     layoutTitle.orientation = LinearLayout.HORIZONTAL
                     layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
+                    val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+
                     layoutTitle.addView(ViewHelper.createText(context,
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -83,7 +86,7 @@ class InteractiveComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNot
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

@@ -12,6 +12,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICHistoryPoint
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
@@ -158,9 +159,9 @@ class HistoryPointAdapter(val listener: IRecyclerViewCallback, val type: String)
                 "+${TextHelper.formatMoney(obj.amount)}"
             }
             itemView.tvPoint.setTextColor(if (type == "used") {
-                ContextCompat.getColor(itemView.context, R.color.colorAccentRed)
+                Constant.getAccentRedColor(itemView.context)
             } else {
-                ContextCompat.getColor(itemView.context, R.color.colorAccentGreen)
+                Constant.getAccentGreenColor(itemView.context)
             })
 
             itemView.tvMessage.text = obj.description
