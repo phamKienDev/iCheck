@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.coinhistory
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,7 +23,7 @@ import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICCoinHistory
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 
 class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData = mutableListOf<ICCoinHistory?>()
@@ -188,7 +187,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
     inner class HeaderCoinHolder(parent: ViewGroup) : BaseViewHolder<String>(LayoutInflater.from(parent.context).inflate(R.layout.item_header_coin_history, parent, false)) {
         override fun bind(obj: String) {
-            itemView.tvCoin.rText(R.string.s_xu, TextHelper.formatMoneyPhay(SessionManager.getCoin()))
+            itemView.tvCoin.setText(R.string.s_xu, TextHelper.formatMoneyPhay(SessionManager.getCoin()))
         }
     }
 

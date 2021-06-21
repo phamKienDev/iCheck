@@ -28,7 +28,6 @@ import vn.icheck.android.component.view.ViewHelper.delayTimeoutClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.criterias.ICReviewBottom
@@ -129,7 +128,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogSuccessBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_thanh_cong)
+                        getString(R.string.tai_xuong_thanh_cong)
                     )
                 }
 
@@ -138,7 +137,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogErrorBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_that_bai)
+                        getString(R.string.tai_xuong_that_bai)
                     )
                     downloadHelper?.cancelDownload(downloadId)
 
@@ -442,7 +441,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun downloadMedia() {
         if (!adapter.getListData.isNullOrEmpty()) {
             if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
-                DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, rText(R.string.tai_xuong_that_bai))
+                DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, getString(R.string.tai_xuong_that_bai))
             } else {
                 imgDownload.setImageResource(R.drawable.ic_download_24_gray)
                 imgDownload.isEnabled = false
@@ -453,7 +452,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogErrorBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_that_bai)
+                        getString(R.string.tai_xuong_that_bai)
                     )
                     downloadHelper?.cancelDownload(downloadId)
                 }

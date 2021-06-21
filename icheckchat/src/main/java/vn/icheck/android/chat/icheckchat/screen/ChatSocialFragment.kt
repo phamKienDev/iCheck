@@ -1,22 +1,16 @@
 package vn.icheck.android.chat.icheckchat.screen
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.fragment.app.Fragment
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.recyclerview.adapter.ViewPagerAdapterChat
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
-import vn.icheck.android.chat.icheckchat.helper.rText
-import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
-import vn.icheck.android.ichecklibs.Constant
 
 class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
@@ -41,8 +35,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
         binding.toolbar.imgBack.setOnClickListener {
             callback?.onClickLeftMenu()
         }
-
-        binding.toolbar.txtTitle rText R.string.tin_nhan
+        binding.toolbar.txtTitle.setText(R.string.tin_nhan)
 
         binding.toolbar.imgAction.setVisible()
 

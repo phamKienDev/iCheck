@@ -11,7 +11,6 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.ICPageTrend
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -45,17 +44,17 @@ class WidgetBrandPageAdapter(val listData: MutableList<ICPageTrend>) : RecyclerV
             (params.getChildAt(2) as AppCompatTextView).run {
                 if (obj.followCount != null) {
                     if (obj.followCount!! < 1000) {
-                        text = context.rText(R.string.d_nguoi_theo_doi, obj.followCount)
+                        text = context.getString(R.string.d_nguoi_theo_doi, obj.followCount)
                     } else if (obj.followCount!! < 10000) {
-                        text = context.rText(R.string.s_nguoi_theo_doi,TextHelper.formatMoney(obj.followCount))
+                        text = context.getString(R.string.s_nguoi_theo_doi,TextHelper.formatMoney(obj.followCount))
                     } else {
-                        text = context.rText(R.string.k_nguoi_theo_doi, ((obj.followCount)!! / 1000f).toString().replace(".0", ""))
+                        text = context.getString(R.string.k_nguoi_theo_doi, ((obj.followCount)!! / 1000f).toString().replace(".0", ""))
                     }
                 }
             }
 
             itemView.setOnClickListener {
-                ToastUtils.showLongWarning(itemView.context, it.context.rText(R.string.on_click_item_brand))
+                ToastUtils.showLongWarning(itemView.context, it.context.getString(R.string.on_click_item_brand))
             }
         }
     }

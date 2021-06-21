@@ -36,7 +36,8 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -103,9 +104,9 @@ class FragmentLuckyWheelGame : Fragment() {
                     for (item in listWinner.data?.rows!!) {
                         var name = item?.name
                         if (name.isNullOrEmpty()) {
-                            name = rText(R.string.nguoi_choi)
+                            name = getString(R.string.nguoi_choi)
                         }
-                        text.append(rText(R.string.s_da_trung_s, name, item?.winnerGifts?.firstOrNull()?.gift?.name))
+                        text.append(getString(R.string.s_da_trung_s, name, item?.winnerGifts?.firstOrNull()?.gift?.name))
                     }
                 } catch (e: Exception) {
 
@@ -211,7 +212,7 @@ class FragmentLuckyWheelGame : Fragment() {
 
     private fun setTotalPlay(count: Int?) {
         if (count != null) {
-            tv_total_turn.rText(R.string.ban_co_d_luot_quay, count)
+            tv_total_turn.setText(R.string.ban_co_d_luot_quay, count)
         }
     }
 
@@ -489,8 +490,8 @@ class FragmentLuckyWheelGame : Fragment() {
                             } else {
                                 if (args.hasChanceCode) {
                                     object : DialogOotGame(requireContext(),
-                                            rText(R.string.tiec_qua_ban_khong_co_luot_quay_nao),
-                                            rText(R.string.nhap_ma_de_nhan_them_luot_quay_va_co_co_hoi_trung_hang_ngan_giai_thuong_hap_dan_nao),
+                                            getString(R.string.tiec_qua_ban_khong_co_luot_quay_nao),
+                                            getString(R.string.nhap_ma_de_nhan_them_luot_quay_va_co_co_hoi_trung_hang_ngan_giai_thuong_hap_dan_nao),
                                             R.drawable.ic_vqmm_het_luot) {
                                         override fun onClick() {
                                             val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToNmdtDialogFragment(args.campaignId, luckyGameViewModel.currentCount)
@@ -499,8 +500,8 @@ class FragmentLuckyWheelGame : Fragment() {
                                     }.show()
                                 }else{
                                     object : DialogOotGame(requireContext(),
-                                            rText(R.string.tiec_qua_ban_khong_co_luot_quay_nao),
-                                        rText(R.string.quet_tem_de_nhan_them_luot_quay_va_co_co_hoi_trung_hang_ngan_giai_thuong_hap_dan_nao),
+                                            getString(R.string.tiec_qua_ban_khong_co_luot_quay_nao),
+                                        getString(R.string.quet_tem_de_nhan_them_luot_quay_va_co_co_hoi_trung_hang_ngan_giai_thuong_hap_dan_nao),
                                             R.drawable.ic_vqmm_het_luot) {
                                         override fun onClick() {
                                             object : DialogGuidePlayGame(requireContext()) {

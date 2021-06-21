@@ -28,7 +28,6 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
 
 class ReportActivity : BaseActivityMVVM() {
     lateinit var viewModel: ReportViewModel
@@ -66,7 +65,7 @@ class ReportActivity : BaseActivityMVVM() {
         btnDone.setOnClickListener {
             selectReason()
         }
-        tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: rText(R.string.bao_cao)
+        tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: getString(R.string.bao_cao)
     }
 
     private fun initData() {
@@ -134,7 +133,7 @@ class ReportActivity : BaseActivityMVVM() {
             }
 
             val dialog = ReportWrongContributionSuccessDialog(this)
-            dialog.show(list, "order", rText(R.string.cam_on_ban_da_bao_loi_don_hang_nay))
+            dialog.show(list, "order", getString(R.string.cam_on_ban_da_bao_loi_don_hang_nay))
             dialog.dialog.setOnDismissListener {
                 finish()
             }
@@ -179,7 +178,7 @@ class ReportActivity : BaseActivityMVVM() {
         }
 
         if (isChecked) {
-            DialogHelper.showConfirm(this, rText(R.string.ban_muon_bo_bao_cao_loi_nay), null, rText(R.string.tiep_tuc_bao_loi), rText(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bao_cao_loi_nay), null, getString(R.string.tiep_tuc_bao_loi), getString(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }
@@ -204,7 +203,7 @@ class ReportActivity : BaseActivityMVVM() {
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
                 listData[i].name?.let {
-                    if ((it != "Khác" && it != "Lý do khác")||(it != rText(R.string.khac) && it != rText(R.string.ly_do_khac)))
+                    if ((it != "Khác" && it != "Lý do khác")||(it != getString(R.string.khac) && it != getString(R.string.ly_do_khac)))
                         listMessage.add(it)
                 }
             }

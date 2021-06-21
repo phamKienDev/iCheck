@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_accumulation_history.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.fragment.BaseFragmentGame
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -82,7 +81,7 @@ class AccumulationHistoryFragment(private val id: Long, private val status: Stri
         if (status != "COMING_SOON") {
             DialogHelperGame.scanOrEnterAccumulatePointLongTime(requireContext(), id)
         } else {
-            ComingSoonOrOutOfGiftDialog(requireContext(), R.drawable.ic_coming_soon, rText(R.string.chuong_trinh_chua_dien_ra), rText(R.string.moi_ban_quay_lai_sau_de_tham_gia_chuong_trinh_nhe)).show()
+            ComingSoonOrOutOfGiftDialog(requireContext(), R.drawable.ic_coming_soon, getString(R.string.chuong_trinh_chua_dien_ra), getString(R.string.moi_ban_quay_lai_sau_de_tham_gia_chuong_trinh_nhe)).show()
         }
     }
 

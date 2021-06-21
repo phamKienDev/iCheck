@@ -32,7 +32,7 @@ import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.TestTimeUtil
@@ -101,11 +101,11 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         itemView.ratingBar.rating = obj.product?.rating!!
 
         if (obj.product?.rating != null) {
-            itemView.tvCountRating.rText(R.string.format_1_f, obj.product?.rating!! * 2)
+            itemView.tvCountRating.setText(R.string.format_1_f, obj.product?.rating!! * 2)
         }
 
         if (obj.product?.verified == true) {
-            itemView.tvVerify.rText(R.string.verified)
+            itemView.tvVerify.setText(R.string.verified)
             itemView.tvVerify.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
         } else {
             itemView.tvVerify.text = ""
@@ -147,15 +147,15 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
         val listService = mutableListOf<ICServiceShopVariant>()
         if (obj.shop?.is_offline == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context rText R.string.mua_tai_cua_hang, "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
         if (obj.shop?.verified == true) {
-            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context rText R.string.dai_ly_chinh_hang, "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context.getString(R.string.dai_ly_chinh_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
         }
 
         if (obj.shop?.is_online == true) {
-            listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context rText R.string.ban_online, "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
+            listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context.getString(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
         }
 
         if (!listService.isNullOrEmpty()) {
@@ -170,17 +170,17 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
                 if (obj.shop?.distance?.value != null) {
                     itemView.tvMap.visibility = View.VISIBLE
-                    itemView.tvDistance.rText(R.string.khoang_cach_s_s, km , obj.shop?.distance?.unit)
+                    itemView.tvDistance.setText(R.string.khoang_cach_s_s, km , obj.shop?.distance?.unit)
                 } else {
-                    itemView.tvDistance.rText(R.string.khoang_cach_s, itemView.context.getString(R.string.dang_cap_nhat))
+                    itemView.tvDistance.setText(R.string.khoang_cach_s, itemView.context.getString(R.string.dang_cap_nhat))
                     itemView.tvMap.visibility = View.GONE
                 }
             } else {
-                itemView.tvDistance.rText(R.string.khoang_cach_dang_cap_nhat)
+                itemView.tvDistance.setText(R.string.khoang_cach_dang_cap_nhat)
                 itemView.tvMap.visibility = View.GONE
             }
         } else {
-            itemView.tvDistance.rText(R.string.khoang_cach_dang_cap_nhat)
+            itemView.tvDistance.setText(R.string.khoang_cach_dang_cap_nhat)
             itemView.tvMap.visibility = View.GONE
         }
     }
@@ -230,10 +230,10 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
                         act.startActivity(intent)
                     }
                 } else {
-                    ToastUtils.showShortError(itemView.context, itemView.context rText R.string.vi_tri_cua_shop_dang_duoc_cap_nhat)
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
                 }
             } else {
-                ToastUtils.showShortError(itemView.context, itemView.context rText R.string.vi_tri_cua_shop_dang_duoc_cap_nhat)
+                ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
             }
         }
 
@@ -257,19 +257,19 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
     private fun initRemove(obj: ICHistory_Product) {
         val runnableDelete = Runnable {
             if (SessionManager.isUserLogged) {
-                DialogHelper.showConfirm(itemView.context, itemView.context rText R.string.ban_co_muon_xoa_san_pham_nay, true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_xoa_san_pham_nay), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
                     }
 
                     override fun onAgree() {
                         ICheckApplication.currentActivity()?.let { activity ->
                             if (NetworkHelper.isNotConnected(activity)) {
-                                ToastUtils.showLongError(itemView.context, itemView.context rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                                ToastUtils.showLongError(itemView.context, itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                                 return
                             }
 
                             if (obj.id == null) {
-                                ToastUtils.showLongError(activity, itemView.context rText R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                ToastUtils.showLongError(activity, itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                 return
                             }
 
@@ -283,7 +283,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
                                 override fun onError(error: ICBaseResponse?) {
                                     DialogHelper.closeLoading(activity)
-                                    ToastUtils.showLongError(itemView.context, itemView.context rText R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    ToastUtils.showLongError(itemView.context, itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                 }
                             })
                         }

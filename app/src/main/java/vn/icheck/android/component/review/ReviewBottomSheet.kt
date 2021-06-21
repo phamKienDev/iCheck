@@ -13,7 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.criterias.ICReviewBottom
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ReviewPointText
 
 class ReviewBottomSheet : BottomSheetDialogFragment() {
@@ -36,7 +36,7 @@ class ReviewBottomSheet : BottomSheetDialogFragment() {
         reviewData = arguments?.get(Constant.DATA_1) as ICReviewBottom
         if (!reviewData?.message.isNullOrEmpty()) {
             txtContent.visibility = View.VISIBLE
-            txtContent.rText(R.string.danh_gia_cua_s, reviewData?.message)
+            txtContent.setText(R.string.danh_gia_cua_s, reviewData?.message)
         } else {
             txtContent.visibility = View.GONE
         }

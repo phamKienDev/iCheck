@@ -18,7 +18,6 @@ import vn.icheck.android.screen.user.shipping.ship.adpter.vm.ShipViewModel
 import vn.icheck.android.util.ick.isPhoneNumber
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.rText
 
 class AddShipAddressFragment : Fragment() {
 
@@ -97,7 +96,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getCurrentCity()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showShortErrorToast( rText(R.string.vui_long_chon_tinh_thanh))
+                requireContext().showShortErrorToast( getString(R.string.vui_long_chon_tinh_thanh))
             }
         }
         binding.edtPhuongXa.setOnClickListener {
@@ -111,7 +110,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getDistrict()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showShortErrorToast(rText(R.string.vui_long_chon_quan_huyen))
+                requireContext().showShortErrorToast(getString(R.string.vui_long_chon_quan_huyen))
             }
         }
         binding.edtAddress.addTextChangedListener {
@@ -129,41 +128,41 @@ class AddShipAddressFragment : Fragment() {
         binding.btnConfirm.setOnClickListener {
             when {
                 binding.edtLastName.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_nhap_ho))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_ho))
                     binding.edtLastName.requestFocus()
                 }
                 binding.edtFirstName.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_nhap_ten_dem_va_ten))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_ten_dem_va_ten))
                     binding.edtFirstName.requestFocus()
                 }
                 binding.edtPhone.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_nhap_so_dien_thoai))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_so_dien_thoai))
                     binding.edtPhone.requestFocus()
                 }
                 !binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
-                    requireContext().showShortErrorToast(rText(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                    requireContext().showShortErrorToast(getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
                     binding.edtPhone.requestFocus()
                 }
                 binding.edtTinhThanh.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_chon_tinh_thanh))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_chon_tinh_thanh))
                     binding.edtTinhThanh.requestFocus()
                 }
                 binding.edtQuan.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_chon_quan_huyen))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_chon_quan_huyen))
                     binding.edtQuan.requestFocus()
                 }
                 binding.edtPhuongXa.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_chon_phuong_xa))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_chon_phuong_xa))
                     binding.edtPhuongXa.requestFocus()
                 }
                 binding.edtAddress.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast(rText(R.string.vui_long_nhap_dia_chi))
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_dia_chi))
                     binding.edtAddress.requestFocus()
                 }
                 else -> {
                     viewModel.createShipAddress().observe(viewLifecycleOwner, {
                         if (it.statusCode == "200") {
-                            requireContext().showShortSuccessToast(rText(R.string.cap_nhat_dia_chi_thanh_cong))
+                            requireContext().showShortSuccessToast(getString(R.string.cap_nhat_dia_chi_thanh_cong))
 //                            if (!viewModel.isUpdate()) {
 //                                requireContext().showSimpleSuccessToast("Gửi địa chỉ thành công!")
 //                            } else {

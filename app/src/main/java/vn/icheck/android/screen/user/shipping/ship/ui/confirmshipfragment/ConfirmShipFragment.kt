@@ -22,6 +22,8 @@ import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.report.ReportActivity
@@ -49,7 +51,7 @@ class ConfirmShipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (viewModel.arrayCart.isEmpty()) {
-            binding.btnConfirm rText R.string.thanh_toan
+            binding.btnConfirm.setText(R.string.thanh_toan)
         }
         if (viewModel.detailOrderId == 0L) {
             if (savedInstanceState == null) {
@@ -57,8 +59,8 @@ class ConfirmShipFragment : Fragment() {
                     if (it.data?.isJsonObject == true) {
                         val obj = it.data!! as JsonObject
                         val fee = obj.get("deliveryCharges").asLong
-                        binding.tvFee.rText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
-                        binding.tvTotalFee.rText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
+                        binding.tvFee.setText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
+                        binding.tvTotalFee.setText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
 //                        if (paymentStartInsider) {
 //                            TekoHelper.tagPaymentStartAndSuccess(fee)
 //                            paymentStartInsider = false
@@ -160,7 +162,7 @@ class ConfirmShipFragment : Fragment() {
                 val total = filter.sumBy {
                     it.quantity!!
                 }
-                binding.tvQuantity.rText(R.string.d_san_pham, total)
+                binding.tvQuantity.setText(R.string.d_san_pham, total)
                 binding.tvQuantityGift.beGone()
                 binding.imgGift.beGone()
                 binding.tvGift.beGone()
@@ -184,8 +186,8 @@ class ConfirmShipFragment : Fragment() {
 //                    } else {
 //                        binding.tvBusinessName simpleText "iCheck"
 //                    }
-                    binding.tvBusinessName rText R.string.icheck_campaign
-                    binding.tvQuantity rText R.string.mot_san_pham
+                    binding.tvBusinessName.setText(R.string.icheck_campaign)
+                    binding.tvQuantity.setText(R.string.mot_san_pham)
 
                     if (!it.data?.image.isNullOrEmpty()) {
                         binding.imgGift.loadRoundedImage(it.data?.image, R.drawable.img_product_shop_default, corner = 4)
@@ -211,7 +213,7 @@ class ConfirmShipFragment : Fragment() {
     }
 
     private fun getDetailOrder() {
-        binding.textView26 rText R.string.thong_tin_don_hang
+        binding.textView26.setText(R.string.thong_tin_don_hang)
         binding.imgStatus.beVisible()
         viewModel.getDetailOrder().observe(viewLifecycleOwner, {
             it.data?.let { detailOrderResponse ->
@@ -224,12 +226,12 @@ class ConfirmShipFragment : Fragment() {
 
                 binding.businessLogo.loadImageWithHolder(detailOrderResponse.shop?.avatar,R.drawable.ic_icheck_logo)
                 binding.tvBusinessName simpleText detailOrderResponse.shop?.name
-                binding.tvFee.text = rText(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
-                binding.tvTotalFee.text =  rText(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
+                binding.tvFee.text = getString(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
+                binding.tvTotalFee.text =  getString(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
                 val total = detailOrderResponse.orderItem?.sumBy { item ->
                     item?.quantity!!
                 }
-                binding.tvQuantity.rText(R.string.d_san_pham, total)
+                binding.tvQuantity.setText(R.string.d_san_pham, total)
                 binding.tvQuantityGift.beGone()
                 binding.imgGift.beGone()
                 binding.tvGift.beGone()
@@ -246,7 +248,7 @@ class ConfirmShipFragment : Fragment() {
                     binding.containter.addView(bd.root, 5)
                 }
                 binding.tvShipTime simpleText "${detailOrderResponse.createdAt?.getHourMinutesTime()}"
-                binding.tvShipCode.rText(R.string.ma_don_hang_s, detailOrderResponse.code)
+                binding.tvShipCode.setText(R.string.ma_don_hang_s, detailOrderResponse.code)
                 binding.tvName simpleText detailOrderResponse.shippingAddress?.getName()
                 val arr = arrayListOf<Char>()
                 arr.addAll(detailOrderResponse.shippingAddress?.phone.toString().toList())
@@ -259,7 +261,7 @@ class ConfirmShipFragment : Fragment() {
                 if (detailOrderResponse.note.isNullOrEmpty()) {
                     binding.groupNote.beGone()
                 } else {
-                    val ss = SpannableString(rText(R.string.ghi_chu_s, detailOrderResponse.note))
+                    val ss = SpannableString(getString(R.string.ghi_chu_s, detailOrderResponse.note))
                     ss.setSpan(ForegroundColorSpan(Color.parseColor("#b4b4b4")), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     binding.groupNote.beVisible()
                     binding.edtNotes.isFocusable = false
@@ -271,12 +273,12 @@ class ConfirmShipFragment : Fragment() {
                 when (detailOrderResponse.status) {
                     0, 2 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_pending)
-                        binding.btnConfirm rText R.string.huy_don
+                        binding.btnConfirm.setText(R.string.huy_don)
                         binding.btnConfirm.setTextColor(Color.parseColor("#057DDA"))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
-                            DialogHelper.showConfirm(requireContext(),rText(R.string.ban_chac_chan_muon_huy_n_don_hang_nay),null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
+                            DialogHelper.showConfirm(requireContext(),getString(R.string.ban_chac_chan_muon_huy_n_don_hang_nay),null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
                                 override fun onDisagree() {
                                 }
 
@@ -291,37 +293,37 @@ class ConfirmShipFragment : Fragment() {
 
                         }
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, rText(R.string.bao_loi_don_hang), requireActivity())
+                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
                         }
                     }
                     3, 4 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipping)
-                        binding.btnConfirm rText R.string.huy_don
+                        binding.btnConfirm.setText(R.string.huy_don)
                         binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
                         binding.btnConfirm.alpha = 0.7f
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener(null)
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, rText(R.string.bao_loi_don_hang), requireActivity())
+                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
                         }
-                        binding.textView91 rText R.string.thoi_gian_cap_nhat
+                        binding.textView91.setText(R.string.thoi_gian_cap_nhat)
                         binding.tvShipTime simpleText detailOrderResponse.updatedAt?.getHourMinutesTime()
                     }
                     5 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipped)
-                        binding.btnConfirm rText R.string.danh_gia_don_hang
+                        binding.btnConfirm.setText(R.string.danh_gia_don_hang)
                         binding.btnConfirm.setTextColor(Color.parseColor("#B4B4B4"))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_gray_corner_4)
-                        binding.textView91 rText R.string.thoi_gian_nhan_hang
+                        binding.textView91.setText(R.string.thoi_gian_nhan_hang)
                         binding.tvShipTime simpleText detailOrderResponse.completedAt?.getHourMinutesTime()
                     }
                     6, 7 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_cancelled)
-                        binding.btnConfirm rText R.string.mua_lai_don_nay
+                        binding.btnConfirm.setText(R.string.mua_lai_don_nay)
                         binding.btnConfirm.setTextColor(Color.parseColor("#057DDA"))
                         binding.btnConfirm.setBackgroundResource(R.drawable.bg_stroke_blue_corner_4)
-                        binding.textView91 rText R.string.thoi_gian_huy_don
+                        binding.textView91.setText(R.string.thoi_gian_huy_don)
                         binding.tvShipTime simpleText detailOrderResponse.cancelledAt?.getHourMinutesTime()
                         binding.btnConfirm.setOnClickListener {
                             viewModel.rebuy(detailOrderResponse)

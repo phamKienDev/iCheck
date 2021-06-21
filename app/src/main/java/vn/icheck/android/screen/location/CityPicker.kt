@@ -6,7 +6,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
@@ -30,7 +29,6 @@ import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.network.model.location.CityResponse
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.rText
 
 const val CITY = 1
 const val DISTRICT = 2
@@ -68,21 +66,21 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
         binding.rcvNation.adapter = cityAdapter
         when (type) {
             CITY -> {
-                binding.tvTitle rText R.string.chon_tinh_thanh
+                binding.tvTitle.setText(R.string.chon_tinh_thanh)
                 locationViewModel.getCities().observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })
                 initSearch()
             }
             DISTRICT -> {
-                binding.tvTitle rText R.string.chon_quan_huyen
+                binding.tvTitle.setText(R.string.chon_quan_huyen)
                 locationViewModel.getDistricts(cityId).observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })
                 initSearch()
             }
             WARD -> {
-                binding.tvTitle rText R.string.chon_phuong_xa
+                binding.tvTitle.setText(R.string.chon_phuong_xa)
                 locationViewModel.getWards(cityId).observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })

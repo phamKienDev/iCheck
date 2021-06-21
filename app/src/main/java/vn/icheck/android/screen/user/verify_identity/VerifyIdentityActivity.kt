@@ -23,7 +23,6 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.camera.CropCameraActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -50,7 +49,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel.getKyc()
         viewModel.kycResponseLiveData.observe(this, {
             it.firstOrNull()?.let { item ->
-                tvComplete rText R.string.cap_nhat_giay_to
+                tvComplete.setText(R.string.cap_nhat_giay_to)
                 val kycDocuments = item.kycValue?.kycDocuments
                 if (kycDocuments?.firstOrNull()?.type == 1) {
                     textView46.setText(R.string.mat_truoc_cmnd)

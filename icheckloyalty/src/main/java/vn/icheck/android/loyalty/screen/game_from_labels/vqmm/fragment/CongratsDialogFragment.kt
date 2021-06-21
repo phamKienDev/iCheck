@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.dialog_congrats.*
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModelFactory
@@ -36,7 +36,7 @@ class CongratsDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv_info.rText(R.string.ban_co_them_d_luot_quay, args.playCount)
+        tv_info.setText(R.string.ban_co_them_d_luot_quay, args.playCount)
         img_close.setOnClickListener {
             dismiss()
         }

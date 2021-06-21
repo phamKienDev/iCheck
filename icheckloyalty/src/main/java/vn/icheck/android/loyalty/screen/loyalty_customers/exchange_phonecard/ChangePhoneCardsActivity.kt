@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_change_phone_cards.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -58,7 +57,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
     private fun initToolbar() {
         viewModel.getDataIntent(intent)
 
-        txtTitle rText R.string.doi_qua_the_cao
+        txtTitle.setText(R.string.doi_qua_the_cao)
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -87,15 +86,15 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
                         }
                     }
                     edtPhone.text.toString().isEmpty() -> {
-                        showLongError(rText(R.string.ban_chua_nhap_so_dien_thoai))
+                        showLongError(getString(R.string.ban_chua_nhap_so_dien_thoai))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                     edtPhone.text.toString().trim().contains("-") -> {
-                        showLongError(rText(R.string.so_dien_thoai_khong_duoc_nhap_ky_tu_dac_biet))
+                        showLongError(getString(R.string.so_dien_thoai_khong_duoc_nhap_ky_tu_dac_biet))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                     else -> {
-                        showLongError(rText(R.string.so_dien_thoai_ban_nhap_khong_hop_le))
+                        showLongError(getString(R.string.so_dien_thoai_ban_nhap_khong_hop_le))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                 }
@@ -103,7 +102,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
         })
 
         viewModel.showErrorDialog.observe(this@ChangePhoneCardsActivity, Observer {
-            object : DialogNotification(this@ChangePhoneCardsActivity, null, it, rText(R.string.ok), false) {
+            object : DialogNotification(this@ChangePhoneCardsActivity, null, it, getString(R.string.ok), false) {
                 override fun onDone() {
                     onBackPressed()
                 }

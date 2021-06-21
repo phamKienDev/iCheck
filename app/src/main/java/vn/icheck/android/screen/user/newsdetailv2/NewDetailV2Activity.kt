@@ -30,7 +30,6 @@ import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.newsdetailv2.adapter.NewDetailBusinessAdapter
 import vn.icheck.android.screen.user.newsdetailv2.viewmodel.NewDetailViewModel
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -226,7 +225,7 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 constraintLayout.visibility = View.VISIBLE
 
                 tvTitleNew.text = if (it.obj?.articleCategory?.name.isNullOrEmpty()) {
-                    rText(R.string.tin_tuc_lien_quan)
+                    getString(R.string.tin_tuc_lien_quan)
                 } else {
                     it.obj?.articleCategory?.name
                 }

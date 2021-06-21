@@ -1,7 +1,6 @@
 package vn.icheck.android.loyalty.screen.loyalty_customers.home
 
 import androidx.lifecycle.MutableLiveData
-import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.helper.ApplicationHelper
@@ -51,7 +50,8 @@ class HomePageEarnPointsViewModel : BaseViewModel<Any>() {
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     setItem.postValue(obj.data?.rows)
                 } else {
-                    setErrorEmpty(R.drawable.ic_loyalty_point_empty2, rText(R.string.chua_co_lich_su_giao_dich), "", "", 0, R.color.white)
+                    setErrorEmpty(R.drawable.ic_loyalty_point_empty2,
+                        vn.icheck.android.ichecklibs.util.getString(R.string.chua_co_lich_su_giao_dich), "", "", 0, R.color.white)
                 }
             }
 

@@ -192,7 +192,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         tvExtra.setOnClickListener {
             val phone = viewModel.pageDetail?.phone ?: ""
             if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(this, applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)), null, rText(R.string.de_sau), rText(R.string.dong_y), null, null, true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)), null, getString(R.string.de_sau), getString(R.string.dong_y), null, null, true, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }

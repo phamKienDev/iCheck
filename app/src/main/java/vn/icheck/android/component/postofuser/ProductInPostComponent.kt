@@ -10,7 +10,6 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.post.ICProductInPost
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductInPostComponent : LinearLayout {
@@ -65,9 +64,9 @@ class ProductInPostComponent : LinearLayout {
             obj.avatar_product, SizeHelper.size4)
 
         (getChildAt(1) as LinearLayout).run {
-            (getChildAt(0) as AppCompatTextView).text = obj.name_product ?: context rText R.string.dang_cap_nhat
+            (getChildAt(0) as AppCompatTextView).text = obj.name_product ?: context.getString(R.string.dang_cap_nhat)
 
-            (getChildAt(1) as AppCompatTextView).text = obj.name_busniness ?: context rText R.string.dang_cap_nhat
+            (getChildAt(1) as AppCompatTextView).text = obj.name_busniness ?: context.getString(R.string.dang_cap_nhat)
         }
     }
 }

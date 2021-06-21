@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.video_detail_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -86,7 +85,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                 media.exoPlayer?.addListener(object : Player.EventListener {
                     override fun onPlayerError(error: ExoPlaybackException) {
                         super.onPlayerError(error)
-                        itemView.context.showLongErrorToast(itemView.context.rText(R.string.trinh_phat_video_loi))
+                        itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                         itemView.progress.visibility = View.GONE
                         media.mediaError = true
                     }
@@ -97,7 +96,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                         when (playbackState) {
                             Player.STATE_IDLE -> {
                                 itemView.progress.visibility = View.GONE
-                                itemView.context.showLongErrorToast(itemView.context.rText(R.string.trinh_phat_video_loi))
+                                itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                             }
                             Player.STATE_BUFFERING -> {
                                 itemView.progress.visibility = View.VISIBLE

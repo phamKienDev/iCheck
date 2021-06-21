@@ -20,7 +20,6 @@ import vn.icheck.android.network.models.ICFriendNofollowPage
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import java.util.concurrent.TimeUnit
 
@@ -106,10 +105,10 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
             } else {
                 if (isFirst) {
                     edtSearch.beGone()
-                    adapter.setEmpity(R.drawable.img_user_not_friend, rText(R.string.danh_sach_ban_be_trong), rText(R.string.ket_ban_de_cung_chia_se_nhung_thong_tin_huu_ich_ve_san_pham_chinh_hang_nhe))
+                    adapter.setEmpity(R.drawable.img_user_not_friend, getString(R.string.danh_sach_ban_be_trong), getString(R.string.ket_ban_de_cung_chia_se_nhung_thong_tin_huu_ich_ve_san_pham_chinh_hang_nhe))
                 } else {
                     edtSearch.beVisible()
-                    adapter.setEmpity(R.drawable.ic_search_90dp, null, rText(R.string.khong_ket_qua_tim_kiem))
+                    adapter.setEmpity(R.drawable.ic_search_90dp, null, getString(R.string.khong_ket_qua_tim_kiem))
                 }
                 view46.beGone()
                 tvInvite.beGone()
@@ -136,7 +135,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         })
 
         viewModel.onInvitationSuccess.observe(this, {
-            DialogHelper.showDialogSuccessBlack(this, rText(R.string.ban_da_gui_loi_moi_thanh_cong))
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_gui_loi_moi_thanh_cong))
             Handler().postDelayed({
                 finish()
             }, 1800)

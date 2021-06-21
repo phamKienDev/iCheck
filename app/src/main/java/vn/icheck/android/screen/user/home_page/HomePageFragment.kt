@@ -78,7 +78,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -812,7 +812,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         layoutContainer.setTransition(R.id.reminder)
                         tv_count.beVisible()
                         group_notification.beVisible()
-                        tv_show_all_reminders.rText(R.string.xem_tat_ca_loi_nhac_d, viewModel.getRemindersCount())
+                        tv_show_all_reminders.setText(R.string.xem_tat_ca_loi_nhac_d, viewModel.getRemindersCount())
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {
                             tv_action.text = it?.data?.rows?.firstOrNull()?.label

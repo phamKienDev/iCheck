@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.detail_post
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,11 +10,8 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
@@ -544,10 +540,10 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                                 if (post.pinned) {
                                     DialogHelper.showConfirm(
                                         dialog.context,
-                                        rText(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay),
+                                        getString(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay),
                                         null,
-                                        rText(R.string.de_sau),
-                                        rText(R.string.dong_y),
+                                        getString(R.string.de_sau),
+                                        getString(R.string.dong_y),
                                         true,
                                         null,
                                         R.color.colorPrimary,

@@ -17,8 +17,6 @@ import vn.icheck.android.screen.user.detail_stamp_v5.detail_history_guarantee_v5
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.adapter.HistoryGuaranteeV5Adapter
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.presenter.HistoryGuaranteeV5Presenter
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.view.IHistoryGuaranteeV5View
-import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity
-import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeV5Activity : BaseActivityMVVM(), IHistoryGuaranteeV5View {
 
@@ -36,7 +34,7 @@ class HistoryGuaranteeV5Activity : BaseActivityMVVM(), IHistoryGuaranteeV5View {
         presenter.getDataIntent(intent)
         listener()
         initRecyclerView()
-        txtTitle rText R.string.lich_su_bao_hanh
+        txtTitle.setText(R.string.lich_su_bao_hanh)
     }
 
     private fun listener(){

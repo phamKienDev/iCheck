@@ -35,7 +35,7 @@ import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.payment_topup_success.BuyTopupSuccessActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 
 class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePhone> {
 
@@ -58,7 +58,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
         initRecycleView()
         listenerGetData()
         getCoin()
-        txtTitle rText R.string.thanh_toan
+        txtTitle.setText(R.string.thanh_toan)
         listener()
     }
 
@@ -127,7 +127,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     DialogHelper.showNotification(this, null, R.string.khong_the_truy_cap_vui_long_thu_lai_sau, null, false, object : NotificationDialogListener {
@@ -138,7 +138,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError rText R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })
@@ -246,13 +246,13 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                         btnAcceptPayment.isEnabled = false
                     }
                 }
-                tvTotalMoney.rText(R.string.s_xu, TextHelper.formatMoneyPhay(mValue))
+                tvTotalMoney.setText(R.string.s_xu, TextHelper.formatMoneyPhay(mValue))
             }
             else -> {
                 imgErrorCoin.visibility = View.INVISIBLE
                 btnAcceptPayment.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
                 btnAcceptPayment.isEnabled = true
-                tvTotalMoney.rText(R.string.s_space_d, TextHelper.formatMoneyPhay(mValue))
+                tvTotalMoney.setText(R.string.s_space_d, TextHelper.formatMoneyPhay(mValue))
             }
         }
     }

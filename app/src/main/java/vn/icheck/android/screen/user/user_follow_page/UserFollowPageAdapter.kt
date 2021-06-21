@@ -42,7 +42,6 @@ import vn.icheck.android.screen.user.invite_friend_follow_page.InviteFriendFollo
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beInvisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -145,7 +144,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
     class CountHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createView(parent.context)) {
         fun bind(count: Int) {
             (itemView as AppCompatTextView).run {
-                text = context.rText(R.string.d_nguoi_theo_doi_trang_nay, count)
+                text = context.getString(R.string.d_nguoi_theo_doi_trang_nay, count)
             }
         }
 
@@ -260,7 +259,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             } else {
                 if (isFriendInvitationMeUser != null && isMyFriend != null && isMyFriendInvitationUser != null) {
                     val content = if (obj.relateFriendCount > 0) {
-                        itemView.context.rText(R.string.d_ban_chung, obj.relateFriendCount)
+                        itemView.context.getString(R.string.d_ban_chung, obj.relateFriendCount)
                     } else {
                         ""
                     }
@@ -272,7 +271,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                             itemView.btnConfirm.isEnabled = true
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corners_4_light_blue_solid)
-                            itemView.btnConfirm rText R.string.dong_y_ket_ban
+                            itemView.btnConfirm.setText(R.string.dong_y_ket_ban)
                             itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                             itemView.btnConfirm.visibility = View.VISIBLE

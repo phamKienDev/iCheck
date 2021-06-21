@@ -1,18 +1,15 @@
 package vn.icheck.android.screen.user.listnotification.interactive
 
 import android.content.Context
-import android.text.Html
 import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.dialog_interactive_option.*
-import kotlinx.android.synthetic.main.item_interactive.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICNotification
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 abstract class InteractiveOptionDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_interactive_option, true) {
@@ -75,12 +72,12 @@ abstract class InteractiveOptionDialog(context: Context) : BaseBottomSheetDialog
             getChildAt(1).apply {
                 if (obj.isTurnOff == true) {
                     if (this is TextView) {
-                        this rText R.string.bat_thong_bao_cho_doi_tuong_nay
+                        setText(R.string.bat_thong_bao_cho_doi_tuong_nay)
                         this.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_turn_on_notification_40dp,0,0,0)
                     }
                 } else {
                     if (this is TextView) {
-                        this rText R.string.tat_thong_bao_cho_doi_tuong_nay
+                        setText(R.string.tat_thong_bao_cho_doi_tuong_nay)
                         this.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_turn_off_notification_40dp,0,0,0)
                     }
                 }

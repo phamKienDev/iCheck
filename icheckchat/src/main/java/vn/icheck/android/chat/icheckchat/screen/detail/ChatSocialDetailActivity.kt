@@ -49,9 +49,7 @@ import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBin
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
-import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.*
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
@@ -62,6 +60,8 @@ import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 import java.util.regex.Pattern
@@ -354,10 +354,10 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 binding.layoutBlock.setVisible()
                                 setGoneView(binding.layoutChat, binding.layoutUserBlock)
 
-                                binding.tvTitle.rText(R.string.ban_da_chan_tin_nhan_cua_s, conversation?.targetUserName)
+                                binding.tvTitle.setText(R.string.ban_da_chan_tin_nhan_cua_s, conversation?.targetUserName)
 
                                 binding.btnUnBlock.setOnClickListener {
-                                    this@ChatSocialDetailActivity.showConfirm(rText(R.string.bo_chan_tin_nhan), rText(R.string.message_unblock), rText(R.string.de_sau), rText(R.string.dong_y), false, object : ConfirmDialogListener {
+                                    this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }
@@ -373,7 +373,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.rText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
+                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)
@@ -639,7 +639,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
     private fun formatMessage() {
         if (!adapterImage.isEmpty) {
             if (adapterImage.getListData.size > 20) {
-                showToastError(rText(R.string.chon_20_muc))
+                showToastError(getString(R.string.chon_20_muc))
                 return
             }
         }
@@ -786,7 +786,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     showToastError(it.message)
                 }
                 MCStatus.SUCCESS -> {
-                    showToastSuccess(rText(R.string.ban_da_bo_chan_tin_nhan_thanh_cong))
+                    showToastSuccess(getString(R.string.ban_da_bo_chan_tin_nhan_thanh_cong))
                     binding.layoutChat.setVisible()
                     binding.layoutBlock.setGone()
                     binding.layoutToolbar.imgAction.setVisible()
@@ -820,7 +820,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                         binding.tvNameProduct.text = if (!product?.name.isNullOrEmpty()) {
                             product?.name
                         } else {
-                            rText(R.string.ten_dang_cap_nhat)
+                            getString(R.string.ten_dang_cap_nhat)
                         }
 
                         loadImageUrlRounded(binding.imgProduct, product?.image, R.drawable.ic_default_product_chat_vuong, dpToPx(4))
@@ -988,14 +988,14 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
 
                     }
                 } else {
-                    showToastError(rText(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                    showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
             }
             requestScanBarcodePermission -> {
                 if (PermissionChatHelper.checkResult(grantResults)) {
                     scanBarcode()
                 } else {
-                    showToastError(rText(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
+                    showToastError(getString(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen))
                 }
             }
         }
@@ -1112,7 +1112,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if ((adapterImage.getListData.size + 1) <= 20) {
                     adapterImage.setImage(file)
                 } else {
-                    showToastError(rText(R.string.chon_20_anh))
+                    showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
             }
@@ -1122,7 +1122,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 if ((adapterImage.getListData.size + file.size) <= 20) {
                     adapterImage.setListImage(file)
                 } else {
-                    showToastError(rText(R.string.chon_20_anh))
+                    showToastError(getString(R.string.chon_20_anh))
                 }
                 chooseImage()
             }
@@ -1139,7 +1139,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                     if ((adapterImage.getListData.size + 1) <= 20) {
                         adapterImage.setImage(file)
                     } else {
-                        showToastError(rText(R.string.chon_20_anh))
+                        showToastError(getString(R.string.chon_20_anh))
                     }
                     chooseImage()
                 }

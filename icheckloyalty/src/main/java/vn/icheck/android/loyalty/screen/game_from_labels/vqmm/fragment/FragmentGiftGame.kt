@@ -31,7 +31,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_gift_game.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ImageHelper
@@ -129,7 +128,7 @@ class FragmentGiftGame : Fragment() {
             layoutContent.findViewById<AppCompatImageButton>(R.id.imgProduct).setImageBitmap(screenShot(img_bg_center))
             layoutContent.findViewById<CircleImageView>(R.id.imgBusiness).setImageBitmap(screenShot(imgBusiness))
             layoutContent.findViewById<AppCompatTextView>(R.id.tvDescription).apply {
-                val spannableString = SpannableString(context.rText(R.string.tai_ngay_app_de_tham_gia_chuong_trinh))
+                val spannableString = SpannableString(context.getString(R.string.tai_ngay_app_de_tham_gia_chuong_trinh))
                 spannableString.setSpan(ImageSpan(requireContext(), R.drawable.ic_icheck_small_white, ImageSpan.ALIGN_BASELINE), 9, 10, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
                 text = spannableString
             }
@@ -141,13 +140,13 @@ class FragmentGiftGame : Fragment() {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "*/*"
             val mBitmap = screenShot(layoutContent)
-            val path = MediaStore.Images.Media.insertImage(activity?.contentResolver, mBitmap, rText(R.string.anh_chup_man_hinh), null)
+            val path = MediaStore.Images.Media.insertImage(activity?.contentResolver, mBitmap, getString(R.string.anh_chup_man_hinh), null)
             val uri = Uri.parse(path)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             shareIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                rText(
+                getString(
                     R.string.chuc_muong_s_da_trung_s_khi_tham_gia_su_kien_s_cua_nha_tai_tro_s,
                     SessionManager.session.user?.name,
                     args.giftName,
@@ -155,7 +154,7 @@ class FragmentGiftGame : Fragment() {
                     args.owner
                 )
             )
-            startActivity(Intent.createChooser(shareIntent, rText(R.string.chia_se_qua_app)))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.chia_se_qua_app)))
 
             root_shot.removeView(layoutParent)
         }

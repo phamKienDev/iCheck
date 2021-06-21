@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
@@ -54,24 +53,24 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 text = when (obj.rewardType) {
                     "spirit" -> {
                         itemView.tvCode.setVisible()
-                        context.rText(R.string.tinh_than)
+                        context.getString(R.string.tinh_than)
                     }
                     "PRODUCT_IN_SHOP" -> {
                         itemView.tvCode.setVisible()
-                        context.rText(R.string.qua_nhan_tai_cua_hang)
+                        context.getString(R.string.qua_nhan_tai_cua_hang)
                     }
                     "CARD" -> {
                         itemView.tvCode.setVisible()
-                        context.rText(R.string.qua_the_cao)
+                        context.getString(R.string.qua_the_cao)
                     }
                     "product" -> {
                         itemView.tvCode.setVisible()
-                        context.rText(R.string.hien_vat)
+                        context.getString(R.string.hien_vat)
                     }
                     "VOUCHER" -> {
                         itemView.layoutMaDuThuong.setGone()
                         itemView.tvCode.setGone()
-                        context.rText(R.string.voucher)
+                        context.getString(R.string.voucher)
                     }
                     else -> {
                         ""
@@ -83,32 +82,32 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 itemView.layoutStatusGift.setGone()
 
                 if (obj.voucher != null) {
-                    itemView.tvTitleDate rText R.string.han_su_dung
+                    itemView.tvTitleDate.setText(R.string.han_su_dung)
 
                     if (obj.voucher.checked_condition?.status == false) {
 
                         when(obj.voucher.checked_condition?.code){
                             "START_TIME_CAN_USE" -> {
-                                itemView.tvTitleDate rText R.string.co_hieu_luc_tu
+                                itemView.tvTitleDate.setText(R.string.co_hieu_luc_tu)
 
                                 itemView.tvTimeGift.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
 
-                                itemView.tvStatus rText R.string.chua_co_hieu_luc
+                                itemView.tvStatus.setText(R.string.chua_co_hieu_luc)
                             }
                             "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
                                 itemView.layoutDate.setGone()
 
-                                itemView.tvStatus rText R.string.het_luot_su_dung
+                                itemView.tvStatus.setText(R.string.het_luot_su_dung)
                             }
                             "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
                                 itemView.tvTimeGift.text = ""
 
-                                itemView.tvStatus rText R.string.da_bi_khoa
+                                itemView.tvStatus.setText(R.string.da_bi_khoa)
                             }
                             else -> {
                                 itemView.tvTimeGift.text = ""
 
-                                itemView.tvStatus rText R.string.het_han_su_dung
+                                itemView.tvStatus.setText(R.string.het_han_su_dung)
                             }
                         }
 
@@ -117,12 +116,12 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                         itemView.tvTimeGift.text = TimeHelper.timeGiftVoucher(obj.voucher)
 
                         itemView.tvStatus.apply {
-                            text = if (itemView.tvTimeGift.text.toString() == context.rText(R.string.con_lai)) {
+                            text = if (itemView.tvTimeGift.text.toString() == context.getString(R.string.con_lai)) {
 
                                 itemView.tvTimeGift.text = ""
-                                context.rText(R.string.het_han_su_dung)
+                                context.getString(R.string.het_han_su_dung)
                             } else {
-                                context.rText(R.string.co_the_su_dung)
+                                context.getString(R.string.co_the_su_dung)
                             }
                         }
                     }
@@ -130,10 +129,10 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
 
                     when (obj.state) {
                         1 -> {
-                            itemView.tvStatus rText R.string.cho_xac_nhan
+                            itemView.tvStatus.setText(R.string.cho_xac_nhan)
                         }
                         3 -> {
-                            itemView.tvStatus rText R.string.tu_choi
+                            itemView.tvStatus.setText(R.string.tu_choi)
                         }
                     }
 
@@ -143,32 +142,32 @@ internal class GiftDetailFromAppAdapter : RecyclerViewCustomAdapter<ICKGift>() {
                 when (obj.state) {
                     1 -> {
                         itemView.layoutStatusGift.setGone()
-                        itemView.tvStatus rText R.string.chua_nhan
+                        itemView.tvStatus.setText(R.string.chua_nhan)
                     }
                     2 -> {
-                        itemView.tvStatus rText R.string.da_nhan_qua
+                        itemView.tvStatus.setText(R.string.da_nhan_qua)
 
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.green2))
-                            text = context.rText(R.string.da_nhan_qua)
+                            text = context.getString(R.string.da_nhan_qua)
                         }
                     }
                     3 -> {
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.errorColor))
-                            text = context.rText(R.string.ban_da_tu_choi_nhan_qua_nay)
+                            text = context.getString(R.string.ban_da_tu_choi_nhan_qua_nay)
                         }
-                        itemView.tvStatus rText(R.string.ban_da_tu_choi_nhan_qua_nay)
+                        itemView.tvStatus.setText(R.string.ban_da_tu_choi_nhan_qua_nay)
                     }
                     4 -> {
                         itemView.layoutStatusGift.setVisible()
                         itemView.tvStatusGift.run {
                             setTextColor(getColor(R.color.green2))
-                            text = context.rText(R.string.ban_da_xac_nhan_ship_qua_nay)
+                            text = context.getString(R.string.ban_da_xac_nhan_ship_qua_nay)
                         }
-                        itemView.tvStatus rText R.string.cho_giao
+                        itemView.tvStatus.setText(R.string.cho_giao)
                     }
                     else -> {
                         itemView.layoutStatusGift.setGone()

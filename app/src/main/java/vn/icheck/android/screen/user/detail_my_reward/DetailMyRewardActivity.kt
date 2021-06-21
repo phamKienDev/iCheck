@@ -54,14 +54,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         lifecycleScope.launch {
             delay(10000)
             if (!viewModel.loadSuccess) {
-                showShortErrorToast(rText(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
+                showShortErrorToast(getString(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
                 dismissLoadingScreen()
                 finish()
             }
         }
         viewModel = ViewModelProvider(this).get(DetailMyRewardViewModel::class.java)
         viewModel.error.observe(this, Observer{
-            showShortErrorToast(rText(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
+            showShortErrorToast(getString(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
             dismissLoadingScreen()
         })
         listener()
@@ -128,19 +128,20 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         if (!data.desc.isNullOrEmpty()) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
 
-                binding.tvInformation.setText(Html.fromHtml(data.desc, Html.FROM_HTML_MODE_COMPACT, HtmlImageGetter().apply {
-                    try {
-                        size = binding.tvInformation.width
-                    } catch (e: Exception) {
-                    }
-                }, null))
+                binding.tvInformation.text =
+                    Html.fromHtml(data.desc, Html.FROM_HTML_MODE_COMPACT, HtmlImageGetter().apply {
+                        try {
+                            size = binding.tvInformation.width
+                        } catch (e: Exception) {
+                        }
+                    }, null)
             } else {
-                binding.tvInformation.setText(Html.fromHtml(data.desc, HtmlImageGetter().apply {
+                binding.tvInformation.text = Html.fromHtml(data.desc, HtmlImageGetter().apply {
                     try {
                         size = binding.tvInformation.width
                     } catch (e: Exception) {
                     }
-                }, null))
+                }, null)
             }
         } else {
             binding.tvInformation.beGone()
@@ -148,21 +149,21 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         when (data.rewardType) {
             "CARD" -> {
                 if (data.dataRps != null) {
-                    binding.tvRefuse rText R.string.so_serial
+                    binding.tvRefuse.setText(R.string.so_serial)
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
                     binding.tvState.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                     binding.tvState simpleText data.dataRps?.pin
                     binding.tvRefuseDes simpleText data.dataRps?.serial
-                    binding.tvState.setTextSize(14f)
+                    binding.tvState.textSize = 14f
                     binding.tvRefuseDes.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
-                    binding.tvTime rText R.string.han_su_dung
+                    binding.tvTime.setText(R.string.han_su_dung)
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
 
                         binding.layoutBottom.beVisible()
-                        binding.btnRefuse rText R.string.danh_dau_da_dung
-                        binding.btnAcceptDaLay rText R.string.dung_ngay
+                        binding.btnRefuse.setText(R.string.danh_dau_da_dung)
+                        binding.btnAcceptDaLay.setText(R.string.dung_ngay)
                         binding.btnRefuse.setOnClickListener {
                             showLoadingTimeOut(10000)
                             try {
@@ -202,7 +203,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                         binding.imgUsed.beVisible()
                         binding.tvState.setTextColor(Color.parseColor("#757575"))
                         binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
-                        binding.tvTime rText R.string.ngay_dung
+                        binding.tvTime.setText(R.string.ngay_dung)
                         binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
                         binding.tvTimeDes.text = data.confirmTime?.getDayTime()
                     }
@@ -235,7 +236,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             if (listId.isNotEmpty()) {
                                 viewModel.refuseGift(listId, listMessage)
                             } else {
-                                showShortErrorToast(rText(R.string.vui_long_chon_it_nhat_mot_ly_do))
+                                showShortErrorToast(getString(R.string.vui_long_chon_it_nhat_mot_ly_do))
                             }
                         }
                     })
@@ -251,10 +252,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     val date = sdf.parse(data.expiredAt.toString()) ?: Calendar.getInstance().time
                     val currentDate = Calendar.getInstance().time
                     if (date.time < currentDate.time) {
-                        binding.tvRefuse rText R.string.han_lay_qua
-                        binding.tvRefuseDes rText R.string.het_han
-                        binding.tvTime rText R.string.loai_qua
-                        binding.tvTimeDes rText R.string.qua_lay_tai_cua_hang
+                        binding.tvRefuse.setText(R.string.han_lay_qua)
+                        binding.tvRefuseDes.setText(R.string.het_han)
+                        binding.tvTime.setText(R.string.loai_qua)
+                        binding.tvTimeDes.setText(R.string.qua_lay_tai_cua_hang)
                         binding.layoutBottom.beGone()
                         binding.btnAcceptDaLay.setOnClickListener {
                             startActivityForResult(Intent(this, ShipActivity::class.java).apply {
@@ -263,10 +264,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 //                    simpleStartActivity(ShipActivity::class.java)
                         }
                     } else {
-                        binding.tvRefuse rText R.string.han_lay_qua
+                        binding.tvRefuse.setText(R.string.han_lay_qua)
                         binding.tvRefuseDes simpleText TimeHelper.convertDateSvToDateVn(data.expiredAt)
-                        binding.tvTime rText R.string.loai_qua
-                        binding.tvTimeDes rText R.string.qua_lay_tai_cua_hang
+                        binding.tvTime.setText(R.string.loai_qua)
+                        binding.tvTimeDes.setText(R.string.qua_lay_tai_cua_hang)
                         binding.groupAddress.beVisible()
                         binding.tvAddress simpleText data.address
                     }
@@ -289,7 +290,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         when (data.state) {
             2 -> {
                 if (data.dataRps?.shipTime.isNullOrEmpty()) {
-                    binding.tvRefuse rText R.string.thoi_gian_xac_nhan_space
+                    binding.tvRefuse.setText(R.string.thoi_gian_xac_nhan_space)
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -300,14 +301,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuseDes simpleText data.confirmTime?.getHourMinutesTime()
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
-                    binding.tvMathecao rText R.string.da_xac_nhan_giao_qua
+                    binding.tvMathecao.setText(R.string.da_xac_nhan_giao_qua)
                     binding.tvMathecao.setTextColor(Color.parseColor("#057DDA"))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                     binding.tvTime.beInvisible()
                     binding.tvTimeDes.beInvisible()
                 } else {
-                    binding.tvRefuse rText R.string.thoi_gian_nhan_space
+                    binding.tvRefuse.setText(R.string.thoi_gian_nhan_space)
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -320,38 +321,38 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
-                    binding.tvMathecao rText R.string.giao_qua_thanh_cong
+                    binding.tvMathecao.setText(R.string.giao_qua_thanh_cong)
                     binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
             }
             3 -> {
-                binding.tvRefuse rText R.string.ly_do_tu_choi
+                binding.tvRefuse.setText(R.string.ly_do_tu_choi)
                 if (!data.reasonOther.isNullOrEmpty()) {
                     binding.tvRefuseDes simpleText data.reasonOther
                 } else {
-                    binding.tvRefuseDes rText R.string.khac
+                    binding.tvRefuseDes.setText(R.string.khac)
                 }
-                binding.tvTime rText R.string.thoi_gian_tu_choi
+                binding.tvTime.setText(R.string.thoi_gian_tu_choi)
                 binding.tvTimeDes simpleText data.cancelTime?.getHourMinutesTime()
 
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
-                binding.tvMathecao rText R.string.ban_da_tu_choi_nhan_qua_nay
+                binding.tvMathecao.setText(R.string.ban_da_tu_choi_nhan_qua_nay)
                 binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentRed))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
             4 -> {
-                binding.tvRefuse rText R.string.thoi_gian_giao
+                binding.tvRefuse.setText(R.string.thoi_gian_giao)
                 binding.tvRefuseDes simpleText data.receiveAt?.getHourMinutesTime()
                 binding.tvTime.beGone()
                 binding.tvTimeDes.beGone()
 
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
-                binding.tvMathecao rText R.string.giao_qua_thanh_cong
+                binding.tvMathecao.setText(R.string.giao_qua_thanh_cong)
                 binding.tvMathecao.setTextColor(ContextCompat.getColor(this, R.color.colorAccentGreen))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
@@ -362,11 +363,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     val date = sdf.parse(data.expiredAt.toString()) ?: Calendar.getInstance().time
                     val currentDate = Calendar.getInstance().time
                     if (date.time < currentDate.time) {
-                        binding.tvRefuse rText R.string.han_nhan_qua
-                        binding.tvRefuseDes rText R.string.het_han
+                        binding.tvRefuse.setText(R.string.han_nhan_qua)
+                        binding.tvRefuseDes.setText(R.string.het_han)
 
-                        binding.tvTime rText R.string.loai_qua
-                        binding.tvTimeDes rText R.string.qua_giao_tan_noi
+                        binding.tvTime.setText(R.string.loai_qua)
+                        binding.tvTimeDes.setText(R.string.qua_giao_tan_noi)
                         binding.tvRefuseDes.setTextColor(Color.parseColor("#757575"))
                         binding.tvTimeDes.setTextColor(Color.parseColor("#757575"))
                         binding.layoutBottom.beGone()
@@ -377,10 +378,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             }, 1)
                         }
                     } else {
-                        binding.tvRefuse rText R.string.han_nhan_qua
+                        binding.tvRefuse.setText(R.string.han_nhan_qua)
                         binding.tvRefuseDes simpleText TimeHelper.convertDateSvToDateVn(data.expiredAt)
-                        binding.tvTime rText R.string.loai_qua
-                        binding.tvTimeDes rText R.string.qua_giao_tan_noi
+                        binding.tvTime.setText(R.string.loai_qua)
+                        binding.tvTimeDes.setText(R.string.qua_giao_tan_noi)
                         binding.layoutBottom.beVisible()
                         binding.btnAcceptDaLay.setOnClickListener {
                             TrackingAllHelper.tagGiftDeliveryStarted(viewModel.detailReward?.data?.campaignId, viewModel.detailReward?.data?.name)
@@ -453,7 +454,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 share.setAction(Intent.ACTION_SEND)
                 share.putExtra(Intent.EXTRA_TEXT, viewModel.dataReward.image)
                 share.setType("text/plain")
-                startActivity(Intent.createChooser(share, rText(R.string.chia_se)))
+                startActivity(Intent.createChooser(share, getString(R.string.chia_se)))
             }
         }
     }

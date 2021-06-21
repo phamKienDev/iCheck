@@ -18,7 +18,6 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICListHistoryGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.DetailHistoryGuaranteeActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
-import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICListHistoryGuarantee>()
@@ -107,14 +106,14 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
             val message = when (errorCode) {
                 Constant.ERROR_INTERNET -> {
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.checking_network_please_try_again)
+                        itemView.context.getString(R.string.checking_network_please_try_again)
                     } else {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     }
                 }
                 Constant.ERROR_UNKNOW -> {
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.occurred_please_try_again)
+                        itemView.context.getString(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
@@ -122,7 +121,7 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
                 Constant.ERROR_EMPTY -> {
                     itemView.btnTryAgain.beGone()
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.no_data)
+                        itemView.context.getString(R.string.no_data)
                     } else {
                         itemView.context.getString(R.string.khong_co_du_lieu)
                     }

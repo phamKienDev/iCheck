@@ -9,7 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.event.ICMessageEvent
-import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.user.UserInteractor
@@ -57,13 +58,13 @@ class IcheckScanViewModel : ViewModel() {
                 if (obj.statusCode != 200.toString()) {
                     when (obj.status) {
                         "INVALID_TARGET" -> {
-                            onInvalidTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_khong_thuoc_chuong_trinh))
+                            onInvalidTarget.postValue(getString(R.string.ma_qrcode_cua_san_pham_nay_khong_thuoc_chuong_trinh))
                         }
                         "USED_TARGET" -> {
-                            onUsedTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_khong_con_diem_cong))
+                            onUsedTarget.postValue(getString(R.string.ma_qrcode_cua_san_pham_nay_khong_con_diem_cong))
                         }
                         "INVALID_CUSTOMER" -> {
-                            onCustomer.postValue(rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh))
+                            onCustomer.postValue(getString(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh))
                         }
                         else -> {
                             onErrorString.postValue(obj.data?.message)
@@ -181,7 +182,7 @@ class IcheckScanViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 if (error?.code == 400) {
-                    stampFake.postValue(rText(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
+                    stampFake.postValue(getString(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
                 } else {
                     errorQr.postValue(codeScan)
                 }

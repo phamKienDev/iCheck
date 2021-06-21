@@ -17,7 +17,7 @@ import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -135,12 +135,12 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitle.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitle.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitle.text = obj.name
             }
             binding.edtInput.apply {
-                hint = context.rText(R.string.nhap_s, obj.name)
+                hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
                 addTextChangedListener(textWatcher)
@@ -168,12 +168,12 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleTextArea.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleTextArea.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleTextArea.text = obj.name
             }
             binding.edtTextArea.apply {
-                hint = context.rText(R.string.nhap_s, obj.name)
+                hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
                 addTextChangedListener(textWatcher)
@@ -188,7 +188,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleSelect.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleSelect.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleSelect.text = obj.name
             }
@@ -197,7 +197,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val list = obj.valueF
                 val objHint = ValueFItem()
                 objHint.id = null
-                objHint.value = itemView.context.rText(R.string.chon_s, obj.name)
+                objHint.value = itemView.context.getString(R.string.chon_s, obj.name)
                 list?.add(objHint)
 
                 val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
@@ -240,7 +240,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleRadiobox.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleRadiobox.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleRadiobox.text = obj.name
             }
@@ -266,7 +266,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleCheckbox.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleCheckbox.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleCheckbox.text = obj.name
             }
@@ -284,7 +284,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleDate.rText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleDate.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleDate.text = obj.name
             }

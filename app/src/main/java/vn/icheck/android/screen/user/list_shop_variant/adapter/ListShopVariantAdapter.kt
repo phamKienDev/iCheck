@@ -30,7 +30,8 @@ import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ICheckTextUtils
 
 class ListShopVariantAdapter constructor(val view: IListShopVariantView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -88,7 +89,7 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             if (listData.isNotEmpty()) {
                 if (adapterPosition == 0) {
                     itemView.tvCount.visibility = View.VISIBLE
-                    itemView.tvCount.rText(R.string.d_diem_ban_gan_day, listData.size)
+                    itemView.tvCount.setText(R.string.d_diem_ban_gan_day, listData.size)
                 } else {
                     itemView.tvCount.visibility = View.GONE
                 }
@@ -97,7 +98,7 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             itemView.tv_shop_name.text = item.name
 
             if (item.distance != null) {
-                TextHelper.convertMtoKm(item.distance!!, itemView.tv_distance, itemView.context.rText(R.string.khoang_cach))
+                TextHelper.convertMtoKm(item.distance!!, itemView.tv_distance, itemView.context.getString(R.string.khoang_cach))
             }
 //            itemView.tv_distance.text = "Khoảng cách: " + String.format("%.0f%s", icShopVariant.distance.value, icShopVariant.distance.unit)
 
@@ -132,15 +133,15 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             val listService = mutableListOf<ICServiceShopVariant>()
 
             if (item.isOffline == true) {
-                listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context.rText(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+                listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
             }
 
             if (item.verified == true) {
-                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context.rText(R.string.dai_ly_chinh_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context.getString(R.string.dai_ly_chinh_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
             }
 
             if (item.isOnline == true) {
-                listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context.rText(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
+                listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context.getString(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
             }
 
             if (!listService.isNullOrEmpty()) {

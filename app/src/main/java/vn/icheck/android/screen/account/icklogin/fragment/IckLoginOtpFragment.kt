@@ -11,6 +11,8 @@ import androidx.navigation.fragment.navArgs
 import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -38,18 +40,18 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
         ickLoginViewModel.registerType = args.loginType
         when (args.loginType) {
             LOGIN_OTP -> {
-                binding.textView22 rText R.string.dang_nhap_bang_so_dien_thoai
-                binding.textView25 rText R.string.so_dien_thoai_cua_ban_duoc_su_dung_de_dang_nhap_tai_khoan_icheck
+                binding.textView22.setText(R.string.dang_nhap_bang_so_dien_thoai)
+                binding.textView25.setText(R.string.so_dien_thoai_cua_ban_duoc_su_dung_de_dang_nhap_tai_khoan_icheck)
                 binding.btnBack.visibility = View.VISIBLE
             }
             FORGOT_PW -> {
-                binding.textView22 rText R.string.so_dien_thoai_dat_lai_mat_khau
-                binding.textView25 rText R.string.vui_long_nhap_so_dien_thoai_cua_ban_de_dat_lai_mat_khau_tai_khoan_icheck
+                binding.textView22.setText(R.string.so_dien_thoai_dat_lai_mat_khau)
+                binding.textView25.setText(R.string.vui_long_nhap_so_dien_thoai_cua_ban_de_dat_lai_mat_khau_tai_khoan_icheck)
                 binding.btnBack.visibility = View.VISIBLE
             }
             REGISTER -> {
                 TrackingAllHelper.trackSignupStart()
-                binding.textView22 rText R.string.dang_ky_tai_khoan
+                binding.textView22.setText(R.string.dang_ky_tai_khoan)
 //                binding.textView25.text = "Vui lòng nhập số điện thoại của bạn để đăng ký tài khoản iCheck"
                 binding.btnBack.visibility = View.INVISIBLE
                 binding.edtPassword.visibility = View.VISIBLE
@@ -79,13 +81,13 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             when {
                 phone.toString().trim().isEmpty() -> {
                     binding.edtPhone.apply {
-                        error = context rText R.string.vui_long_nhap_du_lieu
+                        error = context.getString(R.string.vui_long_nhap_du_lieu)
                         requestFocus()
                     }
                 }
                 !phone.toString().isPhoneNumber() -> {
                     binding.edtPhone.apply {
-                        error = context rText R.string.so_dien_thoai_khong_dung_dinh_dang
+                        error = context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
                         requestFocus()
                     }
                 }
@@ -122,7 +124,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                             )
                                     findNavController().navigate(action)
                                 } else if (it?.statusCode == "U3018") {
-                                    requireContext().showShortErrorToast(rText(R.string.da_ton_tai_yeu_cau_thay_doi_mat_khau))
+                                    requireContext().showShortErrorToast(getString(R.string.da_ton_tai_yeu_cau_thay_doi_mat_khau))
                                 } else {
                                     it?.message?.let { msg ->
                                         requireContext().showShortErrorToast(msg)
@@ -134,25 +136,25 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                             when {
                                 binding.edtPassword.text?.trim().isNullOrEmpty() -> {
                                     binding.edtPassword.apply {
-                                        error = context rText R.string.ban_chua_nhap_mat_khau
+                                        error = context.getString(R.string.ban_chua_nhap_mat_khau)
                                         requestFocus()
                                     }
                                 }
                                 binding.edtPassword.text?.length ?: 0 < 6 -> {
                                     binding.edtPassword.apply {
-                                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                                        error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                                         requestFocus()
                                     }
                                 }
                                 binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
                                     binding.edtRePassword.apply {
-                                        error = context rText R.string.vui_long_nhap_du_lieu
+                                        error = context.getString(R.string.vui_long_nhap_du_lieu)
                                         requestFocus()
                                     }
                                 }
                                 binding.edtRePassword.text?.length ?: 0 < 6 -> {
                                     binding.edtRePassword.apply {
-                                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                                        error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                                         requestFocus()
                                     }
                                 }
@@ -180,7 +182,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                         binding.edtRePassword.apply {
                                             requestFocus()
                                             setSelection(binding.edtRePassword.text?.length ?: 0)
-                                            error = context rText R.string.xac_nhan_mat_khau_khong_trung_khop
+                                            error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
                                         }
                                         requireActivity().forceShowKeyboard()
                                     }

@@ -15,7 +15,8 @@ import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 /**
@@ -88,7 +89,7 @@ class MyGiftFragment : BaseFragmentMVVM() {
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
             swipeLayout.isRefreshing = false
 
-            tvCountGift.rText(R.string.hop_qua_d, it.count)
+            tvCountGift.setText(R.string.hop_qua_d, it.count)
 
             if (!it.isLoadMore) {
                 adapter.setData(it.listRewardItem)

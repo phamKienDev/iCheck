@@ -1,10 +1,9 @@
 package vn.icheck.android.network.models
 
-import android.content.Context
-import android.os.Build
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.R
 import java.io.Serializable
 
@@ -173,7 +172,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhoneOnly()
             } else {
-                RStringUtils.rText(R.string.chua_cap_nhat)
+                getString(R.string.chua_cap_nhat)
             }
         }
 
@@ -185,7 +184,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhonePVCombank()
             } else {
-                RStringUtils.rText(R.string.chua_cap_nhat)
+                getString(R.string.chua_cap_nhat)
             }
         }
 
@@ -197,7 +196,7 @@ class ICUser : Serializable {
 
             }.toString()
         } else {
-            RStringUtils.rText(R.string.chua_cap_nhat)
+            getString(R.string.chua_cap_nhat)
         }
     }
 
@@ -209,10 +208,10 @@ class ICUser : Serializable {
                             .insert(4, " ")
                 }.toString()
             } catch (e: Exception) {
-                RStringUtils.rText(R.string.chua_cap_nhat)
+                getString(R.string.chua_cap_nhat)
             }
         } else {
-            RStringUtils.rText(R.string.chua_cap_nhat)
+            getString(R.string.chua_cap_nhat)
         }
     }
 
@@ -220,23 +219,23 @@ class ICUser : Serializable {
         return if (phone != null) {
             phone.toString()
         } else {
-            RStringUtils.rText(R.string.chua_cap_nhat)
+            getString(R.string.chua_cap_nhat)
         }
     }
 
     fun getUserLevelName(): String {
         return when (rank?.level) {
             2 -> {
-                RStringUtils.rText(R.string.thanh_vien_bac)
+                getString(R.string.thanh_vien_bac)
             }
             3 -> {
-                RStringUtils.rText(R.string.thanh_vien_vang)
+                getString(R.string.thanh_vien_vang)
             }
             4 -> {
-                RStringUtils.rText(R.string.thanh_vien_kim_cuong)
+                getString(R.string.thanh_vien_kim_cuong)
             }
             else -> {
-                RStringUtils.rText(R.string.thanh_vien_chuan)
+                getString(R.string.thanh_vien_chuan)
             }
         }
     }

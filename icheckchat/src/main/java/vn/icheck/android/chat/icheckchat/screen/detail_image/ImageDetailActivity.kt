@@ -16,7 +16,6 @@ import vn.icheck.android.chat.icheckchat.databinding.ActivityImageDetailBinding
 import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.parseListAttachment
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.toJson
-import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 
@@ -55,7 +54,7 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
         val listData = parseListAttachment(intent.getStringExtra(DATA_1))
 
         if (listData.isNullOrEmpty()) {
-            showToastError(rText(R.string.error_default))
+            showToastError(getString(R.string.error_default))
             finish()
         } else {
             val listExo = mutableListOf<MCExoMedia>()

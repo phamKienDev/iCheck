@@ -17,7 +17,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICFeed
-import vn.icheck.android.util.ick.rText
 
 class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFeed(parent.context)) {
 
@@ -45,23 +44,23 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
 
                         when {
                             totalRating < 6 -> {
-                                rText(R.string.diem_danh_gia)
+                                setText(R.string.diem_danh_gia)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 7 -> {
-                                rText(R.string.hai_long)
+                                setText(R.string.hai_long)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 8 -> {
-                                rText(R.string.tot)
+                                setText(R.string.tot)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                             totalRating < 9 -> {
-                                rText(R.string.tuyet_voi)
+                                setText(R.string.tuyet_voi)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.red_v2), SizeHelper.size14.toFloat())
                             }
                             else -> {
-                                rText(R.string.x_tren_ca_tuyet_voi)
+                                setText(R.string.x_tren_ca_tuyet_voi)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                             }
                         }

@@ -35,7 +35,6 @@ import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.pvcombank.authen.CreatePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.home.HomePVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.spToPx
 import vn.icheck.android.util.kotlin.ActivityUtils
 import java.net.URL
@@ -292,7 +291,7 @@ class WebViewActivity : BaseActivityMVVM() {
             }
 
             override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
-                DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_biet_vi_tri_cua_ban, origin), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_biet_vi_tri_cua_ban, origin), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         callback?.invoke(origin, false, false)
 
@@ -321,7 +320,7 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_su_dung_camera_cua_ban, URL(binding.webView.url).host), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_su_dung_camera_cua_ban, URL(binding.webView.url).host), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()
@@ -403,7 +402,7 @@ class WebViewActivity : BaseActivityMVVM() {
         val matches = pattern.matcher(host).find()
 
         if (!matches) {
-            val hotline = SettingManager.clientSetting?.hotline ?: rText(R.string.tong_dai_number)
+            val hotline = SettingManager.clientSetting?.hotline ?: getString(R.string.tong_dai_number)
             val spannable = SpannableString(getString(R.string.ma_qr_khong_phai_do_icheck_phat_hanh, hotline))
 
             spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

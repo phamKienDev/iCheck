@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_detail.view.*
-import vn.icheck.android.ichecklibs.util.RStringUtils.rText
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -23,7 +22,6 @@ import vn.icheck.android.loyalty.model.ICKNone
 import vn.icheck.android.loyalty.model.ICKRedemptionHistory
 import vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business.CampaignOfBusinessActivity
 import vn.icheck.android.loyalty.screen.voucher.VoucherLoyaltyActivity
-import java.util.*
 
 internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<Any>() {
 
@@ -76,16 +74,16 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 itemView.layoutDate.setVisible()
 
                 if (obj.voucher?.checked_condition?.status == false) {
-                    itemView.tvTitleDate.rText(R.string.han_su_dung)
+                    itemView.tvTitleDate.setText(R.string.han_su_dung)
 
                     when (obj.voucher?.checked_condition?.code) {
                         "START_TIME_CAN_USE" -> {
-                            itemView.tvTitleDate rText R.string.co_hieu_luc_tu
+                            itemView.tvTitleDate.setText(R.string.co_hieu_luc_tu)
 
                             itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
 
                             itemView.tvStatus.apply {
-                                text = context.rText(R.string.co_hieu_luc_tu)
+                                text = context.getString(R.string.co_hieu_luc_tu)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                                 setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                             }
@@ -94,7 +92,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                             itemView.layoutDate.setGone()
 
                             itemView.tvStatus.apply {
-                                text = context.rText(R.string.het_luot_su_dung)
+                                text = context.getString(R.string.het_luot_su_dung)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                 setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                             }
@@ -103,7 +101,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                             itemView.tvDateTime.text = ""
 
                             itemView.tvStatus.apply {
-                                text = context.rText(R.string.da_bi_khoa)
+                                text = context.getString(R.string.da_bi_khoa)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                 setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                             }
@@ -113,7 +111,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                             itemView.tvDateTime.text = ""
 
                             itemView.tvStatus.apply {
-                                text = context.rText(R.string.het_han_su_dung)
+                                text = context.getString(R.string.het_han_su_dung)
                                 setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                 setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                             }
@@ -121,21 +119,21 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                     }
 
                 } else {
-                    itemView.tvTitleDate.rText(R.string.han_su_dung)
+                    itemView.tvTitleDate.setText(R.string.han_su_dung)
 
                     itemView.tvDateTime.text = obj.voucher?.let { TimeHelper.timeGiftVoucher(it) }
 
                     itemView.tvStatus.apply {
 
-                        if (itemView.tvDateTime.text.toString() == context.rText(R.string.con_lai_)) {
+                        if (itemView.tvDateTime.text.toString() == context.getString(R.string.con_lai_)) {
 
                             itemView.tvDateTime.text = ""
-                            text = context.rText(R.string.het_han_su_dung)
+                            text = context.getString(R.string.het_han_su_dung)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                             setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                         } else {
 
-                            text = context.rText(R.string.co_the_su_dung)
+                            text = context.getString(R.string.co_the_su_dung)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                             setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                         }
@@ -146,22 +144,22 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                     setVisible()
                     when (obj.status) {
                         "new" -> {
-                            text = context.rText(R.string.cho_xac_nhan)
+                            text = context.getString(R.string.cho_xac_nhan)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }
                         "waiting_receive_gift" -> {
-                            text = context.rText(R.string.cho_giao)
+                            text = context.getString(R.string.cho_giao)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }
                         "received_gift" -> {
-                            text = context.rText(R.string.da_nhan_qua)
+                            text = context.getString(R.string.da_nhan_qua)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                             setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                         }
                         "refused_gift" -> {
-                            text = context.rText(R.string.tu_choi)
+                            text = context.getString(R.string.tu_choi)
                             setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                             setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                         }
@@ -184,21 +182,21 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
 
             itemView.tvVanChuyen.text = when (obj.gift?.type) {
                 "ICOIN" -> {
-                    rText(R.string.qua_xu)
+                    getString(R.string.qua_xu)
                 }
                 "PHONE_CARD" -> {
-                    rText(R.string.qua_the_cao)
+                    getString(R.string.qua_the_cao)
                 }
                 "RECEIVE_STORE" -> {
-                    rText(R.string.qua_nhan_tai_cua_hang)
+                    getString(R.string.qua_nhan_tai_cua_hang)
                 }
                 "PRODUCT" -> {
-                    rText(R.string.qua_hien_vat)
+                    getString(R.string.qua_hien_vat)
                 }
                 "VOUCHER" -> {
-                    rText(R.string.voucher)
+                    getString(R.string.voucher)
                 }
-                else -> rText(R.string.qua_tinh_than)
+                else -> getString(R.string.qua_tinh_than)
             }
             itemView.btnDoiQua.apply {
                 if (obj.gift?.type == "VOUCHER") {
@@ -206,7 +204,7 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                     setVisible()
                     when {
                         obj.voucher?.can_use == true -> {
-                            text = context.rText(R.string.dung_ngay)
+                            text = context.getString(R.string.dung_ngay)
                             setOnClickListener {
                                 itemView.context.startActivity(Intent(itemView.context, VoucherLoyaltyActivity::class.java).apply {
                                     putExtra(ConstantsLoyalty.DATA_1, obj.voucher?.code)
@@ -216,10 +214,10 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                             }
                         }
                         obj.voucher?.can_mark_use == true -> {
-                            text = context.rText(R.string.danh_dau_da_dung)
+                            text = context.getString(R.string.danh_dau_da_dung)
 
                             setOnClickListener {
-                                showCustomErrorToast(itemView.context, context.rText(R.string.chua_co_su_kien))
+                                showCustomErrorToast(itemView.context, context.getString(R.string.chua_co_su_kien))
                             }
                         }
                         else -> {
@@ -253,9 +251,9 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
             itemView.layoutCountGift.setVisible()
 
             itemView.tvCountGift.text = if (obj.loyalty_gift?.quantity_remain != null) {
-                "${TextHelper.formatMoneyPhay(obj.loyalty_gift?.quantity_remain)} ${rText(R.string.qua)}"
+                "${TextHelper.formatMoneyPhay(obj.loyalty_gift?.quantity_remain)} ${getString(R.string.qua)}"
             } else {
-                "0 ${rText(R.string.qua)}"
+                "0 ${getString(R.string.qua)}"
             }
 
             itemView.tvProduct.text = if (!obj.loyalty_gift?.gift?.name.isNullOrEmpty()) {
@@ -271,31 +269,31 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
             itemView.tvVanChuyen.text = when (obj.loyalty_gift?.gift?.type) {
                 "ICOIN" -> {
                     setOnClickButton(obj)
-                    rText(R.string.qua_xu)
+                    getString(R.string.qua_xu)
                 }
                 "PHONE_CARD" -> {
                     setOnClickButton(obj)
-                    rText(R.string.qua_the_cao)
+                    getString(R.string.qua_the_cao)
                 }
                 "RECEIVE_STORE" -> {
-                    itemView.btnDoiQua.rText(R.string.huong_dan_doi_qua)
+                    itemView.btnDoiQua.setText(R.string.huong_dan_doi_qua)
                     itemView.btnDoiQua.setOnClickListener {
                         DialogHelperGame.dialogTutorialLoyalty(itemView.context, R.drawable.bg_gradient_button_blue)
                     }
-                    rText(R.string.qua_nhan_tai_cua_hang)
+                    getString(R.string.qua_nhan_tai_cua_hang)
                 }
                 "PRODUCT" -> {
                     itemView.layoutPhiVanChuyen.setVisible()
                     setOnClickButton(obj)
-                    rText(R.string.qua_hien_vat)
+                    getString(R.string.qua_hien_vat)
                 }
                 "VOUCHER" -> {
                     setOnClickButton(obj)
-                    rText(R.string.qua_voucher)
+                    getString(R.string.qua_voucher)
                 }
                 else -> {
                     itemView.btnDoiQua.setGone()
-                    rText(R.string.qua_tinh_than)
+                    getString(R.string.qua_tinh_than)
                 }
             }
 
@@ -336,10 +334,10 @@ internal class GiftDetailAdapter(val type: Int = 0) : RecyclerViewCustomAdapter<
                 } else {
                     DialogHelperGame.dialogScanLoyaltyError(itemView.context,
                         R.drawable.ic_error_scan_game,
-                        rText(R.string.ban_khong_du_diem_doi_qua),
-                        rText(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
+                        getString(R.string.ban_khong_du_diem_doi_qua),
+                        getString(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
                         null,
-                        rText(R.string.tich_diem_ngay),
+                        getString(R.string.tich_diem_ngay),
                         false,
                         R.drawable.bg_button_not_enough_point_blue_v2,
                         R.color.blueVip,

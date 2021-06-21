@@ -13,7 +13,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.util.ick.rText
 
 class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -240,28 +239,28 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                     layoutParams.setMargins(SizeHelper.size50, SizeHelper.size12, SizeHelper.size50, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
                     itemView.txtMessage2.layoutParams = layoutParams
-                    itemView.txtMessage2.text = itemView.context.getString(R.string.xin_loi_chung_toi_khong_the_tim_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
+                    itemView.txtMessage2.setText(R.string.xin_loi_chung_toi_khong_the_tim_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
                 }
 
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ban_chua_co_ban_be_nao)
+                    itemView.txtMessage.setText(R.string.ban_chua_co_ban_be_nao)
 
                     val layoutParams = ViewHelper.createLayoutParams()
                     layoutParams.setMargins(SizeHelper.size67, SizeHelper.size6, SizeHelper.size67, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
-                    itemView.txtMessage2 rText R.string.ket_ban_bon_phuong_de_cung_thao_luan_ve_san_pham_chinh_hang
+                    itemView.txtMessage2.setText(R.string.ket_ban_bon_phuong_de_cung_thao_luan_ve_san_pham_chinh_hang)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     itemView.txtMessage2.visibility = View.INVISIBLE
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    itemView.txtMessage.setText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     itemView.txtMessage2.visibility = View.INVISIBLE
                 }
             }

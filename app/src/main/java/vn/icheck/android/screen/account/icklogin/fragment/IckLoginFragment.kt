@@ -6,8 +6,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -25,11 +23,9 @@ import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -48,7 +44,6 @@ import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
-import android.view.ViewTreeObserver.OnGlobalLayoutListener as OnGlobalLayoutListener1
 
 @AndroidEntryPoint
 class IckLoginFragment : BaseFragmentMVVM() {
@@ -101,14 +96,14 @@ class IckLoginFragment : BaseFragmentMVVM() {
                             binding.edtPassword.apply {
                                 requestFocus()
                                 setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
-                                error = context rText R.string.ban_chua_nhap_mat_khau
+                                error = context.getString(R.string.ban_chua_nhap_mat_khau)
                             }
                         }
                         binding.edtPassword.text?.toString()?.length ?: 0 < 6 -> {
                             binding.edtPassword.apply {
                                 requestFocus()
                                 setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
-                                error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                                error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                             }
                         }
                         else -> {
@@ -120,7 +115,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
                 else -> {
                     showFocus()
                     binding.edtPhone.apply {
-                        error = context rText R.string.so_dien_thoai_khong_dung_dinh_dang
+                        error = context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
                     }
                 }
 
@@ -144,7 +139,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
                 }
 
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, it.context rText R.string.ho_tro_dang_nhap)
+                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, it.context.getString(R.string.ho_tro_dang_nhap))
                 }
             })
 //            WebViewActivity.start(requireActivity(), "http://quotes.icheck.com.vn/van-de-khi-dang-nhap/")

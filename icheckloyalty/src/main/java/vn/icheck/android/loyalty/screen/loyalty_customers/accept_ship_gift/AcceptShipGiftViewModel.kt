@@ -3,7 +3,6 @@ package vn.icheck.android.loyalty.screen.loyalty_customers.accept_ship_gift
 import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
-import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -76,10 +75,10 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                 onErrorProvince.postValue("")
 
                 district = null
-                onSetDistrict.postValue(rText(R.string.tuy_chon))
+                onSetDistrict.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
 
                 ward = null
-                onSetWard.postValue(rText(R.string.tuy_chon))
+                onSetWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
             }
         }
     }
@@ -98,7 +97,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                 onErrorDistrict.postValue("")
 
                 ward = null
-                onSetWard.postValue(rText(R.string.tuy_chon))
+                onSetWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
             }
         }
     }
@@ -128,11 +127,11 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         when {
             name.isNullOrEmpty() -> {
                 isSuccess = false
-                onErrorName.postValue(rText(R.string.vui_long_nhap_ten))
+                onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.vui_long_nhap_ten))
             }
             name.length > 255 -> {
                 isSuccess = false
-                onErrorName.postValue(rText(R.string.ho_va_ten_khong_nhap_qua_255_ki_tu))
+                onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.ho_va_ten_khong_nhap_qua_255_ki_tu))
             }
             else -> {
                 onErrorName.postValue("")
@@ -150,34 +149,34 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         if (!email.isNullOrEmpty()) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 isSuccess = false
-                onErrorEmail.postValue(rText(R.string.email_khong_dung_dinh_dang))
+                onErrorEmail.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.email_khong_dung_dinh_dang))
             }
         }
 
         if (province?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorProvince.postValue(rText(R.string.chon_tinh_thanh))
+            onErrorProvince.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_tinh_thanh))
         } else {
             onErrorProvince.postValue("")
         }
 
         if (district?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorDistrict.postValue(rText(R.string.chon_quan_huyen))
+            onErrorDistrict.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_quan_huyen))
         } else {
             onErrorDistrict.postValue("")
         }
 
         if (ward?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorWard.postValue(rText(R.string.chon_phuong_xa))
+            onErrorWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_phuong_xa))
         } else {
             onErrorWard.postValue("")
         }
 
         if (address.isNullOrEmpty()) {
             isSuccess = false
-            onErrorAddress.postValue(rText(R.string.vui_long_nhap_dia_chi))
+            onErrorAddress.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.vui_long_nhap_dia_chi))
         } else {
             onErrorAddress.postValue("")
         }
@@ -249,7 +248,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         }
 
         if (name.length > 100) {
-            onErrorName.postValue(rText(R.string.ten_ban_nhap_qua_dai))
+            onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.ten_ban_nhap_qua_dai))
             return
         }
 

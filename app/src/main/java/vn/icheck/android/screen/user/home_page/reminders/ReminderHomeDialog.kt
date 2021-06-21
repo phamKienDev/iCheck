@@ -21,8 +21,8 @@ import vn.icheck.android.screen.user.home_page.HomePageViewModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
     private var _binding: DialogReminderHomeBinding? = null
@@ -47,21 +47,21 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
         binding.btnCancel.setOnClickListener {
             dismiss()
         }
-        binding.tvReminderCount.rText(R.string.loi_nhac_d, viewModel.getRemindersCount())
+        binding.tvReminderCount.setText(R.string.loi_nhac_d, viewModel.getRemindersCount())
         if (viewModel.getRemindersCount() ?: 0 > 0) {
             binding.imgNoReminder.beGone()
             binding.tvNoReminder.beGone()
             binding.tvSubNoReminder.beGone()
             binding.rcvReminders.beVisible()
             remindersAdapter = RemindersAdapter(viewModel.getListReminders()) {position ->
-                object : ConfirmDialog(requireContext(), binding.root.context.rText(R.string.ban_muon_xoa_loi_nhac_nay),null,binding.root.context.rText(R.string.de_sau),binding.root.context.rText(R.string.co), true){
+                object : ConfirmDialog(requireContext(), binding.root.context.getString(R.string.ban_muon_xoa_loi_nhac_nay),null,binding.root.context.getString(R.string.de_sau),binding.root.context.getString(R.string.co), true){
                     override fun onDisagree() {
                     }
 
                     override fun onAgree() {
                         viewModel.deleteReminder(position).observe(viewLifecycleOwner, Observer {
                             if (it.statusCode == "200") {
-                                requireContext().showShortSuccessToast(binding.root.context.rText(R.string.ban_da_xoa_loi_nhan_thanh_cong))
+                                requireContext().showShortSuccessToast(binding.root.context.getString(R.string.ban_da_xoa_loi_nhan_thanh_cong))
                                 remindersAdapter.notifyItemRemoved(position)
                                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_REMINDER))
 
@@ -90,9 +90,9 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
                     binding.imgNoReminder.beVisible()
                     binding.tvNoReminder.beVisible()
                     binding.tvSubNoReminder.beVisible()
-                    binding.tvReminderCount rText R.string.loi_nhac
+                    binding.tvReminderCount.setText(R.string.loi_nhac)
                 } else {
-                    binding.tvReminderCount.rText(R.string.loi_nhac_d, viewModel.getRemindersCount())
+                    binding.tvReminderCount.setText(R.string.loi_nhac_d, viewModel.getRemindersCount())
                 }
             }
         }else if (event.type == ICMessageEvent.Type.DO_REMINDER) {

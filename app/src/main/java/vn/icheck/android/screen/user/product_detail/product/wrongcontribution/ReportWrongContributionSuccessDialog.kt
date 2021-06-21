@@ -25,7 +25,6 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
-import vn.icheck.android.util.ick.rText
 
 class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: Boolean = true, val productId: Long = -1, val isContributed:Boolean = false) : BaseBottomSheetDialog(context, isCancelable) {
 
@@ -113,7 +112,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
                         }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ContextCompat.getColor(context, R.color.colorSecondary), 14f).also {
-                            it rText R.string.neu_ban_biet_thong_tin_chinh_xac_ve_san_pham_nay_hay_dong_gop_them_nhe
+                            it.setText(R.string.neu_ban_biet_thong_tin_chinh_xac_ve_san_pham_nay_hay_dong_gop_them_nhe)
                             it.gravity = Gravity.CENTER
                         })
 
@@ -139,7 +138,7 @@ class ReportWrongContributionSuccessDialog(val context: Context, isCancelable: B
                                     pr.leftMargin = SizeHelper.size10
                                 }
                                 it.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
-                                it rText R.string.dong_gop_san_pham
+                                it.setText(R.string.dong_gop_san_pham)
 
                                 it.setOnClickListener {
                                     dialog.dismiss()

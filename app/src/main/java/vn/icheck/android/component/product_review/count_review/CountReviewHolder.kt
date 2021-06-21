@@ -17,7 +17,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 
 class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(parent.context)) {
 
@@ -25,7 +25,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
         //show = true: hiện textview xem tất cả
         (itemView as ViewGroup).run {
             (getChildAt(0) as AppCompatTextView).run {
-                rText(R.string.danh_gia_san_pham_x, obj.count)
+                this@run.setText(R.string.danh_gia_san_pham_x, obj.count)
             }
 
             (getChildAt(1) as AppCompatTextView).run {

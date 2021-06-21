@@ -27,8 +27,8 @@ import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineViewHolder(itemGroupBinding.root) {
     var balloon: Balloon? = null
@@ -47,7 +47,7 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
                         val clipboard = act.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText(null,itemGroupBinding.edtInfo.text.toString())
                         clipboard.setPrimaryClip(clip)
-                        it.context.showShortSuccessToast(it.context.rText(R.string.sao_chep_thanh_cong))
+                        it.context.showShortSuccessToast(it.context.getString(R.string.sao_chep_thanh_cong))
                         pasteBalloon?.dismiss()
                     }
                 }
@@ -109,14 +109,14 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
             itemGroupBinding.imgHelp.beVisible()
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemGroupBinding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            itemGroupBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
             itemGroupBinding.edtInfo.apply {
-                hint = context.rText(R.string.nhap_s_bat_buoc, categoryAttributesModel.categoryItem.name)
+                hint = context.getString(R.string.nhap_s_bat_buoc, categoryAttributesModel.categoryItem.name)
             }
         } else {
             itemGroupBinding.tvTitle.text = categoryAttributesModel.categoryItem.name
             itemGroupBinding.edtInfo.apply {
-                hint = context.rText(R.string.nhap_s, categoryAttributesModel.categoryItem.name)
+                hint = context.getString(R.string.nhap_s, categoryAttributesModel.categoryItem.name)
             }
         }
         itemGroupBinding.edtInfo.setOnLongClickListener {

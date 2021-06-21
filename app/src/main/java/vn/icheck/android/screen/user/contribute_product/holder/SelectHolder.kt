@@ -6,10 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.TooltipCompat
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.balloon.*
 import vn.icheck.android.R
@@ -17,6 +13,8 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemSelectBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.model.category.OptionsItem
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.*
@@ -50,7 +48,7 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             itemSelectBinding.imgHelp.beVisible()
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemSelectBinding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            itemSelectBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             itemSelectBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

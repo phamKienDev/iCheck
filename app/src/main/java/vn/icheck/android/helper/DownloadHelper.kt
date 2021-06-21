@@ -4,23 +4,14 @@ import android.app.Activity
 import android.app.DownloadManager
 import android.content.*
 import android.database.Cursor
-import android.graphics.Bitmap
-import android.graphics.Matrix
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
-import android.provider.MediaStore.Images
 import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import java.io.File
-import java.io.FileNotFoundException
-import java.io.IOException
-import java.io.OutputStream
 
 
 class DownloadHelper(private val downloadManager: DownloadManager, val activity: Activity, val callback: DownloadHelperCallback) {
@@ -34,7 +25,7 @@ class DownloadHelper(private val downloadManager: DownloadManager, val activity:
 
     private var onNotificationClick: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            Toast.makeText(context, context rText R.string.the_download_notification_was_clicked, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.the_download_notification_was_clicked), Toast.LENGTH_LONG).show()
         }
     }
 

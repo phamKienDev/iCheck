@@ -11,7 +11,6 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPostMeta
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductInFeedComponent : LinearLayout {
@@ -75,9 +74,9 @@ class ProductInFeedComponent : LinearLayout {
         }
 
         (getChildAt(1) as LinearLayout).run {
-            (getChildAt(0) as AppCompatTextView).text = obj?.product?.name ?: context rText R.string.dang_cap_nhat
+            (getChildAt(0) as AppCompatTextView).text = obj?.product?.name ?: context.getString(R.string.dang_cap_nhat)
 
-            (getChildAt(1) as AppCompatTextView).text = obj?.product?.owner?.name ?: context rText R.string.dang_cap_nhat
+            (getChildAt(1) as AppCompatTextView).text = obj?.product?.owner?.name ?: context.getString(R.string.dang_cap_nhat)
         }
     }
 }

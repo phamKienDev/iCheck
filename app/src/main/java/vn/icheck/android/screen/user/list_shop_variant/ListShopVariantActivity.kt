@@ -23,7 +23,6 @@ import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
 import vn.icheck.android.screen.user.list_shop_variant.viewmodel.ListShopVariantViewModel
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
-import vn.icheck.android.util.ick.rText
 
 class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
 
@@ -43,7 +42,7 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
     }
 
     private fun setupToolbar() {
-        txtTitle rText R.string.diem_ban_gan_day
+        txtTitle.setText(R.string.diem_ban_gan_day)
         imgAction.visibility = View.VISIBLE
         imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
 
@@ -127,10 +126,10 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
                 intent.putExtra("avatarShop", item.avatar)
                 startActivity(intent)
             } else {
-                showShortError(rText(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
+                showShortError(getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
             }
         } else {
-            showShortError(rText(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
+            showShortError(getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
         }
     }
 }

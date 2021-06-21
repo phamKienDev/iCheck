@@ -43,7 +43,8 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -163,7 +164,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
     private fun initViewModel() {
         viewModel.objCampaign.observe(this, Observer {
             tvThank.text =
-                Html.fromHtml("<font color=#828282>${rText(R.string.cam_on_ban_da_tham_gia_du_kien)}</font>" + "<br>" + "${it.title}" + "</br>")
+                Html.fromHtml("<font color=#828282>${getString(R.string.cam_on_ban_da_tham_gia_du_kien)}</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.gray)
                 imgLogo.borderWidth = SizeHelper.size2
@@ -316,7 +317,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
                     playAudio()
                     runVibrate()
-                    tvNameGift.rText(R.string.s_xu, TextHelper.formatMoney(it.icoin))
+                    tvNameGift.setText(R.string.s_xu, TextHelper.formatMoney(it.icoin))
                     btnMyGift.text = getString(R.string.quan_ly_xu)
                     btnMyGift.setOnClickListener {
                         TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
@@ -482,7 +483,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     intent.setDataAndType(contentUri, contentResolver.getType(contentUri))
                     intent.putExtra(Intent.EXTRA_STREAM, contentUri)
-                    startActivity(Intent.createChooser(intent, rText(R.string.icheck_share)))
+                    startActivity(Intent.createChooser(intent, getString(R.string.icheck_share)))
                 } else {
                     ToastUtils.showShortError(context, R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

@@ -1,17 +1,12 @@
 package vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Html
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_detai_history_guarantee.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
@@ -28,9 +23,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.detail_history_guarantee.view.IDetaiHistoryGuaranteeView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.view_item_image_stamp.ViewItemImageActivity
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.text.SimpleDateFormat
 
 class DetaiHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuaranteeView {
 
@@ -46,13 +39,13 @@ class DetaiHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarantee
 
     fun onInitView() {
         if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle rText R.string.detail_of_warranty_information
-            tvCustomerInfor rText R.string.customer_information
-            tvWarrantyInfor rText R.string.warranty_information
+            txtTitle.setText(R.string.detail_of_warranty_information)
+            tvCustomerInfor.setText(R.string.customer_information)
+            tvWarrantyInfor.setText(R.string.warranty_information)
         } else {
-            txtTitle rText R.string.chi_tiet_bao_hanh
-            tvCustomerInfor rText R.string.thong_tin_khach_hang
-            tvWarrantyInfor rText R.string.thong_tin_bao_hanh
+            txtTitle.setText(R.string.chi_tiet_bao_hanh)
+            tvCustomerInfor.setText(R.string.thong_tin_khach_hang)
+            tvWarrantyInfor.setText(R.string.thong_tin_bao_hanh)
         }
 
         listener()
@@ -97,113 +90,113 @@ class DetaiHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarantee
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.name)} : </font>" + "<b>" + item.customer?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.name)} : </font>" + "<b>" + item.customer?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.name)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.name)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.ho_va_ten)} : </font>" + "<b>" + item.customer?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.ho_va_ten)} : </font>" + "<b>" + item.customer?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.ho_va_ten)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.ho_va_ten)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.tel)} : </font>" + "<b>" + item.customer?.phone + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.tel)} : </font>" + "<b>" + item.customer?.phone + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.tel)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.tel)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.so_dien_thoai)} : </font>" + "<b>" + item.customer?.phone + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.so_dien_thoai)} : </font>" + "<b>" + item.customer?.phone + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.so_dien_thoai)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.so_dien_thoai)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.email)} : </font>" + "<b>" + item.customer?.email + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.email)} : </font>" + "<b>" + item.customer?.email + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.email)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.email)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvMailCustomer.text = if (!item.customer?.email.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.email)} : </font>" + "<b>" + item.customer?.email + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.email)} : </font>" + "<b>" + item.customer?.email + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.email)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.email)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.address)} : </font>" + "<b>" + item.customer?.address + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.address)} : </font>" + "<b>" + item.customer?.address + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.address)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.address)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvAddressCustomer.text = if (!item.customer?.address.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.dia_chi)} : </font>" + "<b>" + item.customer?.address + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.dia_chi)} : </font>" + "<b>" + item.customer?.address + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.dia_chi)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.dia_chi)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.time)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.time)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.time)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.time)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvTimeGuarantee.text = if (!item.created_time.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.thoi_gian)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_time) + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.thoi_gian)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_center)} : </font>" + "<b>" + item.store?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.warranty_center)} : </font>" + "<b>" + item.store?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_center)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.warranty_center)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.diem_bao_hanh)} : </font>" + "<b>" + item.store?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.diem_bao_hanh)} : </font>" + "<b>" + item.store?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.diem_bao_hanh)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.diem_bao_hanh)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_status)} : </font>" + "<b>" + item.state?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.warranty_status)} : </font>" + "<b>" + item.state?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.warranty_status)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.warranty_status)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvStateGuarantee.text = if (!item.state?.name.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang)} : </font>" + "<b>" + item.state?.name + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.tinh_trang)} : </font>" + "<b>" + item.state?.name + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.tinh_trang)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 
         if (StampDetailActivity.isVietNamLanguage == false) {
             tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.date_of_return)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.date_of_return)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.date_of_return)} : </font>" + "<b>" + rText(R.string.updating) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.date_of_return)} : </font>" + "<b>" + getString(R.string.updating) + "</b>")
             }
         } else {
             tvReturnTimeGuarantee.text = if (!item.return_time.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#434343>${rText(R.string.ngay_hen_tra)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.ngay_hen_tra)} : </font>" + "<b>" + TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.return_time) + "</b>")
             } else {
-                Html.fromHtml("<font color=#434343>${rText(R.string.ngay_hen_tra)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                Html.fromHtml("<font color=#434343>${getString(R.string.ngay_hen_tra)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
             }
         }
 

@@ -1,14 +1,13 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.game_list
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_game_loyalty.view.*
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -16,7 +15,6 @@ import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGame
-import vn.icheck.android.loyalty.screen.web.WebViewActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,7 +52,7 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                 text = if (!obj.owner?.name.isNullOrEmpty()) {
                     obj.owner?.name
                 } else {
-                    context.rText(R.string.dang_cap_nhat)
+                    context.getString(R.string.dang_cap_nhat)
                 }
             }
 
@@ -78,14 +76,14 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
                             if (obj.statisticWinnerAccumulatePoint[0].points != null) {
-                                itemView.tvPoint.rText(R.string.d_diem,
+                                itemView.tvPoint.setText(R.string.d_diem,
                                     obj.statisticWinnerAccumulatePoint[0].points
                                 )
                             } else {
-                                itemView.tvPoint.rText(R.string.d_diem, 0)
+                                itemView.tvPoint.setText(R.string.d_diem, 0)
                             }
                         } else {
-                            itemView.tvPoint.rText(R.string.d_diem, 0)
+                            itemView.tvPoint.setText(R.string.d_diem, 0)
                         }
                     }
                     "receive_gift" -> {
@@ -103,14 +101,14 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#057DDA"))
-                                itemView.tvPlay.rText(R.string.d_luot_quay, obj.campaignGameUser[0]?.play)
+                                itemView.tvPlay.setText(R.string.d_luot_quay, obj.campaignGameUser[0]?.play)
                             } else {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                                itemView.tvPlay rText R.string.het_luot_quay
+                                itemView.tvPlay.setText(R.string.het_luot_quay)
                             }
                         } else {
                             itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                            itemView.tvPlay rText R.string.het_luot_quay
+                            itemView.tvPlay.setText(R.string.het_luot_quay)
                         }
                     }
                     else -> {

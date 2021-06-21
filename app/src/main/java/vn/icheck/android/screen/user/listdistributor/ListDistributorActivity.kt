@@ -9,7 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class ListDistributorActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -32,7 +32,7 @@ class ListDistributorActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         imgBack.setOnClickListener {
             onBackPressed()
         }
-        txtTitle rText R.string.nha_phan_phoi
+        txtTitle.setText(R.string.nha_phan_phoi)
     }
 
     private fun initRecyclerView() {
@@ -67,7 +67,7 @@ class ListDistributorActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             DialogHelper.closeLoading(this)
             swipeLayout.isRefreshing = false
 
-            tvCount.rText(R.string.d_nha_phan_phoi, it.count)
+            tvCount.setText(R.string.d_nha_phan_phoi, it.count)
 
             if (!it.isLoadMore) {
                 adapter.setData(it.listData)

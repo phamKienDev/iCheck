@@ -14,7 +14,6 @@ import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.screen.user.gift_campaign.adapter.GiftOfCampaignAdapter
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -37,7 +36,7 @@ class GiftOfCampaignActivity : BaseActivityGame(), IRecyclerViewCallback {
     }
 
     private fun initToolbar(){
-        txtTitle rText R.string.qua_tang_dang_cho_ban
+        txtTitle.setText(R.string.qua_tang_dang_cho_ban)
 
         imgBack.setOnClickListener {
             onBackPressed()

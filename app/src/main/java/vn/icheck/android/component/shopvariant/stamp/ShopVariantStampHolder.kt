@@ -27,7 +27,6 @@ import vn.icheck.android.network.models.ICRespCart
 import vn.icheck.android.network.models.ICShopVariant
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class ShopVariantStampHolder(view: View) : BaseViewHolder<ICShopVariant>(view) {
@@ -110,15 +109,15 @@ class ShopVariantStampHolder(view: View) : BaseViewHolder<ICShopVariant>(view) {
 
         val listService = mutableListOf<ICServiceShopVariant>()
         if (obj.shop?.is_online == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_online_shop_18px, itemView.context rText R.string.ban_online, "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_online_shop_18px, itemView.context.getString(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
         }
 
         if (obj.verified == "verified") {
-            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_18px, itemView.context rText R.string.dai_ly_chinh_hang, "#4dbba6", R.drawable.bg_corner_offline_shop_variant))
+            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_18px, itemView.context.getString(R.string.dai_ly_chinh_hang), "#4dbba6", R.drawable.bg_corner_offline_shop_variant))
         }
 
         if (obj.shop?.is_offline == true) {
-            listService.add(ICServiceShopVariant(2, R.drawable.ic_offline_shop_18px, itemView.context rText R.string.mua_tai_cua_hang, "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+            listService.add(ICServiceShopVariant(2, R.drawable.ic_offline_shop_18px, itemView.context.getString(R.string.mua_tai_cua_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
         }
 
         if (!listService.isNullOrEmpty()) {

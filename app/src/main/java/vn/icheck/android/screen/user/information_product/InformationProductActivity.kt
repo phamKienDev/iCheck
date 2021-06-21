@@ -15,7 +15,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class InformationProductActivity : BaseActivityMVVM() {
@@ -46,7 +47,7 @@ class InformationProductActivity : BaseActivityMVVM() {
                 text = if (!it.title.isNullOrEmpty()) {
                     it.title
                 } else {
-                    context.rText(R.string.thong_tin_chi_tiet)
+                    context.getString(R.string.thong_tin_chi_tiet)
                 }
             }
 

@@ -22,7 +22,7 @@ class CategoryHeadlineAdapter(val onClick:(Int) -> Unit, val listCategory:List<C
         when (position) {
             0 -> {
                 holder.binding.imgArr.beGone()
-                holder.binding.tvTitle rText R.string.tat_ca
+                holder.binding.tvTitle.setText(R.string.tat_ca)
             }
             listCategory.lastIndex -> {
                 holder.binding.tvTitle simpleText listCategory[position]?.name

@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import vn.icheck.android.R
 import vn.icheck.android.databinding.PublicInfoBinding
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.ick.*
 
@@ -83,7 +84,7 @@ class PublicInfoFragment : Fragment() {
                 binding.edtDanhtinh.beGone()
                 binding.txtConfirmedDanhtinh.beVisible()
             }
-            binding.idUser.rText(R.string.ic_d, user.id)
+            binding.idUser.setText(R.string.ic_d, user.id)
             binding.totalFollower simpleText user.userFollowingMeCount.toString().getInfo()
 
             binding.rowPhone goneIf user.infoPrivacyConfig?.phone

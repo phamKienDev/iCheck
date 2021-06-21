@@ -19,7 +19,8 @@ import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentFillPwBinding
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class IckConfirmPasswordFragment : BaseFragmentMVVM() {
@@ -50,19 +51,19 @@ class IckConfirmPasswordFragment : BaseFragmentMVVM() {
 
                 binding.edtPassword.text?.trim().toString().length < 6 -> {
                     binding.edtPassword.apply {
-                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                        error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                         requestFocus()
                     }
                 }
                 binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
                     binding.edtRePassword.apply {
-                        error = context rText R.string.vui_long_nhap_du_lieu
+                        error = context.getString(R.string.vui_long_nhap_du_lieu)
                         requestFocus()
                     }
                 }
                 binding.edtRePassword.text?.trim().toString() != binding.edtPassword.text?.trim().toString() -> {
                     binding.edtRePassword.apply {
-                        error = context rText R.string.xac_nhan_mat_khau_khong_trung_khop
+                        error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
                         requestFocus()
                     }
                 }

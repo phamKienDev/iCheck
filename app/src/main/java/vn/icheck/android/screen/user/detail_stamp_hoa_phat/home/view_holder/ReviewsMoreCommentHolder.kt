@@ -16,12 +16,13 @@ import vn.icheck.android.network.models.ICComments
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.model.ICStampItem
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.model.ICViewType
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class ReviewsMoreCommentHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_show_more_comment, parent, false)) {
 
     fun bind(obj: ICProductReviews.ReviewsRow, listener: ItemClickListener<MutableList<ICStampItem>>) {
-        itemView.tv_more.rText(R.string.xem_them_x_tra_loi_khac, obj.commentCounts - 1)
+        itemView.tv_more.setText(R.string.xem_them_x_tra_loi_khac, obj.commentCounts - 1)
 
         itemView.tv_more.setOnClickListener {
             val host = APIConstants.defaultHost + APIConstants.CRITERIALISTCOMMENT().replace("{review_id}", obj.id.toString())

@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICCountry
-import vn.icheck.android.util.ick.rText
 
 class LayoutInputPhone : LinearLayout {
 
@@ -59,7 +58,7 @@ class LayoutInputPhone : LinearLayout {
                 24f).also {
             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
             it.gravity = Gravity.CENTER
-            it rText R.string.phone
+            it.setText(R.string.phone)
         })
 
         layoutPhone.addView(ViewHelper.createEditText(context,

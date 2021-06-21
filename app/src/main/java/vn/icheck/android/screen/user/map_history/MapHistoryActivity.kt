@@ -24,7 +24,6 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.InforPageBottomSheet
 import vn.icheck.android.component.view.MySpannable
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 /**
@@ -118,7 +117,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
             tvDescription.run {
                 if (!obj.newDetail?.description.isNullOrEmpty()) {
                     text = obj.newDetail?.description
-                    makeTextViewResizable(this@MapHistoryActivity, tvDescription, 5, context.rText(R.string.doc_tiep), "#057dda", obj.newDetail?.description!!)
+                    makeTextViewResizable(this@MapHistoryActivity, tvDescription, 5, context.getString(R.string.doc_tiep), "#057dda", obj.newDetail?.description!!)
                 }
             }
 

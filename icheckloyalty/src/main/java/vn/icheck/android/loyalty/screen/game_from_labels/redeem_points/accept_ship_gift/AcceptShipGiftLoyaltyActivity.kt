@@ -10,18 +10,15 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.Observer
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_accept_ship_gift_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.dialog.listener.IClickButtonDialog
 import vn.icheck.android.loyalty.dialog.listener.IDismissDialog
-import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKBoxGifts
 import vn.icheck.android.loyalty.network.SessionManager
@@ -54,7 +51,7 @@ class AcceptShipGiftLoyaltyActivity : BaseActivityGame(), View.OnClickListener {
             onBackPressed()
         }
 
-        txtTitle rText R.string.xac_nhan_doi_qua
+        txtTitle.setText(R.string.xac_nhan_doi_qua)
     }
 
     private fun initListener() {
@@ -76,17 +73,17 @@ class AcceptShipGiftLoyaltyActivity : BaseActivityGame(), View.OnClickListener {
         spProvince.text = if (!user?.city?.name.isNullOrEmpty()) {
             user?.city?.name
         } else {
-            rText(R.string.tuy_chon)
+            getString(R.string.tuy_chon)
         }
         spDistrict.text = if (!user?.district?.name.isNullOrEmpty()) {
             user?.district?.name
         } else {
-            rText(R.string.tuy_chon)
+            getString(R.string.tuy_chon)
         }
         spWard.text = if (!user?.ward?.name.isNullOrEmpty()) {
             user?.ward?.name
         } else {
-            rText(R.string.tuy_chon)
+            getString(R.string.tuy_chon)
         }
         viewModel.province = user?.city
         viewModel.district = user?.district

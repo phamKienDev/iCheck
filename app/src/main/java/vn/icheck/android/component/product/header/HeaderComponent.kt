@@ -8,7 +8,8 @@ import kotlinx.android.synthetic.main.product_header_new.view.*
 import vn.icheck.android.R
 import vn.icheck.android.adapters.ImageSliderAdapter
 import vn.icheck.android.adapters.base.BaseHolder
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ICheckTextUtils
 import vn.icheck.android.util.text.ReviewPointText
 import java.util.*
@@ -28,18 +29,18 @@ class HeaderComponent(view: View) : BaseHolder(view) {
             view.product_rate.rating = it
             view.product_rate.visibility = View.VISIBLE
             view.tv_score.visibility = View.VISIBLE
-            view.tv_score.rText(R.string.your_score, it * 2, ReviewPointText.getText(it))
+            view.tv_score.setText(R.string.your_score, it * 2, ReviewPointText.getText(it))
         } ?: kotlin.run {
             view.product_rate.visibility = View.GONE
             view.tv_score.visibility = View.GONE
         }
         productHeaderModel.icCriteria?.percentSuggest?.let {
-            view.tv_suggest.rText(R.string.f_se_gioi_thieu_cho_ban_be, productHeaderModel.icCriteria?.percentSuggest)
+            view.tv_suggest.setText(R.string.f_se_gioi_thieu_cho_ban_be, productHeaderModel.icCriteria?.percentSuggest)
         }
         productHeaderModel.icCriteria?.totalReviews?.let {
             if (it > 0) {
                 view.tv_all_reviews.visibility = View.VISIBLE
-                view.tv_all_reviews.rText(R.string.xem_d_danh_gia, it)
+                view.tv_all_reviews.setText(R.string.xem_d_danh_gia, it)
             } else {
                 view.tv_all_reviews.visibility = View.GONE
             }

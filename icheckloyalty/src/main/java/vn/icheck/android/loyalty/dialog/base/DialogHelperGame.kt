@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
-import vn.icheck.android.ichecklibs.util.RStringUtils
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.dialog.*
@@ -20,7 +20,7 @@ import vn.icheck.android.loyalty.sdk.LoyaltySdk
 
 object DialogHelperGame {
 
-    private var DEFAULT = RStringUtils.rText(R.string.dang_cap_nhat)
+    private var DEFAULT = getString(R.string.dang_cap_nhat)
 
 
     var dialog: Dialog? = null
@@ -97,7 +97,7 @@ object DialogHelperGame {
         object : DialogAccumulatePointSuccess(context, point ?: 0, avatar
                 ?: "", nameCampaign, nameShop ?: DEFAULT, campaignID
                 ?: -1, backgroundButton, pointName, message
-                ?: context.rText(R.string.doi_diem_tich_luy_de_nhan_nhung_phan_qua_cuc_cool_nhe)) {
+                ?: context.getString(R.string.doi_diem_tich_luy_de_nhan_nhung_phan_qua_cuc_cool_nhe)) {
             override fun onClick(campaignID: Long) {
                 dismiss()
                 listener.onClickButtonData(campaignID)
@@ -147,16 +147,16 @@ object DialogHelperGame {
 
     fun scanOrEnterAccumulatePoint(context: Context, id: Long, name: String = "") {
         if (SharedLoyaltyHelper(context).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
-            dialogNotEnoughPoints(context, context.rText(R.string.nhap_ma_cong_diem), context.rText(R.string.nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_nhap, context.rText(R.string.nhap_ma_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+            dialogNotEnoughPoints(context, context.getString(R.string.nhap_ma_cong_diem), context.getString(R.string.nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_nhap, context.getString(R.string.nhap_ma_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
 
                             Handler().postDelayed({
                                 dialogEnterThePrizeCode(context,
                                         R.drawable.ic_nhap_ma_cong_diem,
-                                        context.rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
-                                        context.rText(R.string.nhap_ma_vao_day_i),
-                                        context.rText(R.string.vui_long_nhap_ma_code), id, R.drawable.bg_gradient_button_orange_yellow,
+                                        context.getString(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
+                                        context.getString(R.string.nhap_ma_vao_day_i),
+                                        context.getString(R.string.vui_long_nhap_ma_code), id, R.drawable.bg_gradient_button_orange_yellow,
                                         object : IClickButtonDialog<ICKAccumulatePoint> {
                                             override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
@@ -188,8 +188,8 @@ object DialogHelperGame {
                         }
                     })
         } else {
-            dialogNotEnoughPoints(context, context.rText(R.string.quet_tem_cong_diem),
-                context.rText(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, context.rText(R.string.quet_tem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+            dialogNotEnoughPoints(context, context.getString(R.string.quet_tem_cong_diem),
+                context.getString(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, context.getString(R.string.quet_tem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
                             LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$id")
@@ -200,17 +200,17 @@ object DialogHelperGame {
 
     fun scanOrEnterAccumulatePointLongTime(context: Context, id: Long, name: String? = "") {
         if (SharedLoyaltyHelper(context).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_POINT_LONG_TIME)) {
-            dialogNotEnoughPoints(context, context.rText(R.string.nhap_ma_cong_diem),
-                    context.rText(R.string.nhap_ma_du_thuong_tren_san_pham_de_nhan_diem_thanh_vien_va_doi_qua), R.drawable.ic_onboarding_nhap, context.rText(R.string.nhap_ma_ngay), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
+            dialogNotEnoughPoints(context, context.getString(R.string.nhap_ma_cong_diem),
+                    context.getString(R.string.nhap_ma_du_thuong_tren_san_pham_de_nhan_diem_thanh_vien_va_doi_qua), R.drawable.ic_onboarding_nhap, context.getString(R.string.nhap_ma_ngay), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
 
                             Handler().postDelayed({
                                 dialogEnterThePrizeCode(context,
                                         R.drawable.ic_nhap_ma_cong_diem,
-                                        context.rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
-                                        context.rText(R.string.nhap_ma_vao_day_i),
-                                        context.rText(R.string.vui_long_nhap_ma_code), id, R.drawable.bg_gradient_button_blue,
+                                        context.getString(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
+                                        context.getString(R.string.nhap_ma_vao_day_i),
+                                        context.getString(R.string.vui_long_nhap_ma_code), id, R.drawable.bg_gradient_button_blue,
                                         object : IClickButtonDialog<ICKAccumulatePoint> {
                                             override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
@@ -239,7 +239,7 @@ object DialogHelperGame {
                                                         override fun onDismiss() {
 
                                                         }
-                                                    }, context.rText(R.string.doi_qua_bang_diem_tich_luy_ngay_de_nhan_nhung_phan_qua_cuc_hap_dan))
+                                                    }, context.getString(R.string.doi_qua_bang_diem_tich_luy_ngay_de_nhan_nhung_phan_qua_cuc_hap_dan))
                                                 }, 300)
                                             }
                                         })
@@ -247,8 +247,8 @@ object DialogHelperGame {
                         }
                     })
         } else {
-            dialogNotEnoughPoints(context, context.rText(R.string.quet_tem_cong_diem),
-                    context.rText(R.string.quet_tem_qr_code_tren_san_pham_de_duoc_nhan_diem_thanh_vien_va_doi_qua), R.drawable.ic_onboarding_scan, context.rText(R.string.quet_tem_ngay), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
+            dialogNotEnoughPoints(context, context.getString(R.string.quet_tem_cong_diem),
+                    context.getString(R.string.quet_tem_qr_code_tren_san_pham_de_duoc_nhan_diem_thanh_vien_va_doi_qua), R.drawable.ic_onboarding_scan, context.getString(R.string.quet_tem_ngay), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
                     object : IClickButtonDialog<ICKNone> {
                         override fun onClickButtonData(obj: ICKNone?) {
                             LoyaltySdk.openActivity("scan?typeLoyalty=accumulation_long_term_point&campaignId=$id&nameCampaign=$name")

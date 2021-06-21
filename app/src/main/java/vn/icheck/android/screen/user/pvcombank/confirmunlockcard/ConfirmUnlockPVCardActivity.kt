@@ -4,10 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
@@ -27,7 +25,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.ConfirmUnlockPVCardViewModel
 import vn.icheck.android.util.ick.forceHideKeyboard
-import vn.icheck.android.util.ick.rText
 
 class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
     private val viewModel: ConfirmUnlockPVCardViewModel by viewModels()
@@ -72,7 +69,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString(rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
+        val span = SpannableString(getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
         span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -165,7 +162,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    btnResend.text = rText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
+                    btnResend.text = getString(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }
@@ -173,7 +170,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
 
             override fun onFinish() {
                 btnResend.setTextColor(Color.parseColor("#3C5A99"))
-                btnResend.text = rText(R.string.gui_lai_ma)
+                btnResend.text = getString(R.string.gui_lai_ma)
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)
                     btnResend.setTextColor(Color.parseColor("#757575"))

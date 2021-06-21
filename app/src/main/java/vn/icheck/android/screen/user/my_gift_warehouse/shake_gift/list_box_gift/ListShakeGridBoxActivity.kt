@@ -36,7 +36,6 @@ import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.shake.ShakeGiftActivity
 import vn.icheck.android.screen.user.winner_campaign.WinnerCampaignActivity
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -265,13 +264,13 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         if (viewModel.typeCheckDialogGift == 1) {
             if (lifecycleScope.isActive) {
                 if (viewModel.isMissionSuccess) {
-                    showEmpityGiftDialog(rText(R.string.ban_da_het_luot_mo_qua_roi))
+                    showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
                 } else {
-                    showEmpityGiftDialog(rText(R.string.ban_chua_co_luot_mo_qua_nao))
+                    showEmpityGiftDialog(getString(R.string.ban_chua_co_luot_mo_qua_nao))
                 }
             }
         } else {
-            showEmpityGiftDialog(rText(R.string.ban_da_het_luot_mo_qua_roi))
+            showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
         }
     }
 

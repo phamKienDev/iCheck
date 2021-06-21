@@ -29,7 +29,8 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
 
@@ -62,22 +63,22 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
             when (status) {
                 OrderHistoryActivity.waitForConfirmation -> {
-                    itemView.tvTime.rText(R.string.ngay_tao_don_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy"))
+                    itemView.tvTime.setText(R.string.ngay_tao_don_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beVisible()
                 }
                 OrderHistoryActivity.delivery -> {
-                    itemView.tvTime.rText(R.string.thoi_gian_cap_nhat_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy"))
+                    itemView.tvTime.setText(R.string.thoi_gian_cap_nhat_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beVisible()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.delivered -> {
-                    itemView.tvTime.rText(R.string.da_giao_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy"))
+                    itemView.tvTime.setText(R.string.da_giao_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.canceled -> {
-                    itemView.tvTime.rText(R.string.da_huy_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy"))
+                    itemView.tvTime.setText(R.string.da_huy_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
@@ -104,7 +105,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
                 if (obj.orderItem!!.size > 2) {
                     itemView.layoutCount.beVisible()
-                    itemView.tvCount.rText(R.string.d_san_pham_khac,obj.orderItem!!.size - 2)
+                    itemView.tvCount.setText(R.string.d_san_pham_khac,obj.orderItem!!.size - 2)
                     itemView.rcvOrders.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(82) * 2)
                 } else {
                     itemView.layoutCount.beGone()
@@ -115,12 +116,12 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
             itemView.tvError.setOnClickListener {
                 ICheckApplication.currentActivity()?.let {
-                    ReportActivity.start(ReportActivity.order, obj.id, it.rText(R.string.bao_loi_don_hang), it)
+                    ReportActivity.start(ReportActivity.order, obj.id, it.getString(R.string.bao_loi_don_hang), it)
                 }
             }
 
             itemView.tvConfirm.setOnClickListener {
-                DialogHelper.showConfirm(itemView.context, it.context.rText(R.string.ban_da_nhan_duoc_don_hang_nay_tu_nha_van_chuyen), null, it.context.rText(R.string.chua), it.context.rText(R.string.da_nhan_hang), true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(itemView.context, it.context.getString(R.string.ban_da_nhan_duoc_don_hang_nay_tu_nha_van_chuyen), null, it.context.getString(R.string.chua), it.context.getString(R.string.da_nhan_hang), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }
@@ -134,7 +135,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             }
 
             itemView.tvCancelOrder.setOnClickListener {
-                DialogHelper.showConfirm(itemView.context, it.context.rText(R.string.ban_chac_chan_muon_huy_don_hang_nay), null, it.context.rText(R.string.de_sau), it.context.rText(R.string.chac_chan), true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(itemView.context, it.context.getString(R.string.ban_chac_chan_muon_huy_don_hang_nay), null, it.context.getString(R.string.de_sau), it.context.getString(R.string.chac_chan), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }

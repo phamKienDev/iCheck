@@ -20,8 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.CustomLayoutToastBinding
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
-import vn.icheck.android.chat.icheckchat.helper.RStringUtils
-import vn.icheck.android.chat.icheckchat.helper.rText
+import vn.icheck.android.ichecklibs.util.getString
 import java.io.File
 import java.io.FileInputStream
 import java.text.DecimalFormat
@@ -60,7 +59,7 @@ fun Context.showToastError(msg: String? = null) {
     if (!msg.isNullOrEmpty()) {
         showCustomIconToast(msg, R.drawable.ic_waring_1_white_40dp_chat)
     } else {
-        showCustomIconToast(rText(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
+        showCustomIconToast(vn.icheck.android.ichecklibs.util.getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
     }
 }
 
@@ -68,7 +67,7 @@ fun Context.showToastSuccess(msg: String? = null) {
     if (!msg.isNullOrEmpty()) {
         showCustomIconToast(msg, R.drawable.ic_success_white_40dp_chat)
     } else {
-        showCustomIconToast(rText(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
+        showCustomIconToast(vn.icheck.android.ichecklibs.util.getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
     }
 }
 
@@ -388,10 +387,10 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
 
     return when {
         time <= intervalMinute -> {
-            RStringUtils.rText(R.string.vua_xong)
+            getString(R.string.vua_xong)
         }
         time <= intervalHour -> {
-            RStringUtils.rText(R.string.s_phut_truoc, (time / intervalMinute).toString())
+            getString(R.string.s_phut_truoc, (time / intervalMinute).toString())
         }
         time < AlarmManager.INTERVAL_DAY -> {
             if (soSanhCungNgay(millisecond)) {

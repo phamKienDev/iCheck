@@ -17,7 +17,6 @@ import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectDistributor
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectVendor
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_business.view.IMoreBusinessView
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVietNamLanguage: Boolean?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -201,23 +200,23 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 if (isVietNamLanguage == false) {
                     itemView.tvPhone.text = if (!objVendor.phone.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.tel)} : </font>" + "<b>" + objVendor.phone + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.tel)} : </font>" + "<b>" + objVendor.phone + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.tel)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.tel)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvPhone.text = if (!objVendor.phone.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.so_dien_thoai)} : </font>" + "<b>" + objVendor.phone + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.so_dien_thoai)} : </font>" + "<b>" + objVendor.phone + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.so_dien_thoai)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.so_dien_thoai)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
 
-                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.address)} : </font>" +
+                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.address)} : </font>" +
                         "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objVendor.address,
                                 objVendor.district, objVendor.city, objVendor.country_name,
                                 if (isVietNamLanguage == false) {
-                                    itemView.context.rText(R.string.updating)
+                                    itemView.context.getString(R.string.updating)
                                 } else {
                                     itemView.context.getString(R.string.dang_cap_nhat)
                                 })
@@ -255,29 +254,29 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 if (isVietNamLanguage == false) {
                     itemView.tvEmail.text = if (!objVendor.email.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + objVendor.email + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + objVendor.email + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvEmail.text = if (!objVendor.email.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + objVendor.email + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + objVendor.email + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
 
                 if (isVietNamLanguage == false) {
                     itemView.tvWebsite.text = if (!objVendor.website.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + objVendor.website + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + objVendor.website + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvWebsite.text = if (!objVendor.website.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + objVendor.website + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + objVendor.website + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
 
@@ -300,7 +299,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
                     itemView.tvName.text = if (!objDistributor?.name.isNullOrEmpty()) {
                         objDistributor?.name
                     } else {
-                        itemView.context.rText(R.string.updating)
+                        itemView.context.getString(R.string.updating)
                     }
                 } else {
                     itemView.tvName.text = if (!objDistributor?.name.isNullOrEmpty()) {
@@ -312,15 +311,15 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 if (isVietNamLanguage == false) {
                     itemView.tvPhone.text = if (!objDistributor?.phone.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.tel)} : </font>" + "<b>" + objDistributor?.phone + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.tel)} : </font>" + "<b>" + objDistributor?.phone + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.tel)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.tel)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvPhone.text = if (!objDistributor?.phone.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.so_dien_thoai)} : </font>" + "<b>" + objDistributor?.phone + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.so_dien_thoai)} : </font>" + "<b>" + objDistributor?.phone + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.so_dien_thoai)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.so_dien_thoai)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
 
@@ -339,11 +338,11 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 //                }
 
 
-                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.address)} : </font>" +
+                itemView.tvAddress.text = Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.address)} : </font>" +
                         "<b>" + vn.icheck.android.ichecklibs.Constant.getAddress(objDistributor?.address,
                         objDistributor?.district, objDistributor?.city, objDistributor?.country_name,
                         if (isVietNamLanguage == false) {
-                            itemView.context.rText(R.string.updating)
+                            itemView.context.getString(R.string.updating)
                         } else {
                             itemView.context.getString(R.string.dang_cap_nhat)
                         })
@@ -351,29 +350,29 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
 
                 if (isVietNamLanguage == false) {
                     itemView.tvEmail.text = if (!objDistributor?.email.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + objDistributor?.email + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + objDistributor?.email + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvEmail.text = if (!objDistributor?.email.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + objDistributor?.email + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + objDistributor?.email + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.email)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
 
                 if (isVietNamLanguage == false) {
                     itemView.tvWebsite.text = if (!objDistributor?.website.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + objDistributor?.website + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + objDistributor?.website + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + itemView.context.rText(R.string.updating) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.updating) + "</b>")
                     }
                 } else {
                     itemView.tvWebsite.text = if (!objDistributor?.website.isNullOrEmpty()) {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + objDistributor?.website + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + objDistributor?.website + "</b>")
                     } else {
-                        Html.fromHtml("<font color=#434343>${itemView.context.rText(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
+                        Html.fromHtml("<font color=#434343>${itemView.context.getString(R.string.website)} : </font>" + "<b>" + itemView.context.getString(R.string.dang_cap_nhat) + "</b>")
                     }
                 }
             }
@@ -401,7 +400,7 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
                 itemView.tvNameSuggestVerified.text = if (!obj.name.isNullOrEmpty()) {
                     obj.name
                 } else {
-                    itemView.context.rText(R.string.updating)
+                    itemView.context.getString(R.string.updating)
                 }
             } else {
                 itemView.tvNameSuggestVerified.text = if (!obj.name.isNullOrEmpty()) {
@@ -431,9 +430,9 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
                     if (isVietNamLanguage == false) {
-                        itemView.btnTryAgain rText R.string.try_again
+                        itemView.btnTryAgain.setText(R.string.try_again)
                     } else {
-                        itemView.btnTryAgain rText R.string.thu_lai
+                        itemView.btnTryAgain.setText(R.string.thu_lai)
                     }
                     itemView.btnTryAgain.visibility = View.VISIBLE
                 }
@@ -442,28 +441,28 @@ class MoreProductVerifiedInBusinessAdapter(val view: IMoreBusinessView, val isVi
             val message = when (errorCode) {
                 Constant.ERROR_INTERNET -> {
                     if (isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.checking_network_please_try_again)
+                        itemView.context.getString(R.string.checking_network_please_try_again)
                     } else {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     }
                 }
                 Constant.ERROR_UNKNOW -> {
                     if (isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.occurred_please_try_again)
+                        itemView.context.getString(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
                 }
                 Constant.ERROR_EMPTY -> {
                     if (isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.no_data)
+                        itemView.context.getString(R.string.no_data)
                     } else {
                         itemView.context.getString(R.string.khong_co_san_pham_nao)
                     }
                 }
                 else -> {
                     if (isVietNamLanguage == false) {
-                        itemView.context.rText(R.string.occurred_please_try_again)
+                        itemView.context.getString(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }

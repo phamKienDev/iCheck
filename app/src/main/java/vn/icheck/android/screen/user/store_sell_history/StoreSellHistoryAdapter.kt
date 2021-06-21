@@ -13,7 +13,6 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.history.ICStoreNear
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -151,7 +150,7 @@ class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : Recy
             if (obj.distance != null) {
                 TextHelper.convertMtoKmV2(obj.distance!!,itemView.tvDistance)
             } else {
-                itemView.tvDistance.text = itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvDistance.setText(R.string.dang_cap_nhat)
             }
         }
     }
@@ -167,17 +166,17 @@ class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : Recy
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage rText R.string.khong_co_cua_hang_nao
+                    itemView.txtMessage.setText(R.string.khong_co_cua_hang_nao)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
+                    itemView.txtMessage.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         }

@@ -1,10 +1,8 @@
 package vn.icheck.android.screen.info
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 
 import vn.icheck.android.BuildConfig
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityAppInfoBinding
@@ -19,7 +17,7 @@ class AppInfoActivity : BaseActivityMVVM() {
         binding = ActivityAppInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.header.tvTitle rText R.string.thong_tin_ung_dung
+        binding.header.tvTitle.setText(R.string.thong_tin_ung_dung)
         binding.header.icBack.setOnClickListener {
             finish()
         }

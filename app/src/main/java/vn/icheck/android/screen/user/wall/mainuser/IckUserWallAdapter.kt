@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -28,6 +27,8 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -244,7 +245,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
             binding.groupFollowed goneIf data?.infoPrivacyConfig?.gender
             binding.moreInfo goneIf data?.infoPrivacyConfig?.birthday
             binding.tvAddress.text = data?.city?.name.getInfo()
-            binding.tvId.rText(R.string.ic_d, data?.id)
+            binding.tvId.setText(R.string.ic_d, data?.id)
             if (SessionManager.session.user?.id == ickUserProfileModel.id) {
                 binding.tvFollow.text = "${RelationshipManager.getTotalFollowed()}"
                 binding.tvWatch.text = "${RelationshipManager.getTotalFollow()}"
@@ -380,7 +381,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                if ((binding.tvAddFriend.text == binding.tvAddFriend.context.rText(R.string.dong_y_ket_ban)||binding.tvAddFriend.text == "Đồng ý kết bạn")) {
+                if ((binding.tvAddFriend.text == binding.tvAddFriend.context.getString(R.string.dong_y_ket_ban)||binding.tvAddFriend.text == "Đồng ý kết bạn")) {
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })
@@ -417,7 +418,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                 }
                 isFriendInvitationMeUser -> {
                     binding.btnAddFriend.beVisible()
-                    binding.tvAddFriend rText R.string.dong_y_ket_ban
+                    binding.tvAddFriend.setText(R.string.dong_y_ket_ban)
                     binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
                     binding.tvRequestSent.beGone()
                 }
@@ -428,7 +429,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) :
                         0,
                         0
                     )
-                    binding.tvAddFriend rText R.string.ket_ban
+                    binding.tvAddFriend.setText(R.string.ket_ban)
                     binding.btnAddFriend.beVisible()
                     binding.tvRequestSent.beGone()
                 }

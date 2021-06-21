@@ -19,11 +19,10 @@ import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
 import vn.icheck.android.screen.user.detail_my_reward.DetailMyRewardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.net.URL
 
 class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<Any>(callback) {
 
@@ -107,11 +106,11 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
             itemView.tvNamePage.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(obj.receiveAt)
 
             if (obj.value != null) {
-                itemView.tvName.rText(R.string.s_xu, TextHelper.formatMoneyPhay(obj.value))
+                itemView.tvName.setText(R.string.s_xu, TextHelper.formatMoneyPhay(obj.value))
 
                 WidgetUtils.loadImageUrlFitCenter(itemView.imgGift,obj.icoinIcon,R.drawable.ic_icheck_xu)
 
-                itemView.tvAction rText R.string.quan_ly_xu
+                itemView.tvAction.setText(R.string.quan_ly_xu)
                 itemView.tvAction.setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         ActivityUtils.startActivity<CoinHistoryActivity>(activity)
@@ -125,7 +124,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
                 }
 
                 WidgetUtils.loadImageUrl(itemView.imgGift, obj.image)
-                itemView.tvAction rText R.string.xem_chi_tiet
+                itemView.tvAction.setText(R.string.xem_chi_tiet)
                 itemView.tvAction.setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         if (obj.rewardType == "CODE") {

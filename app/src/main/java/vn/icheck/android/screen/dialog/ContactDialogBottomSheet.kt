@@ -5,7 +5,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.dialog_shop_sort.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
-import vn.icheck.android.util.ick.rText
 
 abstract class ContactDialogBottomSheet(context: Context, private var phone: String) : BaseBottomSheetDialog(context, R.layout.dialog_shop_sort, true) {
 
@@ -15,8 +14,8 @@ abstract class ContactDialogBottomSheet(context: Context, private var phone: Str
         dialog.tvLowtoHigh.visibility = View.GONE
         dialog.tvHightoLow.visibility = View.GONE
         dialog.tvNew.text = phone
-        dialog.tvTheBestSeller rText R.string.gui_tin_nhan
-        dialog.tvClose rText R.string.huy
+        dialog.tvTheBestSeller.setText(R.string.gui_tin_nhan)
+        dialog.tvClose.setText(R.string.huy)
 
         dialog.view.visibility = View.GONE
         dialog.view1.visibility = View.GONE

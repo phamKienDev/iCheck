@@ -17,7 +17,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -107,27 +106,27 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
         private fun setRating(rating_point: Float) {
             when {
                 rating_point < 6 -> {
-                    itemView.tv_rating.rText(R.string.diem_danh_gia)
+                    itemView.tv_rating.setText(R.string.diem_danh_gia)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.violet))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.violet), SizeHelper.size14.toFloat())
                 }
                 rating_point < 7 -> {
-                    itemView.tv_rating.rText(R.string.hai_long)
+                    itemView.tv_rating.setText(R.string.hai_long)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.green_v2), SizeHelper.size14.toFloat())
                 }
                 rating_point < 8 -> {
-                    itemView.tv_rating.rText(R.string.tot)
+                    itemView.tv_rating.setText(R.string.tot)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.orange_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.orange_v2), SizeHelper.size14.toFloat())
                 }
                 rating_point < 9 -> {
-                    itemView.tv_rating.rText(R.string.tuyet_voi)
+                    itemView.tv_rating.setText(R.string.tuyet_voi)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.red_v2), SizeHelper.size14.toFloat())
                 }
                 else -> {
-                    itemView.tv_rating.rText(R.string.tren_ca_tuyet_voi)
+                    itemView.tv_rating.setText(R.string.tren_ca_tuyet_voi)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.colorPrimary), SizeHelper.size14.toFloat())
                 }

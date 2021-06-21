@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -39,13 +38,13 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
         tvNameProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
             obj.gift?.name
         } else {
-            context.rText(R.string.dang_cap_nhat)
+            context.getString(R.string.dang_cap_nhat)
         }
 
         tvPoint.text = if (obj.points != null) {
             TextHelper.formatMoneyPhay(obj.points)
         } else {
-            context.rText(R.string.dang_cap_nhat)
+            context.getString(R.string.dang_cap_nhat)
         }
 
         btnHuy.setOnClickListener {
@@ -80,7 +79,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
 
     private fun exchangeGift() {
         if (NetworkHelper.isNotConnected(context)) {
-            ToastHelper.showLongError(context, context.rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastHelper.showLongError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -127,7 +126,7 @@ open class DialogConfirmExchangeGifts(context: Context, val obj: ICKBoxGifts, va
 
                     override fun onError(error: ICKBaseResponse?) {
                         ToastHelper.showLongError(context, error?.message
-                                ?: context.rText(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 })
     }

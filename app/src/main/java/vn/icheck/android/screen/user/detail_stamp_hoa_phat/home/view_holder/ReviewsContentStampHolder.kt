@@ -23,7 +23,8 @@ import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewsTimeUtils
 import vn.icheck.android.util.ui.GlideUtil
@@ -190,17 +191,17 @@ class ReviewsContentStampHolder(val parent: ViewGroup) : BaseViewHolder<ICProduc
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            parent.context.rText(R.string.huu_ich_x, number)
+            parent.context.getString(R.string.huu_ich_x, number)
         } else {
-            parent.context.rText(R.string.huu_ich)
+            parent.context.getString(R.string.huu_ich)
         }
     }
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            parent.context.rText(R.string.khong_huu_ich_x, number)
+            parent.context.getString(R.string.khong_huu_ich_x, number)
         } else {
-            parent.context.rText(R.string.khong_huu_ich)
+            parent.context.getString(R.string.khong_huu_ich)
         }
     }
 

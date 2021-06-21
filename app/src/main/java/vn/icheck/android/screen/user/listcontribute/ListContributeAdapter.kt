@@ -35,7 +35,8 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -231,7 +232,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 } else {
                     setTextColor(getColor(R.color.colorDisableText))
                     setTypeface(null, Typeface.ITALIC)
-                    text = getString(R.string.gia_dang_cap_nhat)
+                    text = context.getString(R.string.gia_dang_cap_nhat)
                 }
             }
 
@@ -253,9 +254,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 visibility = View.VISIBLE
 
                 text = if (obj.upVotes > 0) {
-                    context.rText(R.string.dung_d, obj.upVotes)
+                    context.getString(R.string.dung_d, obj.upVotes)
                 } else {
-                    context.rText(R.string.dung_d)
+                    context.getString(R.string.dung_d)
                 }
 
 
@@ -264,7 +265,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                         postVote(obj, null, this)
                     } else {
                         if (obj.myVote == false) {
-                            DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thay_doi_binh_chon), itemView.context.getString(R.string.content_change_vote_contribution), itemView.context.rText(R.string.khong_toi_khong_muon_giu), itemView.context.rText(R.string.chac_chan), true, object : ConfirmDialogListener {
+                            DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thay_doi_binh_chon), itemView.context.getString(R.string.content_change_vote_contribution), itemView.context.getString(R.string.khong_toi_khong_muon_giu), itemView.context.getString(R.string.chac_chan), true, object : ConfirmDialogListener {
                                 override fun onDisagree() {
                                 }
 
@@ -283,9 +284,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 visibility = View.VISIBLE
 
                 text = if (obj.downVotes > 0) {
-                    context.rText(R.string.sai_d, obj.downVotes)
+                    context.getString(R.string.sai_d, obj.downVotes)
                 } else {
-                    context.rText(R.string.sai)
+                    context.getString(R.string.sai)
                 }
 
 
@@ -355,22 +356,22 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                                         data.downVotes = data.downVotes - 1
                                         itemView.tvNo.text = if (data.downVotes > 0) {
-                                            itemView.context.rText(R.string.sai_d, data.downVotes)
+                                            itemView.context.getString(R.string.sai_d, data.downVotes)
                                         } else {
-                                            itemView.context.rText(R.string.sai_d)
+                                            itemView.context.getString(R.string.sai_d)
                                         }
 
                                         data.upVotes = data.upVotes + 1
-                                        itemView.tvYes.rText(R.string.dung_d, data.upVotes)
+                                        itemView.tvYes.setText(R.string.dung_d, data.upVotes)
                                     } else {
                                         data.myVote = null
 
                                         data.upVotes = data.upVotes - 1
                                         itemView.tvYes.apply {
                                             text = if (data.upVotes > 0) {
-                                                context.rText(R.string.dung_d, data.upVotes)
+                                                context.getString(R.string.dung_d, data.upVotes)
                                             } else {
-                                                context.rText(R.string.dung)
+                                                context.getString(R.string.dung)
                                             }
                                         }
                                     }
@@ -381,9 +382,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                         data.downVotes = data.downVotes - 1
                                         itemView.tvNo.apply {
                                             text = if (data.downVotes > 0) {
-                                                context.rText(R.string.sai_d, data.downVotes)
+                                                context.getString(R.string.sai_d, data.downVotes)
                                             } else {
-                                                context.rText(R.string.sai)
+                                                context.getString(R.string.sai)
                                             }
                                         }
 
@@ -393,14 +394,14 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                         data.upVotes = data.upVotes - 1
                                         itemView.tvYes.apply {
                                             text = if (data.upVotes > 0) {
-                                                context.rText(R.string.dung_d, data.upVotes)
+                                                context.getString(R.string.dung_d, data.upVotes)
                                             } else {
-                                                context.rText(R.string.dung)
+                                                context.getString(R.string.dung)
                                             }
                                         }
 
                                         data.downVotes = data.downVotes + 1
-                                        itemView.tvNo.rText(R.string.sai_d, data.downVotes)
+                                        itemView.tvNo.setText(R.string.sai_d, data.downVotes)
                                     }
                                 }
                             } else {
@@ -408,10 +409,10 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                                 if (isVote) {
                                     data.upVotes = data.upVotes + 1
-                                    itemView.tvYes.rText(R.string.dung_d, data.upVotes)
+                                    itemView.tvYes.setText(R.string.dung_d, data.upVotes)
                                 } else {
                                     data.downVotes = data.downVotes + 1
-                                    itemView.tvNo.rText(R.string.sai_d, data.downVotes)
+                                    itemView.tvNo.setText(R.string.sai_d, data.downVotes)
                                 }
                             }
                         } else {
@@ -421,9 +422,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                     data.downVotes = data.downVotes - 1
                                     itemView.tvNo.apply {
                                         text = if (data.downVotes > 0) {
-                                            context.rText(R.string.sai_d, data.downVotes)
+                                            context.getString(R.string.sai_d, data.downVotes)
                                         } else {
-                                            context.rText(R.string.sai)
+                                            context.getString(R.string.sai)
                                         }
                                     }
 
@@ -431,9 +432,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                     data.upVotes = data.upVotes - 1
                                     itemView.tvYes.apply {
                                         text = if (data.upVotes > 0) {
-                                            context.rText(R.string.dung_d, data.upVotes)
+                                            context.getString(R.string.dung_d, data.upVotes)
                                         } else {
-                                            context.rText(R.string.dung)
+                                            context.getString(R.string.dung)
                                         }
                                     }
                                 }

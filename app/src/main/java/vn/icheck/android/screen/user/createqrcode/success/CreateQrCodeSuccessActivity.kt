@@ -17,8 +17,6 @@ import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.success.presenter.CreateQrCodeSuccessPresenter
 import vn.icheck.android.screen.user.createqrcode.success.view.ICreateQrCodeSuccessView
-import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.rText
 
 /**
  * Created by VuLCL on 10/5/2019.
@@ -100,7 +98,7 @@ class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView
     }
 
     override fun onSaveQrCodeSuccess() {
-        showShortSuccessToast(rText(R.string.tai_xuong_thanh_cong))
+        showShortSuccessToast(getString(R.string.tai_xuong_thanh_cong))
     }
 
     override fun onShareQrCode(contentUri: Uri) {
@@ -108,7 +106,7 @@ class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.setDataAndType(contentUri, contentResolver.getType(contentUri))
         intent.putExtra(Intent.EXTRA_STREAM, contentUri)
-        startActivity(Intent.createChooser(intent, rText(R.string.icheck_share)))
+        startActivity(Intent.createChooser(intent, getString(R.string.icheck_share)))
     }
 
     override fun showError(errorMessage: String) {

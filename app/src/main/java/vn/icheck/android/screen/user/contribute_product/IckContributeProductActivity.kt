@@ -91,12 +91,12 @@ class IckContributeProductActivity : BaseActivityMVVM() {
         private fun loadImageIntoView(file: File?) {
             currentView?.let {
                 if (it.id == binding.imgFirst.id) {
-                    binding.tvImgFirst.rText(R.string.chinh_sua)
+                    binding.tvImgFirst.setText(R.string.chinh_sua)
                     ickContributeProductViewModel.setImage(file, 0)
                 }
                 if (it.id == binding.imgSecond.id) {
                     ickContributeProductViewModel.setImage(file, 1)
-                    binding.tvImgSecond.rText(R.string.chinh_sua)
+                    binding.tvImgSecond.setText(R.string.chinh_sua)
                 }
                 if (it is ImageView) {
                     Glide.with(it.context.applicationContext).load(file).into(it)
@@ -348,7 +348,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
 
         takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
 
-        binding.textView4.text = intent.getStringExtra(TITLE) ?: rText(R.string.dong_gop_san_pham)
+        binding.textView4.text = intent.getStringExtra(TITLE) ?: getString(R.string.dong_gop_san_pham)
 
         ickContributeProductViewModel.setBarcode(intent.getStringExtra(ICK_BARCODE))
         ickContributeProductViewModel.listImages.observe(this, Observer { fileList ->
@@ -436,7 +436,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                     var firstJob: Job? = null
                                     var secondJob: Job? = null
                                     ickContributeProductViewModel.myContribute = 1
-                                    binding.textView4 rText R.string.chinh_sua_dong_gop
+                                    binding.textView4.setText(R.string.chinh_sua_dong_gop)
                                     DialogHelper.showLoading(this@IckContributeProductActivity)
                                     ickContributeProductViewModel.requestBody.putAll(rp["data"] as Map<String, Any?>)
                                     if (ickContributeProductViewModel.requestBody["id"] != null) {
@@ -469,7 +469,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                     } catch (e: Exception) {
                                                         dismissLoadingScreen()
                                                         withContext(Dispatchers.Main) {
-                                                            showShortErrorToast(rText(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
+                                                            showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                                                         }
                                                         logError(e)
                                                     }
@@ -490,14 +490,14 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                     }
                                                     1 -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
-                                                        binding.tvImgFirst rText R.string.chinh_sua
+                                                        binding.tvImgFirst.setText(R.string.chinh_sua)
                                                     }
 
                                                     else -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
                                                         binding.imgSecond.loadSimpleFile(arr[1])
-                                                        binding.tvImgFirst rText R.string.chinh_sua
-                                                        binding.tvImgSecond rText R.string.chinh_sua
+                                                        binding.tvImgFirst.setText(R.string.chinh_sua)
+                                                        binding.tvImgSecond.setText(R.string.chinh_sua)
                                                     }
                                                 }
                                                 ickContributeProductViewModel.addAllImage(arr)
@@ -560,7 +560,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                                                                             } catch (e: Exception) {
                                                                                                                 dismissLoadingScreen()
                                                                                                                 withContext(Dispatchers.Main) {
-                                                                                                                    showShortErrorToast(rText(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
+                                                                                                                    showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                                                                                                                 }
                                                                                                                 logError(e)
                                                                                                             }
@@ -611,13 +611,13 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                     if (data["hidden"] != null) {
                                         if (data["hidden"] as Boolean) {
                                             val msg = if (!(data["reason"] as String?).isNullOrEmpty())
-                                                rText(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_voi_ly_do_s, data["reason"].toString())
+                                                getString(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_voi_ly_do_s, data["reason"].toString())
                                             else
-                                                rText(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_boi_nguoi_quan_tri)
-                                            DialogHelper.showConfirm(this@IckContributeProductActivity, rText(R.string.thong_bao),
+                                                getString(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_boi_nguoi_quan_tri)
+                                            DialogHelper.showConfirm(this@IckContributeProductActivity, getString(R.string.thong_bao),
                                                     msg,
-                                                    rText(R.string.huy),
-                                                    rText(R.string.dong_gop_lai),
+                                                    getString(R.string.huy),
+                                                    getString(R.string.dong_gop_lai),
                                                     false,
                                                     object : ConfirmDialogListener {
                                                         override fun onDisagree() {
@@ -642,10 +642,10 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                                 binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
                                                                 ickContributeProductViewModel.categoryAttributes.clear()
                                                                 categoryAttributesAdapter.notifyDataSetChanged()
-                                                                binding.tvImgFirst rText R.string.anh_mat_truoc
+                                                                binding.tvImgFirst.setText(R.string.anh_mat_truoc)
                                                                 binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
                                                                 binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
-                                                                binding.tvImgSecond rText R.string.anh_mat_sau
+                                                                binding.tvImgSecond.setText(R.string.anh_mat_sau)
                                                                 lifecycleScope.launch {
                                                                     delay(200)
                                                                     ickContributeProductViewModel.listImageModel.clear()
@@ -888,9 +888,9 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                 })
             } else {
                 if (ickContributeProductViewModel.arrayListImage.size < 2) {
-                    showShortError(rText(R.string.san_pham_can_toi_thieu_2_anh))
+                    showShortError(getString(R.string.san_pham_can_toi_thieu_2_anh))
                 } else if (binding.edtNameProduct.text.trim().isEmpty()) {
-                    showShortError(rText(R.string.san_pam_phai_co_ten))
+                    showShortError(getString(R.string.san_pam_phai_co_ten))
                 }
                 dismissLoadingScreen()
             }

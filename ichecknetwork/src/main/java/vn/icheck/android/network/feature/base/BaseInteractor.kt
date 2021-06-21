@@ -10,7 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
-import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.util.JsonHelper
@@ -150,7 +151,7 @@ open class BaseInteractor {
 
     fun checkRequestError(throws: Throwable, listener: ICApiListener<*>) {
         val errorBody = ICBaseResponse()
-        errorBody.message = RStringUtils.rText(R.string.co_loi_xay_ra_vui_long_thu_lai)
+        errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
         when (throws) {
             is RetrofitException -> {

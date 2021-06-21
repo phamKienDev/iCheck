@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_message_short.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class MessageShortHolder(parent: ViewGroup, val imgEmpty: Int) : BaseViewHolder<String>(LayoutInflater.from(parent.context).inflate(R.layout.item_message_short, parent, false)) {
 
     override fun bind(obj: String) {
         if (obj.isEmpty()) {
-            itemView.txtMessage rText R.string.khong_co_du_lieu_vui_long_thu_lai
+            itemView.txtMessage.setText(R.string.khong_co_du_lieu_vui_long_thu_lai)
             itemView.imgError.setImageResource(imgEmpty)
         } else {
             itemView.txtMessage.text = obj
