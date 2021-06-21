@@ -1,8 +1,8 @@
 package vn.icheck.android.loyalty.helper
 
 import android.app.AlarmManager
-import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
-import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.model.ICKVoucher
 import java.text.SimpleDateFormat
@@ -66,27 +66,27 @@ object TimeHelper {
         return if (time > 0) {
             when {
                 time <= intervalMinute -> {
-                    RStringUtils.rText(R.string.s_giay, (time / 1000).toString())
+                    getString(R.string.s_giay, (time / 1000).toString())
                 }
                 time <= intervalHour -> {
-                    RStringUtils.rText(R.string.s_phut,(time / intervalMinute).toString())
+                    getString(R.string.s_phut,(time / intervalMinute).toString())
                 }
                 time < AlarmManager.INTERVAL_DAY -> {
-                    RStringUtils.rText(R.string.s_gio,(time / intervalHour).toString()) +
+                    getString(R.string.s_gio,(time / intervalHour).toString()) +
                             " ${
                                 if ((time % intervalHour) != 0L) {
-                                    RStringUtils.rText(R.string.s_phut,((time % intervalHour) / intervalMinute).toString())
+                                    getString(R.string.s_phut,((time % intervalHour) / intervalMinute).toString())
                                 } else {
                                     ""
                                 }
                             }"
                 }
                 else -> {
-                    RStringUtils.rText(R.string.s_ngay,(time / AlarmManager.INTERVAL_DAY).toString()) +
+                    getString(R.string.s_ngay,(time / AlarmManager.INTERVAL_DAY).toString()) +
                             " ${
                                 if ((time % AlarmManager.INTERVAL_DAY) != 0L) {
                                     if ((time % AlarmManager.INTERVAL_DAY) / intervalHour != 0L) {
-                                        RStringUtils.rText(R.string.s_gio,((time % AlarmManager.INTERVAL_DAY) / intervalHour).toString())
+                                        getString(R.string.s_gio,((time % AlarmManager.INTERVAL_DAY) / intervalHour).toString())
                                     } else {
                                         ""
                                     }
@@ -147,7 +147,7 @@ object TimeHelper {
                     || voucher.end_at.isNullOrEmpty()) -> {
 
 
-                RStringUtils.rText(R.string.con_lai_s, convertDateTimeSvToCurrentDate(millisecondEffectiveTime(voucher.effective_type, voucher.effective_time, voucher.released_at)))
+                getString(R.string.con_lai_s, convertDateTimeSvToCurrentDate(millisecondEffectiveTime(voucher.effective_type, voucher.effective_time, voucher.released_at)))
             }
             !voucher.released_at.isNullOrEmpty()
                     && !voucher.effective_time.isNullOrEmpty()
@@ -162,9 +162,9 @@ object TimeHelper {
                 val currentMillisecondWithEndAtAndCurrent = (convertDateTimeSvToMillisecond(voucher.end_at) ?: 0) - System.currentTimeMillis()
 
                 if (millisecondWithEffectiveTimeAndCurrent > currentMillisecondWithEndAtAndCurrent) {
-                    RStringUtils.rText(R.string.con_lai_s, convertDateTimeSvToCurrentDate(convertDateTimeSvToMillisecond(voucher.end_at)))
+                    getString(R.string.con_lai_s, convertDateTimeSvToCurrentDate(convertDateTimeSvToMillisecond(voucher.end_at)))
                 } else {
-                    RStringUtils.rText(R.string.con_lai_s, convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime))
+                    getString(R.string.con_lai_s, convertDateTimeSvToCurrentDate(millisecondWithEffectiveTime))
                 }
             }
             else -> {

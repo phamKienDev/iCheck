@@ -1,9 +1,7 @@
 package vn.icheck.android.screen.user.contact
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -23,7 +21,7 @@ class ContactActivity : BaseActivityMVVM() {
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
         TrackingAllHelper.trackContactViewed()
-        binding.header.txtTitle rText R.string.lien_he_va_ho_tro
+        binding.header.txtTitle.setText(R.string.lien_he_va_ho_tro)
         binding.header.imgBack.setOnClickListener {
             finish()
         }
@@ -116,16 +114,16 @@ class ContactActivity : BaseActivityMVVM() {
                             }
                         }
                     }
-                    binding.phone rText R.string.tong_dai_number
+                    binding.phone.setText(R.string.tong_dai_number)
                     binding.phone.setOnClickListener {
                         if (job == null) {
                             job = lifecycleScope.launch {
-                                makeCall(rText(R.string.tong_dai_number))
+                                makeCall(getString(R.string.tong_dai_number))
                                 delay(200)
                             }
                         } else if (job?.isActive == false) {
                             job = lifecycleScope.launch {
-                                makeCall(rText(R.string.tong_dai_number))
+                                makeCall(getString(R.string.tong_dai_number))
                                 delay(200)
                             }
                         }

@@ -13,7 +13,8 @@ import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -156,7 +157,7 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
             itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.Constant.secondaryColor)
 
             itemView.tvCountProductOfShop.fillDrawableEndText(R.drawable.ic_down_light_blue_18_px)
-            itemView.tvCountProductOfShop.rText(R.string.co_d_san_pham_co_san, item.numProductSell)
+            itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, item.numProductSell)
         }
     }
 }

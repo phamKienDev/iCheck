@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import kotlinx.android.synthetic.main.dialog_exchange_gifts_point_success.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -34,8 +34,8 @@ open class DialogExchangeGiftsPointSuccess(context: Context, private val point: 
             dismiss()
         }
 
-        tvMessage rText R.string.xu_cua_ban_da_duoc_cong_vao_kho
-        tvPoint.rText(R.string.s_xu, TextHelper.formatMoneyPhay(point))
+        tvMessage.setText(R.string.xu_cua_ban_da_duoc_cong_vao_kho)
+        tvPoint.setText(R.string.s_xu, TextHelper.formatMoneyPhay(point))
         btnDefault.setVisible()
 
         btnDefault.setOnClickListener {

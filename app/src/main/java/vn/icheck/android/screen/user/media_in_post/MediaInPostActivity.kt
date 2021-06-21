@@ -131,7 +131,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogSuccessBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_thanh_cong)
+                        getString(R.string.tai_xuong_thanh_cong)
                     )
                 }
 
@@ -140,7 +140,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogErrorBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_that_bai)
+                        getString(R.string.tai_xuong_that_bai)
                     )
                     downloadHelper?.cancelDownload(downloadId)
 
@@ -444,7 +444,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun downloadMedia() {
         if (!adapter.getListData.isNullOrEmpty()) {
             if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
-                DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, rText(R.string.tai_xuong_that_bai))
+                DialogHelper.showDialogErrorBlack(this@MediaInPostActivity, getString(R.string.tai_xuong_that_bai))
             } else {
                 imgDownload.setImageResource(R.drawable.ic_download_24_gray)
                 imgDownload.isEnabled = false
@@ -455,7 +455,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     imgDownload.isEnabled = true
                     DialogHelper.showDialogErrorBlack(
                         this@MediaInPostActivity,
-                        rText(R.string.tai_xuong_that_bai)
+                        getString(R.string.tai_xuong_that_bai)
                     )
                     downloadHelper?.cancelDownload(downloadId)
                 }

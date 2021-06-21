@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.avatar_user.AvatarUserComponent
 import vn.icheck.android.component.image.LayoutImageInPostComponent
@@ -20,7 +19,6 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.network.models.post.ICImageInPost
 import vn.icheck.android.network.models.post.ICProductInPost
-import vn.icheck.android.util.ick.rText
 
 class ReviewInPostComponent : LinearLayout {
     constructor(context: Context) : super(context) {
@@ -110,7 +108,7 @@ class ReviewInPostComponent : LinearLayout {
 
         (getChildAt(1) as AppCompatTextView).run {
             text = if (review.message.length > 135) {
-                Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(context.rText(R.string.sponsor_feed_introtext, review.message.substring(0, 135))))
+                Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(context.getString(R.string.sponsor_feed_introtext, review.message.substring(0, 135))))
             } else {
                 review.message
             }
@@ -118,7 +116,7 @@ class ReviewInPostComponent : LinearLayout {
 
 //        val media = ICImageInPost("https://picsum.photos/300/300", "image", null, 0)
 
-        val media1 = ICImageInPost(context.rText(R.string.firebasestorage_googleapis_com_v0_b_flickering_heat_5334_appspot_com_o_demo1_mp4), "video", 3, 2)
+        val media1 = ICImageInPost(context.getString(R.string.firebasestorage_googleapis_com_v0_b_flickering_heat_5334_appspot_com_o_demo1_mp4), "video", 3, 2)
         val list = mutableListOf<ICImageInPost>()
         list.add(media1)
         (getChildAt(2) as LayoutImageInPostComponent).run {

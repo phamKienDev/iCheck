@@ -726,7 +726,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                     }
                     if (code == nc) {
-                        showLongError(rText(R.string.day_khong_phai_la_tem_icheck_vui_long_quet_lai))
+                        showLongError(getString(R.string.day_khong_phai_la_tem_icheck_vui_long_quet_lai))
                         resetCamera()
                     } else {
                         val type = intent.getStringExtra("type")
@@ -983,7 +983,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showShortErrorToast(rText(R.string.ket_noi_mang_cua_ban_co_van_de_n_vui_long_thu_lai))
+            showShortErrorToast(getString(R.string.ket_noi_mang_cua_ban_co_van_de_n_vui_long_thu_lai))
             enableCapture()
         })
         viewModel.stampFake.observe(this, {
@@ -1146,7 +1146,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun handleQr(type: Int, data: String) {
         when (type) {
             Constant.TYPE_URL -> {
-                WebViewActivity.start(this, data, 0, rText(R.string.chi_tiet_qr_code))
+                WebViewActivity.start(this, data, 0, getString(R.string.chi_tiet_qr_code))
             }
             Constant.TYPE_SMS -> {
                 try {
@@ -1225,7 +1225,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showShortErrorToast(rText(R.string.khong_tim_thay_ung_dung_google_map))
+                        showShortErrorToast(getString(R.string.khong_tim_thay_ung_dung_google_map))
                         enableCapture()
                     }
                 }

@@ -16,7 +16,6 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 
 class HeaderInforProductComponent(view: View, val listener: ProductDetailListener) : BaseHolder(view) {
     private var toggle: Boolean = false
@@ -121,7 +120,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
         if (!productHeaderModel.icBarcodeProduct.barcode.isNullOrEmpty()) {
             itemView.tvBarcode.text = productHeaderModel.icBarcodeProduct.barcode
         } else {
-            itemView.tvBarcode rText R.string.dang_cap_nhat
+            itemView.tvBarcode.setText(R.string.dang_cap_nhat)
         }
 
         itemView.img_fav.setOnClickListener {

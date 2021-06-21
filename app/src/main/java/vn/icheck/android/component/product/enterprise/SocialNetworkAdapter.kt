@@ -15,7 +15,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.rText
 
 class SocialNetworkAdapter(val type: String) : RecyclerView.Adapter<SocialNetworkAdapter.SocialNetworkHolderLinear>() {
     val listData = mutableListOf<ICSocialNetworkModel>()
@@ -97,7 +96,7 @@ class SocialNetworkAdapter(val type: String) : RecyclerView.Adapter<SocialNetwor
             val data = Uri.parse("mailto:?to=${email}")
             mailIntent.data = data
             try {
-                itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context rText R.string.send_mail))
+                itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.getString(R.string.send_mail)))
             } catch (e: Exception) {
                 e.printStackTrace()
             }

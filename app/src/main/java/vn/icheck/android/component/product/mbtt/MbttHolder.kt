@@ -13,7 +13,6 @@ import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
-import vn.icheck.android.util.ick.rText
 
 class MbttHolder(view: View) : BaseHolder(view) {
 
@@ -108,7 +107,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
     private fun hideVoteLayout() {
         hideView(R.id.btn_yes)
         hideView(R.id.btn_no)
-        itemView.tvName rText R.string.cau_tra_loi_cua_ban_da_duoc_ghi_nhan
+        itemView.tvName.setText(R.string.cau_tra_loi_cua_ban_da_duoc_ghi_nhan)
     }
 
     private fun hideLayoutProgress() {

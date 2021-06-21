@@ -463,7 +463,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             when {
                 RelationshipManager.unreadNotify > 9 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount rText R.string.count_9
+                    binding.tvNotificationCount.setText(R.string.count_9)
                 }
                 RelationshipManager.unreadNotify > 0 -> {
                     binding.tvNotificationCount.beVisible()
@@ -524,7 +524,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
             ICMessageEvent.Type.UNFRIEND -> {
                 if (isActivityVisble) {
-                    requireContext().showShortSuccessToast(rText(R.string.ban_da_huy_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
+                    requireContext().showShortSuccessToast(getString(R.string.ban_da_huy_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                 }
             }
             ICMessageEvent.Type.ERROR_SERVER -> {
@@ -547,7 +547,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         val icViewModel = PostViewModel(post)
                         ickUserWallViewModel.addView(ickUserWallViewModel.posCreatePost + 1, icViewModel)
                         ickUserWallAdapter.addPost(ickUserWallViewModel.posCreatePost + 1, icViewModel)
-                        requireContext().showShortSuccessToast(rText(R.string.ban_da_tao_bai_viet_thanh_cong))
+                        requireContext().showShortSuccessToast(getString(R.string.ban_da_tao_bai_viet_thanh_cong))
                     }
                 }
                 EDIT_MY_PUBLIC_INFO -> {

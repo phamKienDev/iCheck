@@ -24,7 +24,6 @@ import vn.icheck.android.network.util.JsonHelper
 import vn.icheck.android.screen.user.media_in_post.ICExoMedia
 import vn.icheck.android.screen.user.media_in_post.MediaInPostAdapter
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -152,14 +151,14 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             override fun downloadSuccess() {
                 imgDownload.setImageResource(R.drawable.ic_download_24_white)
                 imgDownload.isEnabled = false
-                DialogHelper.showDialogSuccessBlack(this@DetailMediaActivity, rText(R.string.tai_xuong_thanh_cong))
+                DialogHelper.showDialogSuccessBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_thanh_cong))
 
             }
 
             override fun downloadError() {
                 imgDownload.setImageResource(R.drawable.ic_download_24_white)
                 imgDownload.isEnabled = false
-                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, rText(R.string.tai_xuong_that_bai))
+                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_that_bai))
                 downloadHelper?.cancelDownload(downloadId)
 
             }
@@ -175,7 +174,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun downloadMedia(){
         if (!adapter.getListData.isNullOrEmpty()) {
             if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
-                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, rText(R.string.tai_xuong_that_bai))
+                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_that_bai))
             } else {
                 imgDownload.setImageResource(R.drawable.ic_download_24_gray)
                 imgDownload.isEnabled = false

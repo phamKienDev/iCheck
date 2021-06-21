@@ -7,7 +7,6 @@ import kotlinx.android.synthetic.main.holder_related_page.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICRelatedPage
-import vn.icheck.android.util.ick.rText
 
 class RelatedPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.holder_related_page, parent, false)) {
     private lateinit var adapter: RelatedPageAdapter
@@ -16,13 +15,13 @@ class RelatedPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 
         when (type) {
             Constant.PAGE_BRAND_TYPE -> {
-                itemView.tvTitle.rText(R.string.trang_lien_quan)
+                itemView.tvTitle.setText(R.string.trang_lien_quan)
             }
             Constant.PAGE_EXPERT_TYPE -> {
-                itemView.tvTitle.rText(R.string.goi_y_cho_ban)
+                itemView.tvTitle.setText(R.string.goi_y_cho_ban)
             }
             Constant.PAGE_ENTERPRISE_TYPE -> {
-                itemView.tvTitle.rText(R.string.trang_lien_quan)
+                itemView.tvTitle.setText(R.string.trang_lien_quan)
             }
         }
 

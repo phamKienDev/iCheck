@@ -1,17 +1,12 @@
 package vn.icheck.android.screen.user.detail_stamp_hoa_phat.infor_product
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.text.Spannable
 import kotlinx.android.synthetic.main.activity_infor_product_hoa_phat.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.kotlin.GlideImageGetter
-import vn.icheck.android.util.text.HtmlImageGetter
 import vn.icheck.android.util.text.HtmlImageGetterStamp
 
 class InforProductHoaPhatActivity : BaseActivityMVVM() {
@@ -23,7 +18,7 @@ class InforProductHoaPhatActivity : BaseActivityMVVM() {
         val title = try {
             intent?.getStringExtra(Constant.DATA_1)
         } catch (e: Exception) {
-            rText(R.string.thong_tin_them)
+            getString(R.string.thong_tin_them)
         }
 
         val content = try {

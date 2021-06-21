@@ -49,7 +49,6 @@ import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
 import java.io.File
@@ -117,7 +116,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
             edtContent.apply {
-                hint = context.rText(R.string.hay_chia_se_nhung_thong_tin_huu_ich_nao)
+                hint = context.getString(R.string.hay_chia_se_nhung_thong_tin_huu_ich_nao)
             }
             tvType.beGone()
             imgStatus.beGone()
@@ -140,7 +139,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     }
                 }
                 edtContent.apply {
-                    hint = context.rText(R.string.ban_da_su_dung_san_pham_nao_hay_chia_se_cam_nhan_nhe)
+                    hint = context.getString(R.string.ban_da_su_dung_san_pham_nao_hay_chia_se_cam_nhan_nhe)
                 }
                 tvType.beVisible()
             }
@@ -487,7 +486,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     override fun onBackPressed() {
         if (layoutImage.childCount > 1 || edtContent.text.toString().isNotEmpty() || layoutProduct.childCount > 0) {
             if (viewModel.postDetail?.id == null) {
-                DialogHelper.showConfirm(this, rText(R.string.ban_muon_bo_bai_viet_nay), null, rText(R.string.tiep_tuc_chinh_sua), rText(R.string.bo_bai_viet), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bai_viet_nay), null, getString(R.string.tiep_tuc_chinh_sua), getString(R.string.bo_bai_viet), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }
@@ -497,7 +496,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     }
                 })
             } else {
-                DialogHelper.showConfirm(this, rText(R.string.tiep_tuc_chinh_sua_bai_viet), null, rText(R.string.de_sau), rText(R.string.tiep_tuc), true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.tiep_tuc_chinh_sua_bai_viet), null, getString(R.string.de_sau), getString(R.string.tiep_tuc), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         finish()
                     }
@@ -539,7 +538,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     if (product.status == "ok" && product.state == "active") {
                         addProduct(product)
                     } else {
-                        showShortErrorToast(rText(R.string.khong_tim_thay_san_pham))
+                        showShortErrorToast(getString(R.string.khong_tim_thay_san_pham))
                     }
                 }
             }

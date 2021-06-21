@@ -25,7 +25,6 @@ import vn.icheck.android.component.header_page.bottom_sheet_header_page.InforPag
 import vn.icheck.android.component.view.MySpannable
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 /**
@@ -124,7 +123,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
                         this@MapHistoryActivity,
                         tvDescription,
                         5,
-                        context.rText(R.string.doc_tiep),
+                        context.getString(R.string.doc_tiep),
                         vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode,
                         obj.newDetail?.description!!
                     )

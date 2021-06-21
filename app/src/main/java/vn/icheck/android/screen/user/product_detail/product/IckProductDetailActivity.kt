@@ -73,7 +73,6 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleStartActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
@@ -282,7 +281,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         })
 
         viewModel.alertProduct.observe(this) {
-            DialogHelper.showConfirm(this, it.title, it.alertDescription, rText(R.string.dong), rText(R.string.chi_tiet), false, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, it.title, it.alertDescription, getString(R.string.dong), getString(R.string.chi_tiet), false, object : ConfirmDialogListener {
                 override fun onDisagree() {
                 }
 
@@ -585,7 +584,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 putExtra(Intent.EXTRA_SUBJECT, viewModel.infoProduct?.name)
                 putExtra(Intent.EXTRA_TEXT, it)
                 type = "text/plain"
-                val title = rText(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
+                val title = getString(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
                 startActivity(Intent.createChooser(this, title))
             }
         })
@@ -602,7 +601,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                     }
                 }
                 type = "text/plain"
-                val title = rText(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
+                val title = getString(R.string.chia_se_s, viewModel.infoProduct?.name ?: "")
                 startActivity(Intent.createChooser(this, title))
             }
         }
@@ -611,7 +610,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             urlDistributor = it
         })
         viewModel.onRegisterBuyProduct.observe(this@IckProductDetailActivity, Observer {
-            showShortSuccessToast(rText(R.string.cam_on_ban_chung_toi_se_lien_he_lai_trong_thoi_gian_som_nhat))
+            showShortSuccessToast(getString(R.string.cam_on_ban_chung_toi_se_lien_he_lai_trong_thoi_gian_som_nhat))
         })
         viewModel.onPopupAds.observe(this@IckProductDetailActivity,Observer{
             DialogFragmentNotificationFirebaseAds.showPopupAds(this,it)
@@ -1015,9 +1014,9 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                         val productID = data?.getLongExtra(Constant.DATA_1, -1)
                         val myContribute = data?.getIntExtra(Constant.DATA_2, 0)
                         if (myContribute == 0) {
-                            showShortSuccessToast(rText(R.string.ban_da_dong_gop_thong_tin_thanh_cong))
+                            showShortSuccessToast(getString(R.string.ban_da_dong_gop_thong_tin_thanh_cong))
                         } else {
-                            showShortSuccessToast(rText(R.string.ban_da_chinh_sua_dong_gop_thanh_cong))
+                            showShortSuccessToast(getString(R.string.ban_da_chinh_sua_dong_gop_thanh_cong))
                         }
                         if (productID != -1L) {
                             viewModel.barcode = ""

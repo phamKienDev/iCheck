@@ -10,8 +10,7 @@ import vn.icheck.android.databinding.ItemMyContributionBinding
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.screen.user.product_detail.product.my_contribution.MyContributionAdapter
 import vn.icheck.android.util.ick.getLayoutInflater
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.setText
 
 class MyContributionHolder(val binding: ItemMyContributionBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -22,7 +21,7 @@ class MyContributionHolder(val binding: ItemMyContributionBinding) : RecyclerVie
                 getValues()
             })
         }
-        binding.textView34.rText(R.string.thong_tin_them_d, myContributionViewModel.arrayInfo.size)
+        binding.textView34.setText(R.string.thong_tin_them_d, myContributionViewModel.arrayInfo.size)
         val attributesAdapter = MyContributionAdapter(listCategory = arr, maxLine = 5, maxLength = 1)
         binding.rcvMyContribution.adapter = attributesAdapter
         binding.btnShowAll.setOnClickListener {

@@ -1,13 +1,11 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.game_list
 
 import android.content.Intent
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_game_from_labels_list.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -47,7 +45,7 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
             onBackPressed()
         }
 
-        txtTitle.rText(R.string.game_tu_nhan_hang)
+        txtTitle.setText(R.string.game_tu_nhan_hang)
     }
 
     private fun initRecyclerView() {
@@ -140,7 +138,7 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
                 CampaignType.RECEIVE_GIFT -> {
                     startActivity(Intent(this, WebViewActivity::class.java).apply {
                         putExtra(ConstantsLoyalty.DATA_1, obj.description ?: "")
-                        putExtra(ConstantsLoyalty.DATA_3, rText(R.string.thong_tin_chuong_trinh))
+                        putExtra(ConstantsLoyalty.DATA_3, getString(R.string.thong_tin_chuong_trinh))
                     })
                 }
                 CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
@@ -166,13 +164,13 @@ class GameFromLabelsListActivity : BaseActivityGame(), IRecyclerViewCallback, IC
                         })
 
                     } else {
-                        showLongError(rText(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        showLongError(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
                 else -> {
                     startActivity(Intent(this@GameFromLabelsListActivity, WebViewActivity::class.java).apply {
                         putExtra(ConstantsLoyalty.DATA_1, obj.description ?: "")
-                        putExtra(ConstantsLoyalty.DATA_3, rText(R.string.thong_tin_chuong_trinh))
+                        putExtra(ConstantsLoyalty.DATA_3, getString(R.string.thong_tin_chuong_trinh))
                     })
                 }
             }

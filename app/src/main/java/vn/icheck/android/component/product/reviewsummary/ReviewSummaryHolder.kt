@@ -16,7 +16,7 @@ import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActi
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ReviewPointText
 
 class ReviewSummaryHolder(parent: ViewGroup) : BaseViewHolder<IckReviewSummaryModel>(LayoutInflater.from(parent.context).inflate(R.layout.item_product_total_reviews, parent, false)) {
@@ -41,10 +41,10 @@ class ReviewSummaryHolder(parent: ViewGroup) : BaseViewHolder<IckReviewSummaryMo
             if (obj.obj.willShare.toInt() == 0){
                 itemView.tvSuggest.beInvisible()
             } else {
-                itemView.tvSuggest.rText(R.string.d_se_gioi_thieu_cho_ban_be, obj.obj.willShare.toInt())
+                itemView.tvSuggest.setText(R.string.d_se_gioi_thieu_cho_ban_be, obj.obj.willShare.toInt())
             }
 
-            itemView.tvViewAll.rText(R.string.xem_s_danh_gia, TextHelper.formatMoney(obj.obj.ratingCount))
+            itemView.tvViewAll.setText(R.string.xem_s_danh_gia, TextHelper.formatMoney(obj.obj.ratingCount))
 
             itemView.tvViewAll.setOnClickListener {
                 ICheckApplication.currentActivity()?.let { activity ->

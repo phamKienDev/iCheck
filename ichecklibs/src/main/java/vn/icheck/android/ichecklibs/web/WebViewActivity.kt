@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.PermissionHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
-import vn.icheck.android.ichecklibs.util.rText
 import java.net.URL
 import java.util.*
 import java.util.regex.Pattern
@@ -96,7 +95,7 @@ class WebViewActivity : AppCompatActivity() {
                 isScan = 0
 
                 if (title.isNullOrEmpty()) {
-                    title = rText(R.string.noi_dung_ma_qr)
+                    title = getString(R.string.noi_dung_ma_qr)
                 }
             }
         }
@@ -236,7 +235,7 @@ class WebViewActivity : AppCompatActivity() {
             }
 
             override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
-                DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_biet_vi_tri_cua_ban, origin), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_biet_vi_tri_cua_ban, origin), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         callback?.invoke(origin, false, false)
 
@@ -265,7 +264,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, rText(R.string.s_muon_su_dung_camera_cua_ban, URL(webViewUrl.url).host), rText(R.string.tu_choi), rText(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_su_dung_camera_cua_ban, URL(webViewUrl.url).host), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()

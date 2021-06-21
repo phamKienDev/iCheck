@@ -497,7 +497,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                         postDialog = object : PostOptionDialog(this, post) {
                             override fun onPin(isPin: Boolean) {
                                 if (post.pinned) {
-                                    DialogHelper.showConfirm(dialog.context, rText(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay), null, rText(R.string.de_sau), rText(R.string.dong_y), true, null, R.color.colorPrimary, object : ConfirmDialogListener {
+                                    DialogHelper.showConfirm(dialog.context, getString(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }

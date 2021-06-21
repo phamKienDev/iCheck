@@ -28,7 +28,7 @@ import vn.icheck.android.network.models.ICStoreiCheck
 import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.icheckstore.view.IGiftStoreView
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -171,16 +171,16 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 if (obj.addToCart) {
                     btnAction.isEnabled = false
                     btnAction.setTextColor(Constant.getSecondTextColor(context))
-                    btnAction rText R.string.da_co_trong_gio_hang
+                    btnAction.setText(R.string.da_co_trong_gio_hang)
                     btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                 } else {
                     btnAction.isEnabled = true
                     btnAction.setTextColor(ContextCompat.getColor(context, R.color.white))
-                    btnAction rText R.string.them_vao_gio_hang
+                    btnAction.setText(R.string.them_vao_gio_hang)
                     btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 }
 
-                tvICoin.rText(R.string.s_xu ,TextHelper.formatMoneyPhay(obj.price))
+                tvICoin.setText(R.string.s_xu ,TextHelper.formatMoneyPhay(obj.price))
 
                 tvName.text = if (!obj.name.isNullOrEmpty()) {
                     obj.name
@@ -198,7 +198,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     } else {
                         obj.addToCart = true
                         btnAction.setTextColor(Constant.getSecondTextColor(context))
-                        btnAction rText R.string.da_co_trong_gio_hang
+                        btnAction.setText(R.string.da_co_trong_gio_hang)
                         btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                         view.onExchangeGift(obj)
                     }
@@ -285,7 +285,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     it.bottomMargin = SizeHelper.size10
                 }
                 btn.setPadding(0, SizeHelper.size4, 0, SizeHelper.size4)
-                btn rText R.string.them_vao_gio_qua
+                btn.setText(R.string.them_vao_gio_qua)
                 btn.setTextColor(ContextCompat.getColor(context, R.color.white))
                 btn.includeFontPadding = false
                 btn.isSingleLine = true

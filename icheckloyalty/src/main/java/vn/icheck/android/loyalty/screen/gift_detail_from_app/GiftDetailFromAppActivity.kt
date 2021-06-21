@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gift_detail_from_app.*
 import kotlinx.android.synthetic.main.item_gift_detail_from_app.view.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.util.rText
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
@@ -92,7 +91,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
         viewModel.onSuccess.observe(this@GiftDetailFromAppActivity, { obj ->
             swipeLayout.isRefreshing = false
-            txtTitle.text = obj.name ?: rText(R.string.chi_tiet_qua)
+            txtTitle.text = obj.name ?: getString(R.string.chi_tiet_qua)
 
             setUpButton(obj)
 
@@ -135,7 +134,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     when {
                         obj.voucher.can_use == true -> {
                             btnUsed.apply {
-                                text = context.rText(R.string.dung_ngay)
+                                text = context.getString(R.string.dung_ngay)
 
                                 setOnClickListener {
                                     startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
@@ -148,10 +147,10 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                         }
                         obj.voucher.can_mark_use == true -> {
                             btnUsed.apply {
-                                text = context.rText(R.string.danh_dau_su_dung)
+                                text = context.getString(R.string.danh_dau_su_dung)
 
                                 setOnClickListener {
-                                    showCustomErrorToast(this@GiftDetailFromAppActivity, context.rText(R.string.chua_co_su_kien))
+                                    showCustomErrorToast(this@GiftDetailFromAppActivity, context.getString(R.string.chua_co_su_kien))
                                 }
                             }
                         }
@@ -175,7 +174,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
 
         btnCancel.setOnClickListener {
-            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, rText(R.string.tu_choi_nhan_qua), rText(R.string.ban_se_khong_the_nhan_qua_nay_neu_xac_nhan_tu_choi), rText(R.string.huy), rText(R.string.xac_nhan), false) {
+            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, getString(R.string.tu_choi_nhan_qua), getString(R.string.ban_se_khong_the_nhan_qua_nay_neu_xac_nhan_tu_choi), getString(R.string.huy), getString(R.string.xac_nhan), false) {
                 override fun onDisagree() {
 
                 }

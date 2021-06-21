@@ -1,15 +1,10 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history
 
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_point_history_loyalty.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -31,7 +26,7 @@ class PointHistoryLoyaltyActivity : BaseActivityGame() {
     }
 
     private fun initToolbar() {
-        txtTitle rText R.string.lich_su_diem
+        txtTitle.setText(R.string.lich_su_diem)
 
         imgBack.setOnClickListener {
             onBackPressed()

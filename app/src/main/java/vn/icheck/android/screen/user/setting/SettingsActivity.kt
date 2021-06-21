@@ -15,7 +15,6 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.rText
 
 class SettingsActivity : BaseActivityMVVM() {
 
@@ -44,7 +43,7 @@ class SettingsActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
-        txtTitle rText R.string.cau_hinh
+        txtTitle.setText(R.string.cau_hinh)
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -65,20 +64,20 @@ class SettingsActivity : BaseActivityMVVM() {
         }
 
         if (SettingManager.getLanguageENSetting) {
-            textView rText R.string.language_colon
-            tvLanguage rText R.string.english
+            textView.setText(R.string.language_colon)
+            tvLanguage.setText(R.string.english)
             imgLanguage.setImageResource(R.drawable.ic_language_english_24)
 
-            appCompatTextView rText R.string.ngon_ngu_colon
-            tvLanguageEN rText R.string.viet_nam
+            appCompatTextView.setText(R.string.ngon_ngu_colon)
+            tvLanguageEN.setText(R.string.viet_nam)
             imgLanguageEN.setImageResource(R.drawable.ic_language_viet_nam_24)
         } else {
-            appCompatTextView rText R.string.language_colon
-            tvLanguageEN rText R.string.english
+            appCompatTextView.setText(R.string.language_colon)
+            tvLanguageEN.setText(R.string.english)
             imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-            textView rText R.string.ngon_ngu_colon
-            tvLanguage rText R.string.viet_nam
+            textView.setText(R.string.ngon_ngu_colon)
+            tvLanguage.setText(R.string.viet_nam)
             imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
         }
     }
@@ -118,7 +117,7 @@ class SettingsActivity : BaseActivityMVVM() {
         }
 
         btnReset.setOnClickListener {
-            val ob = object : ConfirmDialog(this,rText(R.string.dat_lai_mac_dinh_), rText(R.string.ban_chac_chan_muon_dat_lai_cai_dat_ve_mac_dinh_ban_dau), rText(R.string.de_sau), rText(R.string.dong_y), true) {
+            val ob = object : ConfirmDialog(this,getString(R.string.dat_lai_mac_dinh_), getString(R.string.ban_chac_chan_muon_dat_lai_cai_dat_ve_mac_dinh_ban_dau), getString(R.string.de_sau), getString(R.string.dong_y), true) {
                 override fun onDisagree() {
                     dismiss()
                 }
@@ -149,22 +148,22 @@ class SettingsActivity : BaseActivityMVVM() {
             if (SettingManager.getLanguageENSetting) {
                 SettingManager.setLanguageENSetting(false)
 
-                appCompatTextView rText R.string.language_colon
-                tvLanguageEN rText R.string.english
+                appCompatTextView.setText(R.string.language_colon)
+                tvLanguageEN.setText(R.string.english)
                 imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-                textView rText R.string.ngon_ngu_colon
-                tvLanguage rText R.string.viet_nam
+                textView.setText(R.string.ngon_ngu_colon)
+                tvLanguage.setText(R.string.viet_nam)
                 imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
             } else {
                 SettingManager.setLanguageENSetting(true)
 
-                textView rText R.string.language_colon
-                tvLanguage rText R.string.english
+                textView.setText(R.string.language_colon)
+                tvLanguage.setText(R.string.english)
                 imgLanguage.setImageResource(R.drawable.ic_language_english_24)
 
-                appCompatTextView rText R.string.ngon_ngu_colon
-                tvLanguageEN rText R.string.viet_nam
+                appCompatTextView.setText(R.string.ngon_ngu_colon)
+                tvLanguageEN.setText(R.string.viet_nam)
                 imgLanguageEN.setImageResource(R.drawable.ic_language_viet_nam_24)
             }
         }
@@ -253,12 +252,12 @@ class SettingsActivity : BaseActivityMVVM() {
         switchSound.setImageResource(R.drawable.ic_switch_on_24px)
         switchVibrate.setImageResource(R.drawable.ic_switch_on_24px)
 
-        appCompatTextView rText R.string.language_colon
-        tvLanguageEN rText R.string.english
+        appCompatTextView.setText(R.string.language_colon)
+        tvLanguageEN.setText(R.string.english)
         imgLanguageEN.setImageResource(R.drawable.ic_language_english_24)
 
-        textView rText R.string.ngon_ngu_colon
-        tvLanguage rText R.string.viet_nam
+        textView.setText(R.string.ngon_ngu_colon)
+        tvLanguage.setText(R.string.viet_nam)
         imgLanguage.setImageResource(R.drawable.ic_language_viet_nam_24)
         viewModel.getNotifySetting()
     }
@@ -272,7 +271,7 @@ class SettingsActivity : BaseActivityMVVM() {
                 size = 0
                 viewModel.deleteCache()
                 tvClearCache.text = viewModel.readableFileSize(size)
-                this@SettingsActivity.showShortSuccessToast(rText(R.string.ban_da_xoa_cache_thanh_cong))
+                this@SettingsActivity.showShortSuccessToast(getString(R.string.ban_da_xoa_cache_thanh_cong))
             }
         })
     }

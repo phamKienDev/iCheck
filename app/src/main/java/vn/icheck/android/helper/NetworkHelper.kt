@@ -11,7 +11,6 @@ import android.telephony.TelephonyManager
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.loyalty.helper.ActivityHelper
-import vn.icheck.android.util.ick.rText
 
 /**
  * Created by lecon on 11/26/2017
@@ -145,7 +144,7 @@ internal object NetworkHelper {
         if (!gps_enabled && !network_enabled) {
             // notify user
             DialogHelper.showConfirm(activity, null, message
-                    ?: activity rText R.string.ban_vui_long_bat_vi_tri, object : ConfirmDialogListener {
+                    ?: activity.getString(R.string.ban_vui_long_bat_vi_tri), object : ConfirmDialogListener {
                 override fun onDisagree() {
                 }
 

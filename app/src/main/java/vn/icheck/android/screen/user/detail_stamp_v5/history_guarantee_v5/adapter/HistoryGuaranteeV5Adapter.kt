@@ -11,7 +11,6 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
 import vn.icheck.android.screen.user.detail_stamp_v5.history_guarantee_v5.view.IHistoryGuaranteeV5View
-import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -75,16 +74,16 @@ class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : Recycle
         fun setData(obj: RESP_Log_History_v6) {
             when (obj.type) {
                 0 -> {
-                    itemView.tvStatusName rText R.string.da_kich_hoat
+                    itemView.tvStatusName.setText(R.string.da_kich_hoat)
                 }
                 1 -> {
-                    itemView.tvStatusName rText R.string.tiep_nhan_bao_hanh
+                    itemView.tvStatusName.setText(R.string.tiep_nhan_bao_hanh)
                 }
                 2 -> {
-                    itemView.tvStatusName rText R.string.tra_bao_hanh
+                    itemView.tvStatusName.setText(R.string.tra_bao_hanh)
                 }
                 else -> {
-                    itemView.tvStatusName rText R.string.tu_choi_bao_hanh
+                    itemView.tvStatusName.setText(R.string.tu_choi_bao_hanh)
                 }
             }
 

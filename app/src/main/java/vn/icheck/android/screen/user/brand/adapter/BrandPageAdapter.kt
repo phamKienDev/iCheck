@@ -21,7 +21,8 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -161,9 +162,9 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
                 (getChildAt(2) as AppCompatTextView).run {
                     text = if (obj.followCount != null) {
                         if (obj.followCount < 1000) {
-                            context.rText(R.string.s_nguoi_thich_trang_nay, obj.followCount)
+                            context.getString(R.string.s_nguoi_thich_trang_nay, obj.followCount)
                         } else {
-                            context.rText(R.string.s_k_nguoi_thich_trang_nay, (obj.followCount) / 1000)
+                            context.getString(R.string.s_k_nguoi_thich_trang_nay, (obj.followCount) / 1000)
                         }
                     } else {
                         itemView.context.getString(R.string.dang_cap_nhat)
@@ -175,13 +176,13 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
 
                         text = if (obj.likeCount != null) {
                             if (obj.followers?.get(0)?.name.isNullOrEmpty()) {
-                                context.rText(R.string.s_ban_khac_thich_trang_nay, obj.likeCount)
+                                context.getString(R.string.s_ban_khac_thich_trang_nay, obj.likeCount)
                             } else {
-                                context.rText(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name, obj.likeCount)
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name, obj.likeCount)
                             }
                         } else {
                             if (!obj.followers?.get(0)?.name.isNullOrEmpty()) {
-                                context.rText(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name, obj.followers!!.size - 1)
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name, obj.followers!!.size - 1)
                             } else {
                                 itemView.context.getString(R.string.dang_cap_nhat)
                             }
@@ -214,11 +215,11 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
             // Text follow
             tvFollow.run {
                 if (isFollow) {
-                    rText(R.string.dang_theo_doi)
+                    setText(R.string.dang_theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                     setTextColor(Constant.getSecondTextColor(context))
                 } else {
-                    rText(R.string.theo_doi)
+                    setText(R.string.theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                     setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
                 }

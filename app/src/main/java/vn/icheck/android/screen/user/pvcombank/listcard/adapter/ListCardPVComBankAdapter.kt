@@ -20,7 +20,8 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankListener
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -145,22 +146,22 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
 
             if (obj.isShow) {
                 binding.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
-                binding.tvMoney.rText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
+                binding.tvMoney.setText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
                 binding.tvCardNumber.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvName.text = obj.embossName ?: getString(R.string.dang_cap_nhat)
                 binding.tvDateEnd.text = expDate
-                binding.tvCCV rText R.string.ccv
+                binding.tvCCV.setText(R.string.ccv)
 
-                binding.tvAvlBalance.rText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
+                binding.tvAvlBalance.setText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
                 binding.tvNumberCard.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvExpDate.text = expDate
             } else {
                 binding.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
-                binding.tvMoney rText R.string.d
+                binding.tvMoney.setText(R.string.d)
                 binding.tvCardNumber.text = "**** **** **** ****"
                 binding.tvDateEnd.text = "**/**"
                 binding.tvName.text = "**********"
-                binding.tvCCV rText R.string.ccv
+                binding.tvCCV.setText(R.string.ccv)
 
                 binding.tvAvlBalance.text = "**********"
                 binding.tvNumberCard.text = "**** **** **** ****"
@@ -191,22 +192,22 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
             binding.btnCopyCard.setOnClickListener {
                 if (item.isShow) {
                     val clipboard = itemView.context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText(itemView.context.rText(R.string.ma_the), binding.tvNumberCard.text.toString())
+                    val clip = ClipData.newPlainText(itemView.context.getString(R.string.ma_the), binding.tvNumberCard.text.toString())
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(itemView.context, itemView.context.rText(R.string.da_copy_ma_the))
+                    ToastUtils.showShortSuccess(itemView.context, itemView.context.getString(R.string.da_copy_ma_the))
                 } else {
-                    ToastUtils.showShortError(itemView.context, itemView.context.rText(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
                 }
             }
 
             binding.btnEndDate.setOnClickListener {
                 if (item.isShow) {
                     val clipboard = itemView.context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText(itemView.context.rText(R.string.han_su_dung), binding.tvExpDate.text.toString())
+                    val clip = ClipData.newPlainText(itemView.context.getString(R.string.han_su_dung), binding.tvExpDate.text.toString())
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(itemView.context, itemView.context.rText(R.string.da_copy_han_su_dung))
+                    ToastUtils.showShortSuccess(itemView.context, itemView.context.getString(R.string.da_copy_han_su_dung))
                 } else {
-                    ToastUtils.showShortError(itemView.context, itemView.context.rText(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
                 }
             }
 

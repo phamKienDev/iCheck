@@ -11,9 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.network.models.ICProductTrend
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class TopTendencyProductHolder(parent: ViewGroup) : BaseViewHolder<ICProductTrend>(ViewHelper.createItemProductTopTendency(parent.context)) {
@@ -43,16 +41,16 @@ class TopTendencyProductHolder(parent: ViewGroup) : BaseViewHolder<ICProductTren
 
             when {
                 obj.rating >= 9 -> {
-                    text rText R.string.fantastic
+                    text.setText(R.string.fantastic)
                 }
                 obj.rating >= 7 -> {
-                    text rText R.string.great
+                    text.setText(R.string.great)
                 }
                 obj.rating >= 6 -> {
-                    text rText R.string.good
+                    text.setText(R.string.good)
                 }
                 else -> {
-                    text rText R.string.not_good
+                    text.setText(R.string.not_good)
                 }
             }
         } else {

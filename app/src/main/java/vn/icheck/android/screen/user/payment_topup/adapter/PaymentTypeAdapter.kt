@@ -14,11 +14,8 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
-import vn.icheck.android.network.models.ICPaymentType
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
-import vn.icheck.android.screen.user.payment_topup.PaymentTopupActivity
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<ICRechargePhone>) : RecyclerView.Adapter<PaymentTypeAdapter.ViewHolder>() {
@@ -92,9 +89,9 @@ class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<
             when (item.agent?.code) {
                 "ICHECK-XU" -> {
                     if (!SessionManager.isUserLogged) {
-                        itemView.tvValue rText R.string.so_du_hien_tai_0_xu
+                        itemView.tvValue.setText(R.string.so_du_hien_tai_0_xu)
                     } else {
-                        itemView.tvValue.rText(R.string.so_du_hien_tai_s_xu, TextHelper.formatMoneyPhay(SessionManager.getCoin()))
+                        itemView.tvValue.setText(R.string.so_du_hien_tai_s_xu, TextHelper.formatMoneyPhay(SessionManager.getCoin()))
                     }
                 }
                 else -> {

@@ -6,7 +6,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.TooltipCompat
 import com.skydoves.balloon.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +17,8 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemNumberBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
@@ -54,14 +55,14 @@ class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : Corou
 //            TooltipCompat.setTooltipText(itemNumberBinding.imgHelp,categoryAttributesModel.categoryItem.description)
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemNumberBinding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            itemNumberBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             itemNumberBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
 
         itemNumberBinding.edtPrice.apply {
             clearFocus()
-            hint = context.rText(R.string.nhap_s, categoryAttributesModel.categoryItem.name)
+            hint = context.getString(R.string.nhap_s, categoryAttributesModel.categoryItem.name)
             setText(categoryAttributesModel.values?.toStringNotNull())
         }
 

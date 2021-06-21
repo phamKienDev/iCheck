@@ -13,12 +13,10 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -54,7 +52,7 @@ class MyOwnerPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback?
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.tvCountFollow.apply {
                 text = if (obj.followCount ?: 0 > 0) {
-                    context.rText(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount))
+                    context.getString(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount))
                 } else {
                     itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
                 }

@@ -24,7 +24,6 @@ import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.address.AddressInteractor
 import vn.icheck.android.network.models.ICProvince
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class FilterLocationVnDialog(val callback: LocationCallback, selectedID: MutableList<ICProvince>? = null) : BaseBottomSheetDialogFragment(), IRecyclerViewCallback {
@@ -164,7 +163,7 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
 
                     if (isAll) {
                         if (oldSelectedID.isNullOrEmpty()) {
-                            if ((obj.name == "Tất cả")||(obj.name == context.rText(R.string.tat_ca))) {
+                            if ((obj.name == "Tất cả")||(obj.name == context.getString(R.string.tat_ca))) {
                                 setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checkbox_single_on_24px, 0)
                             }
                         }

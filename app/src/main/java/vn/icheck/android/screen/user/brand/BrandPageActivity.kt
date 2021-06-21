@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.brand
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.screen.user.brand.adapter.BrandPageAdapter
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 /**
@@ -39,7 +37,7 @@ class BrandPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle rText R.string.cac_nhan_hang
+        txtTitle.setText(R.string.cac_nhan_hang)
     }
 
     private fun setUpRecyclerView() {

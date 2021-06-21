@@ -10,7 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_select_district.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -76,7 +75,7 @@ class SelectDistrictActivity : BaseActivityGame(), ISelectAddressListener<ICDist
 
         viewModel.onEmptyString.observe(this, Observer {
             if (it == "ERROR") {
-                object : DialogNotification(this@SelectDistrictActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), rText(R.string.ok), false) {
+                object : DialogNotification(this@SelectDistrictActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), getString(R.string.ok), false) {
                     override fun onDone() {
                         onBackPressed()
                     }

@@ -9,13 +9,12 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemRecyclerviewWithTitleBinding
 import vn.icheck.android.network.models.ICNews
 import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class NewsHolder(parent: ViewGroup, val binding: ItemRecyclerviewWithTitleBinding = ItemRecyclerviewWithTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<ICNews>>(binding.root) {
 
     override fun bind(obj: MutableList<ICNews>) {
-        binding.tvTitle rText R.string.tin_hay_ngay_moi
+        binding.tvTitle.setText(R.string.tin_hay_ngay_moi)
 
         binding.btnMore.setOnClickListener {
             ICheckApplication.currentActivity()?.let { act ->

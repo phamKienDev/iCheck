@@ -20,8 +20,6 @@ import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAdapter.ViewHolder>() {
@@ -97,7 +95,7 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
                 binding.tvMST.text = "Mã số thuế: " + obj.tax
                 binding.tvDangCapNhatMST.visibility = View.GONE
             } else {
-                binding.tvMST rText R.string.ma_so_thue
+                binding.tvMST.setText(R.string.ma_so_thue)
                 binding.tvDangCapNhatMST.visibility = View.VISIBLE
             }
 

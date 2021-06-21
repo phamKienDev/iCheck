@@ -29,8 +29,6 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -142,7 +140,7 @@ class EditReviewActivity : BaseActivityMVVM() {
                 edtContent.setText(it.myReview!!.content)
             } else {
                 viewModel.createReview = true
-                tv_title rText R.string.danh_gia_san_pham
+                tv_title.setText(R.string.danh_gia_san_pham)
                 it.criteria?.let { criteria ->
                     listDataRating.addAll(criteria)
                 }
@@ -201,9 +199,9 @@ class EditReviewActivity : BaseActivityMVVM() {
         setResult(RESULT_OK, intent)
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_EDIT_POST, review))
         if (viewModel.createReview) {
-            DialogHelper.showDialogSuccessBlack(this, rText(R.string.ban_da_tao_danh_gia_thanh_cong), null, 1000)
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_tao_danh_gia_thanh_cong), null, 1000)
         } else {
-            DialogHelper.showDialogSuccessBlack(this, rText(R.string.ban_da_chinh_sua_danh_gia_thanh_cong), null, 1000)
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_chinh_sua_danh_gia_thanh_cong), null, 1000)
         }
         finish()
     }

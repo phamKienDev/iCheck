@@ -30,7 +30,6 @@ import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.util.ick.rText
 
 class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = null, val inputHint: Int? = null) : BaseBottomSheetDialogFragment() {
 
@@ -182,10 +181,10 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
             dialog?.context.apply {
                 DialogHelper.showConfirm(
                     this,
-                    rText(R.string.ban_muon_bo_bao_cao_nay),
+                    getString(R.string.ban_muon_bo_bao_cao_nay),
                     null,
-                    rText(R.string.tiep_tuc_bao_cao),
-                    rText(R.string.bo_bao_cao),
+                    getString(R.string.tiep_tuc_bao_cao),
+                    getString(R.string.bo_bao_cao),
                     true,
                     null,
                     R.color.colorAccentRed,
@@ -227,7 +226,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
                 listData[i].name?.let {
-                    if ((it != "Khác" && it != "Lý do khác")||(it != rText(R.string.khac) && it != rText(R.string.ly_do_khac)))
+                    if ((it != "Khác" && it != "Lý do khác")||(it != getString(R.string.khac) && it != getString(R.string.ly_do_khac)))
                         listMessage.add(it)
                 }
             }

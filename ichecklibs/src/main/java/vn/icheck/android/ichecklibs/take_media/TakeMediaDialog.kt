@@ -14,7 +14,6 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
-import vn.icheck.android.ichecklibs.util.rText
 import java.io.File
 
 class TakeMediaDialog : BaseBottomSheetDialogFragment() {
@@ -114,9 +113,9 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
         }
 
         if (isVideo) {
-            tvTile rText R.string.chon_anh_video
+            tvTile.setText(R.string.chon_anh_video)
         } else {
-            tvTile rText R.string.chon_anh
+            tvTile.setText(R.string.chon_anh)
         }
 
         val listImage = getImageFromGallery()

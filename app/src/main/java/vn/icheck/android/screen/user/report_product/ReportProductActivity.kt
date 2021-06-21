@@ -29,7 +29,6 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.rText
 
 class ReportProductActivity : BaseActivityMVVM() {
     private lateinit var viewModel: ReportProductViewModel
@@ -173,7 +172,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
 
             if (!listReasonID.isNullOrEmpty()) {
-                DialogHelper.showConfirm(this, rText(R.string.ban_muon_bo_bao_cao_nay), null, rText(R.string.tiep_tuc_bao_cao), rText(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bao_cao_nay), null, getString(R.string.tiep_tuc_bao_cao), getString(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         DialogHelper.closeLoading(this@ReportProductActivity)
                     }

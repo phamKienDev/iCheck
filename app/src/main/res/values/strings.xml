@@ -1465,7 +1465,7 @@
     <string name="sieu_hoi_voucher">Siêu hội Voucher</string>
     <string name="huy_loi_moi_ket_ban_voi_s">Hủy lời mời kết bạn với %s</string>
     <string name="ban_co_chac_chan_huy_ket_ban_voi_n_s_chu">Bạn có chắc chắn hủy kết bạn với\n%s chứ?</string>
-    <string name="ban_da_huy_theo_doi_voi_s">ban_da_huy_theo_doi_voi_s</string>
+    <string name="ban_da_huy_theo_doi_voi_s">Bạn đã hủy theo dõi đối với %s</string>
     <string name="ban_be_chung_d">Bạn bè chung (%d)</string>
     <string name="ic_d">IC - %d</string>
     <string name="ban_da_tao_bai_viet_thanh_cong">Bạn đã tạo bài viết thành công!</string>

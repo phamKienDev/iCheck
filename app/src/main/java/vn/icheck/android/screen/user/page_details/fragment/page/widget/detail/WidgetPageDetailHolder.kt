@@ -28,7 +28,6 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPageDetail
 import vn.icheck.android.screen.bottomsheet.BottomSheetPageAdapter
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.rText
 
 class WidgetPageDetailHolder(parent: ViewGroup, val type: String) : BaseViewHolder<ICPageDetail>(ViewHelper.createLayoutPageDetail(parent.context)) {
     override fun bind(obj: ICPageDetail) {
@@ -147,7 +146,7 @@ class WidgetPageDetailHolder(parent: ViewGroup, val type: String) : BaseViewHold
                         val data = Uri.parse("mailto:?to=${obj.mail}")
                         mailIntent.data = data
                         try {
-                            itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.rText(R.string.send_mail)))
+                            itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.getString(R.string.send_mail)))
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

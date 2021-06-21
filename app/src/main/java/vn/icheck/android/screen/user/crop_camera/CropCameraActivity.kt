@@ -21,7 +21,6 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.util.ick.rText
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.roundToInt
@@ -109,7 +108,7 @@ class CropCameraActivity : BaseActivityMVVM() {
                 R.drawable.ic_flash_off_24px
             })
         } else {
-            showShortError(rText(R.string.khong_co_den_flash_tren_thiet_bi_cua_ban))
+            showShortError(getString(R.string.khong_co_den_flash_tren_thiet_bi_cua_ban))
         }
     }
 

@@ -24,7 +24,6 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.network.models.ICCommentPermission
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetDialogFragment() {
@@ -69,7 +68,7 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
         val listPermission = mutableListOf<ICCommentPermission>()
 
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            adapter.setError(R.drawable.ic_error_network, rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), R.string.thu_lai)
+            adapter.setError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), R.string.thu_lai)
             return
         }
 
@@ -98,7 +97,7 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
 
             override fun onError(error: ICResponseCode?) {
                 if (listPermission.isNullOrEmpty()) {
-                    adapter.setError(R.drawable.ic_error_request, rText(R.string.co_loi_xay_ra_vui_long_thu_lai), R.string.thu_lai)
+                    adapter.setError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), R.string.thu_lai)
                 } else {
                     adapter.setListData(listPermission)
                 }

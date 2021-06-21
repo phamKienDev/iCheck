@@ -29,7 +29,6 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCallback? = null) : RecyclerViewSearchAdapter<ICSearchUser>(callback) {
@@ -140,7 +139,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         private fun checkStatus(obj: ICSearchUser) {
             val friend = if (obj.relateFriendCount > 0) {
-                itemView.context.rText(R.string.d_ban_chung, obj.relateFriendCount)
+                itemView.context.getString(R.string.d_ban_chung, obj.relateFriendCount)
             } else {
                 ""
             }
@@ -179,7 +178,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
                         itemView.btnConfirm.isEnabled = true
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         itemView.btnConfirm.background = ViewHelper.bgPrimaryCorners4(itemView.context)
-                        itemView.btnConfirm rText R.string.dong_y_ket_ban
+                        itemView.btnConfirm.setText(R.string.dong_y_ket_ban)
                         itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                         itemView.btnConfirm.visibility = View.VISIBLE

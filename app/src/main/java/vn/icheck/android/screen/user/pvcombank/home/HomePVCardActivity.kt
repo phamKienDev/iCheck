@@ -23,7 +23,8 @@ import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
 import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -107,7 +108,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun setTvMoney() {
         if (sharedPreferences.getBoolean(keyPVCardPreferences, true)) {
             tvEye.setImageResource(R.drawable.ic_eye_on_white_24px)
-            tvMoney.rText(R.string.s_space_d, TextHelper.formatMoney(avlBalance))
+            tvMoney.setText(R.string.s_space_d, TextHelper.formatMoney(avlBalance))
         } else {
             tvEye.setImageResource(R.drawable.ic_eye_off_white_24px)
             tvMoney.text = "*****"

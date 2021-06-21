@@ -905,7 +905,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 }
             }
             R.id.tv_logout -> {
-                object : ConfirmDialog(this@HomeActivity, rText(R.string.dang_xuat), rText(R.string.ban_muon_thoat_tai_khoan_nay), rText(R.string.de_sau), rText(R.string.dong_y), true) {
+                object : ConfirmDialog(this@HomeActivity, getString(R.string.dang_xuat), getString(R.string.ban_muon_thoat_tai_khoan_nay), getString(R.string.de_sau), getString(R.string.dong_y), true) {
                     override fun onDisagree() {
                     }
 
@@ -938,7 +938,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.huong_dan_su_dung))
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.huong_dan_su_dung))
                     }
                 })
             }
@@ -949,7 +949,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.dieu_khoan_su_dung))
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                     }
                 })
             }
@@ -960,7 +960,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, rText(R.string.cau_hoi_thuong_gap))
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.cau_hoi_thuong_gap))
                     }
                 })
             }

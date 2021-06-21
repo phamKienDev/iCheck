@@ -32,7 +32,6 @@ import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.util.ick.forceHideKeyboard
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 import java.util.concurrent.TimeUnit
 
@@ -66,7 +65,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun initView() {
-        txtTitle rText R.string.danh_sach_ban_be
+        txtTitle.setText(R.string.danh_sach_ban_be)
         edtSearch.background=ViewHelper.bgGrayCorners4(this)
     }
 
@@ -113,7 +112,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.listData.observe(this, Observer {
                 adapter.addListData(it)
                 tv_total_friend.visibility = View.VISIBLE
-                tv_total_friend simpleText if (viewModel.friendCount > 0) rText(R.string.d_ban_be, viewModel.friendCount) else rText(R.string.ban_be)
+                tv_total_friend simpleText if (viewModel.friendCount > 0) getString(R.string.d_ban_be, viewModel.friendCount) else getString(R.string.ban_be)
             })
 
             viewModel.isLoadMoreData.observe(this, Observer {
@@ -123,7 +122,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.unFriend.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast( rText(R.string.ban_da_huy_ket_ban_voi_s, nameItem))
+                    this@ListFriendOfWallActivity.showShortSuccessToast( getString(R.string.ban_da_huy_ket_ban_voi_s, nameItem))
                     adapter.removeItem(positionList!!)
                     setResult(RESULT_OK)
                 }
@@ -132,7 +131,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.followOrUnFollow.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast( rText(R.string.ban_da_bo_theo_doi_s, nameItem))
+                    this@ListFriendOfWallActivity.showShortSuccessToast( getString(R.string.ban_da_bo_theo_doi_s, nameItem))
                 }
             })
 
@@ -293,7 +292,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun showDialogConfirmUnFriend(item: ICUserFollowWall) {
-        object : ConfirmDialog(this@ListFriendOfWallActivity, rText(R.string.ban_co_chac_chan_huy_ket_ban_voi_s_chu, item.getUserName()), null, rText(R.string.de_sau), rText(R.string.dong_y), true) {
+        object : ConfirmDialog(this@ListFriendOfWallActivity, getString(R.string.ban_co_chac_chan_huy_ket_ban_voi_s_chu, item.getUserName()), null, getString(R.string.de_sau), getString(R.string.dong_y), true) {
             override fun onDisagree() {
                 dismiss()
             }

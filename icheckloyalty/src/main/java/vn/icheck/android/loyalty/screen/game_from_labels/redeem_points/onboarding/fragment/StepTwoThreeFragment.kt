@@ -2,7 +2,6 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.onboardi
 
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_step_two.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.fragment.BaseFragmentGame
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.onboarding.IOnboardingListener
@@ -19,11 +18,11 @@ class StepTwoThreeFragment(private val step: Int, private val listener: IOnboard
         when (step) {
             2 -> {
                 imgDefault.setImageResource(R.drawable.ic_onboarding_step2)
-                tvTitle rText R.string.chon_qua_hay_doi_lien_tay
-                tvMessage rText R.string.su_dung_diem_tich_luy_de_doi_nhung_phan_qua_hap_dan_ban_nhe
+                tvTitle.setText(R.string.chon_qua_hay_doi_lien_tay)
+                tvMessage.setText(R.string.su_dung_diem_tich_luy_de_doi_nhung_phan_qua_hap_dan_ban_nhe)
                 btnTiepTuc.setBackgroundResource(R.drawable.bg_corner_47_outline_1_light_blue)
 
-                btnTiepTuc rText R.string.tiep_tuc
+                btnTiepTuc.setText(R.string.tiep_tuc)
 
                 btnQuayLai.setOnClickListener {
                     listener.onBackStep(1)
@@ -35,10 +34,10 @@ class StepTwoThreeFragment(private val step: Int, private val listener: IOnboard
             }
             else -> {
                 imgDefault.setImageResource(R.drawable.ic_onboarding_step3)
-                tvTitle rText R.string.wow_qua_ve_roi
-                tvMessage rText R.string.that_tuyet_voi_phan_qua_doi_diem_cua_ban_da_ve_tay_nhanh_nhu_chop_do
+                tvTitle.setText(R.string.wow_qua_ve_roi)
+                tvMessage.setText(R.string.that_tuyet_voi_phan_qua_doi_diem_cua_ban_da_ve_tay_nhanh_nhu_chop_do)
                 btnTiepTuc.setBackgroundResource(R.drawable.bg_corner_47_light_blue)
-                btnTiepTuc rText R.string.toi_da_hieu
+                btnTiepTuc.setText(R.string.toi_da_hieu)
                 btnTiepTuc.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
                 btnQuayLai.setOnClickListener {

@@ -22,7 +22,6 @@ import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICPrivacy
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
@@ -39,7 +38,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
         getData()
         initRecylerView()
         binding.layoutToolbar.imgBack.setImageResource(R.drawable.ic_cancel_light_blue_24dp)
-        binding.layoutToolbar.txtTitle rText R.string.chinh_sua_quyen_rieng_tu
+        binding.layoutToolbar.txtTitle.setText(R.string.chinh_sua_quyen_rieng_tu)
 
         binding.layoutToolbar.imgBack.setOnClickListener {
             dismiss()
@@ -66,7 +65,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
         if (postId != null) {
             getPrivacy()
         } else {
-            setError(ICError(R.drawable.ic_error_request, rText(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+            setError(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
         }
     }
 
@@ -80,7 +79,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
 
     private fun getPrivacy() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            setError(ICError(R.drawable.ic_error_network, rText(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+            setError(ICError(R.drawable.ic_error_network, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             return
         }
 
@@ -92,7 +91,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
 
                 if (obj.data?.rows.isNullOrEmpty()) {
                     layoutMessage.beGone()
-                    setError(ICError(R.drawable.ic_error_request, rText(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                    setError(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
                 } else {
                     containerData.beVisible()
                     adapter.setListData(obj.data!!.rows)
@@ -101,7 +100,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
 
             override fun onError(error: ICResponseCode?) {
                 DialogHelper.closeLoading(this@PrivacyPostDialog)
-                setError(ICError(R.drawable.ic_error_request, rText(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                setError(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }
@@ -117,7 +116,7 @@ class PrivacyPostDialog(val postId: Long?) : BaseBottomSheetDialogFragment() {
             override fun onSuccess(obj: ICResponse<Boolean>) {
                 DialogHelper.closeLoading(this@PrivacyPostDialog)
                 obj.data?.let {
-                    context?.let { it1 -> DialogHelper.showDialogSuccessBlack(it1, it1 rText R.string.ban_da_thay_doi_quyen_rieng_tu) }
+                    context?.let { it1 -> DialogHelper.showDialogSuccessBlack(it1, it1.getString(R.string.ban_da_thay_doi_quyen_rieng_tu))}
                     dismiss()
                 }
             }

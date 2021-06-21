@@ -52,8 +52,9 @@ import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.dismissLoadingScreen
 import vn.icheck.android.util.ick.forceHideKeyboard
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.showLoadingTimeOut
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 
 class IckOtpFragment : Fragment() {
@@ -93,9 +94,9 @@ class IckOtpFragment : Fragment() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("${rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} ${arr.joinToString(separator = "")}")
+        val span = SpannableString("${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} ${arr.joinToString(separator = "")}")
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>${rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} <font color=${Constant.getPrimaryColorCode}>%s</font></p>", arr.joinToString(separator = ""))
+        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} <font color=${Constant.getPrimaryColorCode}>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -117,7 +118,7 @@ class IckOtpFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.tvTimer.setOnClickListener {
-            if (binding.tvTimer.text == rText(R.string.gui_lai_ma)) {
+            if (binding.tvTimer.text == getString(R.string.gui_lai_ma)) {
                 initTimer()
             }
         }
@@ -148,7 +149,7 @@ class IckOtpFragment : Fragment() {
             override fun onFinish() {
                 try {
                     binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
-                    binding.tvTimer rText R.string.gui_lai_ma
+                    binding.tvTimer.setText(R.string.gui_lai_ma)
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {
                             ickLoginViewModel.waitResponse = true
@@ -214,7 +215,7 @@ class IckOtpFragment : Fragment() {
 
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    binding.tvTimer.rText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
+                    binding.tvTimer.setText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }

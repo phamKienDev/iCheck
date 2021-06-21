@@ -12,6 +12,8 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentCartBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.shipping.ship.adpter.adapter.CartItemsAdapter
@@ -127,7 +129,7 @@ class CartFragment : Fragment() {
                             value ?: 0
                         }
 //                binding.tvQuantity simpleText "$total sản phẩm"
-                binding.toolbar.txtTitle.rText(R.string.gio_hang_d, total)
+                binding.toolbar.txtTitle.setText(R.string.gio_hang_d, total)
 
                 val arrNewCart = arrayListOf<ItemCartItem>()
                 if (!it.data?.firstOrNull()?.itemCart.isNullOrEmpty()) {
@@ -171,8 +173,8 @@ class CartFragment : Fragment() {
                 totalProduct += item.quantity ?: 0
             }
         }
-        binding.tvQuantity.rText(R.string.d_d_san_pham, totalProduct, total)
-        binding.tvPrice.text = rText(R.string.d_xu, totalPrice).replace(".", ",")
+        binding.tvQuantity.setText(R.string.d_d_san_pham, totalProduct, total)
+        binding.tvPrice.text = getString(R.string.d_xu, totalPrice).replace(".", ",")
     }
 
 }

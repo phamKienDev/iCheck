@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.contribute_product.holder
 import android.content.Intent
 import android.graphics.Color
 import android.widget.TextView
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.widget.addTextChangedListener
 import com.skydoves.balloon.*
 import kotlinx.coroutines.CoroutineScope
@@ -21,8 +20,8 @@ import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.root) {
     var value = 0L
@@ -54,7 +53,7 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            binding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             binding.tvTitle.text = categoryAttributesModel.categoryItem.name
         }

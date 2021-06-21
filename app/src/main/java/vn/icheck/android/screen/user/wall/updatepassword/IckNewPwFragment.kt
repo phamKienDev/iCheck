@@ -18,8 +18,8 @@ import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.ApiErrorResponse
 import vn.icheck.android.network.model.ApiSuccessResponse
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
-import vn.icheck.android.util.ick.rText
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class IckNewPwFragment : BaseFragmentMVVM() {
@@ -35,8 +35,8 @@ class IckNewPwFragment : BaseFragmentMVVM() {
         super.onViewCreated(view, savedInstanceState)
         validate()
         if (SessionManager.session.user?.hasPassword == false) {
-            binding.textView26 rText R.string.cap_nhat_mat_khau
-            binding.tvDesc rText R.string.vui_long_nhap_mat_khau
+            binding.textView26.setText(R.string.cap_nhat_mat_khau)
+            binding.tvDesc.setText(R.string.vui_long_nhap_mat_khau)
             binding.edtOldPassword.visibility = View.GONE
             binding.edtPassword.addTextChangedListener {
                 validate()
@@ -63,27 +63,27 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                 when {
                     binding.edtOldPassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtOldPassword.apply {
-                            error = context.rText(R.string.ban_chua_nhap_mat_khau_cu)
+                            error = context.getString(R.string.ban_chua_nhap_mat_khau_cu)
                         }
                     }
                     binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
                         }
                     }
                     binding.edtOldPassword.text?.length ?: 0 < 6 -> {
                         binding.edtOldPassword.apply {
-                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                         }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                         }
                     }
                     binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                            error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
                         }
                     }
                     else -> {
@@ -94,7 +94,7 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showShortSuccessToast(rText(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
+                                            requireContext().showShortSuccessToast(getString(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
                                             ickUserWallViewModel.getUserInfo().observe(requireActivity(), { user ->
                                                 SessionManager.updateUser(user?.data?.createICUser())
                                             })
@@ -116,27 +116,27 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                 when {
                     binding.edtPassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtPassword.apply {
-                            error = context.rText(R.string.ban_chua_nhap_mat_khau_moi)
+                            error = context.getString(R.string.ban_chua_nhap_mat_khau_moi)
                         }
                     }
                     binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
                         }
                     }
                     binding.edtPassword.text?.length ?: 0 < 6 -> {
                         binding.edtPassword.apply {
-                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                         }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
                         }
                     }
                     binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.apply {
-                            error = context.rText(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                            error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
                         }
                     }
                     else -> {
@@ -147,7 +147,7 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                                     DialogHelper.closeLoading(this)
                                     if (it is ApiSuccessResponse) {
                                         if (it.body.statusCode == "200") {
-                                            requireContext().showShortSuccessToast(rText(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
+                                            requireContext().showShortSuccessToast(getString(R.string.ban_da_cap_nhat_mat_khau_thanh_cong))
                                             delayAction({
                                                 findNavController().popBackStack()
                                             }, 3000)

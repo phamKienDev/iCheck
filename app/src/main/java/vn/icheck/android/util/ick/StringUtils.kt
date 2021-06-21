@@ -1,19 +1,18 @@
 package vn.icheck.android.util.ick
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.util.Patterns
-import android.view.View
 import androidx.annotation.IntRange
 import androidx.core.app.ShareCompat
-import kotlinx.android.synthetic.main.item_item_reward_v2.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,10 +26,10 @@ infix fun String?.getDateFormat(format: String): String {
         if (date != null) {
             show.format(date)
         } else {
-            StringConstant.dang_cap_nhat
+            getString(R.string.dang_cap_nhat)
         }
     } else {
-        StringConstant.dang_cap_nhat
+        getString(R.string.dang_cap_nhat)
     }
 }
 
@@ -40,7 +39,7 @@ fun String.getHtmlText(): Spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_C
     Html.fromHtml(this)
 }
 
-fun String?.getInfo() = if (this?.replace("null", "")?.trim().isNullOrEmpty()) StringConstant.dang_cap_nhat else this
+fun String?.getInfo() = if (this?.replace("null", "")?.trim().isNullOrEmpty()) getString(R.string.dang_cap_nhat) else this
 
 
 fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -148,20 +147,20 @@ fun String.getNotifyTime() :String{
         val diffMinutes = getDifferenceMinutes(date, currentDate)
         when {
             diffMinutes <= 1 -> {
-                StringConstant.vua_xong
+                getString(R.string.vua_xong)
             }
             diffMinutes <= 60 -> {
-                "$diffMinutes ${StringConstant.phut_truoc}"
+                getString(R.string.d_phut_truoc, diffMinutes)
             }
             diffHours <= 24 -> {
-                "$diffHours ${StringConstant.gio_truoc}"
+                getString(R.string.d_gio_truoc, diffHours)
             }
             else -> {
                 getTime("HH:mm, dd/MM/yyyy")
             }
         }
     } catch (e: Exception) {
-        StringConstant.vua_xong
+        getString(R.string.vua_xong)
     }
 
 }
@@ -174,20 +173,20 @@ fun Long.getNotifyTimeVn() :String{
         val diffMinutes = getDifferenceMinutes(date, currentDate)
         when {
             diffMinutes <= 1 -> {
-                StringConstant.vua_xong
+                getString(R.string.vua_xong)
             }
             diffMinutes <= 60 -> {
-                "$diffMinutes ${StringConstant.phut_truoc}"
+                getString(R.string.d_phut_truoc, diffMinutes)
             }
             diffHours <= 24 -> {
-                "$diffHours ${StringConstant.gio_truoc}"
+                getString(R.string.d_gio_truoc, diffHours)
             }
             else -> {
                 getTime("HH:mm, dd/MM/yyyy", false)
             }
         }
     } catch (e: Exception) {
-        StringConstant.vua_xong
+        getString(R.string.vua_xong)
     }
 
 }
@@ -263,19 +262,19 @@ fun Int.getMoneyFormat() = String.format("%,dđ", this).replace(".", ",")
 fun String.getRewardType() :String{
    return when (this) {
         "PRODUCT_SHIP" -> {
-            StringConstant.giao_tan_noi
+            getString(R.string.giao_tan_noi)
         }
         "PRODUCT_IN_SHOP" -> {
-            StringConstant.nhan_tai_cua_hang
+            getString(R.string.nhan_tai_cua_hang)
         }
         "CARD" -> {
-            StringConstant.qua_the_cao
+            getString(R.string.qua_the_cao)
         }
         "LUCKY" -> {
-            StringConstant.qua_tinh_than
+            getString(R.string.qua_tinh_than)
         }
         else ->{
-            StringConstant.qua_hien_vat
+            getString(R.string.qua_hien_vat)
         }
     }
 }

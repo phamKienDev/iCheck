@@ -18,6 +18,8 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.DialogFriendWallSettingsBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.room.database.AppDatabase
@@ -58,16 +60,16 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
             when {
                 RelationshipManager.checkFriend(ickUserWallViewModel.userInfo?.data?.id ?: 0L) -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow.rText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvUnfolow.setText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
-                        binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     }
                     if (AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify.rText(R.string.huy_ket_ban_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvTitleNotify.setText(R.string.huy_ket_ban_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
                         if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                            binding.tvTitleNotify.rText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                            binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
                         } else {
                             binding.layoutNotify.beGone()
                         }
@@ -77,20 +79,20 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                 }
                 else -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow.rText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvUnfolow.setText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
-                        binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     }
                     if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify.rText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
                     } else {
                         binding.layoutNotify.beGone()
                     }
                 }
             }
         } else {
-            binding.tvUnfolow.rText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+            binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
             binding.layoutNotify.beGone()
         }
         binding.layoutReport.setOnClickListener {
@@ -112,7 +114,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                 ickUserWallViewModel.inAction = true
                 if (AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
 
-                    object : ConfirmDialog(requireContext(), rText(R.string.ban_co_chac_chan_huy_ket_ban_voi_n_s_chu, ickUserWallViewModel.userInfo?.data?.getName()),null , rText(R.string.de_sau), rText(R.string.dong_y), true) {
+                    object : ConfirmDialog(requireContext(), getString(R.string.ban_co_chac_chan_huy_ket_ban_voi_n_s_chu, ickUserWallViewModel.userInfo?.data?.getName()),null , getString(R.string.de_sau), getString(R.string.dong_y), true) {
 
                         override fun onDisagree() {
                             dismiss()
@@ -155,7 +157,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         ickUserWallViewModel.unFollowUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showShortSuccessToast(rText(R.string.ban_da_huy_theo_doi_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
+                                requireContext().showShortSuccessToast(getString(R.string.ban_da_huy_theo_doi_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                                 AppDatabase.getDatabase().meFollowUserDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
                                 dismiss()
                             }
@@ -163,7 +165,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     } else {
                         ickUserWallViewModel.followUser().observe(owner, {
                             if (it?.statusCode == "200") {
-                                requireContext().showShortSuccessToast(rText(R.string.ban_da_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName()))
+                                requireContext().showShortSuccessToast(getString(R.string.ban_da_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                                 AppDatabase.getDatabase().meFollowUserDao().insertMeFollowUser(ICMeFollowUser(ickUserWallViewModel.userInfo?.data?.id!!))
                                 dismiss()
                             }

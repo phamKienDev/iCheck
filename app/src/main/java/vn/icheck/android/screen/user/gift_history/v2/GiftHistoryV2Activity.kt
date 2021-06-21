@@ -14,7 +14,6 @@ import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.screen.user.my_gift_warehouse.list_mission.list.ListMissionActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -47,7 +46,7 @@ class GiftHistoryV2Activity : BaseActivityGame(), IRecyclerViewCallback {
 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
-        txtTitle rText R.string.lich_su_mo_qua
+        txtTitle.setText(R.string.lich_su_mo_qua)
 
         imgBack.setOnClickListener {
             onBackPressed()

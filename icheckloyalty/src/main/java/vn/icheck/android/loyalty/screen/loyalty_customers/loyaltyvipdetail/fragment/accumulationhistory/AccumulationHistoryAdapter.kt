@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_accumulation_history.view.*
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -53,9 +52,9 @@ internal class AccumulationHistoryAdapter(callback: IRecyclerViewCallback) : Rec
 
             itemView.tvHintSerial.apply {
                 text = if (!type) {
-                    context.rText(R.string.ma_serial)
+                    context.getString(R.string.ma_serial)
                 } else {
-                    context.rText(R.string.ma_code)
+                    context.getString(R.string.ma_code)
                 }
             }
 

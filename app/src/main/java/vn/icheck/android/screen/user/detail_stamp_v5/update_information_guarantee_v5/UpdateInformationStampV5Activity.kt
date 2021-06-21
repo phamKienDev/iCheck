@@ -23,7 +23,6 @@ import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarante
 import vn.icheck.android.screen.user.detail_stamp_v5.update_information_guarantee_v5.view.IUpdateInformationStampV5View
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectCityBottomSheet
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.SelectDistrictBottomSheet
-import vn.icheck.android.util.ick.rText
 
 class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationStampV5View {
 
@@ -43,7 +42,7 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     fun onInitView() {
-        txtTitle rText R.string.thong_tin_khach_hang
+        txtTitle.setText(R.string.thong_tin_khach_hang)
 
         setupView()
 
@@ -140,7 +139,7 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameCityFail() {
-        tvCities rText R.string.tuy_chon
+        tvCities.setText(R.string.tuy_chon)
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
@@ -148,7 +147,7 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameDistrictFail() {
-        tvDistricts rText R.string.tuy_chon
+        tvDistricts.setText(R.string.tuy_chon)
     }
 
     override fun showError(errorMessage: String) {
@@ -171,7 +170,7 @@ class UpdateInformationStampV5Activity : BaseActivityMVVM(), IUpdateInformationS
         val intent = Intent()
         intent.putExtra(Constant.DATA_1, objUpdate)
         setResult(Activity.RESULT_OK, intent)
-        showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
+        showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         onBackPressed()
     }
 

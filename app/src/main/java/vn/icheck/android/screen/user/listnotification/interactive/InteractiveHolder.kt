@@ -152,7 +152,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                         DialogHelper.closeLoading(activity)
                     }
                     if (objNotification.isReaded == false && isShowLoading) {
-                        itemView.context.showShortSuccessToast(activity.rText(R.string.ban_da_doc_thong_bao_nay))
+                        itemView.context.showShortSuccessToast(activity.getString(R.string.ban_da_doc_thong_bao_nay))
                     }
                     objNotification.isReaded = true
                     objNotification.status = 1
@@ -184,7 +184,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     objNotification.isTurnOff = true
-                    itemView.context.showShortSuccessToast(activity.rText(R.string.ban_da_tat_thong_bao_cho_doi_tuong_nay))
+                    itemView.context.showShortSuccessToast(activity.getString(R.string.ban_da_tat_thong_bao_cho_doi_tuong_nay))
                 }
 
                 override fun onError(error: ICResponseCode?) {
@@ -210,7 +210,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     objNotification.isTurnOff = false
-                    itemView.context.showShortSuccessToast(activity.rText(R.string.ban_da_bat_thong_bao_cho_doi_tuong_nay))
+                    itemView.context.showShortSuccessToast(activity.getString(R.string.ban_da_bat_thong_bao_cho_doi_tuong_nay))
                 }
 
                 override fun onError(error: ICResponseCode?) {
@@ -237,7 +237,7 @@ class InteractiveHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(Layo
                     DialogHelper.closeLoading(activity)
 
                     listener?.onClick(null)
-                    itemView.context.showShortSuccessToast(activity.rText(R.string.xoa_thong_bao_thanh_cong))
+                    itemView.context.showShortSuccessToast(activity.getString(R.string.xoa_thong_bao_thanh_cong))
                 }
 
                 override fun onError(error: ICResponseCode?) {

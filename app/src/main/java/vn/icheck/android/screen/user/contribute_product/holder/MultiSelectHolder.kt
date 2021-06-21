@@ -16,6 +16,8 @@ import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemMultiSelectBinding
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.*
 
@@ -46,7 +48,7 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle.rText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            binding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

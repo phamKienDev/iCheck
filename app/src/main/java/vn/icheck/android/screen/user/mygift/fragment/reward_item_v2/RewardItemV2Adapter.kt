@@ -14,6 +14,8 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
@@ -149,7 +151,7 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
             itemView.tv_gift_state.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
             if (bindingAdapterPosition == 0 && obj.totalGifts != 0) {
                 itemView.tv_total_gifts.beVisible()
-                itemView.tv_total_gifts.rText(R.string.san_pham_qua_d, obj.totalGifts)
+                itemView.tv_total_gifts.setText(R.string.san_pham_qua_d, obj.totalGifts)
             } else {
                 itemView.tv_total_gifts.beGone()
             }
@@ -166,45 +168,45 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
             }
             when (obj.state) {
                 2 -> {
-                    itemView.tv_gift_state rText R.string.da_xac_nhan_giao_qua
+                    itemView.tv_gift_state.setText(R.string.da_xac_nhan_giao_qua)
                 }
                 3 -> {
-                    itemView.tv_gift_state rText R.string.ban_da_tu_choi_nhan_qua_nay
+                    itemView.tv_gift_state.setText(R.string.ban_da_tu_choi_nhan_qua_nay)
                 }
                 4 -> {
-                    itemView.tv_gift_state rText R.string.giao_qua_thanh_cong
+                    itemView.tv_gift_state.setText(R.string.giao_qua_thanh_cong)
                 }
                 else -> {
-                    itemView.tv_gift_state rText R.string.het_han
+                    itemView.tv_gift_state.setText(R.string.het_han)
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.Constant.getSecondTextCode}}>${itemView.context.rText(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.Constant.getSecondTextCode}}>${itemView.context.getString(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }
 
             when (obj.rewardType) {
                 "PRODUCT_SHIP" -> {
-                    itemView.tvState rText R.string.giao_tan_noi
+                    itemView.tvState.setText(R.string.giao_tan_noi)
                 }
                 "PRODUCT_IN_SHOP" -> {
-                    itemView.tvState rText R.string.nhan_tai_cua_hang
+                    itemView.tvState.setText(R.string.nhan_tai_cua_hang)
                 }
                 "CARD" -> {
-                    itemView.tvState rText R.string.qua_the_cao
+                    itemView.tvState.setText(R.string.qua_the_cao)
                 }
                 "LUCKY" -> {
-                    itemView.tvState rText R.string.qua_tinh_than
+                    itemView.tvState.setText(R.string.qua_tinh_than)
                 }
                 "CODE" -> {
-                    itemView.tvState rText R.string.ma_du_thuong
+                    itemView.tvState.setText(R.string.ma_du_thuong)
                 }
                 "VOUCHER" -> {
-                    itemView.tvState rText R.string.voucher
+                    itemView.tvState.setText(R.string.voucher)
                 }
                 else -> {
-                    itemView.tvState rText R.string.qua_hien_vat
+                    itemView.tvState.setText(R.string.qua_hien_vat)
                 }
             }
 

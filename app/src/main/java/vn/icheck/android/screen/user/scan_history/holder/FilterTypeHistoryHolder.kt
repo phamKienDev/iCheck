@@ -11,7 +11,6 @@ import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.screen.user.scan_history.adapter.FilterTypeAdapter
 import vn.icheck.android.screen.user.scan_history.adapter.ScanMenuHistoryAdapter
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
-import vn.icheck.android.util.ick.rText
 
 class FilterTypeHistoryHolder(parent: ViewGroup, val listener: IScanHistoryView) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_filter_type_history, parent, false)) {
 
@@ -37,12 +36,12 @@ class FilterTypeHistoryHolder(parent: ViewGroup, val listener: IScanHistoryView)
 
     private fun checkShowMore(isShow:Boolean) {
         if (isShow) {
-            itemView.tvMoreType rText R.string.thu_gon
+            itemView.tvMoreType.setText(R.string.thu_gon)
             itemView.tvMoreType.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up_gray, 0)
             adapter.showMore()
             ScanMenuHistoryAdapter.isShowType = true
         } else {
-            itemView.tvMoreType rText R.string.hien_thi_them
+            itemView.tvMoreType.setText(R.string.hien_thi_them)
             itemView.tvMoreType.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_gray_10dp, 0)
             adapter.hide()
             ScanMenuHistoryAdapter.isShowType = false

@@ -43,8 +43,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.viewmodel.UpdateInformationFirstViewModel
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
 import vn.icheck.android.util.ick.logError
-import vn.icheck.android.util.ick.rHintText
-import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -653,7 +651,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            showShortSuccess(rText(R.string.cap_nhat_thong_tin_thanh_cong))
+            showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         }
     }
 

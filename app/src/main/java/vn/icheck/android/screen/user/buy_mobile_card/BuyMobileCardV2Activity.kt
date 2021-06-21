@@ -39,7 +39,6 @@ import vn.icheck.android.screen.user.recharge_phone.adapter.MenhGiaTheAdapter
 import vn.icheck.android.screen.user.recharge_phone.adapter.NetworkAdapter
 import vn.icheck.android.screen.user.recharge_phone.viewmodel.RechargePhoneVIewModel
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.rText
 
 class BuyMobileCardV2Activity : BaseActivityMVVM() {
 
@@ -109,15 +108,15 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError rText R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })

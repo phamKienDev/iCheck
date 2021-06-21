@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_detail_gift_loyalty.*
 import kotlinx.android.synthetic.main.item_redemption_history.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
@@ -100,7 +99,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
             "PHONE_CARD" -> {
             }
             "RECEIVE_STORE" -> {
-                btnDoiQua rText R.string.huong_dan_doi_qua
+                btnDoiQua.setText(R.string.huong_dan_doi_qua)
             }
             "PRODUCT" -> {
                 layoutPhiVanChuyen.setVisible()
@@ -133,9 +132,9 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                             }
                         } else {
                             DialogHelperGame.dialogScanLoyaltyError(this@DetailGiftLoyaltyActivity,
-                                    R.drawable.ic_error_scan_game, rText(R.string.ban_khong_du_diem_doi_qua),
-                                    rText(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
-                                    null, rText(R.string.tich_diem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                    R.drawable.ic_error_scan_game, getString(R.string.ban_khong_du_diem_doi_qua),
+                                    getString(R.string.tich_cuc_tham_gia_cac_chuong_tring_cua_nhan_hang_de_nhan_diem_thanh_vien_nhé),
+                                    null, getString(R.string.tich_diem_ngay), false, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                     object : IClickButtonDialog<ICKNone> {
                                         override fun onClickButtonData(data: ICKNone?) {
                                             startActivity(Intent(this@DetailGiftLoyaltyActivity, CampaignOfBusinessActivity::class.java).apply {
@@ -159,10 +158,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                 if (SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_REDEEM_POINTS)) {
                                     DialogHelperGame.dialogNotEnoughPoints(
                                         this,
-                                        rText(R.string.ban_khong_du_diem_roi),
-                                        rText(R.string.nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe),
+                                        getString(R.string.ban_khong_du_diem_roi),
+                                        getString(R.string.nhap_ma_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe),
                                         R.drawable.ic_onboarding_nhap,
-                                        rText(R.string.nhap_ma_ngay),
+                                        getString(R.string.nhap_ma_ngay),
                                         true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                             object : IClickButtonDialog<ICKNone> {
                                                 override fun onClickButtonData(obj: ICKNone?) {
@@ -170,9 +169,9 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                                 Handler().postDelayed({
                                                     DialogHelperGame.dialogEnterThePrizeCode(this@DetailGiftLoyaltyActivity,
                                                             R.drawable.ic_nhap_ma_cong_diem,
-                                                            rText(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
-                                                            rText(R.string.nhap_ma_vao_day_i),
-                                                            rText(R.string.vui_long_nhap_ma_code), campaignID, R.drawable.bg_gradient_button_orange_yellow,
+                                                            getString(R.string.nhap_ma_duoc_dan_tren_dan_pham_de_nhan_diem_tich_luy_doi_qua),
+                                                            getString(R.string.nhap_ma_vao_day_i),
+                                                            getString(R.string.vui_long_nhap_ma_code), campaignID, R.drawable.bg_gradient_button_orange_yellow,
                                                             object : IClickButtonDialog<ICKAccumulatePoint> {
                                                                 override fun onClickButtonData(obj: ICKAccumulatePoint?) {
 
@@ -204,8 +203,8 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                                             }
                                         })
                             } else {
-                                DialogHelperGame.dialogNotEnoughPoints(this, rText(R.string.ban_khong_du_diem_roi),
-                                        rText(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, rText(R.string.quet_tem_ngay), true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
+                                DialogHelperGame.dialogNotEnoughPoints(this, getString(R.string.ban_khong_du_diem_roi),
+                                        getString(R.string.quet_tem_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_diem_tich_luy_doi_qua_nhe), R.drawable.ic_onboarding_scan, getString(R.string.quet_tem_ngay), true, R.drawable.bg_button_not_enough_point, R.color.orange_red,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
                                                 LoyaltySdk.openActivity("scan?typeLoyalty=accumulate_point&campaignId=$campaignID")
@@ -398,7 +397,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                 tvDateTime.text = obj.dateChange
 
-                if (obj.statusChange?.contains(rText(R.string.het_luot_su_dung)) == true) {
+                if (obj.statusChange?.contains(getString(R.string.het_luot_su_dung)) == true) {
                     tvTitleDate.setInvisible()
                     tvDateTime.setInvisible()
                 } else {
@@ -418,7 +417,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                 btnDoiQua.apply {
                     when {
                         obj.voucher?.can_use == true -> {
-                            text = context.rText(R.string.dung_ngay)
+                            text = context.getString(R.string.dung_ngay)
 
                             setOnClickListener {
                                 startActivity(Intent(this@DetailGiftLoyaltyActivity, VoucherLoyaltyActivity::class.java).apply {
@@ -429,10 +428,10 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                             }
                         }
                         obj.voucher?.can_mark_use == true -> {
-                            text = context.rText(R.string.danh_dau_da_dung)
+                            text = context.getString(R.string.danh_dau_da_dung)
 
                             setOnClickListener {
-                                showCustomErrorToast(this@DetailGiftLoyaltyActivity, context.rText(R.string.chua_co_su_kien))
+                                showCustomErrorToast(this@DetailGiftLoyaltyActivity, context.getString(R.string.chua_co_su_kien))
                             }
                         }
                         else -> {
@@ -452,29 +451,29 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         tvVanChuyen.text = when (obj.gift?.type) {
             "ICOIN" -> {
-                rText(R.string.qua_xu_icheck)
+                getString(R.string.qua_xu_icheck)
             }
             "PHONE_CARD" -> {
-                rText(R.string.qua_the_cao)
+                getString(R.string.qua_the_cao)
             }
             "RECEIVE_STORE" -> {
-                rText(R.string.qua_doi_tai_cua_hang)
+                getString(R.string.qua_doi_tai_cua_hang)
             }
             "PRODUCT" -> {
-                rText(R.string.qua_giao_tan_noi)
+                getString(R.string.qua_giao_tan_noi)
             }
             "VOUCHER" -> {
-                rText(R.string.qua_voucher)
+                getString(R.string.qua_voucher)
             }
             else -> {
-                rText(R.string.qua_tinh_than)
+                getString(R.string.qua_tinh_than)
             }
         }
 
         tvProduct.text = if (!obj.gift?.name.isNullOrEmpty()) {
             obj.gift?.name
         } else {
-            rText(R.string.dang_cap_nhat)
+            getString(R.string.dang_cap_nhat)
         }
 
         tvCountGift.text = "${SharedLoyaltyHelper(this@DetailGiftLoyaltyActivity).getLong(ConstantsLoyalty.COUNT_GIFT)} Quà"
@@ -482,7 +481,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         tvPoin.text = if (obj.points != null || obj.box_gift?.points != null) {
             TextHelper.formatMoneyPhay(obj.points ?: obj.box_gift?.points)
         } else {
-            rText(R.string.dang_cap_nhat)
+            getString(R.string.dang_cap_nhat)
         }
 
         tvDetailGift.settings.javaScriptEnabled = true

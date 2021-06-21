@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_shop.view.*
 import org.greenrobot.eventbus.EventBus
-import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.helper.SizeHelper
@@ -43,25 +43,25 @@ class GiftShopAdapter(val listData:List<LoyaltyGiftItem>): PagingDataAdapter<Loy
         getItem(position)?.let {data ->
             WidgetHelper.loadImageUrlRounded(holder.view.img_product, data.gift?.image?.small.toString(), SizeHelper.size4)
             holder.view.tv_product_name.text = data.gift?.name
-            holder.view.tv_quantity.rText(R.string.con_lai_s, TextHelper.formatMoneyPhay(data.quantityRemain))
+            holder.view.tv_quantity.setText(R.string.con_lai_s, TextHelper.formatMoneyPhay(data.quantityRemain))
             holder.view.tv_gift_type.apply {
                 text = when (data.gift?.type?.toLowerCase(Locale.ROOT)){
                     "ICOIN".toLowerCase(Locale.ROOT) -> {
-                        context.rText(R.string.qua_xu)
+                        context.getString(R.string.qua_xu)
                     }
                     "PHONE_CARD".toLowerCase(Locale.ROOT) -> {
-                        context.rText(R.string.qua_the_cao)
+                        context.getString(R.string.qua_the_cao)
                     }
                     "RECEIVE_STORE".toLowerCase(Locale.ROOT) -> {
-                        context.rText(R.string.qua_nhan_tai_cua_hang)
+                        context.getString(R.string.qua_nhan_tai_cua_hang)
                     }
                     "PRODUCT".toLowerCase(Locale.ROOT) -> {
-                        context.rText(R.string.qua_hien_vat)
+                        context.getString(R.string.qua_hien_vat)
                     }
                     "VOUCHER".toLowerCase(Locale.ROOT) -> {
-                        context.rText(R.string.voucher)
+                        context.getString(R.string.voucher)
                     }
-                    else -> context.rText(R.string.qua_tinh_than)
+                    else -> context.getString(R.string.qua_tinh_than)
                 }
             }
             holder.view.tv_business_name.text = data.pointName

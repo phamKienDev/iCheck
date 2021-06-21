@@ -17,7 +17,6 @@ import vn.icheck.android.network.models.detail_stamp_v6.ICStoreStampV6
 import vn.icheck.android.screen.user.detail_stamp_v6.select_store_stamp_v6.adapter.StoreStampV6Adapter
 import vn.icheck.android.screen.user.detail_stamp_v6.select_store_stamp_v6.presenter.SelectStoreStampV6Presenter
 import vn.icheck.android.screen.user.detail_stamp_v6.select_store_stamp_v6.view.ISelectStoreStampV6View
-import vn.icheck.android.util.ick.rText
 
 class SelectStoreStampV6Activity : BaseActivityMVVM(), ISelectStoreStampV6View {
 
@@ -44,7 +43,7 @@ class SelectStoreStampV6Activity : BaseActivityMVVM(), ISelectStoreStampV6View {
     }
 
     private fun listener() {
-        txtTitle rText R.string.chon_diem_ban
+        txtTitle.setText(R.string.chon_diem_ban)
 
         imgBack.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)

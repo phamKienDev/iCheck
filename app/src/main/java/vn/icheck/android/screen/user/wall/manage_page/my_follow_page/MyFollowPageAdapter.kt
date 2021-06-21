@@ -3,9 +3,7 @@ package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_city.view.*
 import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -22,8 +20,6 @@ import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.logDebug
-import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -78,7 +74,7 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
             itemView.tvCountFollow.apply {
                 text = if (obj.followCount ?: 0 > 0) {
-                    context.rText(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount))
+                    context.getString(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount))
                 } else {
                     itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
                 }

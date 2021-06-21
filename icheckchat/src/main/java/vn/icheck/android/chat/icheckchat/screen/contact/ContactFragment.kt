@@ -9,7 +9,6 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
@@ -21,11 +20,12 @@ import vn.icheck.android.chat.icheckchat.databinding.FragmentContactBinding
 import vn.icheck.android.chat.icheckchat.dialog.ConfirmContactDialog
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
-import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import java.util.*
 
 class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
@@ -106,7 +106,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 syncContact()
             } else {
-                requireContext().showToastError( rText(R.string.ban_chua_dang_nhap_vui_long_dang_nhap))
+                requireContext().showToastError(vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_dang_nhap_vui_long_dang_nhap))
             }
         }, {
             getSystemSetting()
@@ -180,7 +180,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
 
                             if (clickGetData) {
-                                requireContext().showToastSuccess(rText(R.string.dong_bo_danh_ba_thanh_cong))
+                                requireContext().showToastSuccess(vn.icheck.android.ichecklibs.util.getString(R.string.dong_bo_danh_ba_thanh_cong))
                             }
                         } else {
                             binding.recyclerView.setGone()
@@ -202,7 +202,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (PermissionHelper.checkResult(grantResults)) {
                 showDialog()
             } else {
-                requireContext().showToastError(rText(R.string.ban_chua_cap_du_quyen))
+                requireContext().showToastError(vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_cap_du_quyen))
             }
         }
     }

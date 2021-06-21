@@ -1,7 +1,8 @@
 package vn.icheck.android.network.models
 
 import com.google.gson.annotations.Expose
-import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.R
 import java.io.Serializable
 import kotlin.Any
@@ -33,7 +34,7 @@ data class ICCustomer(
             return if (n.trim().isNotEmpty()) {
                 n
             } else {
-                RStringUtils.rText(R.string.chua_cap_nhat)
+                getString(R.string.chua_cap_nhat)
             }
         }
 }

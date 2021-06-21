@@ -47,7 +47,7 @@ import vn.icheck.android.screen.user.recharge_phone.adapter.MenhGiaTheAdapter
 import vn.icheck.android.screen.user.recharge_phone.adapter.NetworkAdapter
 import vn.icheck.android.screen.user.recharge_phone.viewmodel.RechargePhoneVIewModel
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 
 class RechargePhoneActivity : BaseActivityMVVM() {
 
@@ -125,15 +125,15 @@ class RechargePhoneActivity : BaseActivityMVVM() {
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError rText R.string.khong_the_truy_cap_vui_long_thu_lai_sau
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError rText R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })
@@ -184,7 +184,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 }
                 listBuyTopup[position].select = true
                 nhaMangAdapter.notifyDataSetChanged()
-                tvPrice.rText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
             }
         })
     }
@@ -204,7 +204,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 value = listMenhGia[position].menhGia
                 listMenhGia[position].select = true
                 menhGiaAdapter.notifyDataSetChanged()
-                tvPrice.rText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[position].menhGia.toLong()))
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[position].menhGia.toLong()))
             }
         })
     }
@@ -329,7 +329,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 }
                 listMenhGia[0].select = true
                 value = listMenhGia[0].menhGia
-                tvPrice.rText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
             }
             menhGiaAdapter.notifyDataSetChanged()
         } catch (e: Exception) {
@@ -342,7 +342,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
         when (event.type) {
             ICMessageEvent.Type.REFRESH_DATA -> {
                 edtPhone.setText("")
-                tvPrice rText R.string.zero_d
+                tvPrice.setText(R.string.zero_d)
                 selectNetWork(0)
             }
         }

@@ -15,7 +15,7 @@ import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.history_loaded_topup.view.IHistoryLoadedTopupView
-import vn.icheck.android.util.ick.rText
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -140,13 +140,13 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
             itemView.layoutImg.background= ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
-            itemView.tvNameNetwork.rText(R.string.nap_the_s, item.provider)
+            itemView.tvNameNetwork.setText(R.string.nap_the_s, item.provider)
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {
                     itemView.tvPrice.text = TextHelper.formatMoneyPhay((item.denomination as String).toLong()) + "đ"
                 } else {
-                    itemView.tvPrice.text = itemView.context.getString(R.string.dang_cap_nhat)
+                    itemView.tvPrice.setText(R.string.dang_cap_nhat)
                 }
             }
 
@@ -154,7 +154,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
                 val phone = getPhoneOnly(item.phone)
                 itemView.tvPhoneNumber.text = Constant.formatPhone(phone)
             } else {
-                itemView.tvPhoneNumber.text = itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvPhoneNumber.setText(R.string.dang_cap_nhat)
             }
 
             itemView.tvDate.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(item.createdAt)
@@ -174,7 +174,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
                     phone
                 }
             } else {
-                itemView.context.rText(R.string.dang_cap_nhat)
+                itemView.context.getString(R.string.dang_cap_nhat)
             }
         }
     }
@@ -190,17 +190,17 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage rText R.string.ban_chua_nap_ma_the_nao
+                    itemView.txtMessage.setText(R.string.ban_chua_nap_ma_the_nao)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
+                    itemView.txtMessage.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         }

@@ -21,7 +21,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.model.ICNameId
-import vn.icheck.android.util.ick.rText
 
 class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
@@ -72,10 +71,10 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     private fun initView() {
         val list = mutableListOf<ICNameId>()
-        list.add(ICNameId(1, rText(R.string.toi_khong_hai_long_voi_gia_tri_phan_qua)))
-        list.add(ICNameId(2, rText(R.string.phi_ship_qua_cao)))
-        list.add(ICNameId(3, rText(R.string.phan_qua_khong_ro_nguon_goc)))
-        list.add(ICNameId(4, rText(R.string.khac)))
+        list.add(ICNameId(1, getString(R.string.toi_khong_hai_long_voi_gia_tri_phan_qua)))
+        list.add(ICNameId(2, getString(R.string.phi_ship_qua_cao)))
+        list.add(ICNameId(3, getString(R.string.phan_qua_khong_ro_nguon_goc)))
+        list.add(ICNameId(4, getString(R.string.khac)))
 
         for (i in list) {
             layoutCheckbox.addView(CheckBox(context).also { radioButton ->
@@ -136,7 +135,7 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
         if (!inputReason.text?.trim().isNullOrEmpty()) {
             listMessage.add(inputReason.text.toString())
             val id = listMessage.indexOfFirst {
-                it == rText(R.string.khac)
+                it == getString(R.string.khac)
             }
             listMessage.removeAt(id)
         }
