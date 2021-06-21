@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
 import vn.icheck.android.ichecklibs.Constant
@@ -38,18 +39,18 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
         ickLoginViewModel.registerType = args.loginType
         when (args.loginType) {
             LOGIN_OTP -> {
-                binding.textView22.text = "Đăng nhập bằng số điện thoại"
-                binding.textView25.text = "Số điện thoại của bạn được sử dụng để đăng nhập tài khoản iCheck"
+                binding.textView22 rText R.string.dang_nhap_bang_so_dien_thoai
+                binding.textView25 rText R.string.so_dien_thoai_cua_ban_duoc_su_dung_de_dang_nhap_tai_khoan_icheck
                 binding.btnBack.visibility = View.VISIBLE
             }
             FORGOT_PW -> {
-                binding.textView22.text = "Số điện thoại đặt lại mật khẩu"
-                binding.textView25.text = "Vui lòng nhập số điện thoại của bạn để đặt lại mật khẩu tài khoản iCheck"
+                binding.textView22 rText R.string.so_dien_thoai_dat_lai_mat_khau
+                binding.textView25 rText R.string.vui_long_nhap_so_dien_thoai_cua_ban_de_dat_lai_mat_khau_tai_khoan_icheck
                 binding.btnBack.visibility = View.VISIBLE
             }
             REGISTER -> {
                 TrackingAllHelper.trackSignupStart()
-                binding.textView22.text = "Đăng ký tài khoản"
+                binding.textView22 rText R.string.dang_ky_tai_khoan
 //                binding.textView25.text = "Vui lòng nhập số điện thoại của bạn để đăng ký tài khoản iCheck"
                 binding.btnBack.visibility = View.INVISIBLE
                 binding.edtPassword.visibility = View.VISIBLE
@@ -88,12 +89,16 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             val phone = if (binding.edtPhone.text?.length == 9) "0${binding.edtPhone.text}" else binding.edtPhone.text
             when {
                 phone.toString().trim().isEmpty() -> {
-                    binding.edtPhone.setError("Vui lòng nhập dữ liệu!")
-                    binding.edtPhone.requestFocus()
+                    binding.edtPhone.apply {
+                        error = context rText R.string.vui_long_nhap_du_lieu
+                        requestFocus()
+                    }
                 }
                 !phone.toString().isPhoneNumber() -> {
-                    binding.edtPhone.setError("Số điện thoại không đúng định dạng")
-                    binding.edtPhone.requestFocus()
+                    binding.edtPhone.apply {
+                        error = context rText R.string.so_dien_thoai_khong_dung_dinh_dang
+                        requestFocus()
+                    }
                 }
 
                 phone.toString().isPhoneNumber() -> {
@@ -128,7 +133,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                             )
                                     findNavController().navigate(action)
                                 } else if (it?.statusCode == "U3018") {
-                                    requireContext().showShortErrorToast("Đã tồn tại yêu cầu thay đổi mật khẩu")
+                                    requireContext().showShortErrorToast(rText(R.string.da_ton_tai_yeu_cau_thay_doi_mat_khau))
                                 } else {
                                     it?.message?.let { msg ->
                                         requireContext().showShortErrorToast(msg)
@@ -139,20 +144,28 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                         REGISTER -> {
                             when {
                                 binding.edtPassword.text?.trim().isNullOrEmpty() -> {
-                                    binding.edtPassword.setError("Bạn chưa nhập mật khẩu")
-                                    binding.edtPassword.requestFocus()
+                                    binding.edtPassword.apply {
+                                        error = context rText R.string.ban_chua_nhap_mat_khau
+                                        requestFocus()
+                                    }
                                 }
                                 binding.edtPassword.text?.length ?: 0 < 6 -> {
-                                    binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
-                                    binding.edtPassword.requestFocus()
+                                    binding.edtPassword.apply {
+                                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                                        requestFocus()
+                                    }
                                 }
                                 binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
-                                    binding.edtRePassword.setError("Vui lòng nhập dữ liệu")
-                                    binding.edtRePassword.requestFocus()
+                                    binding.edtRePassword.apply {
+                                        error = context rText R.string.vui_long_nhap_du_lieu
+                                        requestFocus()
+                                    }
                                 }
                                 binding.edtRePassword.text?.length ?: 0 < 6 -> {
-                                    binding.edtRePassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
-                                    binding.edtRePassword.requestFocus()
+                                    binding.edtRePassword.apply {
+                                        error = context rText R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu
+                                        requestFocus()
+                                    }
                                 }
                                 else -> {
                                     if (binding.edtPassword.text.toString() == binding.edtRePassword.text.toString()) {
@@ -175,10 +188,11 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                     } else {
 //                        showError("Xác nhận mật khẩu không trùng khớp")
                                         dismissLoadingScreen()
-                                        binding.edtRePassword.requestFocus()
-                                        binding.edtRePassword.setSelection(binding.edtRePassword.text?.length
-                                                ?: 0)
-                                        binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
+                                        binding.edtRePassword.apply {
+                                            requestFocus()
+                                            setSelection(binding.edtRePassword.text?.length ?: 0)
+                                            error = context rText R.string.xac_nhan_mat_khau_khong_trung_khop
+                                        }
                                         requireActivity().forceShowKeyboard()
                                     }
                                 }

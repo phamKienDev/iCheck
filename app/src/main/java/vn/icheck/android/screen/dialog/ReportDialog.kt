@@ -30,6 +30,7 @@ import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.util.ick.rText
 
 class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = null, val inputHint: Int? = null) : BaseBottomSheetDialogFragment() {
 
@@ -178,16 +179,28 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
 
 
         if (isSelected) {
-            DialogHelper.showConfirm(dialog?.context, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
-                override fun onDisagree() {
+            dialog?.context.apply {
+                DialogHelper.showConfirm(
+                    this,
+                    rText(R.string.ban_muon_bo_bao_cao_nay),
+                    null,
+                    rText(R.string.tiep_tuc_bao_cao),
+                    rText(R.string.bo_bao_cao),
+                    true,
+                    null,
+                    R.color.colorAccentRed,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                }
+                        }
 
-                override fun onAgree() {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
-                    dismiss()
-                }
-            })
+                        override fun onAgree() {
+                            EventBus.getDefault()
+                                .post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
+                            dismiss()
+                        }
+                    })
+            }
         } else {
             dismiss()
         }
@@ -214,7 +227,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
                 listData[i].name?.let {
-                    if (it != "Khác" && it != "Lý do khác")
+                    if ((it != "Khác" && it != "Lý do khác")||(it != rText(R.string.khac) && it != rText(R.string.ly_do_khac)))
                         listMessage.add(it)
                 }
             }
@@ -224,7 +237,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
         var input = inputReason.text.toString().trim()
 
         if (listReason.isEmpty() && (!inputReason.isVisible || input.isEmpty())) {
-            DialogHelper.showDialogErrorBlack(requireContext(), resources.getString(R.string.vui_long_chon_it_nhat_1_ly_do), null, 2000)
+            DialogHelper.showDialogErrorBlack(requireContext(), resources.getString(R.string.vui_long_chon_it_nhat_mot_ly_do), null, 2000)
         } else {
             if (inputReason.isVisible && input.isEmpty()) {
                 input = requireContext().getString(R.string.khac)

@@ -29,6 +29,7 @@ import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.holder.secondfunction.HomeSecondaryFunctionAdapter
+import vn.icheck.android.util.ick.rText
 
 class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHomePageView,
                          val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<Any?>>(binding.root) {
@@ -192,7 +193,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
                 binding.tvName.apply {
                     text = if (user != null && SessionManager.isUserLogged) {
-                        if (user.getName == "Chưa cập nhật") {
+                        if (user.getName == context.rText(R.string.chua_cap_nhat)) {
                             user.getPhoneOnly()
                         } else {
                             user.getName
@@ -276,7 +277,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     TextHelper.formatMoney(obj.avlBalance
                             ?: "").replace("[0-9]".toRegex(), "*") + "**"
                 } else {
-                    TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
+                    binding.tvMoney.context.rText(R.string.s_space_d, TextHelper.formatMoney(obj.avlBalance ?: ""))
                 }
             }
         }

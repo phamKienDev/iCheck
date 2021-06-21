@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import vn.icheck.android.BuildConfig
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityAppInfoBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
@@ -18,7 +19,7 @@ class AppInfoActivity : BaseActivityMVVM() {
         binding = ActivityAppInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.header.txtTitle simpleText "Thông tin ứng dụng"
+        binding.header.txtTitle rText R.string.thong_tin_ung_dung
         binding.header.imgBack.setOnClickListener {
             finish()
         }

@@ -6,6 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICNetworkClient
 import vn.icheck.android.loyalty.screen.loyalty_customers.history.datasource.TransactionHistoryFilterDataSource
@@ -17,7 +19,7 @@ class GiftShopViewModel : ViewModel() {
 
     var calendar = Calendar.getInstance()
     var checked = MutableLiveData<Boolean>()
-    val arrFilter = arrayListOf<String>("Tất cả")
+    val arrFilter = arrayListOf<String>(rText(R.string.tat_ca))
     val icNetworkAPI = ICNetworkClient.getApiClientLoyalty()
     var userId: Long = 0L
     val arrayGiftShop = arrayListOf<LoyaltyGiftItem>()
@@ -33,7 +35,7 @@ class GiftShopViewModel : ViewModel() {
 
     fun resetFilter() {
         arrFilter.clear()
-        arrFilter.add("Tất cả")
+        arrFilter.add(rText(R.string.tat_ca))
     }
 
     fun setOnlyFilter(filter: String) {

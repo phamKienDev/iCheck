@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Danh mục"
+            android:text="@string/danh_muc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
-            android:text="Xong"
+            android:text="@string/xong"
             app:layout_constraintBottom_toTopOf="@+id/view9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +57,7 @@
             android:drawableLeft="@drawable/ic_search_gray_24dp"
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
-            android:hint="Tìm kiếm"
+            android:hint="@string/tim_kiem"
             android:padding="@dimen/size_6"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"

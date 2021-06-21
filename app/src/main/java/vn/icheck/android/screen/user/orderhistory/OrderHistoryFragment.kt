@@ -14,6 +14,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICOrderHistoryV2
 import vn.icheck.android.screen.user.orderhistory.adapter.OrderHistoryAdapter
+import vn.icheck.android.util.ick.rText
 
 /**
  * Created by VuLCL on 1/4/2020.
@@ -78,7 +79,7 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             if (!it.isNullOrEmpty()) {
                 adapter.setListData(it)
             } else {
-                adapter.setError(R.drawable.ic_group_120dp, "Bạn chưa có đơn hàng nào!", -1)
+                adapter.setError(R.drawable.ic_group_120dp, rText(R.string.ban_chua_co_don_hang_nao), -1)
             }
         })
 

@@ -6,6 +6,9 @@ import android.graphics.Canvas
 import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -128,12 +131,12 @@ object CampaignLoyaltyHelper {
 
     fun checkCodeLoyalty(activity: FragmentActivity, data: ICKLoyalty, code: String, barcode: String, listener: IRemoveHolderInputLoyaltyListener?, callback: ILoginListener) {
         if (code.isEmpty()) {
-            showCustomErrorToast(activity, "Mã dự thưởng không được để trống\nVui lòng kiểm tra lại")
+            showCustomErrorToast(activity, activity.rText(R.string.ma_du_thuong_khong_duoc_de_trong_vui_long_kiem_tra_lai))
             return
         }
 
         if (NetworkHelper.isNotConnected(activity)) {
-            ToastHelper.showLongError(activity, activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastHelper.showLongError(activity, activity.rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -182,23 +185,23 @@ object CampaignLoyaltyHelper {
                         "INVALID_CUSTOMER" -> {
                             listener?.onRemoveHolderInput()
                             DialogHelperGame.dialogCustomerError(activity,
-                                    R.drawable.ic_error_scan_game,
-                                    "Bạn không thuộc danh sách\ntham gia chương trình",
-                                    "Liên hệ với Doanh nghiệp để biết thêm " +
-                                            "chi tiết", object : IClickButtonDialog<ICKNone> {
-                                override fun onClickButtonData(obj: ICKNone?) {
+                                R.drawable.ic_error_scan_game,
+                                activity.rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh),
+                                activity.rText(R.string.lien_he_voi_doanh_nghiep_de_biet_them_chi_tiet),
+                                object : IClickButtonDialog<ICKNone> {
+                                    override fun onClickButtonData(obj: ICKNone?) {
 
-                                }
-                            })
+                                    }
+                                })
                         }
                         "USED_CODE" -> {
                             listener?.onRemoveHolderInput()
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                         else -> {
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                     }
                 } else {
@@ -235,7 +238,7 @@ object CampaignLoyaltyHelper {
 
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
-                        ?: "Mã $code không hợp lệ")
+                        ?: activity.rText(R.string.ma_s_khong_hop_le, code))
             }
         })
     }
@@ -250,22 +253,23 @@ object CampaignLoyaltyHelper {
                         "INVALID_CUSTOMER" -> {
                             listener?.onRemoveHolderInput()
                             DialogHelperGame.dialogCustomerError(activity,
-                                    R.drawable.ic_error_scan_game,
-                                    "Bạn không thuộc danh sách\ntham gia chương trình",
-                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
-                                override fun onClickButtonData(obj: ICKNone?) {
+                                R.drawable.ic_error_scan_game,
+                                activity.rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh),
+                                activity.rText(R.string.lien_he_voi_doanh_nghiep_de_biet_them_chi_tiet),
+                                object : IClickButtonDialog<ICKNone> {
+                                    override fun onClickButtonData(obj: ICKNone?) {
 
-                                }
-                            })
+                                    }
+                                })
                         }
                         "USED_CODE" -> {
                             listener?.onRemoveHolderInput()
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                         else -> {
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                     }
                 } else {
@@ -294,14 +298,14 @@ object CampaignLoyaltyHelper {
                             override fun onDismiss() {
 
                             }
-                        }, "Đổi quà bằng điểm tích lũy ngay để\nnhận những phần quà cực hấp dẫn!")
+                        }, activity.rText(R.string.doi_qua_bang_diem_tich_luy_ngay_de_nhan_nhung_phan_qua_cuc_hap_dan))
                     }, 300)
                 }
             }
 
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
-                        ?: "Mã $code không hợp lệ")
+                        ?: activity.rText(R.string.ma_s_khong_hop_le, code))
             }
         })
     }
@@ -324,22 +328,23 @@ object CampaignLoyaltyHelper {
                         "USED_CODE" -> {
                             listener?.onRemoveHolderInput()
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                         "INVALID_CUSTOMER" -> {
                             listener?.onRemoveHolderInput()
                             DialogHelperGame.dialogCustomerError(activity,
-                                    R.drawable.ic_error_scan_game,
-                                    "Bạn không thuộc danh sách\ntham gia chương trình",
-                                    "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
-                                override fun onClickButtonData(obj: ICKNone?) {
+                                R.drawable.ic_error_scan_game,
+                                activity.rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh),
+                                activity.rText(R.string.lien_he_voi_doanh_nghiep_de_biet_them_chi_tiet),
+                                object : IClickButtonDialog<ICKNone> {
+                                    override fun onClickButtonData(obj: ICKNone?) {
 
-                                }
-                            })
+                                    }
+                                })
                         }
                         else -> {
                             showCustomErrorToast(activity, obj.data?.message
-                                    ?: "Mã $code không hợp lệ")
+                                    ?: activity.rText(R.string.ma_s_khong_hop_le, code))
                         }
                     }
                 } else {
@@ -376,12 +381,12 @@ object CampaignLoyaltyHelper {
                 }
             } else {
                 showCustomErrorToast(activity, obj.data?.message
-                        ?: "Mã $code không hợp lệ")
+                        ?: activity.rText(R.string.ma_s_khong_hop_le, code))
             }
 
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
-                        ?: "Mã không hợp lệ")
+                        ?: activity.rText(R.string.ma_khong_hop_le))
             }
         })
     }
@@ -412,22 +417,23 @@ object CampaignLoyaltyHelper {
                                 listener?.onRemoveHolderInput()
 
                                 DialogHelperGame.dialogCustomerError(activity,
-                                        R.drawable.ic_error_scan_game,
-                                        "Bạn không thuộc danh sách\ntham gia chương trình",
-                                        "Liên hệ với Doanh nghiệp để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
-                                    override fun onClickButtonData(obj: ICKNone?) {
+                                    R.drawable.ic_error_scan_game,
+                                    activity.rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh),
+                                    activity.rText(R.string.lien_he_voi_doanh_nghiep_de_biet_them_chi_tiet),
+                                    object : IClickButtonDialog<ICKNone> {
+                                        override fun onClickButtonData(obj: ICKNone?) {
 
-                                    }
-                                })
+                                        }
+                                    })
                             }
                             else -> {
                                 showCustomErrorToast(activity, obj.data?.message
-                                        ?: "Mã ${code ?: target} không hợp lệ!")
+                                        ?: activity.rText(R.string.ma_s_khong_hop_le, code ?: target))
                             }
                         }
                     } else {
                         showCustomErrorToast(activity, obj.data?.message
-                                ?: "Mã ${code ?: target} không hợp lệ!")
+                                ?: activity.rText(R.string.ma_s_khong_hop_le, code ?: target))
                     }
                 } else {
                     listener?.onRemoveHolderInput()
@@ -435,7 +441,7 @@ object CampaignLoyaltyHelper {
                     SharedLoyaltyHelper(activity).putBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM, obj.data?.campaign?.hasChanceCode
                             ?: false)
 
-                    object : DialogSuccessScanGame(activity, "Bạn có thêm ${obj.data?.play ?: 0} lượt quay", data.name
+                    object : DialogSuccessScanGame(activity, activity.rText(R.string.ban_co_them_d_luot_quay, obj.data?.play ?: 0), data.name
                             ?: obj.data?.campaign?.name ?: "", data.owner?.name
                             ?: "", data.owner?.logo?.thumbnail ?: "") {
                         override fun onDone() {
@@ -463,7 +469,7 @@ object CampaignLoyaltyHelper {
                                 })
 
                             } else {
-                                ToastHelper.showLongError(activity, ApplicationHelper.getApplicationByReflect().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                ToastHelper.showLongError(activity, activity.rText(R.string.co_loi_xay_ra_vui_long_thu_lai))
                             }
                         }
 
@@ -476,7 +482,7 @@ object CampaignLoyaltyHelper {
 
             override fun onError(error: ICKBaseResponse?) {
                 showCustomErrorToast(activity, error?.message
-                        ?: "Mã $code không hợp lệ")
+                        ?: activity.rText(R.string.ma_s_khong_hop_le, code))
             }
         })
     }

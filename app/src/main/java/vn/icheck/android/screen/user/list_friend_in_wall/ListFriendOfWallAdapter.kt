@@ -14,6 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.models.wall.ICUserFollowWall
+import vn.icheck.android.util.ick.rText
 
 class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -269,7 +270,7 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                     val layoutParams = ViewHelper.createLayoutParams()
                     layoutParams.setMargins(SizeHelper.size67, SizeHelper.size6, SizeHelper.size67, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
-                    itemView.txtMessage2.text = "Kết bạn bốn phương để cùng thảo luận về sản phẩm chính hãng nhé"
+                    itemView.txtMessage2 rText R.string.ket_ban_bon_phuong_de_cung_thao_luan_ve_san_pham_chinh_hang
                 }
 
                 Constant.ERROR_SERVER -> {

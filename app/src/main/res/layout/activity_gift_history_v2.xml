@@ -50,7 +50,7 @@
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="Bạn chưa nhận được quà nào!"
+                    android:text="@string/ban_chua_nhan_duoc_qua_nao"
                     android:textSize="@dimen/font_14" />
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
@@ -60,7 +60,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Thực hiện các thử thách để nhận lượt\nmở quà tương ứng nhé"
+                    android:text="@string/thuc_hien_cac_thu_thach_de_nhan_luot_n_mo_qua_tuong_ung_nhe"
                     android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView

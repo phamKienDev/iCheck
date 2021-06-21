@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Cửa hàng quà tặng"
+            android:text="@string/cua_hang_qua_tang"
             android:textColor="@color/colorSecondary"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
@@ -51,7 +51,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
-        android:text="Bộ lọc"
+        android:text="@string/bo_loc"
         android:textColor="@color/darkGray1"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
         android:background="@android:color/white"
         android:fontFamily="@font/roboto_medium"
         android:padding="10dp"
-        android:text="Cửa hàng quà tặng"
+        android:text="@string/cua_hang_qua_tang"
         android:textColor="#0064B1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Bộ lọc"
+                android:text="@string/bo_loc"
                 android:textColor="@color/colorSecondary"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_clear"
@@ -155,7 +155,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="Xong"
+                android:text="@string/xong"
                 android:textColor="#49AA2D"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,7 +179,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:text="Loại quà"
+                android:text="@string/loai_qua"
                 android:textColor="@color/darkGray1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -207,8 +207,9 @@
                     android:button="@drawable/radio_button_cancel_order_detail"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà hiện vật"
-                    android:textColor="#757575" />
+                    android:text="@string/qua_hien_vat"
+                    android:textColor="#757575"
+                    tools:ignore="RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/not_ship_gift"
@@ -219,7 +220,7 @@
                     android:checked="false"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà nhận tại cửa hàng"
+                    android:text="@string/qua_nhan_tai_cua_hang"
                     android:textColor="#757575" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -230,7 +231,7 @@
                     android:button="@drawable/radio_button_cancel_order_detail"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà xu"
+                    android:text="@string/qua_xu"
                     android:textColor="#757575" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -241,7 +242,7 @@
                     android:button="@drawable/radio_button_cancel_order_detail"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà thẻ cào"
+                    android:text="@string/qua_the_cao"
                     android:textColor="#757575" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -252,7 +253,7 @@
                     android:button="@drawable/radio_button_cancel_order_detail"
                     android:paddingStart="8dp"
                     android:paddingLeft="8dp"
-                    android:text="Quà voucher"
+                    android:text="@string/qua_voucher"
                     android:textColor="#757575" />
             </LinearLayout>
 
@@ -266,7 +267,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_dark_gray_corner_18"
                 android:padding="8dp"
-                android:text="Thiết lập lại"
+                android:text="@string/thiet_lap_lai"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

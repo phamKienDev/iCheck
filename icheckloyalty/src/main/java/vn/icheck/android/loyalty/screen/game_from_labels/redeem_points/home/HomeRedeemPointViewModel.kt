@@ -31,8 +31,9 @@ class HomeRedeemPointViewModel : BaseViewModel<ICKBoxGifts>() {
                     SharedLoyaltyHelper(ApplicationHelper.getApplicationByReflect()).putLong(ConstantsLoyalty.POINT_USER_LOYALTY, obj.data?.points
                             ?: 0)
                 }
-
-                onOverView.postValue(obj.data)
+                obj.data?.let {
+                    onOverView.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {

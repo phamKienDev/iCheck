@@ -3,6 +3,7 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.home.hol
 import android.content.Intent
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_product_redeem_point.view.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -31,12 +32,12 @@ class ProductHomeRedeemPointLoyaltyHolder(parent: ViewGroup) : BaseViewHolder<IC
          */
         itemView.tvCheck.text = if (!obj.gift?.type.isNullOrEmpty()) {
             when (obj.gift?.type) {
-                "ICOIN" -> "Xu iCheck"
-                "PHONE_CARD" -> "Thẻ cào điện thoại"
-                "RECEIVE_STORE" -> "Nhận tại cửa hàng"
-                "PRODUCT" -> "Giao tận nơi"
-                "VOUCHER" -> "Voucher"
-                else -> "Quà tinh thần"
+                "ICOIN" -> itemView.context.rText(R.string.xu_icheck)
+                "PHONE_CARD" -> itemView.context.rText(R.string.the_cao_dien_thoai)
+                "RECEIVE_STORE" -> itemView.context.rText(R.string.nhan_tai_cua_hang)
+                "PRODUCT" -> itemView.context.rText(R.string.giao_tan_noi)
+                "VOUCHER" -> itemView.context.rText(R.string.voucher)
+                else -> itemView.context.rText(R.string.qua_tinh_than)
             }
         } else {
             itemView.context.getString(R.string.dang_cap_nhat)

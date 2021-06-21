@@ -2,6 +2,7 @@ package vn.icheck.android.loyalty.helper
 
 import android.content.Context
 import android.util.Patterns
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 
 object ValidHelper {
@@ -13,13 +14,13 @@ object ValidHelper {
 
         return when {
             phoneNumber.isEmpty() -> {
-                context.getString(R.string.so_dien_thoai_khong_duoc_de_trong)
+                context.rText(R.string.so_dien_thoai_khong_duoc_de_trong)
             }
             !Patterns.PHONE.matcher(phoneNumber).matches() -> {
-                context.getString(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet)
+                context.rText(R.string.so_dien_thoai_co_chua_ky_tu_dac_biet)
             }
             !isPhoneNumber(phoneNumber) -> {
-                context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
+                context.rText(R.string.so_dien_thoai_khong_dung_dinh_dang)
             }
             else -> {
                 null

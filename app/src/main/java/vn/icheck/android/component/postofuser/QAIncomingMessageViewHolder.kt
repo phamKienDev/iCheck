@@ -8,12 +8,13 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.network.models.post.ICQAInPost
+import vn.icheck.android.util.ick.rText
 
 class QAIncomingMessageViewHolder (view: View) : BaseViewHolder<ICQAInPost>(view) {
 
     override fun bind(obj: ICQAInPost) {
         itemView.tvMessage.text = obj.msg
-        ViewHelper.makeTextViewResizable(itemView.tvMessage,3,"Xem Thêm",true, vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode)
+        ViewHelper.makeTextViewResizable(itemView.tvMessage,3,itemView.tvMessage.context rText R.string.xem_them,true, vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode)
     }
 
     companion object {

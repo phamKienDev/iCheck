@@ -15,6 +15,7 @@ import vn.icheck.android.R
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICBuyEpin
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
+import vn.icheck.android.util.ick.rText
 
 class SuccessBuyEpinFragment : Fragment() {
 
@@ -35,27 +36,26 @@ class SuccessBuyEpinFragment : Fragment() {
                 tv_serial.text = (data as ICBuyEpin.EpinData).serial
                 tv_code.text = data.pin
                 code = data.pin
-                tv_total.text = String.format("%,dđ", data.denomination.toLong())
+                tv_total.rText(R.string.x_d, data.denomination.toLong())
                 tv_msp.text = it.getString("msp")
-                tv_notify.text = String.format("Quý khách đã mua thành công \n mã thẻ điện thoại %s",
-                        it.getString("msp"))
+                tv_notify.rText(R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s, it.getString("msp"))
             }
         }
         btn_charge.setOnClickListener {
             code?.let {
                 val chargePhone = Intent(Intent.ACTION_DIAL)
-                chargePhone.setData(Uri.parse("tel:" + Uri.encode("*100*$it#")))
+                chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$it#"))
                 startActivity(chargePhone)
             }
         }
         imageView30.setOnClickListener {
             val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Số serie", tv_serial.text)
+            val clip = ClipData.newPlainText(rText(R.string.so_serie), tv_serial.text)
             clipboard.setPrimaryClip(clip)
         }
         imageView31.setOnClickListener {
             val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Mã thẻ", tv_code.text)
+            val clip = ClipData.newPlainText(rText(R.string.ma_the), tv_code.text)
             clipboard.setPrimaryClip(clip)
         }
         btn_again.setOnClickListener {

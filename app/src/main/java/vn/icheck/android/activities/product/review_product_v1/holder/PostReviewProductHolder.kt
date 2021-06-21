@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.item_post_your_review_product.view.*
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.activities.product.review_product_v1.adapter.PostImageCriteriaAdapter
 import vn.icheck.android.activities.product.review_product_v1.view.IReviewProductView
@@ -77,7 +78,7 @@ class PostReviewProductHolder(view: View, val listener: IReviewProductView) : Ba
                         }
                     }
                 } else {
-                    ToastUtils.showShortError(listener.mContext, "Vui lòng điển đầy đủ tiêu chí")
+                    ToastUtils.showShortError(listener.mContext, listener.mContext.getString(R.string.vui_long_dien_day_du_tieu_chi))
                 }
 
             }

@@ -14,6 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.history.ICItemHistory
 import vn.icheck.android.screen.user.scan_history.holder.ProductHistoryHolder
+import vn.icheck.android.util.ick.rText
 
 class HistoryScanSearchAdapter(val view: HistoryScanSearchView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -144,7 +145,7 @@ class HistoryScanSearchAdapter(val view: HistoryScanSearchView) : RecyclerView.A
                     layoutParams.setMargins(SizeHelper.size50, SizeHelper.size12, SizeHelper.size50, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
                     itemView.txtMessage2.layoutParams = layoutParams
-                    itemView.txtMessage2.text = "Không tìm thấy lịch sử quét phù hợp\nVui lòng thử lại với từ khoá khác!"
+                    itemView.txtMessage2 rText R.string.khong_tim_thay_lich_su_quet_phu_hop_vui_long_thu_lai_voi_tu_khoa_khac
                 }
 
                 Constant.ERROR_EMPTY -> {
@@ -154,7 +155,7 @@ class HistoryScanSearchAdapter(val view: HistoryScanSearchView) : RecyclerView.A
                     val layoutParams = ViewHelper.createLayoutParams()
                     layoutParams.setMargins(SizeHelper.size50, SizeHelper.size12, SizeHelper.size50, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
-                    itemView.txtMessage2.text = "Không tìm thấy lịch sử quét phù hợp\nVui lòng thử lại với từ khoá khác!"
+                    itemView.txtMessage2 rText R.string.khong_tim_thay_lich_su_quet_phu_hop_vui_long_thu_lai_voi_tu_khoa_khac
                 }
 
                 Constant.ERROR_SERVER -> {

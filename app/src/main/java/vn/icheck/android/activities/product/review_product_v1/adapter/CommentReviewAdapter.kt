@@ -122,8 +122,10 @@ class CommentReviewAdapter(val reviewPosition: Int, val listener: IReviewProduct
 
             if (adapterPosition == itemCount - 1) {
                 if (totalCount > listData.size) {
-                    itemView.tv_xtc.visibility = View.VISIBLE
-                    itemView.tv_xtc.text = ("Xem thêm ${(totalCount - listData.size)} bình luận khác")
+                    itemView.tv_xtc.apply {
+                        text = context.getString(R.string.xem_them_x_binh_luan_khac, totalCount - listData.size)
+                        visibility = View.VISIBLE
+                    }
                 } else {
                     itemView.tv_xtc.visibility = View.GONE
                     itemView.progressBar.visibility = View.GONE

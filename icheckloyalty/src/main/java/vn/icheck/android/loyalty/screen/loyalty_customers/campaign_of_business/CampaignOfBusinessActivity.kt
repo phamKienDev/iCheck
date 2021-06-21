@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_campaign_of_business.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -32,7 +33,7 @@ class CampaignOfBusinessActivity : BaseActivityGame(), IRecyclerViewCallback {
         imgBack.setOnClickListener {
             onBackPressed()
         }
-        txtTitle.text = "Chương trình"
+        txtTitle rText R.string.chuong_trinh
     }
 
     private fun initRecyclerView() {

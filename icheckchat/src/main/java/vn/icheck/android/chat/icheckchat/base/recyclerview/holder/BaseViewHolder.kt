@@ -7,14 +7,11 @@ import androidx.viewbinding.ViewBinding
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.view.setGone
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
+import vn.icheck.android.chat.icheckchat.helper.rText
 
 abstract class BaseViewHolder<T>(viewBinding: ViewBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
     abstract fun bind(obj: T)
-
-    fun getString(string: Int): String {
-        return itemView.context.getString(string)
-    }
 
     fun getColor(color: Int): Int{
         return ContextCompat.getColor(itemView.context, color)
@@ -22,7 +19,7 @@ abstract class BaseViewHolder<T>(viewBinding: ViewBinding) : RecyclerView.ViewHo
 
     val default: String
         get() {
-            return getString(R.string.dang_cap_nhat)
+            return itemView.context rText R.string.dang_cap_nhat
         }
 
     fun checkNullOrEmpty(textView: AppCompatTextView, dataCheck: String?) {

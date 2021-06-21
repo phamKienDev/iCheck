@@ -13,6 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.criterias.ICReviewBottom
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.text.ReviewPointText
 
 class ReviewBottomSheet : BottomSheetDialogFragment() {
@@ -35,14 +36,14 @@ class ReviewBottomSheet : BottomSheetDialogFragment() {
         reviewData = arguments?.get(Constant.DATA_1) as ICReviewBottom
         if (!reviewData?.message.isNullOrEmpty()) {
             txtContent.visibility = View.VISIBLE
-            txtContent.text = "Đánh giá của ${reviewData?.message}"
+            txtContent.rText(R.string.danh_gia_cua_s, reviewData?.message)
         } else {
             txtContent.visibility = View.GONE
         }
 
         if (reviewData?.averagePoint != null) {
             ratingReview.rating = reviewData?.averagePoint!!
-            tvPoint.setText(ReviewPointText.getTextTotal(reviewData?.averagePoint!!))
+            tvPoint.text = ReviewPointText.getTextTotal(reviewData?.averagePoint!!)
         }
 
         if (!reviewData?.customerCriterias.isNullOrEmpty()) {

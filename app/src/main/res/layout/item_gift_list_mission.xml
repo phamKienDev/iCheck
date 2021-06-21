@@ -42,7 +42,7 @@
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginLeft="@dimen/size_6"
             android:includeFontPadding="false"
-            android:text="@string/luot"
+            android:text="@string/luot_upcase"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="@id/tvCount"
             app:layout_constraintStart_toEndOf="@id/tvCount"

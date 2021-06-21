@@ -577,6 +577,10 @@ class ICheckApplication : Application(), Configuration.Provider {
             return INSTANCE.getString(resource)
         }
 
+        fun getString( resId: Int, vararg formatArgs: Any?): String {
+            return INSTANCE.getString(resId, *formatArgs)
+        }
+
         fun getError(message: String?): String {
             return message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
         }

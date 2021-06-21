@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_detail_voucher_staff.view.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
@@ -61,16 +62,16 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
              */
 
             if (obj.voucher?.checked_condition?.status == false) {
-                itemView.tvTitleDate.text = "Hạn sử dụng"
+                itemView.tvTitleDate rText R.string.han_su_dung
 
                 if (obj.voucher.checked_condition?.code == "START_TIME_CAN_USE") {
 
-                    itemView.tvTitleDate.text = "Có hiệu lực từ"
+                    itemView.tvTitleDate rText R.string.co_hieu_luc_tu
 
                     itemView.tvDateTime.text = TimeHelper.convertDateTimeSvToDateVn(obj.voucher.start_at)
 
                     itemView.tvStatus.apply {
-                        text = "Chưa có hiệu lực"
+                        text = context.rText(R.string.chua_co_hieu_luc)
                         setTextColor(ContextCompat.getColor(itemView.context, R.color.orange))
                         setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                     }
@@ -80,7 +81,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                     itemView.layoutDate.setGone()
 
                     itemView.tvStatus.apply {
-                        text = "Hết lượt sử dụng"
+                        text = context.rText(R.string.het_luot_su_dung)
                         setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                         setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                     }
@@ -90,28 +91,28 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                     itemView.tvDateTime.text = ""
 
                     itemView.tvStatus.apply {
-                        text = "Hết hạn sử dụng"
+                        text = context.rText(R.string.het_han_su_dung)
                         setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                         setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                     }
                 }
 
             } else {
-                itemView.tvTitleDate.text = "Hạn sử dụng"
+                itemView.tvTitleDate rText R.string.han_su_dung
 
                 itemView.tvDateTime.text = obj.voucher?.let { TimeHelper.timeGiftVoucher(it) }
 
                 itemView.tvStatus.apply {
 
-                    if (itemView.tvDateTime.text.toString() == "Còn lại ") {
+                    if (itemView.tvDateTime.text.toString() == itemView.context.rText(R.string.con_lai_)) {
 
                         itemView.tvDateTime.text = ""
-                        text = "Hết hạn sử dụng"
+                        text = context.rText(R.string.het_han_su_dung)
                         setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                         setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                     } else {
 
-                        text = "Có thể sử dụng"
+                        text = context.rText(R.string.co_the_su_dung)
                         setTextColor(ContextCompat.getColor(itemView.context, R.color.green2))
                         setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                     }
@@ -124,7 +125,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                 default
             }
 
-            itemView.tvVanChuyen.text = "Voucher"
+            itemView.tvVanChuyen rText R.string.voucher
 
             itemView.btnDoiQua.apply {
                 if (obj.rewardType == "VOUCHER") {
@@ -132,7 +133,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                     if (obj.voucher?.checked_condition?.status == true) {
                         when (obj.voucher.can_mark_use) {
                             true -> {
-                                text = "Đánh dấu đã dùng"
+                                text = context.rText(R.string.danh_dau_da_dung)
 
                                 setOnClickListener {
                                     listenerClick?.onClickUsedButton(obj)
@@ -143,7 +144,7 @@ internal class GiftVoucherStaffAdapter : RecyclerViewCustomAdapter<ICKScanVouche
                             }
                         }
                     } else {
-                        text = "Tiếp tục quét"
+                        text = context.rText(R.string.tiep_tuc_quet)
 
                         setOnClickListener {
                             listenerClick?.onClickScanButton(obj)

@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ichecklibs.event.ICMessageEvent
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.feature.user.UserInteractor
@@ -56,13 +57,13 @@ class IcheckScanViewModel : ViewModel() {
                 if (obj.statusCode != 200.toString()) {
                     when (obj.status) {
                         "INVALID_TARGET" -> {
-                            onInvalidTarget.postValue("Mã QRcode của sản phẩm này\nkhông thuộc chương trình")
+                            onInvalidTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_khong_thuoc_chuong_trinh))
                         }
                         "USED_TARGET" -> {
-                            onUsedTarget.postValue("Mã QRcode của sản phẩm này\nkhông còn điểm cộng")
+                            onUsedTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_khong_con_diem_cong))
                         }
                         "INVALID_CUSTOMER" -> {
-                            onCustomer.postValue("Bạn không thuộc danh sách\ntham gia chương trình")
+                            onCustomer.postValue(rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh))
                         }
                         else -> {
                             onErrorString.postValue(obj.data?.message)
@@ -70,7 +71,9 @@ class IcheckScanViewModel : ViewModel() {
                     }
                 } else {
                     updatePoint(collectionID)
-                    onAccumulatePoint.postValue(obj.data)
+                    obj.data?.let {
+                        onAccumulatePoint.postValue(it)
+                    }
                 }
             }
 
@@ -153,16 +156,24 @@ class IcheckScanViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
                 when (obj.data?.theme) {
                     1 -> {
-                        stampHoaPhat.postValue(obj.data)
+                        obj.data?.let {
+                            stampHoaPhat.postValue(it)
+                        }
                     }
                     2 -> {
-                        stampThinhLong.postValue(obj.data)
+                        obj.data?.let {
+                            stampThinhLong.postValue(it)
+                        }
                     }
                     else -> {
                         if (obj.data?.suggest_apps.isNullOrEmpty()) {
-                            checkStampSocial.postValue(obj.data)
+                            obj.data?.let {
+                                checkStampSocial.postValue(it)
+                            }
                         } else {
-                            showDialogSuggestApp.postValue(obj.data)
+                            obj.data?.let {
+                                showDialogSuggestApp.postValue(it)
+                            }
                         }
                     }
                 }
@@ -170,7 +181,7 @@ class IcheckScanViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                    stampFake.postValue(rText(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
                 } else {
                     errorQr.postValue(codeScan)
                 }

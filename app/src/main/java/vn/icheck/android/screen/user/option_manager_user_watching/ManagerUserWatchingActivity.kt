@@ -26,6 +26,7 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.option_manger_user_follow.IUserFollowWallView
 import vn.icheck.android.screen.user.option_manger_user_follow.UserFollowAdapter
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
@@ -59,7 +60,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     private fun initView() {
-        txtTitle.text = "Quản lý danh sách đang theo dõi"
+        txtTitle rText R.string.quan_ly_danh_sach_dang_theo_doi
         edtSearch.background= ViewHelper.bgGrayCorners4(this)
     }
 
@@ -105,7 +106,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
 
             viewModel.listData.observe(this, Observer {
                 swipe_layout.isRefreshing = false
-                tvCount.text = "${it.count} người bạn đang theo dõi"
+                tvCount.rText(R.string.d_nguoi_ban_dang_theo_doi, it.count)
                 adapter.addListData(it.rows)
 
                 if (!initFirst){

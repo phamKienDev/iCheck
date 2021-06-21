@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
-            android:text="Nạp cho số:"
+            android:text="@string/nap_cho_so_colon"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvPhoneNumber"

@@ -23,6 +23,7 @@ import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.logDebug
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -75,10 +76,12 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             }
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
-            itemView.tvCountFollow.text = if (obj.followCount ?: 0 > 0) {
-                "${TextHelper.formatMoneyPhay(obj.followCount)} Người đang theo dõi"
-            } else {
-                itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
+            itemView.tvCountFollow.apply {
+                text = if (obj.followCount ?: 0 > 0) {
+                    context.rText(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount))
+                } else {
+                    itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
+                }
             }
 
             itemView.setOnClickListener {

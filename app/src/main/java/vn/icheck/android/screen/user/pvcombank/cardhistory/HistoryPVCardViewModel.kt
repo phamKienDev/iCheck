@@ -39,9 +39,13 @@ class HistoryPVCardViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<ICTransactionPVCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!isLoadmore)
-                    onSetTransaction.postValue(obj.data?.transactions)
+                    obj.data?.transactions?.let {
+                        onSetTransaction.postValue(it)
+                    }
                 else
-                    onAddTransaction.postValue(obj.data?.transactions)
+                    obj.data?.transactions?.let {
+                        onAddTransaction.postValue(it)
+                    }
             }
 
             override fun onError(error: ICResponseCode?) {

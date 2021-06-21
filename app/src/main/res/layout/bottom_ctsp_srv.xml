@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintStart_toEndOf="@+id/tv_score"
         app:layout_constraintTop_toTopOf="@+id/tv_score"
-        android:text="Điểm đánh giá" />
+        android:text="@string/diem_danh_gia" />
 
     <TextView
         android:id="@+id/tv_total_reviews"

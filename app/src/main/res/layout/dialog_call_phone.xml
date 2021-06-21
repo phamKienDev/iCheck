@@ -39,7 +39,7 @@
             android:layout_marginBottom="@dimen/size_10"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Hủy"
+            android:text="@string/huy"
             android:textSize="@dimen/font_16"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_list_blue_12dp"
         android:drawablePadding="@dimen/size_2"
-        android:text="Giới tính"
+        android:text="@string/gioi_tinh"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -52,7 +52,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
             android:gravity="center"
-            android:text="Quay lại"
+            android:text="@string/quay_lai"
             android:visibility="gone"
             android:textColor="@color/light_blue" />
 

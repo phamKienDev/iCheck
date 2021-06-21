@@ -3,6 +3,8 @@ package vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.accept_s
 import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -60,7 +62,7 @@ class AcceptShipGiftLoyaltyViewModel : BaseViewModel<Any>() {
                 onErrorProvince.postValue("")
 
                 district = null
-                onSetDistrict.postValue("Tùy chọn")
+                onSetDistrict.postValue(rText(R.string.tuy_chon))
 
                 ward = null
                 onSetWard.postValue("Tùy chọn")
@@ -82,7 +84,7 @@ class AcceptShipGiftLoyaltyViewModel : BaseViewModel<Any>() {
                 onErrorDistrict.postValue("")
 
                 ward = null
-                onSetWard.postValue("Tùy chọn")
+                onSetWard.postValue(rText(R.string.tuy_chon))
             }
         }
     }
@@ -111,7 +113,7 @@ class AcceptShipGiftLoyaltyViewModel : BaseViewModel<Any>() {
 
         if (name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorName.postValue("Vui lòng nhập tên")
+            onErrorName.postValue(rText(R.string.vui_long_nhap_ten))
         } else {
             onErrorName.postValue("")
         }
@@ -127,34 +129,34 @@ class AcceptShipGiftLoyaltyViewModel : BaseViewModel<Any>() {
         if (!email.isNullOrEmpty()) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 isSuccess = false
-                onErrorEmail.postValue("Email không đúng định dạng")
+                onErrorEmail.postValue(rText(R.string.email_khong_dung_dinh_dang))
             }
         }
 
         if (province?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorProvince.postValue("Chọn Tỉnh thành")
+            onErrorProvince.postValue(rText(R.string.chon_tinh_thanh))
         } else {
             onErrorProvince.postValue("")
         }
 
         if (district?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorDistrict.postValue("Chọn Quận/Huyện")
+            onErrorDistrict.postValue(rText(R.string.chon_quan_huyen))
         } else {
             onErrorDistrict.postValue("")
         }
 
         if (ward?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorWard.postValue("Chọn Phường/Xã")
+            onErrorWard.postValue(rText(R.string.chon_phuong_xa))
         } else {
             onErrorWard.postValue("")
         }
 
         if (address.isNullOrEmpty()) {
             isSuccess = false
-            onErrorAddress.postValue("Vui lòng nhập địa chỉ")
+            onErrorAddress.postValue(rText(R.string.vui_long_nhap_dia_chi))
         } else {
             onErrorAddress.postValue("")
         }

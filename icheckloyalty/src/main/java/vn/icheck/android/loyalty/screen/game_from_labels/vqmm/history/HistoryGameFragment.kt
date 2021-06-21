@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history_game.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.fragment.BaseFragmentGame
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
@@ -47,9 +48,9 @@ class HistoryGameFragment : BaseFragmentGame(), IRecyclerViewCallback {
         }
 
         txtTitle.text = if (SharedLoyaltyHelper(requireContext()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM)) {
-            "Lịch sử nhập mã"
+            rText(R.string.lich_su_nhap_ma)
         } else {
-            "Lịch sử quét QR"
+            rText(R.string.lich_su_quet_qr)
         }
     }
 

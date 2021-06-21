@@ -19,6 +19,7 @@ import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.LoadImageUtils
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.rText
 
 class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                        val selectMulti: Boolean = false, // cho phép chọn nhiều hay không?
@@ -152,7 +153,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                                     obj.selected = true
                                     listSelected.add(obj)
                                 } else {
-                                    itemView.context.showToastError(itemView.context.getString(R.string.chi_duoc_chon_toi_da_x_muc, maxSelectCount))
+                                    itemView.context.showToastError(itemView.context.rText(R.string.chi_duoc_chon_toi_da_x_muc, maxSelectCount))
                                 }
 
                             }
@@ -277,7 +278,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                 it.topMargin = SizeHelper.size2
             }
-            it.text = parent.context.getString(R.string.chup_anh)
+            it rText R.string.chup_anh
             it.setTextColor(Constant.getDisableTextColor(it.context))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)

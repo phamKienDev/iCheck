@@ -28,6 +28,7 @@ import vn.icheck.android.network.base.Status
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import java.util.concurrent.TimeUnit
 
 class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
@@ -99,11 +100,11 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                         if (offset == 0) {
                             if (it.data?.data?.rows.isNullOrEmpty()) {
                                 tvPageCount.beGone()
-                                adapter.setError(R.drawable.ic_search_90dp, "Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn", -1)
+                                adapter.setError(R.drawable.ic_search_90dp, rText(R.string.khong_ket_qua_tim_kiem), -1)
                             } else {
                                 tvPageCount.beVisible()
                                 countPage = it.data?.data?.count ?: 0
-                                tvPageCount.text = TextHelper.formatMoneyPhay(countPage) + " Trang đang theo dõi"
+                                tvPageCount.rText(R.string.s_trang_dang_theo_doi, TextHelper.formatMoneyPhay(countPage))
                                 adapter.setListData(it.data?.data?.rows!!)
                             }
                         } else {
@@ -135,13 +136,13 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             ICMessageEvent.Type.UNFOLLOW_PAGE -> {
                 pageId = event.data as Long
                 countPage -= 1
-                tvPageCount.text = TextHelper.formatMoneyPhay(countPage) + " Trang đang theo dõi"
+                tvPageCount.rText(R.string.s_trang_dang_theo_doi, TextHelper.formatMoneyPhay(countPage))
                 adapter.deleteItem(pageId!!)
                 isChange = true
                 if (countPage <= 0) {
                     tvPageCount.beGone()
                     edtSearch.beGone()
-                    adapter.setError(R.drawable.ic_group_120dp, "Bạn chưa có trang nào", -1)
+                    adapter.setError(R.drawable.ic_group_120dp, rText(R.string.ban_chua_co_trang_nao), -1)
                 }
             }
             ICMessageEvent.Type.SHOW_DIALOG_MY_FOLLOW_PAGE -> {

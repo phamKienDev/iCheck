@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.layout_product_barcode_message.view.txtMes
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICMediaPage
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ImageAssetPageAdapter constructor(val view: IImageAssetPageView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -162,7 +163,7 @@ class ImageAssetPageAdapter constructor(val view: IImageAssetPageView) : Recycle
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Hiện tại page chưa cập nhật ảnh"
+                    itemView.txtMessage rText R.string.hien_tai_page_chua_cap_nhat_anh
                 }
 
                 Constant.ERROR_SERVER -> {

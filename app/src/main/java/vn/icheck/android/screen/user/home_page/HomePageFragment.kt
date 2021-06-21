@@ -79,6 +79,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -815,7 +816,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         layoutContainer.setTransition(R.id.reminder)
                         tv_count.beVisible()
                         group_notification.beVisible()
-                        tv_show_all_reminders.text = "Xem tất cả lời nhắc (${viewModel.getRemindersCount()})"
+                        tv_show_all_reminders.rText(R.string.xem_tat_ca_loi_nhac_d, viewModel.getRemindersCount())
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
                         tv_action.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {

@@ -1027,7 +1027,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (!listData.isNullOrEmpty()) {
             val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", owner?.id.toString())
             val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-            layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, "Sản phẩm cùng doanh nghiệp sở hữu", listData)
+            layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, ICheckApplication.getString(R.string.san_pham_cung_doanh_nghiep_so_huu), listData)
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -1039,7 +1039,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                         val params = hashMapOf<String, Any>().apply {
                             put("empty_product", 0)
                         }
-                        layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, "Sản phẩm cùng doanh nghiệp sở hữu", obj.data?.rows!!)
+                        layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, ICheckApplication.getString(R.string.san_pham_cung_doanh_nghiep_so_huu), obj.data?.rows!!)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
@@ -1060,7 +1060,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (!listData.isNullOrEmpty()) {
             val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", productID.toString())
             val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-            layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, "Sản phẩm liên quan", listData)
+            layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, ICheckApplication.getString(R.string.san_pham_lien_quan), listData)
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -1070,7 +1070,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", productID.toString())
                         val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-                        layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, "Sản phẩm liên quan", obj.data?.rows!!)
+                        layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, ICheckApplication.getString(R.string.san_pham_lien_quan), obj.data?.rows!!)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
@@ -1214,8 +1214,8 @@ class IckProductDetailViewModel : BaseViewModel() {
         productRepository.postTransparency(yesOrno, productId, object : ICNewApiListener<ICResponse<ICTransparency>> {
             override fun onSuccess(obj: ICResponse<ICTransparency>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.data != null) {
-                    onPostTransparency.postValue(obj.data!!)
+                obj.data?.let {
+                    onPostTransparency.postValue(it)
                 }
             }
 
@@ -1244,7 +1244,9 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<String>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data.isNullOrEmpty()) {
-                    onShareLinkProduct.postValue(obj.data!!)
+                    obj.data?.let {
+                        onShareLinkProduct.postValue(it)
+                    }
                 } else {
                     errorMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -1293,7 +1295,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
         postInteractor.getPostDetail(postId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
-                onDetailPost.postValue(obj.data!!)
+                obj.data?.let {
+                    onDetailPost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -1316,8 +1320,8 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             productRepository.getMyReview(url, pageId, object : ICNewApiListener<ICResponse<ICProductMyReview>> {
                 override fun onSuccess(obj: ICResponse<ICProductMyReview>) {
-                    if (obj.data != null) {
-                        onMyReviewData.postValue(obj.data!!)
+                    obj.data?.let {
+                        onMyReviewData.postValue(it)
                     }
                 }
 

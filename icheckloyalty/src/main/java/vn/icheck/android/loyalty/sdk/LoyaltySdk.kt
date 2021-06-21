@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import vn.icheck.android.ichecklibs.util.rText
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.dialog.DialogGlobalLoginLoyalty
@@ -305,26 +307,26 @@ object LoyaltySdk {
         val sub = if (!code.isNullOrEmpty()) {
             if (obj.type == "accumulate_point") {
                 if (!obj.campaign_package_code.isNullOrEmpty()) {
-                    "Tham gia ngay để có cơ hội nhận giải thưởng \n<b>${obj.campaign_package_code[0].points} Xu iCheck</b>"
+                    "${activity.rText(R.string.tham_gia_ngay_de_co_co_hoi_nhan_giai_thuong)} \n<b>${obj.campaign_package_code[0].points} ${activity.rText(R.string.xu_icheck)}</b>"
                 } else {
-                    "Đăng nhập để có cơ hội nhận nhiều giải thưởng hấp dẫn"
+                    activity.rText(R.string.dang_nhap_de_co_co_hoi_nhan_nhieu_giai_thuong_hap_dan)
                 }
             } else {
                 if (!obj.box?.gifts.isNullOrEmpty()) {
-                    "Tham gia ngay để có cơ hội nhận giải thưởng \n<b>${obj.box?.gifts?.get(0)?.name}</b>"
+                    "${activity.rText(R.string.tham_gia_ngay_de_co_co_hoi_nhan_giai_thuong)} \n<b>${obj.box?.gifts?.get(0)?.name}</b>"
                 } else {
-                    "Đăng nhập để có cơ hội nhận nhiều giải thưởng hấp dẫn"
+                    activity.rText(R.string.dang_nhap_de_co_co_hoi_nhan_nhieu_giai_thuong_hap_dan)
                 }
             }
         } else {
             if (!obj.box?.gifts.isNullOrEmpty()) {
-                "Tham gia ngay để có cơ hội nhận giải thưởng \n<b>${obj.box?.gifts?.get(0)?.name}</b>"
+                "${activity.rText(R.string.tham_gia_ngay_de_co_co_hoi_nhan_giai_thuong)} \n<b>${obj.box?.gifts?.get(0)?.name}</b>"
             } else {
-                "Đăng nhập để có cơ hội nhận nhiều giải thưởng hấp dẫn"
+                activity.rText(R.string.dang_nhap_de_co_co_hoi_nhan_nhieu_giai_thuong_hap_dan)
             }
         }
 
-        object : DialogGlobalLoginLoyalty(activity, obj.image?.original, "Tem của bạn được tham gia Chương trình: \n<b>“${obj.name}”</b>", sub) {
+        object : DialogGlobalLoginLoyalty(activity, obj.image?.original, "${activity.rText(R.string.tem_cua_ban_duoc_tham_gia_chuong_trinh)}: \n<b>“${obj.name}”</b>", sub) {
             override fun onRegister() {
                 ActivityHelper.startActivityForResult<T, O>(activity, key, value, requestCode)
             }

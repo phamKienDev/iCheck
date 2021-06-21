@@ -134,7 +134,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
         }
 
         if (listData.isNullOrEmpty()) {
-            setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+            setError(R.drawable.ic_empty_questions, ICheckApplication.getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
         }
     }
 

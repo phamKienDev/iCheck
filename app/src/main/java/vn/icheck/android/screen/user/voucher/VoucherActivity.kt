@@ -5,6 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.util.ick.rText
 
 class VoucherActivity : BaseActivityMVVM() {
 
@@ -16,7 +17,7 @@ class VoucherActivity : BaseActivityMVVM() {
     }
 
     private fun initView(){
-        txtTitle.text = "Siêu hội Voucher"
+        txtTitle rText R.string.sieu_hoi_voucher
 
         imgBack.setOnClickListener {
             onBackPressed()

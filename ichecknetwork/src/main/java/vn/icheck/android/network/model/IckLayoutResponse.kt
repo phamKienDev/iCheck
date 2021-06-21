@@ -2,6 +2,8 @@ package vn.icheck.android.network.model
 
 import com.google.gson.JsonElement
 import com.google.gson.annotations.SerializedName
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 
 data class IckLayoutResponse(
 
@@ -11,7 +13,7 @@ data class IckLayoutResponse(
         @field:SerializedName("statusCode")
         val statusCode: String? = null,
 
-        @field:SerializedName("message") val message: String? = "Không tải được dữ liệu. Vui lòng thử lại.",
+        @field:SerializedName("message") val message: String? = RStringUtils.rText(R.string.khong_tai_duoc_du_lieu_vui_long_thu_lai),
 
         @field:SerializedName("data") val data: JsonElement?
 )

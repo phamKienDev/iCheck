@@ -54,14 +54,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         lifecycleScope.launch {
             delay(10000)
             if (!viewModel.loadSuccess) {
-                showShortErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
+                showShortErrorToast(rText(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
                 dismissLoadingScreen()
                 finish()
             }
         }
         viewModel = ViewModelProvider(this).get(DetailMyRewardViewModel::class.java)
         viewModel.error.observe(this, Observer{
-            showShortErrorToast("Có lỗi xảy ra vui lòng thử lại sau")
+            showShortErrorToast(rText(R.string.co_loi_xay_ra_vui_long_thu_lai_sau))
             dismissLoadingScreen()
         })
 
@@ -160,7 +160,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         when (data.rewardType) {
             "CARD" -> {
                 if (data.dataRps != null) {
-                    binding.tvRefuse simpleText "Số serial"
+                    binding.tvRefuse rText R.string.so_serial
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
                     binding.tvState.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
@@ -168,13 +168,13 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuseDes simpleText data.dataRps?.serial
                     binding.tvState.setTextSize(14f)
                     binding.tvRefuseDes.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
-                    binding.tvTime simpleText "Hạn sử dụng"
+                    binding.tvTime rText R.string.han_su_dung
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
 
                         binding.layoutBottom.beVisible()
-                        binding.btnRefuse simpleText "Đánh dấu đã dùng"
-                        binding.btnAcceptDaLay simpleText "Dùng ngay"
+                        binding.btnRefuse rText R.string.danh_dau_da_dung
+                        binding.btnAcceptDaLay rText R.string.dung_ngay
                         binding.btnRefuse.setOnClickListener {
                             showLoadingTimeOut(10000)
                             try {
@@ -214,9 +214,9 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                         binding.imgUsed.beVisible()
                         binding.tvState.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
-                        binding.tvTime simpleText "Ngày dùng"
+                        binding.tvTime rText R.string.ngay_dung
                         binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
-                        binding.tvTimeDes.setText(data.confirmTime?.getDayTime())
+                        binding.tvTimeDes.text = data.confirmTime?.getDayTime()
                     }
 
                 } else {
@@ -247,7 +247,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             if (listId.isNotEmpty()) {
                                 viewModel.refuseGift(listId, listMessage)
                             } else {
-                                showShortErrorToast("Vui lòng chọn ít nhất một lí do")
+                                showShortErrorToast(rText(R.string.vui_long_chon_it_nhat_mot_ly_do))
                             }
                         }
                     })
@@ -263,10 +263,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     val date = sdf.parse(data.expiredAt.toString()) ?: Calendar.getInstance().time
                     val currentDate = Calendar.getInstance().time
                     if (date.time < currentDate.time) {
-                        binding.tvRefuse simpleText "Hạn lấy quà"
-                        binding.tvRefuseDes simpleText "Hết hạn"
-                        binding.tvTime simpleText "Loại quà"
-                        binding.tvTimeDes simpleText "Quà lấy tại cửa hàng"
+                        binding.tvRefuse rText R.string.han_lay_qua
+                        binding.tvRefuseDes rText R.string.het_han
+                        binding.tvTime rText R.string.loai_qua
+                        binding.tvTimeDes rText R.string.qua_lay_tai_cua_hang
                         binding.layoutBottom.beGone()
                         binding.btnAcceptDaLay.setOnClickListener {
                             startActivityForResult(Intent(this, ShipActivity::class.java).apply {
@@ -275,10 +275,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 //                    simpleStartActivity(ShipActivity::class.java)
                         }
                     } else {
-                        binding.tvRefuse simpleText "Hạn lấy quà"
+                        binding.tvRefuse rText R.string.han_lay_qua
                         binding.tvRefuseDes simpleText TimeHelper.convertDateSvToDateVn(data.expiredAt)
-                        binding.tvTime simpleText "Loại quà"
-                        binding.tvTimeDes simpleText "Quà lấy tại cửa hàng"
+                        binding.tvTime rText R.string.loai_qua
+                        binding.tvTimeDes rText R.string.qua_lay_tai_cua_hang
                         binding.groupAddress.beVisible()
                         binding.tvAddress simpleText data.address
                     }
@@ -301,7 +301,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
         when (data.state) {
             2 -> {
                 if (data.dataRps?.shipTime.isNullOrEmpty()) {
-                    binding.tvRefuse simpleText "Thời gian xác nhận     "
+                    binding.tvRefuse rText R.string.thoi_gian_xac_nhan_space
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -312,14 +312,14 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuseDes simpleText data.confirmTime?.getHourMinutesTime()
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
-                    binding.tvMathecao simpleText "Đã xác nhận giao quà"
+                    binding.tvMathecao rText R.string.da_xac_nhan_giao_qua
                     binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                     binding.tvTime.beInvisible()
                     binding.tvTimeDes.beInvisible()
                 } else {
-                    binding.tvRefuse simpleText "Thời gian nhận     "
+                    binding.tvRefuse rText R.string.thoi_gian_nhan_space
                     binding.tvRefuse.post {
                         val lp = binding.tvRefuse.layoutParams as ConstraintLayout.LayoutParams
                         lp.width = ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -332,38 +332,38 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
-                    binding.tvMathecao simpleText "Giao quà thành công"
+                    binding.tvMathecao rText R.string.giao_qua_thanh_cong
                     binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
             }
             3 -> {
-                binding.tvRefuse simpleText "Lý do từ chối"
+                binding.tvRefuse rText R.string.ly_do_tu_choi
                 if (!data.reasonOther.isNullOrEmpty()) {
                     binding.tvRefuseDes simpleText data.reasonOther
                 } else {
-                    binding.tvRefuseDes simpleText "Khác"
+                    binding.tvRefuseDes rText R.string.khac
                 }
-                binding.tvTime simpleText "Thời gian từ chối"
+                binding.tvTime rText R.string.thoi_gian_tu_choi
                 binding.tvTimeDes simpleText data.cancelTime?.getHourMinutesTime()
 
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
-                binding.tvMathecao simpleText "Bạn đã từ chối nhận quà này"
+                binding.tvMathecao rText R.string.ban_da_tu_choi_nhan_qua_nay
                 binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentRedColor(binding.tvMathecao.context))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
             4 -> {
-                binding.tvRefuse simpleText "Thời gian giao"
+                binding.tvRefuse rText R.string.thoi_gian_giao
                 binding.tvRefuseDes simpleText data.receiveAt?.getHourMinutesTime()
                 binding.tvTime.beGone()
                 binding.tvTimeDes.beGone()
 
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
-                binding.tvMathecao simpleText "Giao quà thành công"
+                binding.tvMathecao rText R.string.giao_qua_thanh_cong
                 binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
@@ -374,11 +374,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     val date = sdf.parse(data.expiredAt.toString()) ?: Calendar.getInstance().time
                     val currentDate = Calendar.getInstance().time
                     if (date.time < currentDate.time) {
-                        binding.tvRefuse simpleText "Hạn nhận quà"
-                        binding.tvRefuseDes simpleText "Hết hạn"
+                        binding.tvRefuse rText R.string.han_nhan_qua
+                        binding.tvRefuseDes rText R.string.het_han
 
-                        binding.tvTime simpleText "Loại quà"
-                        binding.tvTimeDes simpleText "Quà giao tận nơi"
+                        binding.tvTime rText R.string.loai_qua
+                        binding.tvTimeDes rText R.string.qua_giao_tan_noi
                         binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
                         binding.layoutBottom.beGone()
@@ -389,10 +389,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                             }, 1)
                         }
                     } else {
-                        binding.tvRefuse simpleText "Hạn nhận quà"
+                        binding.tvRefuse rText R.string.han_nhan_qua
                         binding.tvRefuseDes simpleText TimeHelper.convertDateSvToDateVn(data.expiredAt)
-                        binding.tvTime simpleText "Loại quà"
-                        binding.tvTimeDes simpleText "Quà giao tận nơi"
+                        binding.tvTime rText R.string.loai_qua
+                        binding.tvTimeDes rText R.string.qua_giao_tan_noi
                         binding.layoutBottom.beVisible()
                         binding.btnAcceptDaLay.setOnClickListener {
                             TrackingAllHelper.tagGiftDeliveryStarted(viewModel.detailReward?.data?.campaignId, viewModel.detailReward?.data?.name)
@@ -465,7 +465,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 share.setAction(Intent.ACTION_SEND)
                 share.putExtra(Intent.EXTRA_TEXT, viewModel.dataReward.image)
                 share.setType("text/plain")
-                startActivity(Intent.createChooser(share, "Chia sẻ "))
+                startActivity(Intent.createChooser(share, rText(R.string.chia_se)))
             }
         }
     }

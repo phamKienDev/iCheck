@@ -1,6 +1,8 @@
 package vn.icheck.android.loyalty.screen.scan
 
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
@@ -31,13 +33,13 @@ class ScanLoyaltyViewModel : BaseViewModel<Any>() {
                 if (obj.statusCode != 200) {
                     when(obj.status){
                         "INVALID_TARGET" -> {
-                            onInvalidTarget.postValue("Mã QRcode của sản phẩm này\nkhông thuộc chương trình")
+                            onInvalidTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_n_khong_thuoc_chuong_trinh))
                         }
                         "USED_TARGET" -> {
-                            onUsedTarget.postValue("Mã QRcode của sản phẩm này\nkhông còn điểm cộng")
+                            onUsedTarget.postValue(rText(R.string.ma_qrcode_cua_san_pham_nay_n_khong_con_diem_cong))
                         }
                         "INVALID_CUSTOMER" -> {
-                            onCustomer.postValue("Bạn không thuộc danh sách\ntham gia chương trình")
+                            onCustomer.postValue(rText(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh))
                         }
                         else -> {
                             onErrorString.postValue(obj.data?.message)
@@ -45,7 +47,9 @@ class ScanLoyaltyViewModel : BaseViewModel<Any>() {
                     }
                 } else {
                     PointHelper.updatePoint(collectionID)
-                    onAccumulatePoint.postValue(obj.data)
+                    obj.data?.let {
+                        onAccumulatePoint.postValue(it)
+                    }
                 }
             }
 

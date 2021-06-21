@@ -61,7 +61,7 @@
         android:padding="4dp"
         tools:text="Giao tận nơi"
         android:textColor="#FF0000"
-        android:textSize="10sp"
+        android:textSize="@dimen/font_10"
         app:layout_constraintBottom_toBottomOf="@+id/img_product"
         app:layout_constraintStart_toEndOf="@+id/img_product" />
 

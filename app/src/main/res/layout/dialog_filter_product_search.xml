@@ -28,7 +28,7 @@
         android:drawableStart="@drawable/ic_product_verified_check"
         android:drawableLeft="@drawable/ic_product_verified_check"
         android:drawablePadding="@dimen/size_8"
-        android:text="Sản phẩm đã xác thực"
+        android:text="@string/san_pham_da_xac_thuc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider27" />
 
@@ -75,7 +75,7 @@
             android:drawableStart="@drawable/ic_price_tag"
             android:drawableLeft="@drawable/ic_price_tag"
             android:drawablePadding="@dimen/size_8"
-            android:text="Giá từ"
+            android:text="@string/gia_tu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider28" />
 

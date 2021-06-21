@@ -84,7 +84,7 @@
             android:id="@+id/tv_score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Điểm đánh giá"
+            android:text="@string/diem_danh_gia"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/tv_score"
             app:layout_constraintStart_toStartOf="@id/tv_score"

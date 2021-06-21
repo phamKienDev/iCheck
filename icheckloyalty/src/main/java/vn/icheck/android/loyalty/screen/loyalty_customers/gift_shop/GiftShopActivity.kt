@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_gift_shop_loyalty.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -115,19 +116,19 @@ class GiftShopActivity : BaseActivityGame() {
                 val giftType = arr
                         .map { key ->
                             when (key) {
-                                "Quà hiện vật" -> {
+                                "Quà hiện vật", rText(R.string.qua_hien_vat) -> {
                                     "PRODUCT"
                                 }
-                                "Quà nhân tại cửa hàng" -> {
+                                "Quà nhân tại cửa hàng", rText(R.string.qua_nhan_tai_cua_hang) -> {
                                     "RECEIVE_STORE"
                                 }
-                                "Quà xu" -> {
+                                "Quà xu", rText(R.string.qua_xu) -> {
                                     "ICOIN"
                                 }
-                                "Quà thẻ cào" -> {
+                                "Quà thẻ cào", rText(R.string.qua_the_cao) -> {
                                     "PHONE_CARD"
                                 }
-                                "Quà voucher" -> {
+                                "Quà voucher", rText(R.string.qua_voucher) -> {
                                     "VOUCHER"
                                 }
                                 else -> "PRODUCT,RECEIVE_STORE,ICOIN,PHONE_CARD,VOUCHER"
@@ -145,7 +146,7 @@ class GiftShopActivity : BaseActivityGame() {
             }
         })
         giftShopViewModel.countLiveData.observe(this, Observer {
-            tv_total_transactions.text = "Cửa hàng quà tặng (${it})"
+            tv_total_transactions.rText(R.string.cua_hang_qua_tang_d, it)
         })
         getShopProducts()
     }
@@ -171,19 +172,19 @@ class GiftShopActivity : BaseActivityGame() {
                 val giftType = arr
                         .map { key ->
                             when (key) {
-                                "Quà hiện vật" -> {
+                                "Quà hiện vật", rText(R.string.qua_hien_vat) -> {
                                     "PRODUCT"
                                 }
-                                "Quà nhân tại cửa hàng" -> {
+                                "Quà nhân tại cửa hàng", rText(R.string.qua_nhan_tai_cua_hang) -> {
                                     "RECEIVE_STORE"
                                 }
-                                "Quà xu" -> {
+                                "Quà xu", rText(R.string.qua_xu) -> {
                                     "ICOIN"
                                 }
-                                "Quà thẻ cào" -> {
+                                "Quà thẻ cào", rText(R.string.qua_the_cao) -> {
                                     "PHONE_CARD"
                                 }
-                                "Quà voucher" -> {
+                                "Quà voucher", rText(R.string.qua_voucher) -> {
                                     "VOUCHER"
                                 }
                                 else -> "PRODUCT,RECEIVE_STORE,ICOIN,PHONE_CARD,VOUCHER"
@@ -225,19 +226,19 @@ class GiftShopActivity : BaseActivityGame() {
                 val giftType = arr
                         .map { key ->
                             when (key) {
-                                "Quà hiện vật" -> {
+                                "Quà hiện vật", rText(R.string.qua_hien_vat) -> {
                                     "PRODUCT"
                                 }
-                                "Quà nhân tại cửa hàng" -> {
+                                "Quà nhân tại cửa hàng", rText(R.string.qua_nhan_tai_cua_hang) -> {
                                     "RECEIVE_STORE"
                                 }
-                                "Quà xu" -> {
+                                "Quà xu", rText(R.string.qua_xu) -> {
                                     "ICOIN"
                                 }
-                                "Quà thẻ cào" -> {
+                                "Quà thẻ cào", rText(R.string.qua_the_cao) -> {
                                     "PHONE_CARD"
                                 }
-                                "Quà voucher" -> {
+                                "Quà voucher", rText(R.string.qua_voucher) -> {
                                     "VOUCHER"
                                 }
                                 else -> "PRODUCT,RECEIVE_STORE,ICOIN,PHONE_CARD,VOUCHER"

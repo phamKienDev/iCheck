@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
         android:fontFamily="sans-serif"
-        android:text="Bạn chưa có voucher nào!"
+        android:text="@string/ban_chua_co_voucher_nao"
         android:textColor="#828282"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"

@@ -1,5 +1,7 @@
 package vn.icheck.android.util.text
 
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
 import vn.icheck.android.network.models.ICProductReviews
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,15 +18,15 @@ class CommentTimeUtil(val comments: ICProductReviews.Comments) : TimeHelper() {
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 7) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return if (differenceHours >= 1) {
-                    "$differenceHours giờ trước"
+                    ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                 } else if (differMinutes >= 1) {
-                    "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                    ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                 } else {
-                    "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                    ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
                 }
             }
         }
@@ -44,17 +46,17 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 2) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (diff > 2){
                 return vn.icheck.android.helper.TimeHelper.convertDateTimeSvToTimeDateVnPhay(timeS).toString()
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return if (differenceHours >= 1) {
-                    "$differenceHours giờ trước"
+                    ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                 } else if (differMinutes >= 1) {
-                    "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                    ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                 } else {
-                    "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                    ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
                 }
             }
         }
@@ -70,20 +72,20 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 2) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (diff > 2){
                 return vn.icheck.android.helper.TimeHelper.convertDateSvToDateVn(timeS).toString()
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return when {
                     differenceHours >= 1 -> {
-                        "$differenceHours giờ trước"
+                        ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                     }
                     differMinutes >= 1 -> {
-                        "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                        ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                     }
                     else -> {
-                        "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                        ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
                     }
                 }
             }
@@ -100,7 +102,7 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 2) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (diff > 2){
                 return if (isDetail){
                     vn.icheck.android.helper.TimeHelper.convertDateTimeSvToTimeDateVnV2(timeS).toString()
@@ -111,13 +113,13 @@ class TestTimeUtil(val timeS: String) : TimeHelper() {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return when {
                     differenceHours >= 1 -> {
-                        "$differenceHours giờ trước"
+                        ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                     }
                     differMinutes >= 1 -> {
-                        "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                        ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                     }
                     else -> {
-                        "Vừa xong"
+                        ICheckApplication.getString(R.string.vua_xong)
                     }
                 }
             }
@@ -136,17 +138,17 @@ class MessageTimeUtil(val timestamp: Long) : TimeHelper() {
         val diff = getDifferenceDays(date, currentCalendar.time)
         val differenceHours = getDifferenceHours(date, currentCalendar.time)
         if (differenceHours > 24 && diff < 7) {
-            return "$diff ngày trước"
+            return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
         } else if (differenceHours <= 24) {
             val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
             return if (differenceHours >= 1) {
-                "$differenceHours giờ trước"
+                ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
             } else if (differMinutes >= 1) {
-                "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
             } else if (getDifferenceSeconds(date, currentCalendar.time) > 0) {
-                "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
             } else {
-                "Đã gửi"
+                ICheckApplication.getString(R.string.da_gui)
             }
         }
         return show.format(calendar.time)
@@ -164,15 +166,15 @@ class ReviewsTimeUtils(val reviewsRow: ICProductReviews.ReviewsRow) : TimeHelper
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 7) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return if (differenceHours >= 1) {
-                    "$differenceHours giờ trước"
+                    ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                 } else if (differMinutes >= 1) {
-                    "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                    ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                 } else {
-                    "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                    ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
                 }
             }
         }
@@ -189,15 +191,15 @@ class CreatedAtTimeHelper(val createdAt: String) : TimeHelper() {
             val diff = getDifferenceDays(date, currentCalendar.time)
             val differenceHours = getDifferenceHours(date, currentCalendar.time)
             if (differenceHours > 24 && diff < 7) {
-                return "$diff ngày trước"
+                return ICheckApplication.getString(R.string.d_ngay_truoc, diff)
             } else if (differenceHours <= 24) {
                 val differMinutes = getDifferenceMinutes(date, currentCalendar.time)
                 return if (differenceHours >= 1) {
-                    "$differenceHours giờ trước"
+                    ICheckApplication.getString(R.string.d_gio_truoc, differenceHours)
                 } else if (differMinutes >= 1) {
-                    "${getDifferenceMinutes(date, currentCalendar.time)} phút trước"
+                    ICheckApplication.getString(R.string.d_phut_truoc, getDifferenceMinutes(date, currentCalendar.time))
                 } else {
-                    "${getDifferenceSeconds(date, currentCalendar.time)} giây trước"
+                    ICheckApplication.getString(R.string.d_giay_truoc, getDifferenceSeconds(date, currentCalendar.time))
                 }
             }
         }

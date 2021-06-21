@@ -172,7 +172,7 @@
                     android:paddingTop="@dimen/size_12"
                     android:paddingEnd="12dp"
                     android:singleLine="true"
-                    android:text="Tin tức liên quan"
+                    android:text="@string/tin_tuc_lien_quan"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toStartOf="@+id/txtViewAll"
                     app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +186,7 @@
                     android:paddingTop="@dimen/size_12"
                     android:paddingEnd="@dimen/size_12"
                     android:paddingRight="@dimen/size_12"
-                    android:text="Xem thêm"
+                    android:text="@string/xem_them"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvTitleNew" />
 

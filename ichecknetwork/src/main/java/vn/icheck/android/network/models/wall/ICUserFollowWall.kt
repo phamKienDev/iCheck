@@ -2,6 +2,8 @@ package vn.icheck.android.network.models.wall
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import vn.icheck.android.network.models.ICDisplayConfig
 import vn.icheck.android.network.models.ICPrivacy
 import vn.icheck.android.network.models.ICRankOfUser
@@ -34,7 +36,7 @@ data class ICUserFollowWall(
             }else if (!phone?.trim().isNullOrEmpty()) {
                 getPhoneOnly()
             } else {
-                "Chưa cập nhật"
+                RStringUtils.rText(R.string.chua_cap_nhat)
             }
         }
 
@@ -44,7 +46,7 @@ data class ICUserFollowWall(
                 replace(0, 2, "0").replace(7, length, "***")
             }.toString()
         } else {
-            "Chưa cập nhật"
+            RStringUtils.rText(R.string.chua_cap_nhat)
         }
     }
 

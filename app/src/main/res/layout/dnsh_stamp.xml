@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_20"
         android:fontFamily="@font/roboto_regular"
         android:textSize="@dimen/font_18"
-        android:text="Doanh nghiệp sở hữu" />
+        android:text="@string/doanh_nghiep_so_huu" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/root"

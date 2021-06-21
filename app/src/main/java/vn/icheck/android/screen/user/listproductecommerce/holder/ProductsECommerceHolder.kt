@@ -13,6 +13,7 @@ import vn.icheck.android.network.models.ICProductECommerce
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceBinding = ItemProductEcommerceBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICProductECommerce>(binding.root) {
@@ -27,7 +28,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
         if (obj.finalPrice != null) {
             if (obj.sellPrice != null) {
                 binding.tvOldPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                    text = context.rText(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                     paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     beVisible()
                 }
@@ -37,7 +38,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
 
             if (obj.finalPrice != null) {
                 binding.tvPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.finalPrice) + "đ")
+                    text = context.rText(R.string.s_d, TextHelper.formatMoneyPhay(obj.finalPrice))
                     beVisible()
                 }
             } else {
@@ -46,7 +47,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
         } else {
             binding.tvOldPrice.beGone()
             binding.tvPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                text = context.rText(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                 beVisible()
             }
         }

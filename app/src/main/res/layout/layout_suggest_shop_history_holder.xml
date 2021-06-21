@@ -20,6 +20,6 @@
         android:drawablePadding="9.4dp"
         android:drawableStart="@drawable/ic_star_24_px"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-        android:text="Gợi ý cửa hàng dành cho bạn"/>
+        android:text="@string/goi_y_cua_hang_danh_cho_ban"/>
 
 </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>

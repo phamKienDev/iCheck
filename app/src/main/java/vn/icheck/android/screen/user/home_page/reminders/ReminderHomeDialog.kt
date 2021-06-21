@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICMessageEvent
@@ -20,6 +21,7 @@ import vn.icheck.android.screen.user.home_page.HomePageViewModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 
 class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
@@ -45,21 +47,21 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
         binding.btnCancel.setOnClickListener {
             dismiss()
         }
-        binding.tvReminderCount simpleText "Lời nhắc (${viewModel.getRemindersCount()})"
+        binding.tvReminderCount.rText(R.string.loi_nhac_d, viewModel.getRemindersCount())
         if (viewModel.getRemindersCount() ?: 0 > 0) {
             binding.imgNoReminder.beGone()
             binding.tvNoReminder.beGone()
             binding.tvSubNoReminder.beGone()
             binding.rcvReminders.beVisible()
             remindersAdapter = RemindersAdapter(viewModel.getListReminders()) {position ->
-                object : ConfirmDialog(requireContext(), "Bạn muốn xóa lời nhắc này?",null,"Để sau","Có", true){
+                object : ConfirmDialog(requireContext(), binding.root.context.rText(R.string.ban_muon_xoa_loi_nhac_nay),null,binding.root.context.rText(R.string.de_sau),binding.root.context.rText(R.string.co), true){
                     override fun onDisagree() {
                     }
 
                     override fun onAgree() {
                         viewModel.deleteReminder(position).observe(viewLifecycleOwner, Observer {
                             if (it.statusCode == "200") {
-                                requireContext().showShortSuccessToast("Bạn đã xóa lời nhắc thành công")
+                                requireContext().showShortSuccessToast(binding.root.context.rText(R.string.ban_da_xoa_loi_nhan_thanh_cong))
                                 remindersAdapter.notifyItemRemoved(position)
                                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_REMINDER))
 
@@ -88,9 +90,9 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
                     binding.imgNoReminder.beVisible()
                     binding.tvNoReminder.beVisible()
                     binding.tvSubNoReminder.beVisible()
-                    binding.tvReminderCount simpleText "Lời nhắc"
+                    binding.tvReminderCount rText R.string.loi_nhac
                 } else {
-                    binding.tvReminderCount simpleText "Lời nhắc (${viewModel.getRemindersCount()})"
+                    binding.tvReminderCount.rText(R.string.loi_nhac_d, viewModel.getRemindersCount())
                 }
             }
         }else if (event.type == ICMessageEvent.Type.DO_REMINDER) {

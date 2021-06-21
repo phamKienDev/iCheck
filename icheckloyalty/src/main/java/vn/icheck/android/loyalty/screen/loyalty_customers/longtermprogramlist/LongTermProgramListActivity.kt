@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_long_term_program_list.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.activity.BaseActivityGame
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -30,7 +31,7 @@ class LongTermProgramListActivity : BaseActivityGame(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle.text = "Khách hàng thân thiết"
+        txtTitle rText R.string.khach_hang_than_thiet
     }
 
     private fun initRecyclerView() {

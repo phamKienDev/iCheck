@@ -16,6 +16,7 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.adapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.history_guarantee.viewmodel.WarrantyHistoryViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.util.ick.rText
 
 class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private val adapter = HistoryGuaranteeAdapter(this)
@@ -30,9 +31,9 @@ class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setContentView(binding.root)
 
         binding.layoutToolbar.txtTitle.text =  if (StampDetailActivity.isVietNamLanguage == false) {
-            "Warranty log"
+            rText(R.string.warranty_log)
         } else {
-            "Lịch sử bảo hành"
+            rText(R.string.lich_su_bao_hanh)
         }
 
         setupRecyclerView()

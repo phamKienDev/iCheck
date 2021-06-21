@@ -14,6 +14,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICCampaign
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -50,11 +51,11 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                     when (obj.state) {
                         "running" -> {
                             setTextColor(Constant.getAccentRedColor(itemView.context))
-                            text = "Đang diễn ra"
+                            text = context.rText(R.string.dang_dien_ra)
                         }
                         "finished" -> {
                             setTextColor(Constant.getNormalTextColor(context))
-                            text = "Đã kết thúc"
+                            text = context.rText(R.string.da_ket_thuc)
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }
                         else -> {
@@ -75,7 +76,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(3) as AppCompatTextView).run {
                 text = if (obj.daysLeft != null && obj.daysLeft != 0) {
-                    "Còn ${obj.daysLeft} ngày"
+                    context.rText(R.string.con_d_ngay, obj.daysLeft)
                 } else {
                     itemView.context.getString(R.string.dang_cap_nhat)
                 }
@@ -83,7 +84,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(4) as LinearLayout).run {
                 setOnClickListener {
-                    ToastUtils.showLongWarning(itemView.context, "onClickJoin")
+                    ToastUtils.showLongWarning(itemView.context, it.context.rText(R.string.on_click_join))
                 }
             }
         }

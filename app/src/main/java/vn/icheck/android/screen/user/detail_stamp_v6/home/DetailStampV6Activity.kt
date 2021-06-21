@@ -61,6 +61,7 @@ import vn.icheck.android.screen.user.listproductecommerce.ListProductsECommerceA
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.viewimage.ViewImageActivity
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.visibleOrInvisible
 import vn.icheck.android.util.kotlin.ContactUtils
 import vn.icheck.android.util.kotlin.GlideImageGetter
@@ -254,7 +255,7 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_TEXT, tvMailDistributor.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
             }
         }
 
@@ -273,14 +274,14 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, hotline)
-        startActivity(Intent.createChooser(intent, "Send To"))
+        startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
     }
 
     override fun onItemEmailClick(email: String?) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, email)
-        startActivity(Intent.createChooser(intent, "Send To"))
+        startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
     }
 
     @SuppressLint("SetTextI18n")
@@ -296,7 +297,7 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
             if (obj.data?.type == "error") {
                 if (!obj.data?.message.isNullOrEmpty()) {
                     presenter.getConfigError()
-                    tvMessageStampError.text = "CẢNH BÁO!" + "\n" + obj.data?.message
+                    tvMessageStampError.rText(R.string.canh_bao_s, obj.data?.message)
                 } else {
                     scrollView.visibility = View.VISIBLE
                 }
@@ -353,7 +354,7 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
             tvPriceProduct.textSize = 16F
             tvPriceProduct.setTypeface(null, Typeface.ITALIC)
         } else {
-            tvPriceProduct.text = TextHelper.formatMoneyComma(obj.data?.product?.price!!) + "đ"
+            tvPriceProduct.rText(R.string.x_d, TextHelper.formatMoneyComma(obj.data?.product?.price!!))
         }
 
 //namePrice
@@ -385,15 +386,15 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
 
             obj.data?.stamp?.guarantee?.let {
                 tvGuaranteeDay.text = if (it.days != null) {
-                    Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + it.days + " ngày" + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + it.days + " ${rText(R.string.ngay)}" + "</b>")
                 } else {
-                    Html.fromHtml("<font color=#434343>Thời gian bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian_bao_hanh)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                 }
 
                 tvExpiredDay.text = if (it.expired_time != null) {
-                    Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + TimeHelper.convertMillisecondToDateVn(it.expired_time!! * 1000) + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.han_bao_hanh)}: </font>" + "<b>" + TimeHelper.convertMillisecondToDateVn(it.expired_time!! * 1000) + "</b>")
                 } else {
-                    Html.fromHtml("<font color=#434343>Hạn bảo hành: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.han_bao_hanh)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                 }
 
                 //lay expired_time - thoi gian hien tai
@@ -402,15 +403,15 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
                 val timeRemaining = ((timeServer - currrentTime) / AlarmManager.INTERVAL_DAY) + 1
 
                 tvRemainingDay.text = if (timeRemaining <= 0) {
-                    Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font><b>0 ngày</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.so_ngay_bao_hanh_con_lai)}: </font><b>0 ${rText(R.string.ngay)}</b>")
                 } else {
-                    Html.fromHtml("<font color=#434343>Số ngày bảo hành còn lại: </font><b>$timeRemaining ngày</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.so_ngay_bao_hanh_con_lai)}: </font><b>$timeRemaining ${rText(R.string.ngay)}</b>")
                 }
 
                 tvNoteGuarantee.text = if (it.note != null) {
-                    Html.fromHtml("<font color=#434343>Ghi chú: </font>" + "<b>" + it.note + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.ghi_chu)}: </font>" + "<b>" + it.note + "</b>")
                 } else {
-                    Html.fromHtml("<font color=#434343>Ghi chú: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+                    Html.fromHtml("<font color=#434343>${rText(R.string.ghi_chu)}: </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
                 }
             }
         } else {
@@ -428,21 +429,21 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
                                 layoutVerified.visibility = View.VISIBLE
                                 tvMessageVerified.text = i.service?.message_success
                                 obj.data?.stamp?.let {
-                                    tvSerialVerified.text = "Serial: " + it.serial
+                                    tvSerialVerified.rText(R.string.serial_s, it.serial)
                                 }
                             }
                             "warning" -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_warning
                                 obj.data?.stamp?.let {
-                                    tvSerialFake.text = "Serial: " + it.serial
+                                    tvSerialFake.rText(R.string.serial_s, it.serial)
                                 }
                             }
                             else -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_error
                                 obj.data?.stamp?.let {
-                                    tvSerialFake.text = "Serial: " + it.serial
+                                    tvSerialFake.rText(R.string.serial_s, it.serial)
                                 }
                             }
                         }
@@ -453,21 +454,21 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
                                 layoutVerified.visibility = View.VISIBLE
                                 tvMessageVerified.text = i.service?.message_success
                                 obj.data?.stamp?.let {
-                                    tvSerialVerified.text = "Serial: " + it.serial
+                                    tvSerialVerified.rText(R.string.serial_s, it.serial)
                                 }
                             }
                             "warning" -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_warning
                                 obj.data?.stamp?.let {
-                                    tvSerialFake.text = "Serial: " + it.serial
+                                    tvSerialFake.rText(R.string.serial_s, it.serial)
                                 }
                             }
                             else -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_error
                                 obj.data?.stamp?.let {
-                                    tvSerialFake.text = "Serial: " + it.serial
+                                    tvSerialFake.rText(R.string.serial_s, it.serial)
                                 }
                             }
                         }
@@ -779,15 +780,15 @@ class DetailStampV6Activity : BaseActivityMVVM(), IDetailStampV6View {
         when (errorType) {
             Constant.ERROR_INTERNET -> {
                 imgError.setImageResource(R.drawable.ic_error_network)
-                tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                tvMessageError.rText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
             }
             Constant.ERROR_UNKNOW -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                tvMessageError.rText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
             }
             Constant.ERROR_EMPTY -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
-                tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                tvMessageError.rText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
             }
         }
     }

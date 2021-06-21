@@ -186,11 +186,11 @@ class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListen
                     override fun onSuccess(t: ICShare) {
                         if (t.link.isNotEmpty()) {
                             val share = Intent()
-                            share.setAction(Intent.ACTION_SEND)
+                            share.action = Intent.ACTION_SEND
                             share.putExtra(Intent.EXTRA_SUBJECT, intent.getStringExtra("name"))
                             share.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.chia_se_danh_gia, averagePoint * 2, message, t.link))
-                            share.setType("text/plain")
-                            startActivity(Intent.createChooser(share, "Chia sẻ ${intent.getStringExtra("name")}"))
+                            share.type = "text/plain"
+                            startActivity(Intent.createChooser(share, getString(R.string.chia_se_x, intent.getStringExtra("name"))))
 
                             //back
                             val result = Intent()
@@ -276,7 +276,7 @@ class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListen
                         }
                     })
         } else {
-            ToastUtils.showShortError(this, "Không được để trống tiêu chí")
+            ToastUtils.showShortError(this, getString(R.string.khong_duoc_de_trong_tieu_chi))
         }
     }
 

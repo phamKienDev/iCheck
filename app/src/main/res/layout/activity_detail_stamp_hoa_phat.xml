@@ -108,7 +108,7 @@
                     android:layout_marginTop="@dimen/size_16"
                     android:layout_marginEnd="@dimen/size_40"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Thử Lại"
+                    android:text="@string/thu_lai"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
             </LinearLayout>
@@ -261,7 +261,7 @@
                     android:drawableTop="@drawable/ic_chat_temp_white_24_px"
                     android:drawablePadding="@dimen/size_3"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Chat ngay"
+                    android:text="@string/chat_ngay"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_12"
                     android:textStyle="normal"
@@ -287,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Mua ngay"
+                    android:text="@string/mua_ngay"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
@@ -311,7 +311,7 @@
             android:paddingTop="@dimen/size_10"
             android:paddingEnd="@dimen/size_12"
             android:paddingBottom="@dimen/size_10"
-            android:text="Cập nhật thông tin khách hàng"
+            android:text="@string/cap_nhat_thong_tin_khach_hang"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"

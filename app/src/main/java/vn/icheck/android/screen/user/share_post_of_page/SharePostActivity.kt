@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SharePostActivity : BaseActivityMVVM() {
@@ -30,7 +31,7 @@ class SharePostActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
-        txtTitle.text = "Chia sẻ trang cá nhân"
+        txtTitle rText R.string.chia_se_trang_ca_nhan
     }
 
     private fun listenerGetData() {

@@ -27,10 +27,12 @@ class GiftListAdapter(val context: Context): RecyclerView.Adapter<GiftListAdapte
     }
 
     override fun onBindViewHolder(holder: GiftChildHolder, position: Int) {
-        val child = listGift.get(position)
+        val child = listGift[position]
         holder.view.background=ViewHelper.lineDottedVertical7LineColor(holder.view.context)
         holder.title.text = child.name
-        holder.available.text = String.format("Còn lại: %d", child.remain)
+        holder.available.apply {
+            text = context.getString(R.string.con_lai_d, child.remain)
+        }
         holder.cost.text = child.price.toString()
         if (!child.image.isNullOrEmpty()) {
             Glide.with(holder.itemView.context.applicationContext).load(child.image).into(holder.image)

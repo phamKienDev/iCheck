@@ -16,6 +16,7 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -130,7 +131,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.tvNote.beVisible()
                 itemView.view45.beVisible()
 
-                itemView.tvFriendCount.text = ("Bạn bè (${obj.count})")
+                itemView.tvFriendCount.rText(R.string.ban_be_d, obj.count)
             }
 
             itemView.imgClose.setOnClickListener {

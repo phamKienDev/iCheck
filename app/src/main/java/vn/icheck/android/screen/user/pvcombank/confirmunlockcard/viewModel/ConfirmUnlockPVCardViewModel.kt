@@ -73,7 +73,9 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
                     fullcard = obj.data?.fullCard
-                    dataUnLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataUnLockCard.postValue(it)
+                    }
                 } else {
                     errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -103,7 +105,9 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    dataUnLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataUnLockCard.postValue(it)
+                    }
                 } else {
                     errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -128,7 +132,9 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICInfoPVCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data?.fullCard.isNullOrEmpty()) {
-                    unlockCardSuccess.postValue(obj.data!!.fullCard)
+                    obj.data?.fullCard?.let {
+                        unlockCardSuccess.postValue(it)
+                    }
                 } else {
                     verifyError.postValue(obj.data?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }

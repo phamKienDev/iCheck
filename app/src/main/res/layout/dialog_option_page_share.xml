@@ -28,7 +28,7 @@
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Tùy chọn trang chia sẻ"
+            android:text="@string/tuy_chon_trang_chia_se"
             android:textSize="@dimen/font_18"
             app:layout_constraintBottom_toBottomOf="@id/imgCancel"
             app:layout_constraintEnd_toEndOf="parent"

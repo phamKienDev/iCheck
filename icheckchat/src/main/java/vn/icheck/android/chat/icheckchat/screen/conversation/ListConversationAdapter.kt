@@ -14,6 +14,7 @@ import vn.icheck.android.chat.icheckchat.base.recyclerview.holder.BaseViewHolder
 import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_CONVERSATION
 import vn.icheck.android.chat.icheckchat.databinding.ItemConversationBinding
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -130,7 +131,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.tvCountMessage.setVisible()
                 when {
                     obj.unreadCount!! > 9 -> {
-                        binding.tvCountMessage.text = "9+"
+                        binding.tvCountMessage rText R.string.count_9
                         binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
                     }
                     obj.unreadCount!! > 0 -> {
@@ -176,7 +177,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.tvCountMessage.setVisible()
                 when {
                     obj.unreadCount!! > 9 -> {
-                        binding.tvCountMessage.text = "9+"
+                        binding.tvCountMessage rText R.string.count_9
                         binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
                     }
                     obj.unreadCount!! > 0 -> {

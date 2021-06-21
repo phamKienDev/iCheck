@@ -152,7 +152,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnSubmit.isClickable = true
                 ToastUtils.showShortError(
                     itemView.context,
-                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi_danh_gia)
                 )
             }
         }

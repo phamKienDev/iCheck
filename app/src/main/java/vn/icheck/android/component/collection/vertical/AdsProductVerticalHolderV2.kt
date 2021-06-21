@@ -68,20 +68,20 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
 
                     // Text point
                     (getChildAt(1) as AppCompatTextView).run {
-                        text = String.format("%.1f", (obj.rating * 2))
+                        text = context.getString(R.string.format_1_f, obj.rating * 2)
                     }
 
                     // Text total review
                     (getChildAt(2) as AppCompatTextView).run {
                         text = when {
                             obj.reviewCount > 9999 -> {
-                                "(9.999+)"
+                                context.getString(R.string.count_9999)
                             }
                             obj.reviewCount > 999 -> {
-                                "(999+)"
+                                context.getString(R.string.count_999)
                             }
                             obj.reviewCount > 0 -> {
-                                "(${obj.reviewCount})"
+                                context.getString(R.string.count, obj.reviewCount)
                             }
                             else -> {
                                 null

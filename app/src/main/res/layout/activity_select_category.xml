@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Chọn danh mục"
+            android:text="@string/chon_danh_muc"
             android:textAlignment="center" />
 
     </LinearLayout>
@@ -57,7 +57,7 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical"
-        android:hint="Tìm kiếm"
+        android:hint="@string/tim_kiem"
         android:imeOptions="actionSearch"
         android:includeFontPadding="false"
         android:maxLines="1"

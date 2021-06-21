@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import kotlinx.android.synthetic.main.dialog_enter_the_prize_code.*
 import kotlinx.android.synthetic.main.item_loyalty_holder.view.*
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.setGone
@@ -99,7 +100,7 @@ abstract class DialogEnterThePrizeCode(
 
     private fun postNhapMaTichDiem(code: String) {
         if (NetworkHelper.isNotConnected(context)) {
-            ToastHelper.showLongError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastHelper.showLongError(context, context.rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 

@@ -28,6 +28,7 @@ import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 
 class ReportActivity : BaseActivityMVVM() {
     lateinit var viewModel: ReportViewModel
@@ -66,7 +67,7 @@ class ReportActivity : BaseActivityMVVM() {
         btnDone.setOnClickListener {
             selectReason()
         }
-        tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: "Báo cáo"
+        tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: rText(R.string.bao_cao)
     }
 
     private fun setupView() {
@@ -139,7 +140,7 @@ class ReportActivity : BaseActivityMVVM() {
             }
 
             val dialog = ReportSuccessDialog(this)
-            dialog.show(list, "order", "Cảm ơn bạn đã báo lỗi đơn hàng này!")
+            dialog.show(list, "order", rText(R.string.cam_on_ban_da_bao_loi_don_hang_nay))
             dialog.dialog.setOnDismissListener {
                 finish()
             }
@@ -184,7 +185,7 @@ class ReportActivity : BaseActivityMVVM() {
         }
 
         if (isChecked) {
-            DialogHelper.showConfirm(this, "Bạn muốn bỏ báo lỗi này?", null, "Tiếp tục báo lỗi", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, rText(R.string.ban_muon_bo_bao_cao_loi_nay), null, rText(R.string.tiep_tuc_bao_loi), rText(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }
@@ -209,14 +210,14 @@ class ReportActivity : BaseActivityMVVM() {
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
                 listData[i].name?.let {
-                    if (it != "Khác" && it != "Lý do khác")
+                    if ((it != "Khác" && it != "Lý do khác")||(it != rText(R.string.khac) && it != rText(R.string.ly_do_khac)))
                         listMessage.add(it)
                 }
             }
         }
 
         if (listReason.isEmpty()) {
-            showShortErrorToast(R.string.vui_long_chon_it_nhat_1_ly_do)
+            showShortErrorToast(R.string.vui_long_chon_it_nhat_mot_ly_do)
         } else {
             viewModel.putOrder(listReason, edtContent.text.toString())
         }

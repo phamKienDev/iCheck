@@ -58,7 +58,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="Tạp hóa Ngọc Lan"
                 android:textColor="@color/black_blue"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +82,7 @@
                 android:paddingEnd="@dimen/size_6"
                 android:paddingRight="@dimen/size_6"
                 android:paddingBottom="@dimen/size_2"
-                android:text="Khoảng cách: 5km"
+                android:text="@string/khoang_cach_5km"
                 android:textColor="@color/violet_2"
                 android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
@@ -195,7 +194,6 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="Nước hoa hồng Langege dung tích 201..."
                 android:textSize="@dimen/font_14" />
 
 

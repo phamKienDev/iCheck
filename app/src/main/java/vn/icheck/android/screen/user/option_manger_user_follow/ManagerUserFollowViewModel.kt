@@ -41,7 +41,9 @@ class ManagerUserFollowViewModel : ViewModel() {
                     if (!isLoadMore) {
                         isLoadMoreData.postValue(true)
                     }
-                    listData.postValue(obj.data)
+                    obj.data?.let {
+                        listData.postValue(it)
+                    }
                 } else {
                     if (!isLoadMore) {
                         if (!key.isNullOrEmpty()) {

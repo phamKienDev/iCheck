@@ -63,7 +63,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Thời gian đặt hàng"
+                    android:text="@string/thoi_gian_dat_hang"
                     android:textSize="@dimen/font_16"
                     android:visibility="gone"
                     app:layout_constraintEnd_toStartOf="@+id/img_status"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:text="Địa chỉ nhận hàng"
+                    android:text="@string/dia_chi_nhan_hang"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_12"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Thay đổi"
+                    android:text="@string/thay_doi"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -194,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:text="Phí giao hàng (COD)"
+                    android:text="@string/phi_giao_hang_cod"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -219,7 +219,7 @@
                     android:layout_marginTop="@dimen/size_8"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_12"
-                    android:text="Người nhận tự thanh toán phí COD."
+                    android:text="@string/nguoi_nhan_tu_thanh_toan_phi_cod"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -233,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Danh sách sản phẩm"
+                android:text="@string/danh_sach_san_pham"
                 android:textSize="@dimen/font_16" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -334,7 +334,7 @@
                     android:layout_marginTop="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
-                    android:text="x1"
+                    android:text="@string/x1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img_gift"
                     app:layout_constraintTop_toBottomOf="@+id/tv_gift" />
@@ -375,7 +375,7 @@
                     android:ems="10"
                     android:fontFamily="@font/barlow_medium"
                     android:gravity="start|top"
-                    android:hint="Nhập ghi chú..."
+                    android:hint="@string/nhap_ghi_chu"
                     android:inputType="textMultiLine"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -395,7 +395,7 @@
                 android:layout_marginEnd="@dimen/size_12"
                 android:gravity="center"
                 android:padding="@dimen/size_8"
-                android:text="Báo lỗi"
+                android:text="@string/bao_loi"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -409,7 +409,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"
-        android:text="Tổng thanh toán:"
+        android:text="@string/tong_thanh_toan_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -435,7 +435,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
-        android:text="Xác nhận đơn hàng"
+        android:text="@string/xac_nhan_don_hang"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

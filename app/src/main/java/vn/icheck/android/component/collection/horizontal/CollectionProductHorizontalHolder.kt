@@ -48,20 +48,20 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
 
                 // Text point
                 (getChildAt(1) as AppCompatTextView).run {
-                    text = String.format("%.1f", (obj.rating * 2))
+                    text = context.getString(R.string.format_1_f, obj.rating * 2)
                 }
 
                 // Text total review
                 (getChildAt(2) as AppCompatTextView).run {
                     text = when {
                         obj.review_count > 9999 -> {
-                            "(9.999+)"
+                            context.getString(R.string.count_9999)
                         }
                         obj.review_count > 999 -> {
-                            "(999+)"
+                            context.getString(R.string.count_999)
                         }
                         obj.review_count > 0 -> {
-                            "(${obj.review_count})"
+                            context.getString(R.string.count, obj.review_count)
                         }
                         else -> {
                             null

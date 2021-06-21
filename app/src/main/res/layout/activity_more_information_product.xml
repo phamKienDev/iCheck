@@ -60,7 +60,7 @@
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_40"
             android:fontFamily="sans-serif-medium"
-            android:text="Thử Lại"
+            android:text="@string/thu_lai"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
     </LinearLayout>

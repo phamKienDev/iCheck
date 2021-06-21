@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Xác nhận mở thẻ" />
+            android:text="@string/xac_nhan_mo_the" />
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite
@@ -43,7 +43,7 @@
                 android:layout_marginTop="@dimen/size_40"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Nhập mã OTP"
+                android:text="@string/nhap_ma_otp"
                 android:textSize="@dimen/font_20" />
 
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -58,7 +58,7 @@
                 android:lineSpacingExtra="@dimen/font_6"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal"
-                tools:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_sdt" />
+                tools:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_sdt_s" />
 
             <vn.icheck.android.ui.OtpEditText
                 android:id="@+id/edt_otp"
@@ -80,7 +80,7 @@
                 android:paddingTop="@dimen/size_5"
                 android:paddingEnd="@dimen/size_10"
                 android:paddingBottom="@dimen/size_5"
-                android:text="Gửi lại mã (60s)"
+                android:text="@string/gui_lai_ma_60s"
                 android:textSize="@dimen/font_14" />
 
         </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
@@ -103,7 +103,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
-            android:text="Xác nhận" />
+            android:text="@string/xac_nhan" />
 
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 </LinearLayout>

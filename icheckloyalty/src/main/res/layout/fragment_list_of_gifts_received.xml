@@ -31,7 +31,7 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Lịch sử trúng quà"
+            android:text="@string/lich_su_trung_qua"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="normal" />

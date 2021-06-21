@@ -7,6 +7,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.R
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.ActivityContactBinding
 import vn.icheck.android.helper.SettingHelper
@@ -22,7 +23,7 @@ class ContactActivity : BaseActivityMVVM() {
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
         TrackingAllHelper.trackContactViewed()
-        binding.header.txtTitle simpleText "Liên hệ và hỗ trợ"
+        binding.header.txtTitle rText R.string.lien_he_va_ho_tro
         binding.header.imgBack.setOnClickListener {
             finish()
         }
@@ -115,16 +116,16 @@ class ContactActivity : BaseActivityMVVM() {
                             }
                         }
                     }
-                    binding.phone simpleText "0902195488"
+                    binding.phone rText R.string.tong_dai_number
                     binding.phone.setOnClickListener {
                         if (job == null) {
                             job = lifecycleScope.launch {
-                                makeCall("0902195488")
+                                makeCall(rText(R.string.tong_dai_number))
                                 delay(200)
                             }
                         } else if (job?.isActive == false) {
                             job = lifecycleScope.launch {
-                                makeCall("0902195488")
+                                makeCall(rText(R.string.tong_dai_number))
                                 delay(200)
                             }
                         }

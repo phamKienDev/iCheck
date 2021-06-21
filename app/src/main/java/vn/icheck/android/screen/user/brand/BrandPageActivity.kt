@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.screen.user.brand.adapter.BrandPageAdapter
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 /**
@@ -38,7 +39,7 @@ class BrandPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle.text = "Các nhãn hàng"
+        txtTitle rText R.string.cac_nhan_hang
     }
 
     private fun setUpRecyclerView() {

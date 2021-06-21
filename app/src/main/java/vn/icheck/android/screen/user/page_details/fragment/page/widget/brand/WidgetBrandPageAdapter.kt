@@ -6,10 +6,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
+import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.ICPageTrend
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -43,17 +45,17 @@ class WidgetBrandPageAdapter(val listData: MutableList<ICPageTrend>) : RecyclerV
             (params.getChildAt(2) as AppCompatTextView).run {
                 if (obj.followCount != null) {
                     if (obj.followCount!! < 1000) {
-                        text = "${obj.followCount} người theo dõi"
+                        text = context.rText(R.string.d_nguoi_theo_doi, obj.followCount)
                     } else if (obj.followCount!! < 10000) {
-                        text = "${TextHelper.formatMoney(obj.followCount)} người theo dõi"
+                        text = context.rText(R.string.s_nguoi_theo_doi,TextHelper.formatMoney(obj.followCount))
                     } else {
-                        text = "${((obj.followCount)!! / 1000f).toString().replace(".0", "")}k người theo dõi"
+                        text = context.rText(R.string.k_nguoi_theo_doi, ((obj.followCount)!! / 1000f).toString().replace(".0", ""))
                     }
                 }
             }
 
             itemView.setOnClickListener {
-                ToastUtils.showLongWarning(itemView.context, "onClickItemBrand")
+                ToastUtils.showLongWarning(itemView.context, it.context.rText(R.string.on_click_item_brand))
             }
         }
     }

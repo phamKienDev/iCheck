@@ -23,7 +23,7 @@
             android:layout_marginRight="@dimen/size_25"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Hướng dẫn đổi quà tại cửa hàng"
+            android:text="@string/huong_dan_doi_qua_tai_cua_hang"
             android:textColor="@color/colorSecondary"
             android:textSize="16sp" />
 
@@ -56,7 +56,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Tôi đã hiểu"
+            android:text="@string/toi_da_hieu"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>

@@ -203,15 +203,18 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (obj.price != null || obj.sellPrice != null) {
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
-                    binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                    }
                 }
 
                 if (obj.sellPrice != null) {
-                    binding.tvPriceOriginal.beVisible()
-                    binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
-                    binding.tvPriceOriginal.paintFlags =
-                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvPriceOriginal.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
                 }
             } else {
                 binding.tvPriceUpdating.beVisible()
@@ -384,15 +387,18 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             } else {
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
-                    binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                    }
                 }
 
                 if (obj.sellPrice != null) {
-                    binding.tvPriceOriginal.beVisible()
-                    binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
-                    binding.tvPriceOriginal.paintFlags =
-                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvPriceOriginal.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
                 }
             }
 
@@ -583,15 +589,18 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             } else {
                 binding.tvPriceUpdating.beGone()
                 if (obj.price != null) {
-                    binding.tvPriceSpecial.beVisible()
-                    binding.tvPriceSpecial.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                    binding.tvPriceSpecial.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                    }
                 }
 
                 if (obj.sellPrice != null) {
-                    binding.tvPriceOriginal.beVisible()
-                    binding.tvPriceOriginal.text = TextHelper.formatMoney(obj.sellPrice) + "đ"
-                    binding.tvPriceOriginal.paintFlags =
-                        binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.tvPriceOriginal.apply {
+                        beVisible()
+                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
                 }
             }
 
@@ -717,8 +726,10 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             }
 
             if (obj.price != null) {
-                binding.tvPrice.beVisible()
-                binding.tvPrice.text = TextHelper.formatMoney((obj.price?:0.0).toLong()) + "đ"
+                binding.tvPrice.apply {
+                    beVisible()
+                    text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                }
                 binding.tvPriceUpdating.beGone()
             } else {
                 binding.tvPriceUpdating.beVisible()

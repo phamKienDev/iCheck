@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_12"
         android:drawableEnd="@drawable/ic_history_delete_gray_24px"
-        android:text="Chọn tiêu đề nội dung"
+        android:text="@string/chon_tieu_de_noi_dung"
         android:textColor="#434343" />
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
@@ -27,7 +27,7 @@
         android:background="@null"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Nội dung"
+        android:hint="@string/noi_dung"
         android:inputType="textMultiLine"
         android:lines="5"
         android:padding="@dimen/size_8"

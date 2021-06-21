@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.history.ICStoreNear
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -167,7 +168,7 @@ class StoreSellHistoryAdapter constructor(val view: StoreSellHistoryView) : Recy
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Không có cửa hàng nào!"
+                    itemView.txtMessage rText R.string.khong_co_cua_hang_nao
                 }
 
                 Constant.ERROR_SERVER -> {

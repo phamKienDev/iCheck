@@ -59,10 +59,7 @@ import vn.icheck.android.screen.user.edit_comment.EditCommentActivity
 import vn.icheck.android.screen.user.list_product_question.adapter.ListEmojiAdapter
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.util.KeyboardUtils
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beInvisible
-import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.logError
+import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
 import java.io.File
@@ -500,7 +497,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                         postDialog = object : PostOptionDialog(this, post) {
                             override fun onPin(isPin: Boolean) {
                                 if (post.pinned) {
-                                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn bỏ ghim bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorPrimary, object : ConfirmDialogListener {
+                                    DialogHelper.showConfirm(dialog.context, rText(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay), null, rText(R.string.de_sau), rText(R.string.dong_y), true, null, R.color.colorPrimary, object : ConfirmDialogListener {
                                         override fun onDisagree() {
 
                                         }

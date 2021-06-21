@@ -29,6 +29,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 
 class ReportProductActivity : BaseActivityMVVM() {
     private lateinit var viewModel: ReportProductViewModel
@@ -143,7 +144,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)
-            it.setHint(R.string.mo_ta_noi_dung_bao_cao_khac)
+            it.setHint(R.string.mo_ta_noi_dung_bao_cao)
             it.gravity = Gravity.TOP
             it.visibility = View.GONE
         })
@@ -172,7 +173,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
 
             if (!listReasonID.isNullOrEmpty()) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, rText(R.string.ban_muon_bo_bao_cao_nay), null, rText(R.string.tiep_tuc_bao_cao), rText(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         DialogHelper.closeLoading(this@ReportProductActivity)
                     }

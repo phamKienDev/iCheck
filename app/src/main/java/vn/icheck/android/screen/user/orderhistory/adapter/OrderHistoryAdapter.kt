@@ -32,6 +32,7 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.util.ick.rText
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
 
@@ -64,22 +65,22 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
             when (status) {
                 OrderHistoryActivity.waitForConfirmation -> {
-                    itemView.tvTime.text = "Ngày tạo đơn: ${TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy")}"
+                    itemView.tvTime.rText(R.string.ngay_tao_don_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beVisible()
                 }
                 OrderHistoryActivity.delivery -> {
-                    itemView.tvTime.text = "Thời gian cập nhật: ${TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy")}"
+                    itemView.tvTime.rText(R.string.thoi_gian_cap_nhat_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beVisible()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.delivered -> {
-                    itemView.tvTime.text = "Đã giao: ${TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy")}"
+                    itemView.tvTime.rText(R.string.da_giao_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.canceled -> {
-                    itemView.tvTime.text = "Đã hủy: ${TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy")}"
+                    itemView.tvTime.rText(R.string.da_huy_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy"))
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
@@ -106,7 +107,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
                 if (obj.orderItem!!.size > 2) {
                     itemView.layoutCount.beVisible()
-                    itemView.tvCount.text = "${obj.orderItem!!.size - 2} sản phẩm khác"
+                    itemView.tvCount.rText(R.string.d_san_pham_khac,obj.orderItem!!.size - 2)
                     itemView.rcvOrders.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(82) * 2)
                 } else {
                     itemView.layoutCount.beGone()
@@ -119,7 +120,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
                 background = ViewHelper.bgOutlinePrimary1Corners4(context)
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let {
-                        ReportActivity.start(ReportActivity.order, obj.id, "Báo lỗi đơn hàng", it)
+                        ReportActivity.start(ReportActivity.order, obj.id, it.rText(R.string.bao_loi_don_hang), it)
                     }
                 }
             }
@@ -127,7 +128,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             itemView.tvConfirm.apply {
                 background = ViewHelper.bgPrimaryCorners4(itemView.context)
                 setOnClickListener {
-                    DialogHelper.showConfirm(itemView.context, "Bạn đã nhận được đơn hàng này từ nhà vận chuyển?", null, "Chưa", "Đã nhận hàng", true, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(itemView.context, it.context.rText(R.string.ban_da_nhan_duoc_don_hang_nay_tu_nha_van_chuyen), null, it.context.rText(R.string.chua), it.context.rText(R.string.da_nhan_hang), true, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }
@@ -142,7 +143,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
             }
 
             itemView.tvCancelOrder.setOnClickListener {
-                DialogHelper.showConfirm(itemView.context, "Bạn chắc chắn muốn hủy đơn hàng này?", null, "Để sau", "Chắc chắn", true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(itemView.context, it.context.rText(R.string.ban_chac_chan_muon_huy_don_hang_nay), null, it.context.rText(R.string.de_sau), it.context.rText(R.string.chac_chan), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }

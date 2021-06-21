@@ -23,7 +23,10 @@ class LoyaltyVipDetailViewModel : BaseViewModel<Any>() {
 
         repository.getCampaignDetailLongTime(collectionID, object : ICApiListener<ICKResponse<ICKCampaignOfBusiness>> {
             override fun onSuccess(obj: ICKResponse<ICKCampaignOfBusiness>) {
-                onSuccess.postValue(obj.data)
+                obj.data?.let {
+                    onSuccess.postValue(it)
+                }
+
             }
 
             override fun onError(error: ICKBaseResponse?) {

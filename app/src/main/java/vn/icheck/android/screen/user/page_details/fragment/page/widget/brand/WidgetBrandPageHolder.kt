@@ -20,6 +20,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.brand.BrandPageActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createView(parent.context)) {
@@ -36,10 +37,10 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
             (getChildAt(0) as AppCompatTextView).run {
                 when (type) {
                     Constant.PAGE_BRAND_TYPE -> {
-                        text = "Các nhãn hàng"
+                        text = context.rText(R.string.cac_nhan_hang)
                     }
                     Constant.PAGE_EXPERT_TYPE -> {
-                        text = "Đại sứ thương hiệu"
+                        text = context.rText(R.string.dai_su_thuong_hieu)
                     }
                 }
             }
@@ -81,7 +82,7 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         text.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
                         text.includeFontPadding = false
-                        text.text = "Các nhãn hàng"
+                        text rText R.string.cac_nhan_hang
                         text.setPadding(0, 0, 0, 0)
                     })
 

@@ -284,8 +284,9 @@ class CommentPostViewModel : ViewModel() {
                         listEmoji = socialRepository.getStickers(id).data
                         listSticker[id] = listEmoji
                     }
-
-                    onSetChildEmoji.postValue(listEmoji)
+                    listEmoji.let {
+                        onSetChildEmoji.postValue(it)
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -402,7 +403,7 @@ class CommentPostViewModel : ViewModel() {
                     ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 else
                     error?.message
-                onShowMessage.postValue(message)
+                onShowMessage.postValue(message?:"")
             }
         })
     }

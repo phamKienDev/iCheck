@@ -48,10 +48,12 @@ class UtilitiesViewModel : ViewModel() {
                     }
                 }
 
-                if (isLoadMore)
-                    onAddData.postValue(obj.data)
-                else
-                    onSetData.postValue(obj.data)
+                obj.data?.let {
+                    if (isLoadMore)
+                        onAddData.postValue(it)
+                    else
+                        onSetData.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

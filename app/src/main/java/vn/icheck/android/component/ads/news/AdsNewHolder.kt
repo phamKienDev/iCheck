@@ -22,7 +22,7 @@ class AdsNewHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.from(
     private val mAdapter = AdsNewAdapter()
 
     fun bind(obj: ICAdsNew) {
-        itemView.tvTitle.text = obj.name ?: ""
+        itemView.tvTitle.text = obj.name
 
         itemView.viewBackground.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
             itemView.tvStart.visibility = view.visibility

@@ -32,6 +32,7 @@ import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPag
 import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPageAdapter
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageActivity
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageAdapter
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class PageManagementFragment : Fragment() {
@@ -163,7 +164,7 @@ class PageManagementFragment : Fragment() {
             binding.containerFollow.beVisible()
             pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
-            binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
+            binding.tvFollowTitle.rText(R.string.trang_dang_theo_doi_d, pageFollowCount)
             followAdaper.setListData(it!!.rows)
         }
     }
@@ -173,7 +174,7 @@ class PageManagementFragment : Fragment() {
             binding.containerOwner.beGone()
         } else {
             binding.containerOwner.beVisible()
-            binding.tvOwnerTitle.text = "Trang của tôi (${it?.count})"
+            binding.tvOwnerTitle.rText(R.string.trang_cua_toi_d, it?.count)
             ownerAdaper.setListData(it!!.rows)
         }
     }

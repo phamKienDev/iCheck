@@ -10,6 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.util.JsonHelper
 import java.util.concurrent.TimeUnit
@@ -148,7 +150,7 @@ open class BaseInteractor {
 
     fun checkRequestError(throws: Throwable, listener: ICApiListener<*>) {
         val errorBody = ICBaseResponse()
-        errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+        errorBody.message = RStringUtils.rText(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
         when (throws) {
             is RetrofitException -> {

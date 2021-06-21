@@ -25,6 +25,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
+import vn.icheck.android.util.ick.rText
 
 class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, val productId: Long = -1, val isContributed:Boolean = false) : BaseBottomSheetDialog(context, isCancelable) {
 
@@ -82,7 +83,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     Constant.getSecondTextColor(context),
                     14f).also {
                 if (type!="order") {
-                    it.setText(R.string.noi_dung_bao_cao)
+                    it.setText(R.string.noi_dung_bao_cao_colon)
                 }else{
                     it.setText(R.string.noi_dung_bao_loi)
                 }
@@ -112,7 +113,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
                         }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), 14f).also {
-                            it.text = "Nếu bạn biết thông tin chính xác về sản phẩm này, \n hãy đóng góp thêm nhé!"
+                            it rText R.string.neu_ban_biet_thong_tin_chinh_xac_ve_san_pham_nay_hay_dong_gop_them_nhe
                             it.gravity = Gravity.CENTER
                         })
 
@@ -138,7 +139,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                                     pr.leftMargin = SizeHelper.size10
                                 }
                                 it.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
-                                it.text = "Đóng góp sản phẩm"
+                                it rText R.string.dong_gop_san_pham
 
                                 it.setOnClickListener {
                                     dialog.dismiss()

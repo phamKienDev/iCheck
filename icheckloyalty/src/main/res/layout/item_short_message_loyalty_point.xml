@@ -22,7 +22,7 @@
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:singleLine="true"
-        android:text="Bạn chưa có lịch sử đổi quà"
+        android:text="@string/ban_chua_co_lich_su_doi_qua"
         android:textColor="#757575" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -34,7 +34,7 @@
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:singleLine="true"
-        android:text="Tham gia tích điểm để đổi quà to nào!"
+        android:text="@string/tham_gia_tich_diem_de_doi_qua_to_nao"
         android:textColor="#757575" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -50,7 +50,7 @@
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
         android:singleLine="true"
-        android:text="Tích điểm ngay"
+        android:text="@string/tich_diem_ngay"
         android:textColor="@color/white"
         android:textSize="16sp" />
 </LinearLayout>

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_16"
         android:fontFamily="sans-serif"
-        android:text="Không thể truy cập. Vui lòng thử lại sau"
+        android:text="@string/khong_the_truy_cap_vui_long_thu_lai_sau"
         android:textColor="#828282"
         android:textSize="@dimen/font_14"
         android:textStyle="normal" />
@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/size_32"
         android:fontFamily="sans-serif-medium"
         android:padding="@dimen/size_16"
-        android:text="Trang Chủ"
+        android:text="@string/trang_chu"
         android:textAlignment="center"
         android:textSize="@dimen/font_16"
         android:textStyle="normal" />

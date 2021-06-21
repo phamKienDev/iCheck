@@ -23,7 +23,7 @@
         android:fontFamily="@font/barlow_medium"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_60"
-        android:text="Cập nhật thông tin và hình ảnh sản phẩm"
+        android:text="@string/cap_nhat_thong_tin_va_hinh_anh_san_pham"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

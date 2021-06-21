@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.Constant
@@ -38,8 +39,7 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
 
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-
-        binding.header.txtTitle simpleText "Sản phẩm yêu thích"
+        binding.header.txtTitle rText R.string.san_pham_yeu_thich
         binding.header.imgBack.setOnClickListener {
             finish()
         }
@@ -58,7 +58,7 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beVisible()
                     binding.tvNoBookmark.beVisible()
-                    binding.tvNoBookmark.text = "Không tìm thấy sản phẩm!"
+                    binding.tvNoBookmark rText R.string.khong_tim_thay_san_pham_1
                 } else {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beGone()

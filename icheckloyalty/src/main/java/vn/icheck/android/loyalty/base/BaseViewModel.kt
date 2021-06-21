@@ -2,6 +2,7 @@ package vn.icheck.android.loyalty.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import vn.icheck.android.ichecklibs.util.RStringUtils
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.model.ICKError
@@ -46,9 +47,9 @@ open class BaseViewModel<T> : ViewModel() {
     fun checkError(isConnected: Boolean, message: String? = null) {
         if (isConnected) {
             onError.postValue(ICKError(R.drawable.ic_error_request, message
-                    ?: ApplicationHelper.getApplicationByReflect().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), "", "", 0, R.color.white))
+                    ?: RStringUtils.rText(R.string.co_loi_xay_ra_vui_long_thu_lai), "", "", 0, R.color.white))
         } else {
-            onError.postValue(ICKError(R.drawable.ic_error_network, ApplicationHelper.getApplicationByReflect().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), "", "", 0, R.color.white))
+            onError.postValue(ICKError(R.drawable.ic_error_network, RStringUtils.rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), "", "", 0, R.color.white))
         }
     }
 

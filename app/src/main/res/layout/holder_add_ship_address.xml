@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_12"
         android:drawablePadding="@dimen/size_8"
-        android:text="Thêm địa chỉ mới"
+        android:text="@string/them_dia_chi_moi"
         app:drawableLeftCompat="@drawable/ic_add_blue_24px"
         app:drawableStartCompat="@drawable/ic_add_blue_24px"
         app:layout_constraintBottom_toBottomOf="parent"

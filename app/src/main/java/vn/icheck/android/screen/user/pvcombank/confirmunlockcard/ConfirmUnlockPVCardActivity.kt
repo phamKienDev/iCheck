@@ -29,6 +29,7 @@ import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.ConfirmUnlockPVCardViewModel
 import vn.icheck.android.util.ick.forceHideKeyboard
+import vn.icheck.android.util.ick.rText
 
 class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
     private val viewModel: ConfirmUnlockPVCardViewModel by viewModels()
@@ -73,7 +74,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
+        val span = SpannableString(rText(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -166,7 +167,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    btnResend.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    btnResend.text = rText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }
@@ -174,7 +175,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
 
             override fun onFinish() {
                 btnResend.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
-                btnResend.text = "Gửi lại mã"
+                btnResend.text = rText(R.string.gui_lai_ma)
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)
                     btnResend.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))

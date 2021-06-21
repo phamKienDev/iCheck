@@ -1,24 +1,22 @@
 package vn.icheck.android.chat.icheckchat.screen.detail_image
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.IMAGE
-import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_IMAGE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.POSITION
 import vn.icheck.android.chat.icheckchat.base.view.showToastError
 import vn.icheck.android.chat.icheckchat.databinding.ActivityImageDetailBinding
 import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.parseListAttachment
 import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.toJson
+import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 
@@ -57,7 +55,7 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
         val listData = parseListAttachment(intent.getStringExtra(DATA_1))
 
         if (listData.isNullOrEmpty()) {
-            showToastError(getString(R.string.error_default))
+            showToastError(rText(R.string.error_default))
             finish()
         } else {
             val listExo = mutableListOf<MCExoMedia>()
@@ -91,8 +89,8 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
                     adapter.getListData[p1].exoPlayer?.playWhenReady = true
                     binding.tvSlide.text = "${p1 + 1}/${listExo.size}"
                     if (positionView != p1) {
-                        if (adapter.getListData.get(positionView).type == IMAGE) {
-                            adapter.getListData.get(positionView).resetImage = true
+                        if (adapter.getListData[positionView].type == IMAGE) {
+                            adapter.getListData[positionView].resetImage = true
                             adapter.notifyItemChanged(positionView)
                         }
                     }
@@ -118,6 +116,7 @@ class ImageDetailActivity : BaseActivityChat<ActivityImageDetailBinding>() {
                     }
                 }
             }
+            else -> {}
         }
     }
 

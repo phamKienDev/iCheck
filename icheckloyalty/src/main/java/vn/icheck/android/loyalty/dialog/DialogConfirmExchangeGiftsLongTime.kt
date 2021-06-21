@@ -5,6 +5,7 @@ import android.content.Intent
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_confirm_exchange_gifts.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
@@ -53,13 +54,13 @@ open class DialogConfirmExchangeGiftsLongTime(
         tvNameProduct.text = if (!name.isNullOrEmpty()) {
             name
         } else {
-            context.getString(R.string.dang_cap_nhat)
+            context.rText(R.string.dang_cap_nhat)
         }
 
         tvPoint.text = if (points != null) {
             TextHelper.formatMoneyPhay(points)
         } else {
-            context.getString(R.string.dang_cap_nhat)
+            context.rText(R.string.dang_cap_nhat)
         }
 
         imgClose.setOnClickListener {
@@ -87,14 +88,14 @@ open class DialogConfirmExchangeGiftsLongTime(
                     }
                 }
             } else {
-                ComingSoonOrOutOfGiftDialog(context, R.drawable.ic_out_of_gift, "Tiếc quá, bạn vừa bỏ lỡ mất rồi", "Món quà cuối cùng đã được đổi.\nHãy lựa chọn món quà khác nhé!").show()
+                ComingSoonOrOutOfGiftDialog(context, R.drawable.ic_out_of_gift, context.rText(R.string.tiec_qua_ban_vua_bo_lo_mat_roi), context.rText(R.string.mon_qua_cuoi_cung_da_duoc_doi_roi_hay_lua_chon_mon_qua_khac_nhe)).show()
             }
         }
     }
 
     private fun exchangeGift(isVoucher: Boolean = false) {
         if (NetworkHelper.isNotConnected(context)) {
-            ToastHelper.showLongError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastHelper.showLongError(context, context.rText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -104,7 +105,7 @@ open class DialogConfirmExchangeGiftsLongTime(
             override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                 if (obj.status == "FAIL") {
                     ToastHelper.showLongError(context, obj.data?.message
-                            ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: context.rText(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 } else {
                     if (isVoucher) {
                         DialogHelperGame.dialogAcceptShipGiftSuccess(context, obj.data?.gift?.image?.thumbnail
@@ -131,7 +132,7 @@ open class DialogConfirmExchangeGiftsLongTime(
 
             override fun onError(error: ICKBaseResponse?) {
                 ToastHelper.showLongError(context, error?.message
-                        ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: context.rText(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

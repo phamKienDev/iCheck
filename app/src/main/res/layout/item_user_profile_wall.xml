@@ -60,7 +60,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Đã gửi lời mời "
+                android:text="@string/da_gui_loi_moi"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/barlow_medium"
-                    android:text="Kết bạn"
+                    android:text="@string/ket_ban"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     app:drawableLeftCompat="@drawable/ic_add_white_12px"
@@ -96,7 +96,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Nhắn tin"
+                android:text="@string/nhan_tin"
                 android:textSize="@dimen/font_16" />
 
             <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/barlow_semi_bold"
-                    android:text="Đánh giá sản phẩm"
+                    android:text="@string/danh_gia_san_pham"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/font_16" />
             </vn.icheck.android.ichecklibs.view.primary.LinearLayoutPrimary>
@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:text="Button"
+                android:text="@string/button"
                 app:srcCompat="@drawable/ic_btn_setting_blue" />
         </LinearLayout>
 
@@ -171,7 +171,7 @@
                 android:drawableLeft="@drawable/ic_gps_off_24px"
                 android:drawablePadding="@dimen/size_6"
                 android:gravity="center_vertical"
-                android:text="Sống tại"
+                android:text="@string/song_tai"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -200,7 +200,7 @@
                 android:drawableLeft="@drawable/ic_register_name_gray_24px"
                 android:drawablePadding="@dimen/size_6"
                 android:gravity="center_vertical"
-                android:text="Tài khoản"
+                android:text="@string/tai_khoan"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -228,7 +228,7 @@
                 android:drawableLeft="@drawable/ic_register_birthday_off_24px"
                 android:drawablePadding="@dimen/size_6"
                 android:gravity="center_vertical"
-                android:text="Đang theo dõi"
+                android:text="@string/dang_theo_doi"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -256,7 +256,7 @@
                 android:drawableLeft="@drawable/ic_register_birthday_off_24px"
                 android:drawablePadding="@dimen/size_6"
                 android:gravity="center_vertical"
-                android:text="Người theo dõi"
+                android:text="@string/nguoi_theo_doi"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
@@ -277,7 +277,7 @@
             android:layout_marginEnd="@dimen/size_12"
             android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xem thêm thông tin cá nhân" />
+            android:text="@string/xem_them_thong_tin_ca_nhan" />
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>
 
     <de.hdodenhof.circleimageview.CircleImageView

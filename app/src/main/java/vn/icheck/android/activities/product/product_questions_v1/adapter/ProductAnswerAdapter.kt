@@ -101,8 +101,10 @@ class ProductAnswerAdapter(val questionPosition: Int, val listener: IProductQues
 
             if (adapterPosition == itemCount - 1) {
                 if (totalCount > listData.size) {
-                    itemView.tvAnswerCount.visibility = View.VISIBLE
-                    itemView.tvAnswerCount.text = ("Xem thêm ${(totalCount - listData.size)} trả lời khác")
+                    itemView.tvAnswerCount.apply {
+                        text = context.getString(R.string.xem_them_x_tra_loi_khac, totalCount - listData.size)
+                        visibility = View.VISIBLE
+                    }
                 } else {
                     itemView.tvAnswerCount.visibility = View.GONE
                     itemView.progressBar.visibility = View.GONE

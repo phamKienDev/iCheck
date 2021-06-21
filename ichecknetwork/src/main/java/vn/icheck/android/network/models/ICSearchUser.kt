@@ -2,6 +2,8 @@ package vn.icheck.android.network.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import vn.icheck.android.ichecklibs.util.RStringUtils
+import vn.icheck.android.network.R
 import vn.icheck.android.network.models.wall.ICUserPrivacyConfig
 
 data class ICSearchUser(
@@ -51,7 +53,7 @@ data class ICSearchUser(
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhoneOnly()
             } else {
-                "Chưa cập nhật"
+                RStringUtils.rText(R.string.chua_cap_nhat)
             }
         }
 
@@ -61,7 +63,7 @@ data class ICSearchUser(
                 replace(0, 2, "0").replace(7, length, "***")
             }.toString()
         } else {
-            "Chưa cập nhật"
+            RStringUtils.rText(R.string.chua_cap_nhat)
         }
     }
 

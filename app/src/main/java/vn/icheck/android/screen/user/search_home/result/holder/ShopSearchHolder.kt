@@ -57,7 +57,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
         }
 
         itemView.setOnClickListener {
-            ToastUtils.showLongError(itemView.context, "Shop Detail")
+            ToastUtils.showLongError(itemView.context, ICheckApplication.getString(R.string.shop_detail))
         }
 
         itemView.tv_follow_shop.apply {

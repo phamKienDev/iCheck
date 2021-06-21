@@ -17,6 +17,7 @@ import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.ICSupport
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ContactUtils
 
 class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
@@ -36,9 +37,9 @@ class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
 
     fun onInitView() {
         if (StampDetailActivity.isVietNamLanguage == false){
-            txtTitle.text = "Contact help"
+            txtTitle rText R.string.contact_help
         } else {
-            txtTitle.text = "Liên hệ hỗ trợ"
+            txtTitle rText R.string.lien_he_ho_tro
         }
 
         presenter.getListContact()
@@ -86,7 +87,7 @@ class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
             "email" -> {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:${item.contact}")
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, rText(R.string.send_to)))
             }
         }
     }

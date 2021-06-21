@@ -137,7 +137,7 @@
                 android:textStyle="italic"
                 android:includeFontPadding="false"
                 android:textSize="@dimen/font_14"
-                android:text="Số điện thoại đang cập nhật"
+                android:text="@string/so_dien_thoai_dang_cap_nhat"
                 android:drawableLeft="@drawable/ic_list_blue_12dp" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
@@ -176,7 +176,7 @@
                     android:textStyle="italic"
                     android:includeFontPadding="false"
                     android:textSize="@dimen/font_14"
-                    android:text="Đang cập nhật"/>
+                    android:text="@string/dang_cap_nhat"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -213,7 +213,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_horizontal"
-            android:text="Xem tất cả"
+            android:text="@string/xem_tat_ca"
             android:textSize="@dimen/font_14" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.detail_stamp_v6.RESP_Log_History_v6
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.presenter.DetaiHistoryGuaranteeV6Presenter
 import vn.icheck.android.screen.user.detail_stamp_v6.detail_history_guarantee_v6.view.IDetaiHistoryGuaranteeV6View
+import vn.icheck.android.util.ick.rText
 
 class DetaiHistoryGuaranteeV6Activity : BaseActivityMVVM(), IDetaiHistoryGuaranteeV6View {
 
@@ -27,7 +28,7 @@ class DetaiHistoryGuaranteeV6Activity : BaseActivityMVVM(), IDetaiHistoryGuarant
 
     fun onInitView() {
         presenter.getDataIntent(intent)
-        txtTitle.text = "Chi tiết bảo hành"
+        txtTitle rText R.string.chi_tiet_bao_hanh
         listener()
     }
 
@@ -39,49 +40,49 @@ class DetaiHistoryGuaranteeV6Activity : BaseActivityMVVM(), IDetaiHistoryGuarant
 
     override fun getDataIntentSuccess(item: RESP_Log_History_v6) {
         tvNameCustomer.text = if (!item.customer?.name.isNullOrEmpty()) {
-            Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + item.customer?.name + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.ho_va_ten)} : </font>" + "<b>" + item.customer?.name + "</b>")
         } else {
-            Html.fromHtml("<font color=#434343>Họ và tên : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.ho_va_ten)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
         }
 
         tvPhoneCustomer.text = if (!item.customer?.phone.isNullOrEmpty()) {
-            Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + item.customer?.phone + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.so_dien_thoai)} : </font>" + "<b>" + item.customer?.phone + "</b>")
         } else {
-            Html.fromHtml("<font color=#434343>Số điện thoại : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.so_dien_thoai)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
         }
 
         tvTimeGuarantee.text = if (item.created_time != null) {
-            Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" +  TimeHelper.convertMillisecondToFomateSv(item.created_time!! * 1000L, "HH:mm dd/MM/yyyy") + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian)} : </font>" + "<b>" +  TimeHelper.convertMillisecondToFomateSv(item.created_time!! * 1000L, "HH:mm dd/MM/yyyy") + "</b>")
         } else {
-            Html.fromHtml("<font color=#434343>Thời gian : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.thoi_gian)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
         }
 
         tvNameStoreGuarantee.text = if (!item.store?.name.isNullOrEmpty()) {
-            Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + item.store?.name + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.diem_bao_hanh)} : </font>" + "<b>" + item.store?.name + "</b>")
         } else {
-            Html.fromHtml("<font color=#434343>Điểm bảo hành : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.diem_bao_hanh)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
         }
 
 
         when (item.type) {
             0 -> {
-                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng bảo hành : </font>" + "<b>" + "Đã kích hoạt" + "</b>")
+                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang_bao_hanh)} : </font>" + "<b>" + rText(R.string.da_kich_hoat) + "</b>")
             }
             1 -> {
-                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng bảo hành : </font>" + "<b>" + "Tiếp nhận bảo hành" + "</b>")
+                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang_bao_hanh)} : </font>" + "<b>" + rText(R.string.tiep_nhan_bao_hanh) + "</b>")
             }
             2 -> {
-                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng bảo hành : </font>" + "<b>" + "Trả bảo hành" + "</b>")
+                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang_bao_hanh)} : </font>" + "<b>" + rText(R.string.tra_bao_hanh) + "</b>")
             }
             else -> {
-                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>Tình trạng bảo hành : </font>" + "<b>" + "Từ chối bảo hành" + "</b>")
+                tvStateGuarantee.text = Html.fromHtml("<font color=#434343>${rText(R.string.tinh_trang_bao_hanh)} : </font>" + "<b>" + rText(R.string.tu_choi_bao_hanh) + "</b>")
             }
         }
 
         tvNguoiPhuTrach.text = if (!item.user?.fullname.isNullOrEmpty()) {
-            Html.fromHtml("<font color=#434343>Nhân viên phụ trách : </font>" + "<b>" + item.user?.fullname + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.nhan_vien_phu_trach)} : </font>" + "<b>" + item.user?.fullname + "</b>")
         } else {
-            Html.fromHtml("<font color=#434343>Nhân viên phụ trách : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
+            Html.fromHtml("<font color=#434343>${rText(R.string.nhan_vien_phu_trach)} : </font>" + "<b>" + getString(R.string.dang_cap_nhat) + "</b>")
         }
 
 

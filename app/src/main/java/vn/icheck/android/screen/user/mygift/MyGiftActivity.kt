@@ -15,6 +15,7 @@ import vn.icheck.android.screen.user.mygift.fragment.reward_item_v2.RewardItemV2
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -83,7 +84,7 @@ class MyGiftActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         viewModel.liveData.observe(this, {
             swipeLayout.isRefreshing = false
             if (viewModel.totalItems != 0) {
-                txtTitle simpleText "Quà của tôi (${viewModel.totalItems})"
+                txtTitle.rText(R.string.qua_cua_toi_d, viewModel.totalItems)
                 it.listRewardItem.firstOrNull()?.totalGifts = viewModel.totalItems
             }
             if (it.count == 0) {

@@ -49,7 +49,7 @@ class IckUserWallRepository @Inject constructor(
     }
 
     fun getFacebook(): String? {
-        return sharedPreferences.getString("FACEBOOK_USERNAME", "Chưa liên kết")
+        return sharedPreferences.getString("FACEBOOK_USERNAME", ICheckApplication.getString(R.string.chua_lien_ket))
     }
 
     suspend fun getUserInfo(): IckUserInfoResponse? {

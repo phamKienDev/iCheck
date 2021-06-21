@@ -36,7 +36,9 @@ class HistorySearchViewModel : ViewModel() {
             interactor.getCartCount(object : ICNewApiListener<ICResponse<Int>> {
                 override fun onSuccess(obj: ICResponse<Int>) {
                     statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    cartCount.postValue(obj.data)
+                    obj.data?.let {
+                        cartCount.postValue(it)
+                    }
                 }
 
                 override fun onError(error: ICResponseCode?) {

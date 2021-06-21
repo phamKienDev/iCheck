@@ -80,5 +80,5 @@
         android:drawableEnd="@drawable/ic_next_blue_18px"
         android:layout_gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Xem chi tiết" />
+        android:text="@string/xem_chi_tiet" />
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

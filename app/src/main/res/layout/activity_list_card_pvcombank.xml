@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Danh sách thẻ" />
+            android:text="@string/danh_sach_the" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="@dimen/size_52"

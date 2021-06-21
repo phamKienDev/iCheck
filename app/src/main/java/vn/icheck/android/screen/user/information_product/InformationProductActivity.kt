@@ -15,6 +15,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class InformationProductActivity : BaseActivityMVVM() {
@@ -41,10 +42,12 @@ class InformationProductActivity : BaseActivityMVVM() {
         WidgetUtils.loadImageUrlFitCenter(imgAction, intent?.getStringExtra(Constant.DATA_3), WidgetUtils.defaultHolder, R.drawable.bg_error_emty_attachment)
 
         viewModel.liveData.observe(this, {
-            txtTitle.text = if (!it.title.isNullOrEmpty()) {
-                it.title
-            } else {
-                "Thông tin chi tiết"
+            txtTitle.apply {
+                text = if (!it.title.isNullOrEmpty()) {
+                    it.title
+                } else {
+                    context.rText(R.string.thong_tin_chi_tiet)
+                }
             }
 
             imgAction.beVisible()

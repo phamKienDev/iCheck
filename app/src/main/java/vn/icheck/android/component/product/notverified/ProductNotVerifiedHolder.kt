@@ -17,6 +17,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.ick.visibleOrGone
 
 class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVerifiedModel>(createView(parent.context)) {
@@ -30,7 +31,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                 if (!obj.data.verifyMessage.isNullOrEmpty()) {
                     text = obj.data.verifyMessage
                 } else {
-                    setText(R.string.default_product_not_verified)
+                    rText(R.string.default_product_not_verified)
                 }
             }
 
@@ -118,7 +119,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_phone_blue_18dp, 0, 0, 0)
                             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
                             it.gravity = Gravity.CENTER_VERTICAL
-                            it.setText(R.string.lien_he_doanh_nghiep)
+                            it rText R.string.lien_he_doanh_nghiep
                         })
                     })
 
@@ -148,7 +149,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_help_blue_18dp, 0, 0, 0)
                             it.setPadding(SizeHelper.size4, 0, SizeHelper.size4, 0)
                             it.gravity = Gravity.CENTER_VERTICAL
-                            it.setText(R.string.tim_hieu_them)
+                            it rText R.string.tim_hieu_them
                         })
                     })
                 })

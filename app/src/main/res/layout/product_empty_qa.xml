@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Bạn có thắc mắc gì về sản phẩm này không?"
+        android:text="@string/ban_co_thac_mac_gi_ve_san_pham_khong"
         android:textSize="@dimen/font_14" />
 
     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Sản phẩm này hiện chưa có câu hỏi nào. Hãy đặt\ncâu hỏi để cùng thảo luận ở đây nhé!"
+        android:text="@string/san_pham_nay_hien_chua_co_cau_hoi_nao_hay_dat_n_cau_hoi_de_cung_thao_luan_o_day_nhe"
         android:textSize="@dimen/font_14" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
@@ -37,6 +37,6 @@
         android:layout_marginBottom="@dimen/size_10"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_8"
-        android:text="Đặt câu hỏi"
+        android:text="@string/dat_cau_hoi"
         android:textSize="@dimen/font_16" />
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

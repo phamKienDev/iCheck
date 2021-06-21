@@ -148,7 +148,9 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_ACCEPTED
                     } else {
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_DENIED
-                        itemView.context.showShortSuccessToast("Bạn đã từ chối kết bạn với ${objFriend.getName}")
+                        itemView.context.apply {
+                            showShortSuccessToast(getString(R.string.ban_da_tu_choi_ket_ban_voi, objFriend.getName))
+                        }
                     }
 
                     checkFriend(objFriend.requestStatus)

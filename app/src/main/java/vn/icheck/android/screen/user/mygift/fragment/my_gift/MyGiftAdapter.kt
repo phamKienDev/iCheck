@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_my_gift.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.ItemClickListener
@@ -15,6 +16,7 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
+import vn.icheck.android.util.ick.rText
 
 class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val listData = mutableListOf<ICItemReward>()
@@ -126,7 +128,7 @@ class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, "Bạn chưa có quà tặng nào")
+                    holder.bind(iconMessage, ICheckApplication.getString(R.string.ban_chua_co_qua_tang_nao))
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
                 }
@@ -154,7 +156,7 @@ class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=${Constant.getSecondTextCode}>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${Constant.getSecondTextCode}>${itemView.context.rText(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }

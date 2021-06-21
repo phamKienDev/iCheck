@@ -23,11 +23,12 @@ import vn.icheck.android.network.models.ICProductReviews
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewsTimeUtils
 import vn.icheck.android.util.ui.GlideUtil
 
-class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductReviews.ReviewsRow>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_reviewcontent_holder_v1, parent, false)) {
+class ReviewsContentStampHolder(val parent: ViewGroup) : BaseViewHolder<ICProductReviews.ReviewsRow>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_reviewcontent_holder_v1, parent, false)) {
     var useful = 0
     var unuseful = 0
 
@@ -191,17 +192,17 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Hữu ích (%d)", number)
+            parent.context.rText(R.string.huu_ich_x, number)
         } else {
-            "Hữu ích"
+            parent.context.rText(R.string.huu_ich)
         }
     }
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Không hữu ích (%d)", number)
+            parent.context.rText(R.string.khong_huu_ich_x, number)
         } else {
-            "Không hữu ích"
+            parent.context.rText(R.string.khong_huu_ich)
         }
     }
 
@@ -233,7 +234,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
 
     fun voteReviews(id: Long, vote: String?) {
         val body = hashMapOf<String, Any?>()
-        body.put("action", vote)
+        body["action"] = vote
 
         val host = APIConstants.defaultHost + APIConstants.CRITERIAVOTEREVIEW().replace("{id}", id.toString())
         ICNetworkClient.getApiClient().postVoteReview(host, body).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : SingleObserver<ICProductReviews.Comments> {

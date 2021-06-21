@@ -23,6 +23,7 @@ import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, Any>?, val title: String, val listProduct: MutableList<ICProductTrend>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -162,7 +163,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
 
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
-                        TrackingAllHelper.trackCategoryViewed(title, activity.getString(R.string.xem_tat_ca))
+                        TrackingAllHelper.trackCategoryViewed(title, activity rText R.string.xem_tat_ca)
                         ListProductActivity.start(activity, url, params, title)
                     }
                 }

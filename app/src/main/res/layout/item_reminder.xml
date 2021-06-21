@@ -67,7 +67,6 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:lines="3"
-                android:text="Bạn có 1 đơn hàng 800.000 đ thanh toán tại VinMarrt+ ( tối đa 2 dòng)..."
                 app:layout_constraintEnd_toStartOf="@id/imageView14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +83,7 @@
                 android:layout_marginBottom="@dimen/size_10"
                 android:gravity="center"
                 android:lines="1"
-                android:text="Xem chi tiết"
+                android:text="@string/xem_chi_tiet"
                 android:textSize="@dimen/font_16"
                 app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"

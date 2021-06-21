@@ -30,7 +30,7 @@ import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.dialog.ReportDialog
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottomSheetDialog(context, R.layout.dialog_post_option, true) {
@@ -40,20 +40,20 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
     fun show() {
         if (post.customerCriteria.isNullOrEmpty()) {
             isReview = false
-            dialog.tvReportTitle.text = dialog.context.getString(R.string.bao_cao_bai_viet)
-            dialog.tvEditTitle.text = dialog.context.getString(R.string.chinh_sua_bai_viet)
-            dialog.tvEditContent.text = dialog.context.getString(R.string.feed_option_edit)
-            dialog.tvDeleteContent.text = dialog.context.getString(R.string.post_delete_option_content)
-            dialog.tvPrivacyContent.text = dialog.context.getString(R.string.post_privacy_option_content)
-            dialog.tvReportContent simpleText dialog.context.getString(R.string.bao_cao_bai_viet_content)
+            dialog.tvReportTitle rText R.string.bao_cao_bai_viet
+            dialog.tvEditTitle rText R.string.chinh_sua_bai_viet
+            dialog.tvEditContent rText R.string.feed_option_edit
+            dialog.tvDeleteContent rText R.string.post_delete_option_content
+            dialog.tvPrivacyContent rText R.string.post_privacy_option_content
+            dialog.tvReportContent rText R.string.bao_cao_bai_viet_content
         } else {
             isReview = true
             dialog.layoutDelete.beGone()
-            dialog.tvReportTitle.text = dialog.context.getString(R.string.feed_option_report_title)
-            dialog.tvEditTitle.text = dialog.context.getString(R.string.chinh_sua_bai_danh_gia)
-            dialog.tvEditContent.text = dialog.context.getString(R.string.review_option_edit)
-            dialog.tvPrivacyContent.text = dialog.context.getString(R.string.review_privacy_option_content)
-            dialog.tvReportContent simpleText dialog.context.getString(R.string.bao_cao_bai_danh_gia_content)
+            dialog.tvReportTitle rText R.string.feed_option_report_title
+            dialog.tvEditTitle rText R.string.chinh_sua_bai_danh_gia
+            dialog.tvEditContent rText R.string.review_option_edit
+            dialog.tvPrivacyContent rText R.string.review_privacy_option_content
+            dialog.tvReportContent rText R.string.bao_cao_bai_danh_gia_content
         }
 
         if (post.page != null) {
@@ -75,20 +75,20 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
         if (post.disableNotify) {
             dialog.imgNotify.setImageResource(R.drawable.ic_turn_on_notification_40dp)
             if (isReview) {
-                dialog.tvNotifyTitle.setText(R.string.bat_thong_bao_cho_bai_danh_gia)
-                dialog.tvNotifyContent.setText(R.string.review_turn_on_notification_option_content)
+                dialog.tvNotifyTitle rText R.string.bat_thong_bao_cho_bai_danh_gia
+                dialog.tvNotifyContent rText R.string.review_turn_on_notification_option_content
             } else {
-                dialog.tvNotifyTitle.setText(R.string.post_turn_on_notification_option_title)
-                dialog.tvNotifyContent.setText(R.string.post_turn_on_notification_option_content)
+                dialog.tvNotifyTitle rText R.string.post_turn_on_notification_option_title
+                dialog.tvNotifyContent rText R.string.post_turn_on_notification_option_content
             }
         } else {
             dialog.imgNotify.setImageResource(R.drawable.ic_turn_off_notification_40dp)
             if (isReview) {
-                dialog.tvNotifyTitle.setText(R.string.tat_thong_bao_cho_bai_danh_gia)
-                dialog.tvNotifyContent.setText(R.string.review_turn_off_notification_option_content)
+                dialog.tvNotifyTitle rText R.string.tat_thong_bao_cho_bai_danh_gia
+                dialog.tvNotifyContent rText R.string.review_turn_off_notification_option_content
             } else {
-                dialog.tvNotifyTitle.setText(R.string.post_turn_off_notification_option_title)
-                dialog.tvNotifyContent.setText(R.string.post_turn_off_notification_option_content)
+                dialog.tvNotifyTitle rText R.string.post_turn_off_notification_option_title
+                dialog.tvNotifyContent rText R.string.post_turn_off_notification_option_content
             }
         }
 
@@ -167,20 +167,20 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
         if (obj.pinned) {
             dialog.imgPin.setImageResource(R.drawable.ic_un_pin_40dp)
             if (isReview) {
-                dialog.tvPinTitle.setText(R.string.review_un_pin_option_title)
-                dialog.tvPinContent.setText(R.string.review_un_pin_option_content)
+                dialog.tvPinTitle rText R.string.review_un_pin_option_title
+                dialog.tvPinContent rText R.string.review_un_pin_option_content
             } else {
-                dialog.tvPinTitle.setText(R.string.post_un_pin_option_title)
-                dialog.tvPinContent.setText(R.string.post_un_pin_option_content)
+                dialog.tvPinTitle rText R.string.post_un_pin_option_title
+                dialog.tvPinContent rText R.string.post_un_pin_option_content
             }
         } else {
             dialog.imgPin.setImageResource(R.drawable.ic_pin_post_40dp)
             if (isReview) {
-                dialog.tvPinTitle.setText(R.string.review_pin_option_title)
-                dialog.tvPinContent.setText(R.string.review_pin_option_content)
+                dialog.tvPinTitle rText R.string.review_pin_option_title
+                dialog.tvPinContent rText R.string.review_pin_option_content
             } else {
-                dialog.tvPinTitle.setText(R.string.post_pin_option_title)
-                dialog.tvPinContent.setText(R.string.post_pin_option_content)
+                dialog.tvPinTitle rText R.string.post_pin_option_title
+                dialog.tvPinContent rText R.string.post_pin_option_content
             }
         }
     }
@@ -189,35 +189,35 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
         if (follow) {
             isFollow = true
             if (post.page != null) {
-                dialog.tvFollowTitle.setText(R.string.bo_theo_doi_trang_nay)
+                dialog.tvFollowTitle rText R.string.bo_theo_doi_trang_nay
                 if (isReview) {
-                    dialog.tvFollowContent.setText(Html.fromHtml(dialog.context.getString(R.string.review_option_off_follow_page_message, name)))
+                    dialog.tvFollowContent.text = Html.fromHtml(dialog.context.rText(R.string.review_option_off_follow_page_message, name))
                 } else {
-                    dialog.tvFollowContent.setText(Html.fromHtml(dialog.context.getString(R.string.feed_option_off_follow_page_message, name)))
+                    dialog.tvFollowContent.text = Html.fromHtml(dialog.context.rText(R.string.feed_option_off_follow_page_message, name))
                 }
             } else {
-                dialog.tvFollowTitle.setText(Html.fromHtml(dialog.context.getString(R.string.feed_option_off_follow_title, name)))
+                dialog.tvFollowTitle.text = Html.fromHtml(dialog.context.rText(R.string.feed_option_off_follow_title, name))
                 if (isReview) {
-                    dialog.tvFollowContent.setText(R.string.review_option_off_follow_user_message)
+                    dialog.tvFollowContent rText R.string.review_option_off_follow_user_message
                 } else {
-                    dialog.tvFollowContent.setText(R.string.feed_option_off_follow_user_message)
+                    dialog.tvFollowContent rText R.string.feed_option_off_follow_user_message
                 }
             }
         } else {
             isFollow = false
             if (post.page != null) {
-                dialog.tvFollowTitle.setText(R.string.theo_doi_trang_nay)
+                dialog.tvFollowTitle rText R.string.theo_doi_trang_nay
                 if (isReview) {
-                    dialog.tvFollowContent.setText(Html.fromHtml(dialog.context.getString(R.string.review_option_on_follow_page_message, name)))
+                    dialog.tvFollowContent.text = Html.fromHtml(dialog.context.rText(R.string.review_option_on_follow_page_message, name))
                 } else {
-                    dialog.tvFollowContent.setText(Html.fromHtml(dialog.context.getString(R.string.feed_option_on_follow_page_message, name)))
+                    dialog.tvFollowContent.text = Html.fromHtml(dialog.context.rText(R.string.feed_option_on_follow_page_message, name))
                 }
             } else {
-                dialog.tvFollowTitle.setText(Html.fromHtml(dialog.context.getString(R.string.feed_option_on_follow_title, name)))
+                dialog.tvFollowTitle.text = Html.fromHtml(dialog.context.rText(R.string.feed_option_on_follow_title, name))
                 if (isReview) {
-                    dialog.tvFollowContent.setText(R.string.review_option_on_follow_message)
+                    dialog.tvFollowContent rText R.string.review_option_on_follow_message
                 } else {
-                    dialog.tvFollowContent.setText(R.string.feed_option_on_follow_message)
+                    dialog.tvFollowContent rText R.string.feed_option_on_follow_message
                 }
             }
         }
@@ -281,7 +281,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
 
         dialog.layoutDelete.setOnClickListener {
             dialog.dismiss()
-            DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa <br /> bài viết này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(dialog.context, dialog.context rText R.string.ban_chac_chan_muon_xoa_bai_viet_nay, null, dialog.context rText R.string.de_sau, dialog.context rText R.string.dong_y, true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }
@@ -361,7 +361,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    ToastUtils.showLongError(activity, error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showLongError(activity, error?.message ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             })
         }
@@ -370,7 +370,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
     private fun followOrUnfollowPage() {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                ToastUtils.showShortError(activity, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showShortError(activity, activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
 
@@ -380,12 +380,12 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     PageRepository().unFollowPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
                         override fun onSuccess(obj: ICResponse<Boolean>) {
                             DialogHelper.closeLoading(activity)
-                            activity.showShortSuccessToast(activity.getString(R.string.ban_da_huy_theo_doi_trang_nay))
+                            activity.showShortSuccessToast(activity rText R.string.ban_da_huy_theo_doi_trang_nay)
                         }
 
                         override fun onError(error: ICResponseCode?) {
                             DialogHelper.closeLoading(activity)
-                            ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ToastUtils.showShortError(ICheckApplication.getInstance(), activity rText R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                         }
                     })
@@ -393,12 +393,12 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     PageRepository().followPage(pageId, object : ICNewApiListener<ICResponse<Boolean>> {
                         override fun onSuccess(obj: ICResponse<Boolean>) {
                             DialogHelper.closeLoading(activity)
-                            activity.showShortSuccessToast(activity.getString(R.string.ban_da_theo_doi_trang_nay))
+                            activity.showShortSuccessToast(activity rText R.string.ban_da_theo_doi_trang_nay)
                         }
 
                         override fun onError(error: ICResponseCode?) {
                             DialogHelper.closeLoading(activity)
-                            ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ToastUtils.showShortError(ICheckApplication.getInstance(), activity rText R.string.co_loi_xay_ra_vui_long_thu_lai)
                         }
                     })
                 }
@@ -409,7 +409,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
     private fun followOrUnfollowUser() {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                ToastUtils.showShortError(activity, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showShortError(activity, activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
             /*
@@ -428,16 +428,16 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                     DialogHelper.closeLoading(activity)
                     obj.data?.let {
                         if (status == 2) {
-                            activity.showShortSuccessToast("Bạn đã bỏ theo dõi ${post.user?.getName}")
+                            activity.showShortSuccessToast(activity.rText(R.string.ban_da_bo_theo_doi_s, post.user?.getName))
                         } else {
-                            activity.showShortSuccessToast("Bạn đã theo dõi ${post.user?.getName}")
+                            activity.showShortSuccessToast(activity.rText(R.string.ban_da_theo_doi_s, post.user?.getName))
                         }
                     }
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showShortError(ICheckApplication.getInstance(), activity rText R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             })
         }
@@ -446,7 +446,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
     private fun subcribeNotification() {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                ToastUtils.showLongError(activity, activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showLongError(activity, activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
 
@@ -456,12 +456,12 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     post.disableNotify = false
-                    dialog.context.showShortSuccessToast(dialog.context.getString(R.string.ban_da_bat_thong_bao_bai_viet_nay))
+                    dialog.context.showShortSuccessToast(dialog.context rText R.string.ban_da_bat_thong_bao_bai_viet_nay)
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    val message = error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    val message = error?.message ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai
                     ToastUtils.showLongError(activity, message)
                 }
             })
@@ -471,7 +471,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
     private fun unsubcribeNotification() {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                ToastUtils.showLongError(activity, activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showLongError(activity, activity rText R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 return
             }
 
@@ -481,13 +481,13 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                 override fun onSuccess(obj: ICResponse<Boolean>) {
                     DialogHelper.closeLoading(activity)
                     post.disableNotify = true
-                    dialog.context.showShortSuccessToast(dialog.context.getString(R.string.ban_da_tat_thong_bao_bai_viet_nay))
+                    dialog.context.showShortSuccessToast(dialog.context rText R.string.ban_da_tat_thong_bao_bai_viet_nay)
 
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    val message = error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    val message = error?.message ?: activity rText R.string.co_loi_xay_ra_vui_long_thu_lai
                     ToastUtils.showLongError(activity, message)
                 }
             })

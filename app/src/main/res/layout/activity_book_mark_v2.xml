@@ -33,7 +33,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Sản phẩm đã thích" />
+            android:text="@string/san_pham_da_thich" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgHome"
@@ -62,7 +62,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:hint="Tìm kiếm..."
+        android:hint="@string/tim_kiem_x"
         android:paddingLeft="@dimen/size_12"
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"

@@ -138,7 +138,7 @@
                         android:drawableStart="@drawable/ic_location_item_shop_variant"
                         android:drawablePadding="@dimen/size_8"
                         android:gravity="center_vertical"
-                        android:text="Chỉ đường"
+                        android:text="@string/chi_duong"
                         android:textSize="@dimen/font_16" />
                 </LinearLayout>
 
@@ -179,7 +179,7 @@
                         android:drawablePadding="@dimen/size_16"
                         android:gravity="center_vertical"
                         android:singleLine="true"
-                        android:text="Thêm vào giỏ hàng"
+                        android:text="@string/them_vao_gio_hang"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_16" />
 

@@ -1,5 +1,6 @@
 package vn.icheck.android.loyalty.screen.loyalty_customers.campaign_of_business
 
+import vn.icheck.android.ichecklibs.util.RStringUtils.rText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.base.BaseViewModel
@@ -31,7 +32,7 @@ class CampaignOfBusinessViewModel : BaseViewModel<ICKCampaignOfBusiness>() {
                 offset += APIConstants.LIMIT
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_error_emty_history_topup, "Chưa có chương trình nào đang diễn ra", "Thường xuyên theo dõi các chương trình\nđể có cơ hội nhận các phần quà hấp dẫn", "", 0, R.color.white)
+                        setErrorEmpty(R.drawable.ic_error_emty_history_topup, rText(R.string.chua_co_chuong_trinh_nao_dang_dien_ra), rText(R.string.thuong_xuyen_theo_doi_cac_chuong_trinh_de_co_co_hoi_nhan_cac_phan_qua_hap_dan), "", 0, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }

@@ -15,6 +15,7 @@ import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.history_loaded_topup.view.IHistoryLoadedTopupView
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -139,7 +140,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
             itemView.layoutImg.background= ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
-            itemView.tvNameNetwork.text = "Nạp thẻ ${item.provider}"
+            itemView.tvNameNetwork.rText(R.string.nap_the_s, item.provider)
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {
@@ -173,7 +174,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
                     phone
                 }
             } else {
-                "Chưa cập nhật"
+                itemView.context.rText(R.string.dang_cap_nhat)
             }
         }
     }
@@ -189,7 +190,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Bạn chưa nạp thẻ nào!"
+                    itemView.txtMessage rText R.string.ban_chua_nap_ma_the_nao
                 }
 
                 Constant.ERROR_SERVER -> {

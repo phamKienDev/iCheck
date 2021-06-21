@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2"
             android:fontFamily="@font/barlow_medium"
-            android:text="Hoàn thành nhiệm vụ"
+            android:text="@string/hoan_thanh_nhiem_vu"
             android:textSize="@dimen/font_14" />
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -50,7 +50,6 @@
             android:layout_marginTop="@dimen/size_2"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...Bạn nhận được từ nhiệm vụ Đăng nhập (2 dòng)...(2 dòng)..."
             android:textSize="@dimen/font_14" />
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium

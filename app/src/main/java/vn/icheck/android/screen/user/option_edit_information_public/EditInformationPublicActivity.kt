@@ -20,6 +20,7 @@ import vn.icheck.android.constant.USER_WALL_EDIT_PERSONAL
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserPublicInfor
+import vn.icheck.android.util.ick.rText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 
 class EditInformationPublicActivity : BaseActivityMVVM(), IEditInforPublicView {
