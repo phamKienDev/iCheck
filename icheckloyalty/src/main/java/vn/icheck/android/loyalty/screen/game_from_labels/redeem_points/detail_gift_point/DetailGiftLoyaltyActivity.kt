@@ -225,22 +225,22 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
         tvVanChuyen.text = when (obj?.gift?.type) {
             "ICOIN" -> {
-                rText(R.string.qua_xu_icheck)
+                getString(R.string.qua_xu_icheck)
             }
             "PHONE_CARD" -> {
-                rText(R.string.qua_the_cao)
+                getString(R.string.qua_the_cao)
             }
             "RECEIVE_STORE" -> {
-                rText(R.string.qua_doi_tai_cua_hang)
+                getString(R.string.qua_doi_tai_cua_hang)
             }
             "PRODUCT" -> {
-                rText(R.string.qua_giao_tan_noi)
+                getString(R.string.qua_giao_tan_noi)
             }
             "VOUCHER" -> {
-                rText(R.string.qua_voucher)
+                getString(R.string.qua_voucher)
             }
             else -> {
-                rText(R.string.qua_tinh_than)
+                getString(R.string.qua_tinh_than)
             }
         }
 
@@ -275,25 +275,25 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
         tvStatus.run {
             when (status) {
                 "new" -> {
-                    text = context.rText(R.string.cho_xac_nhan)
+                    text = context.getString(R.string.cho_xac_nhan)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }
                 "waiting_receive_gift" -> {
                     setVisible()
-                    text = context.rText(R.string.cho_giao)
+                    text = context.getString(R.string.cho_giao)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }
                 "received_gift" -> {
                     setVisible()
-                    text = context.rText(R.string.da_nhan_qua)
+                    text = context.getString(R.string.da_nhan_qua)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2))
                     setBackgroundResource(R.drawable.bg_corner_30_green_opacity_02)
                 }
                 "refused_gift" -> {
                     setVisible()
-                    text = context.rText(R.string.tu_choi)
+                    text = context.getString(R.string.tu_choi)
                     setTextColor(ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange))
                     setBackgroundResource(R.drawable.bg_corner_30_orange_opacity_02)
                 }
@@ -310,23 +310,23 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
             if (obj.voucher != null) {
 
-                obj.titleDate = rText(R.string.han_su_dung)
+                obj.titleDate = getString(R.string.han_su_dung)
 
                 if (obj.voucher?.checked_condition?.status == false) {
                     when (obj.voucher?.checked_condition?.code) {
                         "START_TIME_CAN_USE" -> {
-                            obj.titleDate = rText(R.string.co_hieu_luc_tu)
+                            obj.titleDate = getString(R.string.co_hieu_luc_tu)
 
                             obj.dateChange = TimeHelper.convertDateTimeSvToDateVn(obj.voucher?.start_at)
 
-                            obj.statusChange = rText(R.string.chua_co_hieu_luc)
+                            obj.statusChange = getString(R.string.chua_co_hieu_luc)
 
                             obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.orange)
 
                             obj.colorBackground = R.drawable.bg_corner_30_orange_opacity_02
                         }
                         "MAX_NUM_OF_USED_VOUCHER", "MAX_NUM_OF_USED_CUSTOMER" -> {
-                            obj.statusChange = rText(R.string.het_luot_su_dung)
+                            obj.statusChange = getString(R.string.het_luot_su_dung)
 
                             obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
@@ -335,7 +335,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                         "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
                             obj.dateChange = ""
 
-                            obj.statusChange = rText(R.string.da_bi_khoa)
+                            obj.statusChange = getString(R.string.da_bi_khoa)
 
                             obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
@@ -344,7 +344,7 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
                         else -> {
                             obj.dateChange = ""
 
-                            obj.statusChange = rText(R.string.het_han_su_dung)
+                            obj.statusChange = getString(R.string.het_han_su_dung)
 
                             obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
@@ -355,17 +355,17 @@ class DetailGiftLoyaltyActivity : BaseActivityGame() {
 
                     obj.dateChange = TimeHelper.timeGiftVoucher(obj.voucher!!)
 
-                    if ((obj.dateChange == "Còn lại ")||(obj.dateChange == rText(R.string.con_lai_))) {
+                    if ((obj.dateChange == "Còn lại ")||(obj.dateChange == getString(R.string.con_lai_))) {
 
                         obj.dateChange = ""
 
-                        obj.statusChange = rText(R.string.het_han_su_dung)
+                        obj.statusChange = getString(R.string.het_han_su_dung)
 
                         obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.errorColor)
 
                         obj.colorBackground = R.drawable.bg_corner_30_red_opacity_02
                     } else {
-                        obj.statusChange = rText(R.string.co_the_su_dung)
+                        obj.statusChange = getString(R.string.co_the_su_dung)
 
                         obj.colorText = ContextCompat.getColor(this@DetailGiftLoyaltyActivity, R.color.green2)
 

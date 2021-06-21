@@ -58,7 +58,6 @@ import vn.icheck.android.helper.*
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.getDeviceWidth
-import vn.icheck.android.ichecklibs.util.rText
 import vn.icheck.android.ichecklibs.util.showDurationErrorToast
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.icheckscanditv6.BarcodeBottomDialog
@@ -911,7 +910,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast(rText(R.string.san_pham_khong_cho_quet),3000)
+        showDurationErrorToast(getString(R.string.san_pham_khong_cho_quet),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 
@@ -919,7 +918,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast(rText(R.string.san_pham_bi_an_boi_doanh_nghiep_so_huu),3000)
+        showDurationErrorToast(getString(R.string.san_pham_bi_an_boi_doanh_nghiep_so_huu),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 
@@ -927,7 +926,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast(rText(R.string.khong_tim_thay_san_pham),3000)
+        showDurationErrorToast(getString(R.string.khong_tim_thay_san_pham),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 

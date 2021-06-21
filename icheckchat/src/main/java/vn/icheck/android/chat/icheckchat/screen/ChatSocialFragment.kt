@@ -11,7 +11,6 @@ import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
 import vn.icheck.android.chat.icheckchat.base.recyclerview.adapter.ViewPagerAdapterChat
 import vn.icheck.android.chat.icheckchat.base.view.setVisible
 import vn.icheck.android.chat.icheckchat.databinding.FragmentChatSocialBinding
-import vn.icheck.android.chat.icheckchat.helper.rText
 import vn.icheck.android.chat.icheckchat.screen.contact.ContactFragment
 import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.ichecklibs.ViewHelper
