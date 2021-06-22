@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.post.ICProductInPost
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -54,7 +54,7 @@ class ProductInPostComponent : LinearLayout {
                     ViewHelper.createLayoutParams(),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getSecondTextColor(context),
+                    ColorManager.getSecondTextColor(context),
                     14f,
                     1))
         })

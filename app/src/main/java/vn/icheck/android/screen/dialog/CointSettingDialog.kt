@@ -9,7 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class CointSettingDialog(context: Context, var type: Int, val begin: String, val end: String) : BaseBottomSheetDialog(context, R.layout.dialog_setting_point, true) {
@@ -101,11 +101,11 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
         dialog.txtBegin.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
         dialog.txtEnd.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
 
-        dialog.txtBegin.setTextColor(Constant.getNormalTextColor(dialog.context))
-        dialog.txtEnd.setTextColor(Constant.getNormalTextColor(dialog.context))
+        dialog.txtBegin.setTextColor(ColorManager.getNormalTextColor(dialog.context))
+        dialog.txtEnd.setTextColor(ColorManager.getNormalTextColor(dialog.context))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(dialog.context,R.color.grayB4),Constant.getPrimaryColor(dialog.context)).apply {
+            ViewHelper.createColorStateList(ContextCompat.getColor(dialog.context,R.color.grayB4),ColorManager.getPrimaryColor(dialog.context)).apply {
                 dialog.radioAll.buttonTintList=this
                 dialog.radioXuRa.buttonTintList=this
                 dialog.radioXuVao.buttonTintList=this
@@ -123,11 +123,11 @@ abstract class CointSettingDialog(context: Context, var type: Int, val begin: St
 
     private fun setButton(type: Boolean) {
         if (type) {
-            dialog.txtSettingAgain.setTextColor( Constant.getPrimaryColor(dialog.context))
+            dialog.txtSettingAgain.setTextColor( ColorManager.getPrimaryColor(dialog.context))
             dialog.txtSettingAgain.background = ViewHelper.bgOutlinePrimary1Corners4(dialog.context)
             dialog.txtSettingAgain.isEnabled = true
         } else {
-            dialog.txtSettingAgain.setTextColor(Constant.getDisableTextColor(dialog.context))
+            dialog.txtSettingAgain.setTextColor(ColorManager.getDisableTextColor(dialog.context))
             dialog.txtSettingAgain.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(dialog.context)
             dialog.txtSettingAgain.isEnabled = false
         }

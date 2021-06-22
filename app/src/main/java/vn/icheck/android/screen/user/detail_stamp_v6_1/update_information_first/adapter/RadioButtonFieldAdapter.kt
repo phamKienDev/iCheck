@@ -37,7 +37,7 @@ class RadioButtonFieldAdapter(val listData: MutableList<ValueFItem>, var checked
 
                 val drawable=ViewHelper.createCheckedDrawable(
                     ContextCompat.getDrawable(itemView.context,R.drawable.ic_radio_un_checked_gray_24dp),
-                    ViewHelper.fillDrawableColor(ContextCompat.getDrawable(itemView.context,R.drawable.ic_radio_checked_blue_24dp)))
+                    ViewHelper.fillDrawableColor(R.drawable.ic_radio_checked_blue_24dp,itemView.context))
                 setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null)
 
                 text = item.value

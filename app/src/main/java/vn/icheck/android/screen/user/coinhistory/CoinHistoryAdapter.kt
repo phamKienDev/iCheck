@@ -15,7 +15,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -205,7 +205,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 },
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context),
                 18f)
     }
 
@@ -215,10 +215,10 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
             if (obj.type == 1) {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_add_20px)
-                itemView.tvMoney.setTextColor(Constant.getAccentGreenColor(itemView.context))
+                itemView.tvMoney.setTextColor(ColorManager.getAccentGreenColor(itemView.context))
             } else {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_contract_20px)
-                itemView.tvMoney.setTextColor(Constant.getAccentRedColor(itemView.tvMoney.context))
+                itemView.tvMoney.setTextColor(ColorManager.getAccentRedColor(itemView.tvMoney.context))
             }
 
             itemView.tvMission.text = obj.title

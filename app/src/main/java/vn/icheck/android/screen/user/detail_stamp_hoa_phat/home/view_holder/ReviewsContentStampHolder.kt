@@ -51,7 +51,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
             itemView.gv_useful.visibility = View.GONE
         }
 
-        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+        val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
 
         obj.actionUseful?.let {
             if ("useful" == it) {

@@ -73,7 +73,7 @@ class CreateEventQrCodeFragment : BaseFragmentMVVM(), ICreateEventQrCodeView {
             edtEventLink.background=this
         }
 
-        vn.icheck.android.ichecklibs.Constant.getDisableTextColor(requireContext()).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext()).apply {
             edtStartDate.setHintTextColor(this)
             edtEndDate.setHintTextColor(this)
         }

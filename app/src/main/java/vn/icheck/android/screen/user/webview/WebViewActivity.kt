@@ -243,7 +243,7 @@ class WebViewActivity : BaseActivityMVVM() {
                 binding.webView.loadUrl(url)
             }
         } else {
-            binding.webView.settings.defaultFontSize = 14
+            binding.webView.settings.defaultFontSize = 14f.spToPx().toInt()
             binding.webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 
@@ -407,7 +407,7 @@ class WebViewActivity : BaseActivityMVVM() {
             val hotline = SettingManager.clientSetting?.hotline ?: "0902195488"
             val spannable = SpannableString(getString(R.string.ma_qr_khong_phai_do_icheck_phat_hanh, hotline))
 
-            spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)), 67, 67 + hotline.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(p0: View) {

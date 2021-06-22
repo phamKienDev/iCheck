@@ -104,7 +104,7 @@ class SuggestStoreHistoryActivity : BaseActivityMVVM(), SuggestStoreHistoryView 
     }
 
     private fun initSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {

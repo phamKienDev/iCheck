@@ -2,6 +2,7 @@ package vn.icheck.android.ichecklibs.view.disable_text
 
 import android.content.Context
 import android.util.AttributeSet
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.EditTextTitle
 
@@ -23,6 +24,6 @@ class EdittextTitleDisableHint:EditTextTitle {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
     }
 }

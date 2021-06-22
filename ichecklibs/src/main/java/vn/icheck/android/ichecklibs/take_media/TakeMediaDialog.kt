@@ -62,9 +62,6 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
                     setListener(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount)
                     show(fragmentManager, TakeMediaDialog::class.java.simpleName)
                 }
-
-
-//                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }

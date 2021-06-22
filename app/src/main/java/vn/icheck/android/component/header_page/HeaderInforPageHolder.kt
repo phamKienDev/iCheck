@@ -3,6 +3,7 @@ package vn.icheck.android.component.header_page
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.doOnDetach
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +18,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActionPageBottomSheet
+import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
@@ -121,7 +123,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.CLICK_PRODUCT_OF_PAGE))
         }
 
-        itemView.imgAvaPage.setOnClickListener {
+        itemView.imgAvaPage.onDelayClick ({
             if (!data.avatar.isNullOrEmpty()) {
                 val list = mutableListOf<ICMedia>()
                 list.add(ICMedia(data.avatar, type= if (data.avatar!!.contains(".mp4")) {
@@ -131,7 +133,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
                 }))
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, list))
             }
-        }
+        })
 
         itemView.tv_number_follow.setOnClickListener {
             ICheckApplication.currentActivity()?.let {
@@ -153,7 +155,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             setOnClickListener {
                 val phone = data.pageDetail?.phone ?: ""
                 if (phone.isNotEmpty()) {
-                    DialogHelper.showConfirm(itemView.context, ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone)), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(itemView.context, ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone),itemView.context), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }

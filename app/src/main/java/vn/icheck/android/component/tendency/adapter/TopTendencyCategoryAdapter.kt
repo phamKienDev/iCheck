@@ -9,7 +9,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.tendency.ITopTendencyListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICExperienceCategory
 
 class TopTendencyCategoryAdapter(val listener: ITopTendencyListener) : RecyclerView.Adapter<TopTendencyCategoryAdapter.ViewHolder>() {
@@ -43,13 +43,13 @@ class TopTendencyCategoryAdapter(val listener: ITopTendencyListener) : RecyclerV
                 if (obj.isSelected) {
                     oldPos = adapterPosition
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteCorners16(context)
-                    setTextColor(Constant.getAccentYellowColor(context))
+                    setTextColor(ColorManager.getAccentYellowColor(context))
                 } else {
                     background = ViewHelper.createStateListDrawable(
-                        Constant.getAccentYellowColor(context), Constant.getAccentYellowColor(context),
-                            Constant.getNormalTextColor(context), Constant.getNormalTextColor(context),
+                        ColorManager.getAccentYellowColor(context), ColorManager.getAccentYellowColor(context),
+                            ColorManager.getNormalTextColor(context), ColorManager.getNormalTextColor(context),
                             SizeHelper.size1, SizeHelper.size16.toFloat())
-                    setTextColor(Constant.getNormalTextColor(context))
+                    setTextColor(ColorManager.getNormalTextColor(context))
                 }
 
                 setOnClickListener {

@@ -19,7 +19,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICLayoutOtp
 
 class LayoutInputOtp : LinearLayout {
@@ -54,7 +54,7 @@ class LayoutInputOtp : LinearLayout {
                 ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, SizeHelper.size60, SizeHelper.size8, SizeHelper.size60, 0),
                 null,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                ColorManager.getSecondTextColor(context),
                 14f).also {
             it.gravity = Gravity.CENTER_HORIZONTAL
         })
@@ -205,11 +205,11 @@ class LayoutInputOtp : LinearLayout {
 
         when (receiveOtpType) {
             CALL_PHONE_TYPE -> {
-                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber))
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber),context)
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_sms)
             }
             SEND_SMS_TYPE -> {
-                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber))
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber),context)
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_cuoc_goi)
             }
             else -> {

@@ -7,7 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class LayoutFeedAction : ConstraintLayout {
 
@@ -30,7 +30,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvLike
@@ -44,7 +44,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvComment
@@ -58,7 +58,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                Constant.getSecondTextColor(context),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvShare

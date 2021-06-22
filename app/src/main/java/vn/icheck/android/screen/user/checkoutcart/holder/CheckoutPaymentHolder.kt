@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_checkout_payment.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICPayment
 import vn.icheck.android.screen.user.checkoutcart.entity.Checkout
@@ -54,7 +54,7 @@ class CheckoutPaymentHolder(view: View, val listener: ICheckoutCartView) : BaseV
         radioButton.id = View.generateViewId()
         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         radioButton.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
-        radioButton.setTextColor(ViewHelper.createColorStateList(Constant.getDisableTextColor(context),Color.parseColor("#333333")))
+        radioButton.setTextColor(ViewHelper.createColorStateList(ColorManager.getDisableTextColor(context),Color.parseColor("#333333")))
         radioButton.includeFontPadding = false
         radioButton.gravity = Gravity.CENTER_VERTICAL
         radioButton.text = obj.name

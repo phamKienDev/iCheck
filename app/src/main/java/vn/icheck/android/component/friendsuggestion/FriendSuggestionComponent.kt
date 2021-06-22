@@ -16,7 +16,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
@@ -51,7 +51,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
 
                 val horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 horizontalDecoration.setDrawable(ShapeDrawable().apply {
-                    paint.color = Constant.getLineColor(itemView.context)
+                    paint.color = ColorManager.getLineColor(itemView.context)
                     intrinsicHeight = SizeHelper.size1
                 })
                 addItemDecoration(horizontalDecoration)
@@ -69,7 +69,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
             return LinearLayout(context).also {layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
+                layoutParent.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also {layoutTitle ->
@@ -77,7 +77,7 @@ class FriendSuggestionComponent(parent: ViewGroup): BaseViewHolder<MutableList<I
                     layoutTitle.orientation = LinearLayout.HORIZONTAL
                     layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
-                    val secondaryColor = Constant.getSecondaryColor(context)
+                    val secondaryColor = ColorManager.getSecondaryColor(context)
 
                     layoutTitle.addView(ViewHelper.createText(context,
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),

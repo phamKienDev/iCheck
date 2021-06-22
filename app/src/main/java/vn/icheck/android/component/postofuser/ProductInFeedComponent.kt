@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICPostMeta
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -52,7 +52,7 @@ class ProductInFeedComponent : LinearLayout {
                         ViewHelper.createLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0, 0, 0, SizeHelper.size6),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        Constant.getNormalTextColor(context),
+                        ColorManager.getNormalTextColor(context),
                         16f,
                         2))
 
@@ -60,7 +60,7 @@ class ProductInFeedComponent : LinearLayout {
                         ViewHelper.createLayoutParams(),
                         null,
                         ViewHelper.createTypeface(ViewHelper.sansSerif, Typeface.NORMAL),
-                        Constant.getSecondTextColor(context),
+                        ColorManager.getSecondTextColor(context),
                         14f,
                         1))
             })

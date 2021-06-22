@@ -160,7 +160,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     }
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.maxLines = 1
-                    it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                    it.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                     it.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"))
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                 }
@@ -295,7 +295,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                             itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                            itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
+                            itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
 
                             itemView.btnConfirm.visibility = View.VISIBLE
                             itemView.tvMessage.visibility = View.INVISIBLE

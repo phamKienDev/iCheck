@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
@@ -21,7 +22,7 @@ class CheckBoxSecondText : androidx.appcompat.widget.AppCompatCheckBox {
     }
 
     private fun setup() {
-        setTextColor(Constant.getSecondTextColor(context))
+        setTextColor(ColorManager.getSecondTextColor(context))
         includeFontPadding = false
     }
 }

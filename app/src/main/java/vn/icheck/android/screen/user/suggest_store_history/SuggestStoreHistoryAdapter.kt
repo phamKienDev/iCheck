@@ -152,7 +152,7 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
             itemView.tvNameShop.text = item.name ?: itemView.context.getString(R.string.dang_cap_nhat)
             itemView.tvCountRating.text = String.format("%.1f", item.rating)
 
-            itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.Constant.secondaryColor)
+            itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(itemView.context))
 
             itemView.tvCountProductOfShop.fillDrawableEndText(R.drawable.ic_down_light_blue_18_px)
             itemView.tvCountProductOfShop.text = "Có ${item.numProductSell} sản phẩm có sẵn"

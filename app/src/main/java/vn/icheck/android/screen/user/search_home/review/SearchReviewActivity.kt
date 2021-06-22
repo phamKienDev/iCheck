@@ -92,7 +92,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
     }
 
     private fun initSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.isRefreshing = true
         swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_container.setOnRefreshListener {

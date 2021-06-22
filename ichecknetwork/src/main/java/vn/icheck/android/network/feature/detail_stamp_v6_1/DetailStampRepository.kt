@@ -1,7 +1,6 @@
 package vn.icheck.android.network.feature.detail_stamp_v6_1
 
 import android.util.Base64
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

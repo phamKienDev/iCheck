@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.WidgetHelper
@@ -60,7 +61,7 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         }
 
         binding.edtBarcode.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
 
             binding.submitBarcode.disable()
 

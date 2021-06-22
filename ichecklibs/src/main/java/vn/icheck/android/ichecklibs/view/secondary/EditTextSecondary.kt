@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.secondary
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class EditTextSecondary : AppCompatEditText {
@@ -12,7 +13,7 @@ class EditTextSecondary : AppCompatEditText {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setup() }
 
     private fun setup() {
-        setTextColor(Constant.getSecondaryColor(context))
+        setTextColor(ColorManager.getSecondaryColor(context))
         includeFontPadding = false
     }
 }

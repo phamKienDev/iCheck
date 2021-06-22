@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_book_mark_v2.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.screen.user.cart.CartActivity
@@ -64,7 +64,7 @@ class BookMarkV2Activity : BaseActivityMVVM(), IScanHistoryView, IRecyclerViewCa
 
     private fun setupView() {
         edtSearch.background = ViewHelper.bgGrayCorners4(this)
-        edtSearch.setHintTextColor(Constant.getDisableTextColor(this))
+        edtSearch.setHintTextColor(ColorManager.getDisableTextColor(this))
     }
 
     private fun initRecyclerView() {

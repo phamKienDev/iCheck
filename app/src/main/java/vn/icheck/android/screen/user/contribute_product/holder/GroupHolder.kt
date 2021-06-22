@@ -22,7 +22,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemGroupBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -39,13 +39,13 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
         itemGroupBinding.edtInfo.apply {
             background=ViewHelper.bgTransparentStrokeLineColor1Corners10(itemGroupBinding.edtInfo.context)
-            setHintTextColor(Constant.getDisableTextColor(itemView.context))
+            setHintTextColor(ColorManager.getDisableTextColor(itemView.context))
         }
 
         if (pasteBalloon == null) {
             pasteBalloon = createBalloon(itemView.context) {
                 setLayout(R.layout.popup_tooltip)
-                setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
+                setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(itemView.context))
                 setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
                 setBalloonAnimation(BalloonAnimation.OVERSHOOT)
             }

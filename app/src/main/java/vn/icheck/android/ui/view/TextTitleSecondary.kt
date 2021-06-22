@@ -6,7 +6,7 @@ import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import vn.icheck.android.R
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 open class TextTitleSecondary : AppCompatTextView {
 
@@ -15,7 +15,7 @@ open class TextTitleSecondary : AppCompatTextView {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setup() }
 
     private fun setup() {
-        setTextColor(Constant.getSecondaryColor(context))
+        setTextColor(ColorManager.getSecondaryColor(context))
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
         typeface = ResourcesCompat.getFont(context, R.font.barlow_medium)
         includeFontPadding = false

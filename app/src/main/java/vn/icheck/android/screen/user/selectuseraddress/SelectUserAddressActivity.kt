@@ -71,7 +71,7 @@ class SelectUserAddressActivity : BaseActivityMVVM(), ISelectUserAddressView {
     }
 
     private fun setupSwipeRefreshLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {

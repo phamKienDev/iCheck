@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentblue
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class ViewAccentBlue : View {
@@ -19,6 +20,6 @@ class ViewAccentBlue : View {
     }
 
     private fun setup() {
-        setBackgroundColor(Constant.getAccentBlueColor(context))
+        setBackgroundColor(ColorManager.getAccentBlueColor(context))
     }
 }

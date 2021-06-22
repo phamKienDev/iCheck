@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import androidx.core.content.res.ResourcesCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextHeader
@@ -26,6 +27,6 @@ class TextDisableHeader : TextHeader {
     }
 
     private fun setup() {
-        setTextColor(Constant.getDisableTextColor(context))
+        setTextColor(ColorManager.getDisableTextColor(context))
     }
 }

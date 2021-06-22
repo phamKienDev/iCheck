@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentgreen
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 open class TextAccentGreen : AppCompatTextView {
@@ -19,7 +20,7 @@ open class TextAccentGreen : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(Constant.getAccentGreenColor(context))
+        setTextColor(ColorManager.getAccentGreenColor(context))
         includeFontPadding = false
     }
 }

@@ -286,7 +286,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             EventBus.getDefault().register(this)
         }
         binding.root.isRefreshing = true
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
         binding.root.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.root.setOnRefreshListener {
             binding.root.isRefreshing = true
@@ -318,7 +318,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 if (pastVisibleItems > 1) {
                     if (!showToolbar) {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
-                        binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(requireContext()))
+                        binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(requireContext()))
                         binding.toolbar.btn_back.fillDrawableColor(R.drawable.ic_back_blue_24px_new)
 
                         if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {

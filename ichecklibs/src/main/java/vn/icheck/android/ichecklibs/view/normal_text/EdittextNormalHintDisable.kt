@@ -2,6 +2,7 @@ package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
 import android.util.AttributeSet
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 open class EdittextNormalHintDisable : EdittextNormal {
@@ -18,6 +19,6 @@ open class EdittextNormalHintDisable : EdittextNormal {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
     }
 }

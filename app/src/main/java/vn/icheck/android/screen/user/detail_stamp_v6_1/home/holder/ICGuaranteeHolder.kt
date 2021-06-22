@@ -11,7 +11,7 @@ import vn.icheck.android.network.models.ICWidgetData
 class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = ItemGuaranteeBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICWidgetData>(binding.root) {
 
     override fun bind(obj: ICWidgetData) {
-        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context).apply {
             binding.tvTime.setHintTextColor(this)
             binding.tvEnd.setHintTextColor(this)
             binding.tvRemaining.setHintTextColor(this)

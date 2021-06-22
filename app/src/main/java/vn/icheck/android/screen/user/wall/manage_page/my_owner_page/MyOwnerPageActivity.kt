@@ -50,7 +50,7 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         StatusBarUtils.setOverStatusBarDark(this)
 
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_layout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_layout.setOnRefreshListener {
             getData()

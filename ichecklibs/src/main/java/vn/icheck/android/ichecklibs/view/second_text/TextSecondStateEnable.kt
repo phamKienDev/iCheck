@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 open class TextSecondStateEnable : AppCompatTextView {
     constructor(context: Context) : super(context) {
@@ -26,9 +26,9 @@ open class TextSecondStateEnable : AppCompatTextView {
                 intArrayOf())// default
 
         val colors = intArrayOf(
-                Constant.getSecondTextColor(context),
-                Constant.getSecondaryColor(context),
-                Constant.getPrimaryColor(context)
+                ColorManager.getSecondTextColor(context),
+                ColorManager.getSecondaryColor(context),
+                ColorManager.getPrimaryColor(context)
         )
 
         val colorStateList = ColorStateList(states, colors)

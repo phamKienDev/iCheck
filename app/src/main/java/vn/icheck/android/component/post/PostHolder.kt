@@ -238,7 +238,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             )
         } else {
             itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
-            itemView.tvLike.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
+            itemView.tvLike.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
         }
 
         itemView.tvLike.text = TextHelper.formatCount(obj.expressiveCount)
@@ -331,7 +331,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.containerImage.beGone()
             } else {
                 itemView.containerImage.beVisible()
-                if (comments.media!!.first()!!.type == Constant.VIDEO) {
+                if (comments.media!!.first()!!.content?.endsWith(".mp4")==true) {
                     itemView.btnPlay.beVisible()
                 } else {
                     itemView.btnPlay.beGone()
@@ -358,17 +358,17 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             showMoreOption(obj)
         }
 
-        itemView.containerImage.setOnClickListener {
+        itemView.containerImage.onDelayClick( {
             if (!obj.comments.isNullOrEmpty()) {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.comments!![0].media))
             }
-        }
+        })
 
-        itemView.btnPlay.setOnClickListener {
+        itemView.btnPlay.onDelayClick( {
             if (!obj.comments.isNullOrEmpty()) {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.comments!![0].media))
             }
-        }
+        })
 
         itemView.tvLike.onDelayClick({
             likePost(obj)
@@ -566,15 +566,10 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                                     object : RewardLoginCallback {
                                         override fun onLogin() {
                                             activity simpleStartActivity IckLoginActivity::class.java
-
                                         }
 
                                         override fun onRegister() {
-                                            activity.simpleStartForResultActivity(
-                                                IckLoginActivity::class.java,
-                                                1
-                                            )
-
+                                            activity.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
                                     }
 
                                         override fun onDismiss() {

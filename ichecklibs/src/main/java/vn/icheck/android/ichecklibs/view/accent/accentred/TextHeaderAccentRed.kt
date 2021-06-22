@@ -2,6 +2,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentred
 
 import android.content.Context
 import android.util.AttributeSet
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.TextHeader
 
@@ -20,6 +21,6 @@ open class TextHeaderAccentRed : TextHeader {
     }
 
     private fun setup() {
-        setTextColor(Constant.getAccentRedColor(context))
+        setTextColor(ColorManager.getAccentRedColor(context))
     }
 }

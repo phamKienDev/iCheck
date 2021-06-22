@@ -1,17 +1,13 @@
 package vn.icheck.android.network.feature.detail_stamp_v5
 
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
-import vn.icheck.android.network.models.ICBarcodeProductV2
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICListHistoryGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6.ICStoreStampV6
@@ -19,7 +15,6 @@ import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGu
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
 import vn.icheck.android.network.models.detail_stamp_v6_1.IC_Config_Error
-import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_UpdateCustomerGuarantee
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.network.util.DeviceUtils
 import java.util.HashMap

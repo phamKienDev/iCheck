@@ -3,7 +3,7 @@ package vn.icheck.android.ichecklibs.view.appbackground.graybackground
 import android.content.Context
 import android.util.AttributeSet
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class ICSwipeRefreshLayoutGray : SwipeRefreshLayout {
     constructor(context: Context) : super(context) {
@@ -16,6 +16,6 @@ class ICSwipeRefreshLayoutGray : SwipeRefreshLayout {
 
 
     private fun setup() {
-        setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+        setBackgroundColor(ColorManager.getAppBackgroundGrayColor(context))
     }
 }

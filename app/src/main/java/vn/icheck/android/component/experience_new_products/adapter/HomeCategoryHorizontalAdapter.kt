@@ -11,7 +11,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.experience_new_products.IExperienceNewProducts
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICExperienceCategory
 
 class HomeCategoryHorizontalAdapter(val listener: IExperienceNewProducts) : RecyclerView.Adapter<HomeCategoryHorizontalAdapter.ViewHolder>() {
@@ -51,7 +51,7 @@ class HomeCategoryHorizontalAdapter(val listener: IExperienceNewProducts) : Recy
                                 Color.WHITE, ContextCompat.getColor(context, R.color.black_75),
                                 ContextCompat.getColor(context, R.color.black_75), ContextCompat.getColor(context, R.color.black_75),
                                 SizeHelper.size1, SizeHelper.size16.toFloat())
-                        setTextColor(Constant.getSecondTextColor(context))
+                        setTextColor(ColorManager.getSecondTextColor(context))
                     }
 
                     setOnClickListener {

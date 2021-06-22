@@ -38,7 +38,7 @@ class CheckBoxFieldAdapter (val listData: MutableList<ValueFItem>) : RecyclerVie
 
                 val drawable=ViewHelper.createCheckedDrawable(
                     ContextCompat.getDrawable(itemView.context,R.drawable.ic_checkbox_unfc_24dp),
-                    ViewHelper.fillDrawableColor(ContextCompat.getDrawable(itemView.context,R.drawable.ic_checkbox_on_24dp)))
+                    ViewHelper.fillDrawableColor(R.drawable.ic_checkbox_on_24dp,itemView.context))
                 setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null)
             }
 

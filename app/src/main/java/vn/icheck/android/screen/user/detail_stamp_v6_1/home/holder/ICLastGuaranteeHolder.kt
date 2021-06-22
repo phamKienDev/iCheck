@@ -20,7 +20,7 @@ class ICLastGuaranteeHolder(parent: ViewGroup, val binding: ItemLastGuaranteeBin
         binding.tvStatus.text = obj.status
         binding.tvState.text = obj.state
 
-        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context).apply {
             binding.tvTime.setHintTextColor(this)
             binding.tvAddress.setHintTextColor(this)
             binding.tvStatus.setHintTextColor(this)

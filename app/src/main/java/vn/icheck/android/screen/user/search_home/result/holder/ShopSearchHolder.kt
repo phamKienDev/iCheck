@@ -44,7 +44,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
 //        checkStatusOwner(obj.id)
         checkStatusFollow(obj.id)
         itemView.tv_name.text = obj.name
-        itemView.tv_info_shop.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.info_shop_x, obj.productCount.toString(), (obj.rating ?: 0 * 2).toString())))
+        itemView.tv_info_shop.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.info_shop_x, obj.productCount.toString(), (obj.rating ?: 0 * 2).toString()),itemView.context))
 
         if (obj.isOffline) {
             itemView.img_avatar.setPadding(SizeHelper.size3, SizeHelper.size3, SizeHelper.size3, SizeHelper.size3)

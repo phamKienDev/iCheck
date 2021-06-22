@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -26,6 +27,6 @@ class ICViewLineColor : View {
     }
 
     private fun setup() {
-        setBackgroundColor(Constant.getLineColor(context))
+        setBackgroundColor(ColorManager.getLineColor(context))
     }
 }

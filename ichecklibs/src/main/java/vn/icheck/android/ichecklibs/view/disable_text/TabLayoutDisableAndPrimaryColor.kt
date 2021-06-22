@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 
@@ -26,6 +27,6 @@ class TabLayoutDisableAndPrimaryColor  : TabLayout {
     }
 
     private fun setup() {
-        setTabTextColors(Constant.getDisableTextColor(context),Constant.getPrimaryColor(context))
+        setTabTextColors(ColorManager.getDisableTextColor(context),ColorManager.getPrimaryColor(context))
     }
 }

@@ -204,13 +204,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (theme != null) {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         } else {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.Constant.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         }
@@ -406,7 +406,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {

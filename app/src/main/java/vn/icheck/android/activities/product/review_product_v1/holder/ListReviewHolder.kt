@@ -55,7 +55,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
         itemView.tv_1_useful.text = setTextUseful(obj.useful)
         itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
 
-        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+        val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
 
         obj.actionUseful?.let {
             if ("useful" == it) {

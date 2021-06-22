@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.dpToPx
 import kotlin.math.roundToInt
 
@@ -429,7 +430,7 @@ object ViewHelper {
         }
     }
 
-    fun AppCompatTextView.fillDrawableStartText(idDrawable: Int, color: String?=Constant.primaryColor) {
+    fun AppCompatTextView.fillDrawableStartText(idDrawable: Int, color: String?=ColorManager.getPrimaryColorCode(this.context)) {
         val drawable=ContextCompat.getDrawable(this.context,idDrawable)
 
         if (drawable!=null && !color.isNullOrBlank()) {
@@ -439,7 +440,7 @@ object ViewHelper {
 
     }
 
-    fun AppCompatTextView.fillDrawableEndText(idDrawable: Int,color: String?=Constant.primaryColor) {
+    fun AppCompatTextView.fillDrawableEndText(idDrawable: Int,color: String?=ColorManager.getPrimaryColorCode(this.context)) {
         val drawable=ContextCompat.getDrawable(this.context,idDrawable)
 
         if (drawable!=null && !color.isNullOrBlank()) {
@@ -448,7 +449,7 @@ object ViewHelper {
         this.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
     }
 
-    fun AppCompatEditText.fillDrawableEndText(idDrawable: Int,color: String?=Constant.primaryColor) {
+    fun AppCompatEditText.fillDrawableEndText(idDrawable: Int,color: String?=ColorManager.getPrimaryColorCode(this.context)) {
         val drawable=ContextCompat.getDrawable(this.context,idDrawable)
 
         if (drawable!=null && !color.isNullOrBlank()) {
@@ -457,14 +458,14 @@ object ViewHelper {
         this.setCompoundDrawablesWithIntrinsicBounds(null,null,drawable,null)
     }
 
-    fun fillDrawableColor(drawable: Drawable?,color: String?=Constant.primaryColor): Drawable? {
+    fun fillDrawableColor(drawable: Drawable?,context: Context,color: String?=ColorManager.getPrimaryColorCode(context)): Drawable? {
         if(drawable!=null && !color.isNullOrBlank()){
             drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
         }
         return drawable
     }
 
-    fun fillDrawableColor(icon: Int, context: Context,color: String?=Constant.primaryColor): Drawable? {
+    fun fillDrawableColor(icon: Int, context: Context,color: String?=ColorManager.getPrimaryColorCode(context)): Drawable? {
         val drawable=ContextCompat.getDrawable(context,icon)
         if(drawable!=null && !color.isNullOrBlank()){
             drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
@@ -472,7 +473,7 @@ object ViewHelper {
         return drawable
     }
 
-    fun ImageView.fillDrawableColor(icon: Int, color: String?=Constant.primaryColor) {
+    fun ImageView.fillDrawableColor(icon: Int, color: String?=ColorManager.getPrimaryColorCode(this.context)) {
         val drawable=ContextCompat.getDrawable(context,icon)
         if (!color.isNullOrBlank()) {
             drawable?.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
@@ -480,7 +481,7 @@ object ViewHelper {
         this.setImageDrawable(drawable)
     }
 
-    fun AppCompatImageButton.fillDrawableColor(icon: Int,color: String?=Constant.primaryColor) {
+    fun AppCompatImageButton.fillDrawableColor(icon: Int,color: String?=ColorManager.getPrimaryColorCode(this.context)) {
         val drawable=ContextCompat.getDrawable(context,icon)
         if(drawable!=null && !color.isNullOrBlank()){
             drawable.colorFilter = PorterDuffColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
@@ -489,13 +490,13 @@ object ViewHelper {
         this.setImageDrawable(drawable)
     }
 
-    fun ImageView.fillDrawableColor(color:String?=Constant.primaryColor) {
+    fun ImageView.fillDrawableColor(color:String?=ColorManager.getPrimaryColorCode(this.context)) {
         if (!color.isNullOrEmpty()) {
             this.setColorFilter(Color.parseColor(color))
         }
     }
 
-    fun AppCompatImageButton.fillDrawableColor(color:String?=Constant.primaryColor) {
+    fun AppCompatImageButton.fillDrawableColor(color:String?=ColorManager.getPrimaryColorCode(this.context)) {
         if (!color.isNullOrEmpty()) {
             this.setColorFilter(Color.parseColor(color))
         }
@@ -506,21 +507,21 @@ object ViewHelper {
     * */
     fun textColorDisableTextUncheckPrimaryChecked(context: Context): ColorStateList {
         return createColorStateList(
-            Constant.getDisableTextColor(context),
-            Constant.getPrimaryColor(context)
+            ColorManager.getDisableTextColor(context),
+            ColorManager.getPrimaryColor(context)
         )
     }
 
-    fun bgPrimaryCorners4(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
+    fun bgPrimaryCorners4(context: Context) = createShapeDrawable(ColorManager.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
-    fun bgPrimaryCorners16(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size16.toFloat())
+    fun bgPrimaryCorners16(context: Context) = createShapeDrawable(ColorManager.getPrimaryColor(context), SizeHelper.size16.toFloat())
 
-    fun bgPrimaryCorners18(context: Context) = createShapeDrawable(Constant.getPrimaryColor(context), SizeHelper.size18.toFloat())
+    fun bgPrimaryCorners18(context: Context) = createShapeDrawable(ColorManager.getPrimaryColor(context), SizeHelper.size18.toFloat())
 
-    fun bgPrimaryCornersTop4(context: Context) = createShapeDrawableRadiusTop(Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
+    fun bgPrimaryCornersTop4(context: Context) = createShapeDrawableRadiusTop(ColorManager.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
     fun bgPrimaryOutline3Corners20(context: Context): Drawable {
-        val primaryColor = Constant.getPrimaryColor(context)
+        val primaryColor = ColorManager.getPrimaryColor(context)
         return createShapeDrawable(
             color = primaryColor,
             strokeWidth = SizeHelper.size3,
@@ -531,8 +532,8 @@ object ViewHelper {
 
     fun btnPrimaryCorners4(context: Context) = createButtonStateListDrawable(
         context = context,
-        enableColor = Constant.getPrimaryColor(context),
-        pressedColor = Constant.getSecondaryColor(context),
+        enableColor = ColorManager.getPrimaryColor(context),
+        pressedColor = ColorManager.getSecondaryColor(context),
         disableColor = ContextCompat.getColor(context, R.color.grayD8),
         radius = 4f.dpToPx()
     )
@@ -540,7 +541,7 @@ object ViewHelper {
 
     fun progressPrimaryBackgroundTransparentCorners8(context: Context): LayerDrawable {
         val radius = 8f.dpToPx()
-        val primaryColor = Constant.getPrimaryColor(context)
+        val primaryColor = ColorManager.getPrimaryColor(context)
         return createProgressStateListDrawable(
             backgroundDrawable = createShapeDrawable(Color.TRANSPARENT, radius),
             secondaryDrawable = createScaleDrawable(createShapeDrawable(primaryColor, radius)),
@@ -548,17 +549,17 @@ object ViewHelper {
         )
     }
 
-    fun setPrimaryHtmlString(string: String): String {
-        return string.replace("#057DDA", Constant.getPrimaryColorCode)
+    fun setPrimaryHtmlString(string: String,context: Context): String {
+        return string.replace("#057DDA", ColorManager.getPrimaryColorCode(context))
     }
 
     fun textColorPrimaryUnpressedSecondaryPressed(context: Context): ColorStateList {
-        return createColorPressStateList(Constant.getPrimaryColor(context), Constant.getSecondaryColor(context))
+        return createColorPressStateList(ColorManager.getPrimaryColor(context), ColorManager.getSecondaryColor(context))
     }
 
     fun setCheckedPrimary(uncheck: Drawable,checked:Drawable, context: Context): Drawable {
         DrawableCompat.setTint(uncheck, ContextCompat.getColor(context,R.color.grayB4))
-        DrawableCompat.setTint(checked, Constant.getPrimaryColor(context))
+        DrawableCompat.setTint(checked, ColorManager.getPrimaryColor(context))
         return createCheckedDrawable(uncheck, checked)
     }
 
@@ -567,7 +568,7 @@ object ViewHelper {
         val drawableChecked=ContextCompat.getDrawable(context,checked)
 
         drawableUnCheck?.let { DrawableCompat.setTint(it, ContextCompat.getColor(context,R.color.grayB4)) }
-        drawableChecked?.let { DrawableCompat.setTint(it, Constant.getPrimaryColor(context)) }
+        drawableChecked?.let { DrawableCompat.setTint(it, ColorManager.getPrimaryColor(context)) }
 
         return createCheckedDrawable(drawableUnCheck, drawableChecked)
     }
@@ -576,10 +577,10 @@ object ViewHelper {
     * White
     * */
     fun bgWhiteStrokePrimary1Corners4(context: Context) =
-        createShapeDrawable(Color.WHITE, SizeHelper.size1, Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
+        createShapeDrawable(Color.WHITE, SizeHelper.size1, ColorManager.getPrimaryColor(context), SizeHelper.size4.toFloat())
 
     fun bgWhiteStrokePrimary2Corners16(context: Context) =
-        createShapeDrawable(Color.WHITE, SizeHelper.size2, Constant.getPrimaryColor(context), SizeHelper.size16.toFloat())
+        createShapeDrawable(Color.WHITE, SizeHelper.size2, ColorManager.getPrimaryColor(context), SizeHelper.size16.toFloat())
 
     /*
     * Transparent
@@ -587,49 +588,49 @@ object ViewHelper {
     fun bgOutlinePrimary1Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getPrimaryColor(context),
+        strokeColor = ColorManager.getPrimaryColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgOutlinePrimary1Corners6(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getPrimaryColor(context),
+        strokeColor = ColorManager.getPrimaryColor(context),
         radius = SizeHelper.size6.toFloat()
     )
 
     fun bgOutlinePrimary05Corners14(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size0_5,
-        strokeColor = Constant.getPrimaryColor(context),
+        strokeColor = ColorManager.getPrimaryColor(context),
         radius = SizeHelper.size14.toFloat()
     )
 
     fun bgOutlineSecondary1Corners6(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getSecondaryColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         radius = SizeHelper.size6.toFloat()
     )
 
     fun bgOutlineSecondary1Corners8(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getSecondaryColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         radius = SizeHelper.size8.toFloat()
     )
 
     fun bgOutlineSecondary1Corners13(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getSecondaryColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         radius = SizeHelper.size13.toFloat()
     )
 
     fun bgOutlineSecondary1Corners45(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getSecondaryColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         radius = SizeHelper.size45.toFloat()
     )
 
@@ -637,18 +638,18 @@ object ViewHelper {
     /*
     * Secondary Color
     * */
-    fun bgSecondaryCorners6(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size6.toFloat())
-    fun bgSecondaryCorners10(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size10.toFloat())
-    fun bgSecondaryCorners20(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size20.toFloat())
-    fun bgSecondaryCorners35(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size35.toFloat())
-    fun bgSecondaryCorners40(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size40.toFloat())
-    fun bgSecondaryCorners45(context: Context) = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size45.toFloat())
+    fun bgSecondaryCorners6(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size6.toFloat())
+    fun bgSecondaryCorners10(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size10.toFloat())
+    fun bgSecondaryCorners20(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size20.toFloat())
+    fun bgSecondaryCorners35(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size35.toFloat())
+    fun bgSecondaryCorners40(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size40.toFloat())
+    fun bgSecondaryCorners45(context: Context) = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size45.toFloat())
 
-    fun bgSecondaryCornersTop10(context: Context) = createShapeDrawableRadiusTop(Constant.getSecondaryColor(context), SizeHelper.size10.toFloat())
+    fun bgSecondaryCornersTop10(context: Context) = createShapeDrawableRadiusTop(ColorManager.getSecondaryColor(context), SizeHelper.size10.toFloat())
 
     fun btnSecondaryCorners6(context: Context) = createButtonStateListDrawable(
         context = context,
-        enableColor = Constant.getSecondaryColor(context),
+        enableColor = ColorManager.getSecondaryColor(context),
         pressedColor = ContextCompat.getColor(context, R.color.darkBlue),
         disableColor = ContextCompat.getColor(context, R.color.grayD8),
         radius = 6f.dpToPx()
@@ -656,7 +657,7 @@ object ViewHelper {
 
     fun btnSecondaryCorners26(context: Context) = createButtonStateListDrawable(
         context = context,
-        enableColor = Constant.getSecondaryColor(context),
+        enableColor = ColorManager.getSecondaryColor(context),
         pressedColor = ContextCompat.getColor(context, R.color.darkBlue),
         disableColor = ContextCompat.getColor(context, R.color.grayD8),
         radius = 26f.dpToPx()
@@ -667,13 +668,13 @@ object ViewHelper {
         setStroke(SizeHelper.size0_5, Color.parseColor("#D8D8D8"), SizeHelper.size4.toFloat(), SizeHelper.size6.toFloat())
     }
 
-    fun setSecondaryHtmlString(string: String): String {
-        return string.replace("#3c5a99", Constant.getSecondaryColorCode)
+    fun setSecondaryHtmlString(string: String,context: Context): String {
+        return string.replace("#3c5a99", ColorManager.getSecondaryColorCode(context))
     }
 
     fun setImageColorSecondary(icon: Int, context: Context): Int {
         ContextCompat.getDrawable(context, icon)?.let {
-            DrawableCompat.setTint(it, Constant.getSecondaryColor(context))
+            DrawableCompat.setTint(it, ColorManager.getSecondaryColor(context))
         }
         return icon
     }
@@ -686,8 +687,8 @@ object ViewHelper {
     * */
     fun bgPaymentState(context: Context) = createButtonStateListDrawable(
         context = context,
-        enableColor = Constant.getPrimaryColor(context),
-        pressedColor = Constant.getSecondaryColor(context),
+        enableColor = ColorManager.getPrimaryColor(context),
+        pressedColor = ColorManager.getSecondaryColor(context),
         disableColor = ContextCompat.getColor(context, R.color.grayB4),
         radius = 4f.dpToPx()
     )
@@ -696,7 +697,7 @@ object ViewHelper {
     fun bgGiftTitle(context: Context) = StateListDrawable().apply {
         addState(
             intArrayOf(android.R.attr.state_checked),
-            createShapeDrawable(Constant.getPrimaryColor(context), 0f)
+            createShapeDrawable(ColorManager.getPrimaryColor(context), 0f)
         )
         addState(intArrayOf(-android.R.attr.state_checked), null)
     }
@@ -707,22 +708,22 @@ object ViewHelper {
 
     fun bgTransparentDotted10LineColorCorners10(context: Context): GradientDrawable {
         return GradientDrawable().also {
-            it.setStroke(SizeHelper.size1, Constant.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
+            it.setStroke(SizeHelper.size1, ColorManager.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
             it.cornerRadius = SizeHelper.size10.toFloat()
         }
     }
 
     fun bgBtnFacebook(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size26.toFloat()
     )
 
     fun bgGrayF0StrokeLineColor1Corners4(context: Context) = createShapeDrawable(
         color = Color.parseColor("#F0F0F0"),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
@@ -735,44 +736,44 @@ object ViewHelper {
     // bacground app color + stroke lineColor
 
     fun bgWhiteStrokeLineColor1Corners4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgWhiteStrokeLineColor1Corners40(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size40.toFloat()
     )
 
     fun bgWhiteStrokeLineColor0_5Corners4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size0_5,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgWhiteStrokeLineColor0_1(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size0_1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = 0f
     )
 
     fun bgWhiteStrokeLineColor1(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = 0f
     )
 
 
     fun bgGrayF5StrokeLineColor0_5CornersBottom4(context: Context) = createShapeDrawableRadiusBottom(
         color = Color.parseColor("#f5f5f5"),
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         strokeWidth = SizeHelper.size0_5,
         radiusBottom = SizeHelper.size4.toFloat()
     )
@@ -780,65 +781,65 @@ object ViewHelper {
     fun bgTransparentStrokeLineColor1Corners10(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size10.toFloat()
     )
 
     fun bgTransparentStrokeLineColor1Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgTransparentStrokeLineColor1Corners18(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size18.toFloat()
     )
 
     fun bgTransparentStrokeLineColor1Corners12(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size12.toFloat()
     )
 
     fun bgTransparentStrokeLineColor0_5Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size0_5,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgTransparentStrokeLineColor0_5(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size0_5,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = 0f
     )
 
     fun bgTransparentStrokeLineColor1(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getLineColor(context),
+        strokeColor = ColorManager.getLineColor(context),
         radius = 0f,
     )
 
     fun lineDottedVerticalLineColor(context: Context) = GradientDrawable().apply {
-        setStroke(SizeHelper.size1_5, Constant.getLineColor(context), SizeHelper.size1_5.toFloat(), SizeHelper.size5.toFloat())
+        setStroke(SizeHelper.size1_5, ColorManager.getLineColor(context), SizeHelper.size1_5.toFloat(), SizeHelper.size5.toFloat())
     }
 
     fun lineDottedVertical7LineColor(context: Context) = GradientDrawable().apply {
-        setStroke(SizeHelper.size7, Constant.getLineColor(context), SizeHelper.size4.toFloat(), SizeHelper.size4.toFloat())
+        setStroke(SizeHelper.size7, ColorManager.getLineColor(context), SizeHelper.size4.toFloat(), SizeHelper.size4.toFloat())
     }
 
 
     fun bgEdtSelectorFocusLineColor1(context: Context): StateListDrawable {
         //android:state_focused="true"
         val focused = GradientDrawable().also {
-            it.setStroke(SizeHelper.size1, Constant.getPrimaryColor(context))
+            it.setStroke(SizeHelper.size1, ColorManager.getPrimaryColor(context))
         }
 
         val layersFocused = arrayOf(focused)
@@ -854,7 +855,7 @@ object ViewHelper {
 
         //android:state_focused="false"
         val notFocus = GradientDrawable().also {
-            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+            it.setStroke(SizeHelper.size1, ColorManager.getLineColor(context))
         }
 
         val layersNotFocus = arrayOf(notFocus)
@@ -878,7 +879,7 @@ object ViewHelper {
     fun lineUnderColorLine1(context: Context): LayerDrawable {
         //android:state_focused="true"
         val line = GradientDrawable().also {
-            it.setStroke(SizeHelper.size1, Constant.getLineColor(context))
+            it.setStroke(SizeHelper.size1, ColorManager.getLineColor(context))
             it.setColor(Color.TRANSPARENT)
         }
 
@@ -897,13 +898,13 @@ object ViewHelper {
 
     fun btnWhiteStrokeLineColor0_5Corners4(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size1, Constant.getLineColor(context), SizeHelper.size4.toFloat())
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size1, ColorManager.getLineColor(context), SizeHelper.size4.toFloat())
     )
 
 
     fun bgProductItem(context: Context, left: Int, top: Int, right: Int, bottom: Int): LayerDrawable {
         val backgroundGray = GradientDrawable().also {
-            it.setColor(Constant.getLineColor(context))
+            it.setColor(ColorManager.getLineColor(context))
         }
 
         val layersFocused = arrayOf(backgroundGray)
@@ -936,29 +937,29 @@ object ViewHelper {
     * Accent Red
     * */
 
-    fun bgAccentRedCorners4(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size4.toFloat())
-    fun bgAccentRedCorners6(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size6.toFloat())
-    fun bgAccentRedCorners24(context: Context) = createShapeDrawable(Constant.getAccentRedColor(context), SizeHelper.size24.toFloat())
-    fun bgAccentRedCornersTop16(context: Context) = createShapeDrawableRadiusTop(Constant.getAccentRedColor(context), SizeHelper.size16.toFloat())
+    fun bgAccentRedCorners4(context: Context) = createShapeDrawable(ColorManager.getAccentRedColor(context), SizeHelper.size4.toFloat())
+    fun bgAccentRedCorners6(context: Context) = createShapeDrawable(ColorManager.getAccentRedColor(context), SizeHelper.size6.toFloat())
+    fun bgAccentRedCorners24(context: Context) = createShapeDrawable(ColorManager.getAccentRedColor(context), SizeHelper.size24.toFloat())
+    fun bgAccentRedCornersTop16(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAccentRedColor(context), SizeHelper.size16.toFloat())
 
 
     fun bgTransparentStrokeAccentRed0_5Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
-        strokeColor = Constant.getAccentRedColor(context),
+        strokeColor = ColorManager.getAccentRedColor(context),
         strokeWidth = SizeHelper.size0_5,
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgRedNotifyHome(context: Context): StateListDrawable {
         val notCheck = createShapeDrawable(
-            color = Constant.getAccentRedColor(context),
+            color = ColorManager.getAccentRedColor(context),
             strokeColor = Color.parseColor("#124998"),
             strokeWidth = SizeHelper.size1_5,
             radius = SizeHelper.size22.toFloat()
         )
 
         val checked = createShapeDrawable(
-            color = Constant.getAccentRedColor(context),
+            color = ColorManager.getAccentRedColor(context),
             strokeColor = Color.WHITE,
             strokeWidth = SizeHelper.size1_5,
             radius = SizeHelper.size22.toFloat()
@@ -968,24 +969,24 @@ object ViewHelper {
     }
 
     fun bgRedCircle22dp(context: Context) = ShapeDrawable(OvalShape()).apply {
-        paint.color = Constant.getAccentRedColor(context)
+        paint.color = ColorManager.getAccentRedColor(context)
     }
 
     /*
     * Accent Green
     * */
 
-    fun bgAccentGreenCornersLeft45(context: Context) = createShapeDrawableRadiusLeft(Constant.getAccentGreenColor(context), SizeHelper.size45.toFloat())
+    fun bgAccentGreenCornersLeft45(context: Context) = createShapeDrawableRadiusLeft(ColorManager.getAccentGreenColor(context), SizeHelper.size45.toFloat())
 
     fun bgAccentGreenCircleStrokeBlue1_5Size22(context: Context) = createShapeDrawable(
-        color = Constant.getAccentGreenColor(context),
+        color = ColorManager.getAccentGreenColor(context),
         strokeWidth = SizeHelper.size1_5,
         strokeColor = Color.parseColor("#124998"),
         radius = SizeHelper.size22.toFloat()
     )
 
     fun bgAccentGreenCircleStrokeWhite1_5Size22(context: Context) = createShapeDrawable(
-        color = Constant.getAccentGreenColor(context),
+        color = ColorManager.getAccentGreenColor(context),
         strokeWidth = SizeHelper.size1_5,
         strokeColor = Color.parseColor("#FFFFFF"),
         radius = SizeHelper.size22.toFloat()
@@ -997,11 +998,11 @@ object ViewHelper {
 
     fun bgAccentGreenCornersTopLeft14(context: Context) = createShapeDrawableRadius(
         floatArrayOf(SizeHelper.size14.toFloat(), SizeHelper.size14.toFloat(), 0f, 0f, 0f, 0f, 0f, 0f),
-        Constant.getAccentGreenColor(context)
+        ColorManager.getAccentGreenColor(context)
     )
 
     fun bgAccentGreenStrokeWhite1Corners22(context: Context) = createShapeDrawable(
-        color = Constant.getAccentGreenColor(context),
+        color = ColorManager.getAccentGreenColor(context),
         strokeWidth = SizeHelper.size1,
         strokeColor = ContextCompat.getColor(context, R.color.white),
         radius = SizeHelper.size22.toFloat()
@@ -1010,7 +1011,7 @@ object ViewHelper {
     fun bgOutlineAccentGreen3Corners4(context: Context) = createShapeDrawable(
         color = Color.TRANSPARENT,
         strokeWidth = SizeHelper.size3,
-        strokeColor = Constant.getAccentGreenColor(context),
+        strokeColor = ColorManager.getAccentGreenColor(context),
         radius = SizeHelper.size4.toFloat()
     )
 
@@ -1027,7 +1028,7 @@ object ViewHelper {
 
 
         val progressDrawable = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null).also {
-            it.setColor(Constant.getAccentYellowColor(context))
+            it.setColor(ColorManager.getAccentYellowColor(context))
             it.cornerRadius = SizeHelper.size10.toFloat()
         }
         val progress = ScaleDrawable(progressDrawable, Gravity.START, 1f, 0.1f)
@@ -1042,8 +1043,8 @@ object ViewHelper {
 
     fun textColorDisableTextUncheckAccentYellowChecked(context: Context): ColorStateList {
         return createColorStateList(
-            Constant.getDisableTextColor(context),
-            Constant.getAccentYellowColor(context)
+            ColorManager.getDisableTextColor(context),
+            ColorManager.getAccentYellowColor(context)
         )
     }
 
@@ -1051,9 +1052,9 @@ object ViewHelper {
     /*
     *  Accent Cyan
     * */
-    fun bgAccentCyanCornersTop8(context: Context) = createShapeDrawableRadiusTop(Constant.getAccentCyanColor(context), SizeHelper.size8.toFloat())
+    fun bgAccentCyanCornersTop8(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAccentCyanColor(context), SizeHelper.size8.toFloat())
 
-    fun bgAccentCyanCorners4(context: Context) = createShapeDrawable(Constant.getAccentCyanColor(context), SizeHelper.size4.toFloat())
+    fun bgAccentCyanCorners4(context: Context) = createShapeDrawable(ColorManager.getAccentCyanColor(context), SizeHelper.size4.toFloat())
 
 
     /*
@@ -1061,8 +1062,8 @@ object ViewHelper {
     * */
 
     fun textColorNormalCheckedSecondUnchecked(context: Context) = createColorStateList(
-        Constant.getSecondTextColor(context),
-        Constant.getNormalTextColor(context)
+        ColorManager.getSecondTextColor(context),
+        ColorManager.getNormalTextColor(context)
     )
 
 
@@ -1073,21 +1074,21 @@ object ViewHelper {
 
     fun textColorDisableTextUncheckLightBlueChecked(context: Context): ColorStateList {
         return createColorStateList(
-            Constant.getDisableTextColor(context),
+            ColorManager.getDisableTextColor(context),
             ContextCompat.getColor(context,R.color.light_blue)
         )
     }
 
     fun textColorDisableTextUncheckYellowChecked(context: Context): ColorStateList {
         return createColorStateList(
-            Constant.getDisableTextColor(context),
+            ColorManager.getDisableTextColor(context),
             ContextCompat.getColor(context,R.color.warning_scan_buy)
         )
     }
 
     fun textColorDisableTextUncheckViolentChecked(context: Context): ColorStateList {
         return createColorStateList(
-            Constant.getDisableTextColor(context),
+            ColorManager.getDisableTextColor(context),
             ContextCompat.getColor(context,R.color.violet_4)
         )
     }
@@ -1097,70 +1098,70 @@ object ViewHelper {
     *  App Background White
     * */
 
-    fun bgWhiteCorners4(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size4.toFloat())
-    fun bgWhiteCorners5(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size5.toFloat())
-    fun bgWhiteCorners8(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size8.toFloat())
-    fun bgWhiteCorners10(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size10.toFloat())
-    fun bgWhiteCorners12(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size12.toFloat())
-    fun bgWhiteCorners14(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size14.toFloat())
-    fun bgWhiteCorners16(context: Context) = createShapeDrawable(color = Constant.getAppBackgroundWhiteColor(context), radius = SizeHelper.size16.toFloat())
+    fun bgWhiteCorners4(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size4.toFloat())
+    fun bgWhiteCorners5(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size5.toFloat())
+    fun bgWhiteCorners8(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size8.toFloat())
+    fun bgWhiteCorners10(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size10.toFloat())
+    fun bgWhiteCorners12(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size12.toFloat())
+    fun bgWhiteCorners14(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size14.toFloat())
+    fun bgWhiteCorners16(context: Context) = createShapeDrawable(color = ColorManager.getAppBackgroundWhiteColor(context), radius = SizeHelper.size16.toFloat())
 
 
-    fun bgWhiteCornersTop6(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size6.toFloat())
-    fun bgWhiteCornersTop10(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size10.toFloat())
-    fun bgWhiteCornersTop13(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size13.toFloat())
-    fun bgWhiteCornersTop16(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size16.toFloat())
-    fun bgWhiteCornersTop20(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size20.toFloat())
-    fun bgWhiteCornersTop25(context: Context) = createShapeDrawableRadiusTop(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size25.toFloat())
-    fun bgWhiteCornersBottom10(context: Context) = createShapeDrawableRadiusBottom(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size10.toFloat())
-    fun bgWhiteCornersLeft20(context: Context) = createShapeDrawableRadiusLeft(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size20.toFloat())
+    fun bgWhiteCornersTop6(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size6.toFloat())
+    fun bgWhiteCornersTop10(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size10.toFloat())
+    fun bgWhiteCornersTop13(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size13.toFloat())
+    fun bgWhiteCornersTop16(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size16.toFloat())
+    fun bgWhiteCornersTop20(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size20.toFloat())
+    fun bgWhiteCornersTop25(context: Context) = createShapeDrawableRadiusTop(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size25.toFloat())
+    fun bgWhiteCornersBottom10(context: Context) = createShapeDrawableRadiusBottom(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size10.toFloat())
+    fun bgWhiteCornersLeft20(context: Context) = createShapeDrawableRadiusLeft(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size20.toFloat())
 
 
     fun bgWhiteCornersTopLeft6(context: Context) = createShapeDrawableRadius(
         floatArrayOf(SizeHelper.size6.toFloat(), SizeHelper.size6.toFloat(), 0f, 0f, 0f, 0f, 0f, 0f),
-        Constant.getAppBackgroundWhiteColor(context)
+        ColorManager.getAppBackgroundWhiteColor(context)
     )
 
     fun bgWhiteCornersTopRight6(context: Context) = createShapeDrawableRadius(
         floatArrayOf(0f, 0f, SizeHelper.size6.toFloat(), SizeHelper.size6.toFloat(), 0f, 0f, 0f, 0f),
-        Constant.getAppBackgroundWhiteColor(context)
+        ColorManager.getAppBackgroundWhiteColor(context)
     )
 
     fun bgProductInfomation(context: Context): GradientDrawable {
-        val colors = intArrayOf(Constant.getAppBackgroundWhiteColor(context), Color.parseColor("#97ffffff"), Color.parseColor("#00ffffff"))
+        val colors = intArrayOf(ColorManager.getAppBackgroundWhiteColor(context), Color.parseColor("#97ffffff"), Color.parseColor("#00ffffff"))
         return GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, colors)
     }
 
     fun bgWhiteStrokeSecondary1Corners40(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
-        strokeColor = Constant.getSecondaryColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         radius = SizeHelper.size40.toFloat()
     )
 
     fun bgCircleWhiteStrokeOrange1Size45(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeWidth = SizeHelper.size1,
         strokeColor = ContextCompat.getColor(context, R.color.orange_1),
         radius = SizeHelper.dpToPx(45).toFloat()
     )
 
     fun bgWhiteStrokeBlue1Corners8(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeColor = Color.parseColor("#3c5a99"),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size8.toFloat()
     )
 
     fun bgWhiteStrokeSecondary1Corners10(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Constant.getSecondaryColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size10.toFloat()
     )
 
     fun bgWhiteStrokeGray1Corners16(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeColor = Color.parseColor("#f0f0f0"),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size16.toFloat()
@@ -1168,28 +1169,28 @@ object ViewHelper {
 
 
     fun bgWhiteStrokeSecondary1Corners4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Constant.getSecondaryColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
+        strokeColor = ColorManager.getSecondaryColor(context),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgWhiteStrokeGreen1Corners4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
-        strokeColor = Constant.getAccentGreenColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
+        strokeColor = ColorManager.getAccentGreenColor(context),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgWhiteStrokeGrayD4Corners4(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeColor = Color.parseColor("#d4d4d4"),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size4.toFloat()
     )
 
     fun bgWhiteStrokeGrayD4Corners8(context: Context) = createShapeDrawable(
-        color = Constant.getAppBackgroundWhiteColor(context),
+        color = ColorManager.getAppBackgroundWhiteColor(context),
         strokeColor = Color.parseColor("#d4d4d4"),
         strokeWidth = SizeHelper.size1,
         radius = SizeHelper.size8.toFloat()
@@ -1200,13 +1201,13 @@ object ViewHelper {
         val white = GradientDrawable().also {
             it.setSize(SizeHelper.size22, SizeHelper.size22)
             it.cornerRadius = SizeHelper.size22.toFloat()
-            it.setColor(Constant.getAppBackgroundWhiteColor(context))
+            it.setColor(ColorManager.getAppBackgroundWhiteColor(context))
         }
 
         val green = GradientDrawable().also {
             it.setSize(SizeHelper.size20, SizeHelper.size20)
             it.cornerRadius = SizeHelper.size20.toFloat()
-            it.setColor(Constant.getAccentGreenColor(context))
+            it.setColor(ColorManager.getAccentGreenColor(context))
         }
 
 
@@ -1225,9 +1226,9 @@ object ViewHelper {
 
 
     fun bgWhiteDetailSurveyOption(context: Context): StateListDrawable {
-        val bgSecondary = createShapeDrawable(Constant.getSecondaryColor(context), SizeHelper.size5.toFloat())
+        val bgSecondary = createShapeDrawable(ColorManager.getSecondaryColor(context), SizeHelper.size5.toFloat())
         val bgWhite = createShapeDrawable(
-            Constant.getAppBackgroundWhiteColor(context),
+            ColorManager.getAppBackgroundWhiteColor(context),
             0, Color.TRANSPARENT,
             0f, SizeHelper.size5.toFloat(),
             SizeHelper.size5.toFloat(), 0f
@@ -1239,14 +1240,14 @@ object ViewHelper {
             layerDrawableChecked.setLayerInsetLeft(1, SizeHelper.size8)
         }
 
-        val bgWhiteNotChecked = createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size5.toFloat())
+        val bgWhiteNotChecked = createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size5.toFloat())
 
         return createCheckedDrawable(bgWhiteNotChecked, layerDrawableChecked)
     }
 
     fun bgWhiteMyGiftTitle(context: Context): StateListDrawable {
-        val bgPrimary = createShapeDrawableRadiusTop(Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
-        val bgWhite = createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), 0f)
+        val bgPrimary = createShapeDrawableRadiusTop(ColorManager.getPrimaryColor(context), SizeHelper.size4.toFloat())
+        val bgWhite = createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), 0f)
 
         val layerList = arrayOf(bgPrimary, bgWhite)
         val layerDrawableChecked = LayerDrawable(layerList)
@@ -1263,24 +1264,24 @@ object ViewHelper {
 
     fun btnWhite(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), 0f)
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), 0f)
     )
 
     fun btnWhiteCorners8(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size8.toFloat())
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size8.toFloat())
     )
 
     fun btnWhiteCornersBottom8(context: Context) = createPressDrawable(
         context,
-        createShapeDrawableRadiusBottom(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size8.toFloat())
+        createShapeDrawableRadiusBottom(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size8.toFloat())
     )
 
     fun btnWhiteCornersBottomLeft8(context: Context) = createPressDrawable(
         context,
         createShapeDrawableRadius(
             floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, SizeHelper.size8.toFloat(), SizeHelper.size8.toFloat()),
-            Constant.getAppBackgroundWhiteColor(context)
+            ColorManager.getAppBackgroundWhiteColor(context)
         )
     )
 
@@ -1288,27 +1289,27 @@ object ViewHelper {
         context,
         createShapeDrawableRadius(
             floatArrayOf(0f, 0f, 0f, 0f, SizeHelper.size8.toFloat(), SizeHelper.size8.toFloat(), 0f, 0f),
-            Constant.getAppBackgroundWhiteColor(context)
+            ColorManager.getAppBackgroundWhiteColor(context)
         )
     )
 
     fun btnWhiteStroke1Corners36(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size1, Constant.getSecondaryColor(context), SizeHelper.size36.toFloat())
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size1, ColorManager.getSecondaryColor(context), SizeHelper.size36.toFloat())
     )
 
     fun btnWhiteStrokeSecondary1Corners4(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size1, Constant.getSecondaryColor(context), SizeHelper.size4.toFloat())
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size1, ColorManager.getSecondaryColor(context), SizeHelper.size4.toFloat())
     )
 
     fun btnWhiteStrokePrimary1Corners4(context: Context) = createPressDrawable(
         context,
-        createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.size1, Constant.getPrimaryColor(context), SizeHelper.size4.toFloat())
+        createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.size1, ColorManager.getPrimaryColor(context), SizeHelper.size4.toFloat())
     )
 
     fun btnWhiteCircle48dp(context: Context) = createPressDrawable(
-        context, createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), SizeHelper.dpToPx(48).toFloat())
+        context, createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), SizeHelper.dpToPx(48).toFloat())
     )
 
     fun progressWhiteBackgroundGrayCorners4(context: Context): LayerDrawable {
@@ -1316,7 +1317,7 @@ object ViewHelper {
         return createProgressStateListDrawable(
             backgroundDrawable = createShapeDrawable(Color.parseColor("#80FFFFFF"), radius),
             secondaryDrawable = createScaleDrawable(createShapeDrawable(Color.TRANSPARENT, radius)),
-            progressDrawable = createScaleDrawable(createShapeDrawable(Constant.getAppBackgroundWhiteColor(context), radius))
+            progressDrawable = createScaleDrawable(createShapeDrawable(ColorManager.getAppBackgroundWhiteColor(context), radius))
         )
     }
 
@@ -1361,8 +1362,8 @@ object ViewHelper {
     *  App Background Popup
     * */
 
-    fun bgPopupCorners4(context: Context) = createShapeDrawable(Constant.getBackgroundPopupColor(context), SizeHelper.size4.toFloat())
-    fun bgPopupCorners10(context: Context) = createShapeDrawable(Constant.getBackgroundPopupColor(context), SizeHelper.size10.toFloat())
+    fun bgPopupCorners4(context: Context) = createShapeDrawable(ColorManager.getBackgroundPopupColor(context), SizeHelper.size4.toFloat())
+    fun bgPopupCorners10(context: Context) = createShapeDrawable(ColorManager.getBackgroundPopupColor(context), SizeHelper.size10.toFloat())
 
 
 }

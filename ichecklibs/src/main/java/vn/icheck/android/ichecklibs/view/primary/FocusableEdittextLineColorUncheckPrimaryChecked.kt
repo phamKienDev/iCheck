@@ -17,11 +17,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.marginBottom
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.SizeHelper
-import vn.icheck.android.ichecklibs.toPx
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.toPx
 
 class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
 
@@ -78,8 +78,8 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
     private fun initFont() {
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
 
-        setHintTextColor(Constant.getDisableTextColor(context))
-        setTextColor(Constant.getNormalTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
 
         if (isSetDrawable) {
             if (transformationMethod == null) {
@@ -97,7 +97,7 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = Constant.getAccentRedColor(context)
+        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
@@ -240,9 +240,9 @@ class FocusableEdittextLineColorUncheckPrimaryChecked : AppCompatEditText {
                 drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
-                    mLinePaint.color = Constant.getPrimaryColor(context)
+                    mLinePaint.color = ColorManager.getPrimaryColor(context)
                 } else {
-                    mLinePaint.color = Constant.getLineColor(context)
+                    mLinePaint.color = ColorManager.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
 

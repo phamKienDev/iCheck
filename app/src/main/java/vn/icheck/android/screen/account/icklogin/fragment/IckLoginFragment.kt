@@ -23,7 +23,7 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -73,7 +73,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
         setupView()
         TrackingAllHelper.trackLoginStart()
         binding.edtPhone.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
 //                if (s.toString().startsWith("84")) {
@@ -90,7 +90,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
             })
         }
         binding.edtPassword.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
                     checkForm()
@@ -168,7 +168,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
     private fun setupView() {
         binding.btnLogin.disable()
         binding.btnLoginFacebook.background = ViewHelper.bgBtnFacebook(requireContext())
-        binding.edtPassword.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+        binding.edtPassword.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
     }
 
     private fun setupListener() {

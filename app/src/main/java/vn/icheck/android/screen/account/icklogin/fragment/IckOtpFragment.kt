@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
-import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.ContextWrapper
 import android.content.Intent
@@ -37,7 +36,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.ShareSessionToModule
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
@@ -92,8 +91,8 @@ class IckOtpFragment : Fragment() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=${Constant.getPrimaryColorCode}>%s</font></p>", arr.joinToString(separator = ""))
+        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=${ColorManager.getPrimaryColorCode(requireContext())}>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -145,7 +144,7 @@ class IckOtpFragment : Fragment() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(requireContext()))
                     binding.tvTimer.text = "Gửi lại mã"
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {
@@ -156,7 +155,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.requestLoginOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                                            binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -168,7 +167,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                                            binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -181,7 +180,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                                                binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
@@ -192,7 +191,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.requestRegisterFacebook(ickLoginViewModel.facebookPhone.toString(), ickLoginViewModel.facebookToken.toString()).observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                                                binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {

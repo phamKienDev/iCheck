@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class TextSecondSendOtpLogin : AppCompatTextView {
     constructor(context: Context) : super(context) {
@@ -25,8 +25,8 @@ class TextSecondSendOtpLogin : AppCompatTextView {
                 intArrayOf(android.R.attr.state_enabled))// enabled)
 
         val colors = intArrayOf(
-                Constant.getSecondTextColor(context),
-                Constant.getSecondaryColor(context))
+                ColorManager.getSecondTextColor(context),
+                ColorManager.getSecondaryColor(context))
 
         val colorStateList = ColorStateList(states, colors)
         setTextColor(colorStateList)

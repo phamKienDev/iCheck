@@ -13,7 +13,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICNotificationPage
 
 class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<ICNotificationPage>>(createView(parent.context)) {
@@ -44,14 +44,14 @@ class NotificationPageComponent(parent: ViewGroup) : BaseViewHolder<MutableList<
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0, 0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParent.context))
+                layoutParent.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // Text title
                 layoutParent.addView(ViewHelper.createText(context,
                         ViewHelper.createLayoutParams(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, 0),
                         null,
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                        vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                        vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context),
                         18f
                 ).also {
                     it.setPadding(0, 0, SizeHelper.size12, 0)

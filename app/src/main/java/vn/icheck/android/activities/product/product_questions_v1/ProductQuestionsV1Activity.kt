@@ -89,7 +89,7 @@ class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, Ta
     }
 
     private fun initSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_container.setOnRefreshListener {
@@ -199,7 +199,7 @@ class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, Ta
         KeyboardUtils.showSoftInput(this)
         edt_enter_message.requestFocus()
         tv_answer_actor.visibility = View.VISIBLE
-        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, actorName)))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, actorName),this))
         this.questionId = questionId
         positionAnswer = position
     }

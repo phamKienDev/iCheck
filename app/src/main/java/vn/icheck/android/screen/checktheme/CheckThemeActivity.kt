@@ -33,6 +33,7 @@ import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
+import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
 
@@ -87,7 +88,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
 
     private fun checkLogin() {
         if (!SessionManager.isLoggedAnyType) {
-            viewModel.loginAnonymous().observe(this, Observer {
+            viewModel.loginAnonymous().observe(this, {
                 when (it.status) {
                     Status.LOADING -> {
                     }
@@ -177,7 +178,7 @@ class CheckThemeActivity : BaseActivityMVVM() {
                     }
                 }
                 SettingManager.themeSetting = themeSettingRes?.data
-                SettingManager.setAppThemeColor(themeSettingRes?.data)
+                SettingManager.setAppThemeColor(themeSettingRes?.data?.theme,this@CheckThemeActivity)
             }
             if (domainMarketingRes?.data?.rows != null) {
                 for (i in domainMarketingRes!!.data!!.rows.size - 1 downTo 1) {

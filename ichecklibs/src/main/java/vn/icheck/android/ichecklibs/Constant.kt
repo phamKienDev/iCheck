@@ -1,31 +1,10 @@
 package vn.icheck.android.ichecklibs
 
 import android.content.Context
-import android.graphics.Color
-import androidx.core.content.ContextCompat
 import android.content.Intent
 import android.net.MailTo
-import android.net.Uri
-import java.util.regex.Pattern
 
 object Constant {
-
-    var primaryColor: String = ""
-    var secondaryColor: String = ""
-
-    var accentBlueColor: String = ""
-    var accentGreenColor: String = ""
-    var accentRedColor: String = ""
-    var accentCyanColor: String = ""
-    var accentYellowColor: String = ""
-
-    var normalTextColor: String = ""
-    var secondTextColor: String = ""
-    var disableTextColor: String = ""
-
-    var lineColor: String = ""
-    var appBackgroundColor: String = ""
-    var popupBackgroundColor: String = ""
 
     const val TYPE_URL = 1
     const val TYPE_DOCUMENT = 2
@@ -55,6 +34,20 @@ object Constant {
     const val MA_QR = "Mã QR"
 
     const val CART = "cart"
+
+    const val PRIMARY_COLOR="primaryColor"
+    const val SECONDARY_COLOR="secondaryColor"
+    const val ACCENT_BLUE_COLOR="accentBlueColor"
+    const val ACCENT_GREEN_COLOR="accentGreenColor"
+    const val ACCENT_RED_COLOR="accentRedColor"
+    const val ACCENT_CYAN_COLOR="accentCyanColor"
+    const val ACCENT_YELLOW_COLOR="accentYellowColor"
+    const val NORMAL_TEXT_COLOR="normalTextColor"
+    const val SECOND_TEXT_COLOR="secondTextColor"
+    const val DISABLE_TEXT_COLOR="disableTextColor"
+    const val LINE_COLOR="lineColor"
+    const val APP_BACKGROUND_COLOR="appBackgroundColor"
+    const val POPUP_BACKGROUND_COLOR="popupBackgroundColor"
 
     const val REGISTER_TYPE = "register_type"
     const val LOGIN_FACEBOOK_TYPE = "login_facebook_type"
@@ -327,300 +320,6 @@ object Constant {
             context.startActivity(intent)
         }
     }
-
-
-    /*
-    * Color Primary
-    */
-    fun getPrimaryColor(context: Context): Int {
-        return if (primaryColor.isNotEmpty()) {
-            Color.parseColor(primaryColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorPrimary)
-        }
-    }
-
-    val getPrimaryColorCode: String
-        get() {
-            return if (primaryColor.isNotEmpty()) {
-                primaryColor
-            } else {
-                "#057DDA"
-            }
-        }
-
-    /*
-    * Color secondary
-    */
-    fun getSecondaryColor(context: Context): Int {
-        return if (secondaryColor.isNotEmpty()) {
-            Color.parseColor(secondaryColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorSecondary)
-        }
-    }
-
-    val getSecondaryColorCode: String
-        get() {
-            return if (secondaryColor.isNotEmpty()) {
-                secondaryColor
-            } else {
-                "#3C5A99"
-            }
-        }
-
-    /*
-    *Color accent blue
-    * * */
-
-    fun getAccentBlueColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentBlue)
-//        return if (accentBlueColor.isNotEmpty()) {
-//            Color.parseColor(accentBlueColor)
-//        } else {
-//            ContextCompat.getColor(context, R.color.colorAccentBlue)
-//        }
-//    }
-
-    val getAccentBlueCode = "#00BAF2"
-//        get() {
-//            return if (accentBlueColor.isNotEmpty()) {
-//                accentBlueColor
-//            } else {
-//                "#00BAF2"
-//            }
-//        }
-
-
-    /*
-    *Color accent green
-    * * */
-
-    fun getAccentGreenColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentGreen)
-//        return if (accentGreenColor.isNotEmpty()) {
-//            Color.parseColor(accentGreenColor)
-//        } else {
-//            ContextCompat.getColor(context, R.color.colorAccentGreen)
-//        }
-//    }
-
-    val getAccentGreenCode = "#85c440"
-//        get() {
-//            return if (accentGreenColor.isNotEmpty()) {
-//                accentGreenColor
-//            } else {
-//                "#85c440"
-//            }
-//        }
-
-
-    /*
-    *Color accent red
-    * * */
-
-    fun getAccentRedColor(context: Context)=ContextCompat.getColor(context, R.color.colorAccentRed)
-//        return if (accentRedColor.isNotEmpty()) {
-//            Color.parseColor(accentRedColor)
-//        } else {
-//            ContextCompat.getColor(context, R.color.colorAccentRed)
-//        }
-//    }
-
-    val getAccentRedCode="#ff0000"
-//        get() {
-//            return if (accentRedColor.isNotEmpty()) {
-//                accentRedColor
-//            } else {
-//                "#ff0000"
-//            }
-//        }
-
-    /*
-    *Color accent yellow
-    * * */
-
-    fun getAccentYellowColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentYellow)
-//        return if (accentYellowColor.isNotEmpty()) {
-//            Color.parseColor(accentYellowColor)
-//        } else {
-//            ContextCompat.getColor(context, R.color.colorAccentYellow)
-//        }
-//    }
-
-    val getAccentYellowCode = "#FFB800"
-//        get() {
-//            return if (accentYellowColor.isNotEmpty()) {
-//                accentYellowColor
-//            } else {
-//                "#FFB800"
-//            }
-//        }
-
-    /*
-    *Color accent cyan
-    * * */
-
-    fun getAccentCyanColor(context: Context) = ContextCompat.getColor(context, R.color.colorAccentCyan)
-//        return if (accentCyanColor.isNotEmpty()) {
-//            Color.parseColor(accentCyanColor)
-//        } else {
-//            ContextCompat.getColor(context, R.color.colorAccentCyan)
-//        }
-//    }
-
-    val getAccentCyanCode = "#CCF1FC"
-//        get() {
-//            return if (accentCyanColor.isNotEmpty()) {
-//                accentCyanColor
-//            } else {
-//                "#CCF1FC"
-//            }
-//        }
-
-    /*
-    * Color normal text
-    */
-    fun getNormalTextColor(context: Context): Int {
-        return if (normalTextColor.isNotEmpty()) {
-            Color.parseColor(normalTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorNormalText)
-        }
-    }
-
-    val getNormalTextCode: String
-        get() {
-            return if (normalTextColor.isNotEmpty()) {
-                normalTextColor
-            } else {
-                "#212121"
-            }
-        }
-
-    /*
-    * Color second text
-    */
-    fun getSecondTextColor(context: Context): Int {
-        return if (secondTextColor.isNotEmpty()) {
-            Color.parseColor(secondTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorSecondText)
-        }
-    }
-
-    val getSecondTextCode: String
-        get() {
-            return if (secondTextColor.isNotEmpty()) {
-                secondTextColor
-            } else {
-                "#757575"
-            }
-        }
-
-    /*
-    * Color Disable Text
-    */
-    fun getDisableTextColor(context: Context): Int {
-        return if (disableTextColor.isNotEmpty()) {
-            Color.parseColor(disableTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorDisableText)
-        }
-    }
-
-    val getDisableTextCode: String
-        get() {
-            return if (disableTextColor.isNotEmpty()) {
-                disableTextColor
-            } else {
-                "#B4B4B4"
-            }
-        }
-
-
-    /*
-   * Color line
-   */
-    fun getLineColor(context: Context): Int {
-        return if (lineColor.isNotEmpty()) {
-            Color.parseColor(lineColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorLine)
-        }
-    }
-
-    val getLineColorCode: String
-        get() {
-            return if (lineColor.isNotEmpty()) {
-                lineColor
-            } else {
-                "#D8D8D8"
-            }
-        }
-
-
-    /*
-    * Color background White
-    */
-    fun getAppBackgroundWhiteColor(context: Context) = ContextCompat.getColor(context, R.color.colorBackgroundWhite)
-//        return if (appBackgroundColor.isNotEmpty()) {
-//            Color.parseColor(appBackgroundColor)
-//        } else {
-//            return ContextCompat.getColor(context, R.color.colorBackgroundWhite)
-//        }
-
-
-    val getAppBackgroundWhiteColorCode=  "#FFFFFF"
-//        get() {
-//            return if (appBackgroundColor.isNotEmpty()) {
-//                appBackgroundColor
-//            } else {
-//                "#FFFFFF"
-//            }
-//        }
-
-
-    /*
-    * Color background Gray
-    */
-    fun getAppBackgroundGrayColor(context: Context): Int {
-        return if (appBackgroundColor.isNotEmpty()) {
-            Color.parseColor(appBackgroundColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorBackgroundGray)
-        }
-    }
-
-    val getAppBackgroundGrayColorCode: String
-        get() {
-            return if (appBackgroundColor.isNotEmpty()) {
-                appBackgroundColor
-            } else {
-                "#F0F0F0"
-            }
-        }
-
-
-    /*
-    * Color background Popup
-    */
-    fun getBackgroundPopupColor(context: Context): Int {
-        return if (popupBackgroundColor.isNotEmpty()) {
-            Color.parseColor(popupBackgroundColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorBackgroundPopup)
-        }
-    }
-
-    val getBackgroundPopupColorCode: String
-        get() {
-            return if (popupBackgroundColor.isNotEmpty()) {
-                popupBackgroundColor
-            } else {
-                "#80000000"
-            }
-        }
-
-
 
     fun isNullOrEmpty(value: String?): Boolean {
         return when {

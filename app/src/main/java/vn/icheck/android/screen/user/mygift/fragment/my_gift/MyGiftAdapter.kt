@@ -10,7 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.ICViewTypes
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.base.holder.LoadingHolder
@@ -154,7 +154,7 @@ class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=${Constant.getSecondTextCode}>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${ColorManager.getSecondTextCode(itemView.context)}>Từ </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }
