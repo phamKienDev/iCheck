@@ -2,6 +2,7 @@ package vn.icheck.android.network.feature.post
 
 import vn.icheck.android.network.base.*
 import com.google.gson.JsonObject
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICMedia
@@ -119,8 +120,12 @@ class PostInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().deleteComment(url, hashMapOf()), listener)
     }
 
-    fun commentPost(postID: Long, message: String, pageId: Long?, media: ICMedia?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
-        val url = APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+    fun commentPost(postID: Long, message: String, pageId: Long?, media: ICMedia?,reviewType:String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
+        val url =if(reviewType==Constant.REVIEW){
+            APIConstants.socialHost + APIConstants.Post.REVIEW_COMMENT.replace("{id}", postID.toString())
+        }else{
+            APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+        }
 
         val queries = hashMapOf<String, Any>()
         if (pageId != null) {
@@ -136,8 +141,12 @@ class PostInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().postCommentPost(url, queries), listener)
     }
 
-    fun commentPost(postID: Long, pageId: Long?, content: String, image: String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
-        val url = APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+    fun commentPost(postID: Long, pageId: Long?, content: String, image: String?,reviewType:String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
+        val url =if(reviewType==Constant.REVIEW){
+            APIConstants.socialHost + APIConstants.Post.REVIEW_COMMENT.replace("{id}", postID.toString())
+        }else{
+            APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+        }
 
         val queries = hashMapOf<String, Any>()
         if (pageId != null) {

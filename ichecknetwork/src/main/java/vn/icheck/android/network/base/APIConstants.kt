@@ -454,6 +454,7 @@ object APIConstants {
         const val GET_LIST_COMMENTS_OF_POST = "social/api/posts/{id}/comments"
         const val POST_LIKE_COMMENT = "social/api/comments/{id}/expressive"
         const val POST_COMMENT = "social/api/posts/{id}/comment"
+        const val REVIEW_COMMENT = "social/api/reviews/{id}/comment"
         const val LIKE_POST = "social/api/posts/{id}/expressive"
     }
 

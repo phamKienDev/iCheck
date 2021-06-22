@@ -330,7 +330,7 @@ class CommentPostViewModel : ViewModel() {
     }
 
     private fun postComment(pageID: Long?, image: String?, content: String) {
-        postInteraction.commentPost(postID, pageID, content, image, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteraction.commentPost(postID, pageID, content, image,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 obj.data?.let { data ->
