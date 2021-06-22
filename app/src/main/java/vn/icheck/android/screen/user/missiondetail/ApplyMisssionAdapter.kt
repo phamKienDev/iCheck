@@ -15,7 +15,7 @@ import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICCategory
 import vn.icheck.android.network.models.ICCompany
 import vn.icheck.android.network.models.ICProduct
@@ -91,7 +91,7 @@ class ApplyMisssionAdapter : RecyclerViewAdapter<Any>() {
                     ViewHelper.createLayoutParams(SizeHelper.size12, 0, 0, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getNormalTextColor(context),
+                    ColorManager.getNormalTextColor(context),
                     14f,
                     2).apply {
             })

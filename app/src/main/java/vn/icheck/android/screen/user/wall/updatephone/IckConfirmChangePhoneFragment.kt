@@ -47,7 +47,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
     private fun initViews() {
         binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
 
-        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_n_sdt)} <span style='color:${vn.icheck.android.ichecklibs.Constant.getSecondaryColorCode}'>%s</span></p>", args.phone)
+        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_n_sdt)} <span style='color:${vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(requireContext())}'>%s</span></p>", args.phone)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textView25.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
         } else {
@@ -69,7 +69,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
 
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(requireContext()))
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(requireContext()))
                     binding.tvTimer.setText(R.string.gui_lai_ma)
                 } catch (e: Exception) {
                     this.cancel()

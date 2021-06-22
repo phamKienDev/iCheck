@@ -42,7 +42,7 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
                     (getChildAt(0) as AppCompatTextView).run {
                         val totalRating = obj.rating * 2
 
-                        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
 
                         when {
                             totalRating < 6 -> {

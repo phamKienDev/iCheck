@@ -25,6 +25,7 @@ import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
@@ -76,7 +77,7 @@ class ListConversationFragment : BaseFragmentChat<FragmentListConversationBindin
     }
 
     private fun initSwipeLayout() {
-        val primary=Constant.getPrimaryColor(requireContext())
+        val primary= ColorManager.getPrimaryColor(requireContext())
         binding.swipeRefresh.setColorSchemeColors(primary,primary,primary)
 
         binding.swipeRefresh.isEnabled = ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)

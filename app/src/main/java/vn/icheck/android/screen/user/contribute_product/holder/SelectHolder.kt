@@ -16,7 +16,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemSelectBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
@@ -67,9 +67,9 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                 for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                     itemSelectBinding.groupSelect.addView(RadioButton(itemSelectBinding.root.context).apply {
                         text = item?.value
-                        setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(itemView.context),Constant.getNormalTextColor(itemView.context)))
+                        setTextColor(ViewHelper.createColorStateList(ColorManager.getSecondTextColor(itemView.context),ColorManager.getNormalTextColor(itemView.context)))
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            buttonTintList=ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4),Constant.getPrimaryColor(itemView.context))
+                            buttonTintList=ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4),ColorManager.getPrimaryColor(itemView.context))
                         }
                         if (item?.id == categoryAttributesModel.values) {
                             isChecked = true
@@ -116,9 +116,9 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                         val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
                         checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
                         checkedTextView.setTextColor(if (checkedTextView.text==itemView.context.getString(R.string.tuy_chon)) {
-                            Constant.getDisableTextColor(context)
+                            ColorManager.getDisableTextColor(context)
                         }else{
-                            Constant.getNormalTextColor(context)
+                            ColorManager.getNormalTextColor(context)
                         })
                         return checkedTextView
                     }
@@ -127,9 +127,9 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                         val textView=super.getView(position, convertView, parent) as TextView
                         textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
                         textView.setTextColor(if (textView.text==itemView.context.getString(R.string.tuy_chon)) {
-                            Constant.getDisableTextColor(context)
+                            ColorManager.getDisableTextColor(context)
                         }else{
-                            Constant.getNormalTextColor(context)
+                            ColorManager.getNormalTextColor(context)
                         })
                         return textView
                     }
@@ -139,14 +139,14 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
                     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val checkedTextView= super.getDropDownView(position, convertView, parent) as CheckedTextView
                         checkedTextView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        checkedTextView.setTextColor(Constant.getDisableTextColor(context))
+                        checkedTextView.setTextColor(ColorManager.getDisableTextColor(context))
                         return checkedTextView
                     }
 
                     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                         val textView=super.getView(position, convertView, parent) as TextView
                         textView.typeface= Typeface.createFromAsset(context.assets,"font/barlow_medium.ttf")
-                        textView.setTextColor(Constant.getDisableTextColor(context))
+                        textView.setTextColor(ColorManager.getDisableTextColor(context))
                         return textView
                     }
                 }
@@ -155,7 +155,7 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemSelectBinding.spinner.adapter = arrAdapter
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                itemSelectBinding.spinner.backgroundTintList=ViewHelper.createColorStateList(Constant.getPrimaryColor(itemView.context),Constant.getPrimaryColor(itemView.context))
+                itemSelectBinding.spinner.backgroundTintList=ViewHelper.createColorStateList(ColorManager.getPrimaryColor(itemView.context),ColorManager.getPrimaryColor(itemView.context))
             }
             for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                 if (categoryAttributesModel.values is Double) {

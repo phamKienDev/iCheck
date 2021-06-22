@@ -16,11 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ichecklibs.*
-import vn.icheck.android.ichecklibs.util.LoadImageUtils
-import vn.icheck.android.ichecklibs.util.beGone
-import vn.icheck.android.ichecklibs.util.beVisible
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.ichecklibs.util.*
 
 class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                        val selectMulti: Boolean = false, // cho phép chọn nhiều hay không?
@@ -154,7 +150,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                                     obj.selected = true
                                     listSelected.add(obj)
                                 } else {
-                                    itemView.context.showToastError(itemView.context.getString(R.string.chi_duoc_chon_toi_da_x_muc, maxSelectCount))
+                                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.chi_duoc_chon_toi_da_x_muc, maxSelectCount))
                                 }
 
                             }
@@ -183,14 +179,14 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
         val view = AppCompatImageView(parent.context).also {
             it.layoutParams = ConstraintLayout.LayoutParams(0, 0)
             it.id = R.id.bgCover
-            it.setImageResource(R.drawable.bg_choose_image_dialog)
+            it.setImageDrawable(ViewHelper.fillDrawableColor(R.drawable.bg_choose_image_dialog,parent.context))
         }
         layoutParent.addView(view)
 
         val checkbox = AppCompatImageView(parent.context).also {
             it.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
             it.id = R.id.imgChecked
-            it.setImageResource(R.drawable.ic_square_checked_light_blue_24dp)
+            it.setImageResource(R.drawable.ic_baseline_check_24)
         }
         layoutParent.addView(checkbox)
 
@@ -280,7 +276,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                 it.topMargin = SizeHelper.size2
             }
             it.setText(R.string.chup_anh)
-            it.setTextColor(Constant.getDisableTextColor(it.context))
+            it.setTextColor(ColorManager.getDisableTextColor(it.context))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         })

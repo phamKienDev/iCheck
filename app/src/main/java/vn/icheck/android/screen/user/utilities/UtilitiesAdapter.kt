@@ -13,7 +13,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICTheme
 import vn.icheck.android.screen.user.home_page.holder.secondfunction.HomeSecondaryFunctionAdapter
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
@@ -65,18 +65,18 @@ class UtilitiesAdapter(callbank: IRecyclerViewCallback) : RecyclerViewAdapter<IC
         return LinearLayout(context).also {
             it.layoutParams = ViewHelper.createLayoutParams()
             it.orientation = LinearLayout.VERTICAL
-            it.setBackgroundColor(Constant.getAppBackgroundWhiteColor(it.context))
+            it.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(it.context))
 
             it.addView(View(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size10)
-                it.setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+                it.setBackgroundColor(ColorManager.getAppBackgroundGrayColor(context))
             })
 
             it.addView(AppCompatTextView(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                     it.setMargins(SizeHelper.size12, SizeHelper.size10, 0, 0)
                 }
-                it.setTextColor(Constant.getSecondaryColor(it.context))
+                it.setTextColor(ColorManager.getSecondaryColor(it.context))
                 it.textSize = 16f
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
             })

@@ -17,7 +17,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.ICSuggestPage
 import vn.icheck.android.network.models.ICUser
@@ -110,7 +110,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     it.setMargins(SizeHelper.size30, SizeHelper.size6, SizeHelper.size30, SizeHelper.size12)
                 },
                 null, ViewHelper.createTypeface(parent.context, R.font.barlow_medium),
-                Constant.getSecondTextColor(parent.context), 14f).also {
+                ColorManager.getSecondTextColor(parent.context), 14f).also {
             it.gravity = Gravity.CENTER
             it.includeFontPadding = false
             it.text = parent.context.getString(R.string.goi_y_page)
@@ -142,7 +142,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                 background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 setOnClickListener {
                     if (!obj.selected) {
-                        itemView.tv_follow.setTextColor(Constant.getSecondTextColor(itemView.context))
+                        itemView.tv_follow.setTextColor(ColorManager.getSecondTextColor(itemView.context))
                         itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
                         itemView.tv_follow.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                         listSelected.add(obj)

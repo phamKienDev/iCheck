@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_game_loyalty.view.*
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
@@ -101,7 +102,7 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
 
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
-                                itemView.tvPlay.setTextColor(Constant.getPrimaryColor(itemView.context))
+                                itemView.tvPlay.setTextColor(ColorManager.getPrimaryColor(itemView.context))
                                 itemView.tvPlay.setText(R.string.d_luot_quay, obj.campaignGameUser[0]?.play)
                             } else {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#828282"))

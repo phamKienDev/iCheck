@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.appbackground.whitebackground
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class ICLinearLayoutWhite : LinearLayout {
@@ -23,6 +24,6 @@ class ICLinearLayoutWhite : LinearLayout {
     }
 
     private fun setup() {
-        setBackgroundColor(Constant.getAppBackgroundWhiteColor(context))
+        setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(context))
     }
 }

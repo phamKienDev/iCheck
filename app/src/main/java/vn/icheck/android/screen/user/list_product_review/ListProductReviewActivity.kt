@@ -104,7 +104,7 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
             onBackPressed()
         }
 
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_container.setOnRefreshListener {

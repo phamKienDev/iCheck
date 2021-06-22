@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
@@ -21,7 +21,7 @@ abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         return if (idColor != R.color.colorPrimary) {
             ContextCompat.getColor(itemView.context, idColor)
         } else {
-            Constant.getPrimaryColor(itemView.context)
+            ColorManager.getPrimaryColor(itemView.context)
         }
     }
 

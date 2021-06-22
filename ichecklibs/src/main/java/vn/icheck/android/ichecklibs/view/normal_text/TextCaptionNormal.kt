@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextCaption
@@ -24,6 +25,6 @@ class TextCaptionNormal : TextCaption {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
     }
 }

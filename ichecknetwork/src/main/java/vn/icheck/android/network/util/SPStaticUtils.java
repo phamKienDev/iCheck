@@ -1,6 +1,7 @@
 package vn.icheck.android.network.util;
 
 import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 
 import java.util.Map;

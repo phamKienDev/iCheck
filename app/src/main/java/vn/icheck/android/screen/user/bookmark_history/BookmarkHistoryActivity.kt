@@ -16,7 +16,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -107,8 +107,8 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
     }
 
     private fun setupView() {
-        binding.edtSearch.setHintTextColor(Constant.getDisableTextColor(this))
-        binding.edtSearch.setTextColor(Constant.getNormalTextColor(this))
+        binding.edtSearch.setHintTextColor(ColorManager.getDisableTextColor(this))
+        binding.edtSearch.setTextColor(ColorManager.getNormalTextColor(this))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -29,7 +30,7 @@ class TextDisableUncheckYellowChecked  : AppCompatCheckedTextView {
     }
 
     private fun setup() {
-        setTextColor(ViewHelper.createColorStateList(Constant.getDisableTextColor(context),Constant.getAccentYellowColor(context)))
+        setTextColor(ViewHelper.createColorStateList(ColorManager.getDisableTextColor(context),ColorManager.getAccentYellowColor(context)))
         includeFontPadding = false
     }
 }

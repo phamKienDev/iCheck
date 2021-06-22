@@ -1,9 +1,10 @@
 package vn.icheck.android.ichecklibs.view.appbackground.graybackground
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class ICRecyclerViewGray : RecyclerView {
     constructor(context: Context) : super(context) {
@@ -23,6 +24,6 @@ class ICRecyclerViewGray : RecyclerView {
     }
 
     private fun setup() {
-        setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+        setBackgroundColor(Color.parseColor(ColorManager.getPrimaryColorCode(context)))
     }
 }

@@ -15,7 +15,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
@@ -143,7 +143,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             binding.edtInput.apply {
                 background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
-                setHintTextColor(Constant.getSecondTextColor(itemView.context))
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
                 hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
@@ -178,7 +178,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             binding.edtTextArea.apply {
                 background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
-                setHintTextColor(Constant.getSecondTextColor(itemView.context))
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
                 hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
@@ -298,7 +298,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             binding.edtInputDate.apply {
                 background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
-                setHintTextColor(Constant.getSecondTextColor(itemView.context))
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
                 text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
 
                 setOnClickListener {

@@ -25,7 +25,7 @@ import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -68,7 +68,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
                     ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size36, 0),
                     null,
                     ViewHelper.createTypeface(requireContext(), R.font.barlow_semi_bold),
-                    Constant.getPrimaryColor(requireContext()),
+                    ColorManager.getPrimaryColor(requireContext()),
                     18f,
                     1).also {
                 it.gravity = Gravity.CENTER
@@ -82,7 +82,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
         // Line gray - 1
         layoutParent.addView(View(context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-            it.setBackgroundColor(Constant.getLineColor(requireContext()))
+            it.setBackgroundColor(ColorManager.getLineColor(requireContext()))
         })
 
         // Layout list reason - 2
@@ -98,8 +98,8 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
                     radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                     radioButton.setTextColor(ViewHelper.createColorStateList(
-                            Constant.getSecondTextColor(requireContext()),
-                            Constant.getNormalTextColor(requireContext())))
+                            ColorManager.getSecondTextColor(requireContext()),
+                            ColorManager.getNormalTextColor(requireContext())))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1
@@ -131,9 +131,9 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
                 ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0),
                 ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(requireContext(), R.color.grayD8), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(requireContext(), R.font.barlow_medium),
-                Constant.getNormalTextColor(requireContext()),
+                ColorManager.getNormalTextColor(requireContext()),
                 14f).also {
-            it.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            it.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)

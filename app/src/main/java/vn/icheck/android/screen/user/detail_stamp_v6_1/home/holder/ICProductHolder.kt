@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemProductV61Binding
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICWidgetData
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -13,7 +13,7 @@ class ICProductHolder(parent: ViewGroup, val binding: ItemProductV61Binding = It
 
     override fun bind(obj: ICWidgetData) {
         binding.tvPrice.apply {
-            setHintTextColor(Constant.getSecondTextColor(context))
+            setHintTextColor(ColorManager.getSecondTextColor(context))
             text = if (obj.price != null && obj.price != 0L) {
                 TextHelper.formatMoneyComma(obj.price!!) + " đ"
             } else {
@@ -22,11 +22,11 @@ class ICProductHolder(parent: ViewGroup, val binding: ItemProductV61Binding = It
         }
 
         binding.tvName.apply {
-            setHintTextColor(Constant.getNormalTextColor(context))
+            setHintTextColor(ColorManager.getNormalTextColor(context))
             text = obj.name
         }
         binding.tvBarcode.apply {
-            setHintTextColor(Constant.getSecondTextColor(context))
+            setHintTextColor(ColorManager.getSecondTextColor(context))
             text = obj.barcode
         }
 

@@ -127,7 +127,7 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
                 }
                 else -> {
                     itemView.tv_rating.apply {
-                        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
                         text = context.getString(R.string.tren_ca_tuyet_voi)
                         setTextColor(primaryColor)
                         background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())

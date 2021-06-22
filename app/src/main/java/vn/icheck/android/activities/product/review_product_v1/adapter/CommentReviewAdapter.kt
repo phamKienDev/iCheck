@@ -89,7 +89,7 @@ class CommentReviewAdapter(val reviewPosition: Int, val listener: IReviewProduct
 
             if (obj.ownerType == "page") {
                 avatar.borderWidth = 1
-                avatar.borderColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+                avatar.borderColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
                 itemView.tv_name.setTextColor(avatar.borderColor)
                 vgUserAvatar.getChildAt(1).visibility = View.VISIBLE
             } else {

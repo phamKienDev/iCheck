@@ -65,7 +65,7 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
         binding.edtPhone.background=ViewHelper.lineUnderColorLine1(this)
         binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
 
-        binding.edtPhone.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+        binding.edtPhone.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
     }
 
     private fun setupViewModel() {

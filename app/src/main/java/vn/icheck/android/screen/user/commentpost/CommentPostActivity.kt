@@ -237,7 +237,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
@@ -661,9 +661,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         layoutActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name),this))
         } else {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName),this))
         }
 
         edtContent.text = null

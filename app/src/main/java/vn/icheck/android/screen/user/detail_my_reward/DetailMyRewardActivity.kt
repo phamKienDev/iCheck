@@ -23,6 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityDetailMyRewardBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
@@ -164,11 +165,11 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     binding.tvRefuse.setText(R.string.so_serial)
                     binding.tvMathecao.beVisible()
                     binding.tvState.beVisible()
-                    binding.tvState.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
+                    binding.tvState.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getAccentGreenColor(this))
                     binding.tvState simpleText data.dataRps?.pin
                     binding.tvRefuseDes simpleText data.dataRps?.serial
                     binding.tvState.textSize = 14f
-                    binding.tvRefuseDes.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
+                    binding.tvRefuseDes.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getAccentGreenColor(this))
                     binding.tvTime.setText(R.string.han_su_dung)
                     binding.tvTimeDes simpleText data.dataRps?.expiredDate?.getDayTime()
                     if (data.usingState == 1) {
@@ -213,10 +214,10 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                         binding.layoutBottom.beGone()
                         binding.imgLogo.alpha = 0.5f
                         binding.imgUsed.beVisible()
-                        binding.tvState.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
-                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvState.setTextColor(ColorManager.getSecondTextColor(this))
+                        binding.tvRefuseDes.setTextColor(ColorManager.getSecondTextColor(this))
                         binding.tvTime.setText(R.string.ngay_dung)
-                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvTimeDes.setTextColor(ColorManager.getSecondTextColor(this))
                         binding.tvTimeDes.text = data.confirmTime?.getDayTime()
                     }
 
@@ -314,7 +315,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao.setText(R.string.da_xac_nhan_giao_qua)
-                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                     binding.tvTime.beInvisible()
@@ -334,7 +335,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                     resetTvWidth()
                     binding.tvMathecao.beVisible()
                     binding.tvMathecao.setText(R.string.giao_qua_thanh_cong)
-                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
+                    binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getAccentGreenColor(this))
                     binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                     binding.layoutBottom.beGone()
                 }
@@ -352,7 +353,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao.setText(R.string.ban_da_tu_choi_nhan_qua_nay)
-                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentRedColor(binding.tvMathecao.context))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getAccentRedColor(binding.tvMathecao.context))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
@@ -365,7 +366,7 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
                 resetTvWidth()
                 binding.tvMathecao.beVisible()
                 binding.tvMathecao.setText(R.string.giao_qua_thanh_cong)
-                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.Constant.getAccentGreenColor(this))
+                binding.tvMathecao.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getAccentGreenColor(this))
                 binding.tvMathecao.typeface = Typeface.createFromAsset(assets, "font/barlow_semi_bold.ttf")
                 binding.layoutBottom.beGone()
             }
@@ -380,8 +381,8 @@ class DetailMyRewardActivity : BaseActivityMVVM() {
 
                         binding.tvTime.setText(R.string.loai_qua)
                         binding.tvTimeDes.setText(R.string.qua_giao_tan_noi)
-                        binding.tvRefuseDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
-                        binding.tvTimeDes.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                        binding.tvRefuseDes.setTextColor(ColorManager.getSecondTextColor(this))
+                        binding.tvTimeDes.setTextColor(ColorManager.getSecondTextColor(this))
                         binding.layoutBottom.beGone()
                         binding.btnAcceptDaLay.setOnClickListener {
                             TrackingAllHelper.tagGiftDeliveryStarted(viewModel.detailReward?.data?.campaignId, viewModel.detailReward?.data?.name)

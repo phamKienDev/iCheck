@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -33,7 +34,7 @@ class ViewLineDotted : View {
     private fun setup() {
          background = GradientDrawable().apply {
             shape = GradientDrawable.LINE
-            setStroke(SizeHelper.size1, Constant.getLineColor(context), 10f, 10f)
+            setStroke(SizeHelper.size1, ColorManager.getLineColor(context), 10f, 10f)
         }
     }
 }

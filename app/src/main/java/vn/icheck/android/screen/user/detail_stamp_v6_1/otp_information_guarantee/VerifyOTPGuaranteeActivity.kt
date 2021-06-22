@@ -124,7 +124,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat))))
+        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)),this))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
 

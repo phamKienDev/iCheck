@@ -46,7 +46,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
             false
         }
 
-        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
     }
 
     @SuppressLint("SetTextI18n")
@@ -178,7 +178,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
             startActivity<ListCampaignActivity>()
         }
 
-        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
         tvBenefit.setOnClickListener {
             DialogHelper.showLoading(this)
             SettingHelper.getSystemSetting("ranking-support.benefit-url", "ranking-support", object : ISettingListener {

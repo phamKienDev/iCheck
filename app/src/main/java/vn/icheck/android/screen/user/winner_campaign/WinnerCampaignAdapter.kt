@@ -17,7 +17,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -143,23 +143,23 @@ class WinnerCampaignAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         private fun setReward(textView: AppCompatTextView, value: Long?) {
             if (value != null) {
                 textView.text = TextHelper.formatMoneyPhay(value)
-                textView.setTextColor(Constant.getAccentYellowColor(itemView.context))
+                textView.setTextColor(ColorManager.getAccentYellowColor(itemView.context))
                 textView.setTypeface(null, Typeface.NORMAL)
             } else {
                 textView.text = itemView.context.getString(R.string.dang_cap_nhat)
                 textView.setTypeface(null, Typeface.ITALIC)
-                textView.setTextColor(Constant.getDisableTextColor(itemView.context))
+                textView.setTextColor(ColorManager.getDisableTextColor(itemView.context))
             }
         }
 
         private fun setName(tv: AppCompatTextView, value: String?) {
             if (value.isNullOrEmpty()) {
-                tv.setTextColor(Constant.getDisableTextColor(itemView.context))
+                tv.setTextColor(ColorManager.getDisableTextColor(itemView.context))
                 tv.text = itemView.context.getString(R.string.dang_cap_nhat)
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_medium.ttf")
             } else {
                 tv.text = value
-                tv.setTextColor(Constant.getNormalTextColor(itemView.context))
+                tv.setTextColor(ColorManager.getNormalTextColor(itemView.context))
                 tv.typeface = Typeface.createFromAsset(itemView.context.assets, "font/barlow_semi_bold.ttf")
             }
         }

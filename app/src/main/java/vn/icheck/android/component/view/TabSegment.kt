@@ -14,7 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import vn.icheck.android.R
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 
 
@@ -44,7 +44,7 @@ class TabSegment : FrameLayout {
         tabLayout.setSelectedTabIndicator(null)
         tabLayout.setSelectedTabIndicatorHeight(0)
         tabLayout.tabRippleColor = null
-        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), Constant.getAppBackgroundWhiteColor(context))
+        tabLayout.setTabTextColors(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context), ColorManager.getAppBackgroundWhiteColor(context))
 
         addView(tabLayout)
     }
@@ -72,7 +72,7 @@ class TabSegment : FrameLayout {
                     if (i == 0) {
                         tabTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                     } else {
-                        tabTextView.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                        tabTextView.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                     }
                 }
             }
@@ -89,7 +89,7 @@ class TabSegment : FrameLayout {
                     for (i in 0 until tabChildsCount) {
                         val tabViewChild = vgTab.getChildAt(i)
                         if (tabViewChild is TextView) {
-                            tabViewChild.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                            tabViewChild.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                         }
                     }
                 }

@@ -41,6 +41,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
@@ -737,12 +738,12 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             ICMessageEvent.Type.ON_TICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_24px)
                 imgDot.beVisible()
-                tvFilter.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext()))
+                tvFilter.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             }
             ICMessageEvent.Type.ON_UNTICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_gray_24_px)
                 imgDot.beInvisible()
-                tvFilter.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                tvFilter.setTextColor(ColorManager.getSecondTextColor(requireContext()))
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 listType.clear()
@@ -768,7 +769,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
         if (!isCreateView) {
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
-            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+            val primaryColor = ColorManager.getPrimaryColor(requireContext())
             swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
             if (!checkAllowPermission || !NetworkHelper.isOpenedGPS(requireContext())) {

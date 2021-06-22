@@ -114,7 +114,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         } else {
             itemView.tvContent.beVisible()
             itemView.tvContent.text = if (obj.content!!.length > 120) {
-                Html.fromHtml(ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120))))
+                Html.fromHtml(ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120)),itemView.context))
             } else {
                 obj.content
             }

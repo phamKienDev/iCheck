@@ -212,7 +212,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
         }, 0, 0, 0)
 
         binding.tvLike.setTextColor(if (obj.expressive == null) {
-            vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context)
+            vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context)
         } else {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         })

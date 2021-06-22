@@ -21,7 +21,7 @@ import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
@@ -49,7 +49,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    Constant.getNormalTextColor(context),
+                    ColorManager.getNormalTextColor(context),
                     16f).also {
                 it.text = title
                         ?: context.getString(R.string.report_wrong_contribution_success_title)
@@ -60,7 +60,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size6, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getSecondTextColor(context),
+                    ColorManager.getSecondTextColor(context),
                     14f).also {
                 it.setText(R.string.report_wrong_contribution_success_message)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -70,7 +70,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also { params ->
                     params.topMargin = SizeHelper.size10
                 }
-                it.setBackgroundColor(Constant.getLineColor(context))
+                it.setBackgroundColor(ColorManager.getLineColor(context))
             })
 
             layoutParent.addView(ViewHelper.createText(context,
@@ -79,7 +79,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     },
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getSecondTextColor(context),
+                    ColorManager.getSecondTextColor(context),
                     14f).also {
                 if (type!="order") {
                     it.setText(R.string.noi_dung_bao_cao_colon)
@@ -111,7 +111,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
 
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
-                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context), 14f).also {
+                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context), 14f).also {
                             it.setText(R.string.neu_ban_biet_thong_tin_chinh_xac_ve_san_pham_nay_hay_dong_gop_them_nhe)
                             it.gravity = Gravity.CENTER
                         })

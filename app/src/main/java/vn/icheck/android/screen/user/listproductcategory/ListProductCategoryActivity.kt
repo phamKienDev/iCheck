@@ -78,7 +78,7 @@ class ListProductCategoryActivity : BaseActivityMVVM(), IListProductCategoryView
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe.setOnRefreshListener {

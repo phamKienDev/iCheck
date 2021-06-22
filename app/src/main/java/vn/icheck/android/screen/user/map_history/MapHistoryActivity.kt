@@ -124,7 +124,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
                         tvDescription,
                         5,
                         context.getString(R.string.doc_tiep),
-                        vn.icheck.android.ichecklibs.Constant.getPrimaryColorCode,
+                        vn.icheck.android.ichecklibs.ColorManager.getPrimaryColorCode(this@MapHistoryActivity),
                         obj.newDetail?.description!!
                     )
                 }

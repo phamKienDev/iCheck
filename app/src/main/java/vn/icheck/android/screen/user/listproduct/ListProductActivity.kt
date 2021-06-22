@@ -88,7 +88,7 @@ class ListProductActivity : BaseActivityMVVM(), IListProductView {
      * Lắng nghe người dùng refresh data
      */
     private fun initSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.isRefreshing = true

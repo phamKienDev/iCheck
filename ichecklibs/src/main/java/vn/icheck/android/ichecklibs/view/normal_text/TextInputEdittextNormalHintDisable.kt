@@ -3,7 +3,7 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputEditText
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 open class TextInputEdittextNormalHintDisable :TextInputEditText{
     constructor(context: Context) : super(context) {
@@ -23,8 +23,8 @@ open class TextInputEdittextNormalHintDisable :TextInputEditText{
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
-        setTextColor(Constant.getNormalTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

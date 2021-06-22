@@ -54,7 +54,7 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
     }
 
     private fun setupView() {
-        vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this).apply {
             tvNameCustomer.setHintTextColor(this)
             tvPhoneCustomer.setHintTextColor(this)
             tvMailCustomer.setHintTextColor(this)
@@ -108,7 +108,7 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
 
         for (field in item.customer?.fields ?: mutableListOf()) {
             val binding = ItemDetailHistoryGuaranteeBinding.inflate(LayoutInflater.from(this), layoutCustomer, false)
-            binding.tvContent.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this))
+            binding.tvContent.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this))
             binding.tvTitle.text = field.name
             if (field.type == "date") {
                 binding.tvContent.text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(field.value)
@@ -209,7 +209,7 @@ class DetailHistoryGuaranteeActivity : BaseActivityMVVM(), IDetaiHistoryGuarante
                 textAlignment = View.TEXT_ALIGNMENT_GRAVITY
                 textSize = 14f
 
-                setHintTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this@DetailHistoryGuaranteeActivity))
+                setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this@DetailHistoryGuaranteeActivity))
                 setHint(R.string.dang_cap_nhat)
                 text = content
             })

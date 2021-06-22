@@ -383,10 +383,10 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             }
             Constant.PAGE_CHANGE_SUBCRIBE -> { // Chuyển đổi tham gia
                 if (isFollow) {
-                    tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(tvButton.context))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(tvButton.context))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
-                    tvButton.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tvButton.context))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(tvButton.context))
                     tvButton.setText(R.string.theo_doi)
                 }
             }

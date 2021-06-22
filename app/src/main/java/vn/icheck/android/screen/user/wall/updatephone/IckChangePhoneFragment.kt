@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import vn.icheck.android.databinding.FragmentChangePhoneBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.util.AfterTextWatcher
@@ -40,7 +40,7 @@ class IckChangePhoneFragment:Fragment() {
         binding.edtPhone.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.imgClear.visibility = View.VISIBLE
-                binding.divider20.background = ColorDrawable(Constant.getPrimaryColor(requireContext()))
+                binding.divider20.background = ColorDrawable(ColorManager.getPrimaryColor(requireContext()))
             } else {
                 binding.imgClear.visibility = View.INVISIBLE
                 binding.divider20.background = ColorDrawable(ContextCompat.getColor(requireContext(), vn.icheck.android.ichecklibs.R.color.grayF0))

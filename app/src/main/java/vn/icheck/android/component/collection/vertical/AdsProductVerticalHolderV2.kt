@@ -23,6 +23,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICProductTrend
@@ -149,13 +150,13 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                     ViewHelper.createLayoutParams(SizeHelper.size6, SizeHelper.size2, SizeHelper.size6, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold_italic),
-                    Constant.getDisableTextColor(context),
+                    ColorManager.getDisableTextColor(context),
                     12f,
                     1).also {
                 it.text = Html.fromHtml(context.getString(R.string.chua_co_danh_gia_i))
             })
 
-            val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+            val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
 
             /* Layout Rating */
             layoutParent.addView(LinearLayout(context).also { layoutRating ->
@@ -211,7 +212,7 @@ class AdsProductVerticalHolderV2(parent: ViewGroup) : BaseViewHolder<ICProductTr
                 tvVerified.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 tvVerified.includeFontPadding = false
                 tvVerified.setText(R.string.verified)
-                tvVerified.setTextColor(Constant.getAccentGreenColor(context))
+                tvVerified.setTextColor(ColorManager.getAccentGreenColor(context))
                 tvVerified.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
                 tvVerified.gravity = Gravity.CENTER_VERTICAL
             })

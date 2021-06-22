@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.databinding.HolderShipBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.model.loyalty.ShipAddressResponse
 import vn.icheck.android.util.ick.getLayoutInflater
@@ -49,7 +49,7 @@ class ShipAddressHolder(val binding:HolderShipBinding):RecyclerView.ViewHolder(b
     private fun setupView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             binding.addressRadio.buttonTintList = ViewHelper.createColorStateList(
-                ContextCompat.getColor(itemView.context, R.color.grayB4), Constant.getPrimaryColor(itemView.context)
+                ContextCompat.getColor(itemView.context, R.color.grayB4), ColorManager.getPrimaryColor(itemView.context)
             )
         }
     }

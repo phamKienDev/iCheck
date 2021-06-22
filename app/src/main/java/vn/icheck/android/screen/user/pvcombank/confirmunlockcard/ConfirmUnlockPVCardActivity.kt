@@ -23,6 +23,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.ConfirmUnlockPVCardViewModel
@@ -72,7 +73,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.add(7, ' ')
         arr.add(4, ' ')
         val span = SpannableString(getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
-        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
             override fun onClick(widget: View) {
@@ -171,11 +172,11 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
             }
 
             override fun onFinish() {
-                btnResend.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
+                btnResend.setTextColor(ColorManager.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
                 btnResend.text = getString(R.string.gui_lai_ma)
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)
-                    btnResend.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+                    btnResend.setTextColor(ColorManager.getSecondTextColor(this@ConfirmUnlockPVCardActivity))
                     viewModel.getData(intent)
                     start()
                 }

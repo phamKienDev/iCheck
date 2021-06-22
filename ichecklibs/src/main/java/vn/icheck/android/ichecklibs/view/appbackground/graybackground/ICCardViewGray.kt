@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.appbackground.graybackground
 import android.content.Context
 import android.util.AttributeSet
 import androidx.cardview.widget.CardView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class ICCardViewGray : CardView {
@@ -23,6 +24,6 @@ class ICCardViewGray : CardView {
     }
 
     private fun setup() {
-        setCardBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+        setCardBackgroundColor(ColorManager.getAppBackgroundGrayColor(context))
     }
 }

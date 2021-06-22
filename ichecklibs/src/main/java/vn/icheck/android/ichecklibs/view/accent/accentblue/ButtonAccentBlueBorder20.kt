@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentblue
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 
@@ -23,7 +24,7 @@ class ButtonAccentBlueBorder20 : androidx.appcompat.widget.AppCompatButton {
     private fun setup() {
         val drawble = GradientDrawable().also {
             it.cornerRadius = SizeHelper.size20.toFloat()
-            it.setColor(Constant.getAccentBlueColor(context))
+            it.setColor(ColorManager.getAccentBlueColor(context))
         }
         setBackgroundDrawable(drawble)
     }

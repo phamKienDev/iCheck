@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.appbackground.graybackground
 import android.content.Context
 import android.util.AttributeSet
 import androidx.core.widget.NestedScrollView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class ICNestedScrollViewGray : NestedScrollView {
@@ -23,6 +24,6 @@ class ICNestedScrollViewGray : NestedScrollView {
     }
 
     private fun setup() {
-        setBackgroundColor(Constant.getAppBackgroundGrayColor(context))
+        setBackgroundColor(ColorManager.getAppBackgroundGrayColor(context))
     }
 }

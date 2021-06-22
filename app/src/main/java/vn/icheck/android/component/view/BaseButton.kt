@@ -73,7 +73,7 @@ abstract class BaseButton : AppCompatTextView {
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonStrokeColor)) {
-            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
+            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonRadius)) {

@@ -89,7 +89,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
 
     private fun initView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
-        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
         edtPhone.fillDrawableEndText(R.drawable.ic_phonebook_24dp)
 
         if (SessionManager.isUserLogged) {

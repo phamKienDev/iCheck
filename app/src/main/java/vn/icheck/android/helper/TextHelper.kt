@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormalMiddleMultiline
 import vn.icheck.android.network.models.ICCountry
 import vn.icheck.android.network.models.ICDistrict
@@ -300,11 +300,11 @@ object TextHelper {
         if (name.isNullOrEmpty()) {
             text = ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_medium)
-            setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -313,12 +313,12 @@ object TextHelper {
             setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat_i)))
             textSize = 14f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             textSize = 16f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
-            setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -326,11 +326,11 @@ object TextHelper {
         if (price == null) {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
             text = ICheckApplication.getInstance().getString(R.string.gia_dang_cap_nhat)
-            setTextColor(Constant.getDisableTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
             setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))
-            setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context))
+            setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
         }
     }
 
@@ -338,7 +338,7 @@ object TextHelper {
     fun AppCompatTextView.setTextEmpitySearch(text: Int) {
         background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-        setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
+        setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         setText(text)
     }
 
@@ -355,7 +355,7 @@ object TextHelper {
             setTextColor(Color.WHITE)
         } else {
             background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
-            setTextColor(Constant.getNormalTextColor(ICheckApplication.getInstance()))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 

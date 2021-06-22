@@ -68,7 +68,7 @@ class ICPageInfoDialog : BaseBottomSheetDialogFragment() {
     private fun setupView() {
         binding.root.background = ViewHelper.bgWhiteCornersTop16(requireContext())
 
-        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(requireContext()).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(requireContext()).apply {
             binding.tvAddress.setHintTextColor(this)
             binding.tvPhone.setHintTextColor(this)
             binding.tvEmail.setHintTextColor(this)

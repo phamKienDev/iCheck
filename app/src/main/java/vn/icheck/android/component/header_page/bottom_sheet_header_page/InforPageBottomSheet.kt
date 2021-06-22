@@ -6,12 +6,11 @@ import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomSheetDialog(context, true) {
 
@@ -45,7 +44,7 @@ class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomS
                     ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size36, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context),
+                    vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context),
                     18f,
                     1).also {
                 it.gravity = Gravity.CENTER
@@ -56,7 +55,7 @@ class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomS
         // Line gray - 1
         layoutParent.addView(View(context).also {
             it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5)
-            it.setBackgroundColor(Constant.getLineColor(context))
+            it.setBackgroundColor(ColorManager.getLineColor(context))
         })
 
         // text information
@@ -64,7 +63,7 @@ class InforPageBottomSheet(val data: String, val context: Context) : BaseBottomS
                 ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size12, 0, SizeHelper.size12, 0),
                 null,
                 ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                Constant.getNormalTextColor(context),
+                ColorManager.getNormalTextColor(context),
                 14f).also {
             it.gravity = Gravity.CENTER
             it.text = data

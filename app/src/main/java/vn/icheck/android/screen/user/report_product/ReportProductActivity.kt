@@ -26,7 +26,7 @@ import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 
@@ -114,7 +114,7 @@ class ReportProductActivity : BaseActivityMVVM() {
                     radioButton.layoutParams = ViewHelper.createLayoutParams()
                     radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                     radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
-                    radioButton.setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(this), Constant.getNormalTextColor(this)))
+                    radioButton.setTextColor(ViewHelper.createColorStateList(ColorManager.getSecondTextColor(this), ColorManager.getNormalTextColor(this)))
                     radioButton.includeFontPadding = false
                     radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                     radioButton.maxLines = 1
@@ -138,8 +138,8 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
         })
 
-        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.grayD8), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), Constant.getNormalTextColor(this), 14f).also {
-            it.setHintTextColor(Constant.getDisableTextColor(this))
+        layoutParent.addView(ViewHelper.createEditText(this, ViewHelper.createLayoutParams(SizeHelper.size12, 0, SizeHelper.size12, 0), ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(this, R.color.grayD8), SizeHelper.size4.toFloat()), ViewHelper.createTypeface(this, R.font.barlow_medium), ColorManager.getNormalTextColor(this), 14f).also {
+            it.setHintTextColor(ColorManager.getDisableTextColor(this))
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)

@@ -3,10 +3,54 @@ package vn.icheck.android.ichecklibs.util
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
+import android.text.Editable
 import android.util.TypedValue
 import android.view.*
+import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+
+fun Float.toPx(): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
+}
+
+fun Int.toPx(): Int {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+}
+
+fun EditText.addPriceTextWatcher() {
+    this.addTextChangedListener(object : AfterTextWatcher() {
+        var current = ""
+
+        override fun afterTextChanged(s: Editable?) {
+            if (s.toString() != current) {
+                if (current.length <= s.toString().length) {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    val formatted = String.format("%dđ", cleanString.toLong())
+                    current = formatted
+                    this@addPriceTextWatcher.setText(formatted)
+                    this@addPriceTextWatcher.setSelection(formatted.length)
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                } else {
+                    this@addPriceTextWatcher.removeTextChangedListener(this)
+                    val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
+                    if (cleanString.length > 1) {
+                        val formatted = String.format("%dđ", cleanString.substring(0, cleanString.length - 1).toLong())
+                        current = formatted
+                        this@addPriceTextWatcher.setText(formatted)
+                        this@addPriceTextWatcher.setSelection(formatted.length)
+                    } else {
+                        this@addPriceTextWatcher.setText("")
+                        current = ""
+                    }
+                    this@addPriceTextWatcher.addTextChangedListener(this)
+                }
+            }
+        }
+    })
+}
+
 
 fun Context.getDeviceWidth() = this.resources.displayMetrics.widthPixels
 
@@ -101,5 +145,5 @@ fun View.setMarginConstraintLayout(left:Int, right:Int, top:Int, bottom:Int) {
         requestLayout()
     } catch (e: Exception) {
     }
-
 }
+

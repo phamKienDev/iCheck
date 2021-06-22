@@ -100,7 +100,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
             getData()
         }
 
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
     }
 

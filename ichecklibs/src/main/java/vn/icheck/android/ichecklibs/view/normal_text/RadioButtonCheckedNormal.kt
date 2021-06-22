@@ -1,12 +1,9 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.RadioButton
-import androidx.core.content.ContextCompat
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ColorManager
 
 class RadioButtonCheckedNormal: RadioButton {
     constructor(context: Context) : super(context) {
@@ -24,24 +21,12 @@ class RadioButtonCheckedNormal: RadioButton {
     private fun setup() {
         setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-                setTextColor(if (Constant.normalTextColor.isNotEmpty()) {
-                    Color.parseColor(Constant.normalTextColor)
-                } else {
-                    ContextCompat.getColor(context, R.color.colorNormalText)
-                })
+                setTextColor(ColorManager.getNormalTextColor(context))
             }else{
-                setTextColor(if (Constant.secondTextColor.isNotEmpty()) {
-                    Color.parseColor(Constant.secondTextColor)
-                } else {
-                    ContextCompat.getColor(context, R.color.colorSecondText)
-                })
+                setTextColor(ColorManager.getSecondTextColor(context))
             }
         }
-        setTextColor(if (Constant.secondTextColor.isNotEmpty()) {
-            Color.parseColor(Constant.secondTextColor)
-        } else {
-            ContextCompat.getColor(context, R.color.colorSecondText)
-        })
+        setTextColor(ColorManager.getSecondTextColor(context))
 
         includeFontPadding = false
     }

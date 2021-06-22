@@ -209,7 +209,7 @@ class CreateContactQrCodeFragment : BaseFragmentMVVM(), ICreateContactQrCodeView
             if (resultCode == Activity.RESULT_OK) run {
                 val listInfo = ContactHelper.getDetailPhone(activity, data)
                 if (!listInfo.isNullOrEmpty()) {
-                    edtPhone.setText(listInfo[0])
+                    edtPhone.setText(listInfo[0].replace(" ",""))
                     edtLastName.setText(listInfo[1])
                     edtMiddleName.setText(listInfo[2])
                     edtFirstName.setText(listInfo[3])

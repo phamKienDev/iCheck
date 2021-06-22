@@ -160,7 +160,7 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                 val tag = Tag(viewModel.listRecent[i])
                 tag.radius = SizeHelper.size4.toFloat()
                 tag.layoutColor = resources.getColor(R.color.campaign_space)
-                tag.tagTextColor = vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this)
+                tag.tagTextColor = vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)
                 tag.tagTextSize = 14f
                 tag.fontFamily = R.font.barlow_medium
                 listTag.add(tag)
@@ -182,7 +182,7 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                 val tag = Tag(viewModel.listPopular[i])
                 tag.radius = SizeHelper.size4.toFloat()
                 tag.layoutColor = resources.getColor(R.color.campaign_space)
-                tag.tagTextColor = vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this)
+                tag.tagTextColor = vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)
                 tag.tagTextSize = 14f
                 tag.fontFamily = R.font.barlow_medium
                 listTag.add(tag)

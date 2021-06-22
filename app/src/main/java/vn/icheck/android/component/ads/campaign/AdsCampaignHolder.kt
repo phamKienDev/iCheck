@@ -41,8 +41,8 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
                         itemView.btnArrowRight.visibility = View.VISIBLE
 
                         layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                        setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(itemView.context))
-                        itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(itemView.context))
+                        setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                        itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                         setPadding(SizeHelper.size6, SizeHelper.size10, SizeHelper.size6, SizeHelper.size10)
                         PagerSnapHelper().attachToRecyclerView(itemView.rcvCampaign)
 
@@ -70,7 +70,7 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
                         itemView.btnArrowRight.visibility = View.GONE
 
                         layoutManager = CustomGridLayoutManager(itemView.context, 2)
-                        setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(itemView.context))
+                        setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                         itemView.layoutParent.setBackgroundColor(Color.TRANSPARENT)
                         setPadding(SizeHelper.size8, SizeHelper.size4, SizeHelper.size8, SizeHelper.size4)
 

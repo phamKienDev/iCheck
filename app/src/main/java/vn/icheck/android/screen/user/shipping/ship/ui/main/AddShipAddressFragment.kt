@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.model.location.CityItem
@@ -73,7 +73,7 @@ class AddShipAddressFragment : Fragment() {
     }
 
     private fun setupView() {
-        Constant.getNormalTextColor(requireContext()).apply {
+        ColorManager.getNormalTextColor(requireContext()).apply {
             binding.edtLastName.setTextColor(this)
             binding.edtFirstName.setTextColor(this)
             binding.edtPhone.setTextColor(this)
@@ -83,7 +83,7 @@ class AddShipAddressFragment : Fragment() {
             binding.edtAddress.setTextColor(this)
         }
 
-        Constant.getDisableTextColor(requireContext()).apply {
+        ColorManager.getDisableTextColor(requireContext()).apply {
             binding.edtLastName.setHintTextColor(this)
             binding.edtFirstName.setHintTextColor(this)
             binding.edtPhone.setHintTextColor(this)

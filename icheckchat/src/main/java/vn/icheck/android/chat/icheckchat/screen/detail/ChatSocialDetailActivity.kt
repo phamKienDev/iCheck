@@ -44,6 +44,7 @@ import vn.icheck.android.chat.icheckchat.base.ConstantChat.QR_CODE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.SCAN
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.*
+import vn.icheck.android.chat.icheckchat.base.view.ConfirmDialogListener
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_PACKAGE
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_STICKER
 import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBinding
@@ -55,10 +56,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailA
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
-import vn.icheck.android.ichecklibs.DialogHelper
-import vn.icheck.android.ichecklibs.NotificationDialogListener
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -213,7 +211,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.imgSticker.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_emoji_20dp_chat,R.drawable.ic_imoji_fc_24dp_chat, this), null, null, null)
         binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
 
-        binding.tvMessage.setHintTextColor(Constant.getDisableTextColor(this))
+        binding.tvMessage.setHintTextColor(ColorManager.getDisableTextColor(this))
     }
 
     @SuppressLint("ClickableViewAccessibility")

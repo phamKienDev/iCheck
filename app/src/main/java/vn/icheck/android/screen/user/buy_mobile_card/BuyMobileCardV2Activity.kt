@@ -79,7 +79,7 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
 
     private fun setupView() {
         btnPayment.background = ViewHelper.bgPaymentState(this)
-        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
     }
 
     private fun listenerGetData() {

@@ -19,6 +19,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.marginBottom
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.toPx
 
 open class FocusableEditText : AppCompatEditText {
     var mErrorDrawable: Drawable? = null
@@ -89,7 +90,7 @@ open class FocusableEditText : AppCompatEditText {
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = Constant.getAccentRedColor(context)
+        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
         setBackgroundResource(0)
         originalPadding = paddingBottom
     }
@@ -232,9 +233,9 @@ open class FocusableEditText : AppCompatEditText {
                 drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
-                    mLinePaint.color = Constant.getPrimaryColor(context)
+                    mLinePaint.color = ColorManager.getPrimaryColor(context)
                 } else {
-                    mLinePaint.color = Constant.getLineColor(context)
+                    mLinePaint.color = ColorManager.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
 

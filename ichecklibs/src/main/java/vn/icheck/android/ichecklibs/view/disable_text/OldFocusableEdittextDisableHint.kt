@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.disable_text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -26,6 +27,6 @@ class OldFocusableEdittextDisableHint : OldFocusableEditText {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
     }
 }

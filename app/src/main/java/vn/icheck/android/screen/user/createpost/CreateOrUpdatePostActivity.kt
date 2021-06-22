@@ -110,7 +110,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
     private fun setupView() {
         tvViewMore.background=vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
-        edtContent.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+        edtContent.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
 
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 

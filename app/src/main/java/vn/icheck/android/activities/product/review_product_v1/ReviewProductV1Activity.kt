@@ -107,7 +107,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
     }
 
     private fun initSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_layout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipe_layout.setOnRefreshListener { getData() }
@@ -305,7 +305,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
 
         KeyboardUtils.showSoftInput(edt_enter_message)
 
-        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_xxx, nameOwner)))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_xxx, nameOwner),this))
 
         img_send.setOnClickListener {
             if (edt_enter_message.text.toString().isNotEmpty()) {

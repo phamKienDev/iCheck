@@ -11,7 +11,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ItemCartBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.getString
@@ -68,7 +68,7 @@ class CartItemsAdapter(val listData: List<ItemCartItem>, val onAdd: (Int) -> Uni
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             holder.binding.checkBox.buttonTintList=ViewHelper.createColorStateList(
-                ContextCompat.getColor(holder.itemView.context,R.color.grayB4),Constant.getPrimaryColor(holder.itemView.context))
+                ContextCompat.getColor(holder.itemView.context,R.color.grayB4),ColorManager.getPrimaryColor(holder.itemView.context))
         }
     }
 

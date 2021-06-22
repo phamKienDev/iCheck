@@ -12,7 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.ichecklibs.util.setText
@@ -74,12 +74,12 @@ class PaymentTypeAdapter(val context: Context?, val listener: ItemClickListener<
 
             if (selectedPosition != adapterPosition) {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_un_checked_gray_24dp)
-                itemView.tvNameType.setTextColor(Color.parseColor(Constant.getSecondTextCode))
-                itemView.tvValue.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+                itemView.tvNameType.setTextColor(ColorManager.getSecondTextColor(itemView.context))
+                itemView.tvValue.setTextColor(ColorManager.getSecondTextColor(itemView.context))
             } else {
                 itemView.radioButton1.setImageResource(R.drawable.ic_radio_on_24dp)
-                itemView.tvNameType.setTextColor(Constant.getNormalTextColor(itemView.context))
-                itemView.tvValue.setTextColor(Constant.getNormalTextColor(itemView.context))
+                itemView.tvNameType.setTextColor(ColorManager.getNormalTextColor(itemView.context))
+                itemView.tvValue.setTextColor(ColorManager.getNormalTextColor(itemView.context))
             }
 
             WidgetUtils.loadImageUrlRounded(itemView.imgType, item.agent?.avatar, SizeHelper.size4)

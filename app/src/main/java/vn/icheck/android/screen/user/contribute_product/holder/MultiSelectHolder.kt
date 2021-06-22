@@ -14,7 +14,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemMultiSelectBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
@@ -66,9 +66,9 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
             }
             for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                 binding.root.addView(CheckBox(binding.root.context).apply {
-                    setTextColor(ViewHelper.createColorStateList(Constant.getSecondTextColor(itemView.context), Constant.getNormalTextColor(itemView.context)))
+                    setTextColor(ViewHelper.createColorStateList(ColorManager.getSecondTextColor(itemView.context), ColorManager.getNormalTextColor(itemView.context)))
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        buttonTintList= ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4), Constant.getPrimaryColor(itemView.context))
+                        buttonTintList= ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4), ColorManager.getPrimaryColor(itemView.context))
                     }
                     viewTreeObserver.addOnGlobalLayoutListener {
                         val lp = layoutParams as LinearLayout.LayoutParams

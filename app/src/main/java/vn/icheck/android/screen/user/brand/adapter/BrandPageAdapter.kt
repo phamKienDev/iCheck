@@ -20,6 +20,7 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
@@ -217,7 +218,7 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
                 if (isFollow) {
                     setText(R.string.dang_theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
-                    setTextColor(Constant.getSecondTextColor(context))
+                    setTextColor(ColorManager.getSecondTextColor(context))
                 } else {
                     setText(R.string.theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)

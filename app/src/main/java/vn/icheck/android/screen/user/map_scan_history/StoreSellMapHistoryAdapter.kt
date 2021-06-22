@@ -9,7 +9,7 @@ import vn.icheck.android.base.adapter.RecyclerViewAdapter
 import vn.icheck.android.databinding.ItemStoreSellInMapBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
@@ -68,10 +68,10 @@ class StoreSellMapHistoryAdapter(val view: StoreSellMapHistoryView) : RecyclerVi
             binding.layoutImage.background=ViewHelper.bgTransparentStrokeLineColor1Corners12(binding.layoutImage.context)
             binding.layoutParent.background=ViewHelper.bgWhiteCorners16(binding.layoutParent.context)
 
-            binding.imgPin.fillDrawableColor(Constant.normalTextColor)
-            binding.imgPhone.fillDrawableColor(Constant.normalTextColor)
+            binding.imgPin.fillDrawableColor(ColorManager.getNormalTextCode(itemView.context))
+            binding.imgPhone.fillDrawableColor(ColorManager.getNormalTextCode(itemView.context))
 
-            binding.tvKhoangCach.fillDrawableStartText(R.drawable.ic_gps_off_18_px,Constant.secondTextColor)
+            binding.tvKhoangCach.fillDrawableStartText(R.drawable.ic_gps_off_18_px,ColorManager.getSecondTextCode(itemView.context))
 
             binding.layoutParent.layoutParams = if (listData.size > 1){
                 RecyclerView.LayoutParams(sizeWidth, RecyclerView.LayoutParams.WRAP_CONTENT).apply {

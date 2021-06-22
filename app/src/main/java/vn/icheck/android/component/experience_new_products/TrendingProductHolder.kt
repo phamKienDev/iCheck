@@ -10,6 +10,7 @@ import vn.icheck.android.component.experience_new_products.adapter.HomeCategoryH
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.ACTION_PRODUCT_DETAIL
 import vn.icheck.android.databinding.HolderTrendingProductBinding
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.util.ick.getLayoutInflater
 
@@ -62,7 +63,7 @@ class TrendingProductHolder(parent: ViewGroup, val binding: HolderTrendingProduc
                 experienceNewProductsAdapter.setData(obj)
                 binding.rcvTrendingProduct.adapter = experienceNewProductsAdapter
             }
-            binding.tvMore.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.getDrawableFillColor(R.drawable.ic_arrow_right_light_blue_24dp,Constant.getAccentBlueCode),null)
+            binding.tvMore.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.getDrawableFillColor(R.drawable.ic_arrow_right_light_blue_24dp, ColorManager.getAccentBlueCode),null)
             binding.tvMore.setOnClickListener {
                 it.context.sendBroadcast(Intent("home").apply {
                     putExtra("home_action", icExperienceNewProducts.listCategory?.firstOrNull {category ->

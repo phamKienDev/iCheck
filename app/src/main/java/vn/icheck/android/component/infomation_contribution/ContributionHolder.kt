@@ -22,7 +22,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICProductContribution
@@ -151,25 +151,25 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
         if (contribution.contribution != null) {
             if (contribution.contribution!!.myVote == null) {
                 tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                tvUpVote.setTextColor(Constant.getSecondTextColor(itemView.context))
+                tvUpVote.setTextColor(ColorManager.getSecondTextColor(itemView.context))
 
                 tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                tvDownVote.setTextColor(Constant.getSecondTextColor(itemView.context))
+                tvDownVote.setTextColor(ColorManager.getSecondTextColor(itemView.context))
             } else {
                 if (contribution.contribution!!.myVote!!) {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_fc_30px, 0, 0)
-                    tvUpVote.setTextColor(Constant.getPrimaryColor(itemView.context))
+                    tvUpVote.setTextColor(ColorManager.getPrimaryColor(itemView.context))
 
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_unfc_30px, 0, 0)
-                    tvDownVote.setTextColor(Constant.getSecondTextColor(itemView.context))
+                    tvDownVote.setTextColor(ColorManager.getSecondTextColor(itemView.context))
                 } else {
                     tvUpVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_correct_unfc_30_px, 0, 0)
-                    tvUpVote.setTextColor(Constant.getSecondTextColor(itemView.context))
+                    tvUpVote.setTextColor(ColorManager.getSecondTextColor(itemView.context))
 
 
                     tvDownVote.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_contribute_incorrect_fc_30px, 0, 0)
-                    tvDownVote.setTextColor(Constant.getAccentYellowColor(itemView.context))
+                    tvDownVote.setTextColor(ColorManager.getAccentYellowColor(itemView.context))
                 }
             }
             contribution.contribution?.let {

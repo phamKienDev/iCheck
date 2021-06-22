@@ -688,7 +688,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
 
     private fun initViews() {
         binding.btnContinue.background = ViewHelper.bgPrimaryCorners4(this)
-        binding.edtCategory.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+        binding.edtCategory.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
 
         val barcode = intent.getStringExtra(ICK_BARCODE)
         binding.edtBarcode.background=ViewHelper.bgGrayF0StrokeLineColor1Corners4(this)

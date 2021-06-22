@@ -181,7 +181,7 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.Constant.getSecondTextCode}}>${itemView.context.getString(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.ColorManager.getSecondTextCode(itemView.context)}}>${itemView.context.getString(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }

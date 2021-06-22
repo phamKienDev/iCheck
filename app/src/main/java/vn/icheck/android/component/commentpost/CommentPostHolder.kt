@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemCommentPostBinding
 import vn.icheck.android.helper.DialogHelper
@@ -123,13 +124,13 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
             listener.onAnswer(obj)
         }
 
-        binding.imageView.setOnClickListener {
+        binding.imageView.onDelayClick({
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.media))
-        }
+        },2000)
 
-        binding.btnPlay.setOnClickListener {
+        binding.btnPlay.onDelayClick({
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.media))
-        }
+        },2000)
 
         itemView.setOnLongClickListener {
             showOption(obj)
@@ -151,7 +152,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         binding.tvLike.setTextColor(if (isLike != null) {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         } else {
-            vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context)
+            vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context)
         })
     }
 

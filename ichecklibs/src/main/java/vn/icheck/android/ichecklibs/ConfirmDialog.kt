@@ -85,10 +85,10 @@ abstract class ConfirmDialog(
     private fun getColor(color: Int): Int {
         return when (color) {
             R.color.colorPrimary -> {
-                Constant.getPrimaryColor(context)
+                ColorManager.getPrimaryColor(context)
             }
             R.color.colorSecondary -> {
-                Constant.getSecondaryColor(context)
+                ColorManager.getSecondaryColor(context)
             }
             else -> {
                 ContextCompat.getColor(context, color)
