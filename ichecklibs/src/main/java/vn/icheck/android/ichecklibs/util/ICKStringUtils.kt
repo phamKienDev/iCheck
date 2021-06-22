@@ -1,13 +1,9 @@
 package vn.icheck.android.ichecklibs.util
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
-import android.content.Context
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.fragment.app.Fragment
 import java.lang.reflect.InvocationTargetException
 
 private fun getApplicationByReflect(): Application {
@@ -39,7 +35,7 @@ fun getString(rString: Int): String {
 
 fun getString(rString: Int, vararg formatArgs: Any?): String {
     return try {
-        getApplicationByReflect().getString(rString, formatArgs)
+        getApplicationByReflect().getString(rString, *formatArgs)
     } catch (ex: NullPointerException) {
         ""
     }
