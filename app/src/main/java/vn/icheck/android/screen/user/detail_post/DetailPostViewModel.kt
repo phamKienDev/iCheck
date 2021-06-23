@@ -25,7 +25,6 @@ import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.util.kotlin.ToastUtils
 import java.io.File
 
 class DetailPostViewModel : ViewModel() {
@@ -336,7 +335,7 @@ class DetailPostViewModel : ViewModel() {
             return
         }
 
-        postInteractor.commentPost(postId, message, pageId, media, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteractor.commentPost(postId, message, pageId, media,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
                 if (obj.data != null) {
