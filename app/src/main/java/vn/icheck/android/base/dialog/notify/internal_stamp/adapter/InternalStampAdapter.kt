@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_internal_stamp.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.internal_stamp.view.IInternalStampView
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.ICSuggestApp
 
 class InternalStampAdapter(val view: IInternalStampView) : RecyclerView.Adapter<InternalStampAdapter.ViewHolder>() {
 
     private var listData = mutableListOf<ICSuggestApp>()
-    private lateinit var context: Context
 
     fun setListData(list: MutableList<ICSuggestApp>, code: String?) {
         listData.clear()
         if (code != null) {
-            listData.add(0, ICSuggestApp(context.getString(R.string.xem_chi_tiet), code, null, "detail"))
+            listData.add(0, ICSuggestApp(getString(R.string.xem_chi_tiet), code, null, "detail"))
         }
         listData.addAll(list)
         notifyDataSetChanged()
@@ -30,7 +30,6 @@ class InternalStampAdapter(val view: IInternalStampView) : RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        this.context = parent.context
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(inflater.inflate(R.layout.item_internal_stamp, parent, false))
     }
