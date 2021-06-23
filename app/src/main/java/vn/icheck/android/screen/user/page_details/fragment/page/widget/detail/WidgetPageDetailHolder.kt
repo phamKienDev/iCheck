@@ -146,7 +146,7 @@ class WidgetPageDetailHolder(parent: ViewGroup, val type: String) : BaseViewHold
                         val data = Uri.parse("mailto:?to=${obj.mail}")
                         mailIntent.data = data
                         try {
-                            itemView.context.startActivity(Intent.createChooser(mailIntent, "Send mail..."))
+                            itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.getString(R.string.send_mail)))
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

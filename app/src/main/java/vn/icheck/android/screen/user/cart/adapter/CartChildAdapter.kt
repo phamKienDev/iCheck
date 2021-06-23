@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICItemCart
 import vn.icheck.android.screen.user.cart.view.ICartChildView
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -74,6 +75,7 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
                 tvStatus.visibility = View.GONE
             }
 
+            tvCount.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(tvCount.context))
             tvCount.text = (CartParentAdapter.quantityCart[obj.item_id] ?: obj.quantity).toString()
 
             itemView.findViewById<AppCompatTextView>(R.id.tvOldPrice)?.run {

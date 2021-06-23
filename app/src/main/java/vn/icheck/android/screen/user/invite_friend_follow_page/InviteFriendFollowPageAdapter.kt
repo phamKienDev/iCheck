@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_header_invite_friend_follow_page.view.*
 import kotlinx.android.synthetic.main.layout_invite_user_follow_page.view.*
-import okhttp3.internal.wait
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -17,6 +16,8 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -131,7 +132,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.tvNote.beVisible()
                 itemView.view45.beVisible()
 
-                itemView.tvFriendCount.text = ("Bạn bè (${obj.count})")
+                itemView.tvFriendCount.setText(R.string.ban_be_d, obj.count)
             }
 
             itemView.imgClose.setOnClickListener {
@@ -153,7 +154,7 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
 
             itemView.imgRank.setRankUser(obj.rank?.level)
 
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_avatar_default_84dp)
             itemView.tvName.apply {
                 text = obj.getName
 

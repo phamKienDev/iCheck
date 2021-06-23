@@ -18,7 +18,7 @@ import vn.icheck.android.util.ui.GlideUtil
 class ReviewsCommentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductReviews.Comments>(LayoutInflater.from(parent.context).inflate(R.layout.comment_holder_v1, parent, false)) {
 
     override fun bind(obj: ICProductReviews.Comments) {
-        WidgetUtils.loadImageUrl(itemView.ava, obj.owner?.avatarThumb?.small, R.drawable.ic_circle_avatar_default)
+        WidgetUtils.loadImageUrl(itemView.ava, obj.owner?.avatarThumb?.small, R.drawable.ic_user_svg)
         itemView.ava.setOnClickListener {
             showDetailUser(obj.customerId)
         }
@@ -32,8 +32,8 @@ class ReviewsCommentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
         itemView.tv_comment.text = obj.activityValue
         if (obj.ownerType == "page") {
             itemView.ava.borderWidth = 1
-            itemView.ava.borderColor = Color.parseColor("#3C5A99")
-            itemView.tv_name.setTextColor(Color.parseColor("#3C5A99"))
+            itemView.ava.borderColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
+            itemView.tv_name.setTextColor(itemView.ava.borderColor)
             itemView.img_verified.visibility = View.VISIBLE
         } else {
             itemView.ava.borderWidth = 0

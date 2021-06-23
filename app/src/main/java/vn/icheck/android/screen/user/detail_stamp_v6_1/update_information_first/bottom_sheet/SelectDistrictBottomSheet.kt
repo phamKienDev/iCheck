@@ -19,6 +19,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_select_district.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.room.entity.ICDistrict
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.adapter.SelectDistrictBottomSheetAdapter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.bottom_sheet.presenter.SelectDistrictBottomSheetPresenter
@@ -43,6 +44,7 @@ class SelectDistrictBottomSheet(private val cityId: Int?) : BottomSheetDialogFra
             Handler().postDelayed(Runnable {
                 val d = dialog as BottomSheetDialog
                 val bottomSheet = d.findViewById<FrameLayout>(R.id.design_bottom_sheet)
+                bottomSheet?.background=ViewHelper.bgWhiteCornersTop13(requireContext())
                 val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }, 0)
@@ -52,8 +54,10 @@ class SelectDistrictBottomSheet(private val cityId: Int?) : BottomSheetDialogFra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         presenter.setupAddressHelper()
         presenter.getData(cityId)
+
         initRecyclerView()
         listener()
     }

@@ -34,7 +34,7 @@ class HistoryGuaranteeV5Activity : BaseActivityMVVM(), IHistoryGuaranteeV5View {
         presenter.getDataIntent(intent)
         listener()
         initRecyclerView()
-        txtTitle.text = "Lịch sử bảo hành"
+        txtTitle.setText(R.string.lich_su_bao_hanh)
     }
 
     private fun listener(){

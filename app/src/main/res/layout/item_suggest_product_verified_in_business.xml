@@ -5,17 +5,17 @@
     android:id="@id/layoutContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/size_12"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/size_12">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgSuggesVerified"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="fitCenter"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitCenter"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_default_square" />
 
@@ -35,21 +35,18 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSuggesVerified"
         tools:text="Nước hoa hồng, dưỡng da Langege" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvPrice"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="sans-serif-medium"
-        tools:text="157,200,000đ"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvNameSuggestVerified"
         app:layout_constraintStart_toStartOf="@+id/tvNameSuggestVerified"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameSuggestVerified" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/tvNameSuggestVerified"
+        tools:text="157,200,000đ" />
 </androidx.constraintlayout.widget.ConstraintLayout>

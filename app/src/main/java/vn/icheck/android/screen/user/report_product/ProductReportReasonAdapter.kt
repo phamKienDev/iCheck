@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_report_product_success.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.product.report.ICReportForm
 
 class ProductReportReasonAdapter(val list: MutableList<ICReportForm>) : RecyclerView.Adapter<ProductReportReasonAdapter.ViewHolder>() {
@@ -20,6 +21,7 @@ class ProductReportReasonAdapter(val list: MutableList<ICReportForm>) : Recycler
 
     class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICReportForm>(LayoutInflater.from(parent.context).inflate(R.layout.item_report_product_success,parent,false)) {
         override fun bind(obj: ICReportForm) {
+            itemView.root.background=ViewHelper.bgGrayCorners32(itemView.context)
             itemView.tvTitle.text = obj.name
         }
     }

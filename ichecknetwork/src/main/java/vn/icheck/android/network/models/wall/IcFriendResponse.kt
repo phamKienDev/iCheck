@@ -2,9 +2,10 @@ package vn.icheck.android.network.models.wall
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import vn.icheck.android.network.base.ICBaseResponse
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.R
 import vn.icheck.android.network.models.ICRankOfUser
-import vn.icheck.android.network.models.ICSearchUser
 
 data class IcFriendResponse(
 
@@ -76,7 +77,7 @@ data class RowsItem(
 						.insert(4, " ")
 			}.toString()
 		} else {
-			"Chưa cập nhật"
+			getString(R.string.chua_cap_nhat)
 		}
 	}
 
@@ -88,7 +89,7 @@ data class RowsItem(
 			}else if (!phone?.trim().isNullOrEmpty()) {
 				getPhoneOnly()
 			} else {
-				"Chưa cập nhật"
+				getString(R.string.chua_cap_nhat)
 			}
 		}
 }

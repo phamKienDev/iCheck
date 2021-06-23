@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.bottom_xmbrv.view.*
 import kotlinx.android.synthetic.main.progress_ctsp_bottom.view.*
 import vn.icheck.android.R
 import vn.icheck.android.fragments.ProductReviewsBottomDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.DetailStampHoaPhatActivity
 import vn.icheck.android.screen.user.detail_stamp_thinh_long.home.DetailStampThinhLongActivity
 
@@ -43,6 +44,7 @@ class BottomReviewsAdapter(val data: List<ProductReviewsBottomDialog.BottomChild
 
     class XmbHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(listener: () -> Unit) {
+            view.btn_xall.background=ViewHelper.btnWhiteStroke1Corners36(view.context)
             view.btn_xall.setOnClickListener {
                 listener()
                 DetailStampHoaPhatActivity.INSTANCE?.showAllReviews()
@@ -62,7 +64,9 @@ class BottomReviewsAdapter(val data: List<ProductReviewsBottomDialog.BottomChild
 
         fun bind(progressBottom: ProductReviewsBottomDialog.ProgressBottom) {
             itemView.tv_title.text = progressBottom.name
-            itemView.tv_score.text = String.format("%.1f", progressBottom.point?.times(2))
+            itemView.tv_score.apply {
+                text = context.getString(R.string.format_1_f, progressBottom.point?.times(2))
+            }
             progressBottom.point?.let {
                 itemView.tv_progress.progress = (it * 20).toInt()
             }

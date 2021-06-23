@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.dialog_filter_gender.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.ick.logDebug
 import java.util.*
 
@@ -41,9 +42,12 @@ class FilterGenderDialog(val genders: MutableList<String>?, val callback: Gender
             setSelected(requireContext().getString(R.string.khac), tvOther)
         }
 
-        tvClear.setOnClickListener {
-            listSelected.clear()
-            checkSelected()
+        tvClear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                listSelected.clear()
+                checkSelected()
+            }
         }
 
         imgClose.setOnClickListener {

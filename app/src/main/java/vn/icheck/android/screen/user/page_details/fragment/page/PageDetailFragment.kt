@@ -35,6 +35,8 @@ import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -52,11 +54,10 @@ import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.page_details.PageDetailViewModel
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
-import vn.icheck.android.ichecklibs.util.dpToPx
 import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.util.ick.visibleOrGone
 import java.io.File
@@ -66,7 +67,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private var adapter = PageDetailAdapter(this, this, this)
 
     private var listContributionReport = mutableListOf<ICReportForm>()
-    private lateinit var dialog: ReportWrongContributionDialog
+    private lateinit var dialog: ReportDialog
 
     private var typeEditImage: Int? = null
     private var pageOverViewPosition = -1
@@ -116,6 +117,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupSwipeLayout()
         setupViewModel()
@@ -125,8 +127,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         layoutToolbar.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
         layoutToolbarAlpha.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
 
-        imgBack.setImageResource(R.drawable.ic_back_blue_v2_24px)
-        imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
+        imgBack.fillDrawableColor(R.drawable.ic_back_blue_v2_24px)
+        imgAction.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
 
         imgBack.setOnClickListener {
             activity?.onBackPressed()
@@ -136,6 +138,10 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             requireContext().startClearTopActivity(HomeActivity::class.java)
         }
+    }
+
+    private fun setupView() {
+        tvCartCount.background=ViewHelper.bgAccentGreenStrokeWhite1Corners22(requireContext())
     }
 
     private fun setupRecyclerView() {
@@ -183,11 +189,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(
-            ContextCompat.getColor(requireContext(), R.color.colorSecondary),
-            ContextCompat.getColor(requireContext(), R.color.colorSecondary),
-            ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-        )
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             getData()
@@ -300,9 +303,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             listContributionReport.clear()
             listContributionReport.addAll(it)
 
-            dialog = ReportWrongContributionDialog(listContributionReport, R.string.bao_cao_trang)
+            dialog = ReportDialog(listContributionReport, R.string.bao_cao_trang)
 
-            dialog.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+            dialog.setListener(object : ReportDialog.DialogClickListener {
                 override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                     viewModel.sendReportPage(listReason, message, listMessage)
                 }
@@ -314,7 +317,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             dialog.dismiss()
             if (!it.isNullOrEmpty()) {
                 ICheckApplication.currentActivity()?.let { activity ->
-                    val dialogFragment = ReportWrongContributionSuccessDialog(activity)
+                    val dialogFragment = ReportSuccessDialog(activity)
                     dialogFragment.show(it, "", context?.getString(R.string.report_wrong_contribution_success_page_title))
                 }
             }
@@ -386,14 +389,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     private fun actionFollowAndUnfollow(id: Long) {
         if (SessionManager.isUserLogged) {
             if (viewModel.isFollowPage) {
-                DialogHelper.showConfirm(
-                    requireContext(),
-                    getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay),
-                    null,
-                    getString(R.string.de_sau),
-                    getString(R.string.dong_y),
-                    true,
-                    object : ConfirmDialogListener {
+                DialogHelper.showConfirm(requireContext(), getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, object : ConfirmDialogListener {
                         override fun onDisagree() {}
 
                         override fun onAgree() {
@@ -679,25 +675,9 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
         if (requestCode == requestPermissionImage) {
             if (PermissionHelper.checkResult(grantResults)) {
                 if (typeEditImage == ICViewTypes.HEADER_INFOR_PAGE) {
-                    TakeMediaDialog.show(
-                        this@PageDetailFragment.requireActivity().supportFragmentManager,
-                        this@PageDetailFragment.requireActivity(),
-                        takeMediaListener,
-                        selectMulti = false,
-                        cropImage = false,
-                        ratio = "1:1",
-                        isVideo = false
-                    )
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "1:1", isVideo = false)
                 } else {
-                    TakeMediaDialog.show(
-                        this@PageDetailFragment.requireActivity().supportFragmentManager,
-                        this@PageDetailFragment.requireActivity(),
-                        takeMediaListener,
-                        selectMulti = false,
-                        cropImage = false,
-                        ratio = "375:192",
-                        isVideo = false
-                    )
+                    TakeMediaDialog.show(this@PageDetailFragment.requireActivity().supportFragmentManager, this@PageDetailFragment.requireActivity(), takeMediaListener, selectMulti = false, cropImage = false, ratio = "375:192", isVideo = false)
                 }
             } else {
                 showLongWarning(R.string.khong_the_thuc_hien_tac_vu_vi_ban_chua_cap_quyen)

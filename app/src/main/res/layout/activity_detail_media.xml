@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorNormalText"
-    tools:background="@color/gray"
+    android:background="@color/black_21"
     tools:context="vn.icheck.android.screen.user.media_in_post.MediaInPostActivity">
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -93,14 +92,13 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="#b4b4b4"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/layoutName"
@@ -234,7 +232,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -253,13 +251,12 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_weight="1"
-            android:background="@drawable/bg_border_gray_4dp_shop"
             android:orientation="horizontal"
             android:paddingTop="@dimen/size_8"
             android:paddingBottom="@dimen/size_8"
             android:visibility="gone">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/textView55"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -268,7 +265,6 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/viet_binh_luan"
-                android:textColor="#b4b4b4"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatImageView

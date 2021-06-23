@@ -25,12 +25,15 @@ class ListFacebookFriendAdapter(val callback: IRecyclerViewCallback) : RecyclerV
 
     inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_facebook_friend, parent, false)) {
         fun bind(obj: ICUser) {
-            WidgetUtils.loadImageUrl(itemView.avatar, obj.avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(itemView.avatar, obj.avatar, R.drawable.ic_user_svg)
             itemView.imgRank.setRankUser(obj.rank?.level)
             itemView.tvName.text = obj.getName
 
-            itemView.tvChat.setOnClickListener {
+            itemView.tvChat.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
 
+                }
             }
         }
     }

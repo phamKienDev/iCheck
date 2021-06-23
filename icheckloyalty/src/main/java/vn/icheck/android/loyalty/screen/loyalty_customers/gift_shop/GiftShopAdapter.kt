@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_gift_shop.view.*
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ICMessageEvent
 import vn.icheck.android.loyalty.helper.SizeHelper
@@ -42,24 +43,26 @@ class GiftShopAdapter(val listData:List<LoyaltyGiftItem>): PagingDataAdapter<Loy
         getItem(position)?.let {data ->
             WidgetHelper.loadImageUrlRounded(holder.view.img_product, data.gift?.image?.small.toString(), SizeHelper.size4)
             holder.view.tv_product_name.text = data.gift?.name
-            holder.view.tv_quantity.text = "Còn lại: ${TextHelper.formatMoneyPhay(data.quantityRemain)}"
-            holder.view.tv_gift_type.text = when (data.gift?.type?.toLowerCase(Locale.ROOT)){
-                "ICOIN".toLowerCase(Locale.ROOT) -> {
-                    "Quà xu"
+            holder.view.tv_quantity.setText(R.string.con_lai_s, TextHelper.formatMoneyPhay(data.quantityRemain))
+            holder.view.tv_gift_type.apply {
+                text = when (data.gift?.type?.toLowerCase(Locale.ROOT)){
+                    "ICOIN".toLowerCase(Locale.ROOT) -> {
+                        context.getString(R.string.qua_xu)
+                    }
+                    "PHONE_CARD".toLowerCase(Locale.ROOT) -> {
+                        context.getString(R.string.qua_the_cao)
+                    }
+                    "RECEIVE_STORE".toLowerCase(Locale.ROOT) -> {
+                        context.getString(R.string.qua_nhan_tai_cua_hang)
+                    }
+                    "PRODUCT".toLowerCase(Locale.ROOT) -> {
+                        context.getString(R.string.qua_hien_vat)
+                    }
+                    "VOUCHER".toLowerCase(Locale.ROOT) -> {
+                        context.getString(R.string.voucher)
+                    }
+                    else -> context.getString(R.string.qua_tinh_than)
                 }
-                "PHONE_CARD".toLowerCase(Locale.ROOT) -> {
-                    "Quà thẻ cào"
-                }
-                "RECEIVE_STORE".toLowerCase(Locale.ROOT) -> {
-                    "Quà nhận tại cửa hàng"
-                }
-                "PRODUCT".toLowerCase(Locale.ROOT) -> {
-                    "Quà hiện vật"
-                }
-                "VOUCHER".toLowerCase(Locale.ROOT) -> {
-                    "Voucher"
-                }
-                else -> "Quà tinh thần"
             }
             holder.view.tv_business_name.text = data.pointName
             holder.view.tv_price.text = TextHelper.formatMoneyPhay(data.pointExchange)

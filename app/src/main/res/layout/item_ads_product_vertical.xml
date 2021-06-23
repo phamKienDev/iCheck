@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_corner_gray_solid_white"
     android:layout_marginStart="@dimen/size_12"
     android:layout_marginTop="@dimen/size_10"
-    android:layout_marginEnd="@dimen/size_12"
-    android:background="@drawable/bg_corner_gray_solid_white">
+    android:layout_marginEnd="@dimen/size_12">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgImage"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgImage">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalMiddleMultiline
             android:id="@id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,13 +85,12 @@
             android:gravity="center|start"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng) Adidas Store (tối 2 dòng)" />
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvContent"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_40"
@@ -101,14 +100,13 @@
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_40"
@@ -117,8 +115,7 @@
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
-        android:text="Tên đang cập nhật"
-        android:textColor="#b4b4b4"
+        android:text="@string/ten_dang_cap_nhat"
         android:textSize="@dimen/font_14"
         android:textStyle="italic"
         android:visibility="invisible"
@@ -143,27 +140,24 @@
             android:layout_marginBottom="@dimen/size_8"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Giá đang cập nhật"
-                android:textColor="#b4b4b4"
+                android:text="@string/gia_dang_cap_nhat"
                 android:textSize="@dimen/font_14"
                 android:textStyle="italic"
                 android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvPriceSpecial"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="#057dda"
                 android:textSize="@dimen/font_16"
-                app:fontFamily="@font/barlow_semi_bold"
                 tools:text="2.987.000đ" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceOriginal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -171,7 +165,6 @@
                 android:layout_marginLeft="@dimen/size_6"
                 android:gravity="bottom"
                 android:lineSpacingExtra="@dimen/font_6"
-                android:textColor="#b4b4b4"
                 android:textSize="@dimen/font_14"
                 app:fontFamily="@font/barlow_medium"
                 tools:text="2.987.000đ" />
@@ -184,29 +177,25 @@
             android:layout_marginBottom="@dimen/size_10"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvRatingUpdating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_2_7"
-                android:text="Chưa có đánh giá"
-                android:textColor="#b4b4b4"
+                android:text="@string/chua_co_danh_gia"
                 android:textSize="@dimen/font_12"
                 android:textStyle="italic"
                 android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/tvPoint"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawableEnd="@drawable/ic_new_star_full_12_px"
-                android:drawableRight="@drawable/ic_new_star_full_12_px"
                 android:drawablePadding="@dimen/size_4"
                 android:gravity="center"
-                android:textColor="#057dda"
                 android:textSize="@dimen/font_12"
-                app:fontFamily="@font/barlow_semi_bold"
                 tools:text="4.5" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -226,12 +215,11 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
             android:id="@id/btnAction"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_28"
             android:layout_marginBottom="@dimen/size_10"
-            android:background="@drawable/btn_white_outline_light_blue_1_corners_4"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
@@ -239,7 +227,6 @@
             android:minWidth="@dimen/size_80"
             android:paddingStart="@dimen/size_8"
             android:paddingEnd="@dimen/size_8"
-            android:textColor="@color/text_color_light_blue"
             android:textSize="@dimen/font_14"
             tools:text="Theo dõi" />
     </LinearLayout>

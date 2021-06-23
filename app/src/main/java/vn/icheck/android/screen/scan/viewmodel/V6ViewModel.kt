@@ -99,16 +99,24 @@ class V6ViewModel: ViewModel() {
             override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
                 when (obj.data?.theme) {
                     1 -> {
-                        stampHoaPhat.postValue(obj.data)
+                        obj.data?.let {
+                            stampHoaPhat.postValue(it)
+                        }
                     }
                     2 -> {
-                        stampThinhLong.postValue(obj.data)
+                        obj.data?.let {
+                            stampThinhLong.postValue(it)
+                        }
                     }
                     else -> {
                         if (obj.data?.suggest_apps.isNullOrEmpty()) {
-                            checkStampSocial.postValue(obj.data)
+                            obj.data?.let {
+                                checkStampSocial.postValue(it)
+                            }
                         } else {
-                            showDialogSuggestApp.postValue(obj.data)
+                            obj.data?.let {
+                                showDialogSuggestApp.postValue(it)
+                            }
                         }
                     }
                 }

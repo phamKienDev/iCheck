@@ -51,7 +51,9 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
 
         repository.getTopUpService(object : ICApiListener<ICKResponse<TopupServiceResponse>> {
             override fun onSuccess(obj: ICKResponse<TopupServiceResponse>) {
-                onTopUpServiceSuccess.postValue(obj.data?.phoneTopup)
+                obj.data?.phoneTopup?.let {
+                    onTopUpServiceSuccess.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {
@@ -72,7 +74,9 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
                 repository.exchangeGift(collectionID, phone, serviceId, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                     override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                         if (obj.statusCode == 200) {
-                            onExchangeSuccess.postValue(obj.data)
+                            obj.data?.let {
+                                onExchangeSuccess.postValue(it)
+                            }
                         } else {
                             showDialogError.postValue(obj.data?.message
                                     ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -89,7 +93,9 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
                     repository.exchangeCardGiftTDNH(campaignId!!, collectionID, serviceId, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                         override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                             if (obj.statusCode == 200) {
-                                onExchangeSuccess.postValue(obj.data)
+                                obj.data?.let {
+                                    onExchangeSuccess.postValue(it)
+                                }
                             } else {
                                 showDialogError.postValue(obj.data?.message
                                         ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
@@ -107,7 +113,9 @@ class ChangePhoneCardsViewModel : BaseViewModel<Any>() {
                 repository.exchangeCardGiftVQMM(serviceId, collectionID, phone, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
                     override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
                         if (obj.statusCode == 200) {
-                            onExchangeSuccess.postValue(obj.data)
+                            obj.data?.let {
+                                onExchangeSuccess.postValue(it)
+                            }
                         } else {
                             showDialogError.postValue(obj.data?.message
                                     ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))

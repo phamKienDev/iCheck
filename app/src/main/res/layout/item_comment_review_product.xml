@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/size_6"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/size_6">
 
     <include
         android:id="@+id/user_avatar"
@@ -27,16 +27,15 @@
         app:layout_constraintStart_toEndOf="@id/user_avatar"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/font_14"
             android:layout_marginEnd="@dimen/size_8"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/tv_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,9 +46,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_8"
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_14"
-            android:layout_marginEnd="@dimen/size_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
@@ -71,22 +70,23 @@
             android:id="@+id/rcv_image_comment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tv_name"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/size_8"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
+
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tv_xtc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="#3C5A99"
         android:layout_marginTop="@dimen/size_8"
-        app:layout_constraintTop_toBottomOf="@id/container_comment"
         app:layout_constraintStart_toStartOf="@id/container_comment"
+        app:layout_constraintTop_toBottomOf="@id/container_comment"
         tools:text="Xem thêm 12 trả lời khác" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="@dimen/size_16"

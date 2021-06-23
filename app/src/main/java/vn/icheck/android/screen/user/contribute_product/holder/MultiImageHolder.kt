@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.balloon.*
 import vn.icheck.android.R
@@ -12,6 +11,8 @@ import vn.icheck.android.databinding.ItemContributeImageBinding
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.simpleText
 
 class MultiImageHolder(private val itemContributeImageBinding: ItemContributeImageBinding) : RecyclerView.ViewHolder(itemContributeImageBinding.root) {
@@ -43,7 +44,7 @@ class MultiImageHolder(private val itemContributeImageBinding: ItemContributeIma
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemContributeImageBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            itemContributeImageBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
         } else {
             itemContributeImageBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

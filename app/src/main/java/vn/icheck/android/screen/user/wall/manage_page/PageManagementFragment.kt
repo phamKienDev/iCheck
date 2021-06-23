@@ -32,6 +32,8 @@ import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPag
 import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPageAdapter
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageActivity
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageAdapter
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class PageManagementFragment : Fragment() {
@@ -75,7 +77,8 @@ class PageManagementFragment : Fragment() {
     }
 
     private fun initSwipeLayout() {
-        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        binding.swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.swipeLayout.setOnRefreshListener {
             getData()
         }
@@ -162,7 +165,7 @@ class PageManagementFragment : Fragment() {
             binding.containerFollow.beVisible()
             pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
-            binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
+            binding.tvFollowTitle.setText(R.string.trang_dang_theo_doi_d, pageFollowCount)
             followAdaper.setListData(it!!.rows)
         }
     }
@@ -172,7 +175,7 @@ class PageManagementFragment : Fragment() {
             binding.containerOwner.beGone()
         } else {
             binding.containerOwner.beVisible()
-            binding.tvOwnerTitle.text = "Trang của tôi (${it?.count})"
+            binding.tvOwnerTitle.setText(R.string.trang_cua_toi_d, it?.count)
             ownerAdaper.setListData(it!!.rows)
         }
     }

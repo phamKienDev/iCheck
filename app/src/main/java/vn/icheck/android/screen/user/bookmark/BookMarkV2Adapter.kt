@@ -3,12 +3,13 @@ package vn.icheck.android.screen.user.bookmark
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICProductTrend
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.screen.user.scan_history.holder.ProductHistoryHolder
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
@@ -117,7 +118,7 @@ class BookMarkV2Adapter(val listener: IScanHistoryView, val view: IRecyclerViewC
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, "Không có sản phẩm yêu thích nào!")
+                    holder.bind(iconMessage, ICheckApplication.getString(R.string.khong_co_san_pham_yeu_thich_nao))
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
                 }

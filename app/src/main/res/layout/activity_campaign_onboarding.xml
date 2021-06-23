@@ -51,9 +51,8 @@
             android:layout_height="@dimen/size_36"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corner_4_light_blue_white"
             android:gravity="center"
-            android:text="Quay lại"
+            android:text="@string/quay_lai"
             android:visibility="gone"
             android:textColor="@color/light_blue" />
 
@@ -65,7 +64,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@color/gray"
+            android:background="@color/grayD8"
             android:gravity="center"
             android:textColor="@color/white" />
     </LinearLayout>

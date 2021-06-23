@@ -5,6 +5,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.*
@@ -173,7 +176,7 @@ class HistoryInteractor : BaseInteractor() {
                     listener.onSuccess(body)
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -190,7 +193,7 @@ class HistoryInteractor : BaseInteractor() {
 
             override fun onFailure(call: Call<ICListResponse<ICShopVariantStamp>>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)

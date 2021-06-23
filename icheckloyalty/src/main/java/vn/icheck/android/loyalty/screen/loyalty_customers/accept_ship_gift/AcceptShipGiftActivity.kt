@@ -54,7 +54,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             onBackPressed()
         }
 
-        txtTitle.text = "Xác nhận nhận quà"
+        txtTitle.setText(R.string.xac_nhan_nhan_qua)
     }
 
     private fun initDataTheFirst() {
@@ -69,15 +69,15 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
                     btnDone.setBackgroundResource(R.drawable.bg_gradient_button_blue)
                 }
                 4 -> {
-                    txtTitle.text = "Xác nhận thông tin"
+                    txtTitle.setText(R.string.xac_nhan_thong_tin)
                     btnDone.setGone()
                     layoutEdtVoucher.setVisible()
                     layoutButtonVoucher.setVisible()
-                    tvTitleName.text = "Họ và tên"
-                    tvTitleCity.text = "Tỉnh thành"
-                    tvTitleDistrict.text = "Huyện"
-                    tvTitleWard.text = "Phường xã"
-                    tvTitleAddress.text = "Địa chỉ nhận quà"
+                    tvTitleName.setText(R.string.ho_va_ten)
+                    tvTitleCity.setText(R.string.tinh_thanh)
+                    tvTitleDistrict.setText(R.string.huyen)
+                    tvTitleWard.setText(R.string.phuong_xa)
+                    tvTitleAddress.setText(R.string.dia_chi_nhan_qua)
                 }
                 else -> {
                     btnDone.setBackgroundResource(R.drawable.bg_blue_border_20)
@@ -107,17 +107,17 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
             spProvince.text = if (!user?.city?.name.isNullOrEmpty()) {
                 user?.city?.name
             } else {
-                "Tùy chọn"
+                getString(R.string.tuy_chon)
             }
             spDistrict.text = if (!user?.district?.name.isNullOrEmpty()) {
                 user?.district?.name
             } else {
-                "Tùy chọn"
+                getString(R.string.tuy_chon)
             }
             spWard.text = if (!user?.ward?.name.isNullOrEmpty()) {
                 user?.ward?.name
             } else {
-                "Tùy chọn"
+                getString(R.string.tuy_chon)
             }
             viewModel.province = user?.city
             viewModel.district = user?.district
@@ -145,7 +145,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         }
 
         btnXacNhan.setOnClickListener {
-            object : ConfirmLoyaltyDialog(this@AcceptShipGiftActivity, "", "Bạn chắc chắn muốn đánh dấu sử dụng\nvoucher mã: $voucher", "Để sau", "Chắc chắn", false) {
+            object : ConfirmLoyaltyDialog(this@AcceptShipGiftActivity, "", getString(R.string.ban_chac_chan_muon_danh_dau_su_dung_voucher_ma_s, voucher), getString(R.string.de_sau), getString(R.string.chac_chan), false) {
                 override fun onDisagree() {
 
                 }
@@ -187,8 +187,8 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
 
     private fun initListener() {
         viewModel.onError.observe(this, {
-            if (it.title.contains("Phần thưởng không hợp lệ") && viewModel.type == 3) {
-                showLongError("Không tìm thấy thông tin phát hành voucher")
+            if (it.title.contains(getString(R.string.phan_thuong_khong_hop_le)) && viewModel.type == 3) {
+                showLongError(getString(R.string.khong_tim_thay_thong_tin_phat_hanh_voucher))
             } else {
                 showLongError(it.title)
             }
@@ -239,7 +239,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         })
 
         viewModel.onSuccessVoucher.observe(this, {
-            object : DialogNotification(this@AcceptShipGiftActivity, "Thông báo", "Đổi quà thành công!", null, false) {
+            object : DialogNotification(this@AcceptShipGiftActivity, getString(R.string.thong_bao), getString(R.string.doi_qua_thanh_cong), null, false) {
                 override fun onDone() {
                     if (intent.getStringExtra(ConstantsLoyalty.BACK_TO_DETAIL)?.contains("BACK_TO_DETAIL") == true) {
                         this@AcceptShipGiftActivity.onBackPressed()
@@ -252,7 +252,7 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         })
 
         viewModel.onSuccessReceiveGift.observe(this@AcceptShipGiftActivity, {
-            object : DialogNotification(this@AcceptShipGiftActivity, "Thông báo", "Đổi quà thành công!", null, false) {
+            object : DialogNotification(this@AcceptShipGiftActivity, getString(R.string.thong_bao), getString(R.string.doi_qua_thanh_cong), null, false) {
                 override fun onDone() {
                     this@AcceptShipGiftActivity.onBackPressed()
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
@@ -261,15 +261,15 @@ class AcceptShipGiftActivity : BaseActivityGame(), View.OnClickListener {
         })
 
         viewModel.showError.observe(this, {
-            if (it.contains("Phần thưởng không hợp lệ") && viewModel.type == 3) {
-                showLongError("Không tìm thấy thông tin phát hành voucher")
+            if (it.contains(getString(R.string.phan_thuong_khong_hop_le)) && viewModel.type == 3) {
+                showLongError(getString(R.string.khong_tim_thay_thong_tin_phat_hanh_voucher))
             } else {
                 showLongError(it)
             }
         })
 
         viewModel.onSuccessUsedVoucher.observe(this, {
-            showShortSuccess("Đánh dấu sử dụng voucher\nthành công")
+            showShortSuccess(getString(R.string.danh_dau_su_dung_voucher_thanh_cong))
             onBackPressed()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.BACK))
         })

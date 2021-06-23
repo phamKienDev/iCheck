@@ -27,6 +27,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.POSITION
 import vn.icheck.android.constant.SHOW_ATTACHMENTS
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.DimensionUtil
 import vn.icheck.android.util.ick.beGone
@@ -89,7 +90,7 @@ class ICImageVideoSlider(val view: View) : RecyclerView.ViewHolder(view) {
                 override fun onScrollEnd(p0: RecyclerView.ViewHolder, p1: Int) {
                     try {
                         val newSelect = view.indicator.getChildAt(p1)
-                        newSelect.setBackgroundResource(R.drawable.bg_indicator_selected)
+                        newSelect.background=ViewHelper.bgWhiteCorners14(view.context)
                         posImage = p1
                     } catch (e: Exception) {
                     }
@@ -158,7 +159,7 @@ class ICImageVideoSlider(val view: View) : RecyclerView.ViewHolder(view) {
                 lm.marginEnd = DimensionUtil.convertDpToPixel(12f, view.context).toInt()
             }
             if (i == 0) {
-                v.setBackgroundResource(R.drawable.bg_indicator_selected)
+                v.background=ViewHelper.bgWhiteCorners14(v.context)
             }
             v.layoutParams = lm
             view.indicator.addView(v)

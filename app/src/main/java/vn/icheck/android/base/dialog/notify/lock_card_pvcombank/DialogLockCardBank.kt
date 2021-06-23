@@ -4,8 +4,7 @@ import android.content.Context
 import kotlinx.android.synthetic.main.dialog_lock_card_pvcombank.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.ViewHelper
 
 abstract class DialogLockCardBank( context: Context, val title: Int, val message: Int, val isCancelable: Boolean) : BaseDialog(context, R.style.DialogTheme) {
 
@@ -18,6 +17,8 @@ abstract class DialogLockCardBank( context: Context, val title: Int, val message
     override fun onInitView() {
         txtTitle.setText(title)
         txtMessage.setText(message)
+        btnDisagree.background=ViewHelper.btnWhiteCornersBottomLeft8(context)
+        btnAgree.background=ViewHelper.btnWhiteCornersBottomRight8(context)
 
         btnDisagree.setOnClickListener {
             dismiss()

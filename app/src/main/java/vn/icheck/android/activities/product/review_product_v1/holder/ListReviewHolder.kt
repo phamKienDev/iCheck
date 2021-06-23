@@ -24,26 +24,26 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Hữu ích (%d)", number)
+            view.context.getString(R.string.huu_ich_x, number)
         } else {
-            "Hữu ích"
+            view.context.getString(R.string.huu_ich)
         }
     }
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Không hữu ích (%d)", number)
+            view.context.getString(R.string.khong_huu_ich_x, number)
         } else {
-            "Không hữu ích"
+            view.context.getString(R.string.khong_huu_ich)
         }
     }
 
     override fun bind(obj: ICProductReviews.ReviewsRow) {
         if (obj.owner == null) {
-            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text =""
         } else {
-            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text = obj.owner.name
         }
 
@@ -55,15 +55,17 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
         itemView.tv_1_useful.text = setTextUseful(obj.useful)
         itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
 
+        val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
+
         obj.actionUseful?.let {
             if ("useful" == it) {
                 view.tv_1_useful.text = setTextUseful(obj.useful)
-                view.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                view.tv_1_useful.setTextColor(secondaryColor)
                 view.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                 useful = 1
             } else if ("unuseful" == it) {
                 view.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                view.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                view.tv_1_unuseful.setTextColor(secondaryColor)
                 view.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                 unuseful = 1
             }
@@ -78,7 +80,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
             if (useful == 0) {
                 obj.useful++
                 view.tv_1_useful.text = setTextUseful(obj.useful)
-                view.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                view.tv_1_useful.setTextColor(secondaryColor)
                 view.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                 useful = 1
                 if (unuseful == 1) {
@@ -110,7 +112,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
             if (unuseful == 0) {
                 obj.unuseful++
                 view.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                view.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                view.tv_1_unuseful.setTextColor(secondaryColor)
                 view.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                 unuseful = 1
                 if (useful == 1) {

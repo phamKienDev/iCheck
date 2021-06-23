@@ -10,6 +10,7 @@ import vn.icheck.android.component.product.ProductDetailListener
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.setText
 
 class ProductQuestionHolder(parent: ViewGroup, recycledViewPool: RecyclerView.RecycledViewPool?, questionListener: ProductDetailListener) : RecyclerView.ViewHolder(ViewHelper.createListQuestionProductHolder(parent.context)) {
     private val adapter = ItemQuestionAdapter(questionListener)
@@ -26,7 +27,7 @@ class ProductQuestionHolder(parent: ViewGroup, recycledViewPool: RecyclerView.Re
                 } else {
                     beVisible()
 
-                    (getChildAt(0) as AppCompatTextView).text = String.format(context.getString(R.string.hoi_dap_ve_san_pham_x), obj.data.count)
+                    (getChildAt(0) as AppCompatTextView).setText(R.string.hoi_dap_ve_san_pham_x, obj.data.count)
 
                     getChildAt(1).setOnClickListener {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_QUESTIONS))

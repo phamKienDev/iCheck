@@ -135,14 +135,9 @@ object APIConstants {
         const val CHANGE_PASSWORD = "users/me/change-password"
         const val ADDRESSES = "users/me/addresses"
         const val DETAIL_ADDRESS = "users/me/addresses/{id}"
-        const val SEND_OTP_RESET_PASSWORD = "users/send-otp"
-        const val RESET_PASSWORD = "users/reset-password"
         const val SEND_OTP_CONFIRM_PHONE = "users/send-otp-confirm-phone"
-        const val CONFIRM_NEW_PHONE = "users/user-confirm-phone"
         const val CONFIRM_PHONE = "users/confirm-phone"
-        const val REGISTER = "users/register"
         const val CHECK_CREDENTIALS = "users/check-credentials"
-        const val UPDATE = "c"
         const val PROFILE = "users/{id}/profile"
         const val LIST_FRIENDS = "${PATH}/users/{id}/friends"
         const val RANK_OF_USER = "${PATH}/users/rank"
@@ -454,6 +449,7 @@ object APIConstants {
         const val GET_LIST_COMMENTS_OF_POST = "social/api/posts/{id}/comments"
         const val POST_LIKE_COMMENT = "social/api/comments/{id}/expressive"
         const val POST_COMMENT = "social/api/posts/{id}/comment"
+        const val REVIEW_COMMENT = "social/api/reviews/{id}/comment"
         const val LIKE_POST = "social/api/posts/{id}/expressive"
     }
 

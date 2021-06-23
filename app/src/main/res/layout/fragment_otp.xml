@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_back"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
@@ -17,13 +17,12 @@
         app:layout_constraintTop_toTopOf="@+id/textView22"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalHeader
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
-        android:text="Nhập mã OTP"
-        android:textColor="#212121"
+        android:text="@string/nhap_ma_otp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,13 +50,10 @@
                 android:layout_marginLeft="@dimen/size_62"
                 android:layout_marginEnd="@dimen/size_62"
                 android:layout_marginRight="@dimen/size_62"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:lineHeight="@dimen/size_20"
-                android:text="Mã xác nhận OTP đã dược gửi đến
-        số điện thoại của bạn"
+                android:text="@string/ma_xac_nhan_otp_da_duoc_gui_den_so_dien_thoai_cua_ban"
                 android:textAlignment="center"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ui.OtpEditText
@@ -75,15 +71,13 @@
                 android:textIsSelectable="false"
                 android:textSize="@dimen/font_20" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                 android:id="@+id/tv_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/size_12"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:text="Gửi lại mã (60s)"
-                android:textColor="#757575" />
+                android:text="@string/gui_lai_ma_60s" />
 
         </LinearLayout>
     </ScrollView>
@@ -92,7 +86,7 @@
         android:id="@+id/textView92"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

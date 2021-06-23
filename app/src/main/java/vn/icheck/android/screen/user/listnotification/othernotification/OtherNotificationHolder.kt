@@ -25,12 +25,11 @@ import vn.icheck.android.screen.user.rank_of_user.RankOfUserActivity
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.ToastUtils
 
-class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)
-) {
+class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(LayoutInflater.from(parent.context).inflate(R.layout.item_other_notification, parent, false)) {
     private var listener: View.OnClickListener? = null
 
     override fun bind(obj: ICNotification) {
+        itemView.imgAvatar.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         checkRead(obj.isReaded == true)
         if (obj.showTitle) {
             itemView.title.beVisible()
@@ -182,7 +181,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                             DialogHelper.closeLoading(activity)
                         }
                         if (objNotification.isReaded == false && isShowLoading) {
-                            itemView.context.showShortSuccessToast("Bạn đã đọc thông báo này")
+                            itemView.context.showShortSuccessToast(activity.getString(R.string.ban_da_doc_thong_bao_nay))
                         }
                         objNotification.isReaded = true
                         checkRead(objNotification.isReaded == true)
@@ -259,7 +258,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                         DialogHelper.closeLoading(activity)
 
                         listener?.onClick(null)
-                        itemView.context.showShortSuccessToast("Xóa thông báo thành công")
+                        itemView.context.showShortSuccessToast(activity.getString(R.string.xoa_thong_bao_thanh_cong))
                     }
 
                     override fun onError(error: ICResponseCode?) {

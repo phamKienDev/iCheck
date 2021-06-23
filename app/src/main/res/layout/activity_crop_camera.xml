@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
         android:fontFamily="@font/barlow_medium"
-        android:text="Vui lòng căn chỉnh giấy tờ đúng khung chụp ảnh"
+        android:text="@string/vui_long_can_chinh_giay_to_dung_khung_chup_anh"
         android:textColor="@color/white"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"

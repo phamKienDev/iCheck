@@ -9,7 +9,6 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseFragmentChat
@@ -23,7 +22,10 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper.LIMIT
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.PermissionHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import java.util.*
 
 class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerViewCallback {
@@ -33,9 +35,9 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     companion object {
         const val REQUEST_CONTACT = 1
         private val projection = arrayOf(
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
-                ContactsContract.Contacts.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Phone.NUMBER
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
         )
 
         fun newInstance(isUserLogged: Boolean): ContactFragment {
@@ -60,7 +62,11 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     override fun onInitView() {
+        setupView()
+    }
 
+    private fun setupView() {
+        binding.btnRequest.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     private fun initRecyclerView() {
@@ -100,7 +106,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (ShareHelperChat.getBoolean(ConstantChat.USER_LOGIN)) {
                 syncContact()
             } else {
-                requireContext().showToastError("Bạn chưa đăng nhập! Vui lòng đăng nhập!")
+                requireContext().showToastError(vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_dang_nhap_vui_long_dang_nhap))
             }
         }, {
             getSystemSetting()
@@ -108,7 +114,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
     }
 
     private fun syncContact() {
-        if (!requestContact()){
+        if (!requestContact()) {
             clickGetData = false
             return
         }
@@ -174,7 +180,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
 
                             if (clickGetData) {
-                                requireContext().showToastSuccess(getString(R.string.dong_bo_danh_ba_thanh_cong))
+                                requireContext().showToastSuccess(vn.icheck.android.ichecklibs.util.getString(R.string.dong_bo_danh_ba_thanh_cong))
                             }
                         } else {
                             binding.recyclerView.setGone()
@@ -196,7 +202,7 @@ class ContactFragment : BaseFragmentChat<FragmentContactBinding>(), IRecyclerVie
             if (PermissionHelper.checkResult(grantResults)) {
                 showDialog()
             } else {
-                requireContext().showToastError("Bạn chưa cấp đủ quyền!")
+                requireContext().showToastError(vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_cap_du_quyen))
             }
         }
     }

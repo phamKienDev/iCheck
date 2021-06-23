@@ -25,7 +25,6 @@ import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.util.kotlin.ToastUtils
 import java.io.File
 
 class DetailPostViewModel : ViewModel() {
@@ -99,7 +98,9 @@ class DetailPostViewModel : ViewModel() {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
 
                 if (obj.data != null) {
-                    onDetailPost.postValue(obj.data)
+                    obj.data?.let {
+                        onDetailPost.postValue(it)
+                    }
                     post = obj.data
                     involeType = obj.data!!.involveType
                 } else {
@@ -310,9 +311,9 @@ class DetailPostViewModel : ViewModel() {
                             Constant.IMAGE
                         }
                         if (parent == null) {
-                            postComment(pageId, message, ICMedia(obj.src, typeMedia))
+                            postComment(pageId, message, ICMedia(obj.src, type= typeMedia))
                         } else {
-                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, typeMedia))
+                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, type= typeMedia))
                         }
                     }
 
@@ -334,7 +335,7 @@ class DetailPostViewModel : ViewModel() {
             return
         }
 
-        postInteractor.commentPost(postId, message, pageId, media, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteractor.commentPost(postId, message, pageId, media,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
                 if (obj.data != null) {
@@ -342,7 +343,9 @@ class DetailPostViewModel : ViewModel() {
                     //cho phép hiện trả lời
                     obj.data!!.isReply = isReply
                     obj.data!!.involveType = involeType
-                    onPostComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostComment.postValue(it)
+                    }
                     addCommentPostData(obj.data!!)
                 }
             }
@@ -372,8 +375,9 @@ class DetailPostViewModel : ViewModel() {
                 if (obj.data != null) {
                     obj.data!!.marginTop = SizeHelper.size3
                     obj.data!!.marginStart = SizeHelper.size36
-
-                    onPostChildComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostChildComment.postValue(it)
+                    }
                 }
             }
 
@@ -397,7 +401,9 @@ class DetailPostViewModel : ViewModel() {
 
         interactor.deleteComment(comment.id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
-                onDeleteComment.postValue(obj.data)
+                obj.data?.let {
+                    onDeleteComment.postValue(it)
+                }
                 deleteCommentPostData(comment)
             }
 
@@ -455,7 +461,9 @@ class DetailPostViewModel : ViewModel() {
         postInteractor.deletePost(id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
-                onDeletePost.postValue(obj.data)
+                obj.data?.let {
+                    onDeletePost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

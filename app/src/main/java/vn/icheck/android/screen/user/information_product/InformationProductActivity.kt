@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.webkit.WebSettings
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_information_product.*
 import kotlinx.android.synthetic.main.toolbar_blue_v2.*
@@ -13,8 +12,11 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class InformationProductActivity : BaseActivityMVVM() {
@@ -32,7 +34,7 @@ class InformationProductActivity : BaseActivityMVVM() {
     }
 
     fun initView() {
-        imgBack.setImageResource(R.drawable.ic_cancel_blue_24px)
+        imgBack.fillDrawableColor()
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -40,11 +42,13 @@ class InformationProductActivity : BaseActivityMVVM() {
 
         WidgetUtils.loadImageUrlFitCenter(imgAction, intent?.getStringExtra(Constant.DATA_3), WidgetUtils.defaultHolder, R.drawable.bg_error_emty_attachment)
 
-        viewModel.liveData.observe(this, Observer {
-            txtTitle.text = if (!it.title.isNullOrEmpty()) {
-                it.title
-            } else {
-                "Thông tin chi tiết"
+        viewModel.liveData.observe(this, {
+            txtTitle.apply {
+                text = if (!it.title.isNullOrEmpty()) {
+                    it.title
+                } else {
+                    context.getString(R.string.thong_tin_chi_tiet)
+                }
             }
 
             imgAction.beVisible()
@@ -52,7 +56,7 @@ class InformationProductActivity : BaseActivityMVVM() {
             setupWebView(it.content)
         })
 
-        viewModel.onError.observe(this, Observer {
+        viewModel.onError.observe(this, {
             DialogHelper.showConfirm(this, it.message, false, object : ConfirmDialogListener {
                 override fun onDisagree() {
                     onBackPressed()
@@ -72,7 +76,7 @@ class InformationProductActivity : BaseActivityMVVM() {
             domStorageEnabled = true
             allowFileAccessFromFileURLs = true
             allowUniversalAccessFromFileURLs = true
-            defaultFontSize = 14.spToPx()
+            defaultFontSize = 14
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

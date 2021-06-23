@@ -36,7 +36,7 @@ class NewsListV2Holder(parent: ViewGroup, val binding: ItemNewsListV2Binding = I
         }
         binding.tvTime.apply {
             text = if (!obj.createdAt.isNullOrEmpty()) {
-                TestTimeUtil(obj.createdAt!!).getTimeDateNews()
+                TestTimeUtil(obj.createdAt!!).getTimeDateNews(false)
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }

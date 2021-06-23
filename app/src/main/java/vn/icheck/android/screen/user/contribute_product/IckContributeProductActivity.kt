@@ -32,12 +32,14 @@ import com.google.gson.internal.LinkedTreeMap
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.coroutines.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -68,7 +70,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
             context.startActivityForResult(i, CONTRIBUTION_PRODUCT)
         }
 
-        fun start(context: Activity, barcode: String, productId: Long, title: String? = "Đóng góp sản phẩm") {
+        fun start(context: Activity, barcode: String, productId: Long, title: String? = ICheckApplication.getString(R.string.dong_gop_san_pham)) {
             val i = Intent(context, IckContributeProductActivity::class.java)
             i.putExtra(ICK_BARCODE, barcode)
             i.putExtra(PRODUCT_ID, productId)
@@ -90,12 +92,12 @@ class IckContributeProductActivity : BaseActivityMVVM() {
         private fun loadImageIntoView(file: File?) {
             currentView?.let {
                 if (it.id == binding.imgFirst.id) {
-                    binding.tvImgFirst simpleText "Chỉnh sửa"
+                    binding.tvImgFirst.setText(R.string.chinh_sua)
                     ickContributeProductViewModel.setImage(file, 0)
                 }
                 if (it.id == binding.imgSecond.id) {
                     ickContributeProductViewModel.setImage(file, 1)
-                    binding.tvImgSecond simpleText "Chỉnh sửa"
+                    binding.tvImgSecond.setText(R.string.chinh_sua)
                 }
                 if (it is ImageView) {
                     Glide.with(it.context.applicationContext).load(file).into(it)
@@ -341,13 +343,14 @@ class IckContributeProductActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         binding = ActivityIckContributeProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupView()
         instance = this
         listImageAdapter = ListImageAdapter(ickContributeProductViewModel.listImageModel)
         binding.rcvImages.adapter = listImageAdapter
 
         takeImageDialog.setListener(this, takeImageListener, selectMulti = false, cropImage = true, isVideo = false)
 
-        binding.textView4.text = intent.getStringExtra(TITLE) ?: "Đóng góp sản phẩm"
+        binding.textView4.text = intent.getStringExtra(TITLE) ?: getString(R.string.dong_gop_san_pham)
 
         ickContributeProductViewModel.setBarcode(intent.getStringExtra(ICK_BARCODE))
         ickContributeProductViewModel.listImages.observe(this, Observer { fileList ->
@@ -435,16 +438,16 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                     var firstJob: Job? = null
                                     var secondJob: Job? = null
                                     ickContributeProductViewModel.myContribute = 1
-                                    binding.textView4 simpleText "Chỉnh sửa đóng góp"
+                                    binding.textView4.setText(R.string.chinh_sua_dong_gop)
                                     DialogHelper.showLoading(this@IckContributeProductActivity)
-                                    ickContributeProductViewModel.requestBody.putAll(rp.get("data") as Map<String, Any?>)
-                                    if (ickContributeProductViewModel.requestBody.get("id") != null) {
-                                        ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody.get("id") as Double?)?.toLong()
+                                    ickContributeProductViewModel.requestBody.putAll(rp["data"] as Map<String, Any?>)
+                                    if (ickContributeProductViewModel.requestBody["id"] != null) {
+                                        ickContributeProductViewModel.myContributionId = (ickContributeProductViewModel.requestBody["id"] as Double?)?.toLong()
                                     }
-                                    if (ickContributeProductViewModel.requestBody.get("name") as String? != null) {
+                                    if (ickContributeProductViewModel.requestBody["name"] as String? != null) {
                                         binding.edtNameProduct simpleText ickContributeProductViewModel.requestBody.get("name") as String?
                                     }
-                                    if (ickContributeProductViewModel.requestBody.get("price").toString().toLongOrNull() != null) {
+                                    if (ickContributeProductViewModel.requestBody["price"].toString().toLongOrNull() != null) {
                                         binding.edtPrice simpleText ickContributeProductViewModel.requestBody.get("price").toString()
                                     }
                                     if (ickContributeProductViewModel.requestBody["images"] as ArrayList<String>? != null) {
@@ -468,7 +471,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                     } catch (e: Exception) {
                                                         dismissLoadingScreen()
                                                         withContext(Dispatchers.Main) {
-                                                            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+                                                            showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                                                         }
                                                         logError(e)
                                                     }
@@ -489,14 +492,14 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                     }
                                                     1 -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
-                                                        binding.tvImgFirst simpleText "Chỉnh sửa"
+                                                        binding.tvImgFirst.setText(R.string.chinh_sua)
                                                     }
 
                                                     else -> {
                                                         binding.imgFirst.loadSimpleFile(arr[0])
                                                         binding.imgSecond.loadSimpleFile(arr[1])
-                                                        binding.tvImgFirst simpleText "Chỉnh sửa"
-                                                        binding.tvImgSecond simpleText "Chỉnh sửa"
+                                                        binding.tvImgFirst.setText(R.string.chinh_sua)
+                                                        binding.tvImgSecond.setText(R.string.chinh_sua)
                                                     }
                                                 }
                                                 ickContributeProductViewModel.addAllImage(arr)
@@ -559,7 +562,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                                                                             } catch (e: Exception) {
                                                                                                                 dismissLoadingScreen()
                                                                                                                 withContext(Dispatchers.Main) {
-                                                                                                                    showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+                                                                                                                    showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                                                                                                                 }
                                                                                                                 logError(e)
                                                                                                             }
@@ -609,11 +612,14 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                     val data = rp.get("data") as Map<String, Any?>
                                     if (data["hidden"] != null) {
                                         if (data["hidden"] as Boolean) {
-                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty()) "Đóng góp trước đó của bạn đã bị Huỷ duyệt với lý do: \"" + data["reason"].toString() +"\". Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?" else "Đóng góp trước đó của bạn đã bị Huỷ duyệt bởi người quản trị. Bạn có muốn thực hiện đóng góp thông tin lại cho sản phẩm này?"
-                                            DialogHelper.showConfirm(this@IckContributeProductActivity, "Thông báo",
+                                            val msg = if (!(data["reason"] as String?).isNullOrEmpty())
+                                                getString(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_voi_ly_do_s, data["reason"].toString())
+                                            else
+                                                getString(R.string.dong_gop_truoc_do_cua_ban_da_bi_huy_duyet_boi_nguoi_quan_tri)
+                                            DialogHelper.showConfirm(this@IckContributeProductActivity, getString(R.string.thong_bao),
                                                     msg,
-                                                    "Hủy",
-                                                    "Đóng góp lại",
+                                                    getString(R.string.huy),
+                                                    getString(R.string.dong_gop_lai),
                                                     false,
                                                     object : ConfirmDialogListener {
                                                         override fun onDisagree() {
@@ -635,13 +641,13 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                                                                 binding.edtPhonePage.setText("")
                                                                 binding.edtTax.setText("")
                                                                 binding.edtCategory.setText("")
-                                                                binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                                                                binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                                                                 ickContributeProductViewModel.categoryAttributes.clear()
                                                                 categoryAttributesAdapter.notifyDataSetChanged()
-                                                                binding.tvImgFirst simpleText "+ Ảnh mặt trước"
+                                                                binding.tvImgFirst.setText(R.string.anh_mat_truoc)
                                                                 binding.imgFirst.setImageResource(R.drawable.ic_front_image_holder)
                                                                 binding.imgSecond.setImageResource(R.drawable.ic_back_image_holder)
-                                                                binding.tvImgSecond simpleText "+ Ảnh mặt sau"
+                                                                binding.tvImgSecond.setText(R.string.anh_mat_sau)
                                                                 lifecycleScope.launch {
                                                                     delay(200)
                                                                     ickContributeProductViewModel.listImageModel.clear()
@@ -668,8 +674,24 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                 })
     }
 
+    private fun setupView() {
+        ViewHelper.bgWhiteStrokeLineColor1Corners4(this).apply {
+            binding.edtNameProduct.background=this
+            binding.edtPrice.background=this
+            binding.edtNamePage.background=this
+            binding.edtAddressPage.background=this
+            binding.edtPhonePage.background=this
+            binding.edtEmail.background=this
+            binding.edtTax.background=this
+        }
+    }
+
     private fun initViews() {
+        binding.btnContinue.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.edtCategory.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
+
         val barcode = intent.getStringExtra(ICK_BARCODE)
+        binding.edtBarcode.background=ViewHelper.bgGrayF0StrokeLineColor1Corners4(this)
         binding.edtBarcode.setText(barcode)
 
         binding.imgFirst.setOnClickListener {
@@ -778,7 +800,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                     if (event.action == MotionEvent.ACTION_UP) {
                         if (ickContributeProductViewModel.categoryAttributes.isNotEmpty()) {
                             binding.edtCategory.setText("")
-                            binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24px, 0)
+                            binding.edtCategory.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
                             ickContributeProductViewModel.categoryAttributes.clear()
                             categoryAttributesAdapter.notifyDataSetChanged()
                         }
@@ -796,7 +818,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
             } else {
                 ickContributeProductViewModel.setPrice(-1)
             }
-            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text.trim().trim().isNotEmpty()) {
+            if (ickContributeProductViewModel.arrayListImage.size >= 2 && binding.edtNameProduct.text!!.trim().trim().isNotEmpty()) {
 
                 ickContributeProductViewModel.finalStep()?.observe(this, Observer { listInfos ->
                     val filter = listInfos.firstOrNull {
@@ -884,9 +906,9 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                 })
             } else {
                 if (ickContributeProductViewModel.arrayListImage.size < 2) {
-                    showShortError("Sản phẩm cần tối thiểu 2 ảnh!")
-                } else if (binding.edtNameProduct.text.trim().isEmpty()) {
-                    showShortError("Sản phẩm phải có tên!")
+                    showShortError(getString(R.string.san_pham_can_toi_thieu_2_anh))
+                } else if (binding.edtNameProduct.text!!.trim().isEmpty()) {
+                    showShortError(getString(R.string.san_pam_phai_co_ten))
                 }
                 dismissLoadingScreen()
             }

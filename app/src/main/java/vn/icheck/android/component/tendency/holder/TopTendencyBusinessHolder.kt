@@ -18,6 +18,7 @@ import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -44,9 +45,9 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
 
         if (obj.follower != null && obj.follower != 0) {
             if (obj.follower!! > 1000) {
-                tvFollow.text = "${((obj.follower)!! / 1000f).toString().replace(".0", "")}k người theo dõi"
+                tvFollow.setText(R.string.k_nguoi_theo_doi, ((obj.follower)!! / 1000f).toString().replace(".0", ""))
             } else {
-                tvFollow.text = "${obj.follower} người theo dõi"
+                tvFollow.setText(R.string.d_nguoi_theo_doi, obj.follower)
             }
         }
 
@@ -101,12 +102,12 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
         // Text follow
         tvFollow.run {
             if (isFollow) {
-                text = "Đang theo dõi"
-                background = ContextCompat.getDrawable(context, R.drawable.bg_gray_f0_corners_4)
-                setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                setText(R.string.dang_theo_doi)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
+                setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
             } else {
-                text = "Theo dõi"
-                background = ContextCompat.getDrawable(context, R.drawable.bg_corners_4_light_blue_solid)
+                setText(R.string.theo_doi)
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                 setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
             }
         }

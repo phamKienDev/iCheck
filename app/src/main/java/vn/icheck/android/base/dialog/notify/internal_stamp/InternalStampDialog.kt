@@ -7,9 +7,8 @@ import kotlinx.android.synthetic.main.dialog_internal_stamp.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.internal_stamp.adapter.InternalStampAdapter
 import vn.icheck.android.base.dialog.notify.internal_stamp.view.IInternalStampView
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICSuggestApp
-import vn.icheck.android.network.models.ICValidStampSocial
-import vn.icheck.android.network.models.detail_stamp_v6_1.ICCheckValidStamp
 
 abstract class InternalStampDialog(val context: Context, val suggestApp: MutableList<ICSuggestApp>, val code: String?) : IInternalStampView {
 
@@ -22,6 +21,7 @@ abstract class InternalStampDialog(val context: Context, val suggestApp: Mutable
         dialog?.setCancelable(true)
         dialog?.setCanceledOnTouchOutside(true)
 
+        dialog?.txtCancel?.background= dialog?.context?.let { ViewHelper.btnWhiteCorners8(it) }
         dialog?.rcvInternalStamp?.layoutManager = LinearLayoutManager(dialog?.context)
         dialog?.rcvInternalStamp?.adapter = adapter
         adapter.setListData(suggestApp,code)

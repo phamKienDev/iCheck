@@ -3,11 +3,17 @@ package vn.icheck.android.component.page_products
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.R
 import vn.icheck.android.databinding.HolderPageHorizontalProductBinding
 import vn.icheck.android.databinding.ItemProductBinding
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.model.page.PageProductViewModel
 import vn.icheck.android.network.model.page.ProductItem
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.ick.getInfo
+import vn.icheck.android.util.ick.loadSimpleImage
+import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.util.ick.visibleIf
 
 class PageHorizontalProductHolder(
         private val binding: HolderPageHorizontalProductBinding,
@@ -50,7 +56,7 @@ class PageHorizontalProductHolder(
             fun bindProduct(item: ProductItem?) {
                 binding.imgProduct loadSimpleImage item?.media?.firstOrNull()?.content
                 binding.tvProductName simpleText  item?.name
-                binding.tvPrice priceText  item?.price
+                binding.tvPrice.setText(R.string.x_d, item?.price)
                 binding.tvRate simpleText item?.reviewCount?.toString()?.getInfo()
                 binding.imgVerified visibleIf item?.verified
             }

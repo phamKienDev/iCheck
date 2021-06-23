@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_circle_avatar_default" />
+        tools:src="@drawable/ic_user_svg" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgLevel"
@@ -39,17 +39,15 @@
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@id/tvTitle"
+            android:background="@drawable/bg_gray_f0_corners_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_dark_gray_6_corners_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:padding="@dimen/size_8"
             android:singleLine="true"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             tools:text="Trần Văn Lâm" />
 
@@ -60,44 +58,38 @@
             android:layout_marginTop="@dimen/size_4" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
         app:layout_constraintTop_toBottomOf="@id/layoutContent"
         tools:text="7 phút trước" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@id/tvLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/thich"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvTime"
         app:layout_constraintTop_toTopOf="@id/tvTime" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
         android:id="@id/tvAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/tra_loi"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvTime"
         app:layout_constraintStart_toEndOf="@id/tvLike"

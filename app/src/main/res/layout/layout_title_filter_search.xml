@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/imgClose"
         android:layout_width="@dimen/size_44"
         android:layout_height="@dimen/size_44"
@@ -14,31 +14,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/bo_loc"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgClose"
         app:layout_constraintBottom_toBottomOf="@id/imgClose"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@id/tvDone"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_44"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:gravity="center_vertical"
         android:paddingRight="@dimen/size_12"
         android:paddingLeft="@dimen/size_12"
         android:text="@string/xong"
-        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@id/imgClose"
         app:layout_constraintEnd_toEndOf="parent"

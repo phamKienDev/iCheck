@@ -20,11 +20,10 @@
             android:orientation="vertical">
 
             <!--Toolbar-->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:id="@id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_44"
-                android:background="@color/white"
                 android:elevation="@dimen/size_4">
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -76,7 +75,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_home_blue_24px" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
             <!--Error Client-->
             <LinearLayout
@@ -101,20 +100,17 @@
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
                     android:id="@+id/btnAgainError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_40"
                     android:layout_marginTop="@dimen/size_16"
                     android:layout_marginEnd="@dimen/size_40"
-                    android:background="@drawable/bg_corner_solid_white_strokke_blue"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Thử Lại"
-                    android:textColor="#3c5a99"
+                    android:text="@string/thu_lai"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
-
             </LinearLayout>
 
             <!--Require Location-->
@@ -144,41 +140,36 @@
                     android:textStyle="normal"
                     tools:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/btnRequestPermission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_38"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_38"
-                    android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/size_11"
                     android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_gps"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                     android:id="@+id/btnEnableLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_38"
                     android:layout_marginTop="@dimen/size_13"
                     android:layout_marginEnd="@dimen/size_38"
-                    android:background="@drawable/bg_blue_corners_40_solid_white"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/size_11"
                     android:paddingBottom="@dimen/size_11"
                     android:text="@string/bat_vi_tri"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal"
                     android:visibility="gone" />
-
             </LinearLayout>
 
             <!--Error Stamp-->
@@ -216,7 +207,7 @@
                             android:drawablePadding="@dimen/size_9"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/font_14"
                             android:textStyle="normal"
                             tools:text="CẢNH BÁO! \n MÃ TEM KHÔNG HỢP LỆ (TEXT KHÔNG CỐ ĐỊNH)" />
@@ -270,8 +261,8 @@
                     android:drawableTop="@drawable/ic_chat_temp_white_24_px"
                     android:drawablePadding="@dimen/size_3"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Chat ngay"
-                    android:textColor="#ffffff"
+                    android:text="@string/chat_ngay"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_12"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -279,42 +270,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--                <View-->
-                <!--                    android:layout_width="@dimen/size_1"-->
-                <!--                    android:layout_height="0dp"-->
-                <!--                    android:layout_marginStart="@dimen/size_24"-->
-                <!--                    android:layout_marginEnd="@dimen/size_24"-->
-                <!--                    android:background="@color/white"-->
-                <!--                    app:layout_constraintBottom_toBottomOf="@+id/btnChat"-->
-                <!--                    app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"-->
-                <!--                    app:layout_constraintStart_toEndOf="@+id/btnChat"-->
-                <!--                    app:layout_constraintTop_toTopOf="@+id/btnChat" />-->
-
-                <!--                <androidx.appcompat.widget.AppCompatTextView-->
-                <!--                    android:id="@+id/btnAddToCart"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="@dimen/size_6"-->
-                <!--                    android:layout_marginEnd="@dimen/size_24"-->
-                <!--                    android:layout_marginBottom="@dimen/size_3"-->
-                <!--                    android:drawableTop="@drawable/ic_shop_white_24px"-->
-                <!--                    android:drawablePadding="@dimen/size_3"-->
-                <!--                    android:fontFamily="sans-serif-medium"-->
-                <!--                    android:text="+ Giỏ hàng"-->
-                <!--                    android:textColor="#ffffff"-->
-                <!--                    android:textSize="@dimen/font_12"-->
-                <!--                    android:textStyle="normal"-->
-                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary
                 android:id="@+id/layoutBuyNow"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="#3c5a99"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -325,11 +287,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Mua ngay"
-                    android:textColor="#ffffff"
+                    android:text="@string/mua_ngay"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_16"
                     android:textStyle="normal" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.secondary.LinearLayoutSecondary>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -341,7 +303,6 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/size_68"
-            android:background="@drawable/bg_corner_dark_blue_45"
             android:drawableStart="@drawable/ic_update_user_info_white_24px"
             android:drawablePadding="@dimen/size_6"
             android:fontFamily="sans-serif-medium"
@@ -350,8 +311,8 @@
             android:paddingTop="@dimen/size_10"
             android:paddingEnd="@dimen/size_12"
             android:paddingBottom="@dimen/size_10"
-            android:text="Cập nhật thông tin khách hàng"
-            android:textColor="#ffffff"
+            android:text="@string/cap_nhat_thong_tin_khach_hang"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             android:visibility="invisible"

@@ -26,6 +26,8 @@ import vn.icheck.android.component.header_page.bottom_sheet_header_page.MoreActi
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.network.models.ICPageOverview
@@ -76,6 +78,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         getData()
         setupViewPager()
         setupViewModel()
+        setupView()
         setupListener()
         listenerFirebase()
         initButton()
@@ -84,7 +87,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun getData() {
         pageID = intent?.getLongExtra(Constant.DATA_1, -1) ?: -1
         pageType = intent?.getIntExtra(Constant.DATA_2, Constant.PAGE_BRAND_TYPE)
-                ?: Constant.PAGE_BRAND_TYPE
+            ?: Constant.PAGE_BRAND_TYPE
     }
 
     private fun setupViewPager() {
@@ -98,6 +101,21 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(PageDetailViewModel::class.java)
+    }
+
+    private fun setupView() {
+        ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
+            tvHome.setTextColor(this)
+            tvPost.setTextColor(this)
+            tvProduct.setTextColor(this)
+        }
+
+        ViewHelper.bgOutlinePrimary1Corners4(this).apply {
+            tvExtra.background = this
+            imgMenu.background = this
+        }
+
+        btnFollow.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     private fun setupListener() {
@@ -162,6 +180,10 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         if (isShow && viewModel.pageDetail != null) {
             Handler().postDelayed({
                 layoutFollow.beVisible()
+                ViewHelper.bgOutlinePrimary1Corners4(this).apply {
+                    tvExtra.background = this
+                    imgMenu.background = this
+                }
                 view2.beVisible()
             }, 300)
         } else {
@@ -192,7 +214,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         tvExtra.setOnClickListener {
             val phone = viewModel.pageDetail?.phone ?: ""
             if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(this, applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, ViewHelper.setPrimaryHtmlString(applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)),this), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }

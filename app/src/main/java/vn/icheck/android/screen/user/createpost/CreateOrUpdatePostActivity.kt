@@ -33,6 +33,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -101,19 +102,22 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     }
 
     private fun setupToolbar() {
-        layoutToolbar.setPadding(0, SizeHelper.size16, 0, 0)
-
-        imgBack.setImageResource(R.drawable.ic_cancel_light_blue_24dp)
+        imgBack.fillDrawableColor()
         imgBack.setOnClickListener {
             onBackPressed()
         }
     }
 
     private fun setupView() {
+        tvViewMore.background=vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
+        edtContent.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
+
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
-            edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
+            edtContent.apply {
+                hint = context.getString(R.string.hay_chia_se_nhung_thong_tin_huu_ich_nao)
+            }
             tvType.beGone()
             imgStatus.beGone()
             tvName.text = intent.getStringExtra(Constant.DATA_3)
@@ -125,7 +129,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
         } else {
             SessionManager.session.user?.let { user ->
                 imgStatus.setRankUser(user.rank?.level)
-                WidgetUtils.loadImageUrl(imgAvatar, user.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgAvatar, user.avatar, R.drawable.ic_avatar_default_84dp)
                 tvName.apply {
                     text = user.getName
                     if (user.kycStatus == 2) {
@@ -134,7 +138,9 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
-                edtContent.hint = "Bạn đã sử dụng sản phẩm nào? Hãy chia sẻ cảm nhận nhé!"
+                edtContent.apply {
+                    hint = context.getString(R.string.ban_da_su_dung_san_pham_nao_hay_chia_se_cam_nhan_nhe)
+                }
                 tvType.beVisible()
             }
         }
@@ -310,7 +316,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
             productLayout.setPadding(SizeHelper.size4, SizeHelper.size6, SizeHelper.size26, SizeHelper.size6)
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.darkGray6), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.basicInfo?.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name
@@ -338,7 +344,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
             parent.tag = product.id
 
             val productLayout = LayoutInflater.from(this).inflate(R.layout.item_short_product, parent, false) as ViewGroup
-            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, R.color.darkGray6), SizeHelper.size4.toFloat())
+            productLayout.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(this, vn.icheck.android.ichecklibs.R.color.grayF0), SizeHelper.size4.toFloat())
             WidgetUtils.loadImageUrl(productLayout.getChildAt(0) as AppCompatImageView, product.media?.find { it.type == "image" }?.content)
             (productLayout.getChildAt(1) as AppCompatTextView).setTextNameProductInPost(product.name)
             (productLayout.getChildAt(2) as AppCompatTextView).text = product.owner?.name
@@ -369,7 +375,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                 image.scaleType = ImageView.ScaleType.FIT_CENTER
                 image.adjustViewBounds = true
 
-                WidgetUtils.loadImageFile(image, file)
+//                WidgetUtils.loadImageFile(image, file)
                 image.loadImageFromVideoFile(file, null)
             })
 
@@ -480,7 +486,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     override fun onBackPressed() {
         if (layoutImage.childCount > 1 || edtContent.text.toString().isNotEmpty() || layoutProduct.childCount > 0) {
             if (viewModel.postDetail?.id == null) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ bài viết này?", null, "Tiếp tục chỉnh sửa", "Bỏ bài viết", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bai_viet_nay), null, getString(R.string.tiep_tuc_chinh_sua), getString(R.string.bo_bai_viet), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }
@@ -490,7 +496,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     }
                 })
             } else {
-                DialogHelper.showConfirm(this, "Tiếp tục chỉnh sửa bài viết?", null, "Để sau", "Tiếp tục", true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.tiep_tuc_chinh_sua_bai_viet), null, getString(R.string.de_sau), getString(R.string.tiep_tuc), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         finish()
                     }
@@ -524,7 +530,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        takeMediaHelper.onActivityResult(requestCode, resultCode)
+        takeMediaHelper.onActivityResult(requestCode, resultCode,data)
 
         if (requestCode == requestScanProduct) {
             if (resultCode == Activity.RESULT_OK) {
@@ -532,7 +538,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     if (product.status == "ok" && product.state == "active") {
                         addProduct(product)
                     } else {
-                        showShortErrorToast("Không tìm thấy sản phẩm")
+                        showShortErrorToast(getString(R.string.khong_tim_thay_san_pham))
                     }
                 }
             }

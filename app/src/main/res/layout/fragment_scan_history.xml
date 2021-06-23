@@ -12,13 +12,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:elevation="@dimen/size_4">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@+id/imgMenu"
                 android:layout_width="@dimen/size_44"
                 android:layout_height="@dimen/size_44"
@@ -28,18 +27,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lich_su_quet"
-                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/imgMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgMenu" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@+id/imgSearch"
                 android:layout_width="@dimen/size_44"
                 android:layout_height="@dimen/size_44"
@@ -48,7 +46,7 @@
                 app:layout_constraintEnd_toStartOf="@id/imgCart"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@+id/imgCart"
                 android:layout_width="@dimen/size_44"
                 android:layout_height="@dimen/size_44"
@@ -63,7 +61,6 @@
                 android:layout_height="@dimen/size_22"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_3"
-                android:background="@drawable/bg_circle_count_cart_22dp"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="99"
@@ -81,14 +78,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgMenu">
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="#D8D8D8"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tvSort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,10 +92,8 @@
                     android:drawableStart="@drawable/ic_selected_history_27"
                     android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
                     android:drawablePadding="@dimen/size_5"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center"
-                    android:text="Sắp xếp: Mới nhất"
-                    android:textColor="#757575"
+                    android:text="@string/sap_xep_moi_nhat"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvFilter"
@@ -115,17 +109,15 @@
                     app:layout_constraintTop_toTopOf="@+id/tvFilter"
                     app:srcCompat="@drawable/ic_filter_gray_24_px" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tvFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/size_13"
                     android:layout_marginTop="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
                     android:gravity="center_horizontal|end"
-                    android:text="Lọc theo"
-                    android:textColor="#757575"
+                    android:text="@string/loc_theo"
                     android:textSize="@dimen/font_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +133,7 @@
                     app:srcCompat="@drawable/ic_dot_red_filter_coin" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
         <FrameLayout
             android:id="@+id/layoutData"
@@ -154,45 +146,40 @@
                 android:layout_height="match_parent"
                 android:visibility="gone">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
                     android:id="@+id/rcvHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/darkGray6" />
+                    android:layout_height="match_parent" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
                 android:id="@+id/layoutParentSort"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#80000000"
                 android:clickable="true"
                 android:focusable="true"
                 android:visibility="invisible">
 
-                <LinearLayout
+                <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                     android:id="@+id/layoutSort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/btnNearest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_14"
                         android:layout_marginTop="@dimen/size_10"
                         android:layout_marginEnd="@dimen/size_10"
-                        android:fontFamily="@font/barlow_medium"
                         android:paddingTop="@dimen/size_7"
                         android:paddingBottom="@dimen/size_7"
-                        android:text="Mới nhất"
-                        android:textColor="#757575"
+                        android:text="@string/moi_nhat"
                         android:textSize="@dimen/font_16"
                         android:textStyle="normal" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/btnfurthest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,23 +187,20 @@
                         android:layout_marginTop="@dimen/size_17"
                         android:layout_marginEnd="@dimen/size_10"
                         android:layout_marginBottom="@dimen/size_20"
-                        android:fontFamily="@font/barlow_medium"
                         android:paddingTop="@dimen/size_7"
                         android:paddingBottom="@dimen/size_7"
-                        android:text="Cũ nhất"
-                        android:textColor="#757575"
+                        android:text="@string/cu_nhat"
                         android:textSize="@dimen/font_16" />
 
-                </LinearLayout>
-            </LinearLayout>
+                </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
+            </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
 
         </FrameLayout>
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
             android:id="@+id/containerGps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:gravity="center"
             android:visibility="gone"
             android:orientation="vertical">
@@ -226,13 +210,11 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location_permission_history" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:fontFamily="@font/barlow_medium"
-                android:text="Để hiển thị dữ liệu Cửa hàng, vui lòng bật GPS"
-                android:textColor="@color/colorSecondText"
+                android:text="@string/de_hien_thi_du_lieu_vui_long_bat_gps"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -240,7 +222,6 @@
                 android:layout_width="@dimen/size_170"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
@@ -248,8 +229,6 @@
                 android:text="@string/bat_gps_ngay"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
-        </LinearLayout>
-
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
     </LinearLayout>
-
 </LinearLayout>

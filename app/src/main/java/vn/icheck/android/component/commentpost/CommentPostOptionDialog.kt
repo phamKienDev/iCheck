@@ -56,7 +56,7 @@ abstract class CommentPostOptionDialog(val context: Context) : BaseBottomSheetDi
             clipboard.setPrimaryClip(clip)
             dialog.dismiss()
             ICheckApplication.currentActivity()?.let {
-                DialogHelper.showDialogSuccessBlack(it,"Sao chép thành công")
+                DialogHelper.showDialogSuccessBlack(it,it.getString(R.string.sao_chep_thanh_cong))
             }
         }
 

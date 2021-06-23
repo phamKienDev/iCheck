@@ -34,7 +34,7 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
 
     inner class ItemProductForYouHolder(parent: ViewGroup) : BaseViewHolder<ICProductForYouMedia>(LayoutInflater.from(parent.context).inflate(R.layout.item_list_product_for_you, parent, false)) {
         override fun bind(obj: ICProductForYouMedia) {
-
+            itemView.btn_buy_now.background=vn.icheck.android.ichecklibs.ViewHelper.btnPrimaryCorners4(itemView.context)
             if (obj.product.media.type == Constant.VIDEO) {
                 itemView.texture_media.visibility = View.VISIBLE
                 if (obj.progressiveMediaSource != null) {
@@ -79,17 +79,9 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
                 WidgetUtils.loadImageUrl(itemView.img_logo, "")
             }
 
-            itemView.tv_name_product.text = if (obj.product.name != null) {
-                obj.product.name
-            } else {
-                itemView.context.getString(R.string.dang_cap_nhat)
-            }
+            itemView.tv_name_product.text = obj.product.name
 
-            itemView.tv_name_enterprise.text = if (obj.product.owner.name != null) {
-                obj.product.owner.name
-            } else {
-                itemView.context.getString(R.string.dang_cap_nhat)
-            }
+            itemView.tv_name_enterprise.text = obj.product.owner.name
 
             if (obj.product.rating != null) {
                 itemView.tv_count_rating.text = obj.product.rating.toString()
@@ -111,32 +103,35 @@ class ListProductForYouAdapter(val listData: MutableList<ICProductForYouMedia>) 
 
         }
 
-        private fun setRating(rating_count: Float) {
+        private fun setRating(rating_point: Float) {
             when {
-                rating_count < 6 -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_diem_danh_gia)
+                rating_point < 6 -> {
+                    itemView.tv_rating.setText(R.string.diem_danh_gia)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.violet))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.violet), SizeHelper.size14.toFloat())
                 }
-                rating_count < 7 -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_hai_long)
+                rating_point < 7 -> {
+                    itemView.tv_rating.setText(R.string.hai_long)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.green_v2), SizeHelper.size14.toFloat())
                 }
-                rating_count < 8 -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_tot)
+                rating_point < 8 -> {
+                    itemView.tv_rating.setText(R.string.tot)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.orange_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.orange_v2), SizeHelper.size14.toFloat())
                 }
-                rating_count < 9 -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_tuyet_voi)
+                rating_point < 9 -> {
+                    itemView.tv_rating.setText(R.string.tuyet_voi)
                     itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_v2))
                     itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.red_v2), SizeHelper.size14.toFloat())
                 }
                 else -> {
-                    itemView.tv_rating.text = itemView.context.getString(R.string.x_tren_ca_tuyet_voi)
-                    itemView.tv_rating.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorPrimary))
-                    itemView.tv_rating.background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(itemView.context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    itemView.tv_rating.apply {
+                        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
+                        text = context.getString(R.string.tren_ca_tuyet_voi)
+                        setTextColor(primaryColor)
+                        background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
+                    }
                 }
             }
         }

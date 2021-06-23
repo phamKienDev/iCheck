@@ -19,7 +19,7 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
             android:layout_weight="0"
-            android:src="@drawable/user_placeholder" />
+            android:src="@drawable/ic_avatar_default_84dp" />
 
         <TextView
             android:id="@+id/tv_contact_name"
@@ -46,9 +46,8 @@
 
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
-        android:layout_marginStart="@dimen/size_64"
-        android:background="@color/gray" />
+        android:layout_marginStart="@dimen/size_64"/>
 </LinearLayout>

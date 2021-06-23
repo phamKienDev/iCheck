@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/size_12"
     android:paddingBottom="@dimen/size_12"
-    android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
@@ -16,20 +15,19 @@
         android:layout_marginBottom="@dimen/size_10"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/tv_dgsp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hỏi đáp về sản phẩm"
-            android:textColor="#3C5A99"
+            android:text="@string/hoi_dap_ve_san_pham"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_xtcrv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Xem tất cả" />
+            android:text="@string/xem_tat_ca" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -55,4 +53,4 @@
         tools:text="Sản phẩm có nguồn gốc xuất xứ rõ ràng
 mình đã dùng và thấy rất ổn"
         android:textColor="#434343" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

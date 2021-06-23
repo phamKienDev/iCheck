@@ -6,8 +6,7 @@
     android:layout_width="301dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="7.5dp"
-    android:layout_marginEnd="7.5dp"
-    android:background="@drawable/bg_white_corners_16">
+    android:layout_marginEnd="7.5dp">
 
     <LinearLayout
         android:id="@+id/layoutImage"
@@ -15,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_9"
         android:layout_marginTop="@dimen/size_11"
-        android:background="@drawable/bg_corner_12_stroke_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,14 +26,12 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_14"
-        android:fontFamily="@font/barlow_medium"
         android:layout_marginEnd="@dimen/size_6"
-        android:textColor="#4f4f4f"
         android:textSize="@dimen/font_16"
         android:singleLine="true"
         android:ellipsize="end"
@@ -45,14 +41,13 @@
         app:layout_constraintTop_toTopOf="@+id/layoutImage"
         tools:text="Siêu thị VinMart Mỹ Đình fds fdsfk sjflkdsjfjdslfjdsl kfjsdk fsd" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvKhoangCach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_medium"
         android:layout_marginStart="@dimen/size_10"
         android:drawableStart="@drawable/ic_gps_off_18_px"
-        android:textColor="#b4b4b4"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@+id/layoutImage"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -69,12 +64,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tvKhoangCach"
         tools:text="23,004,000 đ" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="7.5dp"
-        android:background="#e0e0e0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPrice" />
@@ -89,7 +83,7 @@
         app:layout_constraintTop_toTopOf="@id/tvAddress"
         android:src="@drawable/ic_pin_map_14_gray"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -102,7 +96,6 @@
         android:lineSpacingExtra="@dimen/font_7_6"
         android:maxLines="2"
         android:minLines="2"
-        android:textColor="#212121"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@id/imgPin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,13 +103,14 @@
         tools:text="Số nhà 18, chung cư 125A Nguyễn Ngọc Vũ,  Trung Hoà, Q. Cầu Giấy, Hà Nội" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_phone_gray_14"
         app:layout_constraintTop_toTopOf="@id/tvPhone"
         app:layout_constraintStart_toStartOf="@id/imgPin"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -124,7 +118,6 @@
         android:lineSpacingExtra="@dimen/font_7_6"
         android:layout_marginTop="@dimen/size_4"
         android:layout_marginBottom="@dimen/size_17"
-        android:textColor="#212121"
         android:maxLines="1"
         android:minLines="1"
         android:ellipsize="end"

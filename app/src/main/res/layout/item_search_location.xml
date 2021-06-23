@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_white">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvIcon"
@@ -17,14 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_10"
-        android:fontFamily="sans-serif"
         android:includeFontPadding="false"
-        android:textColor="#35384b"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,14 +29,12 @@
         app:layout_constraintTop_toTopOf="@id/tvIcon"
         tools:text="125 Nguyễn Ngọc Vũ" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/txtContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_2"
-        android:fontFamily="sans-serif"
         android:includeFontPadding="false"
-        android:textColor="#828282"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@id/txtTitle"

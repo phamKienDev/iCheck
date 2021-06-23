@@ -34,9 +34,9 @@ class MoreProductVerifiedByDistributorActivity : BaseActivityMVVM(), IMoreProduc
     fun onInitView() {
         initRecyclerView()
         if (StampDetailActivity.isVietNamLanguage == false){
-            txtTitle.text = "Related Product"
+            txtTitle.setText(R.string.related_product)
         } else {
-            txtTitle.text = "Sản phẩm liên quan"
+            txtTitle.setText(R.string.san_pham_lien_quan)
         }
 
         presenter.getDataIntent(intent)
@@ -79,7 +79,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivityMVVM(), IMoreProduc
         when (errorType) {
             Constant.ERROR_UNKNOW -> {
                 if (StampDetailActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("Occurred. Please try again")
+                    adapter.setErrorCode(getString(R.string.occurred_please_try_again))
                 } else {
                     adapter.setErrorCode(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
@@ -87,7 +87,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivityMVVM(), IMoreProduc
 
             Constant.ERROR_EMPTY -> {
                 if (StampDetailActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("No Data")
+                    adapter.setErrorCode(getString(R.string.no_data))
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_du_lieu))
                 }
@@ -95,7 +95,7 @@ class MoreProductVerifiedByDistributorActivity : BaseActivityMVVM(), IMoreProduc
 
             Constant.ERROR_INTERNET -> {
                 if (StampDetailActivity.isVietNamLanguage == false){
-                    adapter.setErrorCode("Checking network. Please try again")
+                    adapter.setErrorCode(getString(R.string.checking_network_please_try_again))
                 } else {
                     adapter.setErrorCode(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 }

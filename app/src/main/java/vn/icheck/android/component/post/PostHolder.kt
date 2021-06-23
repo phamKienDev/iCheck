@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.item_post.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
+import vn.icheck.android.ICheckApplication.Companion.getString
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
@@ -56,9 +57,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewPointText
 import java.io.Serializable
 
-class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : CoroutineViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
-) {
+class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : CoroutineViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)) {
     private val interaction = PageRepository()
     private val postInteraction = PostInteractor()
 
@@ -81,30 +80,18 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setUpPin(obj: ICPost) {
         if (obj.pinned) {
             itemView.imgPin.beVisible()
-            val layoutParams = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
+            val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 setMargins(0, SizeHelper.dpToPx(10), 0, 0)
             }
-            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                 setMargins(0, 0, SizeHelper.dpToPx(22), 0)
             }
             itemView.containerPost.layoutParams = layoutParams
         } else {
             itemView.imgPin.beGone()
-            val layoutParams = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-            )
+            val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
             itemView.containerPost.layoutParams = layoutParams
-            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
+            itemView.tvPageName.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                 setMargins(0, 0, 0, 0)
             }
         }
@@ -116,29 +103,16 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             itemView.tvPageName.text = obj.page?.getName
             itemView.imgRank.beGone()
             if (obj.page!!.isVerify) {
-                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_verified_16px,
-                    0
-                )
+                itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
             } else {
                 itemView.tvPageName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
-            WidgetUtils.loadImageUrl(
-                itemView.imgLogo,
-                obj.user?.avatar,
-                R.drawable.ic_avatar_default_84px
-            )
+            WidgetUtils.loadImageUrl(itemView.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
             itemView.tvPageName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
-                    setCompoundDrawablesWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_verified_user_16dp,
-                        0
+                    setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0
                     )
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
@@ -154,10 +128,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (!obj.content.isNullOrEmpty()) {
                 beVisible()
                 text = obj.content!!.trim()
-                ViewHelper.setExpandTextWithoutAction(
-                    this,
-                    3,
-                    itemView.tvContent.context.getString(R.string.xem_them)
+                ViewHelper.setExpandTextWithoutAction(this, 3, context.getString(R.string.xem_them)
                 )
             } else {
                 beGone()
@@ -182,11 +153,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     } else {
                         obj.user?.getName
                     }
-                    ReviewBottomSheet.show(
-                        activity.supportFragmentManager,
-                        true,
-                        ICReviewBottom(name, obj.avgPoint, obj.customerCriteria)
-                    )
+                    ReviewBottomSheet.show(activity.supportFragmentManager, true, ICReviewBottom(name, obj.avgPoint, obj.customerCriteria))
                 }
             }
         }
@@ -196,8 +163,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     }
 
     private fun setupImage(obj: ICPost?) {
-        val layoutImage =
-            ((itemView as RelativeLayout).getChildAt(0) as LinearLayout).getChildAt(3) as LayoutImageInPostComponent
+        val layoutImage = ((itemView as RelativeLayout).getChildAt(0) as LinearLayout).getChildAt(3) as LayoutImageInPostComponent
 
 
         if (!obj?.media.isNullOrEmpty()) {
@@ -235,12 +201,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     private fun setupProduct(obj: ICProduct?) {
         if (obj != null) {
             itemView.layoutProduct.beVisible()
-            WidgetUtils.loadImageUrlRounded(
-                itemView.imgProduct,
-                obj.media?.find { it.type == "image" }?.content,
-                R.drawable.img_default_product_big,
-                SizeHelper.size4
-            )
+            WidgetUtils.loadImageUrlRounded(itemView.imgProduct, obj.media?.find { it.type == "image" }?.content, R.drawable.img_default_product_big, SizeHelper.size4)
             itemView.tvProduct.setTextNameProductInPost(obj.name)
             itemView.tvShopName.text = obj.owner?.name ?: ""
             itemView.layoutProduct.setOnClickListener {
@@ -278,18 +239,8 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 )
             )
         } else {
-            itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_like_off_24dp,
-                0,
-                0,
-                0
-            )
-            itemView.tvLike.setTextColor(
-                ContextCompat.getColor(
-                    itemView.context,
-                    R.color.colorSecondText
-                )
-            )
+            itemView.tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
+            itemView.tvLike.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
         }
 
         itemView.tvLike.text = TextHelper.formatCount(obj.expressiveCount)
@@ -344,44 +295,27 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
     }
 
     private fun setupComment(commentCount: Int, comments: ICCommentPost?) {
+        itemView.edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
         if (comments != null) {
             itemView.layoutComment.beVisible()
             itemView.divider39.beVisible()
 
             if (comments.page != null) {
-                WidgetUtils.loadImageUrl(
-                    itemView.imgAvatar,
-                    comments.page?.avatar,
-                    R.drawable.ic_business_v2
-                )
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.page?.avatar, R.drawable.ic_business_v2)
                 itemView.tvName.text = comments.page?.getName
                 itemView.imgLevel.beGone()
                 if (comments.page!!.isVerify) {
-                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(
-                        0,
-                        0,
-                        R.drawable.ic_verified_16px,
-                        0
-                    )
+                    itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_16px, 0)
                 } else {
                     itemView.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             } else {
-                WidgetUtils.loadImageUrl(
-                    itemView.imgAvatar,
-                    comments.user?.avatar,
-                    R.drawable.ic_user_svg
-                )
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, comments.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setImageResource(Constant.getAvatarLevelIcon16(comments.user?.rank?.level))
                 itemView.tvName.apply {
                     text = comments.user?.getName
                     if (comments.user?.kycStatus == 2) {
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            0,
-                            0,
-                            R.drawable.ic_verified_user_16dp,
-                            0
-                        )
+                        setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified_user_16dp, 0)
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
@@ -399,18 +333,12 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.containerImage.beGone()
             } else {
                 itemView.containerImage.beVisible()
-                if (comments.media!!.first()!!.type == Constant.VIDEO) {
+                if (comments.media!!.first()!!.content?.endsWith(".mp4")==true) {
                     itemView.btnPlay.beVisible()
                 } else {
                     itemView.btnPlay.beGone()
                 }
-                WidgetUtils.loadImageUrlRounded(
-                    itemView.imgImage,
-                    comments.media!![0]!!.content,
-                    R.drawable.img_default_loading_icheck,
-                    R.drawable.img_default_loading_icheck,
-                    SizeHelper.size4
-                )
+                WidgetUtils.loadImageUrlRounded(itemView.imgImage, comments.media!![0]!!.content, R.drawable.img_default_loading_icheck, R.drawable.img_default_loading_icheck, SizeHelper.size4)
             }
 
             if (commentCount > 1) {
@@ -432,27 +360,17 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             showMoreOption(obj)
         }
 
-        itemView.containerImage.setOnClickListener {
+        itemView.containerImage.onDelayClick( {
             if (!obj.comments.isNullOrEmpty()) {
-                EventBus.getDefault().post(
-                    ICMessageEvent(
-                        ICMessageEvent.Type.SHOW_FULL_MEDIA,
-                        obj.comments!![0].media
-                    )
-                )
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.comments!![0].media))
             }
-        }
+        })
 
-        itemView.btnPlay.setOnClickListener {
+        itemView.btnPlay.onDelayClick( {
             if (!obj.comments.isNullOrEmpty()) {
-                EventBus.getDefault().post(
-                    ICMessageEvent(
-                        ICMessageEvent.Type.SHOW_FULL_MEDIA,
-                        obj.comments!![0].media
-                    )
-                )
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.comments!![0].media))
             }
-        }
+        })
 
         itemView.tvLike.onDelayClick({
             likePost(obj)
@@ -467,11 +385,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                         putExtra(Constant.DATA_1, obj)
                     })
                 } else {
-                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(
-                        activity,
-                        Constant.DATA_1,
-                        obj
-                    )
+                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(activity, Constant.DATA_1, obj)
                 }
             }
         }
@@ -516,11 +430,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                         putExtra(Constant.DATA_1, obj)
                     })
                 } else {
-                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(
-                        activity,
-                        Constant.DATA_1,
-                        obj
-                    )
+                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(activity, Constant.DATA_1, obj)
 
                 }
             }
@@ -535,11 +445,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                         putExtra(Constant.DATA_1, obj)
                     })
                 } else {
-                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(
-                        activity,
-                        Constant.DATA_1,
-                        obj
-                    )
+                    ActivityUtils.startActivity<DetailPostActivity, Serializable>(activity, Constant.DATA_1, obj)
                 }
             }
         }
@@ -550,7 +456,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 )
                 return
             }
@@ -563,20 +469,19 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
 
                     response.data?.let { shareLink ->
                         ShareCompat.IntentBuilder.from(activity)
-                            .setType("text/plain")
-                            .setChooserTitle(activity.getString(R.string.chia_se))
-                            .setText(shareLink)
-                            .startChooser()
+                                .setType("text/plain")
+                                .setChooserTitle(getString(R.string.chia_se))
+                                .setText(shareLink)
+                                .startChooser()
 
-                        itemView.tvShare.text =
-                            (itemView.tvShare.text.toString().toInt() + 1).toString()
+                        itemView.tvShare.text = (itemView.tvShare.text.toString().toInt() + 1).toString()
                     }
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     val message = error?.message
-                        ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     ToastUtils.showLongError(activity, message)
                 }
             })
@@ -589,24 +494,15 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 object : PostOptionDialog(activity, obj) {
                     override fun onPin(isPin: Boolean) {
                         if (obj.pinned) {
-                            DialogHelper.showConfirm(
-                                dialog.context,
-                                "Bạn chắc chắn muốn bỏ ghim bài viết này?",
-                                null,
-                                "Để sau",
-                                "Đồng ý",
-                                true,
-                                null,
-                                R.color.colorPrimary,
-                                object : ConfirmDialogListener {
-                                    override fun onDisagree() {
+                            dialog.context.apply {DialogHelper.showConfirm(this, getString(R.string.ban_chac_chan_muon_bo_ghim_bai_viet_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, null, R.color.colorPrimary, object : ConfirmDialogListener {
+                                override fun onDisagree() {
 
-                                    }
+                                }
 
-                                    override fun onAgree() {
-                                        pinPost(post, isPin)
-                                    }
-                                })
+                                override fun onAgree() {
+                                    pinPost(post, isPin)
+                                }
+                            })}
                         } else {
                             pinPost(post, isPin)
                         }
@@ -641,7 +537,8 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+
                 )
                 return
             }
@@ -675,16 +572,11 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                                     object : RewardLoginCallback {
                                         override fun onLogin() {
                                             activity simpleStartActivity IckLoginActivity::class.java
-
                                         }
 
                                         override fun onRegister() {
-                                            activity.simpleStartForResultActivity(
-                                                IckLoginActivity::class.java,
-                                                1
-                                            )
-
-                                        }
+                                            activity.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
+                                    }
 
                                         override fun onDismiss() {
                                         }
@@ -693,12 +585,12 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                         } else {
                             itemView.context.showShortErrorToast(
                                 error?.message
-                                    ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                             )
                         }
 
-                    }
-                })
+                }
+            })
         }
     }
 
@@ -708,17 +600,14 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 ToastUtils.showLongError(
                     activity,
-                    activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 )
                 return
             }
 
             DialogHelper.showLoading(activity)
 
-            interaction.pinPostOfPage(
-                objPost.id,
-                isPin,
-                objPost.page?.id,
+            interaction.pinPostOfPage(objPost.id, isPin, objPost.page?.id,
                 object : ICNewApiListener<ICResponse<ICPost>> {
                     override fun onSuccess(obj: ICResponse<ICPost>) {
                         DialogHelper.closeLoading(activity)
@@ -736,7 +625,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                     override fun onError(error: ICResponseCode?) {
                         DialogHelper.closeLoading(activity)
                         val message = error?.message
-                            ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                         ToastUtils.showLongError(activity, message)
                     }
                 })

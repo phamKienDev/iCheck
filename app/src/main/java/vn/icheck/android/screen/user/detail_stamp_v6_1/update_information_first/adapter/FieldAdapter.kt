@@ -9,13 +9,17 @@ import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import vn.icheck.android.R
 import vn.icheck.android.base.dialog.date_time.callback.DateTimePickerListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.`null`.NullHolder
 import vn.icheck.android.databinding.*
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICFieldGuarantee
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
+import vn.icheck.android.ichecklibs.util.setText
 
 class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -133,12 +137,14 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitle.text = obj.name + " (*)"
+                binding.tvTitle.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitle.text = obj.name
             }
             binding.edtInput.apply {
-                hint = "Nhập " + obj.name
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
+                hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
                 addTextChangedListener(textWatcher)
@@ -166,12 +172,14 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleTextArea.text = obj.name + " (*)"
+                binding.tvTitleTextArea.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleTextArea.text = obj.name
             }
             binding.edtTextArea.apply {
-                hint = "Nhập " + obj.name
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
+                hint = context.getString(R.string.nhap_s, obj.name)
                 removeTextChangedListener(textWatcher)
                 setText(obj.string_values)
                 addTextChangedListener(textWatcher)
@@ -186,7 +194,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleSelect.text = obj.name + " (*)"
+                binding.tvTitleSelect.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleSelect.text = obj.name
             }
@@ -195,12 +203,13 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val list = obj.valueF
                 val objHint = ValueFItem()
                 objHint.id = null
-                objHint.value = "Chọn " + obj.name
+                objHint.value = itemView.context.getString(R.string.chon_s, obj.name)
                 list?.add(objHint)
 
                 val adapter = HintSpinnerAdapter(binding.root.context, obj.valueF, android.R.layout.simple_spinner_item)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinner.adapter = adapter
+                binding.spinner.background = ViewHelper.bgWhiteStrokeLineColor1Corners40(itemView.context)
 
                 val selectedPosition = if (!obj.string_values.isNullOrEmpty()) {
                     try {
@@ -238,7 +247,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleRadiobox.text = obj.name + " (*)"
+                binding.tvTitleRadiobox.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleRadiobox.text = obj.name
             }
@@ -264,7 +273,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleCheckbox.text = obj.name + " (*)"
+                binding.tvTitleCheckbox.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleCheckbox.text = obj.name
             }
@@ -282,12 +291,14 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleDate.text = obj.name + " (*)"
+                binding.tvTitleDate.setText(R.string.s_bat_buoc, obj.name)
             } else {
                 binding.tvTitleDate.text = obj.name
             }
 
             binding.edtInputDate.apply {
+                background = ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                setHintTextColor(ColorManager.getSecondTextColor(itemView.context))
                 text = vn.icheck.android.ichecklibs.TimeHelper.convertDateTimeSvToDateVn(obj.string_values)
 
                 setOnClickListener {

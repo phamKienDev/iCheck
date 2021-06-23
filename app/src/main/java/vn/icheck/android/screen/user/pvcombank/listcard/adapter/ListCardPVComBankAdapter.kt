@@ -17,8 +17,11 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemCardBankBinding
 import vn.icheck.android.databinding.ItemErrorPvcombankBinding
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankListener
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -117,13 +120,15 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
         }
     }
 
-    inner class ViewHolder(parent: ViewGroup, val binding: ItemCardBankBinding = ItemCardBankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICListCardPVBank>(binding.root) {
+    inner class ViewHolder(parent: ViewGroup, val binding: ItemCardBankBinding = ItemCardBankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        BaseViewHolder<ICListCardPVBank>(binding.root) {
         private var expDate = ""
         private var validFrom = ""
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICListCardPVBank) {
             listener(obj)
+            binding.tvUsed.background = ViewHelper.bgWhiteStrokeGreen1Corners4(binding.tvUsed.context)
 
             if (!obj.expDate.isNullOrEmpty() && obj.expDate!!.length == 6) {
                 val repYear = obj.expDate!!.substring(0, 4)
@@ -141,22 +146,22 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
 
             if (obj.isShow) {
                 binding.btnShowHide.setImageResource(R.drawable.ic_eye_off_white_24px)
-                binding.tvMoney.text = "${TextHelper.formatMoney(obj.avlBalance ?: "0")}đ"
+                binding.tvMoney.setText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
                 binding.tvCardNumber.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvName.text = obj.embossName ?: getString(R.string.dang_cap_nhat)
                 binding.tvDateEnd.text = expDate
-                binding.tvCCV.text = "CCV: ***"
+                binding.tvCCV.setText(R.string.ccv)
 
-                binding.tvAvlBalance.text = TextHelper.formatMoney(obj.avlBalance ?: "0") + "đ"
+                binding.tvAvlBalance.setText(R.string.s_d, TextHelper.formatMoney(obj.avlBalance ?: "0"))
                 binding.tvNumberCard.text = obj.cardMasking ?: getString(R.string.dang_cap_nhat)
                 binding.tvExpDate.text = expDate
             } else {
                 binding.btnShowHide.setImageResource(R.drawable.ic_eye_on_white_24px)
-                binding.tvMoney.text = "*** đ"
+                binding.tvMoney.setText(R.string.d)
                 binding.tvCardNumber.text = "**** **** **** ****"
                 binding.tvDateEnd.text = "**/**"
                 binding.tvName.text = "**********"
-                binding.tvCCV.text = "CCV: ***"
+                binding.tvCCV.setText(R.string.ccv)
 
                 binding.tvAvlBalance.text = "**********"
                 binding.tvNumberCard.text = "**** **** **** ****"
@@ -187,27 +192,30 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
             binding.btnCopyCard.setOnClickListener {
                 if (item.isShow) {
                     val clipboard = itemView.context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("Mã thẻ", binding.tvNumberCard.text.toString())
+                    val clip = ClipData.newPlainText(itemView.context.getString(R.string.ma_the), binding.tvNumberCard.text.toString())
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(itemView.context, "Đã copy mã thẻ")
+                    ToastUtils.showShortSuccess(itemView.context, itemView.context.getString(R.string.da_copy_ma_the))
                 } else {
-                    ToastUtils.showShortError(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
                 }
             }
 
             binding.btnEndDate.setOnClickListener {
                 if (item.isShow) {
                     val clipboard = itemView.context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("Hạn sử dụng", binding.tvExpDate.text.toString())
+                    val clip = ClipData.newPlainText(itemView.context.getString(R.string.han_su_dung), binding.tvExpDate.text.toString())
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(itemView.context, "Đã copy hạn sử dụng")
+                    ToastUtils.showShortSuccess(itemView.context, itemView.context.getString(R.string.da_copy_han_su_dung))
                 } else {
-                    ToastUtils.showShortError(itemView.context, "Bạn cần phải hiển thị đầy đủ thông tin")
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.ban_can_phai_hien_thi_day_du_thong_tin))
                 }
             }
 
-            binding.btnUseDefault.setOnClickListener {
-                listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+            binding.btnUseDefault.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                setOnClickListener {
+                    listener.onClickUseDefaulCard(item, absoluteAdapterPosition)
+                }
             }
 
             binding.tvLockCard.setOnClickListener {
@@ -224,7 +232,7 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
 
             binding.tvInfoCard.setOnClickListener {
                 if (item.cardMasking?.contains("*") == true) {
-                   listener.onClickShow(item, absoluteAdapterPosition)
+                    listener.onClickShow(item, absoluteAdapterPosition)
                 }
             }
             binding.tvActionAuthen.setOnClickListener {
@@ -233,9 +241,13 @@ class ListCardPVComBankAdapter(private val listener: CardPVComBankListener) : Re
         }
     }
 
-    inner class ErrorHolder(parent: ViewGroup, val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<Int>(binding.root) {
+    inner class ErrorHolder(
+        parent: ViewGroup,
+        val binding: ItemErrorPvcombankBinding = ItemErrorPvcombankBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    ) : BaseViewHolder<Int>(binding.root) {
 
         override fun bind(obj: Int) {
+            binding.btnTryAgain.background=ViewHelper.bgOutlineSecondary1Corners6(itemView.context)
             when (obj) {
                 Constant.ERROR_EMPTY -> {
                     binding.btnTryAgain.visibility = View.INVISIBLE

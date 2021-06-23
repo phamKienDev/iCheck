@@ -4,6 +4,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_search_result.view.*
@@ -15,6 +16,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -23,6 +26,8 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_product_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICProductTrend>) {
+        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp,"#00BAF2")
+
         Handler().post {
             if (list.isNullOrEmpty()) {
                 itemView.tvTitle.beGone()
@@ -34,6 +39,7 @@ class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.
                 itemView.tv_xem_them.beVisible()
             }
         }
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
 
         val adapter = ItemProductSearchAdapter(list)
         itemView.rcv_product_search.adapter = adapter

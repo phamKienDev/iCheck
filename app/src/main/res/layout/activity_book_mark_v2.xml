@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context="vn.icheck.android.screen.user.bookmark.BookMarkV2Activity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
@@ -26,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,8 +33,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Sản phẩm đã thích"
-            android:textColor="@color/colorPrimary" />
+            android:text="@string/san_pham_da_thich" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgHome"
@@ -53,26 +50,23 @@
             android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_cart_blue_no_bg_24"
             app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:layout_marginLeft="@dimen/size_16"
         android:layout_marginTop="@dimen/size_13"
         android:layout_marginRight="@dimen/size_16"
-        android:background="@drawable/bg_gray_f0_corners_4"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:hint="Tìm kiếm..."
-        android:textColor="@color/black_21_v2"
+        android:hint="@string/tim_kiem_x"
         android:paddingLeft="@dimen/size_12"
         android:paddingRight="@dimen/size_10"
         android:singleLine="true"
         android:imeOptions="actionSearch"
-        android:textColorHint="@color/colorDisableText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -93,11 +87,10 @@
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@id/edtSearch" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/darkGray6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view">
 
@@ -106,5 +99,5 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/size_6"
             android:layout_height="match_parent" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

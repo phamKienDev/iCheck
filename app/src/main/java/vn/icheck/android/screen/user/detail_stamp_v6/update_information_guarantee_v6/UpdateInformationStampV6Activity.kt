@@ -11,6 +11,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGuaranteeV6
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
@@ -41,7 +42,10 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     fun onInitView() {
-        txtTitle.text = "Thông tin khách hàng"
+        txtTitle.setText(R.string.thong_tin_khach_hang)
+
+        setupView()
+
         presenter.getDataIntent(intent)
         listener()
     }
@@ -50,13 +54,31 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
         return true
     }
 
+    private fun setupView() {
+        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+        ViewHelper.bgWhiteStrokeLineColor1Corners40(this).apply {
+            edtPhone.background = this
+            edtName.background = this
+            edtEmail.background = this
+            edtAddress.background = this
+            edtShop.background = this
+        }
+    }
+
     private fun listener() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
 
         btnUpdate.setOnClickListener {
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtShop.text.toString(), midStore)
+            presenter.validUpdateInformationGuarantee(
+                edtName.text.toString(),
+                edtPhone.text.toString(),
+                edtEmail.text.toString(),
+                edtAddress.text.toString(),
+                edtShop.text.toString(),
+                midStore
+            )
         }
 
         layoutSelectCity.setOnClickListener {
@@ -123,7 +145,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameCityFail() {
-        tvCities.text = "Tùy chọn"
+        tvCities.setText(R.string.tuy_chon)
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
@@ -131,7 +153,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameDistrictFail() {
-        tvDistricts.text = "Tùy chọn"
+        tvDistricts.setText(R.string.tuy_chon)
     }
 
     override fun showError(errorMessage: String) {
@@ -154,7 +176,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
         val intent = Intent()
         intent.putExtra(Constant.DATA_1, objUpdate)
         setResult(Activity.RESULT_OK, intent)
-        showShortSuccess("Cập nhật thông tin thành công")
+        showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         onBackPressed()
     }
 

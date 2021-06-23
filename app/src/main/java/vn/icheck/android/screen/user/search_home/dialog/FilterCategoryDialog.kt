@@ -13,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -29,6 +28,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.search.SearchInteractor
 import vn.icheck.android.network.models.ICCategorySearch
@@ -50,6 +50,9 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        edt_search.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(requireContext())
+
         rcv_category.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(500))
         rcv_category.adapter = adapter
         rcv_category.layoutManager = LinearLayoutManager(context)
@@ -172,12 +175,12 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             //set màu xanh cho dấu > và category cuối cùng
             for (i in 0 until cates.length) {
                 if (cates[i].toString() == ">") {
-                    spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(ForegroundColorSpan(ColorManager.getPrimaryColor(tv_list_category.context)), i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             val lastItem = cates.indexOf(cateString.last())
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorPrimary)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ColorManager.getPrimaryColor(tv_list_category.context)), lastItem, lastItem + cateString.last().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             //callback Parent khi ấn Tất cả
             val callCateParent = object : ClickableSpan() {
@@ -198,7 +201,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
             }
             val firstItem = cates.indexOf(cateString.first())
             spannable.setSpan(callCateParent, firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannable.setSpan(ForegroundColorSpan(ColorManager.getSecondTextColor(tv_list_category.context)), firstItem, firstItem + cateString.first().length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
             // callback các category ở giữa
             if (cateString.size > 2) {
@@ -228,7 +231,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
                                 }
                             }
                         }, midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(tv_list_category.context, R.color.colorSecondText)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        spannable.setSpan(ForegroundColorSpan(ColorManager.getSecondTextColor(tv_list_category.context)), midItem, midItem + cateString[i].length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
             }

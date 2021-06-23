@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.visibleOrGone
@@ -72,7 +73,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
 
         fun createView(context: Context): LinearLayout {
             return LinearLayout(context).also { layoutParent ->
-                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0,  SizeHelper.size10)
+                layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size10, 0,  0)
                 layoutParent.orientation = LinearLayout.VERTICAL
 
                 // Text content
@@ -82,7 +83,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
                         Color.WHITE,
                         14f).also {
-                    it.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccentRed))
+                    it.setBackgroundColor(ColorManager.getAccentRedColor(context))
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_group_error_card, 0, 0, 0)
                 }.also {
                     it.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
@@ -94,8 +95,10 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                 layoutParent.addView(LinearLayout(context).also { layoutBottom ->
                     layoutBottom.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size40)
                     layoutBottom.orientation = LinearLayout.HORIZONTAL
-                    layoutBottom.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                    layoutBottom.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutBottom.context))
                     layoutBottom.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
+
+                    val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
 
                     // Layout start
                     layoutBottom.addView(FrameLayout(context).also { layoutStart ->
@@ -109,7 +112,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.colorPrimary),
+                                primaryColor,
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_phone_blue_18dp, 0, 0, 0)
@@ -124,7 +127,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size1, LinearLayout.LayoutParams.MATCH_PARENT).also { params ->
                             params.setMargins(0, SizeHelper.size14, 0, SizeHelper.size14)
                         }
-                        it.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+                        it.setBackgroundColor(ColorManager.getLineColor(context))
                     })
 
                     // Layout end
@@ -139,7 +142,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                                 },
                                 null,
                                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                                ContextCompat.getColor(context, R.color.colorPrimary),
+                                primaryColor,
                                 12f).also {
                             it.compoundDrawablePadding = SizeHelper.size6
                             it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_circle_help_blue_18dp, 0, 0, 0)

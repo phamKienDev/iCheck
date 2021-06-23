@@ -182,12 +182,11 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
                 if (confirmLogin == null) {
                     confirmLogin = object : ConfirmDialog(
                         it,
-                        "Thông báo",
-                        "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại!",
-                        "Để sau",
-                        "Đăng nhập ngay",
-                        false
-                    ) {
+                        getString(R.string.thong_bao),
+                        getString(R.string.phien_dang_nhap_da_het_han_vui_long_dang_nhap_lai),
+                        getString(R.string.de_sau),
+                        getString(R.string.dang_nhap_ngay),
+                        false) {
                         override fun onDisagree() {
 
                         }
@@ -314,17 +313,11 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivity<T>(this)
     }
 
-    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(
-        key: String,
-        value: String
-    ) {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivity(key: String, value: String) {
         ActivityUtils.startActivity<T>(this, key, value)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivity(
-        key: String,
-        value: O
-    ) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivity(key: String, value: O) {
         ActivityUtils.startActivity<T, O>(this, key, value)
     }
 
@@ -340,19 +333,11 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityForResult(activity, intent, requestCode)
     }
 
-    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(
-        key: String,
-        value: String,
-        requestCode: Int
-    ) {
+    inline fun <reified T : AppCompatActivity> AppCompatActivity.startActivityForResult(key: String, value: String, requestCode: Int) {
         ActivityUtils.startActivityForResult<T>(this, key, value, requestCode)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityForResult(
-        key: String,
-        value: O,
-        requestCode: Int
-    ) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityForResult(key: String, value: O, requestCode: Int) {
         ActivityUtils.startActivityForResult<T, O>(this, key, value, requestCode)
     }
 
@@ -364,10 +349,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
         ActivityUtils.startActivityAndFinish<T>(this)
     }
 
-    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityAndFinish(
-        key: String,
-        value: O
-    ) {
+    inline fun <reified T : AppCompatActivity, O : Serializable> AppCompatActivity.startActivityAndFinish(key: String, value: O) {
         ActivityUtils.startActivityAndFinish<T, O>(this, key, value)
     }
 

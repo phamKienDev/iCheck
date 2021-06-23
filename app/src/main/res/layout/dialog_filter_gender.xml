@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog"
     android:paddingBottom="@dimen/size_20">
 
     <include
         android:id="@+id/layoutHeader"
         layout="@layout/layout_title_filter_search" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/divider31"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvAll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -30,22 +28,20 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:text="@string/tat_ca"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider31" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/divider32"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAll" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvFemale"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -57,23 +53,21 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_14"
         android:text="@string/nu"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider32" />
 
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/divider33"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvFemale" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvMale"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -83,22 +77,20 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:text="@string/nam"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider33" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/divider34"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMale" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvOther"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
@@ -110,34 +102,28 @@
         android:paddingEnd="@dimen/size_12"
         android:paddingBottom="@dimen/size_14"
         android:text="@string/khac"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/divider34" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider30"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_12"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOther" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextSubheader2Primary
         android:id="@+id/tvClear"
         android:layout_width="@dimen/size_120"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
         android:paddingBottom="@dimen/size_8"
         android:text="@string/thiet_lap_lai"
-        android:textColor="@color/light_blue"
-        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider30" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

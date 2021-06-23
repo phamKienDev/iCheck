@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.CitiesItem
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.selectprovincestamp.adapter.SelectProvinceStampAdapter
@@ -34,6 +35,7 @@ class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView 
 
     fun onInitView() {
         initToolbar()
+        initView()
         initRecyclerView()
         initListener()
 
@@ -43,7 +45,7 @@ class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
         if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select City"
+            txtTitle.setText(R.string.select_city)
         } else {
             txtTitle.setText(R.string.chon_tinh_thanh_pho)
         }
@@ -51,6 +53,10 @@ class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView 
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun initView() {
+          edtSearch.background= ViewHelper.bgTransparentStrokeLineColor1Corners4(this@SelectProvinceStampActivity)
     }
 
     private fun initRecyclerView() {

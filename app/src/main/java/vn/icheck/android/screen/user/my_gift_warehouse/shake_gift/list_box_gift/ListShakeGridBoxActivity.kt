@@ -21,6 +21,7 @@ import vn.icheck.android.constant.CAMPAIGN_ID
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.LOGO
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICGridBoxShake
@@ -61,6 +62,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         listenerGetData()
         initRecycleView()
         listener()
+
+        constraintLayout.background=ViewHelper.bgWhiteCornersTop25(this)
 
         val campaign = intent?.getSerializableExtra(Constant.DATA_1)
         if (campaign != null) {
@@ -172,6 +175,8 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
             onBackPressed()
         }
 
+        tvAddMoreTurn.background=ViewHelper.bgAccentCyanCorners4(this)
+
         tvAddMoreTurn.setOnClickListener {
             viewModel.idCampaign?.let { id ->
                 tvAddMoreTurn.isEnabled = false
@@ -264,13 +269,13 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         if (viewModel.typeCheckDialogGift == 1) {
             if (lifecycleScope.isActive) {
                 if (viewModel.isMissionSuccess) {
-                    showEmpityGiftDialog("Bạn đã hết lượt mở quà rồi!")
+                    showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
                 } else {
-                    showEmpityGiftDialog("Bạn chưa có lượt mở quà nào!")
+                    showEmpityGiftDialog(getString(R.string.ban_chua_co_luot_mo_qua_nao))
                 }
             }
         } else {
-            showEmpityGiftDialog("Bạn đã hết lượt mở quà rồi!")
+            showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
         }
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context="vn.icheck.android.screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity">
 
@@ -52,20 +52,16 @@
             android:textSize="@dimen/font_14"
             android:textStyle="normal" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICButtonSecondaryBgWhiteStrokeBlue1
             android:id="@+id/btnAgainError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_40"
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_40"
-            android:background="@drawable/bg_corner_solid_white_strokke_blue"
             android:fontFamily="sans-serif-medium"
-            android:text="Thử Lại"
-            android:textColor="#3c5a99"
+            android:text="@string/thu_lai"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
-
     </LinearLayout>
-
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

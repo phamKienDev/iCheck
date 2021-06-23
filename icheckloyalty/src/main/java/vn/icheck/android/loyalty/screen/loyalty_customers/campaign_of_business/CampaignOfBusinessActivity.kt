@@ -32,7 +32,7 @@ class CampaignOfBusinessActivity : BaseActivityGame(), IRecyclerViewCallback {
         imgBack.setOnClickListener {
             onBackPressed()
         }
-        txtTitle.text = "Chương trình"
+        txtTitle.setText(R.string.chuong_trinh)
     }
 
     private fun initRecyclerView() {

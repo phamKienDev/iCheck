@@ -6,6 +6,8 @@ import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import vn.icheck.android.loyalty.R;
+
 public class ProgressBarAnimation extends Animation {
     private ProgressBar progressBar;
     private float from;
@@ -27,7 +29,7 @@ public class ProgressBarAnimation extends Animation {
         progressBar.setProgress((int) value);
         try {
             if ((int) value < 86) {
-                progressTv.setText(String.format("%d%%", (int) value));
+                progressTv.setText(progressTv.getContext().getResources().getString(R.string.percent, (int) value));
             } else {
                 progressTv.setVisibility(View.GONE);
             }

@@ -75,10 +75,10 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                 onErrorProvince.postValue("")
 
                 district = null
-                onSetDistrict.postValue("Tùy chọn")
+                onSetDistrict.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
 
                 ward = null
-                onSetWard.postValue("Tùy chọn")
+                onSetWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
             }
         }
     }
@@ -97,7 +97,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
                 onErrorDistrict.postValue("")
 
                 ward = null
-                onSetWard.postValue("Tùy chọn")
+                onSetWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.tuy_chon))
             }
         }
     }
@@ -127,11 +127,11 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         when {
             name.isNullOrEmpty() -> {
                 isSuccess = false
-                onErrorName.postValue("Vui lòng nhập tên")
+                onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.vui_long_nhap_ten))
             }
             name.length > 255 -> {
                 isSuccess = false
-                onErrorName.postValue("Họ và tên không nhập quá 255 kí tự")
+                onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.ho_va_ten_khong_nhap_qua_255_ki_tu))
             }
             else -> {
                 onErrorName.postValue("")
@@ -149,34 +149,34 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         if (!email.isNullOrEmpty()) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 isSuccess = false
-                onErrorEmail.postValue("Email không đúng định dạng")
+                onErrorEmail.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.email_khong_dung_dinh_dang))
             }
         }
 
         if (province?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorProvince.postValue("Chọn Tỉnh thành")
+            onErrorProvince.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_tinh_thanh))
         } else {
             onErrorProvince.postValue("")
         }
 
         if (district?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorDistrict.postValue("Chọn Quận/Huyện")
+            onErrorDistrict.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_quan_huyen))
         } else {
             onErrorDistrict.postValue("")
         }
 
         if (ward?.name.isNullOrEmpty()) {
             isSuccess = false
-            onErrorWard.postValue("Chọn Phường/Xã")
+            onErrorWard.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chon_phuong_xa))
         } else {
             onErrorWard.postValue("")
         }
 
         if (address.isNullOrEmpty()) {
             isSuccess = false
-            onErrorAddress.postValue("Vui lòng nhập địa chỉ")
+            onErrorAddress.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.vui_long_nhap_dia_chi))
         } else {
             onErrorAddress.postValue("")
         }
@@ -248,7 +248,7 @@ class AcceptShipGiftViewModel : BaseViewModel<Any>() {
         }
 
         if (name.length > 100) {
-            onErrorName.postValue("Tên bạn nhập quá dài!")
+            onErrorName.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.ten_ban_nhap_qua_dai))
             return
         }
 

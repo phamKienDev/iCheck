@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentAddShipAddressBinding
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.model.location.CityItem
 import vn.icheck.android.screen.location.CITY
 import vn.icheck.android.screen.location.CityPicker
@@ -46,6 +50,7 @@ class AddShipAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
         initBinding()
         viewModel.arrayAddress.firstOrNull {
             it?.id == viewModel.getAddressUpdateId() && it.id != -1L
@@ -65,6 +70,33 @@ class AddShipAddressFragment : Fragment() {
 
             binding.edtAddress.setText(it.address)
         }
+    }
+
+    private fun setupView() {
+        ColorManager.getNormalTextColor(requireContext()).apply {
+            binding.edtLastName.setTextColor(this)
+            binding.edtFirstName.setTextColor(this)
+            binding.edtPhone.setTextColor(this)
+            binding.edtTinhThanh.setTextColor(this)
+            binding.edtQuan.setTextColor(this)
+            binding.edtPhuongXa.setTextColor(this)
+            binding.edtAddress.setTextColor(this)
+        }
+
+        ColorManager.getDisableTextColor(requireContext()).apply {
+            binding.edtLastName.setHintTextColor(this)
+            binding.edtFirstName.setHintTextColor(this)
+            binding.edtPhone.setHintTextColor(this)
+            binding.edtTinhThanh.setHintTextColor(this)
+            binding.edtQuan.setHintTextColor(this)
+            binding.edtPhuongXa.setHintTextColor(this)
+            binding.edtAddress.setHintTextColor(this)
+        }
+
+
+        binding.edtQuan.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.edtTinhThanh.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
+        binding.edtPhuongXa.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
     }
 
     private fun initBinding() {
@@ -95,7 +127,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getCurrentCity()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showShortErrorToast("Vui lòng chọn tỉnh/thành")
+                requireContext().showShortErrorToast( getString(R.string.vui_long_chon_tinh_thanh))
             }
         }
         binding.edtPhuongXa.setOnClickListener {
@@ -109,7 +141,7 @@ class AddShipAddressFragment : Fragment() {
                 }, viewModel.getDistrict()!!.id)
                 cityPicker?.show(requireActivity().supportFragmentManager, null)
             } else {
-                requireContext().showShortErrorToast("Vui lòng chọn quận/huyện")
+                requireContext().showShortErrorToast(getString(R.string.vui_long_chon_quan_huyen))
             }
         }
         binding.edtAddress.addTextChangedListener {
@@ -124,53 +156,56 @@ class AddShipAddressFragment : Fragment() {
         binding.edtPhone.addTextChangedListener {
             viewModel.setPhone(it?.trim().toString())
         }
-        binding.btnConfirm.setOnClickListener {
-            when {
-                binding.edtLastName.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng nhập họ")
-                    binding.edtLastName.requestFocus()
-                }
-                binding.edtFirstName.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng nhập tên đệm và tên")
-                    binding.edtFirstName.requestFocus()
-                }
-                binding.edtPhone.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng nhập số điện thoại")
-                    binding.edtPhone.requestFocus()
-                }
-                !binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
-                    requireContext().showShortErrorToast("Số điện thoại không đúng định dạng")
-                    binding.edtPhone.requestFocus()
-                }
-                binding.edtTinhThanh.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng chọn tỉnh/thành")
-                    binding.edtTinhThanh.requestFocus()
-                }
-                binding.edtQuan.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng chọn quận/huyện")
-                    binding.edtQuan.requestFocus()
-                }
-                binding.edtPhuongXa.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng chọn phường/xã")
-                    binding.edtPhuongXa.requestFocus()
-                }
-                binding.edtAddress.text?.trim().isNullOrEmpty() -> {
-                    requireContext().showShortErrorToast("Vui lòng nhập địa chỉ")
-                    binding.edtAddress.requestFocus()
-                }
-                else -> {
-                    viewModel.createShipAddress().observe(viewLifecycleOwner, {
-                        if (it.statusCode == "200") {
-                            requireContext().showShortSuccessToast("Cập nhật địa chỉ thành công")
+        binding.btnConfirm.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener { view ->
+                when {
+                    binding.edtLastName.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_ho))
+                        binding.edtLastName.requestFocus()
+                    }
+                    binding.edtFirstName.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_ten_dem_va_ten))
+                        binding.edtFirstName.requestFocus()
+                    }
+                    binding.edtPhone.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_so_dien_thoai))
+                        binding.edtPhone.requestFocus()
+                    }
+                    !binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
+                        requireContext().showShortErrorToast(getString(R.string.so_dien_thoai_khong_dung_dinh_dang))
+                        binding.edtPhone.requestFocus()
+                    }
+                    binding.edtTinhThanh.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_chon_tinh_thanh))
+                        binding.edtTinhThanh.requestFocus()
+                    }
+                    binding.edtQuan.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_chon_quan_huyen))
+                        binding.edtQuan.requestFocus()
+                    }
+                    binding.edtPhuongXa.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_chon_phuong_xa))
+                        binding.edtPhuongXa.requestFocus()
+                    }
+                    binding.edtAddress.text?.trim().isNullOrEmpty() -> {
+                        requireContext().showShortErrorToast(getString(R.string.vui_long_nhap_dia_chi))
+                        binding.edtAddress.requestFocus()
+                    }
+                    else -> {
+                        viewModel.createShipAddress().observe(viewLifecycleOwner, {
+                            if (it.statusCode == "200") {
+                                requireContext().showShortSuccessToast(getString(R.string.cap_nhat_dia_chi_thanh_cong))
 //                            if (!viewModel.isUpdate()) {
 //                                requireContext().showSimpleSuccessToast("Gửi địa chỉ thành công!")
 //                            } else {
 //                                requireContext().showSimpleSuccessToast("Cập nhật địa chỉ thành công")
 //                            }
-                            viewModel.moveToChoose()
-                        }
-                    })
+                                viewModel.moveToChoose()
+                            }
+                        })
 
+                    }
                 }
             }
         }

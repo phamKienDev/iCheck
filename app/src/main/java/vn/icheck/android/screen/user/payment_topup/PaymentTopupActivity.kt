@@ -23,6 +23,7 @@ import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -35,6 +36,7 @@ import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.payment_topup_success.BuyTopupSuccessActivity
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.setText
 
 class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePhone> {
 
@@ -57,7 +59,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
         initRecycleView()
         listenerGetData()
         getCoin()
-        txtTitle.text = "Thanh toán"
+        txtTitle.setText(R.string.thanh_toan)
         listener()
     }
 
@@ -126,7 +128,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     DialogHelper.showNotification(this, null, R.string.khong_the_truy_cap_vui_long_thu_lai_sau, null, false, object : NotificationDialogListener {
@@ -137,7 +139,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })
@@ -175,28 +177,31 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
     }
 
     private fun listener() {
-        btnAcceptPayment.setOnClickListener {
-            if (!adapterPaymentType.selectedItem?.agent?.code.isNullOrEmpty()) {
-                when (adapterPaymentType.selectedItem?.agent?.code) {
-                    "ICHECK-XU" -> {
-                        if (sodutaikhoan != null && mValue != null) {
-                            if (sodutaikhoan!! >= mValue!!) {
+        btnAcceptPayment.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (!adapterPaymentType.selectedItem?.agent?.code.isNullOrEmpty()) {
+                    when (adapterPaymentType.selectedItem?.agent?.code) {
+                        "ICHECK-XU" -> {
+                            if (sodutaikhoan != null && mValue != null) {
+                                if (sodutaikhoan!! >= mValue!!) {
 
-                                if (mType == 1) {
-                                    mPhone?.let { phone -> viewModel.rechargeCard(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!, phone) }
+                                    if (mType == 1) {
+                                        mPhone?.let { phone -> viewModel.rechargeCard(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!, phone) }
+                                    } else {
+                                        viewModel.buyTopup(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!)
+                                    }
                                 } else {
-                                    viewModel.buyTopup(mType, serviceId!!, mValue!!, adapterPaymentType.selectedItem?.agent?.code!!)
+                                    onItemClick(1, null)
                                 }
-                            } else {
-                                onItemClick(1, null)
                             }
                         }
-                    }
-                    else -> {
-                        if (mType == 1) {
-                            viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://recharge_card_success", mPhone, serviceId!!, "rechargecard")
-                        } else {
-                            viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://buy_card_success", null, serviceId!!, "buycard")
+                        else -> {
+                            if (mType == 1) {
+                                viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://recharge_card_success", mPhone, serviceId!!, "rechargecard")
+                            } else {
+                                viewModel.vnpayCard(adapterPaymentType.selectedItem?.agent?.code!!, mType, mValue!!, "icheck://buy_card_success", null, serviceId!!, "buycard")
+                            }
                         }
                     }
                 }
@@ -229,7 +234,7 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                     if (sodutaikhoan!! >= mValue!!) {
                         imgErrorCoin.visibility = View.INVISIBLE
 
-                        btnAcceptPayment.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                        btnAcceptPayment.background = ViewHelper.bgPrimaryCorners4(this@PaymentTopupActivity)
                         btnAcceptPayment.isEnabled = true
                     } else {
                         imgErrorCoin.visibility = View.VISIBLE
@@ -245,13 +250,13 @@ class PaymentTopupActivity : BaseActivityMVVM(), ItemClickListener<ICRechargePho
                         btnAcceptPayment.isEnabled = false
                     }
                 }
-                tvTotalMoney.text = TextHelper.formatMoneyPhay(mValue) + " Xu"
+                tvTotalMoney.setText(R.string.s_xu, TextHelper.formatMoneyPhay(mValue))
             }
             else -> {
                 imgErrorCoin.visibility = View.INVISIBLE
-                btnAcceptPayment.background = ContextCompat.getDrawable(this, R.drawable.bg_corners_4_light_blue_solid)
+                btnAcceptPayment.background = ViewHelper.bgPrimaryCorners4(this@PaymentTopupActivity)
                 btnAcceptPayment.isEnabled = true
-                tvTotalMoney.text = TextHelper.formatMoneyPhay(mValue) + " đ"
+                tvTotalMoney.setText(R.string.s_space_d, TextHelper.formatMoneyPhay(mValue))
             }
         }
     }

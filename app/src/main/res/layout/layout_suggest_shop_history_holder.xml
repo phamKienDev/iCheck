@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_12"
@@ -10,19 +10,16 @@
     android:paddingBottom="11.4dp"
     android:paddingStart="14.4dp"
     android:paddingEnd="@dimen/size_7"
-    android:background="@drawable/bg_corners_white_4_border_05"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_medium"
         android:textSize="@dimen/font_14"
         android:gravity="center|start"
-        android:textColor="#057dda"
         android:drawablePadding="9.4dp"
         android:drawableStart="@drawable/ic_star_24_px"
         android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
-        android:text="Gợi ý cửa hàng dành cho bạn"/>
+        android:text="@string/goi_y_cua_hang_danh_cho_ban"/>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>

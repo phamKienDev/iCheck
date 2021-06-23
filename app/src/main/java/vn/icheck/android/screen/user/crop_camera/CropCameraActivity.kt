@@ -108,7 +108,7 @@ class CropCameraActivity : BaseActivityMVVM() {
                 R.drawable.ic_flash_off_24px
             })
         } else {
-            showShortError("Không có đèn flash trên thiết bị của bạn")
+            showShortError(getString(R.string.khong_co_den_flash_tren_thiet_bi_cua_ban))
         }
     }
 

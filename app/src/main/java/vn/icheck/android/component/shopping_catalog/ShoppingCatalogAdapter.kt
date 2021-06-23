@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.ui.view.TextBarlowMedium
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 import vn.icheck.android.network.models.ICShoppingCatalog
 import vn.icheck.android.util.kotlin.WidgetUtils
 

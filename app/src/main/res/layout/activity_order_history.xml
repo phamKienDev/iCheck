@@ -10,7 +10,7 @@
         layout="@layout/toolbar_light_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
+    <vn.icheck.android.ichecklibs.view.disable_text.TabLayoutDisableAndPrimaryColor
         android:id="@id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
@@ -21,14 +21,7 @@
         app:tabIndicatorHeight="@dimen/size_3"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/light_blue"
-        app:tabTextAppearance="@style/TabLayout_16sp_Barlow"
-        app:tabTextColor="@color/colorDisableText" />
-
-    <View
-        android:id="@+id/viewShadow"
-        style="@style/Shadow_Bottom"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+        app:tabTextAppearance="@style/TabLayout_16sp_Barlow" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@id/viewPager"
@@ -36,4 +29,9 @@
         android:layout_height="@dimen/size_0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewShadow" />
+    <View
+        android:id="@+id/viewShadow"
+        style="@style/Shadow_Bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

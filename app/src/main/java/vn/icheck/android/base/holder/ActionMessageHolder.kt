@@ -26,13 +26,15 @@ class ActionMessageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
             itemView.tvMessage.visibility = View.GONE
         }
 
-        if (buttonName != null) {
-            itemView.tvAction.visibility = View.VISIBLE
-            itemView.tvAction.text = itemView.context.getString(buttonName)
-        } else {
-            itemView.tvAction.visibility = View.GONE
+        itemView.tvAction.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            if (buttonName != null) {
+                visibility = View.VISIBLE
+                text = itemView.context.getString(buttonName)
+            } else {
+                visibility = View.GONE
+            }
         }
-
     }
 
     fun setListener(click: View.OnClickListener?) {

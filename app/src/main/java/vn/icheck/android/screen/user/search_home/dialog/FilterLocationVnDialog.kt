@@ -19,6 +19,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -55,10 +56,13 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            adapter.isAll = true
-            adapter.oldSelectedID.clear()
-            adapter.setData(listData)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                adapter.isAll = true
+                adapter.oldSelectedID.clear()
+                adapter.setData(listData)
+            }
         }
     }
 
@@ -171,7 +175,7 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
 
                     if (isAll) {
                         if (oldSelectedID.isNullOrEmpty()) {
-                            if (obj.name == "Tất cả") {
+                            if ((obj.name == "Tất cả")||(obj.name == context.getString(R.string.tat_ca))) {
                                 setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checkbox_single_on_24px, 0)
                             }
                         }

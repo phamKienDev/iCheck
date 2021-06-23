@@ -88,7 +88,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
                     val list = mutableListOf<ICScanHistory>()
                     val item = ICScanHistory(ICViewTypes.LIST_BIG_CORP)
                     listCategory.clear()
-                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name = "Tất cả"))
+                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name = ICheckApplication.getString(R.string.tat_ca)))
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         for (i in obj.data?.rows ?: mutableListOf()) {
                             listCategory.add(i)
@@ -207,27 +207,31 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
         interactor.checkScanQrCode(code, object : ICNewApiListener<ICResponse<ICValidStampSocial>> {
             override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                when (obj.data?.theme) {
-                    1 -> {
-                        stampHoaPhat.postValue(obj.data)
-                    }
-                    2 -> {
-                        stampThinhLong.postValue(obj.data)
-                    }
-                    else -> {
-                        if (obj.data?.suggest_apps.isNullOrEmpty()) {
-                            checkStampSocial.postValue(obj.data)
-                        } else {
-                            showDialogSuggestApp.postValue(obj.data)
+                obj.data?.let {
+                    when (obj.data?.theme) {
+                        1 -> {
+
+                            stampHoaPhat.postValue(it)
+                        }
+                        2 -> {
+                            stampThinhLong.postValue(it)
+                        }
+                        else -> {
+                            if (obj.data?.suggest_apps.isNullOrEmpty()) {
+                                checkStampSocial.postValue(it)
+                            } else {
+                                showDialogSuggestApp.postValue(it)
+                            }
                         }
                     }
                 }
+
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                    stampFake.postValue(ICheckApplication.getString(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
                 } else {
                     errorQr.postValue(code)
                 }

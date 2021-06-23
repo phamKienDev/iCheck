@@ -3,7 +3,6 @@ package vn.icheck.android.component.product.vendor
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_list_distributor.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder

@@ -1,13 +1,12 @@
 package vn.icheck.android.loyalty.screen.redemption_history
 
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.network.APIConstants
 import vn.icheck.android.loyalty.base.BaseViewModel
-import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
-import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.LoyaltyCustomersRepository
@@ -37,7 +36,10 @@ class RedemptionHistoryViewModel : BaseViewModel<ICKRewardGameLoyalty>() {
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_point_loyalty_empty, "Bạn chưa có lịch sử đổi quà", "Tham gia tích điểm để đổi quà to nào!", "Tích điểm ngay", R.drawable.bg_gradient_button_orange_yellow, R.color.white)
+                        setErrorEmpty(R.drawable.ic_point_loyalty_empty,
+                            vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_co_lich_su_doi_qua),
+                            vn.icheck.android.ichecklibs.util.getString(R.string.tham_gia_tich_diem_de_doi_qua_to_nao),
+                            vn.icheck.android.ichecklibs.util.getString(R.string.tich_diem_ngay), R.drawable.bg_gradient_button_orange_yellow, R.color.white)
                     } else {
                         onSetData.postValue(obj.data?.rows)
                     }
@@ -68,7 +70,10 @@ class RedemptionHistoryViewModel : BaseViewModel<ICKRewardGameLoyalty>() {
                 offset += APIConstants.LIMIT
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        setErrorEmpty(R.drawable.ic_error_emty_history_topup, "Bạn chưa có quà nào", "Tới cửa hàng quà tặng để đổi\nnhững phần quà hấp dẫn nhé!", "Tới cửa hàng quà tặng", R.drawable.bg_gradient_button_blue, R.color.white)
+                        setErrorEmpty(R.drawable.ic_error_emty_history_topup,
+                            vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_co_qua_nao),
+                            vn.icheck.android.ichecklibs.util.getString(R.string.toi_cua_hang_qua_tang_de_doi_nhung_phan_qua_hap_dan_nhe),
+                            vn.icheck.android.ichecklibs.util.getString(R.string.toi_cua_hang_qua_tang), R.drawable.bg_gradient_button_blue, R.color.white)
                     } else {
                         setData.postValue(obj.data?.rows)
                     }

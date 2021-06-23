@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentIckLoginFacebookBinding
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.screen.location.ICNationBottomDialog
@@ -33,19 +34,22 @@ class IckFacebookLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(requireContext().applicationContext)
                 .load(ickLoginViewModel.facebookAvatar)
-                .placeholder(R.drawable.ic_avatar_default_84px)
-                .error(R.drawable.ic_avatar_default_84px)
+                .placeholder(R.drawable.ic_avatar_default_84dp)
+                .error(R.drawable.ic_avatar_default_84dp)
                 .into(binding.userAvatar)
         binding.tvUsername.text = ickLoginViewModel.facebookUsername
-        binding.edtPhone.addTextChangedListener(object : AfterTextWatcher() {
-            override fun afterTextChanged(s: Editable?) {
+        binding.edtPhone.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+            addTextChangedListener(object : AfterTextWatcher() {
+                override fun afterTextChanged(s: Editable?) {
 //                if (s.toString().startsWith("84")) {
 //                    binding.edtPhone.setText(s.toString().replace("84", "0", true))
 //                    binding.edtPhone.setSelection(1)
 //                }
-                checkForm()
-            }
-        })
+                    checkForm()
+                }
+            })
+        }
         binding.btnContinue.setOnClickListener {
             if (!ickLoginViewModel.waitResponse) {
                 ickLoginViewModel.waitResponse = true

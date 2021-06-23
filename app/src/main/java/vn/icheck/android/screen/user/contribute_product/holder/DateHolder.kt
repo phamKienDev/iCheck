@@ -14,6 +14,7 @@ import vn.icheck.android.constant.CHOOSE_DATE
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemDateBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.date.DatePickerFragment
 import vn.icheck.android.util.date.OnDatePicked
@@ -28,9 +29,9 @@ import java.util.*
 class DateHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding.root) {
     var balloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
+        binding.edtText.background=ViewHelper.bgWhiteStrokeLineColor1Corners4(itemView.context)
         if (categoryAttributesModel.categoryItem.description.isNullOrEmpty()) {
             binding.imgHelp.beGone()
-//            TooltipCompat.setTooltipText(binding.imgHelp,null)
         } else {
             binding.imgHelp.beVisible()
             balloon = createBalloon(itemView.context){

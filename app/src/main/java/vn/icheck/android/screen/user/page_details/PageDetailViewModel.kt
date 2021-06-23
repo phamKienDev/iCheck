@@ -289,7 +289,7 @@ open class PageDetailViewModel : ViewModel() {
                                     params["page_id"] = pageID
                                     params["empty_image"] = 0
 
-                                    layout.data = RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, "Sản phẩm tiêu biểu", listProduct)
+                                    layout.data = RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, ICheckApplication.getString(R.string.san_pham_tieu_bieu), listProduct)
                                     onAddData.value = layout
                                 } else if (!layout.request.url.isNullOrEmpty()) {
                                     onAddData.value = layout
@@ -465,7 +465,7 @@ open class PageDetailViewModel : ViewModel() {
                 params["empty_image"] = 0
 
                 if (!obj.data!!.rows.isNullOrEmpty()) {
-                    layout.data = RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, "Sản phẩm tiêu biểu", obj.data!!.rows)
+                    layout.data = RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, ICheckApplication.getString(R.string.san_pham_tieu_bieu), obj.data!!.rows)
                 }
                 onUpdateData.value = layout
             }
@@ -768,7 +768,7 @@ open class PageDetailViewModel : ViewModel() {
         pageInteraction.getHighlightProducts(pageID, object : ICNewApiListener<ICResponse<ICListResponse<ICProductTrend>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICProductTrend>>) {
                 if (!obj.data!!.rows.isNullOrEmpty()) {
-                    addHorizontal.postValue(RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, "Sản phẩm nổi bật", obj.data!!.rows))
+                    addHorizontal.postValue(RelatedProductModel(ICViewTypes.HIGLIGHT_PRODUCTS_PAGE, url, params, ICheckApplication.getString(R.string.san_pham_noi_bat), obj.data!!.rows))
                 } else {
                     checkError()
                 }

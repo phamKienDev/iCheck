@@ -19,6 +19,7 @@ import vn.icheck.android.chat.icheckchat.databinding.ItemMediaDetailBinding
 import vn.icheck.android.chat.icheckchat.databinding.ItemVideoDetailBinding
 import vn.icheck.android.chat.icheckchat.helper.MCExoMedia
 import vn.icheck.android.chat.icheckchat.model.MCMedia
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class ImageDetailAdapter : BaseRecyclerView<MCExoMedia>() {
 
@@ -72,6 +73,8 @@ class ImageDetailAdapter : BaseRecyclerView<MCExoMedia>() {
 
     inner class VideoDetailHolder(val binding: ItemVideoDetailBinding) : BaseViewHolder<MCExoMedia>(binding) {
         override fun bind(obj: MCExoMedia) {
+            binding.tvError.background=ViewHelper.bgAccentRedCorners24(itemView.context)
+
             if (obj.progressiveMediaSource != null) {
 //                media.exoPlayer?.playWhenReady = true
                 obj.exoPlayer?.prepare(obj.progressiveMediaSource!!, false, true)

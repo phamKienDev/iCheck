@@ -33,7 +33,7 @@
         android:paddingTop="@dimen/size_5"
         android:paddingEnd="@dimen/size_20"
         android:paddingBottom="@dimen/size_5"
-        android:textAlignment="center"
+        android:textAlignment="gravity"
         android:textColor="@color/white"
         android:textSize="@dimen/font_12"
         android:textStyle="normal"

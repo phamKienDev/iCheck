@@ -9,8 +9,11 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.accuracy_stamp.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICDetailStampV6_1
 import vn.icheck.android.util.ick.beGone
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.ICObjectDetailStamp>(LayoutInflater.from(parent.context).inflate(R.layout.accuracy_stamp, parent, false)) {
     @SuppressLint("SetTextI18n")
@@ -20,7 +23,7 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
             itemView.layoutheaderAccuracy.visibility = View.GONE
             itemView.layoutAnalytic.visibility = View.GONE
             val serial = getSerialNumber(obj.count?.prefix, obj.count?.number)
-            itemView.tvSerial.text = "Serial: $serial"
+            itemView.tvSerial.setText(R.string.serial_s, serial)
         } else {
             if (obj.scan_message != null) {
                 when (obj.scan_message?.is_success) {
@@ -30,8 +33,8 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                         itemView.tvSubName.text = obj.scan_message?.text
                         itemView.imgAccuracy.setImageResource(R.drawable.ic_stamp_fake_hoa_phat)
                         obj.count?.let {
-                            val verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            itemView.tvSerial.text = "Serial: $verfiedSerial"
+                            val verifiedSerial = getSerialNumber(it.prefix, it.number)
+                            itemView.tvSerial.setText(R.string.serial_s, verifiedSerial)
 
                             itemView.tvCountScan.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                                 it.scan_count.toString()
@@ -53,8 +56,8 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                         itemView.tvSubName.text = obj.scan_message?.text
                         itemView.imgAccuracy.setImageResource(R.drawable.ic_verified_stamp_36dp)
                         obj.count?.let {
-                            val verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            itemView.tvSerial.text = "Serial: $verfiedSerial"
+                            val verifiedSerial = getSerialNumber(it.prefix, it.number)
+                            itemView.tvSerial.setText(R.string.serial_s, verifiedSerial)
 
                             itemView.tvCountScan.text = if (!it.scan_count.toString().isEmpty()) {
                                 it.scan_count.toString()
@@ -71,13 +74,13 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                     }
                     //Guarantee
                     2 -> {
-                        itemView.layoutheaderAccuracy.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_top_white_10)
+                        itemView.layoutheaderAccuracy.background = ViewHelper.bgWhiteCornersTop10(itemView.context)
                         itemView.tvSubName.setTextColor(Color.parseColor("#434343"))
                         itemView.tvSubName.text = obj.scan_message?.text
                         itemView.imgAccuracy.setImageResource(R.drawable.ic_verified_stamp_36dp)
                         obj.count?.let {
-                            val verfiedSerial = getSerialNumber(it.prefix, it.number)
-                            itemView.tvSerial.text = "Serial: $verfiedSerial"
+                            val verifiedSerial = getSerialNumber(it.prefix, it.number)
+                            itemView.tvSerial.setText(R.string.serial_s, verifiedSerial)
 
                             itemView.tvCountScan.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                                 it.scan_count.toString()
@@ -98,8 +101,8 @@ class AccuracyStampHolder(parent: ViewGroup) : BaseViewHolder<ICDetailStampV6_1.
                     itemView.layoutheaderAccuracy.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_top_yellow_10_v6_1)
                     itemView.layoutheaderAccuracy.beGone()
                     itemView.layoutAnalytic.beGone()
-                    val verfiedSerial = getSerialNumber(it.prefix, it.number)
-                    itemView.tvSerial.text = "Serial: $verfiedSerial"
+                    val verifiedSerial = getSerialNumber(it.prefix, it.number)
+                    itemView.tvSerial.setText(R.string.serial_s, verifiedSerial)
 
                     itemView.tvCountScan.text = if (!it.scan_count.toString().isNullOrEmpty()) {
                         it.scan_count.toString()

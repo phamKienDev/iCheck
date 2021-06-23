@@ -7,17 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_grid_ads_news.view.*
 import kotlinx.android.synthetic.main.item_horizontal_ads_news.view.*
-import kotlinx.android.synthetic.main.item_post.view.*
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.*
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.imgImage
 import kotlinx.android.synthetic.main.item_slide_ads_news.view.tvContent
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
-import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
@@ -122,7 +119,7 @@ class AdsNewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (obj.name?.length!! < 80) {
                 itemView.tvContent.text = obj.name
             } else {
-                itemView.tvContent.text = Html.fromHtml(obj.name!!.substring(0, 80) + "..." + "<font color=#3C5A99>Xem chi tiết</font>")
+                itemView.tvContent.text = Html.fromHtml(obj.name!!.substring(0, 80) + "..." + "<font color=${vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(itemView.context)}>Xem chi tiết</font>")
             }
 
             itemView.surfaceView.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->

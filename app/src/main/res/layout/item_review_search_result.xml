@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,6 @@
     android:layout_marginLeft="@dimen/size_12"
     android:layout_marginTop="@dimen/size_12"
     android:layout_marginRight="@dimen/size_12"
-    android:background="@drawable/bg_corners_white_4_border_05"
     android:paddingBottom="@dimen/size_16">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,11 +31,11 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_8"
-            android:src="@color/colorPrimary"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/grayD8"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgRank"
+            tools:src="@color/colorPrimary"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
@@ -51,61 +50,53 @@
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
             app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tvNameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/size_4"
                 android:ellipsize="middle"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_16"
                 tools:drawableEnd="@drawable/ic_verified_16px"
                 tools:text="Quỳnh Hoa sadf adfasd asdfsadf ádfsadf" />
 
         </LinearLayout>
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/layoutName"
             app:layout_constraintTop_toBottomOf="@+id/layoutName"
             tools:text="43 phút trước" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
-            android:background="@drawable/bg_stroke_gray_corner_4"
             android:drawablePadding="@dimen/size_4"
             android:padding="@dimen/size_6"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:drawableStartCompat="@drawable/ic_comment_12px"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="100+" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_10"
-            android:background="@drawable/bg_stroke_gray_corner_4"
             android:drawablePadding="@dimen/size_4"
             android:gravity="center"
             android:padding="@dimen/size_6"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_12"
             app:drawableStartCompat="@drawable/ic_gray_like_12_px"
             app:layout_constraintEnd_toStartOf="@+id/tvComment"
@@ -122,7 +113,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,10 +122,8 @@
         android:layout_marginEnd="@dimen/size_16"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="4"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/header"
@@ -172,7 +161,6 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_gray_f0_corners_4"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +176,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -197,28 +185,24 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:textColor="@color/darkGray1"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgProduct"
             app:layout_constraintTop_toTopOf="@+id/imgProduct"
             tools:text="Sản phẩm túi giỏ xách mây tre đan chất lượng cao đảm bảo Sản phẩm túi giỏ xách mây tre đan chất lượng cao đảm bảo" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvShop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:maxLines="2"
-            android:textColor="@color/colorSecondText"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tvProduct"
@@ -226,4 +210,4 @@
             app:layout_constraintTop_toBottomOf="@+id/tvProduct"
             tools:text="Công ty cổ phần iCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.line_color.ConstraintLayoutBgWhiteRadius4Stroke05>

@@ -107,7 +107,8 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         }
     }
 
-    inner class InfoHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_info_user_follow_page_holder, parent, false)) {
+    inner class InfoHolder(parent: ViewGroup) :
+        RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_info_user_follow_page_holder, parent, false)) {
         fun bind(obj: ICPageOverview) {
 
             val listAvatar = mutableListOf<String>()
@@ -121,7 +122,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     imgListAvatar.visibility = View.GONE
                 } else {
                     imgListAvatar.visibility = View.VISIBLE
-                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84px)
+                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84dp)
                 }
             }
 
@@ -129,13 +130,16 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             itemView.tv_count_like.text = TextHelper.formatMoney(obj.likedCountOnPosts)
             itemView.tv_count_follow.text = TextHelper.formatMoney(obj.followCount)
 
-            itemView.tvInvite.setOnClickListener {
-                if (SessionManager.isUserLogged) {
-                    ICheckApplication.currentActivity()?.let {
-                        ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+            itemView.tvInvite.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
+                    if (SessionManager.isUserLogged) {
+                        ICheckApplication.currentActivity()?.let {
+                            ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+                        }
+                    } else {
+                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN, obj.id))
                     }
-                } else {
-                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN, obj.id))
                 }
             }
         }
@@ -144,7 +148,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
     class CountHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createView(parent.context)) {
         fun bind(count: Int) {
             (itemView as AppCompatTextView).run {
-                text = "$count Người theo dõi trang này"
+                text = context.getString(R.string.d_nguoi_theo_doi_trang_nay, count)
             }
         }
 
@@ -156,7 +160,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     }
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.maxLines = 1
-                    it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                    it.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                     it.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"))
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                 }
@@ -164,7 +168,8 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         }
     }
 
-    inner class ListUserHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_user_search_result, parent, false)) {
+    inner class ListUserHolder(parent: ViewGroup) :
+        RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_user_search_result, parent, false)) {
         private val interaction = RelationshipInteractor()
 
         private var isMyFriendInvitationUser: Boolean? = null
@@ -172,7 +177,10 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         private var isFriendInvitationMeUser: Boolean? = null
 
         fun bind(obj: ICSearchUser) {
-            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
+            itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            itemView.tvMessage.background = vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
+            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84dp)
+
             itemView.tvTitle.apply {
                 text = obj.getName
                 if (obj.kycStatus == 2) {
@@ -191,7 +199,6 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             } else {
                 checkStatusFirebase(obj)
             }
-
 
             itemView.setOnClickListener {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_USER, obj))
@@ -259,19 +266,19 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             } else {
                 if (isFriendInvitationMeUser != null && isMyFriend != null && isMyFriendInvitationUser != null) {
                     val content = if (obj.relateFriendCount > 0) {
-                        "${obj.relateFriendCount} bạn chung"
+                        itemView.context.getString(R.string.d_ban_chung, obj.relateFriendCount)
                     } else {
                         ""
                     }
 
-                    when  {
+                    when {
                         isFriendInvitationMeUser!! -> {
                             itemView.tvContent.text = content
 
                             itemView.btnConfirm.isEnabled = true
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                            itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corners_4_light_blue_solid)
-                            itemView.btnConfirm.text = "Đồng ý kết bạn"
+                            itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+                            itemView.btnConfirm.setText(R.string.dong_y_ket_ban)
                             itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                             itemView.btnConfirm.visibility = View.VISIBLE
@@ -286,9 +293,9 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
 
                             itemView.btnConfirm.isEnabled = false
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                            itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
+                            itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                             itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                            itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                            itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
 
                             itemView.btnConfirm.visibility = View.VISIBLE
                             itemView.tvMessage.visibility = View.INVISIBLE
@@ -303,7 +310,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
 
                             itemView.btnConfirm.isEnabled = true
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add_white_12dp, 0, 0, 0)
-                            itemView.btnConfirm.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corners_4_light_blue_solid)
+                            itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
                             itemView.btnConfirm.setText(R.string.ket_ban)
                             itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 

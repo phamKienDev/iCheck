@@ -59,7 +59,9 @@ class CreatePVCardViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<ICAuthenPVCard>) {
                 onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
                 if (!obj.data?.sessionId.isNullOrEmpty()) {
-                    onLinkAuth.postValue(obj.data)
+                    obj.data?.let {
+                        onLinkAuth.postValue(it)
+                    }
                 }else{
                     onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
                 }

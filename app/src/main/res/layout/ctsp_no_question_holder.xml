@@ -3,34 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_12"
     android:layout_marginStart="@dimen/size_12"
+    android:layout_marginTop="@dimen/size_12"
     android:layout_marginEnd="@dimen/size_12"
     android:background="@drawable/bg_gray_corner_10"
     android:elevation="@dimen/size_2"
     android:orientation="vertical">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_12"
-        android:text="Hỏi đáp về sản phẩm (0)"
+        android:text="@string/hoi_dap_ve_san_pham_0"
         android:textAlignment="center"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_18" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_8"
-        android:background="@color/gray" />
+        android:layout_marginEnd="@dimen/size_8" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_12"
-        android:text="Hiện chưa có câu hỏi cho sản phẩm này"
+        android:text="@string/hien_chua_co_cau_hoi_cho_san_pham_nay"
         android:textAlignment="center"
         android:textColor="#4F4F4F" />
 

@@ -10,6 +10,7 @@ import androidx.core.content.FileProvider
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
@@ -26,7 +27,7 @@ import java.io.IOException
 class CreateQrCodeSuccessPresenter(val view: ICreateQrCodeSuccessView) : BaseActivityPresenter(view) {
     private var qrCodeBitmap: Bitmap? = null
 
-    private val iCheckName = "iCheck"
+    private val iCheckName = ICheckApplication.getString(R.string.i_check)
 
     fun getData(intent: Intent?) {
         val code = try {

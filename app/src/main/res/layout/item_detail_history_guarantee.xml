@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_8">
 
-    <vn.icheck.android.ichecklibs.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:textColor="@color/darkGray3"
         android:textSize="@dimen/font_14" />
 
-    <vn.icheck.android.ichecklibs.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
         android:id="@id/tvContent"
         android:layout_width="@dimen/size_0"
         android:layout_weight="1"

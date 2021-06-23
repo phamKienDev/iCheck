@@ -284,8 +284,9 @@ class CommentPostViewModel : ViewModel() {
                         listEmoji = socialRepository.getStickers(id).data
                         listSticker[id] = listEmoji
                     }
-
-                    onSetChildEmoji.postValue(listEmoji)
+                    listEmoji.let {
+                        onSetChildEmoji.postValue(it)
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -330,7 +331,7 @@ class CommentPostViewModel : ViewModel() {
     }
 
     private fun postComment(pageID: Long?, image: String?, content: String) {
-        postInteraction.commentPost(postID, pageID, content, image, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteraction.commentPost(postID, pageID, content, image,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 obj.data?.let { data ->
@@ -402,7 +403,7 @@ class CommentPostViewModel : ViewModel() {
                     ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 else
                     error?.message
-                onShowMessage.postValue(message)
+                onShowMessage.postValue(message?:"")
             }
         })
     }

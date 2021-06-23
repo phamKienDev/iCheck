@@ -39,7 +39,8 @@ class UserFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         DialogHelper.showLoading(this)
         viewModel.getData(intent)
 
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_container.setOnRefreshListener {
             getData()
         }

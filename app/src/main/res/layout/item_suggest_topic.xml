@@ -51,6 +51,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_topic"
         app:layout_constraintEnd_toEndOf="@+id/img_topic"
         app:layout_constraintStart_toStartOf="@+id/img_topic"
-        app:layout_constraintTop_toTopOf="@+id/img_topic"
-        app:srcCompat="@drawable/bg_stroke_3_green_corners_4" />
+        app:layout_constraintTop_toTopOf="@+id/img_topic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

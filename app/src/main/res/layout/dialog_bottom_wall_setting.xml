@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingBottom="@dimen/size_20"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog">
+    android:layout_height="wrap_content">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/img_cancel"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
@@ -16,29 +15,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
         android:layout_marginRight="@dimen/size_50"
-        android:text="Thiết lập trang cá nhân"
-        android:textColor="#057DDA"
+        android:text="@string/thiet_lap_trang_ca_nhan"
         app:layout_constraintBottom_toBottomOf="@+id/img_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_cancel"
         app:layout_constraintTop_toTopOf="@+id/img_cancel" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider8"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_1"
-        android:background="#D8D8D8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_cancel" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,15 +47,13 @@
         android:drawableStart="@drawable/ic_edit_public_infor_40px"
         android:drawableLeft="@drawable/ic_edit_public_infor_40px"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:text="Chỉnh sửa thông tin công khai"
-        android:textColor="#757575"
+        android:text="@string/chinh_sua_thong_tin_cong_khai"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_personal_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,15 +65,13 @@
         android:drawableStart="@drawable/ic_edit_review_40px"
         android:drawableLeft="@drawable/ic_edit_review_40px"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:text="Chỉnh sửa thông tin cá nhân"
-        android:textColor="#757575"
+        android:text="@string/chinh_sua_thong_tin_ca_nhan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_edit_info" />
 
-     <TextView
+     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_privacy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -90,15 +83,13 @@
         android:drawableStart="@drawable/ic_privacy_40px"
         android:drawableLeft="@drawable/ic_privacy_40px"
         android:drawablePadding="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:text="Cài đặt quyền riêng tư"
-        android:textColor="#757575"
+        android:text="@string/cai_dat_quyen_rieng_tu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_edit_personal_info" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_following"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -107,38 +98,34 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
         android:drawablePadding="@dimen/size_8"
-        android:textColor="#757575"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:drawableStart="@drawable/ic_group_40px"
         android:layout_marginRight="@dimen/size_12"
-        android:text="Quản lý danh sách đang theo dõi"
+        android:text="@string/quan_ly_danh_sach_dang_theo_doi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_edit_followed"
         android:drawableLeft="@drawable/ic_group_40px" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_followed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:drawablePadding="@dimen/size_8"
-        android:textColor="#757575"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:drawableStart="@drawable/ic_group_40px"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:text="Quản lý danh sách người theo dõi"
+        android:text="@string/quan_ly_danh_sach_dang_theo_doi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_edit_privacy"
         android:drawableLeft="@drawable/ic_group_40px" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_edit_pw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -147,15 +134,13 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:drawablePadding="@dimen/size_8"
-        android:textColor="#757575"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:text="Thay đổi mật khẩu"
+        android:text="@string/thay_doi_mat_khau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_edit_following"
         android:drawableLeft="@drawable/ic_change_password_40px" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

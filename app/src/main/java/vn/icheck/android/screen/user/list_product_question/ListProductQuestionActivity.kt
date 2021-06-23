@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.list_product_question
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +12,6 @@ import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_list_product_question.*
 import kotlinx.android.synthetic.main.activity_list_product_question.imgBack
@@ -20,11 +20,6 @@ import kotlinx.android.synthetic.main.activity_list_product_question.rcvChildEmo
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvParentEmoji
 import kotlinx.android.synthetic.main.activity_list_product_question.rcvPermission
 import kotlinx.android.synthetic.main.item_base_send_message_product_v2.*
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgAvatar
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgCamera
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgEmoji
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.imgSend
-import kotlinx.android.synthetic.main.item_base_send_message_product_v2.tvActor
 import vn.icheck.android.R
 import vn.icheck.android.activities.chat.sticker.StickerPackages
 import vn.icheck.android.base.activity.BaseActivityMVVM
@@ -37,6 +32,9 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -151,12 +149,19 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_product_question)
 
+        setupView()
         setupListener()
         setupRecyclerView()
         setRecyclerViewPermission()
         setupSwipeLayout()
         setupViewModel()
         checkUserLogin()
+    }
+
+    private fun setupView() {
+        containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
+        edtContent.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this))
+        tvArrow.fillDrawableStartText(R.drawable.ic_arrow_down_blue_24dp)
     }
 
     private fun setupListener() {
@@ -227,7 +232,8 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true
@@ -270,7 +276,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
             swipeLayout.isRefreshing = false
 
             if (it.isNullOrEmpty())
-                questionAdapter.setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+                questionAdapter.setError(R.drawable.ic_empty_questions, getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
             else
                 questionAdapter.setListData(it)
         })
@@ -372,7 +378,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (obj.type == Constant.PAGE) {
             WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_business_v2)
         } else {
-            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_svg)
         }
     }
 
@@ -380,7 +386,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (SessionManager.isUserLogged) {
             imgAvatar.beVisible()
             tvArrow.beVisible()
-            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
         } else {
             imgAvatar.beGone()
             tvArrow.beGone()
@@ -403,7 +409,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun checkSendStatus() {
         if (!edtContent.text.isNullOrEmpty() || layoutImage.tag != null) {
-            imgSend.setImageResource(R.drawable.ic_chat_send_24px)
+            imgSend.fillDrawableColor(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
         } else {
             imgSend.setImageResource(R.drawable.ic_chat_send_gray_24_px)
@@ -421,11 +427,11 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     override fun onAnswer(obj: ICProductQuestion) {
         tvActor.visibility = View.VISIBLE
-        tvActor.text = Html.fromHtml(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
+        tvActor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
             obj.user!!.getName
         } else {
             obj.page!!.getName
-        }))
+        }),this))
         tvActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         edtContent.requestFocus()
@@ -439,7 +445,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     override fun onDelete(obj: ICProductQuestion) {
-        DialogHelper.showConfirm(this@ListProductQuestionActivity, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@ListProductQuestionActivity, getString(R.string.ban_chac_chan_muon_xoa_binh_luan_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
             override fun onDisagree() {
 
             }
@@ -474,7 +480,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_off_vector_24dp)
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }

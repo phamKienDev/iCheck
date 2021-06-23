@@ -48,6 +48,21 @@
     <string name="copy_success">Copy thành công</string>
     <string name="chon_20_anh">Chỉ được chọn tối đa 20 ảnh</string>
     <string name="chon_20_muc">Chỉ được chọn tối đa 20 mục</string>
+    <string name="s_phut_truoc">%s phút trước</string>
+    <string name="ban_chua_dang_nhap_vui_long_dang_nhap">Bạn chưa đăng nhập! Vui lòng đăng nhập!</string>
+    <string name="ban_chua_cap_du_quyen">Bạn chưa cấp đủ quyền!</string>
+    <string name="count_9">9+</string>
+    <string name="ban_da_chan_tin_nhan_cua_s">Bạn đã chặn tin nhắn của %s</string>
+    <string name="ban_da_bi_s_chan_tin_nhan">Bạn đã bị %s chặn tin nhắn</string>
+    <string name="bo_chan">Bỏ chặn</string>
+    <string name="dong_bo">Đồng bộ</string>
+    <string name="dieu_khoan_su_dung">Điều khoản sử dụng</string>
+    <string name="count_2">+2</string>
+    <string name="trinh_phat_video_loi">Trình phát video lỗi</string>
+    <string name="cac_ban_se_khong_the_nhan_tin_trong_muc_chat">Các bạn sẽ không thể nhắn tin trong mục Chat</string>
+    <string name="cac_ban_se_khong_the_nhan_tin_trong_muc_chat_hay_bo_chan_de_tiep_tuc_cuoc_tro_chuyen_nay">Các bạn sẽ không thể nhắn tin trong mục Chat\n Hãy bỏ chặn để tiếp tục cuộc trò chuyện này.</string>
+
+    //Lỗi
     <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>
     <string name="token_khong_hop_le_hoac_het_han">Token không hợp lệ hoặc hết hạn</string>
     <string name="invalid_user_id_on_header">Invalid user id on header</string>

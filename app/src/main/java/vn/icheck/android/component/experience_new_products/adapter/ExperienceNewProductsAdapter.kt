@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
 import vn.icheck.android.component.collection.vertical.AdsProductVerticalHolder
 import vn.icheck.android.component.tendency.holder.MessageShortHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProduct
 
 class ExperienceNewProductsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -70,7 +71,7 @@ class ExperienceNewProductsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHol
             is AdsProductVerticalHolder -> {
                 holder.bind(listData[position])
 
-                holder.itemView.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.bg_item_product)
+                holder.itemView.background = ViewHelper.bgWhiteStrokeLineColor0_1(holder.itemView.context)
             }
             is MessageShortHolder -> {
                 if (errorMessage.isNullOrEmpty()) {

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.detail_stamp_v6_1.ValueFItem
 
 
@@ -23,14 +24,16 @@ class HintSpinnerAdapter : ArrayAdapter<ValueFItem?> {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val v = super.getView(position, convertView, parent)
         (v as TextView).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14f)
-        v.setTextColor(Color.parseColor("#434343"))
+//        v.setTextColor(Color.parseColor("#434343"))
+        v.setTextColor(ColorManager.getNormalTextColor(context))
         return v
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = super.getDropDownView(position, convertView, parent)
         val tv = view as TextView
-        tv.setTextColor(Color.parseColor("#434343"))
+//        tv.setTextColor(Color.parseColor("#434343"))
+        tv.setTextColor(ColorManager.getNormalTextColor(context))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14f)
         return view
     }

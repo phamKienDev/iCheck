@@ -8,7 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.model.ICFragment
-import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.screen.user.history_accumulate_points.fragment.received.HistoryPointsReceivedFragment
 import vn.icheck.android.screen.user.history_accumulate_points.fragment.used.HistoryPointUsedFragment
 
@@ -19,14 +19,19 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_history_accumulate_point)
 
         initToolbar()
+        setupView()
         initTabLayout(intent?.getIntExtra(Constant.DATA_1, -1))
     }
 
     private fun initToolbar(){
-        txtTitle.text = "Lịch sử điểm tích lũy"
+        txtTitle.setText(R.string.lich_su_diem_tich_luy)
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        tabLayout.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(this))
     }
 
     val listFragment: MutableList<ICFragment>

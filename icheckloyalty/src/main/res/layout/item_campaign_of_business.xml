@@ -58,7 +58,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:includeFontPadding="false"
                     android:singleLine="true"
-                    android:text="Thời gian diễn ra"
+                    android:text="@string/thoi_gian_dien_ra"
                     android:textColor="#828282"
                     android:textSize="12sp"
                     android:visibility="visible" />
@@ -96,7 +96,7 @@
                 android:gravity="bottom|end"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:text="Đang tham gia"
+                android:text="@string/dang_tham_gia"
                 android:textColor="@color/blueVip"
                 android:textSize="12sp"
                 android:visibility="gone" />
@@ -111,7 +111,7 @@
                 android:gravity="bottom"
                 android:includeFontPadding="false"
                 android:singleLine="true"
-                android:text="Chưa tham gia"
+                android:text="@string/chua_tham_gia"
                 android:textColor="#828282"
                 android:textSize="14sp"
                 android:visibility="gone" />

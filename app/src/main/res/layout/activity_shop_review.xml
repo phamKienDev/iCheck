@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <include
         android:id="@id/layoutToolbar"
@@ -32,22 +31,20 @@
                 android:layout_marginEnd="@dimen/size_12"
                 android:orientation="vertical" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_15"
-                android:layout_marginEnd="@dimen/size_12"
-                android:background="@color/gray" />
+                android:layout_marginEnd="@dimen/size_12" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_gray_stroke_corner_10"
                 android:ems="10"
                 android:fontFamily="sans-serif"
                 android:gravity="start|top"
@@ -55,8 +52,6 @@
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:padding="@dimen/size_8"
-                android:textColor="#434343"
-                android:textColorHint="#B4B4B4"
                 android:textSize="@dimen/font_14"
                 android:textStyle="normal" />
 
@@ -88,4 +83,4 @@
         style="@style/Shadow_Bottom"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

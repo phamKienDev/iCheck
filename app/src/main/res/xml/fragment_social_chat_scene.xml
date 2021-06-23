@@ -22,7 +22,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_menu">
             <CustomAttribute
                 app:attributeName="textColor"
-                app:customColorValue="#057DDA" />
+                app:customColorValue="@color/colorPrimary" />
         </Constraint>
         <Constraint android:id="@+id/tv_phonebook"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_menu">
             <CustomAttribute
                 app:attributeName="textColor"
-                app:customColorValue="#057DDA" />
+                app:customColorValue="@color/colorPrimary" />
         </Constraint>
         <Constraint
             android:layout_height="@dimen/size_3"

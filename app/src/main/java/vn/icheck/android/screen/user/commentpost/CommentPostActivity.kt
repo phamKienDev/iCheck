@@ -41,6 +41,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -107,12 +109,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             ActivityUtils.startActivityWithoutAnimation(activity, intent)
         }
 
-        fun startForResult(
-            activity: FragmentActivity,
-            postID: Long,
-            type: Int? = null,
-            requestCode: Int
-        ) {
+        fun startForResult(activity: FragmentActivity, postID: Long, type: Int? = null, requestCode: Int) {
             val intent = Intent(activity, CommentPostActivity::class.java)
             intent.putExtra(Constant.DATA_1, postID)
 
@@ -150,6 +147,10 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         }
+
+        layoutInputContent.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+
         setupBottomSheet()
         setupRecyclerView()
 //        setupEmoji()
@@ -236,11 +237,8 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        swipeLayout.setColorSchemeColors(
-            ContextCompat.getColor(this, R.color.colorSecondary),
-            ContextCompat.getColor(this, R.color.colorPrimary),
-            ContextCompat.getColor(this, R.color.colorPrimary)
-        )
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
             viewModel.getData()
@@ -248,23 +246,18 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setupPermission() {
-        permissionAdapter =
-            CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
-                override fun onItemClick(position: Int, item: ICCommentPermission?) {
-                    if (item != null) {
-                        if (item.type == Constant.PAGE) {
-                            WidgetUtils.loadImageUrl(
-                                imgAvatar,
-                                item.avatar,
-                                R.drawable.ic_business_v2
-                            )
-                        } else {
-                            WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
-                        }
+        permissionAdapter = CommentPermissionAdapter(object : ItemClickListener<ICCommentPermission> {
+            override fun onItemClick(position: Int, item: ICCommentPermission?) {
+                if (item != null) {
+                    if (item.type == Constant.PAGE) {
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
+                    } else {
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
                     }
-                    showLayoutPermission(false)
                 }
-            })
+                showLayoutPermission(false)
+            }
+        })
         recPermission.adapter = permissionAdapter
     }
 
@@ -275,21 +268,13 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
             if (it != null) {
                 checkLikePost(it)
 
-                WidgetUtils.loadImageUrl(
-                    imgAvatar,
-                    SessionManager.session.user?.avatar,
-                    R.drawable.ic_user_svg
-                )
+                WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
             } else {
-                DialogHelper.showNotification(
-                    this@CommentPostActivity,
-                    R.string.co_loi_xay_ra_vui_long_thu_lai,
-                    false,
-                    object : NotificationDialogListener {
-                        override fun onDone() {
-                            onBackPressed()
-                        }
-                    })
+                DialogHelper.showNotification(this@CommentPostActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                    override fun onDone() {
+                        onBackPressed()
+                    }
+                })
             }
             checkPrivacyConfig()
             adapter.showOrHideAnswer(it.involveType)
@@ -300,22 +285,13 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
             when {
                 it.size >= 3 -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        SizeHelper.dpToPx(126)
-                    )
+                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(126))
                 }
                 it.size == 3 -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        SizeHelper.dpToPx(106)
-                    )
+                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(106))
                 }
                 else -> {
-                    recPermission.layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
+                    recPermission.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 }
             }
 
@@ -426,15 +402,11 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                 ICMessageEvent.Type.BACK -> {
                     closeLoading()
 
-                    DialogHelper.showNotification(
-                        this@CommentPostActivity,
-                        R.string.co_loi_xay_ra_vui_long_thu_lai,
-                        false,
-                        object : NotificationDialogListener {
-                            override fun onDone() {
-                                onBackPressed()
-                            }
-                        })
+                    DialogHelper.showNotification(this@CommentPostActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
+                        override fun onDone() {
+                            onBackPressed()
+                        }
+                    })
                 }
             }
         })
@@ -445,32 +417,27 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost == null) {
-                    containerComment.beVisible()
-                } else {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost!=null) {
                     when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
                         Constant.EVERYONE -> {
                             containerComment.beVisible()
                         }
                         Constant.FRIEND -> {
                             if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                                ICheckApplication.getInstance().mFirebase.registerRelationship(
-                                    Constant.myFriendIdList,
-                                    viewModel.post?.user?.id.toString(),
-                                    object : ValueEventListener {
-                                        override fun onDataChange(snapshot: DataSnapshot) {
-                                            if (snapshot.value != null && snapshot.value is Long) {
-                                                containerComment.beVisible()
-                                            } else {
-                                                notAllowReply()
-                                                containerComment.beGone()
-                                            }
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.value != null && snapshot.value is Long) {
+                                            containerComment.beVisible()
+                                        } else {
+                                            notAllowReply()
+                                            containerComment.beGone()
                                         }
+                                    }
 
-                                        override fun onCancelled(error: DatabaseError) {
-                                            logError(error.toException())
-                                        }
-                                    })
+                                    override fun onCancelled(error: DatabaseError) {
+                                        logError(error.toException())
+                                    }
+                                })
                             }
                         }
                         else -> {
@@ -481,8 +448,10 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
                                 containerComment.beGone()
                             }
                         }
-                    }
 
+                    }
+                }else{
+                    containerComment.beVisible()
                 }
             } else {
                 containerComment.beVisible()
@@ -507,8 +476,10 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
         if (!post.expressive.isNullOrEmpty()) {
             tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_on_24dp, 0, 0, 0)
+            tvLike.setTextColor(ContextCompat.getColor(this,R.color.red_like_question))
         } else {
             tvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like_off_24dp, 0, 0, 0)
+            tvLike.setTextColor(ContextCompat.getColor(this,R.color.black_75))
         }
     }
 
@@ -532,18 +503,8 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         })
 
         imgCamera.onDelayClick({
-            if (PermissionHelper.checkPermission(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    requestTakePicture
-                )
-            ) {
-                TakeMediaDialog.show(
-                    supportFragmentManager,
-                    this,
-                    takeMediaListener,
-                    isVideo = true
-                )
+            if (PermissionHelper.checkPermission(this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestTakePicture)) {
+                TakeMediaDialog.show(supportFragmentManager, this, takeMediaListener, isVideo = true)
             }
         }, 2000)
 
@@ -580,12 +541,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         imgSend.setOnClickListener {
             imgSend.isEnabled = false
             if (SessionManager.isUserLogged) {
-                viewModel.send(
-                    permissionAdapter.getPageID,
-                    layoutActor.tag as Long?,
-                    imgCommentSend.tag as File?,
-                    edtContent.text.toString()
-                )
+                viewModel.send(permissionAdapter.getPageID, layoutActor.tag as Long?, imgCommentSend.tag as File?, edtContent.text.toString())
             } else {
                 imgSend.isEnabled = true
                 onRequireLogin(requestLoginV2)
@@ -655,7 +611,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_off_vector_24dp)
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }
@@ -663,11 +619,13 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     private fun checkSendStatus() {
         if (edtContent.text.toString().trim().isNotEmpty() || imgCommentSend.tag != null) {
-            imgSend.setImageResource(R.drawable.ic_chat_send_24px)
+            imgSend.fillDrawableColor(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
+            layoutInputContent.background=ViewHelper.bgOutlinePrimary1Corners4(this)
         } else {
             imgSend.setImageResource(R.drawable.ic_chat_send_gray_24_px)
             imgSend.isClickable = false
+            layoutInputContent.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
         }
     }
 
@@ -703,9 +661,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         layoutActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(resources.getString(R.string.tra_loi_xxx, obj.page?.name))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name),this))
         } else {
-            Html.fromHtml(resources.getString(R.string.tra_loi_xxx, obj.user?.getName))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName),this))
         }
 
         edtContent.text = null
@@ -750,32 +708,25 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
 
     override fun onResume() {
         super.onResume()
-        unregistrar = KeyboardVisibilityEvent.registerEventListener(
-            this,
-            object : KeyboardVisibilityEventListener {
-                override fun onVisibilityChanged(isOpen: Boolean) {
-                    if (isOpen) {
-                        if (layoutEmoji.visibility == View.VISIBLE) {
-                            checkShowEmoji(false)
-                        }
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(this, object : KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                if (isOpen) {
+                    if (layoutEmoji.visibility == View.VISIBLE) {
+                        checkShowEmoji(false)
                     }
                 }
-            })
+            }
+        })
     }
 
     override fun onPause() {
         super.onPause()
         unregistrar?.unregister()
         unregistrar = null
-        EventBus.getDefault()
-            .post(ICMessageEvent(ICMessageEvent.Type.RESULT_COMMENT_POST_ACTIVITY, viewModel.post))
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_COMMENT_POST_ACTIVITY, viewModel.post))
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == requestTakePicture) {
             if (PermissionHelper.checkResult(grantResults)) {

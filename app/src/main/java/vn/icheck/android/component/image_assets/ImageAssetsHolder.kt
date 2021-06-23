@@ -10,7 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.ui.view.TextBarlowSemiBold
+import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.ICImageAsset
 import vn.icheck.android.screen.user.image_asset_page.ImageAssetPageActivity

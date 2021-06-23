@@ -5,22 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.imageView
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.imgAvatar
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.tvAnswer
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.tvLike
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.tvTime
-import kotlinx.android.synthetic.main.item_comment_post_sticker.view.tvTitle
+import kotlinx.android.synthetic.main.item_comment_post_sticker.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class CommentPostStickerHolder(parent: ViewGroup, val listener: ICommentPostView) : BaseViewHolder<ICCommentPost>(LayoutInflater.from(parent.context).inflate(R.layout.item_comment_post_sticker, parent, false)) {
-    private val interaction = PageRepository()
 
     override fun bind(obj: ICCommentPost) {
         itemView.layoutParams = (itemView.layoutParams as RecyclerView.LayoutParams).apply {
@@ -28,10 +21,10 @@ class CommentPostStickerHolder(parent: ViewGroup, val listener: ICommentPostView
         }
 
         if (obj.page != null) {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.page?.avatar, R.drawable.ic_user_svg)
             itemView.tvTitle.text = obj.page?.name
         } else {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_user_svg)
             itemView.tvTitle.text = obj.user?.name
         }
 

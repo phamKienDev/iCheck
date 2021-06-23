@@ -21,6 +21,7 @@ import vn.icheck.android.component.view.ViewHelper.setScrollSpeed
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
@@ -89,27 +90,18 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                 getData()
             }
 
-        WidgetUtils.setClickListener(
-            this,
-            btn_review,
-            btn_product,
-            btn_page,
-            btn_shop,
-            btn_user,
-            imgBack,
-            imgClear
-        )
+        btn_all.background = ViewHelper.bgPrimaryCorners4(this)
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+        WidgetUtils.setClickListener(this, btn_review, btn_product, btn_page, btn_shop, btn_user, imgBack, imgClear)
     }
 
     private fun initSwipelayout() {
         swipe_container.setOnRefreshListener {
             getData()
         }
-        swipe_container.setColorSchemeColors(
-            ContextCompat.getColor(this, R.color.colorSecondary),
-            ContextCompat.getColor(this, R.color.colorSecondary),
-            ContextCompat.getColor(this, R.color.colorPrimary)
-        )
+
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
     }
 
     private fun initRecyclerView() {
@@ -166,13 +158,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun refreshData(): Boolean {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            setError(
-                ICError(
-                    R.drawable.ic_error_network,
-                    ICheckApplication.getInstance()
-                        .getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
-                )
-            )
+            setError(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return true
         }
 
@@ -222,13 +208,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
         swipe_container.isRefreshing = false
         errorCount++
         if (errorCount == 4) {
-            setError(
-                ICError(
-                    R.drawable.ic_error_request,
-                    ICheckApplication.getInstance()
-                        .getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                )
-            )
+            setError(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
         }
     }
 
@@ -253,18 +233,10 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
         if (isActivityVisible) {
             when (event.type) {
                 ICMessageEvent.Type.OPEN_SEARCH_PRODUCT -> {
-                    ActivityUtils.startActivity<SearchProductActivity>(
-                        this,
-                        Constant.DATA_1,
-                        edtSearch.text.toString()
-                    )
+                    ActivityUtils.startActivity<SearchProductActivity>(this, Constant.DATA_1, edtSearch.text.toString())
                 }
                 ICMessageEvent.Type.OPEN_SEARCH_USER -> {
-                    ActivityUtils.startActivity<SearchUserActivity>(
-                        this,
-                        Constant.DATA_1,
-                        edtSearch.text.toString()
-                    )
+                    ActivityUtils.startActivity<SearchUserActivity>(this, Constant.DATA_1, edtSearch.text.toString())
                 }
                 ICMessageEvent.Type.MESSAGE_ERROR -> {
                     getData()
@@ -281,12 +253,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                         if (event.data is Long) {
                             DetailPostActivity.start(this, event.data, false, requestReviewDetail)
                         } else {
-                            DetailPostActivity.start(
-                                this,
-                                (event.data as ICPost).id,
-                                true,
-                                requestReviewDetail
-                            )
+                            DetailPostActivity.start(this, (event.data as ICPost).id, true, requestReviewDetail)
                         }
                     }
                 }
@@ -302,36 +269,18 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_USER -> {
                     val user = event.data as ICSearchUser
-                    ActivityUtils.startActivityForResult<IckUserWallActivity, Long>(
-                        this,
-                        USER_ID,
-                        user.id,
-                        requestUser
-                    )
+                    ActivityUtils.startActivityForResult<IckUserWallActivity, Long>(this, USER_ID, user.id, requestUser)
                 }
                 ICMessageEvent.Type.OPEN_DETAIL_PAGE -> {
                     val id = event.data as Long
-                    ActivityUtils.startActivityForResult<PageDetailActivity, Long>(
-                        this,
-                        Constant.DATA_1,
-                        id,
-                        requestPageOrShop
-                    )
+                    ActivityUtils.startActivityForResult<PageDetailActivity, Long>(this, Constant.DATA_1, id, requestPageOrShop)
                 }
                 ICMessageEvent.Type.OPEN_SEARCH_REVIEW_OR_PAGE -> {
                     if (event.data is Int) {
                         if (event.data < adapter.listData.size - 1) {
-                            ActivityUtils.startActivity<SearchReviewActivity>(
-                                this,
-                                Constant.DATA_1,
-                                edtSearch.text.toString()
-                            )
+                            ActivityUtils.startActivity<SearchReviewActivity>(this, Constant.DATA_1, edtSearch.text.toString())
                         } else {
-                            ActivityUtils.startActivity<SearchPageActivity>(
-                                this,
-                                Constant.DATA_1,
-                                edtSearch.text.toString()
-                            )
+                            ActivityUtils.startActivity<SearchPageActivity>(this, Constant.DATA_1, edtSearch.text.toString())
                         }
                     }
                 }
@@ -365,8 +314,7 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun updateItemReview(post: ICPost) {
         val reviewIndex = adapter.listData.indexOfFirst { it.type == Constant.REVIEW_TYPE }
         if (reviewIndex != -1) {
-            val itemIndex =
-                (adapter.listData[reviewIndex].data as MutableList<ICPost>).indexOfFirst { it.id == post.id }
+            val itemIndex = (adapter.listData[reviewIndex].data as MutableList<ICPost>).indexOfFirst { it.id == post.id }
             if (itemIndex != -1) {
                 (adapter.listData[reviewIndex].data as MutableList<ICPost>)[itemIndex] = post
                 val holder = rcv_search_result.findViewHolderForAdapterPosition(reviewIndex)
@@ -383,39 +331,19 @@ class SearchResultActivity : BaseActivityMVVM(), View.OnClickListener {
                 onBackPressed()
             }
             R.id.btn_product -> {
-                ActivityUtils.startActivity<SearchProductActivity>(
-                    this,
-                    Constant.DATA_1,
-                    edtSearch.text.toString()
-                )
+                ActivityUtils.startActivity<SearchProductActivity>(this, Constant.DATA_1, edtSearch.text.toString())
             }
             R.id.btn_review -> {
-                ActivityUtils.startActivity<SearchReviewActivity>(
-                    this,
-                    Constant.DATA_1,
-                    edtSearch.text.toString()
-                )
+                ActivityUtils.startActivity<SearchReviewActivity>(this, Constant.DATA_1, edtSearch.text.toString())
             }
             R.id.btn_user -> {
-                ActivityUtils.startActivity<SearchUserActivity>(
-                    this,
-                    Constant.DATA_1,
-                    edtSearch.text.toString()
-                )
+                ActivityUtils.startActivity<SearchUserActivity>(this, Constant.DATA_1, edtSearch.text.toString())
             }
             R.id.btn_page -> {
-                ActivityUtils.startActivity<SearchPageActivity>(
-                    this,
-                    Constant.DATA_1,
-                    edtSearch.text.toString()
-                )
+                ActivityUtils.startActivity<SearchPageActivity>(this, Constant.DATA_1, edtSearch.text.toString())
             }
             R.id.btn_shop -> {
-                ActivityUtils.startActivity<SearchShopActivity>(
-                    this,
-                    Constant.DATA_1,
-                    edtSearch.text.toString()
-                )
+                ActivityUtils.startActivity<SearchShopActivity>(this, Constant.DATA_1, edtSearch.text.toString())
             }
             R.id.imgClear -> {
                 edtSearch.setText("")

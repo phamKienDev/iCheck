@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICThumbnail
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -39,9 +40,9 @@ class LayoutFeedComment : FrameLayout {
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT).also {
                     it.setMargins(SizeHelper.size32, 0, 0, 0)
                 },
-                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.gray), SizeHelper.size4.toFloat()),
+                ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size1, ContextCompat.getColor(context, R.color.grayD8), SizeHelper.size4.toFloat()),
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.setPadding(SizeHelper.size10, 0, SizeHelper.size74, 0)
@@ -68,7 +69,7 @@ class LayoutFeedComment : FrameLayout {
     }
 
     fun setData(avatar: ICThumbnail) {
-        WidgetUtils.loadImageUrl(getChildAt(0) as CircleImageView, avatar.medium, R.drawable.ic_circle_avatar_default)
+        WidgetUtils.loadImageUrl(getChildAt(0) as CircleImageView, avatar.medium, R.drawable.ic_user_svg)
     }
 
     fun setOnAvatarClick(listener: OnClickListener) {

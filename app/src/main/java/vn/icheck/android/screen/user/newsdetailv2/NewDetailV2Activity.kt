@@ -24,6 +24,7 @@ import vn.icheck.android.component.news.NewsAdapter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
@@ -68,6 +69,8 @@ class NewDetailV2Activity : BaseActivityMVVM() {
         viewModel = ViewModelProvider(this)[NewDetailViewModel::class.java]
 
         getDataIntent()
+
+        btnCTA.background = ViewHelper.bgPrimaryCorners4(this)
     }
 
     fun getDataIntent() {
@@ -225,7 +228,7 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 constraintLayout.visibility = View.VISIBLE
 
                 tvTitleNew.text = if (it.obj?.articleCategory?.name.isNullOrEmpty()) {
-                    "Tin tức liên quan"
+                    getString(R.string.tin_tuc_lien_quan)
                 } else {
                     it.obj?.articleCategory?.name
                 }

@@ -175,9 +175,9 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // trendProducts
                                     totalRequest++
                                     val listCategory = mutableListOf<ICExperienceCategory>()
-                                    listCategory.add(ICExperienceCategory(0, "Sản phẩm", true))
-                                    listCategory.add(ICExperienceCategory(0, "Doanh nghiệp", false))
-                                    listCategory.add(ICExperienceCategory(0, "Chuyên gia", false))
+                                    listCategory.add(ICExperienceCategory(0, ICheckApplication.getString(R.string.san_pham), true))
+                                    listCategory.add(ICExperienceCategory(0, ICheckApplication.getString(R.string.doanh_nghiep), false))
+                                    listCategory.add(ICExperienceCategory(0, ICheckApplication.getString(R.string.chuyen_gia), false))
                                     addLayoutToAdapter(item.apply {
                                         viewType = ICViewTypes.TREND
                                         data = ICTopTrend(listCategory)

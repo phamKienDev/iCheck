@@ -50,9 +50,9 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                 }
 
                 itemView.tvHintSerial.text = if (!type) {
-                    "Số serial:"
+                    itemView.context.getString(R.string.so_serial)
                 } else {
-                    "Mã code:"
+                    itemView.context.getString(R.string.ma_code)
                 }
 
                 itemView.tvSerial.run {
@@ -75,14 +75,14 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                     }
                 }
 
-                itemView.tvTime.text = "Thời gian nhận"
+                itemView.tvTime.setText(R.string.thoi_gian_nhan)
             } else {
                 itemView.tvPoint.run {
                     text = TextHelper.formatMoneyPhay(obj.points)
                     setTextColor(ContextCompat.getColor(context, R.color.colorAccentRed))
                 }
 
-                itemView.tvHintSerial.text = "Nội dung:"
+                itemView.tvHintSerial.setText(R.string.noi_dung)
 
                 itemView.tvSerial.text = if (obj.message.isNullOrEmpty()) {
                     itemView.context.getString(R.string.dang_cap_nhat)
@@ -95,7 +95,7 @@ internal class PointHistoryAllAdapter(callback: IRecyclerViewCallback) : Recycle
                 }
 
 
-                itemView.tvTime.text = "Thời gian đổi:"
+                itemView.tvTime.setText(R.string.thoi_gian_doi)
             }
 
             itemView.tvDate.text = if (!obj.created_at.isNullOrEmpty()) {

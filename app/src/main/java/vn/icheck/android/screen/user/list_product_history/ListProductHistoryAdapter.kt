@@ -9,8 +9,8 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICProductTrend
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 
 class ListProductHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

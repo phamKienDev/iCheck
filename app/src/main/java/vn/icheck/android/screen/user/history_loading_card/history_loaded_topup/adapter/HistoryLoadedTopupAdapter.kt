@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_history_loaded_topup.view.*
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
@@ -13,9 +12,10 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
-import vn.icheck.android.network.models.recharge_phone.IC_RESP_HistoryBuyTopup
 import vn.icheck.android.screen.user.history_loading_card.history_loaded_topup.view.IHistoryLoadedTopupView
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -139,14 +139,14 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
     class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
-
-            itemView.tvNameNetwork.text = "Nạp thẻ ${item.provider}"
+            itemView.layoutImg.background= ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
+            itemView.tvNameNetwork.setText(R.string.nap_the_s, item.provider)
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {
                     itemView.tvPrice.text = TextHelper.formatMoneyPhay((item.denomination as String).toLong()) + "đ"
                 } else {
-                    itemView.tvPrice.text = itemView.context.getString(R.string.dang_cap_nhat)
+                    itemView.tvPrice.setText(R.string.dang_cap_nhat)
                 }
             }
 
@@ -154,7 +154,7 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
                 val phone = getPhoneOnly(item.phone)
                 itemView.tvPhoneNumber.text = Constant.formatPhone(phone)
             } else {
-                itemView.tvPhoneNumber.text = itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvPhoneNumber.setText(R.string.dang_cap_nhat)
             }
 
             itemView.tvDate.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(item.createdAt)
@@ -174,14 +174,14 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
                     phone
                 }
             } else {
-                "Chưa cập nhật"
+                itemView.context.getString(R.string.dang_cap_nhat)
             }
         }
     }
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -190,17 +190,17 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Bạn chưa nạp thẻ nào!"
+                    itemView.txtMessage.setText(R.string.ban_chua_nap_ma_the_nao)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
+                    itemView.txtMessage.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         }

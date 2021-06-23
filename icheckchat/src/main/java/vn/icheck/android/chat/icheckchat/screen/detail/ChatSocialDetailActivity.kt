@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Handler
 import android.text.Editable
@@ -43,6 +44,7 @@ import vn.icheck.android.chat.icheckchat.base.ConstantChat.QR_CODE
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.SCAN
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.*
+import vn.icheck.android.chat.icheckchat.base.view.ConfirmDialogListener
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_PACKAGE
 import vn.icheck.android.chat.icheckchat.base.view.MCViewType.TYPE_STICKER
 import vn.icheck.android.chat.icheckchat.databinding.ActivityChatSocialDetailBinding
@@ -50,17 +52,18 @@ import vn.icheck.android.chat.icheckchat.helper.NetworkHelper
 import vn.icheck.android.chat.icheckchat.helper.PermissionChatHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
 import vn.icheck.android.chat.icheckchat.model.*
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ChatSocialDetailAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.ImageAdapter
 import vn.icheck.android.chat.icheckchat.screen.detail.adapter.StickerAdapter
 import vn.icheck.android.chat.icheckchat.screen.user_information.UserInformationActivity
-import vn.icheck.android.ichecklibs.DialogHelper
-import vn.icheck.android.ichecklibs.NotificationDialogListener
+import vn.icheck.android.ichecklibs.*
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 import java.util.regex.Pattern
@@ -75,6 +78,21 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 putExtra(DATA_2, userId)
                 putExtra(DATA_3, type)
             })
+        }
+
+        fun createRoomChat(activity: Activity, userId: Long, type: String, requestCode: Int = 0) {
+            finishAllChat()
+
+            val intent = Intent(activity, ChatSocialDetailActivity::class.java).apply {
+                putExtra(DATA_2, userId)
+                putExtra(DATA_3, type)
+            }
+
+            if (requestCode == 0) {
+                activity.startActivity(intent)
+            } else {
+                activity.startActivityForResult(intent, requestCode)
+            }
         }
 
         fun openRoomChatWithKey(context: Context, key: String) {
@@ -143,6 +161,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         setClickListener(this@ChatSocialDetailActivity, binding.tvMessage, binding.imgDelete, binding.imgScan, binding.imgCamera, binding.imgSticker, binding.edtMessage, binding.imgSend, binding.layoutToolbar.imgBack, binding.layoutToolbar.imgAction, binding.layoutNewMessage)
 
         initToolbar()
+        setupView()
         initRecyclerView()
         initEditText()
         getPackageSticker()
@@ -177,10 +196,22 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
             })
         })
-
+        binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()
+        binding.layoutToolbar.imgAction.fillDrawableColor(R.drawable.ic_setting_blue_24dp_chat)
+    }
 
-        binding.layoutToolbar.imgAction.setImageResource(R.drawable.ic_setting_blue_24dp_chat)
+    private fun setupView() {
+        binding.layoutEditText.background = ViewHelper.bgGrayF0Corners4()
+        binding.btnUnBlock.background = ViewHelper.bgPrimaryCorners4(this)
+        binding.tvNewMessage.background = ViewHelper.bgWhiteStrokeLineColor1Corners4(this)
+
+        binding.imgScan.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_scan_gray_24dp_chat,R.drawable.ic_scan_white_24dp_chat, this), null, null, null)
+        binding.imgCamera.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_camera_off_24dp_chat,R.drawable.ic_camera_off_vector_24dp, this), null, null, null)
+        binding.imgSticker.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_emoji_20dp_chat,R.drawable.ic_imoji_fc_24dp_chat, this), null, null, null)
+        binding.imgSend.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.setCheckedPrimary(R.drawable.ic_send_dis_24dp_chat,R.drawable.ic_send_active_24dp_chat, this), null, null, null)
+
+        binding.tvMessage.setHintTextColor(ColorManager.getDisableTextColor(this))
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -230,10 +261,11 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 binding.imgSend.isChecked = !s?.trim().isNullOrEmpty() || binding.layoutProduct.isVisible && product != null
                 binding.imgSend.isEnabled = !s?.trim().isNullOrEmpty() || binding.layoutProduct.isVisible && product != null
 
+
                 if (s.isNullOrEmpty()) {
-                    binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_gray)
+                    binding.layoutEditText.background = ViewHelper.bgGrayF0Corners4()
                 } else {
-                    binding.layoutEditText.setBackgroundResource(R.drawable.bg_corner_4_no_solid_light_blue)
+                    binding.layoutEditText.background = ViewHelper.bgOutlinePrimary1Corners4(this@ChatSocialDetailActivity)
                 }
             }
 
@@ -301,15 +333,15 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
         binding.layoutToolbar.imgAction.setVisible()
 
         viewModel.getChatRoom(key,
-                { obj ->
-                    if (obj.value != null) {
+            { obj ->
+                if (obj.value != null) {
 
-                        if (obj.child("members").hasChildren()) {
-                            for (item in obj.child("members").children) {
-                                if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
-                                    toId = item.child("source_id").value.toString()
-                                    toType = item.child("type").value.toString()
-                                    inboxUserID = toId
+                    if (obj.child("members").hasChildren()) {
+                        for (item in obj.child("members").children) {
+                            if (!FirebaseAuth.getInstance().uid.toString().contains(item.child("source_id").value.toString())) {
+                                toId = item.child("source_id").value.toString()
+                                toType = item.child("type").value.toString()
+                                inboxUserID = toId
 
                                     viewModel.getChatSender(item.child("id").value.toString(), { success ->
 
@@ -333,16 +365,16 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                         binding.layoutToolbar.txtTitle.text = success.child("name").value.toString()
                                     }, {
 
-                                    })
+                                })
+                            } else {
+                                deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
+                                    item.child("deleted_at").value.toString().toLong()
                                 } else {
-                                    deleteAt = if (item.child("deleted_at").value != null && validNumber(item.child("deleted_at").value.toString())) {
-                                        item.child("deleted_at").value.toString().toLong()
-                                    } else {
-                                        -1
-                                    }
+                                    -1
                                 }
                             }
                         }
+                    }
 
                         getChatMessage(key)
                         listenChangeMessage(key)
@@ -353,7 +385,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 binding.layoutBlock.setVisible()
                                 setGoneView(binding.layoutChat, binding.layoutUserBlock)
 
-                                binding.tvTitle.text = "Bạn đã chặn tin nhắn của ${conversation?.targetUserName}"
+                                binding.tvTitle.setText(R.string.ban_da_chan_tin_nhan_cua_s, conversation?.targetUserName)
 
                                 binding.btnUnBlock.setOnClickListener {
                                     this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
@@ -372,7 +404,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
+                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)

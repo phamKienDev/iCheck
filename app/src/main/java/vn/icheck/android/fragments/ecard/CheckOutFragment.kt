@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICBuyEpin
 import vn.icheck.android.util.kotlin.ToastUtils
 
@@ -44,18 +44,23 @@ class CheckOutFragment : Fragment() {
         }
         tv_icoin.text = String.format("Số dư hiện tại: %,d iCoin", SessionManager.getCoin())
 
+        img_icoin.background = ViewHelper.bgWhiteStrokeSecondary1Corners4(img_icoin.context)
+
         txtTitle.setText(R.string.thanh_toan)
         imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
 
-        btn_checkout.setOnClickListener {
-            btn_checkout.isEnabled = false
-            DialogHelper.showLoading(this@CheckOutFragment)
-            val requestBody = hashMapOf<String, Any>()
-            requestBody.put("service_id", mspId)
-            requestBody.put("denomination", fee)
-            ICNetworkClient.getApiClient().postBuyEpin(requestBody)
+        btn_checkout.apply {
+            background = ViewHelper.bgSecondaryCorners20(requireContext())
+
+            setOnClickListener {
+                btn_checkout.isEnabled = false
+                DialogHelper.showLoading(this@CheckOutFragment)
+                val requestBody = hashMapOf<String, Any>()
+                requestBody.put("service_id", mspId)
+                requestBody.put("denomination", fee)
+                ICNetworkClient.getApiClient().postBuyEpin(requestBody)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : SingleObserver<ICBuyEpin> {
@@ -72,9 +77,14 @@ class CheckOutFragment : Fragment() {
                                     bundle.putString("msp", msp!!)
                                     successBuyEpinFragment.arguments = bundle
                                     activity!!.supportFragmentManager.beginTransaction()
-                                            .setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
-                                            .replace(R.id.content, successBuyEpinFragment)
-                                            .commit()
+                                        .setCustomAnimations(
+                                            R.anim.right_to_left_enter,
+                                            R.anim.right_to_left_exit,
+                                            R.anim.left_to_right_pop_enter,
+                                            R.anim.left_to_right_pop_exit
+                                        )
+                                        .replace(R.id.content, successBuyEpinFragment)
+                                        .commit()
                                 }
                             }
                         }
@@ -89,6 +99,8 @@ class CheckOutFragment : Fragment() {
                             ToastUtils.showLongError(context, getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                         }
                     })
+            }
+
         }
     }
 

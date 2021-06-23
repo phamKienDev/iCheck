@@ -52,7 +52,9 @@ class MissionDetailViewModel(application: Application) : AndroidViewModel(applic
             override fun onSuccess(obj: ICResponse<ICMissionDetail>) {
                 onChangeState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    onMissionDetail.postValue(obj.data)
+                    obj.data?.let {
+                        onMissionDetail.postValue(it)
+                    }
                     missionData = obj.data
                 } else {
                     if (!isUpdate)

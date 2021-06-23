@@ -55,7 +55,7 @@ class CommentPermissionAdapter(val listener: ItemClickListener<ICCommentPermissi
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, if (obj.type == Constant.PAGE) {
                 R.drawable.ic_business_v2
             } else {
-                R.drawable.ic_user_orange_circle
+                R.drawable.ic_user_svg
             })
             itemView.tvName.text = obj.name
 

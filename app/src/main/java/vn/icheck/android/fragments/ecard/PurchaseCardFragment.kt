@@ -22,6 +22,7 @@ import vn.icheck.android.adapters.McardAdapter
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.models.topup.TopupServices
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
@@ -127,7 +128,7 @@ class PurchaseCardFragment : Fragment() {
                 bundle.putString("denomition", denomition)
                 bundle.putInt("id", mspId)
                 checkOutFragment.arguments = bundle
-                activity!!.supportFragmentManager.beginTransaction()
+                requireActivity().supportFragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
                         .replace(R.id.content, checkOutFragment)
                         .addToBackStack(null)
@@ -146,7 +147,7 @@ class PurchaseCardFragment : Fragment() {
     }
 
     fun changePrice(price: String) {
-        btn_checkout.setBackgroundResource(R.drawable.bg_checkout_active)
+        btn_checkout.background=ViewHelper.bgSecondaryCorners35(requireContext())
         btn_checkout.isEnabled = true
 
         tv_total.text = getString(R.string.xxx_d, TextHelper.formatMoney(price))

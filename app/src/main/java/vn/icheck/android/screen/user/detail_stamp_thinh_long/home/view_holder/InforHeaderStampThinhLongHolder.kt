@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewPointText
 
@@ -22,7 +23,7 @@ class InforHeaderStampThinhLongHolder(parent: ViewGroup, val headerImagelistener
         itemView.tv_product_name.text = obj.name
 
         if (obj.price > 0L && obj.price != null) {
-            itemView.tv_price.text = String.format("%,dđ", obj.price)
+            itemView.tv_price.setText(R.string.x_d, obj.price)
             itemView.tvGiaNiemYet.visibility = View.VISIBLE
         } else {
             itemView.tv_price.text = itemView.context.getString(R.string.dang_cap_nhat_gia)
@@ -33,7 +34,7 @@ class InforHeaderStampThinhLongHolder(parent: ViewGroup, val headerImagelistener
 
         nation = obj.owner?.vendorPage?.country?.code
 
-        val nationName = obj.owner?.vendorPage?.country?.name ?: "Việt Nam"
+        val nationName = obj.owner?.vendorPage?.country?.name ?: itemView.tv_sx.context.getString(R.string.viet_nam)
 
         if (!nationName.isNullOrEmpty()) {
             itemView.tv_sx.text = nationName
@@ -49,7 +50,7 @@ class InforHeaderStampThinhLongHolder(parent: ViewGroup, val headerImagelistener
             itemView.product_rate.visibility = View.VISIBLE
             itemView.tv_product_avg.visibility = View.VISIBLE
             itemView.product_rate.rating = obj.productRate
-            itemView.tv_product_avg.text = String.format("%.1f %s", obj.productRate * 2,
+            itemView.tv_product_avg.setText(R.string.your_score, obj.productRate * 2,
                     ReviewPointText.getText(obj.productRate))
         } else {
             itemView.product_rate.visibility = View.GONE
@@ -59,7 +60,7 @@ class InforHeaderStampThinhLongHolder(parent: ViewGroup, val headerImagelistener
         if (obj.countReviews == 0) {
             itemView.tv_xrv.visibility = View.GONE
         } else {
-            itemView.tv_xrv.text = String.format("Xem %,d đánh giá", obj.countReviews)
+            itemView.tv_xrv.setText(R.string.xem_d_danh_gia, obj.countReviews)
             itemView.tv_xrv.setOnClickListener {
                 headerImagelistener.showAllBottomReviews()
             }

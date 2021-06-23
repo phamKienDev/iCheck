@@ -2,6 +2,7 @@ package vn.icheck.android.loyalty.screen.select_address.district
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ApplicationHelper
@@ -56,7 +57,7 @@ internal class SelectDistrictViewModel : BaseViewModel<ICDistrict>() {
 
                 if (!isLoadMore) {
                     if (obj.rows.isNullOrEmpty()) {
-                        onEmptyString.postValue("Chưa có dữ liệu!")
+                        onEmptyString.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.chua_co_du_lieu))
                     } else {
                         onSetData.postValue(obj.rows)
                     }

@@ -36,7 +36,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
-            android:text="Quay thưởng ngay vận may chắc chắn tới 100% trúng quà cực cool đó!"
+            android:text="@string/quay_thuong_ngay_van_may_chac_chan_toi_100_trung_qua_cuc_cool_do"
             android:textAlignment="center" />
 
         <androidx.appcompat.widget.AppCompatImageView

@@ -22,7 +22,7 @@ class AdsNewHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.from(
     private val mAdapter = AdsNewAdapter()
 
     fun bind(obj: ICAdsNew) {
-        itemView.tvTitle.text = obj.name ?: ""
+        itemView.tvTitle.text = obj.name
 
         itemView.viewBackground.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
             itemView.tvStart.visibility = view.visibility
@@ -40,8 +40,8 @@ class AdsNewHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.from(
                     itemView.viewBackground.visibility = View.VISIBLE
                     itemView.tvStart.visibility = View.VISIBLE
                     itemView.tvEnd.visibility = View.VISIBLE
-                    itemView.layoutParent.setBackgroundColor(Color.WHITE)
-                    setBackgroundColor(Color.WHITE)
+                    itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                    setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     PagerSnapHelper().attachToRecyclerView(this)
 
@@ -67,8 +67,8 @@ class AdsNewHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.from(
                     itemView.viewBackground.visibility = View.GONE
                     itemView.tvStart.visibility = View.GONE
                     itemView.tvEnd.visibility = View.GONE
-                    itemView.layoutParent.setBackgroundColor(Color.WHITE)
-                    setBackgroundColor(Color.WHITE)
+                    itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                    setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                     itemView.recyclerView.layoutManager = GridLayoutManager(itemView.context, 2, GridLayoutManager.VERTICAL, false)
 
                     setPadding(SizeHelper.size6,SizeHelper.size5,SizeHelper.size6,SizeHelper.size6)

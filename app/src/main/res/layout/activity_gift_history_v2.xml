@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -26,15 +25,13 @@
                 app:layout_constraintDimensionRatio="H, 375:200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/colorPrimary" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/layoutNoData"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_0"
                 android:layout_marginTop="@dimen/size_180"
-                android:background="@drawable/bg_corner_top_20"
                 android:orientation="vertical"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -46,27 +43,24 @@
                     android:layout_marginTop="@dimen/size_97"
                     android:src="@drawable/ic_no_campaign" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_30"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="Bạn chưa nhận được quà nào!"
-                    android:textColor="@color/black_21_v2"
+                    android:text="@string/ban_chua_nhan_duoc_qua_nao"
                     android:textSize="@dimen/font_14" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Thực hiện các thử thách để nhận lượt\nmở quà tương ứng nhé"
-                    android:textColor="@color/colorSecondText"
+                    android:text="@string/thuc_hien_cac_thu_thach_de_nhan_luot_n_mo_qua_tuong_ung_nhe"
                     android:textSize="@dimen/font_14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -76,7 +70,6 @@
                     android:layout_marginStart="@dimen/size_38"
                     android:layout_marginTop="@dimen/size_16"
                     android:layout_marginEnd="@dimen/size_38"
-                    android:background="@drawable/bg_corners_4_light_blue_solid"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:paddingTop="@dimen/size_9"
@@ -126,37 +119,33 @@
             android:background="?android:attr/selectableItemBackground" />
     </FrameLayout>
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         android:paddingTop="@dimen/size_41"
         android:paddingBottom="@dimen/size_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="#057DDA"
-            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 
@@ -166,7 +155,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadowBottom"
@@ -175,4 +164,4 @@
         android:alpha="0"
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAlpha" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

@@ -14,24 +14,21 @@
         android:id="@id/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_corner_4_f2f2f2"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
             android:id="@id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:maxLines="2"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Mã vạch cửa hàng" />
     </LinearLayout>
@@ -40,7 +37,6 @@
         android:id="@id/img_tick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_tick_filter_hisistory_blue_24"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/layoutContent"
         app:layout_constraintTop_toTopOf="@id/layoutContent" />

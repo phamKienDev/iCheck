@@ -8,25 +8,22 @@
 
     <include layout="@layout/toolbar_blue" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/textView38"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_16"
-            android:text="Hình thức thanh toán"
-            android:textColor="#3C5A99"
+            android:text="@string/hinh_thuc_thanh_toan"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +47,6 @@
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_12"
                 android:adjustViewBounds="true"
-                android:background="@drawable/bg_wallet"
                 android:scaleType="centerInside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_10"
-                android:text="Ví iCoin"
+                android:text="@string/vi_icoin"
                 android:textColor="#333333"
                 app:layout_constraintStart_toEndOf="@+id/img_icoin"
                 app:layout_constraintTop_toTopOf="@+id/img_icoin" />
@@ -71,21 +67,19 @@
                 android:id="@+id/tv_icoin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Số dư hiện tại: 0 iCoin"
+                android:text="@string/so_du_hien_tai_0_icoin"
                 android:textColor="#434343"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@+id/img_icoin"
                 app:layout_constraintStart_toStartOf="@id/tv_title_icoin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/textView47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Chi tiết giao dịch"
-            android:textColor="#3C5A99"
+            android:text="@string/chi_tiet_giao_dich"
             android:textSize="@dimen/font_16"
             app:layout_constraintStart_toStartOf="@+id/vg_icheck"
             app:layout_constraintTop_toBottomOf="@+id/vg_icheck" />
@@ -109,7 +103,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_12"
-                android:text="Dịch vụ:"
+                android:text="@string/dich_vu_colon"
                 android:textColor="#434343"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -119,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:text="Nhà mạng:"
+                android:text="@string/nha_mang_colon"
                 android:textColor="#434343"
                 app:layout_constraintStart_toStartOf="@+id/textView48"
                 app:layout_constraintTop_toBottomOf="@+id/textView48" />
@@ -129,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:text="Mệnh giá:"
+                android:text="@string/menh_gia_colon"
                 android:textColor="#434343"
                 app:layout_constraintStart_toStartOf="@+id/textView49"
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />
@@ -139,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:text="Phí dịch vụ:"
+                android:text="@string/phi_dich_vu_colon"
                 android:textColor="#434343"
                 app:layout_constraintStart_toStartOf="@+id/textView50"
                 app:layout_constraintTop_toBottomOf="@+id/textView50" />
@@ -150,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:text="Mua mã thẻ điện thoại"
+                android:text="@string/mua_ma_the_dien_thoai"
                 android:textColor="#333333"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView48" />
@@ -182,35 +176,31 @@
                 app:layout_constraintTop_toTopOf="@+id/textView52"
                 tools:text="Miễn phí" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ViewLineDotted
                 android:id="@+id/view19"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_5"
                 android:layout_marginTop="@dimen/size_12"
-                android:background="@drawable/dotted"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/textView58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_12"
-                android:text="Thành tiền:"
-                android:textColor="#3C5A99"
+                android:text="@string/thanh_tien_colon"
                 app:layout_constraintStart_toStartOf="@+id/textView52"
                 app:layout_constraintTop_toBottomOf="@+id/view19" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#3C5A99"
                 app:layout_constraintEnd_toEndOf="@+id/tv_fee"
                 app:layout_constraintTop_toTopOf="@+id/textView58"
                 tools:text="49,600 iCoin" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
@@ -221,8 +211,7 @@
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_40"
             android:layout_marginBottom="@dimen/size_12"
-            android:background="@drawable/bg_blue_border_20"
-            android:text="Xác nhận thanh toán"
+            android:text="@string/xac_nhan_thanh_toan"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"

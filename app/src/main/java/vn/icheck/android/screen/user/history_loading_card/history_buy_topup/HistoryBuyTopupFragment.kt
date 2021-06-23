@@ -112,7 +112,7 @@ class HistoryBuyTopupFragment : BaseFragmentMVVM(), IHistoryBuyTopupView {
     }
 
     override fun onClickLoadNow(item: ICRechargePhone) {
-        DialogHelper.showConfirm(context, "Bạn đồng ý nạp mã thẻ này?", "*100*${item.card?.pin}#", true, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(context, getString(R.string.ban_dong_y_nap_ma_the_nay), "*100*${item.card?.pin}#", true, object : ConfirmDialogListener {
             override fun onDisagree() {
                 DialogHelper.closeLoading(this@HistoryBuyTopupFragment)
             }

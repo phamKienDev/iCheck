@@ -15,6 +15,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
@@ -33,6 +34,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         setContentView(binding.root)
 
         setupToolbar()
+        setupView()
 
         presenter.getDataByIntent(intent)
     }
@@ -45,6 +47,10 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         }
     }
 
+    private fun setupView() {
+        binding.btnConfirm.background=ViewHelper.btnPrimaryCorners4(this)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun setupListener() {
         binding.edtOtp.addTextChangedListener {
@@ -55,16 +61,16 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
         binding.txtStatus.setOnClickListener {
             if (StampDetailActivity.isVietNamLanguage == false) {
-                if (binding.txtStatus.text.toString() == "Resend code") {
+                if (binding.txtStatus.text.toString() == getString(R.string.resend_code)) {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.txtStatus.text = "Sending code"
+                    binding.txtStatus.setText(R.string.sending_code)
 
                     presenter.sendOtpConfirmPhone()
                 }
             } else {
-                if (binding.txtStatus.text.toString() == "Gửi lại mã") {
+                if (binding.txtStatus.text.toString() == getString(R.string.gui_lai_ma)) {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.txtStatus.text = "Đang gửi mã"
+                    binding.txtStatus.setText(R.string.dang_gui_ma)
 
                     presenter.sendOtpConfirmPhone()
                 }
@@ -90,7 +96,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
                 binding.layoutStatus.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
-                binding.txtStatus.text = "Resend code"
+                binding.txtStatus.setText(R.string.resend_code)
             }
         } else {
             if (isShow) {
@@ -118,7 +124,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)))
+        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)),this))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
 

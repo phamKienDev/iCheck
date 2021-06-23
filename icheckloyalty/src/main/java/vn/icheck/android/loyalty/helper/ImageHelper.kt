@@ -1,60 +1,48 @@
 package vn.icheck.android.loyalty.helper
 
-import android.app.DownloadManager
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Environment
 import androidx.annotation.AnyRes
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.loyalty.R
-import java.io.ByteArrayOutputStream
-import java.io.File
 
 object ImageHelper {
 
     val thumbSmallSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.thumb_small_size)
+            return getString(R.string.thumb_small_size)
         }
 
     val thumbMediumSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.thumb_medium_size)
+            return getString(R.string.thumb_medium_size)
         }
 
     val thumbLargeSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.thumb_large_size)
+            return getString(R.string.thumb_large_size)
         }
 
     val smallSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.small_size)
+            return getString(R.string.small_size)
         }
 
     val mediumSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.medium_size)
+            return getString(R.string.medium_size)
         }
 
     val largeSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.large_size)
+            return getString(R.string.large_size)
         }
 
     val originalSize: String
         get() {
-            return ApplicationHelper.getApplicationByReflect().getString(R.string.original_size)
+            return getString(R.string.original_size)
         }
 
     /**

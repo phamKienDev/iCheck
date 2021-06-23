@@ -2,13 +2,11 @@ package vn.icheck.android.screen.dialog
 
 import android.Manifest
 import android.content.Context
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.dialog_ask_permission.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class PermissionDialog(context: Context, val type: Int, val listener: PermissionListener): BaseDialog(context, R.style.DialogTheme) {
 
@@ -64,6 +62,8 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
         val message: Int
         val button: Int
 
+        setupView()
+
         when (type) {
             LOCATION -> {
                 icon = R.drawable.ic_permission_location
@@ -103,6 +103,7 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
             }
         }
 
+
         imgIcon.setImageResource(icon)
         tvTitle.setText(title)
         tvMessage.setText(message)
@@ -117,6 +118,11 @@ class PermissionDialog(context: Context, val type: Int, val listener: Permission
             dismiss()
             listener.onPermissionNotAllow()
         }
+    }
+
+    private fun setupView() {
+        constraintLayout.background=ViewHelper.bgWhiteCorners10(constraintLayout.context)
+        tvAllow.background=ViewHelper.btnSecondaryCorners6(constraintLayout.context)
     }
 
     interface PermissionListener {

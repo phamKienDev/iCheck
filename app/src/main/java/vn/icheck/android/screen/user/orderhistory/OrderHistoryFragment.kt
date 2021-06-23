@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.orderhistory
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,7 +52,8 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
 
     private fun setupRefreshLayout() {
         context?.let {
-            swipeLayout.setColorSchemeColors(ContextCompat.getColor(it, R.color.colorSecondary), ContextCompat.getColor(it, R.color.colorPrimary), ContextCompat.getColor(it, R.color.colorPrimary))
+            val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(it)
+            swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         }
 
         swipeLayout.setOnRefreshListener {
@@ -76,7 +78,7 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             if (!it.isNullOrEmpty()) {
                 adapter.setListData(it)
             } else {
-                adapter.setError(R.drawable.ic_group_120dp, "Bạn chưa có đơn hàng nào!", -1)
+                adapter.setError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_don_hang_nao), -1)
             }
         })
 

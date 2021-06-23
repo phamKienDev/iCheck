@@ -78,10 +78,12 @@ class SuggestPageViewModel : ViewModel() {
             return
         }
 
-        SessionManager.session.user?.let {
+        SessionManager.session.user?.let { it ->
             interactor.getSuggestFriend(it.id, offset, 30, null, object : ICNewApiListener<ICResponse<ICListResponse<ICUser>>> {
                 override fun onSuccess(obj: ICResponse<ICListResponse<ICUser>>) {
-                    onSuggestFriend.postValue(obj.data)
+                    obj.data?.let {
+                        onSuggestFriend.postValue(it)
+                    }
                 }
 
 

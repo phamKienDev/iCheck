@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
         android:id="@+id/rcvHistoryLoadedTopup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkGray6"
         android:paddingTop="@dimen/size_5"/>
 
 <!--    <com.facebook.shimmer.ShimmerFrameLayout-->
@@ -47,4 +45,4 @@
 
 <!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

@@ -12,10 +12,9 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import vn.icheck.android.BuildConfig
-import vn.icheck.android.screen.dialog.PickPhotoOptionDialog
+import vn.icheck.android.ichecklibs.take_media.PickCameraOptionDialog
 import java.io.File
 import java.io.IOException
-import java.lang.Exception
 
 class TakePhotoHelper(val listener: TakePhotoListener) {
     private val requestCamera = 89
@@ -32,7 +31,7 @@ class TakePhotoHelper(val listener: TakePhotoListener) {
 
     fun takePhoto(fragment: Fragment) {
         fragment.context?.let {
-            object : PickPhotoOptionDialog(it) {
+            object : PickCameraOptionDialog(it) {
                 override fun onCamera() {
                     startTakePhoto(fragment)
                 }
@@ -70,7 +69,7 @@ class TakePhotoHelper(val listener: TakePhotoListener) {
 
 
     fun takePhoto(fragment: FragmentActivity) {
-        object : PickPhotoOptionDialog(fragment) {
+        object : PickCameraOptionDialog(fragment) {
             override fun onCamera() {
                 startTakePhoto(fragment)
             }
@@ -82,7 +81,7 @@ class TakePhotoHelper(val listener: TakePhotoListener) {
     }
 
     fun takeMultiPhoto(fragment: FragmentActivity) {
-        object : PickPhotoOptionDialog(fragment) {
+        object : PickCameraOptionDialog(fragment) {
             override fun onCamera() {
                 startTakePhoto(fragment)
             }

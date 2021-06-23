@@ -2,6 +2,8 @@ package vn.icheck.android.screen.user.ads_more
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.network.models.ICAdsData
@@ -20,7 +22,7 @@ class AdsMoreViewModel : BaseViewModel<Any>() {
         if (adsModel != null) {
             setData.postValue(adsModel)
         } else {
-            setError.postValue("Không có dữ liệu!")
+            setError.postValue(ICheckApplication.getString(R.string.khong_co_du_lieu))
         }
     }
 }

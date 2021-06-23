@@ -91,7 +91,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
         viewModel.onSuccess.observe(this@GiftDetailFromAppActivity, { obj ->
             swipeLayout.isRefreshing = false
-            txtTitle.text = obj.name ?: "Chi tiết quà"
+            txtTitle.text = obj.name ?: getString(R.string.chi_tiet_qua)
 
             setUpButton(obj)
 
@@ -134,7 +134,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                     when {
                         obj.voucher.can_use == true -> {
                             btnUsed.apply {
-                                text = "Dùng ngay"
+                                text = context.getString(R.string.dung_ngay)
 
                                 setOnClickListener {
                                     startActivity(Intent(this@GiftDetailFromAppActivity, VoucherLoyaltyActivity::class.java).apply {
@@ -147,10 +147,10 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
                         }
                         obj.voucher.can_mark_use == true -> {
                             btnUsed.apply {
-                                text = "Đánh dấu sử dụng"
+                                text = context.getString(R.string.danh_dau_su_dung)
 
                                 setOnClickListener {
-                                    showCustomErrorToast(this@GiftDetailFromAppActivity, "Chưa có sự kiện")
+                                    showCustomErrorToast(this@GiftDetailFromAppActivity, context.getString(R.string.chua_co_su_kien))
                                 }
                             }
                         }
@@ -174,7 +174,7 @@ class GiftDetailFromAppActivity : BaseActivityGame() {
 
 
         btnCancel.setOnClickListener {
-            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, "Từ chối nhận quà", "Bạn sẽ không thể nhận quà này nếu\nxác nhận từ chối", "Hủy", "Xác nhận", false) {
+            object : ConfirmLoyaltyDialog(this@GiftDetailFromAppActivity, getString(R.string.tu_choi_nhan_qua), getString(R.string.ban_se_khong_the_nhan_qua_nay_neu_xac_nhan_tu_choi), getString(R.string.huy), getString(R.string.xac_nhan), false) {
                 override fun onDisagree() {
 
                 }

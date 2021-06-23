@@ -36,9 +36,9 @@ class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
 
     fun onInitView() {
         if (StampDetailActivity.isVietNamLanguage == false){
-            txtTitle.text = "Contact help"
+            txtTitle.setText(R.string.contact_help)
         } else {
-            txtTitle.text = "Liên hệ hỗ trợ"
+            txtTitle.setText(R.string.lien_he_ho_tro)
         }
 
         presenter.getListContact()
@@ -86,7 +86,7 @@ class ContactSupportActivity : BaseActivityMVVM(), IContactSupportView {
             "email" -> {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:${item.contact}")
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, getString(R.string.send_to)))
             }
         }
     }

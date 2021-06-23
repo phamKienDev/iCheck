@@ -44,7 +44,7 @@ class CollectionListProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<IC
                             ICheckApplication.currentActivity()?.let { activity ->
                                 val url = APIConstants.defaultHost + APIConstants.Product.LIST
                                 val params = hashMapOf<String, Any>()
-                                params.put("collection_id", id)
+                                params["collection_id"] = id
 
                                 TrackingAllHelper.trackCategoryViewed(obj.collection?.name, (it as AppCompatTextView).text.toString())
                                 ListProductActivity.start(activity, url, params, obj.collection?.name)
@@ -90,7 +90,7 @@ class CollectionListProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<IC
             val layoutParent = LinearLayout(context)
             layoutParent.layoutParams = ViewHelper.createLayoutParams(0, SizeHelper.size6, 0, SizeHelper.size6)
             layoutParent.orientation = LinearLayout.VERTICAL
-            layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGray6))
+            layoutParent.setBackgroundColor(ContextCompat.getColor(context, vn.icheck.android.ichecklibs.R.color.grayF0))
 
             // Layout title
             layoutParent.addView(ViewHelper.createTitleWidthViewMore(context))

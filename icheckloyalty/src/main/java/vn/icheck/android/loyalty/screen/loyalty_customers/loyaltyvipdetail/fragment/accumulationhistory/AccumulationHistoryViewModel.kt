@@ -35,9 +35,15 @@ class AccumulationHistoryViewModel : BaseViewModel<ICKPointHistory>() {
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
                         if (SharedLoyaltyHelper(ApplicationHelper.getApplicationByReflect()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_POINT_LONG_TIME)) {
-                            setErrorEmpty(R.drawable.ic_error_emty_history_topup, "Bạn chưa nhập mã nào", "Nhập mã trên sản phẩm để\nnhận thêm điểm thành viên nhé!", "Nhập mã ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blueVip)
+                            setErrorEmpty(R.drawable.ic_error_emty_history_topup,
+                                vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_nhap_ma_nao),
+                                vn.icheck.android.ichecklibs.util.getString(R.string.nhap_ma_tren_san_pham_de_nhan_them_diem_thanh_vien_nhe),
+                                vn.icheck.android.ichecklibs.util.getString(R.string.nhap_ma_ngay), R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blueVip)
                         } else {
-                            setErrorEmpty(R.drawable.ic_error_emty_history_topup, "Bạn chưa quét tem nào", "Quét tem QR code trên sản phẩm để\nnhận thêm điểm thành viên nhé!", "Quét tem ngay", R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blueVip)
+                            setErrorEmpty(R.drawable.ic_error_emty_history_topup,
+                                vn.icheck.android.ichecklibs.util.getString(R.string.ban_chua_quet_tem_nao),
+                                vn.icheck.android.ichecklibs.util.getString(R.string.quet_tem_qr_code_tren_san_pham_de_nhan_them_diem_thanh_vien_nhe),
+                                vn.icheck.android.ichecklibs.util.getString(R.string.quet_tem_ngay), R.drawable.bg_corner_53_no_solid_stroke_1_blue, R.color.blueVip)
                         }
                     } else {
                         onSetData.postValue(obj.data?.rows)

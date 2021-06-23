@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.dialog_take_media.*
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.base_dialog.BaseBottomSheetDialogFragment
 import java.io.File
 
@@ -61,9 +62,6 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
                     setListener(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount)
                     show(fragmentManager, TakeMediaDialog::class.java.simpleName)
                 }
-
-
-//                TakeMediaDialog(activity, listener, selectMulti, cropImage, ratio, isVideo, disableTakeImage, saveImageToGallery, maxSelectCount).show(fragmentManager, TakeMediaDialog::class.java.simpleName)
             }
         }
     }
@@ -80,6 +78,9 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
+
         imgClose.setOnClickListener {
             dismiss()
         }
@@ -142,6 +143,10 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
                 }
             }
         }
+    }
+
+    private fun setupView() {
+        btnSubmit.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     override fun onResume() {

@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.history_search
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
@@ -49,6 +51,9 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
             onBackPressed()
         }
 
+        tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(this)
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
+
         imgCart.setOnClickListener {
             if (SessionManager.isUserLogged) {
                 startActivity<ShipActivity,Boolean>(Constant.CART,true)
@@ -59,7 +64,8 @@ class HistorySearchActivity : BaseActivityMVVM(), HistoryScanSearchView {
     }
 
     private fun initSwipelayout() {
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         swipe_container.setOnRefreshListener {
             if (!key.isNullOrEmpty()) {
                 viewModel.getHistoryByKey(key!!, false, true)
