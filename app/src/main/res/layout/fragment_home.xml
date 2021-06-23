@@ -55,8 +55,6 @@
                 android:layout_marginEnd="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:text="@string/xem_tat_ca_loi_nhac"
-                app:drawableEndCompat="@drawable/ic_arrow_down_blue_24dp"
-                app:drawableRightCompat="@drawable/ic_arrow_down_blue_24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
@@ -123,7 +121,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_reminder_content"
                     tools:text="Thanh toán ngay" />
-                <androidx.appcompat.widget.AppCompatImageView
+                <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_action"

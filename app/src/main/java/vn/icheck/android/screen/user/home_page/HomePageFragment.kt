@@ -819,7 +819,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         tv_show_all_reminders.setText(R.string.xem_tat_ca_loi_nhac_d, viewModel.getRemindersCount())
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
                         tv_show_all_reminders.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
-                        tv_action.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {
                             tv_action.text = it?.data?.rows?.firstOrNull()?.label
                         } else {
