@@ -1,9 +1,11 @@
 package vn.icheck.android.screen.user.search_home.dialog
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.dialog_filter_location_vn.*
@@ -16,6 +18,7 @@ import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
@@ -39,6 +42,7 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         tvTitle.setText(R.string.tinh_thanh_pho)
         setupRecyclerView()
         getListProvince()
@@ -63,6 +67,14 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
     }
 
     private fun setupRecyclerView() {
+        val displayMetrics = DisplayMetrics()
+        ICheckApplication.currentActivity()?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        val height: Int = displayMetrics.heightPixels
+
+        if((recyclerView.layoutParams.height.toDouble()/height.toDouble()) >0.7){
+            recyclerView.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,SizeHelper.dpToPx(300))
+        }
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
     }

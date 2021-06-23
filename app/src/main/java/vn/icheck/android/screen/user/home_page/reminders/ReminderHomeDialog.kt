@@ -59,7 +59,7 @@ class ReminderHomeDialog:BaseBottomSheetDialogFragment() {
                     }
 
                     override fun onAgree() {
-                        viewModel.deleteReminder(position).observe(viewLifecycleOwner, Observer {
+                        viewModel.deleteReminder(position).observe(viewLifecycleOwner, {
                             if (it.statusCode == "200") {
                                 requireContext().showShortSuccessToast(binding.root.context.getString(R.string.ban_da_xoa_loi_nhan_thanh_cong))
                                 remindersAdapter.notifyItemRemoved(position)

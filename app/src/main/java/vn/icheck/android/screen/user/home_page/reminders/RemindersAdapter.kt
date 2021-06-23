@@ -25,7 +25,6 @@ class RemindersAdapter(val listData: List<ReminderResponse>, val onDismissRemind
 
     inner class RemindersHolder(val binding: ItemReminderBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(reminderResponse: ReminderResponse) {
-            binding.tvAction.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
             binding.tvReminderContent simpleText reminderResponse.message
             if (!reminderResponse.label.isNullOrEmpty()) {
                 binding.tvAction simpleText reminderResponse.label
