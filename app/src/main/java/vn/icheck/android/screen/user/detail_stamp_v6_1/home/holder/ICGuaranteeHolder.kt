@@ -17,9 +17,23 @@ class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = I
             binding.tvRemaining.setHintTextColor(this)
             binding.tvActivate.setHintTextColor(this)
         }
-        binding.tvTime.text = itemView.context.getString(R.string.xxx_ngay, (obj.guaranteeDay ?: 0).toString())
+        binding.tvTime.text = "${obj.guaranteeDays} ${getTypeOfGuaranteeDay(obj.typeGuaranteeDay)}"
         binding.tvEnd.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.expireDate)
         binding.tvRemaining.text = itemView.context.getString(R.string.xxx_ngay, (obj.dayRemaining ?: 0).toString())
         binding.tvActivate.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.activeDate)
+    }
+
+    private fun getTypeOfGuaranteeDay(type: String?): String {
+        return when (type) {
+            "months" -> {
+                binding.root.context.getString(R.string.thang_lowercase)
+            }
+            "years" -> {
+                binding.root.context.getString(R.string.nam_lowercase)
+            }
+            else -> {
+                ""
+            }
+        }
     }
 }

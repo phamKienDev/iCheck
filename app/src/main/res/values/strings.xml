@@ -1854,4 +1854,7 @@
     <string name="tieu_de_xac_nhan_so_dien_thoai_stamp_v61">Nhập số điện thoại đã kích hoạt bảo hành trước đây\ncho sản phẩm này trước khi cập nhận tông tin mới</string>
     <string name="xac_thuc">Xác thực</string>
     <string name="da_hieu">Đã hiểu</string>
+    <string name="xac_thuc_so_dien_thoai">Xác thực số điện thoại</string>
+    <string name="thang_lowercase">tháng</string>
+    <string name="nam_lowercase">năm</string>
 </resources>
