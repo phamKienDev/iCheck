@@ -976,4 +976,6 @@
     <string name="xac_thuc">Xác thực</string>
     <string name="da_hieu">Đã hiểu</string>
     <string name="xac_thuc_so_dien_thoai">Xác thực số điện thoại</string>
+    <string name="thang_lowercase">tháng</string>
+    <string name="nam_lowercase">năm</string>
 </resources>

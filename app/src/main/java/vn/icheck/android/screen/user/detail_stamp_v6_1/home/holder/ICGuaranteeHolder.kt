@@ -11,9 +11,23 @@ import vn.icheck.android.network.models.ICWidgetData
 class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = ItemGuaranteeBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICWidgetData>(binding.root) {
 
     override fun bind(obj: ICWidgetData) {
-        binding.tvTime.text = itemView.context.getString(R.string.xxx_ngay, (obj.guaranteeDay ?: 0).toString())
+        binding.tvTime.text = "${obj.guaranteeDays} ${getTypeOfGuaranteeDay(obj.typeGuaranteeDay)}"
         binding.tvEnd.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.expireDate)
         binding.tvRemaining.text = itemView.context.getString(R.string.xxx_ngay, (obj.dayRemaining ?: 0).toString())
         binding.tvActivate.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.activeDate)
+    }
+
+    private fun getTypeOfGuaranteeDay(type: String?): String {
+        return when (type) {
+            "months" -> {
+                binding.root.context.getString(R.string.thang_lowercase)
+            }
+            "years" -> {
+                binding.root.context.getString(R.string.nam_lowercase)
+            }
+            else -> {
+                ""
+            }
+        }
     }
 }
