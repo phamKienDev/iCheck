@@ -33,6 +33,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
@@ -159,6 +161,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     private fun setupView() {
         containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
         edtContent.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this))
+        tvArrow.fillDrawableStartText(R.drawable.ic_arrow_down_blue_24dp)
     }
 
     private fun setupListener() {
@@ -406,7 +409,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun checkSendStatus() {
         if (!edtContent.text.isNullOrEmpty() || layoutImage.tag != null) {
-            imgSend.setImageResource(R.drawable.ic_chat_send_24px)
+            imgSend.fillDrawableColor(R.drawable.ic_chat_send_24px)
             imgSend.isClickable = true
         } else {
             imgSend.setImageResource(R.drawable.ic_chat_send_gray_24_px)
@@ -477,7 +480,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun enableCamera(isEnable: Boolean) {
         if (isEnable) {
-            imgCamera.setImageResource(R.drawable.ic_camera_on_24px)
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_off_vector_24dp)
         } else {
             imgCamera.setImageResource(R.drawable.ic_camera_off_24px)
         }
