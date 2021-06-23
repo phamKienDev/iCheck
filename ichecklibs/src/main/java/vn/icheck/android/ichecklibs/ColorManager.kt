@@ -20,12 +20,26 @@ object ColorManager {
     }
 
     /*
+     server đang trả về định dạng màu: RGBA, android đang đọc theo màu ARGB
+     -> Chuyển vị trí màu alpha(A) nên vị trí đầu
+     */
+    fun checkColorRGBA(color:String):String{
+        return if(color.length==9){
+            val checkedColor="#"+color.substring(color.length-2,color.length)+color.substring(color.length-8,color.length-2)
+            checkedColor
+        }else{
+            color
+        }
+    }
+
+
+    /*
     * Color Primary
     */
     fun getPrimaryColor(context: Context): Int {
         val primaryColor = getColor(context, Constant.PRIMARY_COLOR)
         return if (primaryColor.isNotEmpty()) {
-            Color.parseColor(primaryColor)
+            Color.parseColor(checkColorRGBA(primaryColor))
         } else {
             ContextCompat.getColor(context, R.color.colorPrimary)
         }
@@ -34,7 +48,7 @@ object ColorManager {
     fun getPrimaryColorCode(context: Context): String {
         val primaryColor = getColor(context, Constant.PRIMARY_COLOR)
         return if (primaryColor.isNotEmpty()) {
-            primaryColor
+            checkColorRGBA(primaryColor)
         } else {
             "#057DDA"
         }
@@ -46,7 +60,7 @@ object ColorManager {
     fun getSecondaryColor(context: Context): Int {
         val secondaryColor = getColor(context, Constant.SECONDARY_COLOR)
         return if (secondaryColor.isNotEmpty()) {
-            Color.parseColor(secondaryColor)
+            Color.parseColor(checkColorRGBA(secondaryColor))
         } else {
             ContextCompat.getColor(context, R.color.colorSecondary)
         }
@@ -55,7 +69,7 @@ object ColorManager {
     fun getSecondaryColorCode(context: Context): String {
         val secondaryColor = getColor(context, Constant.SECONDARY_COLOR)
         return if (secondaryColor.isNotEmpty()) {
-            secondaryColor
+            checkColorRGBA(secondaryColor)
         } else {
             "#3C5A99"
         }
@@ -110,7 +124,7 @@ object ColorManager {
     fun getNormalTextColor(context: Context): Int {
         val normalTextColor = getColor(context, Constant.NORMAL_TEXT_COLOR)
         return if (normalTextColor.isNotEmpty()) {
-            Color.parseColor(normalTextColor)
+            Color.parseColor(checkColorRGBA(normalTextColor))
         } else {
             ContextCompat.getColor(context, R.color.colorNormalText)
         }
@@ -119,7 +133,7 @@ object ColorManager {
     fun getNormalTextCode(context: Context): String {
         val normalTextColor = getColor(context, Constant.NORMAL_TEXT_COLOR)
         return if (normalTextColor.isNotEmpty()) {
-            normalTextColor
+            checkColorRGBA(normalTextColor)
         } else {
             "#212121"
         }
@@ -131,7 +145,7 @@ object ColorManager {
     fun getSecondTextColor(context: Context): Int {
         val secondTextColor = getColor(context, Constant.SECOND_TEXT_COLOR)
         return if (secondTextColor.isNotEmpty()) {
-            Color.parseColor(secondTextColor)
+            Color.parseColor(checkColorRGBA(secondTextColor))
         } else {
             ContextCompat.getColor(context, R.color.colorSecondText)
         }
@@ -140,7 +154,7 @@ object ColorManager {
     fun getSecondTextCode(context: Context): String {
         val secondTextColor = getColor(context, Constant.SECOND_TEXT_COLOR)
         return if (secondTextColor.isNotEmpty()) {
-            secondTextColor
+            checkColorRGBA(secondTextColor)
         } else {
             "#757575"
         }
@@ -152,7 +166,7 @@ object ColorManager {
     fun getDisableTextColor(context: Context): Int {
         val disableTextColor = getColor(context, Constant.DISABLE_TEXT_COLOR)
         return if (disableTextColor.isNotEmpty()) {
-            Color.parseColor(disableTextColor)
+            Color.parseColor(checkColorRGBA(disableTextColor))
         } else {
             ContextCompat.getColor(context, R.color.colorDisableText)
         }
@@ -161,7 +175,7 @@ object ColorManager {
     fun getDisableTextCode(context: Context): String {
         val disableTextColor = getColor(context, Constant.DISABLE_TEXT_COLOR)
         return if (disableTextColor.isNotEmpty()) {
-            disableTextColor
+            checkColorRGBA(disableTextColor)
         } else {
             "#B4B4B4"
         }
@@ -175,7 +189,7 @@ object ColorManager {
         val lineColor = getColor(context, Constant.LINE_COLOR)
 
         return if (lineColor.isNotEmpty()) {
-            Color.parseColor(lineColor)
+            Color.parseColor(checkColorRGBA(lineColor))
         } else {
             ContextCompat.getColor(context, R.color.colorLine)
         }
@@ -185,7 +199,7 @@ object ColorManager {
         val lineColor = getColor(context, Constant.LINE_COLOR)
 
         return if (lineColor.isNotEmpty()) {
-           lineColor
+            checkColorRGBA(lineColor)
         } else {
             "#D8D8D8"
         }
@@ -204,7 +218,7 @@ object ColorManager {
     fun getAppBackgroundGrayColor(context: Context): Int {
         val appBackground = getColor(context, Constant.APP_BACKGROUND_COLOR)
         return if (appBackground.isNotEmpty()) {
-            Color.parseColor(appBackground)
+            Color.parseColor(checkColorRGBA(appBackground))
         } else {
             ContextCompat.getColor(context, R.color.colorBackgroundGray)
         }
@@ -213,7 +227,7 @@ object ColorManager {
     fun getAppBackgroundGrayCode(context: Context): String {
         val appBackground = getColor(context, Constant.APP_BACKGROUND_COLOR)
         return if (appBackground.isNotEmpty()) {
-          appBackground
+            checkColorRGBA(appBackground)
         } else {
             "#F0F0F0"
         }
@@ -226,7 +240,7 @@ object ColorManager {
     fun getBackgroundPopupColor(context: Context): Int {
         val popupBackground = getColor(context, Constant.POPUP_BACKGROUND_COLOR)
         return if (popupBackground.isNotEmpty()) {
-            Color.parseColor(popupBackground)
+            Color.parseColor(checkColorRGBA(popupBackground))
         } else {
             ContextCompat.getColor(context, R.color.colorBackgroundPopup)
         }
@@ -235,9 +249,10 @@ object ColorManager {
     fun getBackgroundPopupCode(context: Context): String {
         val popupBackground = getColor(context, Constant.POPUP_BACKGROUND_COLOR)
         return if (popupBackground.isNotEmpty()) {
-           popupBackground
+            checkColorRGBA(popupBackground)
         } else {
             "#80000000"
         }
     }
+
 }
