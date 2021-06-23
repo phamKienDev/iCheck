@@ -21,17 +21,23 @@
             android:layout_width="@dimen/size_16"
             android:layout_height="@dimen/size_16"
             app:layout_constraintEnd_toEndOf="@id/imgLogo"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/view34" />
+
+        <View
+            android:id="@+id/view34"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_8"
+            app:layout_constraintBottom_toTopOf="@+id/imgLogo"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@id/imgLogo"
             android:layout_width="@dimen/size_40"
             android:layout_height="@dimen/size_40"
-            android:layout_marginTop="@dimen/size_8"
             app:civ_border_color="@color/gray"
             app:civ_border_width="@dimen/size_0_5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imgRank"
+            app:layout_constraintTop_toTopOf="@+id/layoutName"
             tools:src="@color/colorSecondary" />
 
         <LinearLayout
@@ -39,10 +45,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/size_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgLogo"
-            app:layout_constraintTop_toTopOf="@id/imgLogo">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvName"
@@ -69,15 +76,17 @@
             android:orientation="horizontal"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/imgLogo"
-            app:layout_constraintTop_toBottomOf="@id/imgLogo">
+            app:layout_constraintTop_toBottomOf="@id/barrierLogo">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvRating"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/size_16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
+                android:minHeight="@dimen/size_16"
                 android:paddingStart="@dimen/size_6"
                 android:paddingEnd="@dimen/size_6"
                 android:textSize="@dimen/font_12"
@@ -132,6 +141,13 @@
             android:textSize="@dimen/font_14"
             app:layout_constraintTop_toBottomOf="@id/layoutRating"
             tools:text="Sản phẩm tốt, chất lượng cao. Chính hãng nên đảm bảo lắm nhé. Mọi người đều nên sử dụng thử một lần! nhưng phải dùng lâu dài mới tác dụng (Tối đa 3 dòng)..." />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="imgLogo,tvTime" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
