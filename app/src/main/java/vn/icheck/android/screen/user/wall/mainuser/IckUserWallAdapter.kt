@@ -6,7 +6,6 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
+import vn.icheck.android.base.holder.ShortMessageHolder
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -29,9 +29,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
-import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
@@ -41,7 +39,6 @@ import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
-import vn.icheck.android.screen.user.campaign.holder.base.ShortMessageHolder
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
@@ -202,7 +199,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         isMyFriend = null
         isFriendInvitationMeUser = null
 
-        binding.tvRequestSent.background=ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
+        binding.tvRequestSent.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(binding.tvRequestSent.context)
         binding.btnSetting.fillDrawableColor(R.drawable.ic_btn_setting_blue)
 
         val data = ickUserProfileModel.profile.data
@@ -279,8 +276,8 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             binding.moreInfo.beVisible()
         }
 
-        binding.btnAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
-        binding.imgSettings.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
+        binding.btnAddFriend.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+        binding.imgSettings.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
         when (ickUserProfileModel.id) {
             SessionManager.session.user?.id -> showMainUser()
@@ -350,7 +347,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                         binding.tvRequestSent.beGone()
                         binding.btnAddFriend.beGone()
                     }, 100)
-                    binding.btnSendMsg.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+                    binding.btnSendMsg.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
                     initClickElseUser()
                     binding.btnSendMsg.setTextColor(Color.WHITE)
                 }
@@ -370,9 +367,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
 
                     binding.groupMainUser.beGone()
                     binding.groupFriend.beVisible()
-                    ViewHelper.bgPrimaryCorners4(itemView.context)
+                    vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
                     binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(itemView.context))
-                    binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
+                    binding.btnSendMsg.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
                     binding.btnAddFriend.beVisible()
                 }
             }
