@@ -144,7 +144,7 @@ class SearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class SearchMoreHolder(parent: ViewGroup) : BaseViewHolder<ICSearchResult>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_more_holder, parent, false)) {
         override fun bind(obj: ICSearchResult) {
             itemView.rootView.background=ViewHelper.bgWhiteCorners4(itemView.context)
-            itemView.tvXemThem.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
+            itemView.tvXemThem.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp,"#00BAF2")
             if (obj.data != null) {
                 Handler().post{
                     itemView.beVisible()

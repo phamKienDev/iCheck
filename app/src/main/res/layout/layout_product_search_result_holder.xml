@@ -37,7 +37,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
         android:text="@string/xem_them"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccentBlue"
         android:textSize="@dimen/font_14" />
 
 </LinearLayout>
