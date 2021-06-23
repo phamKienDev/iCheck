@@ -18,10 +18,6 @@ class PostInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().getPostDetail(url), listener)
     }
 
-    suspend fun getPostDetailV2(id: Long,listener: ICNewApiListener<ICResponse<ICPost>>){
-
-    }
-
     fun getPostPrivacy(postID: Long?, listener: ICNewApiListener<ICResponse<ICListResponse<ICPrivacy>>>) {
         val url = APIConstants.socialHost + APIConstants.Social.GET_POST_PRIVACY
 
