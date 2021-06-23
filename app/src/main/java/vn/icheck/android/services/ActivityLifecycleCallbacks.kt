@@ -32,5 +32,4 @@ class FTActivityLifecycleCallbacks: Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         currentActivity = activity
     }
-
 }

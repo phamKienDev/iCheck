@@ -10,7 +10,7 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue" />
 
-    <vn.icheck.android.ichecklibs.view.line_color.EdittextBgTransparentRadius4Stroke1
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
@@ -22,8 +22,6 @@
         android:paddingStart="@dimen/size_12"
         android:paddingEnd="@dimen/size_12"
         android:singleLine="true"
-        android:textColor="#828282"
-        android:textColorHint="#bdbdbd"
         android:textSize="@dimen/font_14"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 

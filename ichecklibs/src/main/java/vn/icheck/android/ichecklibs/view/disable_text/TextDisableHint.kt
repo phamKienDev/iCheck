@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.disable_text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 open class TextDisableHint : AppCompatTextView {
@@ -24,7 +25,7 @@ open class TextDisableHint : AppCompatTextView {
     }
 
     private fun setup() {
-        setHintTextColor(Constant.getDisableTextColor(context))
+        setHintTextColor(ColorManager.getDisableTextColor(context))
         includeFontPadding = false
     }
 }

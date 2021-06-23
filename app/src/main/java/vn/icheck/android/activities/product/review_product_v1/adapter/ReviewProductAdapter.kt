@@ -8,7 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICProductReviews
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.activities.product.review_product_v1.holder.ListReviewHolder
 import vn.icheck.android.activities.product.review_product_v1.holder.PostReviewProductHolder
 import vn.icheck.android.screen.user.review_product.holder.YourReviewHolder
@@ -164,7 +164,7 @@ class ReviewProductAdapter(val listener: IReviewProductView) : RecyclerView.Adap
                 }
             }
             is LoadingHolder -> {
-                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(holder.itemView.context))
+                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(holder.itemView.context))
                 if (!isLoading) {
                     isLoading = true
                     listener.onLoadmore()
@@ -177,7 +177,7 @@ class ReviewProductAdapter(val listener: IReviewProductView) : RecyclerView.Adap
                 })
             }
             is HeaderReviewHolder->{
-                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(holder.itemView.context))
+                holder.itemView.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(holder.itemView.context))
             }
 
         }

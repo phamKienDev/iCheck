@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.view.EditTextBody1
 
@@ -21,6 +22,6 @@ open class EdittextBody1Normal : EditTextBody1 {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
     }
 }

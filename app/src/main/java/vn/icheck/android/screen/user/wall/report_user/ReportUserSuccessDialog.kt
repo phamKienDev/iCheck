@@ -18,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogReportUserSuccessBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.ichecklibs.util.dpToPx
@@ -63,7 +63,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Constant.getNormalTextColor(context))
+                        setTextColor(ColorManager.getNormalTextColor(context))
                     })
                 } else if(item.content.isNullOrEmpty()) {
                     binding.linearLayout5.addView(TextView(requireContext()).apply {
@@ -74,7 +74,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                             setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                         }
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        setTextColor(Constant.getNormalTextColor(context))
+                        setTextColor(ColorManager.getNormalTextColor(context))
                     })
                 }
             }
@@ -87,7 +87,7 @@ class ReportUserSuccessDialog:BottomSheetDialogFragment() {
                         setMargins(12.dpToPx(), 12.dpToPx(), 12.dpToPx(), 0)
                     }
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                    setTextColor(Constant.getNormalTextColor(context))
+                    setTextColor(ColorManager.getNormalTextColor(context))
                 })
             }
         }

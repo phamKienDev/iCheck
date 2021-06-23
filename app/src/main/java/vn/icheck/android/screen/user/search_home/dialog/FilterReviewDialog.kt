@@ -10,7 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<String>? = null, val from: MutableList<String>? = null, val callback: ReviewCallback) : BaseBottomSheetDialogFragment() {
@@ -80,11 +80,11 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setYear(year: MutableList<String>?) {
         seletedTime = year ?: mutableListOf()
         if (year.isNullOrEmpty()) {
-            tv_time.setTextColor(Constant.getSecondTextColor(ICheckApplication.getInstance()))
+            tv_time.setTextColor(ColorManager.getSecondTextColor(ICheckApplication.getInstance()))
             img_clear_time.visibility = View.GONE
             tv_time.text = getString(R.string.tat_ca)
         } else {
-            tv_time.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(dialog!!.context))
+            tv_time.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(dialog!!.context))
             tv_time.compoundDrawablePadding = SizeHelper.size8
             img_clear_time.visibility = View.VISIBLE
             tv_time.text = year.toString().substring(1, year.toString().length - 1)
@@ -110,11 +110,11 @@ class FilterReviewDialog(isWatched: Boolean = false, val time: MutableList<Strin
     fun setFrom(fromType: MutableList<String>?) {
         seletedFrom = fromType ?: mutableListOf()
         if (fromType.isNullOrEmpty()) {
-            tv_from.setTextColor(Constant.getSecondTextColor(ICheckApplication.getInstance()))
+            tv_from.setTextColor(ColorManager.getSecondTextColor(ICheckApplication.getInstance()))
             img_clear_from.visibility = View.GONE
             tv_from.text = getString(R.string.moi_nguoi)
         } else {
-            tv_from.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(tv_from.context))
+            tv_from.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(tv_from.context))
             tv_from.compoundDrawablePadding = SizeHelper.size8
             img_clear_from.visibility = View.VISIBLE
             tv_from.text = fromType.toString().substring(1, fromType.toString().length - 1)

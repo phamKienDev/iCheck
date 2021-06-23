@@ -618,7 +618,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
     }
 
     private fun setupSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
@@ -682,7 +682,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         }
 
         imgAction.setOnClickListener {
-            if (imgAction.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.ic_more_light_blue_24dp)?.constantState) {
+            if (viewModel.productDetail?.status == "ok" && viewModel.productDetail?.state == "active") {
                 if (viewModel.productID != 0L) {
                     if (layoutAction.visibility == View.VISIBLE) {
                         layoutAction.visibility = View.GONE

@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class TextSansSerifMediumSecondary : AppCompatTextView {
 
@@ -13,7 +13,7 @@ class TextSansSerifMediumSecondary : AppCompatTextView {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setup() }
 
     private fun setup() {
-        setTextColor(Constant.getSecondaryColor(context))
+        setTextColor(ColorManager.getSecondaryColor(context))
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
         includeFontPadding = false
     }

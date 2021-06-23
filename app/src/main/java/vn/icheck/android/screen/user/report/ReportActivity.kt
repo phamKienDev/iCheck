@@ -96,8 +96,8 @@ class ReportActivity : BaseActivityMVVM() {
                         radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                         radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                         radioButton.setTextColor(ViewHelper.createColorStateList(
-                                vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this),
-                                vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this)))
+                                vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this),
+                                vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)))
                         radioButton.includeFontPadding = false
                         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         radioButton.maxLines = 1

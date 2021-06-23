@@ -10,13 +10,8 @@
     <color name="orange">#FBBB00</color>
     <color name="titleToolbar">#20336b</color>
     <color name="darkGray3">#828282</color>
-    <color name="colorSecondary">#3C5A99</color>
-    <color name="colorAccentYellow">#FFB800</color>
-<!--    <color name="colorDisableText">#B4B4B4</color>-->
     <color name="grayLoyalty">#D8D8D8</color>
     <color name="black_60">#99000000</color>
-<!--    <color name="colorPrimary">#057DDA</color>-->
-    <color name="colorAccentBlue">#00BAF2</color>
     <color name="darkBlue">#20336B</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="blueVip">#0064B1</color>

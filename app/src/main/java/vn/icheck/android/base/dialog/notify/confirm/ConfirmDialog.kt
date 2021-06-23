@@ -89,13 +89,13 @@ abstract class ConfirmDialog(
     private fun getColor(color: Int): Int {
         return when (color) {
             R.color.colorPrimary -> {
-                vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
             }
             R.color.colorSecondary -> {
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context)
+                vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context)
             }
             R.color.colorAccentRed -> {
-                vn.icheck.android.ichecklibs.Constant.getAccentRedColor(context)
+                vn.icheck.android.ichecklibs.ColorManager.getAccentRedColor(context)
             }
             else -> {
                 ContextCompat.getColor(context, color)

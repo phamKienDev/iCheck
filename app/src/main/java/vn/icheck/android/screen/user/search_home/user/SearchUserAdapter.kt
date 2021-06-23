@@ -60,7 +60,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
         override fun bind(obj: ICSearchUser) {
             itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
             itemView.tvMessage.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
-            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
+            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84dp)
             itemView.tvTitle.apply {
                 text = obj.getName
                 if (obj.kycStatus == 2) {
@@ -195,7 +195,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         itemView.btnConfirm.background = ViewHelper.bgGrayCorners4(itemView.context)
                         itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                        itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
+                        itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
 
                         itemView.btnConfirm.visibility = View.VISIBLE
                         itemView.tvMessage.visibility = View.INVISIBLE

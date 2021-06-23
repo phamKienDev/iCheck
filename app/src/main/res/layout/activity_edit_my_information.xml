@@ -391,7 +391,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/txtProvince"
                     style="@style/UpdateProfile_Input"
                     android:layout_height="match_parent"
@@ -418,7 +418,7 @@
                     android:paddingRight="@dimen/size_32"
                     android:text="@string/quan_huyen" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/txtDistrict"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24dp"
@@ -440,7 +440,7 @@
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/tvWard"
                     style="@style/UpdateProfile_Input"
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24dp"
@@ -646,7 +646,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/size_2"
             app:layout_constraintBottom_toTopOf="@id/layoutCenter"

@@ -122,7 +122,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     imgListAvatar.visibility = View.GONE
                 } else {
                     imgListAvatar.visibility = View.VISIBLE
-                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84px)
+                    imgListAvatar.bind(icAvatarOfFriend, null, true, R.drawable.ic_avatar_default_84dp)
                 }
             }
 
@@ -160,7 +160,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                     }
                     it.ellipsize = TextUtils.TruncateAt.END
                     it.maxLines = 1
-                    it.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                    it.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                     it.setTypeface(Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"))
                     it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                 }
@@ -179,7 +179,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
         fun bind(obj: ICSearchUser) {
             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
             itemView.tvMessage.background = vn.icheck.android.ichecklibs.ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
-            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84px)
+            itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84dp)
 
             itemView.tvTitle.apply {
                 text = obj.getName
@@ -295,7 +295,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
                             itemView.btnConfirm.setText(R.string.da_gui_loi_moi)
-                            itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondTextColor(itemView.context))
+                            itemView.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
 
                             itemView.btnConfirm.visibility = View.VISIBLE
                             itemView.tvMessage.visibility = View.INVISIBLE

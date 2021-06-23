@@ -19,7 +19,7 @@ import vn.icheck.android.databinding.ItemHomeFunctionInfoBinding
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
@@ -177,7 +177,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                 binding.avatarUser.apply {
                     avatarSize = SizeHelper.size32
                     rankSize = SizeHelper.size12
-                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
+                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84dp)
 
                     setOnClickListener {
                         if (SessionManager.isUserLogged) {
@@ -251,7 +251,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
             override fun bind(obj: ICListCardPVBank) {
                 setMoney(obj)
 
-                binding.tvMoney.setTextColor(Constant.getAccentYellowColor(itemView.context))
+                binding.tvMoney.setTextColor(ColorManager.getAccentYellowColor(itemView.context))
 
                 binding.tvMoney.setOnClickListener {
                     binding.tvMoney.isChecked = !binding.tvMoney.isChecked

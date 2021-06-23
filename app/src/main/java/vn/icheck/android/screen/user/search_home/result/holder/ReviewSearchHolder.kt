@@ -71,7 +71,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
             itemView.setBackgroundColor(Color.WHITE)
         }
         if (obj.page == null) {
-            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
             itemView.tvNameUser.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
@@ -114,7 +114,7 @@ class ReviewSearchHolder(parent: ViewGroup, val type: Int? = null) : RecyclerVie
         } else {
             itemView.tvContent.beVisible()
             itemView.tvContent.text = if (obj.content!!.length > 120) {
-                Html.fromHtml(ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120))))
+                Html.fromHtml(ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, obj.content!!.substring(0, 120)),itemView.context))
             } else {
                 obj.content
             }

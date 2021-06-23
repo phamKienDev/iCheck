@@ -45,7 +45,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
             false
         }
 
-        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
     }
 
     @SuppressLint("SetTextI18n")
@@ -57,10 +57,10 @@ class RankOfUserActivity : BaseActivityMVVM() {
 
             if (SessionManager.session.user?.avatar.isNullOrEmpty()) {
                 imgAvatar.borderWidth = 0
-                imgAvatar.setImageResource(R.drawable.ic_avatar_default_84px)
+                imgAvatar.setImageResource(R.drawable.ic_avatar_default_84dp)
             } else {
                 imgAvatar.borderWidth = SizeHelper.size1
-                WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
             }
 
             if (it.nextTarget != null && it.score != null) {
@@ -177,7 +177,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
             startActivity<ListCampaignActivity>()
         }
 
-        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this))
+        tvBenefit.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
         tvBenefit.setOnClickListener {
             DialogHelper.showLoading(this)
             SettingHelper.getSystemSetting("ranking-support.benefit-url", "ranking-support", object : ISettingListener {

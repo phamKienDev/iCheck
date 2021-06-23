@@ -1,13 +1,11 @@
 package vn.icheck.android.screen.user.coinhistory
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_header_coin_history.view.*
 import kotlinx.android.synthetic.main.item_history_transaction_pv_combank.view.*
@@ -17,12 +15,12 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICCoinHistory
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 
 class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -207,7 +205,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 },
                 null,
                 Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf"),
-                vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context),
+                vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context),
                 18f)
     }
 
@@ -217,10 +215,10 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
             if (obj.type == 1) {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_add_20px)
-                itemView.tvMoney.setTextColor(Constant.getAccentGreenColor(itemView.context))
+                itemView.tvMoney.setTextColor(ColorManager.getAccentGreenColor(itemView.context))
             } else {
                 itemView.imgType.setImageResource(R.drawable.ic_xu_contract_20px)
-                itemView.tvMoney.setTextColor(Constant.getAccentRedColor(itemView.tvMoney.context))
+                itemView.tvMoney.setTextColor(ColorManager.getAccentRedColor(itemView.tvMoney.context))
             }
 
             itemView.tvMission.text = obj.title

@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 class EditTextPrimary : AppCompatEditText {
 
@@ -13,8 +13,8 @@ class EditTextPrimary : AppCompatEditText {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { setup() }
 
     private fun setup() {
-        setTextColor(Constant.getPrimaryColor(context))
+        setTextColor(ColorManager.getPrimaryColor(context))
         includeFontPadding = false
-        setHintTextColor(Constant.getSecondTextColor(context))
+        setHintTextColor(ColorManager.getSecondTextColor(context))
     }
 }

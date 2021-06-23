@@ -76,13 +76,13 @@ class AdsProductHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.f
                     verticalDecoration = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
                     val verticalDivider = ContextCompat.getDrawable(context, R.drawable.vertical_divider_more_business_stamp) as Drawable
 
-                    ViewHelper.fillDrawableColor(verticalDivider,vn.icheck.android.ichecklibs.Constant.lineColor)?.let { verticalDecoration!!.setDrawable(it) }
+                    ViewHelper.fillDrawableColor(verticalDivider,context,vn.icheck.android.ichecklibs.ColorManager.getLineColorCode(context))?.let { verticalDecoration!!.setDrawable(it) }
                     addItemDecoration(verticalDecoration!!)
 
                     horizontalDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                     val horizontalDivider = ContextCompat.getDrawable(context, R.drawable.horizontal_divider_more_business_stamp) as Drawable
 
-                    ViewHelper.fillDrawableColor(horizontalDivider,vn.icheck.android.ichecklibs.Constant.lineColor)?.let { horizontalDecoration!!.setDrawable(it) }
+                    ViewHelper.fillDrawableColor(horizontalDivider,context,vn.icheck.android.ichecklibs.ColorManager.getLineColorCode(context))?.let { horizontalDecoration!!.setDrawable(it) }
                     addItemDecoration(horizontalDecoration!!)
 
                     adsAdapter.setData(obj.data, obj.objectType, Constant.ADS_GRID_TYPE, obj.targetType, obj.targetId,6)

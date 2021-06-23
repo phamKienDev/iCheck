@@ -342,6 +342,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         binding = ActivityIckContributeProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupView()
         instance = this
         listImageAdapter = ListImageAdapter(ickContributeProductViewModel.listImageModel)
         binding.rcvImages.adapter = listImageAdapter
@@ -669,9 +670,21 @@ class IckContributeProductActivity : BaseActivityMVVM() {
                 })
     }
 
+    private fun setupView() {
+        ViewHelper.bgWhiteStrokeLineColor1Corners4(this).apply {
+            binding.edtNameProduct.background=this
+            binding.edtPrice.background=this
+            binding.edtNamePage.background=this
+            binding.edtAddressPage.background=this
+            binding.edtPhonePage.background=this
+            binding.edtEmail.background=this
+            binding.edtTax.background=this
+        }
+    }
+
     private fun initViews() {
         binding.btnContinue.background = ViewHelper.bgPrimaryCorners4(this)
-        binding.edtCategory.setHintTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(this))
+        binding.edtCategory.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
 
         val barcode = intent.getStringExtra(ICK_BARCODE)
         binding.edtBarcode.background=ViewHelper.bgGrayF0StrokeLineColor1Corners4(this)

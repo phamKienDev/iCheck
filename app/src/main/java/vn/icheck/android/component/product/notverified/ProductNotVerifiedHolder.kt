@@ -14,7 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.visibleOrGone
@@ -83,7 +83,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
                         Color.WHITE,
                         14f).also {
-                    it.setBackgroundColor(Constant.getAccentRedColor(context))
+                    it.setBackgroundColor(ColorManager.getAccentRedColor(context))
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_group_error_card, 0, 0, 0)
                 }.also {
                     it.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
@@ -95,10 +95,10 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                 layoutParent.addView(LinearLayout(context).also { layoutBottom ->
                     layoutBottom.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size40)
                     layoutBottom.orientation = LinearLayout.HORIZONTAL
-                    layoutBottom.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutBottom.context))
+                    layoutBottom.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutBottom.context))
                     layoutBottom.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
 
-                    val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                    val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
 
                     // Layout start
                     layoutBottom.addView(FrameLayout(context).also { layoutStart ->
@@ -127,7 +127,7 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
                         it.layoutParams = ViewHelper.createLayoutParams(SizeHelper.size1, LinearLayout.LayoutParams.MATCH_PARENT).also { params ->
                             params.setMargins(0, SizeHelper.size14, 0, SizeHelper.size14)
                         }
-                        it.setBackgroundColor(Constant.getLineColor(context))
+                        it.setBackgroundColor(ColorManager.getLineColor(context))
                     })
 
                     // Layout end

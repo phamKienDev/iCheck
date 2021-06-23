@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvRank"
             app:rankSize="@dimen/size_24"
-            tools:src="@drawable/ic_circle_avatar_default" />
+            tools:src="@drawable/ic_user_svg" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@id/tvRank"

@@ -189,7 +189,7 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
     }
 
     private fun setupSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(requireContext())
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {

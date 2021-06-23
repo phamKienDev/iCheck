@@ -237,7 +237,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     }
 
     private fun setUpSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeLayout.isNestedScrollingEnabled = false
         swipeLayout.setOnRefreshListener {
@@ -417,37 +417,41 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
     private fun checkPrivacyConfig() {
         if (viewModel.post?.page == null) {
             if (viewModel.post?.user?.id != SessionManager.session.user?.id) {
-                when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
-                    Constant.EVERYONE -> {
-                        containerComment.beVisible()
-                    }
-                    Constant.FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        containerComment.beVisible()
-                                    } else {
-                                        notAllowReply()
-                                        containerComment.beGone()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    logError(error.toException())
-                                }
-                            })
-                        }
-                    }
-                    else -> {
-                        if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                if (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost!=null) {
+                    when (viewModel.post?.user?.userPrivacyConfig?.whoCommentYourPost) {
+                        Constant.EVERYONE -> {
                             containerComment.beVisible()
-                        } else {
-                            notAllowReply()
-                            containerComment.beGone()
                         }
-                    }
+                        Constant.FRIEND -> {
+                            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null && SessionManager.session.user?.id != null) {
+                                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, viewModel.post?.user?.id.toString(), object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.value != null && snapshot.value is Long) {
+                                            containerComment.beVisible()
+                                        } else {
+                                            notAllowReply()
+                                            containerComment.beGone()
+                                        }
+                                    }
 
+                                    override fun onCancelled(error: DatabaseError) {
+                                        logError(error.toException())
+                                    }
+                                })
+                            }
+                        }
+                        else -> {
+                            if (viewModel.post?.user?.id == SessionManager.session.user?.id) {
+                                containerComment.beVisible()
+                            } else {
+                                notAllowReply()
+                                containerComment.beGone()
+                            }
+                        }
+
+                    }
+                }else{
+                    containerComment.beVisible()
                 }
             } else {
                 containerComment.beVisible()
@@ -657,9 +661,9 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         layoutActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name),this))
         } else {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName),this))
         }
 
         edtContent.text = null

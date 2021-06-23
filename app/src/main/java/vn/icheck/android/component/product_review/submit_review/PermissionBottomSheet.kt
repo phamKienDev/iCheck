@@ -136,7 +136,7 @@ class PermissionBottomSheet(val listener: PermissionListener) : BaseBottomSheetD
 
                 WidgetUtils.loadImageUrl(
                     itemView.imgAvatar, obj.avatar, if (obj.type == Constant.USER) {
-                        R.drawable.ic_avatar_default_84px
+                        R.drawable.ic_avatar_default_84dp
                     } else {
                         R.drawable.ic_business_v2
                     }

@@ -44,7 +44,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     fun onInitView() {
         txtTitle.text = "Thông tin khách hàng"
 
-        btnUpdate.background=ViewHelper.bgSecondaryCorners40(this)
+        setupView()
 
         presenter.getDataIntent(intent)
         listener()
@@ -54,13 +54,31 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
         return true
     }
 
+    private fun setupView() {
+        btnUpdate.background = ViewHelper.bgSecondaryCorners40(this)
+        ViewHelper.bgWhiteStrokeLineColor1Corners40(this).apply {
+            edtPhone.background = this
+            edtName.background = this
+            edtEmail.background = this
+            edtAddress.background = this
+            edtShop.background = this
+        }
+    }
+
     private fun listener() {
         imgBack.setOnClickListener {
             onBackPressed()
         }
 
         btnUpdate.setOnClickListener {
-            presenter.validUpdateInformationGuarantee(edtName.text.toString(), edtPhone.text.toString(), edtEmail.text.toString(), edtAddress.text.toString(), edtShop.text.toString(), midStore)
+            presenter.validUpdateInformationGuarantee(
+                edtName.text.toString(),
+                edtPhone.text.toString(),
+                edtEmail.text.toString(),
+                edtAddress.text.toString(),
+                edtShop.text.toString(),
+                midStore
+            )
         }
 
         layoutSelectCity.setOnClickListener {

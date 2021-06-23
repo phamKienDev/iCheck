@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -57,7 +57,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             }
         }
         binding.edtPhone.apply {
-            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
                     ickLoginViewModel.cPhone = s?.trim().toString()
@@ -67,7 +67,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
 
         }
         binding.edtPassword.apply {
-            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
                     ickLoginViewModel.cPw = s?.trim().toString()
@@ -76,7 +76,7 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             })
         }
         binding.edtRePassword.apply {
-            setHintTextColor(Constant.getDisableTextColor(requireContext()))
+            setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
                     ickLoginViewModel.cRPw = s?.trim().toString()

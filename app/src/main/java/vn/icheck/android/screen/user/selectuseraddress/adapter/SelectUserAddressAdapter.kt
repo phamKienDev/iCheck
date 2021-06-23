@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.item_select_user_address.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.ICAddress
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.selectuseraddress.view.ISelectUserAddressView
 
 class SelectUserAddressAdapter(val listener: ISelectUserAddressView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -158,7 +158,7 @@ class SelectUserAddressAdapter(val listener: ISelectUserAddressView) : RecyclerV
         override fun bind(obj: ICAddress) {
             if (obj.id == addressID) {
                 itemView.tvChecked.setImageResource(R.drawable.ic_radio_checked_blue_24dp)
-                itemView.tvName.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context))
+                itemView.tvName.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context))
                 itemView.tvNote.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkGray1))
             } else {
                 itemView.tvChecked.setImageResource(R.drawable.ic_radio_un_checked_gray_24dp)

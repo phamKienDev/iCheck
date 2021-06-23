@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.text.Html
 import android.text.Spannable
@@ -37,7 +38,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +66,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
@@ -144,13 +145,12 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun onClick(p0: View) {
             drawerLayout.closeDrawer(GravityCompat.START)
             startActivityForResult<IckLoginActivity, Int>("requestCode", 1, 1)
-//            this@HomeActivity.simpleStartForResultActivity(IckLoginActivity::class.java, 1)
         }
 
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
-            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
+            ds.setColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -164,7 +164,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
-            ds.setColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(ICheckApplication.getInstance()))
+            ds.setColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(ICheckApplication.getInstance()))
         }
     }
 
@@ -186,14 +186,12 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     @SuppressLint("RtlHardcoded")
     fun onInitView() {
         StatusBarUtils.setOverStatusBarDark(this)
-        logDebug("home create")
         isOpen = true
         WelcomeActivity.isWelcome = false
 
         setupView()
         setupViewPager()
         setupTabListener()
-        checkPermission()
         setupViewModel()
         checkData()
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.RIGHT)
@@ -203,13 +201,17 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         presenter.registerMessageCount()
         CartHelper().getCartSocial()
 
+        Handler().postDelayed({
+            checkPermission()
+        },300)
+
         ringtoneHelper = RingtoneHelper(this)
         AndroidSchedulers.mainThread()
         INSTANCE = this
     }
 
     private fun setupView() {
-        drawerLayout.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(this))
+        drawerLayout.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(this))
         vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
             tvHome.setTextColor(this)
             tvFeed.setTextColor(this)
@@ -375,6 +377,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         intent?.getBooleanExtra(Constant.DATA_2, false)?.let { isLogin ->
             if (isLogin) {
                 startActivity<IckLoginActivity>()
+                intent.putExtra(Constant.DATA_2,false)
                 return
             }
         }
@@ -479,7 +482,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 //
         if (SessionManager.isUserLogged) {
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COIN_AND_RANK))
-            WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(imgAvatar, user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
 
             tv_username.apply {
                 text = user?.getName
@@ -492,7 +495,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             }
             tv_logout.visibility = View.VISIBLE
             tv_user_rank.text = user?.getPhoneAndRank()
-            tv_user_rank.setTextColor(Color.parseColor(vn.icheck.android.ichecklibs.Constant.getSecondTextCode))
+            tv_user_rank.setTextColor(ColorManager.getSecondTextColor(this))
             img_rank_user.beVisible()
             background.loadImageWithHolder(SessionManager.session.user?.background, R.drawable.left_menu_bg)
             when (user?.rank?.level) {
@@ -513,14 +516,14 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         } else {
             background.setImageResource(R.drawable.left_menu_bg)
             img_rank_user.beGone()
-            imgAvatar.setImageResource(R.drawable.ic_avatar_default_84px)
+            imgAvatar.setImageResource(R.drawable.ic_avatar_default_84dp)
 
             tv_username.apply {
                 text = Build.MODEL
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             tv_user_rank.visibility = View.VISIBLE
-            tv_user_rank.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
+            tv_user_rank.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap), Html.FROM_HTML_MODE_COMPACT))
                 spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -624,7 +627,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             }
             SettingManager.themeSetting = null
 //            setupTheme()
-            SettingManager.setAppThemeColor(null)
+            SettingManager.setAppThemeColor(null,this@HomeActivity)
 
             val themeSettingRes = try {
                 withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
@@ -632,7 +635,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 null
             }
             SettingManager.themeSetting = themeSettingRes?.data
-            SettingManager.setAppThemeColor(themeSettingRes?.data)
+            SettingManager.setAppThemeColor(themeSettingRes?.data?.theme,this@HomeActivity)
 
 //            viewModel.downloadTheme()
 
@@ -1260,7 +1263,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 
     override fun onResume() {
         super.onResume()
-
         try {
             presenter.checkVersionApp()
             onUpdateUserInfo()

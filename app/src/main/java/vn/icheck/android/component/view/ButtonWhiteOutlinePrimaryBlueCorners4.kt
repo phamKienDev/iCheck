@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 /**
  * Created by VuLCL on 04/27/2020.
@@ -30,7 +30,7 @@ class ButtonWhiteOutlinePrimaryBlueCorners4 : BaseButton {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun onSetupDefault() {
-        val primaryColor = Constant.getPrimaryColor(context)
+        val primaryColor = ColorManager.getPrimaryColor(context)
         defaultTextColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(primaryColor))
 
         defaultDisableBackground = ContextCompat.getColor(context, R.color.grayD8)

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_load_more.view.*
 import org.greenrobot.eventbus.EventBus
@@ -12,7 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.base.holder.ActionMessageHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.SizeHelper
@@ -278,7 +277,7 @@ class ScanHistoryAdapter(val listener: IScanHistoryView) : RecyclerView.Adapter<
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 }

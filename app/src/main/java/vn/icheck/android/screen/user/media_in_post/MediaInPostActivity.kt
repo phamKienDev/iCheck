@@ -191,7 +191,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                 WidgetUtils.loadImageUrl(
                     imgAvatar,
                     it.user!!.avatar,
-                    R.drawable.ic_avatar_default_84px
+                    R.drawable.ic_avatar_default_84dp
                 )
                 imgRank.beVisible()
                 imgRank.setRankUser(it.user?.rank?.level)
@@ -222,7 +222,7 @@ class MediaInPostActivity : BaseActivityMVVM(), View.OnClickListener {
                     tvContent,
                     2,
                     getString(R.string.xem_chi_tiet),
-                    vn.icheck.android.ichecklibs.Constant.getAccentYellowCode
+                    vn.icheck.android.ichecklibs.ColorManager.getAccentYellowCode
                 )
             }
             tvLike.setCompoundDrawablesWithIntrinsicBounds(

@@ -1,11 +1,8 @@
 package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import androidx.core.content.ContextCompat
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.R
+import vn.icheck.android.ichecklibs.ColorManager
 
 class CheckedNormal : androidx.appcompat.widget.AppCompatCheckedTextView {
     constructor(context: Context) : super(context) {
@@ -21,7 +18,7 @@ class CheckedNormal : androidx.appcompat.widget.AppCompatCheckedTextView {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

@@ -31,7 +31,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
         }
         itemView.img_share.apply {
             background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.img_fav.context)
-            fillDrawableColor(R.drawable.ic_share_product_24dp,itemView.context)
+            this.fillDrawableColor(R.drawable.ic_share_product_24dp)
         }
 
         when (productHeaderModel.icBarcodeProduct.type) {
@@ -98,7 +98,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
             itemView.tvGiaNiemYet.beVisible()
             itemView.tvPriceUpdating.beGone()
             itemView.tv_price.text = TextHelper.formatMoneyPhay(productHeaderModel.icBarcodeProduct.price) + "đ"
-            itemView.tv_price.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context))
+            itemView.tv_price.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context))
         } else {
             itemView.tvPriceUpdating.beVisible()
             itemView.tv_price.beGone()

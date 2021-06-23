@@ -41,10 +41,11 @@
                     tools:text="Tiêu đề" />
             </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
-            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtSearch"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_34"
+                android:layout_height="@dimen/size_38"
+                android:textSize="@dimen/size_16"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_12"

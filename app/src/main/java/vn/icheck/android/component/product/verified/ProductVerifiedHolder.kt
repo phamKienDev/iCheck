@@ -14,7 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -39,7 +39,7 @@ class ProductVerifiedHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0,SizeHelper.size10,0,0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Constant.getAccentGreenColor(context))
+                layoutParent.setBackgroundColor(ColorManager.getAccentGreenColor(context))
                 layoutParent.setPadding(SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
 
                 // Text content

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemBookmarkBinding
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.util.ick.*
 
@@ -31,11 +31,11 @@ class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, Recycl
         if (!data?.name?.trim().isNullOrEmpty()) {
             holder.binding.tvNameProduct simpleText data?.name
             holder.binding.tvNameProduct.typeface =Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_medium.ttf")
-            holder.binding.tvNameProduct.setTextColor(Constant.getNormalTextColor(holder.binding.root.context))
+            holder.binding.tvNameProduct.setTextColor(ColorManager.getNormalTextColor(holder.binding.root.context))
         } else {
             holder.binding.tvNameProduct.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_semi_bold_italic.ttf")
             holder.binding.tvNameProduct simpleText "Tên đang cập nhật"
-            holder.binding.tvNameProduct.setTextColor(Constant.getDisableTextColor(holder.binding.tvNameProduct.context))
+            holder.binding.tvNameProduct.setTextColor(ColorManager.getDisableTextColor(holder.binding.tvNameProduct.context))
         }
         holder.binding.imgProduct.loadRoundedImage(
                 data?.media?.firstOrNull {
@@ -71,14 +71,14 @@ class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, Recycl
 //        }
         if (data?.price ?: 0 > 0) {
             holder.binding.tvPrice simpleText (data?.price ?: 0L).getMoneyFormat()
-            holder.binding.tvPrice.setTextColor(Constant.getSecondaryColor(holder.itemView.context))
+            holder.binding.tvPrice.setTextColor(ColorManager.getSecondaryColor(holder.itemView.context))
             holder.binding.tvGiaNiemYet.beVisible()
             holder.binding.tvPrice.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_medium.ttf")
             holder.binding.tvPrice.textSize = 20f
         } else {
             holder.binding.tvPrice.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_semi_bold_italic.ttf")
             holder.binding.tvPrice simpleText "Giá đang cập nhật"
-            holder.binding.tvPrice.setTextColor(Constant.getDisableTextColor(holder.itemView.context))
+            holder.binding.tvPrice.setTextColor(ColorManager.getDisableTextColor(holder.itemView.context))
             holder.binding.tvGiaNiemYet.beGone()
             holder.binding.tvPrice.textSize = 14f
         }

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -30,7 +31,7 @@ class RadiobuttonDisableUncheckYellowChecked : RadioButton {
     private fun setup() {
         setTextColor(
             ViewHelper.createColorStateList(
-                Constant.getDisableTextColor(context),
+                ColorManager.getDisableTextColor(context),
                 ContextCompat.getColor(context, R.color.warning_scan_buy)
             )
         )

@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentblue
 import android.content.Context
 import android.util.AttributeSet
 import com.rd.PageIndicatorView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class PageIndicatorSelectAccentBlue : PageIndicatorView {
@@ -19,7 +20,7 @@ class PageIndicatorSelectAccentBlue : PageIndicatorView {
     }
 
     private fun setup() {
-        selectedColor = Constant.getAccentBlueColor(context)
-        unselectedColor = Constant.getAccentBlueColor(context)
+        selectedColor = ColorManager.getAccentBlueColor(context)
+        unselectedColor = ColorManager.getAccentBlueColor(context)
     }
 }

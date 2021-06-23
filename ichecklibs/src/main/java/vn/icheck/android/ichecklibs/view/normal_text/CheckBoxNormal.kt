@@ -2,6 +2,7 @@ package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
 import android.util.AttributeSet
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class CheckBoxNormal : androidx.appcompat.widget.AppCompatCheckBox {
@@ -18,7 +19,7 @@ class CheckBoxNormal : androidx.appcompat.widget.AppCompatCheckBox {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
         includeFontPadding = false
     }
 }

@@ -158,7 +158,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
 
     private fun setupView() {
         containerEnter.background = ViewHelper.bgOutlinePrimary1Corners4(this)
-        edtContent.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
+        edtContent.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this))
     }
 
     private fun setupListener() {
@@ -229,7 +229,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
@@ -375,7 +375,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (obj.type == Constant.PAGE) {
             WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_business_v2)
         } else {
-            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, obj.avatar, R.drawable.ic_user_svg)
         }
     }
 
@@ -383,7 +383,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
         if (SessionManager.isUserLogged) {
             imgAvatar.beVisible()
             tvArrow.beVisible()
-            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_orange_circle)
+            WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
         } else {
             imgAvatar.beGone()
             tvArrow.beGone()
@@ -428,7 +428,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
             obj.user!!.getName
         } else {
             obj.page!!.getName
-        })))
+        }),this))
         tvActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         edtContent.requestFocus()

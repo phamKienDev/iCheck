@@ -27,6 +27,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICMediaPage
 import vn.icheck.android.network.models.ICPageOverview
@@ -86,7 +87,7 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun getData() {
         pageID = intent?.getLongExtra(Constant.DATA_1, -1) ?: -1
         pageType = intent?.getIntExtra(Constant.DATA_2, Constant.PAGE_BRAND_TYPE)
-                ?: Constant.PAGE_BRAND_TYPE
+            ?: Constant.PAGE_BRAND_TYPE
     }
 
     private fun setupViewPager() {
@@ -179,6 +180,10 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         if (isShow && viewModel.pageDetail != null) {
             Handler().postDelayed({
                 layoutFollow.beVisible()
+                ViewHelper.bgOutlinePrimary1Corners4(this).apply {
+                    tvExtra.background = this
+                    imgMenu.background = this
+                }
                 view2.beVisible()
             }, 300)
         } else {
@@ -209,15 +214,24 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         tvExtra.setOnClickListener {
             val phone = viewModel.pageDetail?.phone ?: ""
             if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(this, ViewHelper.setPrimaryHtmlString(applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone))), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
-                    override fun onDisagree() {
+                DialogHelper.showConfirm(
+                    this,
+                    ViewHelper.setPrimaryHtmlString(applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)),this),
+                    null,
+                    "Để sau",
+                    "Đồng ý",
+                    null,
+                    null,
+                    true,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {
 
-                    }
+                        }
 
-                    override fun onAgree() {
-                        phone.startCallPhone()
-                    }
-                })
+                        override fun onAgree() {
+                            phone.startCallPhone()
+                        }
+                    })
             } else {
                 DialogHelper.showDialogErrorBlack(this, this.getString(R.string.sdt_dang_cap_nhat))
             }
@@ -270,13 +284,20 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun unfollowAndFollowPage(data: ICPageOverview) {
         if (data.id != null) {
             if (viewModel.isFollowPage) {
-                DialogHelper.showConfirm(this@PageDetailActivity, getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, object : ConfirmDialogListener {
-                    override fun onDisagree() {}
+                DialogHelper.showConfirm(
+                    this@PageDetailActivity,
+                    getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay),
+                    null,
+                    getString(R.string.de_sau),
+                    getString(R.string.dong_y),
+                    true,
+                    object : ConfirmDialogListener {
+                        override fun onDisagree() {}
 
-                    override fun onAgree() {
-                        viewModel.unFollowPage(data.id)
-                    }
-                })
+                        override fun onAgree() {
+                            viewModel.unFollowPage(data.id)
+                        }
+                    })
             } else {
                 viewModel.followPage(data.id)
             }

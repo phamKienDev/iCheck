@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.R
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.checkoutcart.entity.Checkout
 import vn.icheck.android.screen.user.checkoutcart.holder.*
 import vn.icheck.android.screen.user.checkoutcart.view.ICheckoutCartView

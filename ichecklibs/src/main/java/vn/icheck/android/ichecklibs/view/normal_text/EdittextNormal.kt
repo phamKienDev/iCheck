@@ -2,8 +2,8 @@ package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 open class EdittextNormal : AppCompatEditText {
@@ -20,6 +20,6 @@ open class EdittextNormal : AppCompatEditText {
     }
 
     private fun setup() {
-        setTextColor(Constant.getNormalTextColor(context))
+        setTextColor(ColorManager.getNormalTextColor(context))
     }
 }

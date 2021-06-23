@@ -17,7 +17,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.comment.CommentRepository
@@ -97,7 +97,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
             }
 
             if (obj.page == null) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.apply {
                     text = obj.user?.getName
@@ -186,7 +186,7 @@ class ItemQuestionAdapter(val questionListener: ProductDetailListener) : Recycle
 
         private fun checkLike(expressived: String?) {
             if (expressived == null) {
-                itemView.tvLike.setTextColor(Constant.getSecondTextColor(itemView.context))
+                itemView.tvLike.setTextColor(ColorManager.getSecondTextColor(itemView.context))
             } else {
                 itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
             }

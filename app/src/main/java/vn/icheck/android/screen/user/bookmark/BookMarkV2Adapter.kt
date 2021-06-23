@@ -8,7 +8,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICProductTrend
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.screen.user.scan_history.holder.ProductHistoryHolder
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView

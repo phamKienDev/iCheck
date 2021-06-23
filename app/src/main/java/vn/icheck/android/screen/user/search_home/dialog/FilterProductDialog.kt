@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, price: String?, val reviews: MutableList<String>?) : BaseBottomSheetDialogFragment() {
@@ -82,7 +82,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
         selectedReviews = listSelected ?: mutableListOf()
         if (listSelected.isNullOrEmpty()) {
             tv_all_review.setText(R.string.tat_ca)
-            tv_all_review.setTextColor(Color.parseColor(Constant.getSecondTextCode))
+            tv_all_review.setTextColor(ColorManager.getSecondTextColor(tv_all_review.context))
             img_clear_review.visibility = View.GONE
         } else {
             val listRate = mutableListOf<String>()
@@ -100,7 +100,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             }
 
             tv_all_review.text = rates
-            tv_all_review.setTextColor(Constant.getPrimaryColor(requireContext()))
+            tv_all_review.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             img_clear_review.visibility = View.VISIBLE
         }
     }
@@ -109,11 +109,11 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
         selectedPrice = price
         if (price == ICheckApplication.getInstance().getString(R.string.tat_ca) || price == null) {
             tv_price.setText(R.string.tat_ca)
-            tv_price.setTextColor(Color.parseColor(Constant.secondTextColor))
+            tv_price.setTextColor(ColorManager.getSecondTextColor(requireContext()))
             img_clear_price.visibility = View.GONE
         } else {
             tv_price.setText(price)
-            tv_price.setTextColor(Constant.getPrimaryColor(requireContext()))
+            tv_price.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             img_clear_price.visibility = View.VISIBLE
         }
     }

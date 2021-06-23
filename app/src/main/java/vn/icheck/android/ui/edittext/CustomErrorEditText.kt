@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import vn.icheck.android.R
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.util.ick.toPx
 import vn.icheck.android.ichecklibs.util.dpToPx
 
@@ -50,7 +50,7 @@ open class CustomErrorEditText : AppCompatEditText {
         mLinePaint.strokeWidth = 1f.toPx()
 
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom + 20.dpToPx())
-        mErrorTextPaint.color = Constant.getAccentRedColor(context)
+        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
         setBackgroundResource(0)
     }
 
@@ -59,7 +59,7 @@ open class CustomErrorEditText : AppCompatEditText {
         canvas?.apply {
             val bottom = height - paddingBottom + 2.5f.toPx()
             if (!mError.isNullOrEmpty()) {
-                mLinePaint.setColor(Constant.getAccentRedColor(context))
+                mLinePaint.setColor(ColorManager.getAccentRedColor(context))
                 drawLine(0f + paddingStart, bottom.toFloat(), (width - paddingStart - paddingEnd).toFloat(), bottom.toFloat(), mLinePaint)
                 drawBitmap(
                         mErrorDrawable!!.toBitmap(),
@@ -75,7 +75,7 @@ open class CustomErrorEditText : AppCompatEditText {
                 )
             } else {
                 if (hasFocus()) {
-                    mLinePaint.setColor(Constant.getPrimaryColor(context))
+                    mLinePaint.setColor(ColorManager.getPrimaryColor(context))
                 } else {
                     mLinePaint.setColor(Color.parseColor("#D8D8D8"))
                 }

@@ -64,6 +64,19 @@ class CreateEventQrCodeFragment : BaseFragmentMVVM(), ICreateEventQrCodeView {
 
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+
+        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
+            edtStartDate.background=this
+            edtEndDate.background=this
+            edtEvent.background=this
+            edtAddress.background=this
+            edtEventLink.background=this
+        }
+
+        vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext()).apply {
+            edtStartDate.setHintTextColor(this)
+            edtEndDate.setHintTextColor(this)
+        }
     }
 
     private fun initListener() {

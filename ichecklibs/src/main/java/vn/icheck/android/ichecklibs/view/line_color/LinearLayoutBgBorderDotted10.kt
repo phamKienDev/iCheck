@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -28,7 +29,7 @@ class LinearLayoutBgBorderDotted10 : LinearLayout {
 
     private fun setup() {
         background = GradientDrawable().also {
-            it.setStroke(SizeHelper.size1,Constant.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
+            it.setStroke(SizeHelper.size1, ColorManager.getLineColor(context), SizeHelper.size10.toFloat(), SizeHelper.size6.toFloat())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 it.setPadding(SizeHelper.size7, SizeHelper.size7, SizeHelper.size7, SizeHelper.size7)
             }

@@ -26,7 +26,7 @@ class ListAvatar : LinearLayout {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun bind(obj: ICAvatarOfFriend, size: Int? = null, showMore: Boolean = true, error: Int = R.drawable.ic_avatar_default_84px) {
+    fun bind(obj: ICAvatarOfFriend, size: Int? = null, showMore: Boolean = true, error: Int = R.drawable.ic_avatar_default_84dp) {
 
         removeAllViews()
         val mSize = size ?: 4 // set số lượng avatar tối đa được hiển thị

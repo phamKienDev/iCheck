@@ -3,7 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentyellow
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 
 open class TextAccentYellow : AppCompatTextView {
     constructor(context: Context) : super(context) {
@@ -19,7 +19,7 @@ open class TextAccentYellow : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(Constant.getAccentYellowColor(context))
+        setTextColor(ColorManager.getAccentYellowColor(context))
         includeFontPadding = false
     }
 }

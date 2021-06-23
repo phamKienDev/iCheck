@@ -40,10 +40,10 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     override fun bind(obj: ICProductReviews.ReviewsRow) {
         if (obj.owner == null) {
-            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, "", R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text =""
         } else {
-            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.user_placeholder)
+            WidgetUtils.loadImageUrl(itemView.one_user, obj.owner.avatarThumb?.small, R.drawable.ic_avatar_default_84dp)
             itemView.tv_user_1_name.text = obj.owner.name
         }
 
@@ -55,7 +55,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
         itemView.tv_1_useful.text = setTextUseful(obj.useful)
         itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
 
-        val secondaryColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+        val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
 
         obj.actionUseful?.let {
             if ("useful" == it) {

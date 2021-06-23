@@ -37,27 +37,23 @@
         app:layout_constraintTop_toTopOf="@+id/imgAvatar"
         tools:text="Giày Việt" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tvCountRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_7"
         android:drawableStart="@drawable/ic_start_alone_15_dp"
         android:drawablePadding="@dimen/size_5"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#4f4f4f"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/tvNameShop"
         app:layout_constraintTop_toBottomOf="@+id/tvNameShop"
         tools:text="8,9" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvCountReview"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="5.2dp"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#828282"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@id/tvCountRating"
         app:layout_constraintStart_toEndOf="@id/tvCountRating"
@@ -75,14 +71,12 @@
         app:layout_constraintStart_toEndOf="@+id/tvCountReview"
         app:layout_constraintTop_toTopOf="@+id/tvCountReview" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisableBarlowMedium
         android:id="@+id/tvBarcodeProduct"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:textColor="#bdbdbd"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountReview"
         app:layout_constraintStart_toEndOf="@+id/appCompatImageView10"

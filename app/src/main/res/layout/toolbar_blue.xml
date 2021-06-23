@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/size_44">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@id/imgBack"
         android:layout_width="@dimen/size_44"
         android:layout_height="match_parent"
@@ -26,21 +26,19 @@
         android:textSize="@dimen/font_16"
         android:visibility="gone" />
 
-    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
+    <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
         android:id="@id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/size_44"
         android:layout_marginEnd="@dimen/size_44"
         android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:singleLine="true"
-        android:textSize="@dimen/font_18"
         android:textStyle="normal"
         tools:text="Tiêu đề" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@id/imgAction"
         android:layout_width="@dimen/size_44"
         android:layout_height="match_parent"

@@ -62,7 +62,7 @@ class SearchReviewViewModel : BaseViewModel() {
         }
 
         val from = if (!froms.isNullOrEmpty()) {
-            froms.toString().substring(1, froms.toString().length - 1)
+            froms.toString().substring(1, froms.toString().length - 1).replace(", ",",")
         } else {
             ""
         }

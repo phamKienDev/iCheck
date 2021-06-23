@@ -6,7 +6,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityPresenter
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.ValidHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse

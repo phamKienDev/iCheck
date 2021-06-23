@@ -18,6 +18,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -112,9 +113,9 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                 // Text product name
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also { params ->
                     params.topMargin = SizeHelper.size10
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getNormalTextColor(context), 14f, 2))
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ColorManager.getNormalTextColor(context), 14f, 2))
 
-                val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
 
                 // layout rating
                 layoutParent.addView(LinearLayout(context).also { layoutRating ->
@@ -131,7 +132,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                     layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), primaryColor, 12f))
 
                     // Text total review
-                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getSecondTextColor(context), 12f))
+                    layoutRating.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT), null, ViewHelper.createTypeface(context, R.font.barlow_medium), ColorManager.getSecondTextColor(context), 12f))
                 })
 
                 // Text price
@@ -142,7 +143,7 @@ class CollectionProductHorizontalHolder(parent: ViewGroup) : BaseViewHolder<ICPr
                 // Text verified
                 layoutParent.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT).also { params ->
                     params.topMargin = SizeHelper.size4
-                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), Constant.getAccentGreenColor(context), 14f).also {
+                }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ColorManager.getAccentGreenColor(context), 14f).also {
                     it.compoundDrawablePadding = SizeHelper.size2
                     it.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     it.setText(R.string.verified)

@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -154,7 +153,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     private fun initView() {
         tvActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
         containerEnter.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
-        edtEnter.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(this))
+        imgSelectPermission.fillDrawableColor()
 
         edtEnter.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -174,13 +173,13 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
             }
         })
 
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeRefresh.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipeRefresh.setOnRefreshListener {
             getData()
         }
 
-        WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84px)
+        WidgetUtils.loadImageUrl(imgAvatar, SessionManager.session.user?.avatar, R.drawable.ic_avatar_default_84dp)
 
         WidgetUtils.setClickListener(this, imgBack, imgAction, imgEmoji, imgCamera, imgSelectPermission, imgAvatar,
                 imgSend, tvActor, layoutPermission, imgClearImage)
@@ -220,7 +219,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
                     if (item.type == Constant.PAGE) {
                         WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_business_v2)
                     } else {
-                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_orange_circle)
+                        WidgetUtils.loadImageUrl(imgAvatar, item.avatar, R.drawable.ic_user_svg)
                     }
                     viewModel.setPermission(item)
                 }
@@ -424,7 +423,7 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
 
     fun showLayoutImage(show: Boolean, file: File? = null) {
         if (show) {
-            imgCamera.fillDrawableColor(R.drawable.ic_camera_on_24px)
+            imgCamera.fillDrawableColor(R.drawable.ic_camera_off_vector_24dp)
             view2.beVisible()
             imgClearImage.beVisible()
             cardViewImage.beVisible()
@@ -604,9 +603,9 @@ class DetailPostActivity : BaseActivityMVVM(), View.OnClickListener, ICommentPos
     override fun onAnswer(obj: ICCommentPost) {
         tvActor.visibility = View.VISIBLE
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name),this))
         } else {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName)))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName),this))
         }
 
         edtEnter.tag = obj

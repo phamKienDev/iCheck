@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvName"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
@@ -41,26 +41,22 @@
             android:layout_marginLeft="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/black"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="@id/imgReward"
             app:layout_constraintStart_toEndOf="@+id/imgAvatar"
             app:layout_constraintTop_toTopOf="@+id/imgAvatar"
             tools:text="Hoàng Dương Hải Trang" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvPhone"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/black"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@id/tvName"
             app:layout_constraintStart_toStartOf="@+id/tvName"

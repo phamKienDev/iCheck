@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <vn.icheck.android.ichecklibs.view.TextBody1
+            <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                 android:id="@+id/tvViewVerifiedPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,12 +38,11 @@
                 android:gravity="center"
                 android:text="@string/thong_bao_nhap_thong_tin_khach_hang_stamp_v61"
                 android:textAlignment="center"
-                android:textColor="#828282"
                 android:textStyle="normal"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <vn.icheck.android.ichecklibs.view.TextBody1
+            <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                 android:id="@+id/tvViewForceUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +53,6 @@
                 android:gravity="center"
                 android:text="@string/thong_bao_nhap_thong_tin_ca_nhan_stamp_v61"
                 android:textAlignment="center"
-                android:textColor="#828282"
                 android:textStyle="normal"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -93,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/ho_va_ten_bat_buoc"/>
+                android:text="@string/ho_va_ten_bat_buoc" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtName"
@@ -134,94 +132,116 @@
                 android:layout_marginTop="@dimen/size_18"
                 android:layout_marginEnd="@dimen/size_12">
 
-                <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
-                    android:id="@+id/tvSubTinhThanh"
-                    android:layout_width="@dimen/size_0"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_6"
-                    android:text="@string/tinh_thanh_bat_buoc"
-                    app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
+                <LinearLayout
+                    android:id="@+id/layoutTinhThanh"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@id/layoutHuyen"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content">
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
+                        android:id="@+id/tvSubTinhThanh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_6"
+                        android:text="@string/tinh_thanh_bat_buoc"
+                        app:layout_constraintEnd_toStartOf="@+id/tvSubHuyen"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
-                    android:id="@+id/tvSubHuyen"
-                    android:layout_width="@dimen/size_0"
-                    android:layout_height="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutSelectCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_6"
+                        android:layout_marginEnd="@dimen/size_6"
+                        android:layout_marginRight="@dimen/size_1"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toStartOf="@+id/layoutSelectDistrict"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
+
+                        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
+                            android:id="@+id/tvCities"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_10"
+                            android:layout_marginTop="@dimen/size_8"
+                            android:layout_marginBottom="@dimen/size_8"
+                            android:hint="@string/tuy_chon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_11"
+                            android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCities"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvCities" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutHuyen"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="@dimen/size_6"
-                    android:text="@string/quan_huyen_bat_buoc"
+
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
-                    app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
+                    app:layout_constraintStart_toEndOf="@id/layoutTinhThanh"
+                    android:layout_height="wrap_content">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutSelectCity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_6"
-                    android:layout_marginEnd="@dimen/size_6"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toStartOf="@+id/layoutSelectDistrict"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSubTinhThanh">
-
-                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
-                        android:id="@+id/tvCities"
-                        android:layout_width="0dp"
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
+                        android:id="@+id/tvSubHuyen"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginTop="@dimen/size_8"
-                        android:layout_marginBottom="@dimen/size_8"
-                        android:hint="@string/tuy_chon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/size_9"
-                        android:drawableEnd="@drawable/ic_down_dark_blue_18px"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvCities"
+                        android:text="@string/quan_huyen_bat_buoc"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvCities" />
+                        app:layout_constraintStart_toEndOf="@+id/tvSubTinhThanh"
+                        app:layout_constraintTop_toTopOf="@+id/tvSubTinhThanh" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutSelectDistrict"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_6"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/tvSubHuyen"
-                    app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
-
-                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
-                        android:id="@+id/tvDistricts"
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutSelectDistrict"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_10"
                         android:layout_marginTop="@dimen/size_8"
-                        android:layout_marginBottom="@dimen/size_8"
-                        android:hint="@string/tuy_chon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:orientation="horizontal"
+                        android:layout_marginRight="@dimen/size_2"
+                        app:layout_constraintEnd_toEndOf="@+id/tvSubHuyen"
+                        app:layout_constraintStart_toEndOf="@+id/layoutSelectCity"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSubHuyen">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/size_9"
-                        android:drawableEnd="@drawable/ic_down_dark_blue_18px"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvDistricts"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvDistricts" />
+                        <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
+                            android:id="@+id/tvDistricts"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_10"
+                            android:layout_marginTop="@dimen/size_8"
+                            android:layout_marginBottom="@dimen/size_8"
+                            android:hint="@string/tuy_chon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_9"
+                            android:drawableEnd="@drawable/ic_down_dark_blue_18px"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvDistricts"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvDistricts" />
 
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
@@ -230,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_18"
-                android:text="@string/dia_chi_bat_buoc"/>
+                android:text="@string/dia_chi_bat_buoc" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextBody1Normal
                 android:id="@+id/edtAddress"

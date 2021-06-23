@@ -475,7 +475,7 @@
                 android:layout_width="@dimen/size_80"
                 android:layout_height="@dimen/size_80"
                 android:layout_marginTop="@dimen/size_70"
-                android:src="@drawable/ic_avatar_default_84px"
+                android:src="@drawable/ic_avatar_default_84dp"
                 app:civ_circle_background_color="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

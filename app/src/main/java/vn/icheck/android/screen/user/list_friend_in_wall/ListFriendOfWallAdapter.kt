@@ -170,20 +170,7 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
-            itemView.imgMore.fillDrawableColor(R.drawable.ic_more_disable_24dp)
-            itemView.btnRefuseFriend.apply {
-                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
-            }
-
-            vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
-                itemView.tvChat.background = this
-                itemView.tvAddFriend.background = this
-                itemView.layoutAccept.background = this
-            }
-
-            itemView.tvSendRequest.apply {
-                background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
-            }
+            setupView()
 
             when (item.userRelationStatus) {
                 //Chưa là bạn bè
@@ -236,11 +223,28 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                 }
             }
         }
+
+        private fun setupView() {
+            itemView.imgMore.fillDrawableColor(R.drawable.ic_more_disable_24dp)
+            itemView.btnRefuseFriend.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            }
+
+            vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                itemView.tvChat.background = this
+                itemView.tvAddFriend.background = this
+                itemView.layoutAccept.background = this
+            }
+
+            itemView.tvSendRequest.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
+            }
+        }
     }
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            itemView.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
+            itemView.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

@@ -56,7 +56,7 @@ class ListCampaignActivity : BaseActivityMVVM(), ListCampaignCallback {
             finish()
         }
 
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipe.setOnRefreshListener {

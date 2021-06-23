@@ -20,11 +20,11 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICStoreiCheck
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.icheckstore.view.IGiftStoreView
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -168,7 +168,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
 
                 if (obj.addToCart) {
                     btnAction.isEnabled = false
-                    btnAction.setTextColor(Constant.getSecondTextColor(context))
+                    btnAction.setTextColor(ColorManager.getSecondTextColor(context))
                     btnAction.text = "Đã có trong giỏ hàng"
                     btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                 } else {
@@ -195,7 +195,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                         view.onLogin()
                     } else {
                         obj.addToCart = true
-                        btnAction.setTextColor(Constant.getSecondTextColor(context))
+                        btnAction.setTextColor(ColorManager.getSecondTextColor(context))
                         btnAction.text = "Đã có trong giỏ hàng"
                         btnAction.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                         view.onExchangeGift(obj)
@@ -210,7 +210,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
         return LinearLayout(context).also { layoutParams ->
             layoutParams.layoutParams = ViewHelper.createLayoutParams()
             layoutParams.orientation = LinearLayout.VERTICAL
-            layoutParams.setBackgroundColor(Constant.getAppBackgroundWhiteColor(layoutParams.context))
+            layoutParams.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutParams.context))
             layoutParams.gravity = Gravity.CENTER_HORIZONTAL
 
             layoutParams.addView(AppCompatImageView(context).also { img ->
@@ -236,14 +236,14 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     layoutParams1.gravity = Gravity.BOTTOM
                     layoutParams1.setMargins(0, 0, 0, SizeHelper.size4)
                     v.layoutParams = layoutParams1
-                    v.setBackgroundColor(Constant.getLineColor(context))
+                    v.setBackgroundColor(ColorManager.getLineColor(context))
                 })
 
                 params.addView(AppCompatTextView(context).also { poin ->
                     poin.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                         it.leftMargin = SizeHelper.size4
                     }
-                    poin.setTextColor(Constant.getAccentYellowColor(context))
+                    poin.setTextColor(ColorManager.getAccentYellowColor(context))
                     poin.typeface = ViewHelper.createTypeface(context, R.font.barlow_semi_bold)
                     poin.textSize = 16f
                     poin.isSingleLine = true
@@ -256,7 +256,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                     layoutParams2.setMargins(SizeHelper.size4, 0, 0, SizeHelper.size4)
                     layoutParams2.gravity = Gravity.BOTTOM
                     v.layoutParams = layoutParams2
-                    v.setBackgroundColor(Constant.getLineColor(context))
+                    v.setBackgroundColor(ColorManager.getLineColor(context))
                 })
             })
 
@@ -272,7 +272,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
                 nameProduct.includeFontPadding = false
                 nameProduct.typeface = ViewHelper.createTypeface(context, R.font.barlow_medium)
                 nameProduct.textSize = 14f
-                nameProduct.setTextColor(Constant.getNormalTextColor(context))
+                nameProduct.setTextColor(ColorManager.getNormalTextColor(context))
             })
 
             layoutParams.addView(AppCompatTextView(context).also { btn ->

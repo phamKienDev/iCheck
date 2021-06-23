@@ -19,7 +19,7 @@ import vn.icheck.android.component.report.ReasonReportAdapter
 import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.ui.SafeFlexboxLayoutManager
 
@@ -46,7 +46,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size16, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                    Constant.getNormalTextColor(context),
+                    ColorManager.getNormalTextColor(context),
                     16f).also {
                 it.setText(R.string.feed_report_success_title)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -56,7 +56,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createLayoutParams(SizeHelper.size42, SizeHelper.size6, SizeHelper.size42, 0),
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getSecondTextColor(context),
+                    ColorManager.getSecondTextColor(context),
                     14f).also {
                 it.setText(R.string.feed_report_success_message)
                 it.gravity = Gravity.CENTER_HORIZONTAL
@@ -66,7 +66,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                 it.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size0_5).also { params ->
                     params.topMargin = SizeHelper.size10
                 }
-                it.setBackgroundColor(Constant.getLineColor(context))
+                it.setBackgroundColor(ColorManager.getLineColor(context))
             })
 
             layoutParent.addView(ViewHelper.createText(context,
@@ -75,7 +75,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     },
                     null,
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
-                    Constant.getSecondTextColor(context),
+                    ColorManager.getSecondTextColor(context),
                     14f).also {
                 it.setText(R.string.noi_dung_bao_cao)
             })

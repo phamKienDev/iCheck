@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtMessage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.appbackground.graybackground
 import android.content.Context
 import android.util.AttributeSet
 import de.hdodenhof.circleimageview.CircleImageView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 class ICCircleImageViewGray:CircleImageView {
@@ -23,6 +24,6 @@ class ICCircleImageViewGray:CircleImageView {
     }
 
     private fun setup() {
-        circleBackgroundColor=Constant.getAppBackgroundGrayColor(context)
+        circleBackgroundColor= ColorManager.getAppBackgroundGrayColor(context)
     }
 }

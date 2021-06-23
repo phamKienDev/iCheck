@@ -12,7 +12,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_24"
-        android:src="@drawable/user_placeholder"
+        android:src="@drawable/ic_avatar_default_84dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

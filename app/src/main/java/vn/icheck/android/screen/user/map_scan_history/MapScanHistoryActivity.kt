@@ -220,7 +220,7 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
     }
 
     private fun addPolylineToMap() {
-        polyline = map4D?.addPolyline(MFPolylineOptions().add(*latLngList.toTypedArray()).color(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(this)).width(8f))
+        polyline = map4D?.addPolyline(MFPolylineOptions().add(*latLngList.toTypedArray()).color(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(this)).width(8f))
     }
 
     private fun removePolyline() {

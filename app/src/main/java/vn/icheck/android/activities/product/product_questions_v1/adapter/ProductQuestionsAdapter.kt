@@ -12,7 +12,7 @@ import vn.icheck.android.base.adapter.HorizontalImageAdapter
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.activities.product.product_questions_v1.view.IProductQuestionsView
 import vn.icheck.android.network.models.v1.ICQuestionRow
 import vn.icheck.android.network.models.v1.ICQuestionsAnswers
@@ -153,7 +153,7 @@ class ProductQuestionsAdapter(val listener: IProductQuestionsView) : RecyclerVie
 
             when (obj.actor.type) {
                 "user" -> {
-                    WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_user_orange_circle)
+                    WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_user_svg)
                 }
                 "page" -> {
                     WidgetUtils.loadImageUrlRounded4(itemView.imgItem, obj.actor.avatarThumbnails?.original, R.drawable.ic_business_v2)

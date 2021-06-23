@@ -58,6 +58,16 @@ class CreateUserAddressActivity : BaseActivityMVVM(), ICreateUserAddressView, Vi
 
     private fun setupView() {
         btnCreate.background=ViewHelper.btnSecondaryCorners26(this)
+
+        ViewHelper.bgTransparentStrokeLineColor1Corners18(this).apply {
+            edtLastName.background=this
+            edtFirstName.background=this
+            edtPhone.background=this
+            edtProvince.background=this
+            edtDistrict.background=this
+            edtWard.background=this
+            edtAddress.background=this
+        }
     }
 
     private fun setupListener() {

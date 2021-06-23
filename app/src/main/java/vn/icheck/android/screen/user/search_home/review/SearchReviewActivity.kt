@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -92,7 +91,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
     }
 
     private fun initSwipeLayout() {
-        val primaryColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.isRefreshing = true
         swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_container.setOnRefreshListener {

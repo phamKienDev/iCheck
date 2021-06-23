@@ -146,13 +146,13 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                     itemView.tvNameShop.compoundDrawablePadding = SizeHelper.size5
                 }
@@ -160,12 +160,12 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
                 if (!item.name.isNullOrEmpty()) {
                     itemView.tvNameShop.text = item.name
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 } else {
                     itemView.tvNameShop.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                     itemView.tvNameShop.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
+                    itemView.tvNameShop.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                     itemView.tvNameShop.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
             }
@@ -190,7 +190,7 @@ class ProductOfShopHistoryAdapter constructor(val view: ProductOfShopHistoryView
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 

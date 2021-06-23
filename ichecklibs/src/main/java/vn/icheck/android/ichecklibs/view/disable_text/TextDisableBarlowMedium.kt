@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.disable_text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.res.ResourcesCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.view.TextBarlowMedium
@@ -25,6 +26,6 @@ class TextDisableBarlowMedium : TextBarlowMedium {
     }
 
     private fun setup() {
-        setTextColor(Constant.getDisableTextColor(context))
+        setTextColor(ColorManager.getDisableTextColor(context))
     }
 }

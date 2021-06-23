@@ -68,7 +68,7 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
             } else {
                 tvDesReview.visibility = View.VISIBLE
                 tvDesReview.text = if (data.content!!.length > 130) {
-                    Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130))))
+                    Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130)),itemView.context))
                 } else {
                     data.content
                 }
@@ -87,12 +87,12 @@ class MyReviewHolder(parent: ViewGroup, val listener: IMyReviewListener) : Recyc
             }
 
             if (SettingManager.getPostPermission() == null) {
-                WidgetUtils.loadImageUrl(imgPermission, data.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(imgPermission, data.user?.avatar, R.drawable.ic_avatar_default_84dp)
             } else {
                 val error = if (SettingManager.getPostPermission()?.type == Constant.PAGE) {
                     R.drawable.ic_business_v2
                 } else {
-                    R.drawable.ic_avatar_default_84px
+                    R.drawable.ic_avatar_default_84dp
                 }
                 WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar
                         ?: "", error)

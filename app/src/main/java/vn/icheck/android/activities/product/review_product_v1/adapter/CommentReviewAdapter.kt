@@ -79,7 +79,7 @@ class CommentReviewAdapter(val reviewPosition: Int, val listener: IReviewProduct
             val vgUserAvatar = itemView.findViewById<ViewGroup>(R.id.user_avatar)
             val avatar = vgUserAvatar.getChildAt(0) as CircleImageView
             if (obj.owner != null) {
-                WidgetUtils.loadImageUrl(avatar, obj.owner!!.avatarThumb?.small, R.drawable.user_placeholder)
+                WidgetUtils.loadImageUrl(avatar, obj.owner!!.avatarThumb?.small, R.drawable.ic_avatar_default_84dp)
                 itemView.tv_name.text = obj.owner!!.name
                 itemView.tv_name.setOnClickListener {
                 }
@@ -89,7 +89,7 @@ class CommentReviewAdapter(val reviewPosition: Int, val listener: IReviewProduct
 
             if (obj.ownerType == "page") {
                 avatar.borderWidth = 1
-                avatar.borderColor = vn.icheck.android.ichecklibs.Constant.getSecondaryColor(itemView.context)
+                avatar.borderColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
                 itemView.tv_name.setTextColor(avatar.borderColor)
                 vgUserAvatar.getChildAt(1).visibility = View.VISIBLE
             } else {

@@ -46,7 +46,9 @@ class ListNoteHistoryAdapter : RecyclerView.Adapter<ListNoteHistoryAdapter.ViewH
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICResp_Note_Guarantee.ObjectLog.ObjectChildLog.ICItemNote) {
+            itemView.tvDate.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context))
             itemView.tvDate.text = TimeHelper.convertDateTimeSvToDateTimeVnStamp(item.created_at)
+
             itemView.tvContent.text = item.note
 
             itemView.layoutImage.removeAllViews()

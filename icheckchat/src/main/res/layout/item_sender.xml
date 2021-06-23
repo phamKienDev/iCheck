@@ -35,6 +35,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutProduct"
                 android:layout_width="228dp"
+                android:background="@drawable/bg_gray_f0_corners_10"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 tools:visibility="gone"

@@ -47,13 +47,13 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     }
@@ -61,12 +61,12 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.Constant.getDisableTextColor(itemView.context))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
@@ -96,7 +96,6 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 }
             }
 
-            binding.tvBarcodeProduct.fillDrawableStartText(R.drawable.ic_barcode_gray_18px,vn.icheck.android.ichecklibs.Constant.disableTextColor)
             if (!obj.product?.barcode.isNullOrEmpty()) {
                 binding.tvBarcodeProduct.beVisible()
                 binding.tvBarcodeProduct.text = obj.product?.barcode?.trim()
@@ -125,8 +124,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 binding.avaShop.setImageResource(R.drawable.ic_error_load_shop_40_px)
             }
 
-            binding.tvNameShop.text = obj.nearestShop?.shop?.name
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            binding.tvNameShop.text = obj.nearestShop?.shop?.name ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
                 TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)

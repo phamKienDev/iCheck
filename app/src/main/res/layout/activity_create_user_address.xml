@@ -33,7 +33,7 @@
                 app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                 app:hintEnabled="false">
 
-                <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                     android:id="@id/edtLastName"
                     style="@style/CreateUserAddress_Input_Social"
                     android:hint="@string/nhap_ho"
@@ -50,7 +50,7 @@
                 app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                 app:hintEnabled="false">
 
-                <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                     android:id="@id/edtFirstName"
                     style="@style/CreateUserAddress_Input_Social"
                     android:hint="@string/nhap_ten"
@@ -67,7 +67,7 @@
                 app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                 app:hintEnabled="false">
 
-                <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                     android:id="@id/edtPhone"
                     style="@style/CreateUserAddress_Input_Social"
                     android:hint="@string/nhap_so_dien_thoai"
@@ -104,10 +104,11 @@
                             app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                             app:hintEnabled="false">
 
-                            <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                            <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                                 style="@style/CreateUserAddress_Input_Social"
                                 android:clickable="false"
                                 android:focusable="false"
+                                android:id="@+id/edtProvince"
                                 android:inputType="phone"
                                 android:longClickable="false" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -155,9 +156,10 @@
                             app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                             app:hintEnabled="false">
 
-                            <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                            <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                                 style="@style/CreateUserAddress_Input_Social"
                                 android:clickable="false"
+                                android:id="@+id/edtDistrict"
                                 android:focusable="false"
                                 android:inputType="phone"
                                 android:longClickable="false" />
@@ -200,9 +202,10 @@
                     app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                     app:hintEnabled="false">
 
-                    <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                         style="@style/CreateUserAddress_Input_Social"
                         android:clickable="false"
+                        android:id="@+id/edtWard"
                         android:focusable="false"
                         android:inputType="phone"
                         android:longClickable="false" />
@@ -236,7 +239,7 @@
                 app:errorTextAppearance="@style/TextInputLayout_Create_Qr_Code_Error"
                 app:hintEnabled="false">
 
-                <vn.icheck.android.ichecklibs.view.line_color.TextInputEdittextDisableHintBgTransparentRadius18Stroke1
+                <vn.icheck.android.ichecklibs.view.normal_text.TextInputEdittextNormalHintDisable
                     android:id="@id/edtAddress"
                     style="@style/CreateUserAddress_Input_Social"
                     android:hint="@string/nhap_dia_chi"

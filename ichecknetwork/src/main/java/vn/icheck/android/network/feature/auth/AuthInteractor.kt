@@ -3,9 +3,7 @@ package vn.icheck.android.network.feature.auth
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.ICSessionData
-import vn.icheck.android.network.models.ICUser
 import vn.icheck.android.network.util.DeviceUtils
-import java.util.*
 
 /**
  * Created by tamdv on 6/2/18.

@@ -3,6 +3,7 @@ package vn.icheck.android.ichecklibs.view.accent.accentblue
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 
 open class TextAccentBlue : AppCompatTextView {
@@ -19,7 +20,7 @@ open class TextAccentBlue : AppCompatTextView {
     }
 
     private fun setup() {
-        setTextColor(Constant.getAccentBlueColor(context))
+        setTextColor(ColorManager.getAccentBlueColor(context))
         includeFontPadding = false
     }
 }

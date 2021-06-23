@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.text.Html
 import android.text.util.Linkify
@@ -42,6 +43,7 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -200,8 +202,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         private fun setupView() {
             binding.layoutImageDetail.root.gravity = Gravity.RIGHT
 
-            binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
-            binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
+            binding.layoutProduct.background=ViewHelper.bgGrayCorners10(itemView.context)
             binding.btnProductDetail.background = ViewHelper.bgPrimaryCorners4(itemView.context)
 
             setGoneView(
@@ -234,11 +235,11 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
 
                 binding.btnProductDetail.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
 
                 binding.layoutProduct.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
             }
         }
@@ -265,23 +266,22 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             when (obj.status) {
                 MCStatus.SUCCESS -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
+                    binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
-                    binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
+                    binding.tvMessage.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(itemView.context,R.color.colorSecondary),SizeHelper.size10.toFloat())
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
+                    binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
                     binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
-//                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
-                    binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
+                    binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
                 else -> {
                     binding.imgRetry.setVisible()
-                    binding.tvTime.setTextColor(Constant.getAccentRedColor(itemView.context))
+                    binding.tvTime.setTextColor(ColorManager.getAccentRedColor(itemView.context))
                     binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity)
+                    binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
             }
         }
@@ -400,10 +400,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
 
             binding.tvTime.text = obj.timeText
-            binding.tvTime.setTextColor(Constant.getDisableTextColor(itemView.context))
-
-            binding.tvMessage.background = ViewHelper.bgSecondaryCorners10(itemView.context)
-
+            binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
 
             setupProduct(obj)
             setupMedia(obj)
@@ -413,8 +410,6 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
 
         private fun setupView() {
-            binding.tvLink.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
-
             ViewHelper.bgPrimaryCorners4(itemView.context).apply {
                 binding.btnProductDetail.background=this
                 binding.tvGheTham.background=this

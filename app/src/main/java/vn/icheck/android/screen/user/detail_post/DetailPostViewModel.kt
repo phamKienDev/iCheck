@@ -309,9 +309,9 @@ class DetailPostViewModel : ViewModel() {
                             Constant.IMAGE
                         }
                         if (parent == null) {
-                            postComment(pageId, message, ICMedia(obj.src, typeMedia))
+                            postComment(pageId, message, ICMedia(obj.src, type= typeMedia))
                         } else {
-                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, typeMedia))
+                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, type= typeMedia))
                         }
                     }
 

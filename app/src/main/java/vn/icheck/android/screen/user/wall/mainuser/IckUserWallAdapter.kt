@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -170,8 +169,8 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         val data = ickUserProfileModel.profile.data
         Glide.with(binding.root.context.applicationContext)
             .load(data?.avatar)
-            .error(R.drawable.ic_avatar_default_84px)
-            .placeholder(R.drawable.ic_avatar_default_84px)
+            .error(R.drawable.ic_avatar_default_84dp)
+            .placeholder(R.drawable.ic_avatar_default_84dp)
             .into(binding.userAvatar)
         if (!data?.avatar.isNullOrEmpty()) {
             binding.userAvatar.setOnClickListener {
@@ -333,7 +332,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                     binding.groupMainUser.beGone()
                     binding.groupFriend.beVisible()
                     ViewHelper.bgPrimaryCorners4(itemView.context)
-                    binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.Constant.getPrimaryColor(itemView.context))
+                    binding.btnSendMsg.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(itemView.context))
                     binding.btnSendMsg.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
                     binding.btnAddFriend.beVisible()
                 }

@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.history_accumulate_points.fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_history_accumulate_points.view.*
 import vn.icheck.android.R
@@ -12,10 +11,10 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICHistoryPoint
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 
 class HistoryPointAdapter(val listener: IRecyclerViewCallback, val type: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -159,9 +158,9 @@ class HistoryPointAdapter(val listener: IRecyclerViewCallback, val type: String)
                 "+${TextHelper.formatMoney(obj.amount)}"
             }
             itemView.tvPoint.setTextColor(if (type == "used") {
-                Constant.getAccentRedColor(itemView.context)
+                ColorManager.getAccentRedColor(itemView.context)
             } else {
-                Constant.getAccentGreenColor(itemView.context)
+                ColorManager.getAccentGreenColor(itemView.context)
             })
 
             itemView.tvMessage.text = obj.description

@@ -31,7 +31,7 @@ class OtpEditText:AppCompatEditText {
         mLineStroke *= multi
         mLinePaint = Paint(paint)
         mLinePaint.strokeWidth = mLineStroke
-        mLinePaint.color = vn.icheck.android.ichecklibs.Constant.getLineColor(context)
+        mLinePaint.color = vn.icheck.android.ichecklibs.ColorManager.getLineColor(context)
         setBackgroundResource(0)
         mSpace *= multi
         mLineSpacing *= multi
@@ -54,9 +54,9 @@ class OtpEditText:AppCompatEditText {
         paint.getTextWidths(text, 0, text?.length!!, textWidth)
         for (i in 0 until mNumChar) {
             if (i + 1 <= textLength) {
-                mLinePaint.color = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(context)
+                mLinePaint.color = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
             } else {
-                mLinePaint.color = vn.icheck.android.ichecklibs.Constant.getLineColor(context)
+                mLinePaint.color = vn.icheck.android.ichecklibs.ColorManager.getLineColor(context)
             }
             canvas?.drawLine(startX, bottom.toFloat(), startX + mCharSize, bottom.toFloat(), mLinePaint)
             if (text!!.length > i) {

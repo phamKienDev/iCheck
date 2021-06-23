@@ -1,6 +1,8 @@
 package vn.icheck.android.network.base
 
+import android.content.Context
 import com.google.gson.Gson
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICCommentPermission
@@ -89,44 +91,15 @@ object SettingManager {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
     }
 
-    fun setAppThemeColor(icThemeSetting: ICThemeSetting?){
-
-            if (icThemeSetting?.theme!=null) {
-                Constant.appBackgroundColor= icThemeSetting.theme.appBackgroundColor ?:""
-
-                Constant.popupBackgroundColor= icThemeSetting.theme.popupBackgroundColor ?: ""
-
-                Constant.primaryColor= icThemeSetting.theme.primaryColor ?:""
-                Constant.secondaryColor= icThemeSetting.theme.secondaryColor ?:""
-
-                Constant.normalTextColor= icThemeSetting.theme.normalTextColor ?:""
-                Constant.secondTextColor= icThemeSetting.theme.secondTextColor ?:""
-                Constant.disableTextColor= icThemeSetting.theme.disableTextColor ?:""
-
-                Constant.lineColor= icThemeSetting.theme.lineColor ?:""
-            } else {
-                Constant.appBackgroundColor=""
-                Constant.popupBackgroundColor=""
-                Constant.primaryColor=""
-                Constant.secondaryColor=""
-                Constant.normalTextColor=""
-                Constant.secondTextColor=""
-                Constant.disableTextColor=""
-                Constant.lineColor=""
-            }
-
-//            Constant.appBackgroundColor="#85c440"
-//
-//            Constant.popupBackgroundColor="#35c759"
-//
-//            Constant.primaryColor="#FFB800"
-//            Constant.secondaryColor="#bb6bd9"
-//
-//            Constant.normalTextColor="#CCF1FC"
-//            Constant.secondTextColor="#FBBB00"
-//            Constant.disableTextColor="#EB5757"
-//
-//            Constant.lineColor="#ff1616"
+    fun setAppThemeColor(theme: ICThemeSetting.ICTheme?,context: Context) {
+        ColorManager.saveColor(context,Constant.PRIMARY_COLOR,theme?.primaryColor)
+        ColorManager.saveColor(context,Constant.SECONDARY_COLOR,theme?.secondaryColor)
+        ColorManager.saveColor(context,Constant.NORMAL_TEXT_COLOR,theme?.normalTextColor)
+        ColorManager.saveColor(context,Constant.SECOND_TEXT_COLOR,theme?.secondTextColor)
+        ColorManager.saveColor(context,Constant.DISABLE_TEXT_COLOR,theme?.disableTextColor)
+        ColorManager.saveColor(context,Constant.LINE_COLOR,theme?.lineColor)
+        ColorManager.saveColor(context,Constant.APP_BACKGROUND_COLOR,theme?.appBackgroundColor)
+        ColorManager.saveColor(context,Constant.POPUP_BACKGROUND_COLOR,theme?.popupBackgroundColor)
     }
 
     val getDeviceID: String

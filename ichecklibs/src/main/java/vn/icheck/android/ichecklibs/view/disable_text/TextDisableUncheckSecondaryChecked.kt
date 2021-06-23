@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckedTextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.R
 import vn.icheck.android.ichecklibs.ViewHelper
@@ -31,7 +32,7 @@ open class TextDisableUncheckSecondaryChecked : AppCompatCheckedTextView {
     private fun setup() {
         setTextColor(
             ViewHelper.createColorStateList(
-                Constant.getDisableTextColor(context),
+                ColorManager.getDisableTextColor(context),
                 ContextCompat.getColor(context, R.color.colorSecondary)
             )
         )

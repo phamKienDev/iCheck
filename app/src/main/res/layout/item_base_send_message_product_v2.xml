@@ -80,7 +80,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:layout_constraintBottom_toBottomOf="@id/containerEnter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/containerEnter" />

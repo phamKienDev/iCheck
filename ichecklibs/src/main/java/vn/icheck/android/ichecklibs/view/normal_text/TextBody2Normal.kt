@@ -1,11 +1,13 @@
-package vn.icheck.android.ichecklibs.view.line_color
+package vn.icheck.android.ichecklibs.view.normal_text
 
 import android.content.Context
 import android.util.AttributeSet
-import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.ichecklibs.view.disable_text.TextNormalBarlowMediumHintDisable
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.view.TextBody2
 
-class TextNormalBarlowMediumHintDisableBgWhiteRadius4Stroke05 : TextNormalBarlowMediumHintDisable {
+class TextBody2Normal : TextBody2 {
+
     constructor(context: Context) : super(context) {
         setup()
     }
@@ -19,7 +21,6 @@ class TextNormalBarlowMediumHintDisableBgWhiteRadius4Stroke05 : TextNormalBarlow
     }
 
     private fun setup() {
-        background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(context)
-
+        setTextColor(ColorManager.getNormalTextColor(context))
     }
 }

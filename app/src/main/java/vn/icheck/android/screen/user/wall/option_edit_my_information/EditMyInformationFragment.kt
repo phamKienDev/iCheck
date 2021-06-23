@@ -37,6 +37,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.ActivityEditMyInformationBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
@@ -134,15 +135,15 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
             if (ickUserWallViewModel.photoType == TAKE_AVATAR) {
                 Glide.with(binding.imgAvatar.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(binding.imgAvatar)
                 ickUserWallViewModel.avatar = file
             } else {
                 Glide.with(binding.imgBackground.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(binding.imgBackground)
                 ickUserWallViewModel.wall = file
             }
@@ -198,14 +199,14 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
         binding.edtConnectFb.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
         binding.imgArrowDanhTinh.fillDrawableColor(R.drawable.ic_arrow_right_light_blue_24dp)
 
-        Constant.getDisableTextColor(requireContext()).apply {
+        ColorManager.getDisableTextColor(requireContext()).apply {
             binding.edtLastname.setHintTextColor(this)
             binding.edtFirstname.setHintTextColor(this)
             binding.edtEmail.setHintTextColor(this)
             binding.edtAddress.setHintTextColor(this)
         }
 
-        Constant.getNormalTextColor(requireContext()).apply {
+        ColorManager.getNormalTextColor(requireContext()).apply {
             binding.edtLastname.setTextColor(this)
             binding.edtFirstname.setTextColor(this)
             binding.txtBirthday.setTextColor(this)
@@ -303,7 +304,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     binding.txtDistrict.setText("Tùy chọn")
                     binding.tvWard.setText("Tùy chọn")
 
-                    Constant.getDisableTextColor(requireContext()).apply {
+                    ColorManager.getDisableTextColor(requireContext()).apply {
                         binding.txtDistrict.setTextColor(this)
                         binding.tvWard.setTextColor(this)
                     }
@@ -327,7 +328,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                             binding.txtDistrict.text = city.name
 
                             binding.tvWard.setText("Tùy chọn")
-                            binding.tvWard.setTextColor(Constant.getDisableTextColor(requireContext()))
+                            binding.tvWard.setTextColor(ColorManager.getDisableTextColor(requireContext()))
                             binding.edtAddress.setText("")
 
                             ickUserWallViewModel.editUserInfo.remove(WARD_ID)
@@ -548,8 +549,8 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
             }
             Glide.with(requireContext().applicationContext)
                     .load(user.data?.avatar)
-                    .error(R.drawable.ic_avatar_default_84px)
-                    .placeholder(R.drawable.ic_avatar_default_84px)
+                    .error(R.drawable.ic_avatar_default_84dp)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
                     .into(binding.imgAvatar)
             if (!user.data?.firstName.isNullOrEmpty()) {
                 binding.edtFirstname.setText(user.data?.firstName)
@@ -595,17 +596,17 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
             if (!user.data?.city?.name.isNullOrEmpty()) {
                 binding.txtProvince.text = user.data?.city?.name
             }else{
-                binding.txtProvince.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+                binding.txtProvince.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             }
             if (!user.data?.district?.name.isNullOrEmpty()) {
                 binding.txtDistrict.text = user.data?.district?.name
             }else{
-                binding.txtDistrict.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+                binding.txtDistrict.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             }
             if (!user.data?.ward?.name.isNullOrEmpty()) {
                 binding.tvWard.text = user.data?.ward?.name
             }else{
-                binding.tvWard.setHintTextColor(Constant.getDisableTextColor(requireContext()))
+                binding.tvWard.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             }
             if (!user.data?.address.isNullOrEmpty()) {
                 binding.edtAddress.setText(user.data?.address)
@@ -636,7 +637,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                 1 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_yellow_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.cho_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(Constant.getAccentYellowColor(requireContext()))
+                    binding.txtConfirmedDanhtinh.setTextColor(ColorManager.getAccentYellowColor(requireContext()))
                     binding.txtConfirmedDanhtinh.setOnClickListener {
                         lifecycleScope.launch {
                             binding.txtConfirmedDanhtinh.isEnabled = false
@@ -649,14 +650,14 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                 2 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_green_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText(R.string.da_xac_thuc)
-                    binding.txtConfirmedDanhtinh.setTextColor(Constant.getAccentGreenColor(requireContext()))
+                    binding.txtConfirmedDanhtinh.setTextColor(ColorManager.getAccentGreenColor(requireContext()))
 
                     binding.imgDanhtinh.beGone()
                 }
                 3 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_red_20_corner_23)
                     binding.txtConfirmedDanhtinh.setText("Lỗi xác thực")
-                    binding.txtConfirmedDanhtinh.setTextColor(Constant.getAccentRedColor(requireContext()))
+                    binding.txtConfirmedDanhtinh.setTextColor(ColorManager.getAccentRedColor(requireContext()))
                     binding.txtConfirmedDanhtinh.setOnClickListener {
                         lifecycleScope.launch {
                             binding.txtConfirmedDanhtinh.isEnabled = false

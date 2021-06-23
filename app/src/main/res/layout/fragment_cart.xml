@@ -131,11 +131,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
         android:id="@+id/cart_no_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#E5E5E5"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -150,12 +149,12 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_no_campaign" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView59"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Bạn chưa có sản phẩm nào trong giỏ hàng" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
 
 </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

@@ -19,7 +19,7 @@ import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.detail_my_reward.DetailMyRewardActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -179,7 +179,7 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.Constant.getSecondTextCode}}>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.ColorManager.getSecondTextCode(itemView.context)}}>Từ </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }

@@ -24,7 +24,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
@@ -78,8 +78,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             avatar?.let {
                 Glide.with(it.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(it)
             }
         }
@@ -104,7 +104,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         super.onViewCreated(view, savedInstanceState)
         binding.root.requestFocus()
 
-        binding.btnGenderMale.setTextColor(Constant.getDisableTextColor(requireContext()))
+        binding.btnGenderMale.setTextColor(ColorManager.getDisableTextColor(requireContext()))
 
         takeImageListener.avatar = binding.userAva
         ickLoginViewModel.setGender(1)
@@ -156,8 +156,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         ickLoginViewModel.facebookAvatar?.let {
             Glide.with(view.context.applicationContext)
                     .load(it)
-                    .placeholder(R.drawable.user_placeholder)
-                    .error(R.drawable.user_placeholder)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
+                    .error(R.drawable.ic_avatar_default_84dp)
                     .into(binding.userAva)
         }
         if (!ickLoginViewModel.facebookUsername.isNullOrEmpty()) {
@@ -165,15 +165,15 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             ickLoginViewModel.setFirstName(ickLoginViewModel.facebookUsername)
         }
         binding.edtTinh.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             enableRightClick = false
         }
         binding.edtQuan.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             enableRightClick = false
         }
         binding.edtPhuongXa.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             enableRightClick = false
         }
         binding.edtTinh.setOnClickListener {
@@ -265,7 +265,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             }
         })
         binding.edtEmailInput.apply {
-            setHintTextColor(Constant.getDisableTextColor(context))
+            setHintTextColor(ColorManager.getDisableTextColor(context))
             addTextChangedListener {
 //            binding.tvErrorEmail.beGone()
                 if (it?.trim().toString().isValidEmail()) {

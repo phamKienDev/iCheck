@@ -18,6 +18,7 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemNumberBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.beGone
@@ -28,6 +29,7 @@ import vn.icheck.android.util.ick.toStringNotNull
 class NumberTextHolder(private val itemNumberBinding: ItemNumberBinding) : CoroutineViewHolder(itemNumberBinding.root) {
     var balloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel) {
+        itemNumberBinding.edtPrice.background= ViewHelper.bgWhiteStrokeLineColor1Corners4(itemView.context)
         if (categoryAttributesModel.categoryItem.description.isNullOrEmpty()) {
             itemNumberBinding.imgHelp.beGone()
 //            TooltipCompat.setTooltipText(itemNumberBinding.imgHelp,null)

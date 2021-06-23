@@ -97,7 +97,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
             binding.edtVariant.background=this
         }
 
-        vn.icheck.android.ichecklibs.Constant.getSecondTextColor(this).apply {
+        vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this).apply {
             binding.edtPhone.setHintTextColor(this)
             binding.edtName.setHintTextColor(this)
             binding.edtEmail.setHintTextColor(this)
@@ -109,6 +109,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         }
 
         binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
+        binding.tvViewVerifiedPhoneNumber.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this))
     }
 
 

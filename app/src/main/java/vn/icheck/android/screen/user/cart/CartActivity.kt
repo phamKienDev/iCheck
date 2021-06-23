@@ -73,7 +73,7 @@ class CartActivity : BaseActivityMVVM(), ICartView {
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.Constant.getPrimaryColor(this)
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {

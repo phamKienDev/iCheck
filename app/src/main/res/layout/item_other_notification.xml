@@ -35,7 +35,7 @@
             android:layout_height="@dimen/size_36"
             android:padding="@dimen/size_1"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

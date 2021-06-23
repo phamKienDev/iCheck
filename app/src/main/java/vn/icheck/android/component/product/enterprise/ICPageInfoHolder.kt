@@ -13,6 +13,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemPageInfoBinding
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICOwner
@@ -25,6 +26,8 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
     fun bind(obj: ICOwner) {
         WidgetUtils.loadImageUrlRounded4(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
+
+        setupView()
 
         binding.tvNamePage.text = if (obj.name.isNullOrEmpty()) {
             binding.root.context.getString(R.string.dang_cap_nhat)
@@ -39,6 +42,7 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
         })
 
         binding.backgroundVerified.setBackgroundColor(ContextCompat.getColor(binding.root.context, obj.background))
+
 
         binding.tvNamePage.setCompoundDrawablesWithIntrinsicBounds(0, 0, obj.icon, 0)
 
@@ -108,8 +112,12 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
         }
     }
 
+
+
     fun bind(obj: ICWidgetData) {
         WidgetUtils.loadImageUrlRounded4(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
+
+        setupView()
 
         binding.tvNamePage.apply {
             text = obj.name ?: context.getString(R.string.dang_cap_nhat)
@@ -186,5 +194,12 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
                 }
             }
         }
+    }
+
+    private fun setupView() {
+        binding.tvPhone.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+        binding.tvDangCapNhatSDT.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+        binding.tvAddress.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
+        binding.tvMST.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
     }
 }

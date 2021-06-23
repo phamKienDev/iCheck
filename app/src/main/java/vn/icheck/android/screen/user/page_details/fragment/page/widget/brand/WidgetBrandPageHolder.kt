@@ -79,7 +79,7 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
                         text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
-                        text.setTextColor(vn.icheck.android.ichecklibs.Constant.getSecondaryColor(context))
+                        text.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                         text.includeFontPadding = false
                         text.text = "Các nhãn hàng"
                         text.setPadding(0, 0, 0, 0)

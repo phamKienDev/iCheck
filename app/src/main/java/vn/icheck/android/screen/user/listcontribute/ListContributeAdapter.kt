@@ -22,7 +22,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.*
@@ -30,7 +30,7 @@ import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.screen.dialog.ReportDialog
@@ -171,10 +171,10 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
         override fun bind(obj: ICContribute) {
             unCheckAll()
 
-            itemView.tvName.setTextColor(Constant.getNormalTextColor(itemView.context))
+            itemView.tvName.setTextColor(ColorManager.getNormalTextColor(itemView.context))
 
             itemView.imgAvatar.run {
-                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
 
                 setOnClickListener {
                     IckUserWallActivity.create(obj.user?.id, itemView.context)
@@ -227,11 +227,11 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(Constant.getPrimaryColor(context))
+                    setTextColor(ColorManager.getPrimaryColor(context))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                     text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
                 } else {
-                    setTextColor(Constant.getDisableTextColor(context))
+                    setTextColor(ColorManager.getDisableTextColor(context))
                     setTypeface(null, Typeface.ITALIC)
                     text = getString(R.string.gia_dang_cap_nhat)
                 }

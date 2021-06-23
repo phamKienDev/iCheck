@@ -66,7 +66,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -108,7 +108,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -148,7 +148,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtMiddleName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -188,7 +188,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtLastName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -228,7 +228,7 @@
                 android:text="Email"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -268,7 +268,7 @@
                 android:text="Địa chỉ"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"
@@ -308,7 +308,7 @@
                 android:text="Ghi chú"
                 android:textSize="@dimen/font_12" />
 
-            <vn.icheck.android.ichecklibs.view.line_color.EdittextNormalHintDisableBgWhiteRadius4Stroke05
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtNote"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_36"

@@ -14,7 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCheckoutOrder
 import vn.icheck.android.network.models.ICItemCart
@@ -27,7 +27,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
 
     override fun bind(obj: ICCheckoutOrder) {
         itemView.viewDot.background=ViewHelper.lineDottedHorizontalSecondary()
-        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_circle_avatar_default, R.drawable.ic_circle_avatar_default, SizeHelper.size12)
+        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_user_svg, R.drawable.ic_user_svg, SizeHelper.size12)
         itemView.tvName.text = obj.shop.name
 
         if (obj.sub_total < obj.shop.min_order_value ?: 0) {
@@ -99,7 +99,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
             if (parent.childCount > 0) {
                 val view = View(parent.context)
                 view.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-                view.setBackgroundColor(Constant.getLineColor(parent.context))
+                view.setBackgroundColor(ColorManager.getLineColor(parent.context))
                 parent.addView(view)
             }
 

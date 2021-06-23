@@ -99,7 +99,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICCampaign) {
             itemView.btnJoinCampaign.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
-            itemView.tvEnded.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(itemView.context))
+            itemView.tvEnded.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
 
             WidgetUtils.loadImageUrlRounded4(itemView.imgBanner, obj.image, R.drawable.bg_error_campaign)
 
@@ -177,7 +177,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
     fun createView(context: Context): LinearLayout {
         return LinearLayout(context).also {
             it.layoutParams = ViewHelper.createLayoutParams()
-            it.setBackgroundColor(vn.icheck.android.ichecklibs.Constant.getAppBackgroundWhiteColor(it.context))
+            it.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(it.context))
             it.gravity = Gravity.CENTER_HORIZONTAL
             it.orientation = LinearLayout.VERTICAL
 
@@ -193,7 +193,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     it.topMargin = SizeHelper.size28
 
                 }
-                it.setTextColor(vn.icheck.android.ichecklibs.Constant.getNormalTextColor(context))
+                it.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(context))
                 it.gravity = Gravity.CENTER
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.textSize = 16f

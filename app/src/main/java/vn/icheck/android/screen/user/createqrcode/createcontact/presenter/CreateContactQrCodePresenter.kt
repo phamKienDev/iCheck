@@ -49,12 +49,12 @@ class CreateContactQrCodePresenter(val view: ICreateContactQrCodeView) : BaseFra
             view.onInvalidLastNameSuccess()
         }
 
-        val validEmail = ValidHelper.validEmail(view.mContext, email)
-
-        if (validEmail != null) {
-            isSuccess = false
-            view.onInvalidEmail(validEmail)
-        }
+//        val validEmail = ValidHelper.validEmail(view.mContext, email)
+//
+//        if (validEmail != null) {
+//            isSuccess = false
+//            view.onInvalidEmail(validEmail)
+//        }
 
 //        val validAddress = ValidHelper.validAddress(view.mContext, address)
 //
