@@ -19,7 +19,7 @@ data class ICWidgetData(
         @Expose val scanCount: Long?,
         @Expose val peopleCount: Long?,
         @Expose val guaranteeDay: Long?,
-        @Expose val typeGuaranteeDay: String?,
+        @Expose val typeGuaranteeDay: String? = "",
         @Expose val guaranteeDays: Long = 0,
         @Expose val expireDate: String?,
         @Expose val dayRemaining: Long?,

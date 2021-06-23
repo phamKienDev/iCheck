@@ -17,6 +17,7 @@ class ICGuaranteeHolder(parent: ViewGroup, val binding: ItemGuaranteeBinding = I
         binding.tvActivate.text = TimeHelper.convertDateTimeSvToDateVnStamp(obj.activeDate)
     }
 
+
     private fun getTypeOfGuaranteeDay(type: String?): String {
         return when (type) {
             "months" -> {
