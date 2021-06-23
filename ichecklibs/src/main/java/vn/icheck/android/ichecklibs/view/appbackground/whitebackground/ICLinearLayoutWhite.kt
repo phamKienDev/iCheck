@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import vn.icheck.android.ichecklibs.ColorManager
-import vn.icheck.android.ichecklibs.Constant
 
 class ICLinearLayoutWhite : LinearLayout {
     constructor(context: Context) : super(context) {

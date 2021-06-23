@@ -24,6 +24,6 @@ class ICRecyclerViewGray : RecyclerView {
     }
 
     private fun setup() {
-        setBackgroundColor(Color.parseColor(ColorManager.getPrimaryColorCode(context)))
+        setBackgroundColor(ColorManager.getAppBackgroundGrayColor(context))
     }
 }
