@@ -2183,12 +2183,7 @@ object ViewHelper {
             layoutParent.layoutParams = createLayoutParams()
             layoutParent.orientation = LinearLayout.VERTICAL
             layoutParent.gravity = Gravity.CENTER
-            layoutParent.setPadding(
-                SizeHelper.size40,
-                SizeHelper.size40,
-                SizeHelper.size40,
-                SizeHelper.size40
-            )
+            layoutParent.setPadding(SizeHelper.size40, SizeHelper.size40, SizeHelper.size40, SizeHelper.size40)
             layoutParent.setBackgroundColor(Color.WHITE)
 
             layoutParent.addView(AppCompatImageView(context).also {

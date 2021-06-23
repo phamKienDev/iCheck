@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,6 @@ import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
@@ -24,6 +24,7 @@ import vn.icheck.android.component.friendrequestwall.FriendRequestWallHolder
 import vn.icheck.android.component.friendsuggestion.FriendSuggestionComponent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.component.post.PostHolder
+import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
@@ -35,23 +36,38 @@ import vn.icheck.android.network.model.profile.IckUserFriendModel
 import vn.icheck.android.network.model.profile.IckUserProfileModel
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
+import vn.icheck.android.screen.user.campaign.calback.IMessageListener
+import vn.icheck.android.screen.user.campaign.holder.base.ShortMessageHolder
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.screen.user.wall.ICWallModel
 import vn.icheck.android.screen.user.wall.holder.friend.FriendWallHolder
 import vn.icheck.android.util.ick.*
 
-class IckUserWallAdapter(val listener: IPostListener) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val listData = arrayListOf<ICViewModel>()
+class IckUserWallAdapter(val postListener: IPostListener, val messageListener: IMessageListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    val listData = arrayListOf<ICViewModel>()
     var friendListPos = -1
+    var iconMessage:Int?=null
+    var errorMessage:String?=null
 
     fun updateList(list: List<ICViewModel>) {
+        iconMessage=null
+        errorMessage=null
+
         listData.clear()
         listData.addAll(list)
         notifyDataSetChanged()
     }
 
+    fun setError(icon:Int?,message:String?){
+        iconMessage=icon
+        errorMessage=message
+        notifyDataSetChanged()
+    }
+
     fun addPosts(list: List<ICViewModel>) {
+        iconMessage=null
+        errorMessage=null
+
         listData.addAll(list)
         val set = mutableSetOf<ICViewModel>()
         set.addAll(listData)
@@ -93,36 +109,23 @@ class IckUserWallAdapter(val listener: IPostListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ICViewTypes.PROFILE_USER -> ProfileUserHolder(
-                ItemUserProfileWallBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
-            ICViewTypes.FRIEND_WALL -> FriendWallHolder(
-                FriendInWallHolderBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
+            ICViewTypes.PROFILE_USER -> ProfileUserHolder(ItemUserProfileWallBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.FRIEND_WALL -> FriendWallHolder(FriendInWallHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.FRIEND_INVITATION_TYPE -> FriendRequestWallHolder(parent)
             ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
-            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(
-                ItemCreatePostBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-            )
-            ICViewTypes.ITEM_USER_POST -> PostHolder(parent, listener)
+            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.ITEM_USER_POST -> PostHolder(parent, postListener)
+            ICViewTypes.MESSAGE_TYPE ->ShortMessageHolder(parent)
             else -> NullHolder(parent)
         }
     }
 
     override fun getItemCount(): Int {
-        return listData.size
+        return if(iconMessage!=null || !errorMessage.isNullOrBlank()){
+            1
+        }else{
+            listData.size
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -159,6 +162,15 @@ class IckUserWallAdapter(val listener: IPostListener) :
                     val postViewModel = listData[position] as PostViewModel
                     (holder as PostHolder).bind(postViewModel)
                 }
+                ICViewTypes.MESSAGE_TYPE->{
+                    holder.itemView.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+                    (holder as ShortMessageHolder).apply {
+                        bind(iconMessage,errorMessage)
+                        setListener {
+                            messageListener.onMessageClicked()
+                        }
+                    }
+                }
             }
         } catch (e: Exception) {
             logError(e)
@@ -166,7 +178,11 @@ class IckUserWallAdapter(val listener: IPostListener) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return listData[position].getViewType()
+        return if(!errorMessage.isNullOrBlank() && iconMessage!=null){
+            ICViewTypes.MESSAGE_TYPE
+        } else{
+            listData[position].getViewType()
+        }
     }
 }
 
