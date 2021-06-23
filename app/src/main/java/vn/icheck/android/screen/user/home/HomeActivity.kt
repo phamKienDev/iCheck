@@ -211,7 +211,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     }
 
     private fun setupView() {
-        drawerLayout.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(this))
+        drawerLayout.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(this))
         vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this).apply {
             tvHome.setTextColor(this)
             tvFeed.setTextColor(this)

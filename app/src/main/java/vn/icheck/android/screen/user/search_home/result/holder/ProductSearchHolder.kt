@@ -26,7 +26,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductSearchHolder(parent: ViewGroup, val recyclerViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_product_search_result_holder, parent, false)) {
     fun bind(list: MutableList<ICProductTrend>) {
-        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp)
+        itemView.tv_xem_them.fillDrawableEndText(R.drawable.ic_arrow_right_light_blue_24dp,"#00BAF2")
 
         Handler().post {
             if (list.isNullOrEmpty()) {
