@@ -40,6 +40,7 @@ import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -57,6 +58,7 @@ import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICFriendInvitationMeUserId
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
+import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.commentpost.CommentPostActivity
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -76,7 +78,7 @@ import vn.icheck.android.screen.user.wall.friend_wall_setting.FriendWallSettings
 import vn.icheck.android.screen.user.wall.report_user.ReportUserDialog
 import vn.icheck.android.util.ick.*
 
-class IckUserWallFragment : Fragment(), IPostListener {
+class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
     private var _binding: FragmentUserWallBinding? = null
     private var isActivityVisble = false
     private var requestLogin = 11
@@ -292,7 +294,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
         }
 
         binding.tvNotificationCount.background= ViewHelper.bgRedCircle22dp(requireContext())
-        ickUserWallAdapter = IckUserWallAdapter(this)
+        ickUserWallAdapter = IckUserWallAdapter(this,this)
         binding.rcvIckUserWall.adapter = ickUserWallAdapter
         binding.rcvIckUserWall.layoutManager = WrapContentLinearLayoutManager(requireContext())
 
@@ -384,7 +386,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
         }
         ickUserWallViewModel.mErr.observe(viewLifecycleOwner) {
-            requireContext() showShortErrorToast it
+            if (ickUserWallAdapter.listData.size>1) {
+                requireContext() showShortErrorToast it
+            }else{
+                ickUserWallAdapter.setError(R.drawable.ic_error_request,it)
+            }
         }
         ickUserWallViewModel.showSuccessReport.observe(viewLifecycleOwner, Observer {
             val listReason = ickUserWallViewModel.arrReport.filter { it.checked }.map { ICReportForm(null, it.data?.name) }.toMutableList()
@@ -548,9 +554,18 @@ class IckUserWallFragment : Fragment(), IPostListener {
     }
 
     private fun getLayout() {
-        ickUserWallViewModel.getLayout().observe(viewLifecycleOwner) {
-            if (it != null) {
-                ickUserWallViewModel.initLayout(it)
+        if (NetworkHelper.isNotConnected(requireContext())) {
+            binding.root.isRefreshing = false
+            if (ickUserWallAdapter.listData.size>1) {
+                requireContext() showShortErrorToast requireContext().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            }else{
+                ickUserWallAdapter.setError(R.drawable.ic_error_network,requireContext().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            }
+        }else{
+            ickUserWallViewModel.getLayout().observe(viewLifecycleOwner) {
+                if (it != null) {
+                    ickUserWallViewModel.initLayout(it)
+                }
             }
         }
     }
@@ -589,6 +604,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 }
             }
         }
+    }
+
+    override fun onMessageClicked() {
+        binding.root.isRefreshing=true
+        getLayout()
     }
 
 }
