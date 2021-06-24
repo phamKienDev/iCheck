@@ -107,7 +107,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
 
     fun setPrice(price: String?) {
         selectedPrice = price
-        if (price == ICheckApplication.getInstance().getString(R.string.tat_ca) || price == null) {
+        if (price == getString(R.string.tat_ca) || price == null) {
             tv_price.setText(R.string.tat_ca)
             tv_price.setTextColor(ColorManager.getSecondTextColor(requireContext()))
             img_clear_price.visibility = View.GONE

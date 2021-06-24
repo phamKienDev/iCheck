@@ -33,6 +33,6 @@ class CreateEmailQrCodePresenter(val view: ICreateEmailQrCodeView) : BaseFragmen
             return
         }
 
-        view.onValidSuccess(view.mContext!!.getString(R.string.qr_code_send_emal_format, email, title, message))
+        view.onValidSuccess(view.mContext?.getString(R.string.qr_code_send_emal_format, email, title, message)?:"")
     }
 }

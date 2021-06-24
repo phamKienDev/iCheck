@@ -81,7 +81,7 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
 
     private fun getListProvince() {
         if (NetworkHelper.isNotConnected(context)) {
-            ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             dismiss()
             tv_clear.beGone()
             return
@@ -100,7 +100,7 @@ class FilterLocationVnDialog(val callback: LocationCallback, selectedID: Mutable
             override fun onError(error: ICResponseCode?) {
                 tv_clear.beGone()
                 val message = if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error!!.message!!
                 }

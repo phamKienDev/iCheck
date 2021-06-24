@@ -15,7 +15,6 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.item_post.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
-import vn.icheck.android.ICheckApplication.Companion.getString
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
@@ -30,6 +29,7 @@ import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.*
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.base.ICNewApiListener

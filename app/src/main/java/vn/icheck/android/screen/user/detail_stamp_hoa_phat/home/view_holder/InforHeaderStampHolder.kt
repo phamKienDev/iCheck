@@ -24,7 +24,7 @@ class InforHeaderStampHolder(parent: ViewGroup, val headerImagelistener: SlideHe
         itemView.tv_product_name.text = obj.name
 
         if (obj.price > 0) {
-            itemView.tv_price.setText(R.string.x_d, obj.price)
+            itemView.tv_price.setText(R.string.d_vnd, obj.price)
             itemView.tvGiaNiemYet.visibility = View.VISIBLE
         } else {
             itemView.tv_price.visibility = View.INVISIBLE

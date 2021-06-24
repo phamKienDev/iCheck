@@ -18,7 +18,7 @@ class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStam
         itemView.tv_owner_name.text = obj.vendorPage.name
         itemView.img_not_verified.visibility = View.VISIBLE
         if (obj.vendorPage.tax != null) {
-            itemView.tv_owner_mst.setText(R.string.ma_so_thue_icheck, obj.vendorPage.tax)
+            itemView.tv_owner_mst.setText(R.string.ma_so_thue_icheck, obj.vendorPage.tax!!)
         } else {
             itemView.tv_owner_mst.visibility = View.GONE
         }

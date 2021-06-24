@@ -38,7 +38,9 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     @SuppressLint("SetTextI18n")
     private fun initViewModel() {
         viewModel.dataIntent.observe(this, {
-            txtTitle.setText(R.string.cua_hang_s, it.name)
+            it.name?.let { it1 ->
+                txtTitle.setText(R.string.cua_hang_s, it1)
+            }
         })
 
         adapter.disableLoadMore()

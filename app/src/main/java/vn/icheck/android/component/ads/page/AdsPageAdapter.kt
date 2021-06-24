@@ -22,6 +22,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -337,7 +338,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.setText(R.string.chua_co_nguoi_theo_doi)
             }
 
             setButtonText(binding.tvAction, obj.isFollow, 0)
@@ -454,7 +455,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     ToastUtils.showLongError(ICheckApplication.getInstance(), error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

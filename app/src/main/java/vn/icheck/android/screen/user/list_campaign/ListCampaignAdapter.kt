@@ -119,7 +119,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.btnJoinCampaign.beGone()
                     itemView.tvEnded.beGone()
 
-                    itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.tu_s_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt), TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
+                    itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.tu_s_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)?:"", TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?:"")
                 }
                 //Chưa tham gia
                 1 -> {
@@ -135,7 +135,9 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
                         itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
+                        TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?.let {
+                            itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, it)
+                        }
                     }
 
                 }
@@ -153,9 +155,13 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
                         itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt))
+                        TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?.let {
+                            itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, it)
+                        }
                     }
-                    itemView.tvReward.setText(R.string.d_luot_mo, obj.itemCount)
+                    obj.itemCount?.let{
+                        itemView.tvReward.setText(R.string.d_luot_mo, it)
+                    }
                 }
                 //Đã hết hạn
                 else -> {

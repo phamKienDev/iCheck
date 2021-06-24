@@ -64,7 +64,7 @@ class BannerSurveyPresenter(val view: IBannerSurveyView) : BaseActivityPresenter
     val getLeftButtonText: String
         get() {
             return if (ads.survey!!.totalAnswer > 0) {
-                view.mContext.getString(R.string.cau_xxx, ads.survey?.totalAnswer.toString())
+                view.mContext.getString(R.string.cau_s, ads.survey?.totalAnswer.toString())
             } else {
                 view.mContext.getString(R.string.bo_qua)
             }

@@ -22,7 +22,7 @@ class AdsMoreViewModel : BaseViewModel<Any>() {
         if (adsModel != null) {
             setData.postValue(adsModel)
         } else {
-            setError.postValue(ICheckApplication.getString(R.string.khong_co_du_lieu))
+            setError.postValue(getString(R.string.khong_co_du_lieu))
         }
     }
 }

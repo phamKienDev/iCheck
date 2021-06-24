@@ -362,7 +362,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    ToastUtils.showLongError(activity, error?.message ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showLongError(activity, error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }
@@ -372,7 +372,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
                 ToastUtils.showShortError(activity,
-                    ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                    getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
 

@@ -114,7 +114,7 @@ class FriendRequestWallAdapter : RecyclerView.Adapter<FriendRequestWallAdapter.V
                         DialogHelper.closeLoading(activity)
                         Handler().postDelayed({
                             val message = if (!objFriend.lastName.isNullOrEmpty()) {
-                                activity.getString(R.string.ban_da_tro_thanh_ban_be_voi_xxx, Constant.getName(objFriend.lastName, objFriend.firstName))
+                                activity.getString(R.string.ban_da_tro_thanh_ban_be_voi_s, Constant.getName(objFriend.lastName, objFriend.firstName))
                             } else {
                                 activity.getString(R.string.cac_ban_da_tro_thanh_ban_be)
                             }

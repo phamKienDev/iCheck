@@ -11,6 +11,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.post.PostInteractor
 import vn.icheck.android.network.models.ICPost
@@ -127,12 +128,12 @@ class CreateOrUpdatePostViewModel : ViewModel() {
 
     fun createOrUpdate(privacyID: Long?, content: String, productID: Long?, listFile: MutableList<String>) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onShowMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onShowMessage.postValue(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
         if (content.isEmpty() && productID == null && listFile.isEmpty()) {
-            onShowMessage.postValue(ICheckApplication.getString(R.string.vui_long_nhap_noi_dung))
+            onShowMessage.postValue(getString(R.string.vui_long_nhap_noi_dung))
             return
         }
 
@@ -192,7 +193,7 @@ class CreateOrUpdatePostViewModel : ViewModel() {
                 }
             } else {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
@@ -210,7 +211,7 @@ class CreateOrUpdatePostViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -228,7 +229,7 @@ class CreateOrUpdatePostViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onShowMessage.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

@@ -16,6 +16,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter
@@ -87,7 +88,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         if (StampDetailActivity.isVietNamLanguage == false) {
             if (isShow) {
                 binding.txtTime.visibility = View.VISIBLE
-                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
+                binding.txtTime.text = getString(R.string.gui_lai_ma_s_s, "60")
 
                 binding.layoutStatus.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -101,7 +102,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         } else {
             if (isShow) {
                 binding.txtTime.visibility = View.VISIBLE
-                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
+                binding.txtTime.text = getString(R.string.gui_lai_ma_s_s, "60")
 
                 binding.layoutStatus.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -124,7 +125,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)),this))
+        binding.tvTitle.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(getString(R.string.login_ma_xac_nhan_otp_da_duoc_gui_toi_so_dien_thoai, obj.phone ?: getString(R.string.dang_cap_nhat)),this))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
 
@@ -144,7 +145,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
             override fun onTick(millisecond: Long) {
                 this@VerifyOTPGuaranteeActivity.let {
-                    binding.txtTime?.text = it.getString(R.string.gui_lai_ma_xxx_s, (millisecond / 1000).toString())
+                    binding.txtTime.setText(R.string.gui_lai_ma_s_s, (millisecond / 1000).toString())
                 }
             }
         }

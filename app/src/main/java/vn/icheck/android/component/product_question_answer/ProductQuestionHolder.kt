@@ -27,7 +27,7 @@ class ProductQuestionHolder(parent: ViewGroup, recycledViewPool: RecyclerView.Re
                 } else {
                     beVisible()
 
-                    (getChildAt(0) as AppCompatTextView).setText(R.string.hoi_dap_ve_san_pham_x, obj.data.count)
+                    (getChildAt(0) as AppCompatTextView).setText(R.string.hoi_dap_ve_san_pham_d, obj.data.count)
 
                     getChildAt(1).setOnClickListener {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_QUESTIONS))

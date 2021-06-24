@@ -42,15 +42,13 @@ class WidgetBrandPageAdapter(val listData: MutableList<ICPageTrend>) : RecyclerV
             }
 
             (params.getChildAt(2) as AppCompatTextView).run {
-                if (obj.followCount != null) {
-                    if (obj.followCount!! < 1000) {
+                    if (obj.followCount < 1000) {
                         text = context.getString(R.string.d_nguoi_theo_doi, obj.followCount)
-                    } else if (obj.followCount!! < 10000) {
+                    } else if (obj.followCount < 10000) {
                         text = context.getString(R.string.s_nguoi_theo_doi,TextHelper.formatMoney(obj.followCount))
                     } else {
-                        text = context.getString(R.string.k_nguoi_theo_doi, ((obj.followCount)!! / 1000f).toString().replace(".0", ""))
+                        text = context.getString(R.string.k_nguoi_theo_doi, ((obj.followCount) / 1000f).toString().replace(".0", ""))
                     }
-                }
             }
 
             itemView.setOnClickListener {

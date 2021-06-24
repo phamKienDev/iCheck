@@ -20,8 +20,8 @@ class ExchangePhonecardSuccessDialog(val phoneNumber: String?, val service: Stri
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvMessage.setText(R.string.the_cao_da_duoc_cong_vao_tai_khoan_s, phoneNumber)
-        tvPoint.setText(R.string.the_cao_s, service)
+        tvMessage.setText(R.string.the_cao_da_duoc_cong_vao_tai_khoan_s, phoneNumber?:"")
+        tvPoint.setText(R.string.the_cao_s, service?:"")
         imgClose.setOnClickListener {
             dismiss()
         }

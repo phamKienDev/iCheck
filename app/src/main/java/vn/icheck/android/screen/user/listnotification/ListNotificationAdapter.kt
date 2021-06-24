@@ -12,6 +12,7 @@ import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.home_page.model.ICHomeItem
 import vn.icheck.android.component.friendrequest.FriendRequestComponent
 import vn.icheck.android.component.friendsuggestion.FriendSuggestionComponent
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.listnotification.othernotification.OtherNotificationHolder
@@ -94,7 +95,7 @@ class ListNotificationAdapter(private val messageListener: IMessageListener) : R
 
     private fun checkList() {
         if (listData.isEmpty()) {
-            setError(R.drawable.ic_no_campaign, ICheckApplication.getInstance().getString(R.string.ban_chua_co_thong_bao_nao), 0)
+            setError(R.drawable.ic_no_campaign, getString(R.string.ban_chua_co_thong_bao_nao), 0)
             notifyDataSetChanged()
         }
     }

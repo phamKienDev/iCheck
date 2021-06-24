@@ -131,8 +131,9 @@ class InviteFriendFollowPageAdapter(val callback: InviteFriendFollowPageCallback
                 itemView.tvFriendCount.beVisible()
                 itemView.tvNote.beVisible()
                 itemView.view45.beVisible()
-
-                itemView.tvFriendCount.setText(R.string.ban_be_d, obj.count)
+                obj.count?.let {
+                    itemView.tvFriendCount.setText(R.string.ban_be_d, it)
+                }
             }
 
             itemView.imgClose.setOnClickListener {

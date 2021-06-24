@@ -106,7 +106,12 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
         }
 
         if (obj.numShopSell != null && obj.numShopSell != 0) {
-            binding.tvCountShop.setText(R.string.co_s_cua_hang_ban_san_pham_nay, obj.numShopSell)
+            obj.numShopSell?.let {
+                binding.tvCountShop.setText(
+                    R.string.co_s_cua_hang_ban_san_pham_nay,
+                    it
+                )
+            }
             binding.tvCountShop.visibility = View.VISIBLE
             binding.layoutShop.visibility = View.VISIBLE
         } else {

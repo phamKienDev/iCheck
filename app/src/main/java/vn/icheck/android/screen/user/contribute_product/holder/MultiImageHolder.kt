@@ -44,7 +44,7 @@ class MultiImageHolder(private val itemContributeImageBinding: ItemContributeIma
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemContributeImageBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            itemContributeImageBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name?:"")
         } else {
             itemContributeImageBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

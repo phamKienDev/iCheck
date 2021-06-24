@@ -10,6 +10,7 @@ import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SettingHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -27,13 +28,13 @@ class CreatePVCardViewModel : BaseViewModel() {
 
     fun getSettingPVCombank(key: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
         SettingHelper.getSystemSetting(key, "pvcombank", object : ISettingListener {
             override fun onRequestError(error: String) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             }
 
             override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
@@ -49,7 +50,7 @@ class CreatePVCardViewModel : BaseViewModel() {
 
     fun getLinkFormAuth() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -63,13 +64,13 @@ class CreatePVCardViewModel : BaseViewModel() {
                         onLinkAuth.postValue(it)
                     }
                 }else{
-                    onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                    onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             }
         })
     }

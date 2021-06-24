@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.ICK_TOKEN
 import vn.icheck.android.constant.ICK_URI
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.firebase.LoginDeviceResponse
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.network.model.icklogin.RequestOtpResponse
@@ -40,7 +41,7 @@ class IckLoginRepository @Inject constructor(private val ickApi: ICKApi, private
             response
         } catch (e: Exception) {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                error.postValue(Exception(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                error.postValue(Exception( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             } else {
                 postErr(e)
             }
@@ -289,7 +290,7 @@ class IckLoginRepository @Inject constructor(private val ickApi: ICKApi, private
 
     private fun postErr(e: Exception) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            error.postValue(Exception(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            error.postValue(Exception( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
         } else {
             error.postValue(e)
         }

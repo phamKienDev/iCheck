@@ -4,6 +4,7 @@ import androidx.annotation.MainThread
 import androidx.fragment.app.FragmentManager
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.screen.user.contribute_product.adapter.ListImageAdapter
@@ -83,10 +84,13 @@ class CategoryAttributesModel(
         if (categoryItem.value != null) {
             values = when (categoryItem.value) {
                 is Double -> {
-                    ICheckApplication.getString(R.string.format_f, categoryItem.value?.toString()?.toDouble())
+                    categoryItem.value?.toString()?.toDouble()?.let {
+                        getString(R.string.format_f, it)
+                    }
                 }
                 is Boolean -> {
-                    if(categoryItem.value == true) ICheckApplication.getString(R.string.co) else ICheckApplication.getString(R.string.khong)
+                    if(categoryItem.value == true) getString(R.string.co) else
+                        getString(R.string.khong)
                 }
                 else -> {
                     categoryItem.value

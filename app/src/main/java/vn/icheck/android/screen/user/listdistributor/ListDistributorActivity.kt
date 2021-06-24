@@ -66,8 +66,9 @@ class ListDistributorActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         viewModel.onSuccess.observe(this, {
             DialogHelper.closeLoading(this)
             swipeLayout.isRefreshing = false
-
-            tvCount.setText(R.string.d_nha_phan_phoi, it.count)
+            it.count?.let { safe ->
+                tvCount.setText(R.string.d_nha_phan_phoi, safe)
+            }
 
             if (!it.isLoadMore) {
                 adapter.setData(it.listData)

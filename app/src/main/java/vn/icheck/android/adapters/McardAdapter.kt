@@ -87,7 +87,7 @@ class McardAdapter : RecyclerView.Adapter<McardAdapter.NetworkHolder>() {
         fun bind(price: String) {
             itemView.imgIcon.visibility = View.GONE
             itemView.tvPrice.visibility = View.VISIBLE
-            itemView.tvPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(price))
+            itemView.tvPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(price))
 
             if (selectedPosition != -1) {
                 PurchaseCardFragment.INSTANCE?.changePrice(listData[servicePosition].denomination[selectedPosition])

@@ -61,12 +61,12 @@ class RatingStarComponent : LinearLayout {
         (getChildAt(0) as AppCompatTextView).run {
             when {
                 pointDouble < 6 -> {
-                    text = context.getString(R.string.x_diem_danh_gia, pointDouble)
+                    text = context.getString(R.string.f_diem_danh_gia, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.light_purple))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.light_purple), SizeHelper.size14.toFloat())
                 }
                 pointDouble < 7 -> {
-                    text = context.getString(R.string.x_hai_long, pointDouble)
+                    text = context.getString(R.string.f_hai_long, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.green_v2))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.green_v2), SizeHelper.size14.toFloat())
                 }

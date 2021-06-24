@@ -14,6 +14,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 
 class FilterYearDialog(val listSelected: MutableList<String>, private val timeCallBack: TimeCallBack) : BaseBottomSheetDialogFragment() {
     private var selectedTime = mutableListOf<String>()
@@ -118,7 +119,7 @@ class FilterYearDialog(val listSelected: MutableList<String>, private val timeCa
                 }
 
                 itemView.setOnClickListener {
-                    if (obj == ICheckApplication.getString(R.string.tat_ca)) {
+                    if (obj == getString(R.string.tat_ca)) {
                         resetSelected()
                     } else {
                         var selected = false

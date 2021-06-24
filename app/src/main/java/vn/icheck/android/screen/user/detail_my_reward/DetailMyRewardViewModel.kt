@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.models.ICItemReward
@@ -72,7 +73,7 @@ class DetailMyRewardViewModel @ViewModelInject constructor(val ickApi: ICKApi, @
             requestBody["reasonOther"] = listMessage.joinToString()
             val res = ickApi.refuseGift(requestBody)
             if (res.statusCode == "200") {
-                refuseGift.postValue(ICheckApplication.getInstance().getString(R.string.ban_da_tu_mon_qua_nay))
+                refuseGift.postValue(getString(R.string.ban_da_tu_mon_qua_nay))
             }
         }
 

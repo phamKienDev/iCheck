@@ -110,7 +110,7 @@ class FragmentLuckyWheelGame : Fragment() {
                         if (name.isNullOrEmpty()) {
                             name = getString(R.string.nguoi_choi)
                         }
-                        text.append(getString(R.string.s_da_trung_s, name, item?.winnerGifts?.firstOrNull()?.gift?.name))
+                        text.append(getString(R.string.s_da_trung_s, name?:"", item?.winnerGifts?.firstOrNull()?.gift?.name?:""))
                     }
                 } catch (e: Exception) {
 
@@ -215,7 +215,7 @@ class FragmentLuckyWheelGame : Fragment() {
     }
 
     private fun setTotalPlay(count: Int?) {
-        if (count != null) {
+        count?.let{
             tv_total_turn.setText(R.string.ban_co_d_luot_quay, count)
         }
     }

@@ -165,8 +165,9 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
             itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
-
-            itemView.tvNameNetwork.setText(R.string.the_s, item.provider)
+            item.provider?.let {
+                itemView.tvNameNetwork.setText(R.string.the_s, it)
+            }
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {

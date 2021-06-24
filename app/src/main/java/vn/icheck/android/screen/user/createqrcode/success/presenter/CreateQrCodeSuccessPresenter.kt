@@ -27,7 +27,7 @@ import java.io.IOException
 class CreateQrCodeSuccessPresenter(val view: ICreateQrCodeSuccessView) : BaseActivityPresenter(view) {
     private var qrCodeBitmap: Bitmap? = null
 
-    private val iCheckName = ICheckApplication.getString(R.string.i_check)
+    private val iCheckName = getString(R.string.i_check)
 
     fun getData(intent: Intent?) {
         val code = try {

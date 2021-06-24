@@ -661,7 +661,7 @@ class CommentPostActivity : BaseActivityMVVM(), ICommentPostView {
         layoutActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
         tvActor.text = if (obj.page != null) {
-            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name),this))
+            Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.page?.name?:""),this))
         } else {
             Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, obj.user?.getName),this))
         }

@@ -108,7 +108,7 @@ class MoreProductVerifiedInBusinessV6Adapter(val view: IMoreBusinessV6View) : Re
 
             if (obj.price != null) {
                 itemView.tvPrice.visibility = View.VISIBLE
-                itemView.tvPrice.setText(R.string.x_d, TextHelper.formatMoneyPhay(obj.price))
+                itemView.tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(obj.price))
             }
         }
     }

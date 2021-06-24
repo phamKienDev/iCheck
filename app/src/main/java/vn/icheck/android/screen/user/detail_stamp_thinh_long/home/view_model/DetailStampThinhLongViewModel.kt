@@ -12,6 +12,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.detail_stamp_v6_1.DetailStampRepository
 import vn.icheck.android.network.feature.product.ProductInteractor
@@ -166,7 +167,7 @@ class DetailStampThinhLongViewModel : ViewModel() {
             statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
 
             if (stampDetail == null && barcodeProduct == null && criteria == null && productQuestions == null && productReviews == null && productRelated == null && productAnswers == null) {
-                errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorDataMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             } else {
                 createListStamp()
             }
@@ -280,7 +281,7 @@ class DetailStampThinhLongViewModel : ViewModel() {
                 onSetbookmark.postValue(true)
             } catch (e: Exception) {
                 onSetbookmark.postValue(false)
-                errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorDataMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
@@ -294,14 +295,14 @@ class DetailStampThinhLongViewModel : ViewModel() {
                 onSetbookmark.postValue(true)
             } catch (e: Exception) {
                 onSetbookmark.postValue(false)
-                errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorDataMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
 
     fun getIdPageSocial(id: Long) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorDataMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -315,14 +316,14 @@ class DetailStampThinhLongViewModel : ViewModel() {
                         getIdSocial.postValue(it)
                     }
                 } else {
-                    errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    errorDataMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorDataMessage.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -337,9 +338,9 @@ class DetailStampThinhLongViewModel : ViewModel() {
 //                params["quantity"] = 1
 //                val host = APIConstants.DEFAULT_HOST + APIConstants.CARTADD()
 //                ICNetworkClient.getSimpleApiClient().addProductToCart(host, params)
-//                errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.them_vao_gio_hang_thanh_cong))
+//                errorDataMessage.postValue( getString(R.string.them_vao_gio_hang_thanh_cong))
 //            } catch (e: Exception) {
-//                errorDataMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+//                errorDataMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
 //            }
 //        }
 //    }

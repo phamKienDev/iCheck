@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.view.normal_text.TextNormalMiddleMultiline
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.ICCountry
 import vn.icheck.android.network.models.ICDistrict
 import vn.icheck.android.network.models.ICProvince
@@ -298,7 +299,7 @@ object TextHelper {
 
     fun AppCompatTextView.setTextNameProduct(name: String?) {
         if (name.isNullOrEmpty()) {
-            text = ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat)
+            text =  getString(R.string.ten_dang_cap_nhat)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
             setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
@@ -310,7 +311,7 @@ object TextHelper {
 
     fun AppCompatTextView.setTextNameProductInPost(name: String?) {
         if (name.isNullOrEmpty()) {
-            setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat_i)))
+            setText(Html.fromHtml( getString(R.string.ten_dang_cap_nhat_i)))
             textSize = 14f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
             setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
@@ -325,11 +326,11 @@ object TextHelper {
     fun AppCompatTextView.setTextPriceProduct(price: Long?) {
         if (price == null) {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            text = ICheckApplication.getInstance().getString(R.string.gia_dang_cap_nhat)
+            text =  getString(R.string.gia_dang_cap_nhat)
             setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
-            setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))
+            setText( getString(R.string.s_d, formatMoneyPhay(price)))
             setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
         }
     }

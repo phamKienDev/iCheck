@@ -235,7 +235,7 @@ class WebViewActivity : AppCompatActivity() {
             }
 
             override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
-                DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_biet_vi_tri_cua_ban, origin), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_biet_vi_tri_cua_ban, origin?:""), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         callback?.invoke(origin, false, false)
 

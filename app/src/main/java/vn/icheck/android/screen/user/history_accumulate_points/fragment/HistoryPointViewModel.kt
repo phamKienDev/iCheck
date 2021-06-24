@@ -6,6 +6,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
 import vn.icheck.android.network.models.ICHistoryPoint
@@ -22,7 +23,7 @@ class HistoryPointViewModel : ViewModel() {
 
     fun getListPointUsed(isLoadMore: Boolean) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -38,7 +39,7 @@ class HistoryPointViewModel : ViewModel() {
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         onSetData.postValue(obj.data?.rows)
                     }else{
-                        onErrorEmpty.postValue(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_dung_diem_nao), ICheckApplication.getString(R.string.hay_tich_luy_va_su_dung_diem_de_doi_nhung_mon_qua_hap_dan_o_muc_dac_quyen_rieng_nhe), R.string.dung_diem))
+                        onErrorEmpty.postValue(ICError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_dung_diem_nao), getString(R.string.hay_tich_luy_va_su_dung_diem_de_doi_nhung_mon_qua_hap_dan_o_muc_dac_quyen_rieng_nhe), R.string.dung_diem))
                     }
                 } else {
                     onAddData.postValue(obj.data?.rows ?: mutableListOf())
@@ -46,14 +47,14 @@ class HistoryPointViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }
 
     fun getListPointReceived(isLoadMore: Boolean) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -77,7 +78,7 @@ class HistoryPointViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }

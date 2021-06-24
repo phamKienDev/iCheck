@@ -155,7 +155,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val listener: IListReportView) : 
             setOnClickListener {
                 val phone = data.pageDetail?.phone ?: ""
                 if (phone.isNotEmpty()) {
-                    DialogHelper.showConfirm(itemView.context, ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone),itemView.context),
+                    DialogHelper.showConfirm(itemView.context, ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_s, phone),itemView.context),
                     null,
                     itemView.context.getString(R.string.de_sau),
                     itemView.context.getString(R.string.dong_y), null, null, true, object : ConfirmDialogListener {

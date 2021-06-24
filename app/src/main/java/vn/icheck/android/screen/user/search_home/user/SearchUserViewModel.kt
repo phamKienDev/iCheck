@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.search_home.user
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.viewmodel.BaseViewModel
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.models.ICProvince
@@ -50,10 +51,10 @@ class SearchUserViewModel : BaseViewModel() {
         if (listGender.isNullOrEmpty() || listGender.size != 3) {
             for (item in listGender) {
                 when (item) {
-                    ICheckApplication.getInstance().getString(R.string.nam) -> {
+                    getString(R.string.nam) -> {
                         listGenderId.add(1)
                     }
-                    ICheckApplication.getInstance().getString(R.string.nu) -> {
+                    getString(R.string.nu) -> {
                         listGenderId.add(2)
                     }
                     else -> {

@@ -66,22 +66,30 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
             when (status) {
                 OrderHistoryActivity.waitForConfirmation -> {
-                    itemView.tvTime.setText(R.string.ngay_tao_don_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy"))
+                    TimeHelper.convertDateTimeSvToDateTimeVn(obj.createdAt, "HH:mm, dd/MM/yyyy")?.let {
+                        itemView.tvTime.setText(R.string.ngay_tao_don_s, it)
+                    }
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beVisible()
                 }
                 OrderHistoryActivity.delivery -> {
-                    itemView.tvTime.setText(R.string.thoi_gian_cap_nhat_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy"))
+                    TimeHelper.convertDateTimeSvToDateTimeVn(obj.updatedAt, "HH:mm, dd/MM/yyyy")?.let {
+                        itemView.tvTime.setText(R.string.thoi_gian_cap_nhat_s, it)
+                    }
                     itemView.bgButton.beVisible()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.delivered -> {
-                    itemView.tvTime.setText(R.string.da_giao_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy"))
+                    TimeHelper.convertDateTimeSvToDateTimeVn(obj.completedAt, "HH:mm, dd/MM/yyyy")?.let{
+                        itemView.tvTime.setText(R.string.da_giao_s, it)
+                    }
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
                 OrderHistoryActivity.canceled -> {
-                    itemView.tvTime.setText(R.string.da_huy_s, TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy"))
+                    TimeHelper.convertDateTimeSvToDateTimeVn(obj.cancelledAt, "HH:mm, dd/MM/yyyy")?.let {
+                        itemView.tvTime.setText(R.string.da_huy_s, it)
+                    }
                     itemView.bgButton.beGone()
                     itemView.tvCancelOrder.beGone()
                 }
@@ -108,7 +116,9 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
 
                 if (obj.orderItem!!.size > 2) {
                     itemView.layoutCount.beVisible()
-                    itemView.tvCount.setText(R.string.d_san_pham_khac,obj.orderItem!!.size - 2)
+                    obj.orderItem?.let {
+                        itemView.tvCount.setText(R.string.d_san_pham_khac,it.size - 2)
+                    }
                     itemView.rcvOrders.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.dpToPx(82) * 2)
                 } else {
                     itemView.layoutCount.beGone()

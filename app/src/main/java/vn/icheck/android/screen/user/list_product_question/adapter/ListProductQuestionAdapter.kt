@@ -18,6 +18,7 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
@@ -134,7 +135,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
         }
 
         if (listData.isNullOrEmpty()) {
-            setError(R.drawable.ic_empty_questions, ICheckApplication.getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
+            setError(R.drawable.ic_empty_questions, getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
         }
     }
 
