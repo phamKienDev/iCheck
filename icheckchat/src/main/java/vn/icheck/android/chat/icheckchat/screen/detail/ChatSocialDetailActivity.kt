@@ -373,7 +373,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
+                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName?:"")
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)
