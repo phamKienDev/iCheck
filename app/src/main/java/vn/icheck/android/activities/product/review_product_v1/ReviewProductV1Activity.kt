@@ -300,7 +300,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
 
         KeyboardUtils.showSoftInput(edt_enter_message)
 
-        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.binh_luan_xxx, nameOwner))
+        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.binh_luan_s, nameOwner))
 
         img_send.setOnClickListener {
             if (edt_enter_message.text.toString().isNotEmpty()) {
@@ -473,7 +473,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
                     share.putExtra(Intent.EXTRA_SUBJECT, product?.name)
                     share.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.chia_se_danh_gia, averagePoint * 2, message, t.link))
                     share.type = "text/plain"
-                    startActivity(Intent.createChooser(share, getString(R.string.chia_se_x, product?.name)))
+                    startActivity(Intent.createChooser(share, getString(R.string.chia_se_s, product?.name)))
                 }
                 shareDialog.dismiss()
             }

@@ -14,47 +14,50 @@ import vn.icheck.android.util.text.ReviewPointText
 
 class YourReviewHolder(view: View, val listener: IReviewProductView) : BaseViewHolder<ICCriteria>(view) {
     override fun bind(obj: ICCriteria) {
-        itemView.tv_your_score.apply {
-            text = context.getString(R.string.your_score, obj.customerEvaluation!!.averagePoint * 2,
-                ReviewPointText.getText(obj.customerEvaluation!!.averagePoint))
-        }
-        itemView.customer_rating.rating = obj.customerEvaluation!!.averagePoint
-
-        val listImg = mutableListOf<String>()
-        if (!obj.customerEvaluation!!.imageThumbs.isNullOrEmpty()) {
-
-            for (i in obj.customerEvaluation!!.imageThumbs.indices) {
-                listImg.add(obj.customerEvaluation!!.imageThumbs[i].thumbnail!!)
+        obj.customerEvaluation?.let {
+            itemView.tv_your_score.apply {
+                text = context.getString(R.string.your_score, it.averagePoint * 2,
+                    ReviewPointText.getText(it.averagePoint))
             }
-            val imageAdapter = HorizontalImageAdapter()
-            itemView.rcv_image.adapter = imageAdapter
-            itemView.rcv_image.layoutManager = LinearLayoutManager(listener.mContext,
+            itemView.customer_rating.rating = it.averagePoint
+
+            val listImg = mutableListOf<String>()
+            if (!it.imageThumbs.isNullOrEmpty()) {
+
+                for (i in it.imageThumbs.indices) {
+                    listImg.add(it.imageThumbs[i].thumbnail!!)
+                }
+                val imageAdapter = HorizontalImageAdapter()
+                itemView.rcv_image.adapter = imageAdapter
+                itemView.rcv_image.layoutManager = LinearLayoutManager(listener.mContext,
                     LinearLayoutManager.HORIZONTAL, false)
-            imageAdapter.setData(listImg)
-        }
-        val listCriteriaChild = mutableListOf<CriteriaChild>()
-        for (item in obj.productCriteriaSet!!.indices) {
-
-            if (obj.productCriteriaSet!![item].criteria.id == obj.customerEvaluation!!.customerCriteria[item].criteria_id
-                    && obj.customerEvaluation!!.customerCriteria[item]!=null) {
-                listCriteriaChild.add(CriteriaChild(
-                        obj.productCriteriaSet!!.get(item),
-                        obj.customerEvaluation!!.customerCriteria.get(item).point.toFloat(),
-                        true
-                ))
-            } else {
-                listCriteriaChild.add(CriteriaChild(
-                        obj.productCriteriaSet!!.get(item),
-                        null,
-                        true
-                ))
+                imageAdapter.setData(listImg)
             }
-        }
-        val criteriaAdapter = CriteriaAdapter(listCriteriaChild, 1)
-        itemView.rcv_customer.adapter = criteriaAdapter
-        itemView.rcv_customer.layoutManager = LinearLayoutManager(listener.mContext)
+            val listCriteriaChild = mutableListOf<CriteriaChild>()
+            obj.productCriteriaSet?.let { productCriteriaSet->
+                for (item in productCriteriaSet.indices) {
 
-        itemView.tv_msg_content.text = obj.customerEvaluation!!.message
+                    if (productCriteriaSet[item].criteria.id == it.customerCriteria[item].criteria_id) {
+                        listCriteriaChild.add(CriteriaChild(
+                            productCriteriaSet[item],
+                            it.customerCriteria[item].point.toFloat(),
+                            true
+                        ))
+                    } else {
+                        listCriteriaChild.add(CriteriaChild(
+                            productCriteriaSet[item],
+                            null,
+                            true
+                        ))
+                    }
+                }
+            }
+            val criteriaAdapter = CriteriaAdapter(listCriteriaChild, 1)
+            itemView.rcv_customer.adapter = criteriaAdapter
+            itemView.rcv_customer.layoutManager = LinearLayoutManager(listener.mContext)
+
+            itemView.tv_msg_content.text = it.message
+        }
 
         itemView.tv_xem_chi_tiet.setOnClickListener {
             itemView.container_detail_review.visibility = View.VISIBLE

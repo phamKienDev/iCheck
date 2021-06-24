@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Html
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -81,7 +80,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         if (StampDetailActivity.isVietNamLanguage == false) {
             if (isShow) {
                 binding.txtTime.visibility = View.VISIBLE
-                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
+                binding.txtTime.text = getString(R.string.gui_lai_ma_s_s, "60")
 
                 binding.layoutStatus.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -95,7 +94,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
         } else {
             if (isShow) {
                 binding.txtTime.visibility = View.VISIBLE
-                binding.txtTime.text = getString(R.string.gui_lai_ma_xxx_s, "60")
+                binding.txtTime.text = getString(R.string.gui_lai_ma_s_s, "60")
 
                 binding.layoutStatus.visibility = View.INVISIBLE
                 binding.progressBar.visibility = View.INVISIBLE
@@ -118,7 +117,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
     }
 
     override fun onGetDataIntentSuccess(obj: ICUpdateCustomerGuarantee) {
-        binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, obj.phone ?: getString(R.string.dang_cap_nhat)))
+        binding.tvTitle.text = Html.fromHtml(getString(R.string.login_ma_xac_nhan_otp_da_duoc_gui_toi_so_dien_thoai, obj.phone ?: getString(R.string.dang_cap_nhat)))
 
         KeyboardUtils.showSoftInput(binding.edtOtp)
 
@@ -138,7 +137,7 @@ class VerifyOTPGuaranteeActivity : BaseActivityMVVM(), IVerifyOTPGuaranteeView {
 
             override fun onTick(millisecond: Long) {
                 this@VerifyOTPGuaranteeActivity.let {
-                    binding.txtTime?.text = it.getString(R.string.gui_lai_ma_xxx_s, (millisecond / 1000).toString())
+                    binding.txtTime.setText(R.string.gui_lai_ma_s_s, (millisecond / 1000).toString())
                 }
             }
         }

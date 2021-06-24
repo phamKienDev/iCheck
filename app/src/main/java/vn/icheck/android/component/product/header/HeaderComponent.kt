@@ -35,7 +35,7 @@ class HeaderComponent(view: View) : BaseHolder(view) {
             view.tv_score.visibility = View.GONE
         }
         productHeaderModel.icCriteria?.percentSuggest?.let {
-            view.tv_suggest.setText(R.string.f_se_gioi_thieu_cho_ban_be, productHeaderModel.icCriteria?.percentSuggest)
+            view.tv_suggest.setText(R.string.f_se_gioi_thieu_cho_ban_be, it)
         }
         productHeaderModel.icCriteria?.totalReviews?.let {
             if (it > 0) {

@@ -139,8 +139,9 @@ class HistoryLoadedTopupAdapter constructor(val view: IHistoryLoadedTopupView) :
     class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
-
-            itemView.tvNameNetwork.setText(R.string.nap_the_s, item.provider)
+            item.provider?.let {
+                itemView.tvNameNetwork.setText(R.string.nap_the_s)
+            }
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {

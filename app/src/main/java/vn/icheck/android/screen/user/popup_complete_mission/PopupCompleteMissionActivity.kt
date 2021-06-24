@@ -38,7 +38,7 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
         val giftCount = intent.getIntExtra("giftCount",0)
         val campaignId = intent.getStringExtra("campaignId")
 
-        tvNameGift.setText(R.string.ban_nhan_duoc_s_luot_mo_qua, giftCount)
+        tvNameGift.setText(R.string.ban_nhan_duoc_d_luot_mo_qua, giftCount)
 
         btnClose.setOnClickListener {
             finish()

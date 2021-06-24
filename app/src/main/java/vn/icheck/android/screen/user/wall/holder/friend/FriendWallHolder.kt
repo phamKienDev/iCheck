@@ -23,9 +23,13 @@ class FriendWallHolder(val binding: FriendInWallHolderBinding) : RecyclerView.Vi
     fun bind(model: IckUserFriendModel) {
         listener(model)
         if (model.type == 1) {
-            itemView.tvCountFriend.setText(R.string.ban_be_d, model.listFriend.data?.count)
+            model.listFriend.data?.count?.let {
+                itemView.tvCountFriend.setText(R.string.ban_be_d, it)
+            }
         } else {
-            itemView.tvCountFriend.setText(R.string.ban_be_chung_d, model.listFriend.data?.count)
+            model.listFriend.data?.count?.let {
+                itemView.tvCountFriend.setText(R.string.ban_be_chung_d, it)
+            }
         }
 //        itemView.tvCountFriend.text = "Bạn bè (${model.listFriend.data?.count})"
 //        if (SessionManager.session.user?.id == model.wallUserId) {

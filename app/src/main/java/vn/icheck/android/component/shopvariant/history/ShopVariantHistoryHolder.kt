@@ -100,8 +100,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
         itemView.ratingBar.rating = obj.product?.rating!!
 
-        if (obj.product?.rating != null) {
-            itemView.tvCountRating.setText(R.string.format_1_f, obj.product?.rating!! * 2)
+        obj.product?.rating?.let{
+            itemView.tvCountRating.setText(R.string.format_1_f, it * 2)
         }
 
         if (obj.product?.verified == true) {
@@ -170,7 +170,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
                 if (obj.shop?.distance?.value != null) {
                     itemView.tvMap.visibility = View.VISIBLE
-                    itemView.tvDistance.setText(R.string.khoang_cach_s_s, km , obj.shop?.distance?.unit)
+                    itemView.tvDistance.setText(R.string.khoang_cach_s_s, km?:"" , obj.shop?.distance?.unit?:"")
                 } else {
                     itemView.tvDistance.setText(R.string.khoang_cach_s, itemView.context.getString(R.string.dang_cap_nhat))
                     itemView.tvMap.visibility = View.GONE

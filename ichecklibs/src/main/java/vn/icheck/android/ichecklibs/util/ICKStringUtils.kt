@@ -33,7 +33,7 @@ fun getString(rString: Int): String {
     }
 }
 
-fun getString(rString: Int, vararg formatArgs: Any?): String {
+fun getString(rString: Int, vararg formatArgs: Any): String {
     return try {
         getApplicationByReflect().getString(rString, *formatArgs)
     } catch (ex: NullPointerException) {
@@ -41,13 +41,13 @@ fun getString(rString: Int, vararg formatArgs: Any?): String {
     }
 }
 
-fun TextView.setText(rString: Int, vararg formatArgs: Any?) {
+fun TextView.setText(rString: Int, vararg formatArgs: Any) {
     apply {
         text = context.getString(rString, *formatArgs)
     }
 }
 
-fun AppCompatTextView.setText(rString: Int, vararg formatArgs: Any?) {
+fun AppCompatTextView.setText(rString: Int, vararg formatArgs: Any) {
     apply {
         text = context.getString(rString, *formatArgs)
     }

@@ -24,9 +24,7 @@ class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(p
     fun bind(obj: CountReviewModel, show: Boolean) {
         //show = true: hiện textview xem tất cả
         (itemView as ViewGroup).run {
-            (getChildAt(0) as AppCompatTextView).run {
-                this@run.setText(R.string.danh_gia_san_pham_x, obj.count)
-            }
+            (getChildAt(0) as AppCompatTextView).setText(R.string.danh_gia_san_pham_d, obj.count)
 
             (getChildAt(1) as AppCompatTextView).run {
                 setOnClickListener {

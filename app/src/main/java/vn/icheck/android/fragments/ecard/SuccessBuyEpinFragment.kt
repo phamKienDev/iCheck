@@ -31,9 +31,11 @@ class SuccessBuyEpinFragment : Fragment() {
                 tv_serial.text = (data as ICBuyEpin.EpinData).serial
                 tv_code.text = data.pin
                 code = data.pin
-                tv_total.setText(R.string.x_d, data.denomination.toLong())
+                tv_total.setText(R.string.d_vnd, data.denomination.toLong())
                 tv_msp.text = it.getString("msp")
-                tv_notify.setText(R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s, it.getString("msp"))
+                it.getString("msp")?.let { safe ->
+                    tv_notify.setText(R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s, safe)
+                }
             }
         }
         btn_charge.setOnClickListener {

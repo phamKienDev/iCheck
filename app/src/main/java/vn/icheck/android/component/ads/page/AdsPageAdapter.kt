@@ -336,7 +336,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.setText(R.string.chua_co_nguoi_theo_doi)
             }
 
             setButtonText(binding.tvAction, obj.isFollow, 0)

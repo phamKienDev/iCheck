@@ -24,7 +24,7 @@
         android:textAlignment="gravity"
         android:textColor="@color/colorSecondText"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
-        tools:text="@string/login_ma_xac_thuc_otp_da_duoc_gui_toi" />
+        tools:text="@string/login_ma_xac_nhan_otp_da_duoc_gui_toi_so_dien_thoai" />
 
     <LinearLayout
         android:layout_width="match_parent"

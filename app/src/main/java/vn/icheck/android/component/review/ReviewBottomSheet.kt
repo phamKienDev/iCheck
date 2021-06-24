@@ -36,7 +36,9 @@ class ReviewBottomSheet : BottomSheetDialogFragment() {
         reviewData = arguments?.get(Constant.DATA_1) as ICReviewBottom
         if (!reviewData?.message.isNullOrEmpty()) {
             txtContent.visibility = View.VISIBLE
-            txtContent.setText(R.string.danh_gia_cua_s, reviewData?.message)
+            reviewData?.message?.let {
+                txtContent.setText(R.string.danh_gia_cua_s, it)
+            }
         } else {
             txtContent.visibility = View.GONE
         }

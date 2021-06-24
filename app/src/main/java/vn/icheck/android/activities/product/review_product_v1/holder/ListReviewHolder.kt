@@ -24,7 +24,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            view.context.getString(R.string.huu_ich_x, number)
+            view.context.getString(R.string.huu_ich_d, number)
         } else {
             view.context.getString(R.string.huu_ich)
         }
@@ -32,7 +32,7 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            view.context.getString(R.string.khong_huu_ich_x, number)
+            view.context.getString(R.string.khong_huu_ich_d, number)
         } else {
             view.context.getString(R.string.khong_huu_ich)
         }

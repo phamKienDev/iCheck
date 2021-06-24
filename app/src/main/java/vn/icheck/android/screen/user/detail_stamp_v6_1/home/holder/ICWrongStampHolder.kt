@@ -17,7 +17,7 @@ class ICWrongStampHolder(parent: ViewGroup, val binding: ItemWrongStampBinding =
     override fun bind(obj: ICStampConfig) {
         binding.tvMessage.apply {
             background = ViewHelper.createShapeDrawable(ContextCompat.getColor(binding.root.context, R.color.colorAccentRed), SizeHelper.size4.toFloat())
-            text = context.getString(R.string.canh_bao_down_line_xxx, obj.errorMessage ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            text = context.getString(R.string.canh_bao_down_line_s, obj.errorMessage ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
         }
 
         binding.recyclerView.apply {

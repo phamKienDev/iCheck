@@ -27,7 +27,12 @@ class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHead
     override fun bind(obj: ICCriteria) {
         listCriteriaChild.clear()
         listImg.clear()
-        itemView.tv_your_score.setText(R.string.x_tuyet_voi, obj.customerEvaluation?.averagePoint!! * 2)
+        obj.customerEvaluation?.averagePoint?.let {
+            itemView.tv_your_score.setText(
+                R.string.x_tuyet_voi,
+                it * 2
+            )
+        }
         itemView.customer_rating.rating = obj.customerEvaluation?.averagePoint!!
         if (obj.customerEvaluation?.imageThumbs!!.isNotEmpty()) {
             for (i in obj.customerEvaluation?.imageThumbs!!.indices) {

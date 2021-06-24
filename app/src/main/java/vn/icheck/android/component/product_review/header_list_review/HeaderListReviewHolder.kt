@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_header_info_review_holder.view.*
 import vn.icheck.android.R
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ReviewPointText
 

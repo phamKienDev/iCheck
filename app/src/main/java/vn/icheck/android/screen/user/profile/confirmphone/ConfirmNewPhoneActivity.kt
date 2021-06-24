@@ -101,7 +101,7 @@ class ConfirmNewPhoneActivity : BaseActivityMVVM(), IConfirmNewPhoneView {
 
     override fun onGetDataSuccess(phone: String) {
         KeyboardUtils.showSoftInput(edtOtp)
-        txtContent.text = Html.fromHtml(getString(R.string.otp_content_xxx, phone))
+        txtContent.text = Html.fromHtml(getString(R.string.otp_content_s, phone))
         initListener()
     }
 

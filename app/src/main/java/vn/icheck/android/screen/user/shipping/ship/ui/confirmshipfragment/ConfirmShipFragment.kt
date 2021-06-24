@@ -22,7 +22,6 @@ import vn.icheck.android.databinding.FragmentConfirmShipBinding
 import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -226,12 +225,18 @@ class ConfirmShipFragment : Fragment() {
 
                 binding.businessLogo.loadImageWithHolder(detailOrderResponse.shop?.avatar,R.drawable.ic_icheck_logo)
                 binding.tvBusinessName simpleText detailOrderResponse.shop?.name
-                binding.tvFee.text = getString(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
-                binding.tvTotalFee.text =  getString(R.string.x_d, detailOrderResponse.deliveryCharges).replace(".", ",")
+                detailOrderResponse.deliveryCharges?.let { safe ->
+                    binding.tvFee.text =
+                        getString(R.string.d_vnd, safe).replace(".",",")
+                    binding.tvTotalFee.text =
+                        getString(R.string.d_vnd, safe).replace(".", ",")
+                }
                 val total = detailOrderResponse.orderItem?.sumBy { item ->
                     item?.quantity!!
                 }
-                binding.tvQuantity.setText(R.string.d_san_pham, total)
+                total?.let { safe ->
+                    binding.tvQuantity.setText(R.string.d_san_pham, safe)
+                }
                 binding.tvQuantityGift.beGone()
                 binding.imgGift.beGone()
                 binding.tvGift.beGone()
@@ -248,7 +253,9 @@ class ConfirmShipFragment : Fragment() {
                     binding.containter.addView(bd.root, 5)
                 }
                 binding.tvShipTime simpleText "${detailOrderResponse.createdAt?.getHourMinutesTime()}"
-                binding.tvShipCode.setText(R.string.ma_don_hang_s, detailOrderResponse.code)
+                detailOrderResponse.code?.let { safe ->
+                    binding.tvShipCode.setText(R.string.ma_don_hang_s, safe)
+                }
                 binding.tvName simpleText detailOrderResponse.shippingAddress?.getName()
                 val arr = arrayListOf<Char>()
                 arr.addAll(detailOrderResponse.shippingAddress?.phone.toString().toList())
@@ -261,7 +268,7 @@ class ConfirmShipFragment : Fragment() {
                 if (detailOrderResponse.note.isNullOrEmpty()) {
                     binding.groupNote.beGone()
                 } else {
-                    val ss = SpannableString(getString(R.string.ghi_chu_s, detailOrderResponse.note))
+                    val ss = SpannableString(getString(R.string.ghi_chu_s, detailOrderResponse.note?:""))
                     ss.setSpan(ForegroundColorSpan(Color.parseColor("#b4b4b4")), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     binding.groupNote.beVisible()
                     binding.edtNotes.isFocusable = false

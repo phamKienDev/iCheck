@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_ads_product_grid.view.*
 import vn.icheck.android.ICheckApplication
@@ -203,14 +202,14 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
                 if (obj.sellPrice != null) {
                     binding.tvPriceOriginal.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney(obj.sellPrice))
                         paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     }
                 }
@@ -391,14 +390,14 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
                 if (obj.sellPrice != null) {
                     binding.tvPriceOriginal.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney(obj.sellPrice))
                         paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     }
                 }
@@ -590,14 +589,14 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 if (obj.price != null) {
                     binding.tvPriceSpecial.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                     }
                 }
 
                 if (obj.sellPrice != null) {
                     binding.tvPriceOriginal.apply {
                         beVisible()
-                        text = context.getString(R.string.format_s_d, TextHelper.formatMoney(obj.sellPrice))
+                        text = context.getString(R.string.s_d, TextHelper.formatMoney(obj.sellPrice))
                         paintFlags = binding.tvPriceOriginal.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     }
                 }
@@ -728,7 +727,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (obj.price != null) {
                 binding.tvPrice.apply {
                     beVisible()
-                    text = context.getString(R.string.format_s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
+                    text = context.getString(R.string.s_d, TextHelper.formatMoney((obj.price?:0.0).toLong()))
                 }
                 binding.tvPriceUpdating.beGone()
             } else {

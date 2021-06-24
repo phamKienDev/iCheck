@@ -101,7 +101,7 @@ class ContributeProductActivity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoL
                 if (current.length <= s.toString().length) {
                     edt_product_price.removeTextChangedListener(this)
                     val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
-                    val formatted = getString(R.string.x_d, cleanString.toLong())
+                    val formatted = getString(R.string.d_vnd, cleanString.toLong())
                     current = formatted
                     edt_product_price.setText(formatted)
                     edt_product_price.setSelection(formatted.length)
@@ -110,7 +110,7 @@ class ContributeProductActivity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoL
                     edt_product_price.removeTextChangedListener(this)
                     val cleanString = s.toString().replace("[,.đ]".toRegex(), "")
                     if (cleanString.length > 1) {
-                        val formatted = getString(R.string.x_d, cleanString.substring(0, cleanString.length - 1).toLong())
+                        val formatted = getString(R.string.d_vnd, cleanString.substring(0, cleanString.length - 1).toLong())
                         current = formatted
                         edt_product_price.setText(formatted)
                         edt_product_price.setSelection(formatted.length)
@@ -493,7 +493,7 @@ class ContributeProductActivity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoL
 
                     if (response.price != 0L) {
                         edt_product_price.apply {
-                            setText(context.getString(R.string.x_d, response.price))
+                            setText(context.getString(R.string.d_vnd, response.price))
                             isEnabled = false
                         }
                     }

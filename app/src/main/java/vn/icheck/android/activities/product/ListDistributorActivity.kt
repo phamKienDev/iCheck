@@ -126,7 +126,7 @@ class ListDistributorActivity : BaseActivityMVVM() {
 
                 if (page.gln_code != null) {
                     view.findViewById<TextView>(R.id.tv_owner_mst).apply {
-                        text = context.getString(R.string.mst_x, page.gln_code)
+                        text = context.getString(R.string.ma_so_thue_icheck, page.gln_code)
                         visibility = View.VISIBLE
                     }
                 } else {

@@ -213,7 +213,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
         for (item in categoryAttributes) {
             if (item.categoryItem.required != null && item.categoryItem.required == true) {
                 if (item.categoryItem.type != "image-single" && item.categoryItem.type != "image" && item.values == null) {
-                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name)))
+                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                     return null
                 }
             }
@@ -280,7 +280,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                             }
                             "select" -> {
                                 if (item.values.toString().toIntOrNull() == 0) {
-                                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name)))
+                                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                                     return@liveData
                                 } else {
                                     hashMap.put("value", item.values)
@@ -304,7 +304,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                                 } else {
                                     hashMap.remove(item.categoryItem.code)
                                     if (item.categoryItem.required != null && item.categoryItem.required == true) {
-                                        mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name)))
+                                        mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                                         return@liveData
                                     }
                                 }
@@ -316,7 +316,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                         }
                     }
                 } else if (item.categoryItem.required != null && item.categoryItem.required == true) {
-                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name)))
+                    mException.postValue(Exception(ICheckApplication.getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                     return@liveData
                 }
             }

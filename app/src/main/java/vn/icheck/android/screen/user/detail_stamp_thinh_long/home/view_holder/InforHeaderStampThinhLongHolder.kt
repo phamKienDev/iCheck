@@ -22,8 +22,8 @@ class InforHeaderStampThinhLongHolder(parent: ViewGroup, val headerImagelistener
     override fun bind(obj: ICBarcodeProductV1) {
         itemView.tv_product_name.text = obj.name
 
-        if (obj.price > 0L && obj.price != null) {
-            itemView.tv_price.setText(R.string.x_d, obj.price)
+        if (obj.price > 0L) {
+            itemView.tv_price.setText(R.string.d_vnd, obj.price)
             itemView.tvGiaNiemYet.visibility = View.VISIBLE
         } else {
             itemView.tv_price.text = itemView.context.getString(R.string.dang_cap_nhat_gia)

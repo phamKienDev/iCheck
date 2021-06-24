@@ -24,7 +24,7 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
 
     fun bind(productHeaderModel: ProductHeaderModel){
         if (productHeaderModel.icBarcodeProductV2.price > 0) {
-            view.tv_price.setText(R.string.x_d, productHeaderModel.icBarcodeProductV2.price)
+            view.tv_price.setText(R.string.d_vnd, productHeaderModel.icBarcodeProductV2.price)
         } else {
             view.tv_price.visibility = View.INVISIBLE
         }
@@ -41,7 +41,9 @@ class OldHeaderComponent (view: View) : BaseHolder(view){
         if (productHeaderModel.icProductReviews?.rows?.size == 0) {
             view.tv_xrv.visibility = View.GONE
         } else {
-            view.tv_xrv.setText(R.string.xem_d_danh_gia, productHeaderModel.icProductReviews?.rows?.size)
+            productHeaderModel.icProductReviews?.rows?.let {
+                view.tv_xrv.setText(R.string.xem_d_danh_gia, it.size)
+            }
             view.tv_xrv.setOnClickListener {
                 productHeaderModel.headerClickListener.showAllReview(productHeaderModel)
             }

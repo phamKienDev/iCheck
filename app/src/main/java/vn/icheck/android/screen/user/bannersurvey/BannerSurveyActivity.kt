@@ -187,7 +187,7 @@ class BannerSurveyActivity : BaseActivityMVVM(), IBannerSurveyView {
 
     private fun checkButton() {
         presenter.getAds.survey?.let { survey ->
-            txtQuestionTitle.text = getString(R.string.cau_hoi_xxx, "${(survey.totalAnswer + 1)}/${survey.questions.size}")
+            txtQuestionTitle.text = getString(R.string.cau_hoi_s, "${(survey.totalAnswer + 1)}/${survey.questions.size}")
             progressBar.max = survey.questions.size
             progressBar.progress = survey.totalAnswer + 1
         }

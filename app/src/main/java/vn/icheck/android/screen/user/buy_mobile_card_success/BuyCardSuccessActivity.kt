@@ -148,7 +148,12 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
 
     @SuppressLint("SetTextI18n")
     private fun setData(data: ICRechargePhone) {
-        tvMessageSuccess.setText(R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s, data.provider)
+        data.phone?.let {
+            tvMessageSuccess.setText(
+                R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s,
+                it
+            )
+        }
         tvName.text = data.provider
 
         if (data.denomination is String) {

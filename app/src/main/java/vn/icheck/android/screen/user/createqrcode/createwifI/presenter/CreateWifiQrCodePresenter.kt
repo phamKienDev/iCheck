@@ -47,8 +47,8 @@ class CreateWifiQrCodePresenter(val view: ICreateWifiQrCodeView) : BaseFragmentP
 
         val security = securityType ?: "WPA"
 
-        val code = view.mContext!!.getString(R.string.qr_code_wifi_format, name, password, security)
+        val code = view.mContext?.getString(R.string.qr_code_wifi_format, name, password, security)
 
-        view.onValidSuccess(code)
+        view.onValidSuccess(code?:"")
     }
 }

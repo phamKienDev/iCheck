@@ -73,7 +73,7 @@ class AdsProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<ICProduct>(cr
 
             // Text price
             (getChildAt(3) as AppCompatTextView).run {
-                text = if (obj.price != 0L) itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.price)) else null
+                text = if (obj.price != 0L) itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.price)) else null
             }
 
             // Text verified

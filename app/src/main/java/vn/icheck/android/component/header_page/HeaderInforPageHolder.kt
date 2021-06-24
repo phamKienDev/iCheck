@@ -13,7 +13,6 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.header_page.bottom_sheet_header_page.IListReportView
@@ -149,7 +148,7 @@ class HeaderInforPageHolder(parent: ViewGroup, val view: IListReportView) : Recy
             if (phone.isNotEmpty()) {
                 DialogHelper.showConfirm(
                     itemView.context,
-                    itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, phone),
+                    itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_s, phone),
                     null,
                     itemView.context.getString(R.string.de_sau),
                     itemView.context.getString(R.string.dong_y),

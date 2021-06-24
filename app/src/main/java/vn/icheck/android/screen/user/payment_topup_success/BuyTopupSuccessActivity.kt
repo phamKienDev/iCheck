@@ -102,7 +102,12 @@ class BuyTopupSuccessActivity : BaseActivityMVVM() {
     }
 
     fun setDataView(data: ICRechargePhone) {
-        tvMessageSuccess.setText(R.string.quy_khach_da_nap_thanh_cong_mot_ma_the_dien_thoai_s, data.provider)
+        data.provider?.let {
+            tvMessageSuccess.setText(
+                R.string.quy_khach_da_nap_thanh_cong_mot_ma_the_dien_thoai_s,
+                it
+            )
+        }
 
         tvName.text = data.provider
 

@@ -56,7 +56,9 @@ class PageHorizontalProductHolder(
             fun bindProduct(item: ProductItem?) {
                 binding.imgProduct loadSimpleImage item?.media?.firstOrNull()?.content
                 binding.tvProductName simpleText  item?.name
-                binding.tvPrice.setText(R.string.x_d, item?.price)
+                item?.price?.let{
+                    binding.tvPrice.setText(R.string.d_vnd, it)
+                }
                 binding.tvRate simpleText item?.reviewCount?.toString()?.getInfo()
                 binding.imgVerified visibleIf item?.verified
             }

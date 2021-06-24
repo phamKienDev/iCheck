@@ -36,7 +36,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
             binding.tvTitle.text = obj.title
 
             binding.tvHotline.apply {
-                text = context.getString(R.string.hotline_v2_xxx, obj.hotline ?: " ")
+                text = context.getString(R.string.hotline_v2_s, obj.hotline ?: " ")
                 background = ViewHelper.createStateListDrawable(
                         enableColor = Color.WHITE,
                         pressedColor = getColor(R.color.black_10),
@@ -52,7 +52,7 @@ class ICStampContactAdapter(val listData: MutableList<ICStampContact> = mutableL
             }
 
             binding.tvEmail.apply {
-                text = context.getString(R.string.email_v2_xxx, obj.email ?: " ")
+                text = context.getString(R.string.email_v2_s, obj.email ?: " ")
                 background = ViewHelper.createStateListDrawable(
                         enableColor = Color.WHITE,
                         pressedColor = getColor(R.color.black_10),

@@ -135,7 +135,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitle.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitle.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitle.text = obj.name
             }
@@ -168,7 +168,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleTextArea.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleTextArea.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitleTextArea.text = obj.name
             }
@@ -188,7 +188,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleSelect.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleSelect.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitleSelect.text = obj.name
             }
@@ -240,7 +240,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleRadiobox.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleRadiobox.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitleRadiobox.text = obj.name
             }
@@ -266,7 +266,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleCheckbox.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleCheckbox.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitleCheckbox.text = obj.name
             }
@@ -284,7 +284,7 @@ class FieldAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun bind(obj: ICFieldGuarantee) {
             if (obj.require == 1) {
-                binding.tvTitleDate.setText(R.string.s_bat_buoc, obj.name)
+                binding.tvTitleDate.setText(R.string.s_bat_buoc, obj.name?:"")
             } else {
                 binding.tvTitleDate.text = obj.name
             }

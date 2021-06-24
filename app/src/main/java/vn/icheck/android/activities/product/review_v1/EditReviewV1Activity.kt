@@ -181,7 +181,7 @@ class EditReviewV1Activity : BaseActivityMVVM(), TakePhotoHelper.TakePhotoListen
                             share.putExtra(Intent.EXTRA_SUBJECT, intent.getStringExtra("name"))
                             share.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.chia_se_danh_gia, averagePoint * 2, message, t.link))
                             share.type = "text/plain"
-                            startActivity(Intent.createChooser(share, getString(R.string.chia_se_x, intent.getStringExtra("name"))))
+                            startActivity(Intent.createChooser(share, getString(R.string.chia_se_s, intent.getStringExtra("name"))))
 
                             //back
                             val result = Intent()

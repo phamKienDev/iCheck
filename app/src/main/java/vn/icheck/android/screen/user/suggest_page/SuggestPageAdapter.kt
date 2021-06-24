@@ -89,7 +89,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
 
             if (obj.count > 0) {
                 itemView.tv_number.beVisible()
-                itemView.tv_number.text = itemView.context.getString(R.string.x_ban_be_dang_su_dung_icheck, obj.count)
+                itemView.tv_number.text = itemView.context.getString(R.string.d_ban_be_dang_su_dung_icheck, obj.count)
             } else {
                 itemView.tv_number.beGone()
             }
@@ -132,7 +132,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             itemView.tv_number_follow.text = if (obj.followCount > 0) {
-                itemView.context.getString(R.string.x_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount.toLong()))
+                itemView.context.getString(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount.toLong()))
             } else {
                 itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
 

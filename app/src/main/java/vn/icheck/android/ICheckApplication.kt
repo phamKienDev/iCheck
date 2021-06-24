@@ -577,7 +577,7 @@ class ICheckApplication : Application(), Configuration.Provider {
             return INSTANCE.getString(resource)
         }
 
-        fun getString( resId: Int, vararg formatArgs: Any?): String {
+        fun getString( resId: Int, vararg formatArgs: Any): String {
             return INSTANCE.getString(resId, *formatArgs)
         }
 

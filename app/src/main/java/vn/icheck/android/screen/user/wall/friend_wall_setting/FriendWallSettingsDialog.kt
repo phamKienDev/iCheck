@@ -18,7 +18,6 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.DialogFriendWallSettingsBinding
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.base.SessionManager
@@ -60,16 +59,24 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
             when {
                 RelationshipManager.checkFriend(ickUserWallViewModel.userInfo?.data?.id ?: 0L) -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow.setText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvUnfolow.setText(R.string.bo_theo_doi_s, it)
+                        }
                     } else {
-                        binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvUnfolow.setText(R.string.theo_doi_s, it)
+                        }
                     }
                     if (AppDatabase.getDatabase().myFriendIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify.setText(R.string.huy_ket_ban_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvTitleNotify.setText(R.string.huy_ket_ban_s, it)
+                        }
                     } else {
                         if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                            binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                            ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                                binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, it)
+                            }
                         } else {
                             binding.layoutNotify.beGone()
                         }
@@ -79,20 +86,28 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                 }
                 else -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
-                        binding.tvUnfolow.setText(R.string.bo_theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvUnfolow.setText(R.string.bo_theo_doi_s, it)
+                        }
                     } else {
-                        binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvUnfolow.setText(R.string.theo_doi_s, it)
+                        }
                     }
                     if (AppDatabase.getDatabase().myFriendInvitationUserIdDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         binding.layoutNotify.beVisible()
-                        binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName())
+                        ickUserWallViewModel.userInfo?.data?.getName()?.let {
+                            binding.tvTitleNotify.setText(R.string.huy_loi_moi_ket_ban_voi_s, it)
+                        }
                     } else {
                         binding.layoutNotify.beGone()
                     }
                 }
             }
         } else {
-            binding.tvUnfolow.setText(R.string.theo_doi_s, ickUserWallViewModel.userInfo?.data?.getName())
+            ickUserWallViewModel.userInfo?.data?.getName()?.let{
+                binding.tvUnfolow.setText(R.string.theo_doi_s, )
+            }
             binding.layoutNotify.beGone()
         }
         binding.layoutReport.setOnClickListener {

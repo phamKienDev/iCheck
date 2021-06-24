@@ -137,10 +137,10 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
             }
 
             if (!obj.tax.isNullOrEmpty()) {
-                itemView.findViewById<AppCompatTextView>(R.id.tvMST).setText(R.string.ma_so_thue_s, obj.tax)
+                itemView.findViewById<AppCompatTextView>(R.id.tvMST).setText(R.string.ma_so_thue_s, obj.tax!!)
                 itemView.tvDangCapNhatMST.visibility = View.GONE
             } else {
-                itemView.findViewById<AppCompatTextView>(R.id.tvMST).setText(R.string.ma_so_thue_s)
+                itemView.findViewById<AppCompatTextView>(R.id.tvMST).setText(R.string.ma_so_thue)
                 itemView.tvDangCapNhatMST.visibility = View.VISIBLE
             }
 
@@ -182,7 +182,7 @@ class DistributorAdapter(val listData: MutableList<ICPage>, val url: String) : R
                     DialogHelper.showConfirm(
                         this,
                         getString(R.string.thong_bao),
-                        getString(R.string.ban_co_muon_goi_dien_thoai_den_so, text),
+                        getString(R.string.ban_co_muon_goi_dien_thoai_den_so_s_nay_khong, text),
                         getString(R.string.huy),
                         getString(R.string.dong_y),
                         true,

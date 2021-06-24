@@ -69,7 +69,7 @@ class StickerAdapter(var listSticker: ArrayList<StickerView>, var size: Int) : R
             GlideUtil.loading(stickerView.image, getImg(R.id.img_sticker_pack))
             getTv(R.id.tv_pack_name).text = stickerView.name
             getTv(R.id.tv_total).apply {
-                text = context.getString(R.string.x_nhan_dan, stickerView.total)
+                text = context.getString(R.string.d_nhan_dan, stickerView.total)
             }
             val button = view.findViewById<TextView>(R.id.btn_delete)
 

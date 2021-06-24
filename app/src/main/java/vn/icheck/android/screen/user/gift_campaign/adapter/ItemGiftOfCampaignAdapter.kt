@@ -59,8 +59,9 @@ class ItemGiftOfCampaignAdapter(private val listData: MutableList<ICGiftOfCampai
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICGiftOfCampaign) {
-
-            itemView.tvCountGift.setText(R.string.d_qua, obj.rewardTotal)
+            obj.rewardTotal?.let {
+                itemView.tvCountGift.setText(R.string.d_qua, it)
+            }
 
             when (type) {
                 ICViewTypes.PRODUCT_CAMPAIGN_TYPE -> {

@@ -33,7 +33,7 @@ class FriendRequestComponent(parent: ViewGroup): BaseViewHolder<ICListResponse<I
 
                 // Text title
                 (getChildAt(0) as AppCompatTextView).apply {
-                    text = context.getString(R.string.loi_moi_ket_ban_xxx, "(${obj.count})")
+                    text = context.getString(R.string.loi_moi_ket_ban_s, "(${obj.count})")
                 }
 
                 // Text view more

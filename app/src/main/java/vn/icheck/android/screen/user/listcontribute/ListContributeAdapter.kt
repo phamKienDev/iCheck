@@ -35,7 +35,6 @@ import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.M
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
 import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -228,7 +227,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 if (obj.data?.price != null && obj.data?.price != 0L) {
                     setTextColor(getColor(R.color.colorPrimary))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-                    text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
+                    text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.data?.price))
                 } else {
                     setTextColor(getColor(R.color.colorDisableText))
                     setTypeface(null, Typeface.ITALIC)
@@ -358,7 +357,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                         itemView.tvNo.text = if (data.downVotes > 0) {
                                             itemView.context.getString(R.string.sai_d, data.downVotes)
                                         } else {
-                                            itemView.context.getString(R.string.sai_d)
+                                            itemView.context.getString(R.string.sai)
                                         }
 
                                         data.upVotes = data.upVotes + 1

@@ -174,7 +174,9 @@ class PageManagementFragment : Fragment() {
             binding.containerOwner.beGone()
         } else {
             binding.containerOwner.beVisible()
-            binding.tvOwnerTitle.setText(R.string.trang_cua_toi_d, it?.count)
+            it?.count?.let { safe ->
+                binding.tvOwnerTitle.setText(R.string.trang_cua_toi_d, safe)
+            }
             ownerAdaper.setListData(it!!.rows)
         }
     }

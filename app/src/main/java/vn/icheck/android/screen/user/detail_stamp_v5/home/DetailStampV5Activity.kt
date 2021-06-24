@@ -276,7 +276,9 @@ class DetailStampV5Activity : BaseActivityMVVM(), IDetailStampV5View {
             if (obj.data?.type == "error") {
                 if (!obj.data?.message.isNullOrEmpty()) {
                     presenter.getConfigError()
-                    tvMessageStampError.setText(R.string.canh_bao_s, obj.data?.message)
+                    obj.data?.message?.let {
+                        tvMessageStampError.setText(R.string.canh_bao_s, it)
+                    }
                 } else {
                     scrollView.visibility = View.VISIBLE
                 }
@@ -403,22 +405,22 @@ class DetailStampV5Activity : BaseActivityMVVM(), IDetailStampV5View {
                             "success" -> {
                                 layoutVerified.visibility = View.VISIBLE
                                 tvMessageVerified.text = i.service?.message_success
-                                obj.data?.stamp?.let {
-                                    tvSerialVerified.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialVerified.setText(R.string.serial_s, it)
                                 }
                             }
                             "warning" -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_warning
-                                obj.data?.stamp?.let {
-                                    tvSerialFake.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialFake.setText(R.string.serial_s, it)
                                 }
                             }
                             else -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_error
-                                obj.data?.stamp?.let {
-                                    tvSerialFake.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialFake.setText(R.string.serial_s, it)
                                 }
                             }
                         }
@@ -428,22 +430,22 @@ class DetailStampV5Activity : BaseActivityMVVM(), IDetailStampV5View {
                             "success" -> {
                                 layoutVerified.visibility = View.VISIBLE
                                 tvMessageVerified.text = i.service?.message_success
-                                obj.data?.stamp?.let {
-                                    tvSerialVerified.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialVerified.setText(R.string.serial_s, it)
                                 }
                             }
                             "warning" -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_warning
-                                obj.data?.stamp?.let {
-                                    tvSerialFake.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialFake.setText(R.string.serial_s, it)
                                 }
                             }
                             else -> {
                                 layoutFake.visibility = View.VISIBLE
                                 tvMessageVerifiedFake.text = i.service?.message_error
-                                obj.data?.stamp?.let {
-                                    tvSerialFake.setText(R.string.serial_s, it.serial)
+                                obj.data?.stamp?.serial?.let {
+                                    tvSerialFake.setText(R.string.serial_s, it)
                                 }
                             }
                         }

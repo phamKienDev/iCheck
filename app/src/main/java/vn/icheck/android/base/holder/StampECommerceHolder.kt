@@ -3,7 +3,6 @@ package vn.icheck.android.base.holder
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemProductEcommerceBinding
 import vn.icheck.android.helper.SizeHelper
@@ -24,7 +23,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
         if (obj.promotionPrice != null) {
             if (obj.listPrice != null) {
                 binding.tvOldPrice.apply {
-                    text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.listPrice))
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.listPrice))
                     paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     beVisible()
                 }
@@ -34,7 +33,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
 
             if (obj.promotionPrice != null) {
                 binding.tvPrice.apply {
-                    text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.promotionPrice))
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.promotionPrice))
                     beVisible()
                 }
             } else {
@@ -43,7 +42,7 @@ class StampECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommerceB
         } else {
             binding.tvOldPrice.beGone()
             binding.tvPrice.apply {
-                text = context.getString(R.string.format_s_d, TextHelper.formatMoneyPhay(obj.listPrice))
+                text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.listPrice))
                 beVisible()
             }
         }

@@ -127,7 +127,9 @@ class CartFragment : Fragment() {
                             value ?: 0
                         }
 //                binding.tvQuantity simpleText "$total sản phẩm"
-                binding.textView26.setText(R.string.gio_hang_d, total)
+                total?.let { safe ->
+                    binding.textView26.setText(R.string.gio_hang_d, safe)
+                }
 
                 val arrNewCart = arrayListOf<ItemCartItem>()
                 if (!it.data?.firstOrNull()?.itemCart.isNullOrEmpty()) {

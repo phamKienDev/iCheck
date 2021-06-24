@@ -47,7 +47,9 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
             if (obj.follower!! > 1000) {
                 tvFollow.setText(R.string.k_nguoi_theo_doi, ((obj.follower)!! / 1000f).toString().replace(".0", ""))
             } else {
-                tvFollow.setText(R.string.d_nguoi_theo_doi, obj.follower)
+                obj.follower?.let {
+                    tvFollow.setText(R.string.d_nguoi_theo_doi, it)
+                }
             }
         }
 
@@ -127,7 +129,7 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
             ICheckApplication.currentActivity()?.let { activity ->
                 DialogHelper.showConfirm(activity,
                         activity.getString(R.string.bo_theo_doi_trang),
-                        activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_xxx_chu, obj.name),
+                        activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_s_chu, obj.name),
                         object : ConfirmDialogListener {
                             override fun onDisagree() {}
 

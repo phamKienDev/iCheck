@@ -75,8 +75,12 @@ class ContributeModule(view: View): BaseHolder(view) {
             }
         }
         getTv(R.id.tv_user_name).text = contributeUserModel.contributions?.user?.name
-        getTv(R.id.btn_right).setText(R.string.dung_d, contributeUserModel.contributions?.upvotes)
-        getTv(R.id.btn_wrong).setText(R.string.sai_d, contributeUserModel.contributions?.downvotes)
+        contributeUserModel.contributions?.upvotes?.let {
+            getTv(R.id.btn_right).setText(R.string.dung_d, it)
+        }
+        contributeUserModel.contributions?.downvotes?.let {
+            getTv(R.id.btn_wrong).setText(R.string.sai_d, it)
+        }
         GlideUtil.loadAva(contributeUserModel.contributions?.user?.thumbnails?.small,
                 getImg(R.id.ava_user))
         setOnClick(R.id.ava_user, View.OnClickListener {

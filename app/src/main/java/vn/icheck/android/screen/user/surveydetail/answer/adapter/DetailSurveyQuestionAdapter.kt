@@ -67,7 +67,7 @@ class DetailSurveyQuestionAdapter : RecyclerView.Adapter<DetailSurveyQuestionAda
     inner class ViewHolder(view: View) : BaseViewHolder<ICQuestions>(view) {
 
         override fun bind(obj: ICQuestions) {
-            itemView.txtTitle.text = itemView.context.getString(R.string.cau_xxx, (adapterPosition + 1).toString())
+            itemView.txtTitle.text = itemView.context.getString(R.string.cau_s, (adapterPosition + 1).toString())
             itemView.txtContent.text = obj.title
 
             itemView.recyclerView.layoutManager = CustomLinearLayoutManager(itemView.context)

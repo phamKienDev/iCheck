@@ -209,15 +209,15 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
     private inner class PaymentHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind() {
-            itemView.findViewById<AppCompatTextView>(R.id.tvTotalMoney).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.grand_total))
-            itemView.findViewById<AppCompatTextView>(R.id.tvCountProduct).text = itemView.context.getString(R.string.so_luong_xxx_san_pham, obj?.items?.size?.toString())
+            itemView.findViewById<AppCompatTextView>(R.id.tvTotalMoney).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.grand_total))
+            itemView.findViewById<AppCompatTextView>(R.id.tvCountProduct).text = itemView.context.getString(R.string.so_luong_s_san_pham, obj?.items?.size?.toString()?:"")
 
             if (obj?.shipping_method?.provider == "default") {
-                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.sub_total))
+                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.sub_total))
                 itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = Html.fromHtml(itemView.context.getString(R.string.thoa_thuan_voi_cua_hang_red))
             } else {
-                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.sub_total))
-                itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.shipping_amount))
+                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.sub_total))
+                itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.shipping_amount))
             }
         }
     }

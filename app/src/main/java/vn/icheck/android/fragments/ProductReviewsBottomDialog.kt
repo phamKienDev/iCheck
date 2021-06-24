@@ -45,11 +45,15 @@ class ProductReviewsBottomDialog: BottomSheetDialogFragment() {
             icCriteria = it.get("criteria") as ICCriteria
         }
         icCriteria?.let {
-            tv_score.setText(R.string.format_1_f, it.productEvaluation?.averagePoint?.times(2))
+            it.productEvaluation?.averagePoint?.times(2)?.let { safe ->
+                tv_score.setText(R.string.format_1_f, safe)
+            }
             it.productEvaluation?.averagePoint?.let {
                 tv_quality.text = ReviewPointText.getText(it)
             }
-            tv_total_reviews.setText(R.string.d_danh_gia, it.totalReviews)
+            it.totalReviews?.let { totalReviews ->
+                tv_total_reviews.setText(R.string.d_danh_gia, totalReviews)
+            }
         }
         icCriteria?.productGather?.let {
 
