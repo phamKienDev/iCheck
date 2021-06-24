@@ -9,6 +9,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -46,7 +47,7 @@ class MediaInPostViewModel : ViewModel() {
                 onStatusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
                 getPostDetail(postId)
             } else {
-                onError.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onError.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }

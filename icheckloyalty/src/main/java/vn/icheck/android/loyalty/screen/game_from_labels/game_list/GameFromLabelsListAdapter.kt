@@ -76,9 +76,9 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
                             if (obj.statisticWinnerAccumulatePoint[0].points != null) {
-                                itemView.tvPoint.setText(R.string.d_diem,
-                                    obj.statisticWinnerAccumulatePoint[0].points
-                                )
+                                obj.statisticWinnerAccumulatePoint[0].points?.let {
+                                    itemView.tvPoint.setText(R.string.d_diem, it)
+                                }
                             } else {
                                 itemView.tvPoint.setText(R.string.d_diem, 0)
                             }

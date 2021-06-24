@@ -21,6 +21,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICStoreiCheck
@@ -138,7 +139,7 @@ class ListProductStoreAdapter constructor(val view: IGiftStoreView, val listener
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, ICheckApplication.getString(R.string.hien_tai_chua_co_san_pham_nao), ICheckApplication.getString(R.string.vui_long_quay_lai_sau_de_doi_nhung_san_pham_chinh_hang_tu_cac_thuong_hieu_uy_tin_nhat), -1)
+                    holder.bind(iconMessage, getString(R.string.hien_tai_chua_co_san_pham_nao), getString(R.string.vui_long_quay_lai_sau_de_doi_nhung_san_pham_chinh_hang_tu_cac_thuong_hieu_uy_tin_nhat), -1)
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
 

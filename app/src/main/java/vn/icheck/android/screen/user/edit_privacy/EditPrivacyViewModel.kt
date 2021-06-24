@@ -9,6 +9,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -39,13 +40,13 @@ class EditPrivacyViewModel : ViewModel() {
         if (postId != -1L) {
             getPrivacy()
         } else {
-            onGetDataError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+            onGetDataError.postValue(ICError(R.drawable.ic_error_request,  getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
         }
     }
 
     fun getPrivacy() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onGetDataError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onGetDataError.postValue(ICError(R.drawable.ic_error_network,  getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -60,14 +61,14 @@ class EditPrivacyViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onGetDataError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onGetDataError.postValue(ICError(R.drawable.ic_error_request,  getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }
 
     fun editPrivacy(selectedPosition: Int) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onShowMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onShowMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -78,7 +79,7 @@ class EditPrivacyViewModel : ViewModel() {
         }
 
         if (privacy == null) {
-            onShowMessage.postValue(ICheckApplication.getString(R.string.vui_long_chon_quyen_rieng_tu))
+            onShowMessage.postValue( getString(R.string.vui_long_chon_quyen_rieng_tu))
             return
         }
 
@@ -94,7 +95,7 @@ class EditPrivacyViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onRequestError.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onRequestError.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

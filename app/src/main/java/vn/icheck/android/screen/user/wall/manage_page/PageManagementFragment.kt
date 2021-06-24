@@ -93,7 +93,7 @@ class PageManagementFragment : Fragment() {
 
     private fun getData() {
         if (NetworkHelper.isNotConnected(context)) {
-            setError(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            setError(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -124,13 +124,13 @@ class PageManagementFragment : Fragment() {
             binding.swipeLayout.isRefreshing = false
 
             if (countError >= 2) {
-                setError(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                setError(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             } else {
                 if (!myFollowPage?.data?.rows.isNullOrEmpty() || !myOwnerPage?.data?.rows.isNullOrEmpty()) {
                     setFollowPage(myFollowPage?.data)
                     setOwnerPage(myOwnerPage?.data)
                 } else {
-                    setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
+                    setError(ICError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_trang_nao)))
                 }
             }
         }
@@ -148,7 +148,7 @@ class PageManagementFragment : Fragment() {
                 }
             }
             if (myFollowPage?.data?.rows.isNullOrEmpty() && binding.containerOwner.isGone) {
-                setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
+                setError(ICError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_trang_nao)))
             } else {
                 setFollowPage(myFollowPage?.data)
                 binding.layoutMessage.containerMessage.beGone()

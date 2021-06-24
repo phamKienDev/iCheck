@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_page_detail.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
+import vn.icheck.android.ichecklibs.util.getString
 
 object ExoPlayerManager {
     var manager = mutableListOf<SimpleExoPlayer>()
@@ -54,7 +55,7 @@ object ExoPlayerManager {
 
         if (currentSurfaceView != surfaceView) { //  || player?.playbackState == Player.STATE_ENDED
             stopVideo()
-            val dataSourceFactory = DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), ICheckApplication.getString(R.string.app_name)))
+            val dataSourceFactory = DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), getString(R.string.app_name)))
             player?.prepare(ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url)))
             player?.setVideoSurfaceView(surfaceView)
             player?.playWhenReady = true

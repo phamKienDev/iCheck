@@ -112,7 +112,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (obj.data != null && obj.statusCode == "200") {
                         dataBuyCard.postValue(ICPaymentLocal(null, obj.data, null, null, mType))
                     } else {
-                        errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
 
@@ -138,7 +138,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (obj.data != null && obj.statusCode == "200") {
                         dataBuyCard.postValue(ICPaymentLocal(null, obj.data, null, null, mType))
                     } else {
-                        errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
 
@@ -181,7 +181,7 @@ class PaymentViewModel : BaseViewModel() {
     fun getDetailCard(orderId: Long) {
         viewModelScope.launch {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                errorMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 return@launch
             }
 
@@ -206,7 +206,7 @@ class PaymentViewModel : BaseViewModel() {
     fun postError(message: String?) {
         statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
         val message = message
-                ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
         errorData.postValue(message)
     }
 

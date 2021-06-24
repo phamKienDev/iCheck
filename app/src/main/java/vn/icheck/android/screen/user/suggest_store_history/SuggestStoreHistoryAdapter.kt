@@ -152,7 +152,9 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
             itemView.tvNameShop.text = item.name
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
             itemView.tvCountRating.text = String.format("%.1f", item.rating)
-            itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, item.numProductSell)
+            item.numProductSell?.let {
+                itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, it)
+            }
         }
     }
 }

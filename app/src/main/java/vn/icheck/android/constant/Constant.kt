@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsNew
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -468,7 +469,7 @@ object Constant {
         }
     }
 
-    fun getName(lastName: String?, firstName: String?, default: String = ICheckApplication.getString(R.string.dang_cap_nhat)): String {
+    fun getName(lastName: String?, firstName: String?, default: String = getString(R.string.dang_cap_nhat)): String {
         return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
             "${lastName ?: ""} ${firstName ?: ""}".trim()
         } else {

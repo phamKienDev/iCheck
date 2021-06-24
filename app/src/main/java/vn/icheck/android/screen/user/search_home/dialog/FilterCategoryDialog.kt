@@ -150,7 +150,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
     fun setSpannedCategory() {
         if (!selectedCategory.isNullOrEmpty()) {
             if (addCateAll) {
-                selectedCategory.add(0, ICCategorySearch(null, ICheckApplication.getString(R.string.tat_ca)))
+                selectedCategory.add(0, ICCategorySearch(null, getString(R.string.tat_ca)))
                 addCateAll = false
             }
 
@@ -258,7 +258,7 @@ class FilterCategoryDialog(val category: MutableList<ICCategorySearch>?, val cal
 
     fun getCategorySelected() {
         if (!selectedCategory.isNullOrEmpty()) {
-            if (selectedCategory[0].name == ICheckApplication.getString(R.string.tat_ca)) {
+            if (selectedCategory[0].name == getString(R.string.tat_ca)) {
                 selectedCategory.remove(selectedCategory[0])
             }
         }

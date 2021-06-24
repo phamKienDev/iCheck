@@ -13,6 +13,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICHistoryPoint
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
@@ -137,7 +138,7 @@ class HistoryPointAdapter(val listener: IRecyclerViewCallback, val type: String)
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_dung_diem_nao), ICheckApplication.getString(R.string.hay_tich_luy_va_su_dung_diem_de_doi_nhung_mon_qua_hap_dan_o_muc_dac_quyen_rieng_nhe), R.string.dung_diem)
+                    holder.bind(R.drawable.ic_group_120dp, getString(R.string.ban_chua_dung_diem_nao), getString(R.string.hay_tich_luy_va_su_dung_diem_de_doi_nhung_mon_qua_hap_dan_o_muc_dac_quyen_rieng_nhe), R.string.dung_diem)
                 } else {
                     holder.bind(iconMessage, titleError, mMessageError, msgButtonError)
                 }

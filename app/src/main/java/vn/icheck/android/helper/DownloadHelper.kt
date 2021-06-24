@@ -56,10 +56,10 @@ class DownloadHelper(private val downloadManager: DownloadManager, val activity:
         val request = DownloadManager.Request(Uri.parse(url))
 
                 // Title of the Download Notification
-                .setTitle(ICheckApplication.getInstance().getString(R.string.app_name))
+                .setTitle( getString(R.string.app_name))
 
                 // Description of the Download Notification
-                .setDescription(ICheckApplication.getInstance().getString(R.string.dang_tai_tep))
+                .setDescription( getString(R.string.dang_tai_tep))
 
                 // Visibility of the download Notification
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)

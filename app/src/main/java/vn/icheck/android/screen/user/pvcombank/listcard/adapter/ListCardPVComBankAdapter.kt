@@ -17,6 +17,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemCardBankBinding
 import vn.icheck.android.databinding.ItemErrorPvcombankBinding
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.user.pvcombank.listcard.callbacks.CardPVComBankListener
 import vn.icheck.android.ichecklibs.util.setText

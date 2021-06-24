@@ -12,6 +12,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.campaign.ICGiftOfCampaign
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils

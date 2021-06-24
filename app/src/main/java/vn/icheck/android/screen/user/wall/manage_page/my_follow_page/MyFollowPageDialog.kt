@@ -48,7 +48,7 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
     private fun reportPage() {
         if (NetworkHelper.isNotConnected(requireContext())) {
-            ToastUtils.showLongError(requireContext(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showLongError(requireContext(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -78,13 +78,13 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
                                             }
                                         }
                                         reportDialog.dismiss()
-                                        ReportWrongContributionSuccessDialog(activity).show(listData, "", ICheckApplication.getInstance().getString(R.string.report_wrong_contribution_success_page_title))
+                                        ReportWrongContributionSuccessDialog(activity).show(listData, "", getString(R.string.report_wrong_contribution_success_page_title))
                                     }
 
                                     override fun onError(error: ICResponseCode?) {
                                         DialogHelper.closeLoading(this@MyFollowPageDialog)
                                         ToastUtils.showLongError(activity, error?.message
-                                                ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                     }
                                 })
                             }
@@ -98,14 +98,14 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
             override fun onError(error: ICResponseCode?) {
                 DialogHelper.closeLoading(this@MyFollowPageDialog)
                 ToastUtils.showLongError(requireContext(), error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
 
     private fun unFollowPage(pageDao: PageFollowDao) {
         if (NetworkHelper.isNotConnected(requireContext())) {
-            ToastUtils.showLongError(requireContext(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showLongError(requireContext(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -128,7 +128,7 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
 
                     override fun onError(error: ICResponseCode?) {
                         ToastUtils.showLongError(requireContext(), error?.message
-                                ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 })
             }

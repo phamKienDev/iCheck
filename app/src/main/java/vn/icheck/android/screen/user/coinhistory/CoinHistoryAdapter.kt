@@ -17,6 +17,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
@@ -61,9 +62,9 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
         listData.add(null)
         if (filter) {
-            listData.add(ICCoinHistory(-1L, 0, ICheckApplication.getString(R.string.bo_loc_da_chon)))
+            listData.add(ICCoinHistory(-1L, 0, getString(R.string.bo_loc_da_chon)))
         } else {
-            listData.add(ICCoinHistory(-1L, 0, ICheckApplication.getString(R.string.lich_su_giao_dich)))
+            listData.add(ICCoinHistory(-1L, 0, getString(R.string.lich_su_giao_dich)))
         }
 
         listData.addAll(list)
@@ -103,7 +104,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 break
             }
         }
-        setError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.chua_co_lich_su_giao_dich), null, -1)
+        setError(R.drawable.ic_group_120dp, getString(R.string.chua_co_lich_su_giao_dich), null, -1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

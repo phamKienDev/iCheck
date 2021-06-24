@@ -15,6 +15,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -210,7 +211,7 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     val message = if (error?.message.isNullOrEmpty()) {
-                        ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     } else {
                         error!!.message
                     }

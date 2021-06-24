@@ -10,6 +10,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -48,7 +49,7 @@ class CampaignOnboardingViewModel : ViewModel() {
                 getInfoCampaign()
             }
             else -> {
-                onState.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR, ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null)))
+                onState.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR, ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null)))
             }
         }
     }
@@ -61,13 +62,15 @@ class CampaignOnboardingViewModel : ViewModel() {
 
         interactor.getOnboarding(campaignId!!, object : ICNewApiListener<ICResponse<ICCampaignOnboarding>> {
             override fun onSuccess(obj: ICResponse<ICCampaignOnboarding>) {
-                onBoardingData.postValue(obj.data)
+                obj.data?.let {
+                    onBoardingData.postValue(it)
+                }
                 postOnboarding()
             }
 
             override fun onError(error: ICResponseCode?) {
                 val message = if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error!!.message
                 }
@@ -90,7 +93,7 @@ class CampaignOnboardingViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 val message = if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error!!.message
                 }

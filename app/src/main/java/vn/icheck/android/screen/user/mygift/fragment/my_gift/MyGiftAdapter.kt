@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.ItemClickListener
 import vn.icheck.android.component.ICViewTypes
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
@@ -126,7 +127,7 @@ class MyGiftAdapter () : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             is MessageHolder -> {
                 if (mMessageError.isNullOrEmpty()) {
-                    holder.bind(iconMessage, ICheckApplication.getString(R.string.ban_chua_co_qua_tang_nao))
+                    holder.bind(iconMessage, getString(R.string.ban_chua_co_qua_tang_nao))
                 } else {
                     holder.bind(iconMessage, mMessageError!!)
                 }

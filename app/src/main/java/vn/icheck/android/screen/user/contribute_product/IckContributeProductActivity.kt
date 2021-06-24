@@ -41,6 +41,7 @@ import vn.icheck.android.databinding.ActivityIckContributeProductBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.contribute_product.adapter.*
 import vn.icheck.android.screen.user.contribute_product.dialog.IckCategoryBottomDialog
@@ -69,7 +70,7 @@ class IckContributeProductActivity : BaseActivityMVVM() {
             context.startActivityForResult(i, CONTRIBUTION_PRODUCT)
         }
 
-        fun start(context: Activity, barcode: String, productId: Long, title: String? = ICheckApplication.getString(R.string.dong_gop_san_pham)) {
+        fun start(context: Activity, barcode: String, productId: Long, title: String? = getString(R.string.dong_gop_san_pham)) {
             val i = Intent(context, IckContributeProductActivity::class.java)
             i.putExtra(ICK_BARCODE, barcode)
             i.putExtra(PRODUCT_ID, productId)

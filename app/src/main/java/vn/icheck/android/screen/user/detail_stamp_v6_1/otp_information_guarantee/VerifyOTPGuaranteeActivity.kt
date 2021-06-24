@@ -8,12 +8,14 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Html
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifyOtpguaranteeBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICUpdateCustomerGuarantee
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.otp_information_guarantee.presenter.VerifyOTPGuaranteePresenter

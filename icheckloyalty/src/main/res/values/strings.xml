@@ -1,5 +1,4 @@
 <resources>
-
     <string name="thumb_small_size">100x100</string>
     <string name="thumb_medium_size">200x200</string>
     <string name="thumb_large_size">480x480</string>
@@ -7,7 +6,6 @@
     <string name="medium_size">600x600</string>
     <string name="large_size">1024x1024</string>
     <string name="original_size">original</string>
-
     <string name="co_loi_xay_ra_vui_long_thu_lai">Có lỗi xảy ra. Vui lòng thử lại.</string>
     <string name="khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai">Kết nối mạng của bạn có vấn đề. Vui lòng thử lại.</string>
     <string name="chuc_mung_ban">Chúc mừng bạn</string>

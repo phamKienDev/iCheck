@@ -15,6 +15,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.comment.CommentRepository
 import vn.icheck.android.network.feature.page.PageRepository
@@ -204,7 +205,7 @@ class ListProductQuestionViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 onAddListAnswers.postValue(mutableListOf(ICProductQuestion().apply {
                     parentID = objMore.parentID
                 }))
@@ -289,7 +290,7 @@ class ListProductQuestionViewModel : ViewModel() {
 
                     override fun onError(error: ICBaseResponse?) {
                         onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                        onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        onShowMessage.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 })
             }
@@ -327,7 +328,7 @@ class ListProductQuestionViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 val message = error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 onShowMessage.postValue(message)
             }
@@ -361,7 +362,7 @@ class ListProductQuestionViewModel : ViewModel() {
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 val message = error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 onShowMessage.postValue(message)
             }
         })
@@ -385,7 +386,7 @@ class ListProductQuestionViewModel : ViewModel() {
                 override fun onError(error: ICResponseCode?) {
                     onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     val message = error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     onShowMessage.postValue(message)
                 }
             })
@@ -399,7 +400,7 @@ class ListProductQuestionViewModel : ViewModel() {
                 override fun onError(error: ICResponseCode?) {
                     onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     val message = error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     onShowMessage.postValue(message)
                 }
             })
