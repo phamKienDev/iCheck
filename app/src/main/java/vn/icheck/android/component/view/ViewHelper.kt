@@ -3847,12 +3847,11 @@ object ViewHelper {
             it.orientation = LinearLayout.HORIZONTAL
 
             it.addView(AppCompatTextView(context).also { tvName ->
-                tvName.layoutParams =
-                    createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                tvName.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 tvName.setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
-                tvName.typeface =
-                    Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
+                tvName.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
+                tvName.ellipsize = TextUtils.TruncateAt.END
                 tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 tvName.includeFontPadding = false
             })
