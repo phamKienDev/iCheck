@@ -8,13 +8,12 @@ import vn.icheck.android.R
 import vn.icheck.android.activities.product.review_product_v1.ReviewProductV1Activity
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 
 class ReviewsTitleStampHolder(parent: ViewGroup) : BaseViewHolder<ICBarcodeProductV1>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_dgsph_holder, parent, false)) {
 
     override fun bind(obj: ICBarcodeProductV1) {
-        itemView.tv_dgsp.setText(R.string.danh_gia_san_pham_x, obj.countReviews)
+        itemView.tv_dgsp.setText(R.string.danh_gia_san_pham_d, obj.countReviews)
 
         itemView.tv_xtcrv.setOnClickListener {
             ICheckApplication.currentActivity()?.let { activity ->

@@ -3,6 +3,7 @@ package vn.icheck.android.tracking.teko
 import org.json.JSONObject
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.network.model.cart.PurchasedOrderResponse
 import vn.icheck.android.network.model.loyalty.ShipAddressResponse
@@ -84,7 +85,7 @@ object TekoHelper {
         json.put("scan_product_price", obj.basicInfo?.price?.toDouble() ?: "")
         json.put("scan_product_rating", obj.basicInfo?.rating ?: 0.0)
         json.put("verified_status", obj.verified ?: false)
-        json.put("country_of_origin", obj.owner?.city?.name ?: ICheckApplication.getString(R.string.viet_nam))
+        json.put("country_of_origin", obj.owner?.city?.name ?: getString(R.string.viet_nam))
 
         trackCustomEvent(json.toString())
     }

@@ -115,7 +115,7 @@ class ListMissionAdapter(val listData: MutableList<ICMission>) : RecyclerView.Ad
                     binding.progressBar.progressDrawable = ViewHelper.progressGrayBackgroundColorLineCorners10(itemView.context)
                 }
                 else -> {
-                    binding.tvProgress.text = (itemView.context.getString(R.string.tien_do_xxx, ((obj.currentEvent.toDouble() / obj.totalEvent.toDouble()) * 100).toInt()) + "%")
+                    binding.tvProgress.text = itemView.context.getString(R.string.tien_do_xxx, ((obj.currentEvent.toDouble() / obj.totalEvent.toDouble()) * 100).toInt())
                     binding.progressBar.progressDrawable = ViewHelper.progressbarAccentYellowMission(itemView.context)
                 }
             }

@@ -7,6 +7,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICSearchUser
@@ -22,7 +23,7 @@ class ListFriendRequestViewModel : ViewModel() {
 
     fun getFriendRequest(filter: String, isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onSetMessage.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onSetMessage.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -45,9 +46,9 @@ class ListFriendRequestViewModel : ViewModel() {
                 } else {
                     if (obj.data?.rows.isNullOrEmpty()) {
                         if (filter.isEmpty()) {
-                            onSetMessage.postValue(ICError(R.drawable.ic_no_campaign, ICheckApplication.getString(R.string.khong_co_loi_moi_ket_ban_nao), null, 0))
+                            onSetMessage.postValue(ICError(R.drawable.ic_no_campaign, getString(R.string.khong_co_loi_moi_ket_ban_nao), null, 0))
                         } else {
-                            onSetMessage.postValue(ICError(R.drawable.ic_search_90dp, ICheckApplication.getString(R.string.message_not_found), null, 0))
+                            onSetMessage.postValue(ICError(R.drawable.ic_search_90dp, getString(R.string.message_not_found), null, 0))
                         }
                     } else {
                         onSetData.postValue(obj.data?.rows ?: mutableListOf())
@@ -56,7 +57,7 @@ class ListFriendRequestViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onSetMessage.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)))
+                onSetMessage.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)))
             }
         })
     }

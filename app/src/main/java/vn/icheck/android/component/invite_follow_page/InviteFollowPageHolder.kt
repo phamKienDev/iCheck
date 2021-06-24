@@ -13,6 +13,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -66,7 +67,7 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
     private fun skipInvite(pageId: Long) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
             DialogHelper.showLoading(activity)
@@ -78,7 +79,7 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

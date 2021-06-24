@@ -384,8 +384,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             if (obj.child("is_block").child("from_id").value != null && obj.child("is_block").child("from_id").value.toString().contains(FirebaseAuth.getInstance().uid.toString())) {
                                 binding.layoutBlock.setVisible()
                                 setGoneView(binding.layoutChat, binding.layoutUserBlock)
-
-                                binding.tvTitle.setText(R.string.ban_da_chan_tin_nhan_cua_s, conversation?.targetUserName)
+                                conversation?.targetUserName?.let {
+                                    binding.tvTitle.setText(
+                                        R.string.ban_da_chan_tin_nhan_cua_s,
+                                        it
+                                    )
+                                }
 
                                 binding.btnUnBlock.setOnClickListener {
                                     this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
@@ -404,7 +408,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName)
+                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName?:"")
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)

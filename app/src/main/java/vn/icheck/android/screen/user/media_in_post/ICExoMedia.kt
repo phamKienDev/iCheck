@@ -15,6 +15,7 @@ import com.google.android.exoplayer2.util.Util
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.getString
 
 
 class ICExoMedia(val src: String?, val type: String?) {
@@ -50,7 +51,7 @@ class ICExoMedia(val src: String?, val type: String?) {
                     .setTargetBufferBytes(-1)
                     .setPrioritizeTimeOverSizeThresholds(true).createDefaultLoadControl()
             exoPlayer = ExoPlayerFactory.newSimpleInstance(ICheckApplication.getInstance(), trackSelector, loadControl)
-            progressiveMediaSource = ProgressiveMediaSource.Factory(DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.app_name))))
+            progressiveMediaSource = ProgressiveMediaSource.Factory(DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), getString(R.string.app_name))))
                     .createMediaSource(Uri.parse(src))
         }
     }

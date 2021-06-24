@@ -62,7 +62,7 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.red_v2), SizeHelper.size14.toFloat())
                             }
                             else -> {
-                                setText(R.string.x_tren_ca_tuyet_voi)
+                                setText(R.string.tren_ca_tuyet_voi)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                             }
                         }

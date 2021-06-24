@@ -53,7 +53,9 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            categoryAttributesModel.categoryItem.name?.let {
+                binding.tvTitle.setText(R.string.s_bat_buoc, it)
+            }
         } else {
             binding.tvTitle.text = categoryAttributesModel.categoryItem.name
         }

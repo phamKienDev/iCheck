@@ -19,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.BuildConfig
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
@@ -34,37 +35,37 @@ object ImageHelperV1 : BaseInteractor() {
 
     val thumbSmallSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_small_size)
+            return getString(R.string.thumb_small_size)
         }
 
     val thumbMediumSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_medium_size)
+            return getString(R.string.thumb_medium_size)
         }
 
     val thumbLargeSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_large_size)
+            return getString(R.string.thumb_large_size)
         }
 
     val smallSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.small_size)
+            return getString(R.string.small_size)
         }
 
     val mediumSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.medium_size)
+            return getString(R.string.medium_size)
         }
 
     val largeSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.large_size)
+            return getString(R.string.large_size)
         }
 
     val originalSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.original_size)
+            return getString(R.string.original_size)
         }
 
     /**

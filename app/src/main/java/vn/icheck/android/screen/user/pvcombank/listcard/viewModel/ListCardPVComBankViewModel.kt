@@ -8,6 +8,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -71,7 +72,7 @@ class ListCardPVComBankViewModel : BaseViewModel() {
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorString.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            errorString.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -86,14 +87,14 @@ class ListCardPVComBankViewModel : BaseViewModel() {
                     }
                 } else {
                     errorString.postValue(obj.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorString.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -105,7 +106,7 @@ class ListCardPVComBankViewModel : BaseViewModel() {
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorString.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            errorString.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -118,14 +119,14 @@ class ListCardPVComBankViewModel : BaseViewModel() {
                     defaultCard.postValue(true)
                 } else {
                     errorString.postValue(obj.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorString.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

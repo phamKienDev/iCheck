@@ -70,7 +70,7 @@ class DetailSurveyQuestionAdapter : RecyclerView.Adapter<DetailSurveyQuestionAda
         override fun bind(obj: ICQuestions) {
             itemView.txtTitle.apply {
                 background = ViewHelper.bgSecondaryCornersTop10(context)
-                text = itemView.context.getString(R.string.cau_xxx, (adapterPosition + 1).toString())
+                text = itemView.context.getString(R.string.cau_s, (adapterPosition + 1).toString())
             }
             itemView.txtContent.text = obj.title
 

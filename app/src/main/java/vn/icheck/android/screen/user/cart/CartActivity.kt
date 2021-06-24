@@ -138,7 +138,7 @@ class CartActivity : BaseActivityMVVM(), ICartView {
         if (count > 0) {
             presenter.updateItemQuantity(obj, count, parentPosition, childPosition)
         } else {
-            object : ConfirmDialog(this@CartActivity, null, getString(R.string.ban_muon_xoa_xxx_khoi_gio_hang, obj.name), null, null, true) {
+            object : ConfirmDialog(this@CartActivity, null, getString(R.string.ban_muon_xoa_s_khoi_gio_hang, obj.name), null, null, true) {
                 override fun onDisagree() {
                     onRefreshCart(obj, parentPosition, childPosition)
                 }

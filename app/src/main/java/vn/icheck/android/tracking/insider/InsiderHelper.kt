@@ -6,6 +6,7 @@ import com.useinsider.insider.InsiderUser
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.network.model.cart.PurchasedOrderResponse
 import vn.icheck.android.network.base.*
@@ -81,11 +82,9 @@ object InsiderHelper {
         } else {
             userName = user?.name ?: " "
             userCoin = SettingManager.getUserCoin.toInt()
-            userLevel = ICheckApplication.getInstance().getString(
-                R.string.hang_xxx, Constant.getUserLevelName(
-                    ICheckApplication.getInstance(), user?.level
-                        ?: 1
-                )
+            userLevel = getString(
+                R.string.hang_xxx,
+                Constant.getUserLevelName(ICheckApplication.getInstance(), user?.level ?: 1)
             )
             userGender = user?.gender ?: " "
             userAge = if (user?.birth_year != null) {

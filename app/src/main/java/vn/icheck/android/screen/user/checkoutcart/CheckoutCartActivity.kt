@@ -107,7 +107,7 @@ class CheckoutCartActivity : BaseActivityMVVM(), ICheckoutCartView {
 
     override fun onSetCheckout(list: MutableList<Checkout>, grandTotal: Long) {
         adapter.setListData(list)
-        tvMoney?.text = getString(R.string.xxx_d, TextHelper.formatMoney(grandTotal))
+        tvMoney?.text = getString(R.string.s_d, TextHelper.formatMoney(grandTotal))
     }
 
     override fun onMessageClicked() {

@@ -143,12 +143,12 @@ class FragmentGiftGame : Fragment() {
             val path = MediaStore.Images.Media.insertImage(activity?.contentResolver, mBitmap, getString(R.string.anh_chup_man_hinh), null)
             val uri = Uri.parse(path)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             shareIntent.putExtra(
                 Intent.EXTRA_TEXT,
                 getString(
                     R.string.chuc_muong_s_da_trung_s_khi_tham_gia_su_kien_s_cua_nha_tai_tro_s,
-                    SessionManager.session.user?.name,
+                    SessionManager.session.user?.name?:"",
                     args.giftName,
                     args.campaignName,
                     args.owner

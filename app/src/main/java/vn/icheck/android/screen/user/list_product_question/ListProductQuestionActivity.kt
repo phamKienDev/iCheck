@@ -428,9 +428,9 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     override fun onAnswer(obj: ICProductQuestion) {
         tvActor.visibility = View.VISIBLE
         tvActor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
-            obj.user!!.getName
+            obj.user?.getName?:""
         } else {
-            obj.page!!.getName
+            obj.page?.getName?:""
         }),this))
         tvActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 

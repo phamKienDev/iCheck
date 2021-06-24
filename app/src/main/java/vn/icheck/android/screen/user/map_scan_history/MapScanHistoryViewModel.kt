@@ -10,6 +10,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
 import vn.icheck.android.network.models.history.ICRoutesShop
@@ -77,12 +78,12 @@ class MapScanHistoryViewModel : ViewModel() {
             }
 
             if (APIConstants.LATITUDE == 0.0 || APIConstants.LONGITUDE == 0.0) {
-                onShowErrorMessage.postValue(ICheckApplication.getString(R.string.khong_lay_duoc_vi_tri_cua_ban_vui_long_kiem_tra_lai_thiet_bi))
+                onShowErrorMessage.postValue( getString(R.string.khong_lay_duoc_vi_tri_cua_ban_vui_long_kiem_tra_lai_thiet_bi))
                 return@launch
             }
 
             if (latShop == 0.0 || lonShop == 0.0) {
-                onShowErrorMessage.postValue(ICheckApplication.getString(R.string.khong_lay_duoc_vi_tri_cua_cua_hang))
+                onShowErrorMessage.postValue( getString(R.string.khong_lay_duoc_vi_tri_cua_cua_hang))
                 return@launch
             }
 

@@ -39,7 +39,7 @@ class RelatedProductStampThinhLongAdapter(val list: MutableList<ICRelatedProduct
             }
             itemView.product_rating.rating = child.rating
             if (child.price > 0) {
-                itemView.product_price.setText(R.string.x_d, child.price)
+                itemView.product_price.setText(R.string.d_vnd, child.price)
             } else {
                 itemView.product_price.text = itemView.context.getString(R.string.dang_cap_nhat_gia)
             }

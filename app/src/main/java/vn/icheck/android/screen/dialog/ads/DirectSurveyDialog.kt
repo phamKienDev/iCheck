@@ -21,6 +21,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
@@ -249,28 +250,22 @@ class DirectSurveyDialog(context: Context, private val ads: ICAds) : BaseDialog(
     }
 
     private fun checkButton(obj: ICSurvey) {
-        txtQuestionTitle.text = getStringValue(R.string.cau_hoi_xxx, "${(obj.totalAnswer + 1)}/${obj.questions.size}")
+        txtQuestionTitle.setText(R.string.cau_hoi_s, "${(obj.totalAnswer + 1)}/${obj.questions.size}")
 
         if (obj.totalAnswer > 0) {
-            btnLeft.text = getStringValue(R.string.cau_xxx, obj.totalAnswer.toString())
+            btnLeft.setText(R.string.cau_s, obj.totalAnswer.toString())
 
-            btnRight.text = if (obj.totalAnswer + 1 == obj.questions.size) {
-                getStringText(R.string.gui)
-            } else {
-                getStringText(R.string.tiep_theo_title)
+            btnRight.apply {
+                text = if (obj.totalAnswer + 1 == obj.questions.size) {
+                    context.getString(R.string.gui)
+                } else {
+                    context.getString(R.string.tiep_theo_title)
+                }
             }
         } else {
-            btnLeft.text = getStringText(R.string.bo_qua)
-            btnRight.text = getStringText(R.string.tiep_theo_title)
+            btnLeft.setText(R.string.bo_qua)
+            btnRight.setText(R.string.tiep_theo_title)
         }
-    }
-
-    private fun getStringText(res: Int): String {
-        return context.getString(res)
-    }
-
-    private fun getStringValue(res: Int, value: String): String {
-        return context.getString(res, value)
     }
 
     private fun showShortError(message: String) {

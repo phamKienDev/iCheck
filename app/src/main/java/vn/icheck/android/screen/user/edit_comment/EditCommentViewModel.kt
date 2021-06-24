@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -82,7 +83,7 @@ class EditCommentViewModel : ViewModel() {
 
     private fun updateQuestion(mContent: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
-            onError.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onError.postValue(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -110,7 +111,7 @@ class EditCommentViewModel : ViewModel() {
 
                 override fun onError(error: ICResponseCode?) {
                     onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    onError.postValue(error?.message ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    onError.postValue(error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         } else {
@@ -125,7 +126,7 @@ class EditCommentViewModel : ViewModel() {
                 override fun onError(error: ICResponseCode?) {
                     onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     onError.postValue(error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }
@@ -133,7 +134,7 @@ class EditCommentViewModel : ViewModel() {
 
     private fun updatePost(mContent: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
-            onError.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onError.postValue(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -160,7 +161,7 @@ class EditCommentViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onError.postValue(error?.message ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                onError.postValue(error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

@@ -98,7 +98,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
         runOnUiThread {
             viewModel.listData.observe(this, Observer {
                 swipe_layout.isRefreshing = false
-                tvCount.setText(R.string.d_nguoi_dang_theo_doi_ban, it.count.toString())
+                tvCount.setText(R.string.d_nguoi_dang_theo_doi_ban, it.count)
                 adapter.addListData(it.rows)
                 if (!initFirst){
                     initTextListener()

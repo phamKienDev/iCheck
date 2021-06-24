@@ -30,7 +30,7 @@ class OrderDetailChildAdapter(val listData: MutableList<ICItemCart>) : RecyclerV
             WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.thumbnails?.square, WidgetUtils.defaultError, SizeHelper.size5)
             itemView.tvName.text = obj.name
             itemView.tvCount.text = ("x${obj.quantity}")
-            itemView.tvProductPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.price * obj.quantity)))
+            itemView.tvProductPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.price * obj.quantity)))
 
             var attributes = ""
 

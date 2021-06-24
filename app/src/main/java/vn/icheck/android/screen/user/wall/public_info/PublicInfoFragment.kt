@@ -87,7 +87,9 @@ class PublicInfoFragment : Fragment() {
                 binding.edtDanhtinh.beGone()
                 binding.txtConfirmedDanhtinh.beVisible()
             }
-            binding.idUser.setText(R.string.ic_d, user.id)
+            user.id?.let {
+                binding.idUser.setText(R.string.ic_d, it)
+            }
             binding.totalFollower simpleText user.userFollowingMeCount.toString().getInfo()
 
             binding.rowPhone goneIf user.infoPrivacyConfig?.phone

@@ -78,14 +78,14 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
             binding.tvStatus.text = obj.status?.name
             binding.tvState.apply {
                 text = if (!obj.state?.name.isNullOrEmpty()) {
-                    context.getString(R.string.tinh_trang_v2_xxx, obj.state!!.name)
+                    context.getString(R.string.tinh_trang_v2_xxx, obj.state!!.name?:"")
                 } else {
                     context.getString(R.string.tinh_trang_v2_xxx, context.getString(R.string.dang_cap_nhat))
                 }
             }
             binding.tvDateTime.apply {
                 text = if (!obj.created_time.isNullOrEmpty()) {
-                    context.getString(R.string.thoi_gian_v2_xxx, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_time))
+                    context.getString(R.string.thoi_gian_v2_xxx, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_time)?:"")
                 } else {
                     context.getString(R.string.thoi_gian_v2_xxx, context.getString(R.string.dang_cap_nhat))
                 }

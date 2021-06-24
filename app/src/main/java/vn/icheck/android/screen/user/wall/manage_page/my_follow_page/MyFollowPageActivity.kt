@@ -138,7 +138,9 @@ class MyFollowPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 pageId = event.data as Long
                 countPage -= 1
                 tvPageCount.setText(R.string.s_trang_dang_theo_doi, TextHelper.formatMoneyPhay(countPage))
-                adapter.deleteItem(pageId!!)
+                pageId?.let {
+                    adapter.deleteItem(it)
+                }
                 isChange = true
                 if (countPage <= 0) {
                     tvPageCount.beGone()

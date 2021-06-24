@@ -44,7 +44,6 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -478,8 +477,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             super.onPostExecute(result)
 
             if (result != null && result.exists()) {
-                val fileprovider = context.getString(R.string.xxx_fileprovider, context.packageName)
-                val contentUri = FileProvider.getUriForFile(context, fileprovider, result)
+                val fileProvider = context.getString(R.string.xxx_fileprovider, context.packageName)
+                val contentUri = FileProvider.getUriForFile(context, fileProvider, result)
 
                 if (contentUri != null) {
                     val intent = Intent(Intent.ACTION_SEND)

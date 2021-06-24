@@ -6,6 +6,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
@@ -25,7 +26,7 @@ class ListOtherNotificationViewModel : ViewModel() {
 
     fun getOtherNotification(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -46,7 +47,7 @@ class ListOtherNotificationViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)))
             }
         })
     }

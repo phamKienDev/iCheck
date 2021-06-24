@@ -67,7 +67,7 @@ class CreateLocationQrCodePresenter(val view: ICreateLocationQrCodeView) : BaseF
             return
         }
 
-        val code = view.mContext!!.getString(R.string.qr_code_location_format, lat.toString(), lng.toString())
-        view.onValidSuccess(code)
+        val code = view.mContext?.getString(R.string.qr_code_location_format, lat.toString(), lng.toString())
+        view.onValidSuccess(code?:"")
     }
 }

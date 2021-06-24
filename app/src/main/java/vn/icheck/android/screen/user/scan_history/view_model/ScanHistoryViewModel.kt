@@ -10,6 +10,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
@@ -52,7 +53,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
     fun getData() {
         viewModelScope.launch {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                onError.postValue(ICError(R.drawable.ic_error_network, null, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_network, null, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 return@launch
             }
 
@@ -88,7 +89,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
                     val list = mutableListOf<ICScanHistory>()
                     val item = ICScanHistory(ICViewTypes.LIST_BIG_CORP)
                     listCategory.clear()
-                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name = ICheckApplication.getString(R.string.tat_ca)))
+                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name =  getString(R.string.tat_ca)))
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         for (i in obj.data?.rows ?: mutableListOf()) {
                             listCategory.add(i)
@@ -102,19 +103,19 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
                     onAddBigCorp.value = list
                 } else {
-                    onError.postValue(ICError(R.drawable.ic_error_emty_history_topup, null, ICheckApplication.getInstance().getString(R.string.ban_chua_co_lich_su_quet_ma), null))
+                    onError.postValue(ICError(R.drawable.ic_error_emty_history_topup, null, getString(R.string.ban_chua_co_lich_su_quet_ma), null))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null))
+                onError.postValue(ICError(R.drawable.ic_error_request, null, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null))
             }
         })
     }
 
     fun getListScanHistory(sort: Int? = null, listIdBigCorp: MutableList<Any>? = null, listType: MutableList<Any>? = null, isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onErrorString.value = ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            onErrorString.value = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
         }
 
@@ -145,7 +146,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_emty_history_topup, null, ICheckApplication.getInstance().getString(R.string.ban_chua_co_lich_su_quet_ma), R.string.thu_lai))
+                        val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_emty_history_topup, null, getString(R.string.ban_chua_co_lich_su_quet_ma), R.string.thu_lai))
                         list.add(item)
                         onErrorListData.value = list
                     } else {
@@ -159,11 +160,11 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
             override fun onError(error: ICResponseCode?) {
                 if (!isLoadMore) {
                     val list = mutableListOf<ICScanHistory>()
-                    val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
+                    val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
                     list.add(item)
                     onErrorListData.value = list
                 } else {
-                    onErrorString.value = ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    onErrorString.value = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             }
         })
@@ -198,7 +199,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
     fun checkQrStampSocial(code: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onErrorString.value = ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            onErrorString.value = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
         }
 
@@ -231,7 +232,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (error?.code == 400) {
-                    stampFake.postValue(ICheckApplication.getString(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
+                    stampFake.postValue( getString(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
                 } else {
                     errorQr.postValue(code)
                 }

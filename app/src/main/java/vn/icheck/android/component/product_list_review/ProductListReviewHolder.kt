@@ -29,7 +29,7 @@ class ProductListReviewHolder(parent: ViewGroup, recycledViewPool: RecyclerView.
                 } else {
                     beVisible()
 
-                    (getChildAt(0) as AppCompatTextView).setText(R.string.danh_gia_san_pham_x, obj.count)
+                    (getChildAt(0) as AppCompatTextView).setText(R.string.danh_gia_san_pham_d, obj.count)
 
                     getChildAt(1).setOnClickListener {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_REVEWS))

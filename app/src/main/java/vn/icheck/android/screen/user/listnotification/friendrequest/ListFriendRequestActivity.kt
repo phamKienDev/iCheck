@@ -66,9 +66,9 @@ class ListFriendRequestActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 this.removeItem(it)
                 if (this.isEmpty) {
                     if (edtSearch.text.isNullOrEmpty()) {
-                        setError(ICError(R.drawable.ic_no_campaign, ICheckApplication.getString(R.string.khong_co_loi_moi_ket_ban_nao), null, 0))
+                        setError(ICError(R.drawable.ic_no_campaign, getString(R.string.khong_co_loi_moi_ket_ban_nao), null, 0))
                     } else {
-                        setError(ICError(R.drawable.ic_search_90dp, ICheckApplication.getString(R.string.message_not_found), null, 0))
+                        setError(ICError(R.drawable.ic_search_90dp, getString(R.string.message_not_found), null, 0))
                     }
                 }
                 setResult(RESULT_OK)

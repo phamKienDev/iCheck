@@ -8,6 +8,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.RelationshipHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.feature.search.SearchInteractor
@@ -30,7 +31,7 @@ class SearchHomeViewModel : ViewModel() {
 
     fun getData() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -70,7 +71,7 @@ class SearchHomeViewModel : ViewModel() {
 
     fun deleteRecentSearch() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), " "))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), " "))
             return
         }
         onStatus.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
@@ -85,7 +86,7 @@ class SearchHomeViewModel : ViewModel() {
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 onError.postValue(ICError(R.drawable.ic_error_request, if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error?.message
                 }, " "))
@@ -95,7 +96,7 @@ class SearchHomeViewModel : ViewModel() {
 
     fun getAutoSearch(key: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), " "))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), " "))
             return
         }
 
@@ -112,7 +113,7 @@ class SearchHomeViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             }
 
         })

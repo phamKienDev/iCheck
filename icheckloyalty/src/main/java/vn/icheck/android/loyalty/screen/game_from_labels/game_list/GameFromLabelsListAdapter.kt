@@ -83,9 +83,9 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
                             if (obj.statisticWinnerAccumulatePoint[0].points != null) {
-                                itemView.tvPoint.setText(R.string.d_diem,
-                                    obj.statisticWinnerAccumulatePoint[0].points
-                                )
+                                obj.statisticWinnerAccumulatePoint[0].points?.let {
+                                    itemView.tvPoint.setText(R.string.d_diem, it)
+                                }
                             } else {
                                 itemView.tvPoint.setText(R.string.d_diem, 0)
                             }
@@ -103,7 +103,9 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
                                 itemView.tvPlay.setTextColor(ColorManager.getPrimaryColor(itemView.context))
-                                itemView.tvPlay.setText(R.string.d_luot_quay, obj.campaignGameUser[0]?.play)
+                                obj.campaignGameUser[0]?.play?.let {
+                                    itemView.tvPlay.setText(R.string.d_luot_quay, it)
+                                }
                             } else {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
                                 itemView.tvPlay.setText(R.string.het_luot_quay)

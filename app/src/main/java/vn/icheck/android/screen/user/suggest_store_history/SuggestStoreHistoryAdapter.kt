@@ -157,7 +157,9 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
             itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(itemView.context))
 
             itemView.tvCountProductOfShop.fillDrawableEndText(R.drawable.ic_down_light_blue_18_px)
-            itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, item.numProductSell)
+            item.numProductSell?.let {
+                itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, it)
+            }
         }
     }
 }

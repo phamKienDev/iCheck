@@ -83,7 +83,7 @@ class MissionDetailActivity : BaseActivityMVVM(), View.OnClickListener {
 
             checkState(obj)
             progressBar.isEnabled = false
-            tvProgress.text = getString(R.string.tien_do_thuc_hien_nhiem_vu_xxx, "${((obj.currentEvent.toDouble() / obj.totalEvent.toDouble()) * 100).toInt()}%")
+            tvProgress.text = getString(R.string.tien_do_thuc_hien_nhiem_vu_s, "${((obj.currentEvent.toDouble() / obj.totalEvent.toDouble()) * 100).toInt()}%")
             tvProgressTitle.text = obj.missionName
             tvProgressCount.text = ("${obj.currentEvent}/${obj.totalEvent}")
             progressBar.max = obj.totalEvent

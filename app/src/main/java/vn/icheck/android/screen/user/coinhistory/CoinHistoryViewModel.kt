@@ -10,6 +10,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.coin.CoinInteractor
 import vn.icheck.android.network.feature.setting.SettingRepository
@@ -70,7 +71,7 @@ class CoinHistoryViewModel : BaseViewModel() {
 
     fun getCointHistory(isLoadmore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -102,7 +103,7 @@ class CoinHistoryViewModel : BaseViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 val message = if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error?.message
                 }

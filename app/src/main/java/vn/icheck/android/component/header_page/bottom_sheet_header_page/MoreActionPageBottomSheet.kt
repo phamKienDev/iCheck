@@ -40,7 +40,7 @@ abstract class MoreActionPageBottomSheet(context: Context, val obj: ICPageOvervi
                 text = context.getString(R.string.tat_thong_bao_cho_trang_nay)
             }
             dialog.tvNotificationOn.apply {
-                text = context.getString(R.string.ban_se_khong_nhan_duoc_thong_bao_khi_trang_dang_noi_dung_moi, obj.name)
+                text = context.getString(R.string.ban_se_khong_nhan_duoc_thong_bao_khi_s_dang_noi_dung_moi, obj.name)
             }
             dialog.imgNotification.setImageResource(R.drawable.ic_turn_off_notification_40dp)
         }

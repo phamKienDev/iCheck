@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -49,13 +50,13 @@ class ReportProductViewModel : ViewModel() {
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     listData.postValue(obj.data?.rows)
                 } else {
-                    errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    errorData.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                val message = error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                val message = error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 errorData.postValue(message)
             }
         })
@@ -68,7 +69,7 @@ class ReportProductViewModel : ViewModel() {
         }
 
         if (productID == -1L) {
-            errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            errorData.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -92,7 +93,7 @@ class ReportProductViewModel : ViewModel() {
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 val message = error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 errorData.postValue(message)
             }
         })

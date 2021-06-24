@@ -13,6 +13,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
@@ -52,7 +53,7 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
 
     fun getLayout() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -118,12 +119,12 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
                 }
 
                 if (totalRequest == 0) {
-                    onError.postValue(ICError(R.drawable.ic_no_campaign, ICheckApplication.getInstance().getString(R.string.ban_chua_co_thong_bao_nao), null, 0))
+                    onError.postValue(ICError(R.drawable.ic_no_campaign, getString(R.string.ban_chua_co_thong_bao_nao), null, 0))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
             }
         })
     }
@@ -138,9 +139,9 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
 
         if (totalRequest <= 0) {
             if (isRequestSuccess) {
-                onError.postValue(ICError(R.drawable.ic_no_campaign, ICheckApplication.getInstance().getString(R.string.ban_chua_co_thong_bao_nao), null, 0))
+                onError.postValue(ICError(R.drawable.ic_no_campaign, getString(R.string.ban_chua_co_thong_bao_nao), null, 0))
             } else {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
             }
         }
     }
@@ -319,7 +320,7 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
 
     fun markReadAll() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onShowErrorMessage.postValue(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onShowErrorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -328,7 +329,7 @@ class ListNotificationViewModel @ViewModelInject constructor(val ickApi: ICKApi,
         interaction.markReadAllNotification(object : ICNewApiListener<ICResponse<Boolean>> {
             override fun onSuccess(obj: ICResponse<Boolean>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onMarkAllSuccess.postValue(ICheckApplication.getString(R.string.ban_da_doc_tat_ca_cac_thong_bao))
+                onMarkAllSuccess.postValue( getString(R.string.ban_da_doc_tat_ca_cac_thong_bao))
             }
 
             override fun onError(error: ICResponseCode?) {

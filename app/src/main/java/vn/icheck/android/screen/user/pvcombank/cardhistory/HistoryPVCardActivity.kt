@@ -123,7 +123,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 }
                 Status.ERROR_NETWORK -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 }
                 Status.ERROR_REQUEST -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)

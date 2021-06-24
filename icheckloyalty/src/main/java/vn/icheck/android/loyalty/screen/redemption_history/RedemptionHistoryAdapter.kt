@@ -92,7 +92,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                 text = if (obj.created_at.isNullOrEmpty()) {
                     itemView.context.getString(R.string.dang_cap_nhat)
                 } else {
-                    context.getString(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_at))
+                    context.getString(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_at)?:"")
                 }
             }
 
@@ -225,7 +225,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
 
             itemView.tvDate.apply {
                 text = if (!obj.win_at.isNullOrEmpty()) {
-                    context.getString(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.win_at))
+                    context.getString(R.string.thoi_gian_doi_s, TimeHelper.convertDateTimeSvToTimeDateVn(obj.win_at)?:"")
                 } else {
                     default
                 }

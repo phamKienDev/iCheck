@@ -263,7 +263,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             binding.groupFollowed goneIf data?.infoPrivacyConfig?.gender
             binding.moreInfo goneIf data?.infoPrivacyConfig?.birthday
             binding.tvAddress.text = data?.city?.name.getInfo()
-            binding.tvId.setText(R.string.ic_d, data?.id)
+            data?.id?.let{
+                binding.tvId.setText(R.string.ic_d, it)
+            }
             if (SessionManager.session.user?.id == ickUserProfileModel.id) {
                 binding.tvFollow.text = "${RelationshipManager.getTotalFollowed()}"
                 binding.tvWatch.text = "${RelationshipManager.getTotalFollow()}"

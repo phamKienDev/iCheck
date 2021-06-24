@@ -13,10 +13,6 @@ abstract class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
 
     abstract fun bind(obj: T)
 
-    fun getString(idString: Int): String {
-        return itemView.context.getString(idString)
-    }
-
     fun getColor(idColor: Int): Int {
         return if (idColor != R.color.colorPrimary) {
             ContextCompat.getColor(itemView.context, idColor)

@@ -16,6 +16,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SettingHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.user.UserInteractor
 import vn.icheck.android.network.model.kyc.KycResponse
@@ -64,7 +65,7 @@ class VerifyIdentityViewModel : ViewModel() {
                 listImage.clear()
                 statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
                         if (error?.message.isNullOrEmpty()) {
-                            ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                         } else {
                             error!!.message
                         }))
@@ -77,7 +78,7 @@ class VerifyIdentityViewModel : ViewModel() {
         if (position >= 2) {
             if (listImage.size >= 2) {
                 val document = mutableListOf<ICPostKyc.KycDocuments>().also {
-                    it.add(ICPostKyc.KycDocuments(if (typeCard == ICheckApplication.getString(R.string.can_cuoc_cong_dan)) {
+                    it.add(ICPostKyc.KycDocuments(if (typeCard == getString(R.string.can_cuoc_cong_dan)) {
                         2
                     } else {
                         1
@@ -95,7 +96,7 @@ class VerifyIdentityViewModel : ViewModel() {
 //                        listImage.clear()
 //                        statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
 //                                if (error?.message.isNullOrEmpty()) {
-//                                    ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+//                                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 //                                } else {
 //                                    error!!.message
 //                                }))
@@ -104,7 +105,7 @@ class VerifyIdentityViewModel : ViewModel() {
                 val requestBody = hashMapOf<String, Any?>()
                 val documents = arrayListOf<HashMap<String, Any?>>()
                 documents.add(hashMapOf(
-                        "type" to if (typeCard == ICheckApplication.getString(R.string.can_cuoc_cong_dan)) {
+                        "type" to if (typeCard == getString(R.string.can_cuoc_cong_dan)) {
                             2
                         } else {
                             1
@@ -113,7 +114,7 @@ class VerifyIdentityViewModel : ViewModel() {
                         "documentName" to typeCard
                 ))
                 documents.add(hashMapOf(
-                        "type" to if (typeCard == ICheckApplication.getString(R.string.can_cuoc_cong_dan)) {
+                        "type" to if (typeCard == getString(R.string.can_cuoc_cong_dan)) {
                             2
                         } else {
                             1
@@ -140,7 +141,7 @@ class VerifyIdentityViewModel : ViewModel() {
                                 position = -1
                                 listImage.clear()
                                 statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR,
-                                        ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
                             }
 
                             override fun onComplete() {
@@ -150,7 +151,7 @@ class VerifyIdentityViewModel : ViewModel() {
             } else {
                 position = -1
                 listImage.clear()
-                statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             }
         } else {
             val file = if (position == 0) {

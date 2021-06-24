@@ -13,7 +13,7 @@ import vn.icheck.android.ichecklibs.util.setText
 class QuestionAnswerStampHolder(parent: ViewGroup,private val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICQAStamp>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_hdsp_stamp_holder, parent, false)) {
 
     override fun bind(obj: ICQAStamp) {
-        itemView.tv_dgsp.setText(R.string.hoi_dap_ve_san_pham_x, obj.size)
+        itemView.tv_dgsp.setText(R.string.hoi_dap_ve_san_pham_d, obj.size)
         itemView.tv_first_question.text = obj.first
 
         itemView.tv_xtcrv.setOnClickListener {

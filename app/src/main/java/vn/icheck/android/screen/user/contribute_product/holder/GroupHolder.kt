@@ -118,9 +118,9 @@ class GroupHolder(private val itemGroupBinding: ItemGroupBinding) : CoroutineVie
             itemGroupBinding.imgHelp.beVisible()
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemGroupBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name)
+            itemGroupBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name?:"")
             itemGroupBinding.edtInfo.apply {
-                hint = context.getString(R.string.nhap_s_bat_buoc, categoryAttributesModel.categoryItem.name)
+                hint = context.getString(R.string.nhap_s_bat_buoc, categoryAttributesModel.categoryItem.name?:"")
             }
         } else {
             itemGroupBinding.tvTitle.text = categoryAttributesModel.categoryItem.name

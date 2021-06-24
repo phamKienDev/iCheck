@@ -35,7 +35,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
 
                 // Text title
                 (getChildAt(0) as AppCompatTextView).apply {
-                    text = context.getString(R.string.loi_moi_ket_ban_xxx, "(${obj.count})")
+                    text = context.getString(R.string.loi_moi_ket_ban_s, "(${obj.count})")
                 }
 
                 // Text view more
@@ -71,7 +71,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
     }
 
     private fun setTitle(count: Int) {
-        (((itemView as ViewGroup).getChildAt(0) as ViewGroup).getChildAt(0) as AppCompatTextView).text = itemView.context.getString(R.string.loi_moi_ket_ban_xxx, "($count)")
+        (((itemView as ViewGroup).getChildAt(0) as ViewGroup).getChildAt(0) as AppCompatTextView).text = itemView.context.getString(R.string.loi_moi_ket_ban_s, "($count)")
     }
 
     companion object {

@@ -7,6 +7,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.search.SearchInteractor
 import vn.icheck.android.network.models.ICProductTrend
@@ -48,10 +49,10 @@ class SearchProductViewModel : BaseViewModel() {
         }
 
         val order: String? = when (price) {
-            ICheckApplication.getInstance().getString(R.string.tu_gia_cao_nhat) -> {
+            getString(R.string.tu_gia_cao_nhat) -> {
                 "-price"
             }
-            ICheckApplication.getInstance().getString(R.string.tu_gia_thap_nhat) -> {
+            getString(R.string.tu_gia_thap_nhat) -> {
                 "price"
             }
             else -> {

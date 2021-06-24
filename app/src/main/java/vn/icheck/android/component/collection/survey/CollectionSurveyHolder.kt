@@ -23,6 +23,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
@@ -262,19 +263,21 @@ class CollectionSurveyHolder(parent: ViewGroup) : RecyclerView.ViewHolder(ViewHe
 
     private fun checkButton(obj: ICSurvey) {
         layoutHeader
-        (layoutHeader.getChildAt(1) as AppCompatTextView).text = getStringValue(R.string.cau_hoi_xxx, "${(obj.totalAnswer + 1)}/${obj.questions.size}")
+        (layoutHeader.getChildAt(1) as AppCompatTextView).setText(R.string.cau_hoi_s, "${(obj.totalAnswer + 1)}/${obj.questions.size}")
 
         if (obj.totalAnswer > 0) {
-            (layoutButton.getChildAt(0) as AppCompatTextView).text = getStringValue(R.string.cau_xxx, obj.totalAnswer.toString())
+            (layoutButton.getChildAt(0) as AppCompatTextView).setText(R.string.cau_s, obj.totalAnswer.toString())
 
-            (layoutButton.getChildAt(1) as AppCompatTextView).text = if (obj.totalAnswer + 1 == obj.questions.size) {
-                getStringText(R.string.gui)
-            } else {
-                getStringText(R.string.tiep_theo_title)
+            (layoutButton.getChildAt(1) as AppCompatTextView).apply {
+                text = if (obj.totalAnswer + 1 == obj.questions.size) {
+                    context.getString(R.string.gui)
+                } else {
+                    context.getString(R.string.tiep_theo_title)
+                }
             }
         } else {
-            (layoutButton.getChildAt(0) as AppCompatTextView).text = getStringText(R.string.bo_qua)
-            (layoutButton.getChildAt(1) as AppCompatTextView).text = getStringText(R.string.tiep_theo_title)
+            (layoutButton.getChildAt(0) as AppCompatTextView).setText(R.string.bo_qua)
+            (layoutButton.getChildAt(1) as AppCompatTextView).setText(R.string.tiep_theo_title)
         }
     }
 
