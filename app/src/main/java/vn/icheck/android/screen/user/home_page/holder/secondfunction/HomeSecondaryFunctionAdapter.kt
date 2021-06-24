@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.home_page.holder.secondfunction
 
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +13,11 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.FileHelper
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICThemeFunction
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.util.kotlin.WidgetUtils
 
-class HomeSecondaryFunctionAdapter(
-    private val listData: MutableList<ICThemeFunction> = mutableListOf(),
-    private val isUseTheme: Boolean = true
-) : RecyclerView.Adapter<HomeSecondaryFunctionAdapter.ViewHolder>() {
+class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunction> = mutableListOf(), private val isUseTheme: Boolean = true) : RecyclerView.Adapter<HomeSecondaryFunctionAdapter.ViewHolder>() {
 
     fun setData(list: MutableList<ICThemeFunction>) {
         listData.clear()
