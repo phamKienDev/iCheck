@@ -1794,6 +1794,8 @@
     <string name="vnd_android_cursor_item_email" translatable="false">
         vnd.android.cursor.item/email
     </string>
+    <string name="thang_lowercase">tháng</string>
+    <string name="nam_lowercase">năm</string>
     <string-array name="wifi_security_type">
         <item>Kiểu bảo mật</item>
         <item>WPA2</item>
