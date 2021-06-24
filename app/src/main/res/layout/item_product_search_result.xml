@@ -1,74 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgProduct"
-        android:layout_width="@dimen/size_77"
-        android:layout_height="@dimen/size_70"
-        android:layout_marginTop="@dimen/size_12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_payment_vnpay_40dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_name_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_10"
-        android:layout_marginLeft="@dimen/size_10"
-        android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:minLines="2"
-        android:textColor="@color/darkGray1"
-        android:textSize="@dimen/font_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgProduct"
-        app:layout_constraintTop_toTopOf="@+id/imgProduct"
-        tools:text="Mặt Nạ Dưỡng Trắng Dịu Mát Da (tối đa 2 dòng)...ádfsdfssafsadfsfasfsafsagasgsagsagasgasgasgasasg" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_4"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_name_product"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name_product">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="@dimen/size_77"
+            android:layout_height="@dimen/size_70"
+            android:layout_marginTop="@dimen/size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_payment_vnpay_40dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_price_product"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_name_product"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
-            android:includeFontPadding="false"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/font_14"
-            android:visibility="visible"
-            tools:text="25.900 ₫" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_verified"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_verified_16px"
-            android:drawablePadding="@dimen/size_5"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginLeft="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            android:ellipsize="end"
             android:fontFamily="@font/barlow_medium"
-            android:gravity="center_vertical"
-            android:lineSpacingExtra="@dimen/font_14"
-            android:text="@string/verified"
-            android:textColor="@color/colorAccentGreen"
-            android:textSize="@dimen/font_12" />
-    </LinearLayout>
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:minLines="2"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgProduct"
+            app:layout_constraintTop_toTopOf="@+id/imgProduct"
+            tools:text="Mặt Nạ Dưỡng Trắng Dịu Mát Da (tối đa 2 dòng)...ádfsdfssafsadfsfasfsafsagasgsagsagasgasgasgasasg" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:gravity="center_vertical|left"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/tv_name_product"
+            app:layout_constraintStart_toStartOf="@id/tv_name_product"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_product">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_verified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_verified_16px"
+                android:drawablePadding="@dimen/size_5"
+                android:fontFamily="@font/barlow_medium"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="@dimen/font_14"
+                android:text="@string/verified"
+                android:textColor="@color/colorAccentGreen"
+                android:textSize="@dimen/font_12" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_10"
+                android:fontFamily="@font/barlow_semi_bold"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_14"
+                android:visibility="visible"
+                tools:text="@string/gia_dang_cap_nhat" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
@@ -77,5 +86,5 @@
         android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgProduct" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutPrice" />
+</LinearLayout>
