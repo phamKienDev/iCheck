@@ -1,4 +1,4 @@
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -88,57 +88,80 @@
                     android:background="#D8D8D8"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvSort"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_12"
-                    android:drawableStart="@drawable/ic_selected_history_27"
-                    android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
-                    android:drawablePadding="@dimen/size_5"
-                    android:fontFamily="@font/barlow_medium"
-                    android:gravity="center"
-                    android:text="Sắp xếp: Mới nhất"
-                    android:textColor="#757575"
-                    android:textSize="@dimen/font_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvFilter"
-                    app:layout_constraintBottom_toBottomOf="@id/tvFilter"/>
+                    app:layout_constraintTop_toBottomOf="@id/view">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFilterHis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_7"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvFilter"
-                    app:layout_constraintEnd_toStartOf="@+id/tvFilter"
-                    app:layout_constraintTop_toTopOf="@+id/tvFilter"
-                    app:srcCompat="@drawable/ic_filter_gray_24_px" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_12"
-                    android:layout_marginBottom="@dimen/size_12"
-                    android:fontFamily="@font/barlow_medium"
-                    android:gravity="center_horizontal|end"
-                    android:text="Lọc theo"
-                    android:textColor="#757575"
-                    android:textSize="@dimen/font_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:drawableStart="@drawable/ic_selected_history_27"
+                            android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
+                            android:drawablePadding="@dimen/size_5"
+                            android:fontFamily="@font/barlow_medium"
+                            android:gravity="center"
+                            android:text="Sắp xếp: Mới nhất"
+                            android:textColor="#757575"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilter"
+                            app:layout_constraintEnd_toStartOf="@id/imgFilterHis"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvFilter" />
+                    </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgDot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="@+id/imgFilterHis"
-                    app:layout_constraintTop_toTopOf="@+id/imgFilterHis"
-                    app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgFilterHis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_7"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_filter_gray_24_px" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgDot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="@+id/imgFilterHis"
+                            app:layout_constraintTop_toTopOf="@+id/imgFilterHis"
+                            app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_13"
+                        android:layout_marginBottom="@dimen/size_12"
+                        android:fontFamily="@font/barlow_medium"
+                        android:gravity="center_horizontal|end"
+                        android:text="Lọc theo"
+                        android:textColor="#757575"
+                        android:textSize="@dimen/font_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgFilterHis"
+                        app:layout_constraintTop_toBottomOf="@id/view" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -218,8 +241,8 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
