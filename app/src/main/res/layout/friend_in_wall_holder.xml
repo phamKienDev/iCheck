@@ -21,14 +21,17 @@
             android:layout_weight="1"
             android:fontFamily="@font/barlow_semi_bold"
             android:textColor="@color/colorSecondary"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textSize="@dimen/font_18"
-            tools:text="Bạn bè (34)"
+            tools:text="Bạn bè chung (34)"
             android:layout_marginLeft="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_more_friends"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
