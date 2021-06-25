@@ -32,47 +32,52 @@ class IckFacebookLoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpView()
+        setUpListener()
+    }
+
+    private fun setUpView() {
+        binding.tvPhoneHead.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
         Glide.with(requireContext().applicationContext)
-                .load(ickLoginViewModel.facebookAvatar)
-                .placeholder(R.drawable.ic_avatar_default_84dp)
-                .error(R.drawable.ic_avatar_default_84dp)
-                .into(binding.userAvatar)
+            .load(ickLoginViewModel.facebookAvatar)
+            .placeholder(R.drawable.ic_avatar_default_84dp)
+            .error(R.drawable.ic_avatar_default_84dp)
+            .into(binding.userAvatar)
         binding.tvUsername.text = ickLoginViewModel.facebookUsername
         binding.edtPhone.apply {
             setHintTextColor(ColorManager.getDisableTextColor(context))
             addTextChangedListener(object : AfterTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
-//                if (s.toString().startsWith("84")) {
-//                    binding.edtPhone.setText(s.toString().replace("84", "0", true))
-//                    binding.edtPhone.setSelection(1)
-//                }
                     checkForm()
                 }
             })
         }
+    }
+
+    private fun setUpListener() {
         binding.btnContinue.setOnClickListener {
             if (!ickLoginViewModel.waitResponse) {
                 ickLoginViewModel.waitResponse = true
                 ickLoginViewModel.requestRegisterFacebook(binding.edtPhone.text.toString(), ickLoginViewModel.facebookToken.toString())
-                        .observe(viewLifecycleOwner, Observer {
-                            ickLoginViewModel.waitResponse = false
-                            if (it != null) {
-                                TrackingAllHelper.trackLoginSuccess()
-                                try {
-                                    val action = IckFacebookLoginFragmentDirections
-                                            .actionIckFacebookLoginFragmentToIckOtpFragment(
-                                                    ickLoginViewModel.facebookToken.toString(),
-                                                    ickLoginViewModel.facebookPhone.toString(),
-                                                    REGISTER,
-                                                    ickLoginViewModel.facebookUsername.toString(),
-                                                    ickLoginViewModel.facebookAvatar.toString()
-                                            )
-                                    findNavController().navigate(action)
-                                } catch (e: Exception) {
-                                    logError(e)
-                                }
+                    .observe(viewLifecycleOwner, Observer {
+                        ickLoginViewModel.waitResponse = false
+                        if (it != null) {
+                            TrackingAllHelper.trackLoginSuccess()
+                            try {
+                                val action = IckFacebookLoginFragmentDirections
+                                    .actionIckFacebookLoginFragmentToIckOtpFragment(
+                                        ickLoginViewModel.facebookToken.toString(),
+                                        ickLoginViewModel.facebookPhone.toString(),
+                                        REGISTER,
+                                        ickLoginViewModel.facebookUsername.toString(),
+                                        ickLoginViewModel.facebookAvatar.toString()
+                                    )
+                                findNavController().navigate(action)
+                            } catch (e: Exception) {
+                                logError(e)
                             }
-                        })
+                        }
+                    })
             }
         }
         binding.tvNation.setOnClickListener {
