@@ -1,12 +1,10 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,10 +12,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
 import vn.icheck.android.ichecklibs.ColorManager
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
