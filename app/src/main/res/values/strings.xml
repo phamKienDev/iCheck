@@ -1796,6 +1796,7 @@
     </string>
     <string name="thang_lowercase">tháng</string>
     <string name="nam_lowercase">năm</string>
+    <string name="ngay_lowercase">ngày</string>
     <string-array name="wifi_security_type">
         <item>Kiểu bảo mật</item>
         <item>WPA2</item>
