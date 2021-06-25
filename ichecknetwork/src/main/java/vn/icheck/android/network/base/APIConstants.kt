@@ -390,13 +390,6 @@ object APIConstants {
         const val UPLOAD = "upload/stream"
     }
 
-    object ProductQuestions {
-        const val GET_PRODUCT_QUESTIONS = "product-questions"
-        const val GET_LIST_ANSWER_BY_QUESTION = "product-questions/{questionId}/answers"
-        const val CREATE_QUESTION = "product-questions"
-        const val CREATE_ANSWER = "product-questions/{questionId}/answers"
-    }
-
     object Suggest {
         const val GET_SUGGEST_PAGE = "${PATH}/pages/topics"
         const val GET_LIST_TOPIC = "${PATH}/favourite-topics"

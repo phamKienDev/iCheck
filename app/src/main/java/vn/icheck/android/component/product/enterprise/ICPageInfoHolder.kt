@@ -141,8 +141,8 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.tvAddress.text = vn.icheck.android.ichecklibs.Constant.getAddress(obj.address, obj.district, obj.city, null, null)
 
-        if (!obj.tax.isNullOrEmpty()) {
-            binding.tvMST.text = "Mã số thuế: " + obj.tax
+        if (!obj.code.isNullOrEmpty()) {
+            binding.tvMST.text = "Mã số thuế: " + obj.code
             binding.tvDangCapNhatMST.visibility = View.GONE
         } else {
             binding.tvMST.text = "Mã số thuế: "

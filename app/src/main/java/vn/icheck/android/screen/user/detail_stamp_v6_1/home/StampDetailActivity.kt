@@ -19,7 +19,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
-import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.Disposable
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -45,7 +44,6 @@ import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.contact_support.ContactSupportActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.*
-import vn.icheck.android.screen.user.detail_stamp_v6_1.home.presenter.DetailStampPresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.view.IDetailStampView
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.viewmodel.ICDetailStampViewModel
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
@@ -436,23 +434,33 @@ class StampDetailActivity : BaseActivityMVVM(), IDetailStampView, IRecyclerViewC
                                     "GUARANTEE" -> {
                                         if (widget.data != null) {
                                             guarantee = widget.data
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.GUARANTEE_INFO_TYPE
-                                                data = widget.data
-                                            })
+                                            if (widget.data?.guaranteeDays != null ||
+                                                    widget.data?.expireDate != null ||
+                                                    widget.data?.dayRemaining != null ||
+                                                    widget.data?.activeDate != null) {
+                                                listData.add(ICLayout().apply {
+                                                    viewType = ICViewTypes.GUARANTEE_INFO_TYPE
+                                                    data = widget.data
+                                                })
+                                            }
                                         }
                                     }
                                     "LAST_GUARANTEE" -> {
                                         if (widget.data != null) {
                                             isExistLastGuarantee = true
-                                            listData.add(ICLayout().apply {
-                                                viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
-                                                data = widget.data!!.apply {
-                                                    if (serial.isNullOrEmpty()) {
-                                                        serial = it.data!!.data!!.serial
+                                            if (widget.data?.createTime != null ||
+                                                    widget.data?.storeName != null ||
+                                                    widget.data?.status != null ||
+                                                    widget.data?.state != null) {
+                                                listData.add(ICLayout().apply {
+                                                    viewType = ICViewTypes.LAST_GUARANTEE_INFO_TYPE
+                                                    data = widget.data!!.apply {
+                                                        if (serial.isNullOrEmpty()) {
+                                                            serial = it.data!!.data!!.serial
+                                                        }
                                                     }
-                                                }
-                                            })
+                                                })
+                                            }
                                         }
                                     }
                                     "VENDOR" -> {
