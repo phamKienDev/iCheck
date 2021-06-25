@@ -188,11 +188,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                 }
             }
         }, {
-            DialogHelper.showNotification(this@ChatSocialDetailActivity, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {
-                override fun onDone() {
-                    onBackPressed()
-                }
-            })
+            this@ChatSocialDetailActivity.onBackPressed()
         })
         binding.layoutToolbar.root.setBackgroundColor(Color.WHITE)
         binding.layoutToolbar.imgAction.setVisible()

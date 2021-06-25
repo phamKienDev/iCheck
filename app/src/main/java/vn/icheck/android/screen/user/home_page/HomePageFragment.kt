@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -248,14 +249,14 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private fun setupViewModel() {
         viewModel.onShowPopup.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             AdsUtils.showAdsPopup(activity, it)
         })
 
         viewModel.onUpdateAds.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             if (it == true) {
@@ -265,7 +266,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             closeLoading()
@@ -275,14 +276,14 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onAddData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             homeAdapter.addItem(it)
         })
 
         viewModel.onUpdateData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             if (it.data != null) {
@@ -293,7 +294,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onUpdateListData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             homeAdapter.updateItem(it)
@@ -739,7 +740,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (requireActivity().intent?.getStringExtra(Constant.DATA_3).isNullOrEmpty()) {
             if (!isViewCreated) {
                 isViewCreated = true
-                Handler().post {
+                Handler(Looper.getMainLooper()).post {
                     setupViewModel()
                     setupRecyclerView()
                     setupSwipeLayout()

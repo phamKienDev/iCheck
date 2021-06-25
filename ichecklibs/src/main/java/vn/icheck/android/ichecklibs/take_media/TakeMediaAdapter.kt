@@ -191,9 +191,10 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
         layoutParent.addView(checkbox)
 
         val tvCount = AppCompatTextView(parent.context).also {
-            it.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
-                it.setMargins(0, SizeHelper.size2, SizeHelper.size8, 0)
+            it.layoutParams = ConstraintLayout.LayoutParams(SizeHelper.size26, ConstraintLayout.LayoutParams.WRAP_CONTENT).also {
+                it.setMargins(0, SizeHelper.size2, SizeHelper.size2, 0)
             }
+            it.gravity = Gravity.CENTER
             it.setTextColor(Color.WHITE)
             it.id = R.id.tvCount
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_semi_bold.ttf")
@@ -276,6 +277,7 @@ class TakeMediaAdapter(val listData: MutableList<TakeMediaDialog.ICIMageFile>,
                 it.topMargin = SizeHelper.size2
             }
             it.text = parent.context.getString(R.string.chup_anh)
+            it.gravity = Gravity.CENTER
             it.setTextColor(ColorManager.getDisableTextColor(it.context))
             it.typeface = Typeface.createFromAsset(parent.context.assets, "font/barlow_medium.ttf")
             it.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)

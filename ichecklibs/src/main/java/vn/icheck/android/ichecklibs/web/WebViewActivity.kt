@@ -11,7 +11,7 @@ import android.util.Patterns
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.activity_web_view.*
+import kotlinx.android.synthetic.main.activity_web_view_libs.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.PermissionHelper
@@ -73,7 +73,7 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+        setContentView(R.layout.activity_web_view_libs)
 
         url = intent?.getStringExtra(Constant.DATA_1) ?: ""
         var isScan = intent?.getIntExtra(Constant.DATA_2, 0) ?: 0

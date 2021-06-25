@@ -182,17 +182,19 @@ class TakeMediaDialog : BaseBottomSheetDialogFragment() {
                 listOfAllImages.add(ICIMageFile(File("")))
             }
 
-            val dataColumn = cursor!!.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
-            val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
-            val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)
+            if (cursor != null){
+                val dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
+                val typeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MEDIA_TYPE)
+                val duration = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)
 
-            while (cursor.moveToNext()) {
-                val data = cursor.getString(dataColumn)
-                val type = cursor.getInt(typeColumn)
-                val duration = cursor.getLong(duration)
+                while (cursor.moveToNext()) {
+                    val data = cursor.getString(dataColumn)
+                    val type = cursor.getInt(typeColumn)
+                    val duration = cursor.getLong(duration)
 
-                if (!data.isNullOrEmpty()) {
-                    listOfAllImages.add(ICIMageFile(src = File(data), type = type, duration = duration))
+                    if (!data.isNullOrEmpty()) {
+                        listOfAllImages.add(ICIMageFile(src = File(data), type = type, duration = duration))
+                    }
                 }
             }
         }
