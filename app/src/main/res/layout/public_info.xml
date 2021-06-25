@@ -217,12 +217,10 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:gravity="center_vertical"
-                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Họ" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_first_name"
                     style="@style/text_black_barlow"
@@ -241,12 +239,10 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:gravity="center_vertical"
-                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Tên" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_last_name"
                     style="@style/text_black_barlow"
@@ -267,12 +263,10 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:gravity="center_vertical"
-                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtBirthday"
                     style="@style/text_black_barlow"
@@ -290,13 +284,11 @@
             <TableRow android:id="@+id/row_phone">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtPhone"
                     style="@style/text_black_barlow"
@@ -331,13 +323,11 @@
             <TableRow android:id="@+id/row_email">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtEmail"
                     style="@style/text_black_barlow"
@@ -371,13 +361,11 @@
             <TableRow android:id="@+id/row_city">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtProvince"
                     style="@style/text_black_barlow"
@@ -396,13 +384,11 @@
             <TableRow android:id="@+id/row_district">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:gravity="center_vertical"
                     android:text="@string/quan_huyen" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtDistrict"
                     style="@style/text_black_barlow"
@@ -421,13 +407,11 @@
             <TableRow android:id="@+id/row_ward">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/tvWard"
                     style="@style/text_black_barlow"
@@ -446,13 +430,11 @@
             <TableRow android:id="@+id/row_address">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtAddress"
                     style="@style/text_black_barlow"
@@ -473,7 +455,6 @@
                 android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/danh_tinh" />
@@ -522,13 +503,11 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tai_khoan" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@+id/id_user"
                     style="@style/text_black_barlow"
@@ -538,13 +517,11 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/nguoi_theo_doi" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_height="match_parent"
                     android:paddingEnd="@dimen/size_12"
                     android:id="@+id/total_follower"
                     style="@style/text_black_barlow"

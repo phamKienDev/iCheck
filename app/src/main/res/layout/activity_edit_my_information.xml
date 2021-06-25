@@ -15,10 +15,10 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_image_cover_in_wall"
-        app:layout_constraintDimensionRatio="H,375:139"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layoutAvatar" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/img_back"
@@ -61,7 +61,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:stretchColumns="2">
+            >
 
             <TableRow
                 android:id="@id/layoutConfirmUpdate"
@@ -148,84 +148,97 @@
                 </androidx.cardview.widget.CardView>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                >
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/UpdateProfile_Title"
                     android:text="@string/gioi_tinh" />
-
-                <RadioGroup
-                    android:id="@id/rdGroup"
+                <HorizontalScrollView
+                    android:scrollbars="none"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:minHeight="@dimen/size_45"
+                    android:layout_marginEnd="@dimen/size_12">
+                    <RadioGroup
+                        android:id="@id/rdGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/size_5"
+                        android:paddingBottom="@dimen/size_5">
 
-                    <RadioButton
-                        android:id="@id/rbMale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
-                        android:background="@drawable/bg_update_male"
-                        android:button="@null"
-                        android:checked="false"
-                        android:drawableStart="@drawable/select_ic_male_18dp"
-                        android:drawableLeft="@drawable/select_ic_male_18dp"
-                        android:drawablePadding="@dimen/size_4"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:gravity="center"
-                        android:minWidth="@dimen/size_70"
-                        android:paddingStart="@dimen/size_8"
-                        android:paddingLeft="@dimen/size_8"
-                        android:paddingEnd="@dimen/size_12"
-                        android:paddingRight="@dimen/size_12"
-                        android:text="@string/nam"
-                        android:textColor="@color/text_color_update_profile_gender" />
+                        <RadioButton
+                            android:id="@id/rbMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/size_30"
+                            android:background="@drawable/bg_update_male"
+                            android:button="@null"
+                            android:checked="false"
+                            android:drawableStart="@drawable/select_ic_male_18dp"
+                            android:drawableLeft="@drawable/select_ic_male_18dp"
+                            android:drawablePadding="@dimen/size_4"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:gravity="center"
+                            android:minWidth="@dimen/size_70"
+                            android:paddingStart="@dimen/size_8"
+                            android:paddingLeft="@dimen/size_8"
+                            android:paddingEnd="@dimen/size_12"
+                            android:paddingRight="@dimen/size_12"
+                            android:text="@string/nam"
+                            android:textColor="@color/text_color_update_profile_gender" />
 
-                    <RadioButton
-                        android:id="@id/rbFemale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginLeft="@dimen/size_10"
-                        android:background="@drawable/bg_update_gender_female"
-                        android:button="@null"
-                        android:checked="false"
-                        android:drawableStart="@drawable/select_ic_female_18dp"
-                        android:drawableLeft="@drawable/select_ic_female_18dp"
-                        android:drawablePadding="@dimen/size_4"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:gravity="center"
-                        android:minWidth="@dimen/size_70"
-                        android:paddingStart="@dimen/size_8"
-                        android:paddingLeft="@dimen/size_8"
-                        android:paddingEnd="@dimen/size_12"
-                        android:paddingRight="@dimen/size_12"
-                        android:text="@string/nu"
-                        android:textColor="@color/text_color_update_gender_female" />
+                        <RadioButton
+                            android:id="@id/rbFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/size_30"
+                            android:layout_marginStart="@dimen/size_10"
+                            android:layout_marginLeft="@dimen/size_10"
+                            android:background="@drawable/bg_update_gender_female"
+                            android:button="@null"
+                            android:checked="false"
+                            android:drawableStart="@drawable/select_ic_female_18dp"
+                            android:drawableLeft="@drawable/select_ic_female_18dp"
+                            android:drawablePadding="@dimen/size_4"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:gravity="center"
+                            android:minWidth="@dimen/size_70"
+                            android:paddingStart="@dimen/size_8"
+                            android:paddingLeft="@dimen/size_8"
+                            android:paddingEnd="@dimen/size_12"
+                            android:paddingRight="@dimen/size_12"
+                            android:text="@string/nu"
+                            android:textColor="@color/text_color_update_gender_female" />
 
-                    <RadioButton
-                        android:id="@+id/rbGay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginLeft="@dimen/size_10"
-                        android:background="@drawable/bg_update_gender_gay"
-                        android:button="@null"
-                        android:checked="false"
-                        android:drawableStart="@drawable/select_ic_gay_18dp"
-                        android:drawableLeft="@drawable/select_ic_gay_18dp"
-                        android:drawablePadding="@dimen/size_4"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:gravity="center"
-                        android:minWidth="@dimen/size_70"
-                        android:paddingStart="@dimen/size_8"
-                        android:paddingLeft="@dimen/size_8"
-                        android:paddingEnd="@dimen/size_12"
-                        android:paddingRight="@dimen/size_12"
-                        android:text="@string/khac"
-                        android:textColor="@color/text_color_update_gender_gay" />
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/rbGay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/size_30"
+                            android:layout_marginStart="@dimen/size_10"
+                            android:layout_marginLeft="@dimen/size_10"
+                            android:background="@drawable/bg_update_gender_gay"
+                            android:button="@null"
+                            android:checked="false"
+                            android:drawableStart="@drawable/select_ic_gay_18dp"
+                            android:drawableLeft="@drawable/select_ic_gay_18dp"
+                            android:drawablePadding="@dimen/size_4"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:gravity="center"
+                            android:minWidth="@dimen/size_70"
+                            android:paddingStart="@dimen/size_8"
+                            android:paddingLeft="@dimen/size_8"
+                            android:paddingEnd="@dimen/size_12"
+                            android:paddingRight="@dimen/size_12"
+                            android:text="@string/khac"
+                            android:textColor="@color/text_color_update_gender_gay" />
+                    </RadioGroup>
+                </HorizontalScrollView>
             </TableRow>
 
             <TableRow>
@@ -242,7 +255,6 @@
                     android:layout_marginRight="@dimen/size_12"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:ellipsize="end"
                     android:hint="Nhập họ"
                     android:inputType="textCapWords"
                     android:maxLength="30"
@@ -323,6 +335,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:hint="@string/nhap_so_dien_thoai"
+                    android:text="dfvnjsnvjndfsnvnsdnfjvnjkdsnvjknfdjsknvjk"
                     android:inputType="number" />
 
                 <LinearLayout
@@ -456,6 +469,7 @@
                     android:drawableEnd="@drawable/ic_arrow_down_blue_24px"
                     android:drawableRight="@drawable/ic_arrow_down_blue_24px"
                     android:hint="@string/tuy_chon"
+                    android:text="joẻnvjodnsvjnsjdcmksdmckdnsnmcsdkcnksdnvksdnccmksdmckds"
                     android:textColorHint="#434343" />
             </TableRow>
 
@@ -518,6 +532,7 @@
                         android:paddingTop="@dimen/size_12"
                         android:paddingBottom="@dimen/size_12"
                         android:text="@string/update_profile_gift_facebook"
+                        android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
                         android:visibility="gone" />
 
                     <androidx.appcompat.widget.AppCompatEditText
