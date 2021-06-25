@@ -15,10 +15,10 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_image_cover_in_wall"
-        app:layout_constraintDimensionRatio="H,375:139"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layoutAvatar" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/img_back"
@@ -46,7 +46,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:stretchColumns="2">
+            android:shrinkColumns="1">
 
             <TableRow
                 android:id="@id/layoutConfirmUpdate"
@@ -136,6 +136,7 @@
             <TableRow android:id="@+id/row_gender">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/gioi_tinh" />
 
@@ -218,10 +219,14 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Họ" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_first_name"
                     style="@style/text_black_barlow"
                     tools:text="Tran" />
@@ -238,10 +243,14 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="Tên" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_last_name"
                     style="@style/text_black_barlow"
                     tools:text="Van tam"
@@ -260,10 +269,14 @@
             <TableRow android:id="@+id/row_birthday">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtBirthday"
                     style="@style/text_black_barlow"
                     tools:text="24/10/2010"/>
@@ -280,10 +293,14 @@
             <TableRow android:id="@+id/row_phone">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtPhone"
                     style="@style/text_black_barlow"
                     tools:text="0989187893"/>
@@ -297,6 +314,9 @@
                 <View />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtConfirmPhone"
                     style="@style/UpdateProfile_Gift"
                     android:layout_marginBottom="@dimen/size_12"
@@ -315,10 +335,14 @@
             <TableRow android:id="@+id/row_email">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtEmail"
                     style="@style/text_black_barlow"
                     tools:text="donsogd@gmail.com"
@@ -332,6 +356,9 @@
                 <View />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtConfirmEmail"
                     style="@style/UpdateProfile_Gift"
                     android:text="@string/update_profile_gift_email" />
@@ -349,10 +376,14 @@
             <TableRow android:id="@+id/row_city">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtProvince"
                     style="@style/text_black_barlow"
                     tools:text="Ha noi" />
@@ -370,6 +401,7 @@
             <TableRow android:id="@+id/row_district">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:paddingStart="@dimen/size_12"
                     android:paddingLeft="@dimen/size_12"
@@ -378,6 +410,9 @@
                     android:text="@string/quan_huyen" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtDistrict"
                     style="@style/text_black_barlow"
                     tools:text="Thanh xuan" />
@@ -395,10 +430,14 @@
             <TableRow android:id="@+id/row_ward">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/tvWard"
                     style="@style/text_black_barlow"
                     tools:text="Cau giay" />
@@ -416,10 +455,14 @@
             <TableRow android:id="@+id/row_address">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtAddress"
                     style="@style/text_black_barlow"
                     tools:text="48 le van luong"
@@ -439,11 +482,12 @@
                 android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/danh_tinh" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
@@ -486,10 +530,14 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tai_khoan" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/id_user"
                     style="@style/text_black_barlow"
                     tools:text="IC-5u892"
@@ -498,10 +546,14 @@
             <TableRow>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/nguoi_theo_doi" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/total_follower"
                     style="@style/text_black_barlow"
                     tools:text="100.000"
