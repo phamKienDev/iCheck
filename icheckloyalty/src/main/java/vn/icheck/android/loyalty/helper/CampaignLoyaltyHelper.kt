@@ -6,8 +6,6 @@ import android.graphics.Canvas
 import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.listener.IClickListener
@@ -130,7 +128,7 @@ object CampaignLoyaltyHelper {
 
     fun checkCodeLoyalty(activity: FragmentActivity, data: ICKLoyalty, code: String, barcode: String, listener: IRemoveHolderInputLoyaltyListener?, callback: ILoginListener) {
         if (code.isEmpty()) {
-            showCustomErrorToast(activity, activity.getString(R.string.ma_du_thuong_khong_duoc_de_trong_vui_long_kiem_tra_lai))
+            showCustomErrorToast(activity, "Mã dự thưởng không được để trống\nVui lòng kiểm tra lại")
             return
         }
 
@@ -313,7 +311,7 @@ object CampaignLoyaltyHelper {
                        barcode: String? = null, code: String? = null,
                        nameCampaign: String,
                        campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-                       listener: IRemoveHolderInputLoyaltyListener? = null
+                       listener: IRemoveHolderInputLoyaltyListener?=null
     ) {
         CampaignRepository().postReceiveGift(barcode, code, campaignId, campaignCode, giftCode, object : ICApiListener<ICKResponse<ICKReceiveGift>> {
             override fun onSuccess(obj: ICKResponse<ICKReceiveGift>) = if (obj.data != null) {
@@ -396,10 +394,9 @@ object CampaignLoyaltyHelper {
             code: String? = null,
             target: String? = null,
             campaignId: String? = null, campaignCode: String? = null, giftCode: String? = null,
-            listener: IRemoveHolderInputLoyaltyListener? = null
+            listener: IRemoveHolderInputLoyaltyListener?=null
     ) {
-        CampaignRepository().postGameGift(data.id
-                ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
+        CampaignRepository().postGameGift(data.id ?: -1, target, code, campaignCode, giftCode, object : ICApiListener<ICKResponse<DataReceiveGameResp>> {
             override fun onSuccess(obj: ICKResponse<DataReceiveGameResp>) {
                 if (obj.statusCode != 200) {
                     if (!obj.data?.message.isNullOrEmpty()) {
@@ -486,7 +483,7 @@ object CampaignLoyaltyHelper {
         })
     }
 
-    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit) {
+    fun scanCheckVoucher(activity: FragmentActivity, voucher: String, success: () -> Unit, error: (error: String) -> Unit){
         if (NetworkHelper.isNotConnected(ApplicationHelper.getApplicationByReflect())) {
             error(activity.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
@@ -494,10 +491,9 @@ object CampaignLoyaltyHelper {
 
         CampaignRepository().scanVoucher(voucher, object : ICApiListener<ICKResponse<ICKScanVoucher>> {
             override fun onSuccess(obj: ICKResponse<ICKScanVoucher>) {
-                if (obj.statusCode != 200) {
-                    error(obj.message
-                            ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-                } else {
+                if (obj.statusCode != 200){
+                    error(obj.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                }else{
                     success()
                 }
             }
