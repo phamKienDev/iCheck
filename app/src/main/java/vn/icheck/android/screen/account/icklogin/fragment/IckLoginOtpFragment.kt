@@ -1,16 +1,19 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.databinding.FragmentIckOtpLoginBinding
 import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -50,12 +53,26 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             REGISTER -> {
                 TrackingAllHelper.trackSignupStart()
                 binding.textView22.text = "Đăng ký tài khoản"
-//                binding.textView25.text = "Vui lòng nhập số điện thoại của bạn để đăng ký tài khoản iCheck"
                 binding.btnBack.visibility = View.INVISIBLE
                 binding.edtPassword.visibility = View.VISIBLE
                 binding.edtRePassword.visibility = View.VISIBLE
             }
         }
+        setUpView()
+        setUpEdittext()
+        setupListener()
+
+        ickLoginViewModel.nationLiveData.observe(viewLifecycleOwner) {
+            binding.tvPhoneHead simpleText it.dialCode
+            binding.tvNation simpleText it.name
+        }
+    }
+
+    private fun setUpView() {
+        binding.tvPhoneHead.setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
+    }
+
+    private fun setUpEdittext() {
         binding.edtPhone.apply {
             setHintTextColor(ColorManager.getDisableTextColor(requireContext()))
             addTextChangedListener(object : AfterTextWatcher() {
@@ -84,6 +101,28 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                 }
             })
         }
+    }
+
+
+    private fun setupListener() {
+        binding.edtPassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
+        }
+        binding.edtPassword.setCenterView(binding.btnKeyboard)
+
+        binding.btnKeyboard.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtPassword)
+        }
+
+        binding.edtRePassword.setOnFocusChangeListener { _, _ ->
+            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
+        }
+        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
+
+        binding.btnKeyboardNew.setOnClickListener {
+            WidgetUtils.changePasswordInput(binding.edtRePassword)
+        }
+
         binding.btnContinue.setOnClickListener {
             val phone = if (binding.edtPhone.text?.length == 9) "0${binding.edtPhone.text}" else binding.edtPhone.text
             when {
@@ -106,9 +145,9 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                 if (it?.statusCode == "200") {
                                     TrackingAllHelper.trackLoginSuccess()
                                     val action = IckLoginOtpFragmentDirections
-                                            .actionIckLoginOtpFragmentToIckOtpFragment(
-                                                    it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
-                                            )
+                                        .actionIckLoginOtpFragmentToIckOtpFragment(
+                                            it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
+                                        )
                                     findNavController().navigate(action)
                                 } else {
                                     it?.message?.let { msg ->
@@ -123,9 +162,9 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                 dismissLoadingScreen()
                                 if (it?.statusCode == "200") {
                                     val action = IckLoginOtpFragmentDirections
-                                            .actionIckLoginOtpFragmentToIckOtpFragment(
-                                                    it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
-                                            )
+                                        .actionIckLoginOtpFragmentToIckOtpFragment(
+                                            it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
+                                        )
                                     findNavController().navigate(action)
                                 } else if (it?.statusCode == "U3018") {
                                     requireContext().showShortErrorToast("Đã tồn tại yêu cầu thay đổi mật khẩu")
@@ -143,11 +182,11 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                     binding.edtPassword.requestFocus()
                                 }
                                 binding.edtPassword.text?.length ?: 0 < 6 -> {
-                                    binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
+                                    binding.edtPassword.error = "Mật khẩu phải lớn hơn hoặc bằng 6 kí tự"
                                     binding.edtPassword.requestFocus()
                                 }
                                 binding.edtRePassword.text?.trim().isNullOrEmpty() -> {
-                                    binding.edtRePassword.setError("Vui lòng nhập dữ liệu")
+                                    binding.edtRePassword.error = "Vui lòng nhập dữ liệu"
                                     binding.edtRePassword.requestFocus()
                                 }
                                 binding.edtRePassword.text?.length ?: 0 < 6 -> {
@@ -158,26 +197,28 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
                                     if (binding.edtPassword.text.toString() == binding.edtRePassword.text.toString()) {
                                         showLoadingTimeOut(5000)
                                         ickLoginViewModel.password = binding.edtPassword.text.toString()
-                                        ickLoginViewModel.requestRegisterOtp(binding.edtPassword.text.toString(), binding.edtRePassword.text.toString()).observe(viewLifecycleOwner) {
-                                            dismissLoadingScreen()
-                                            if (it?.statusCode == "200") {
-                                                val action = IckLoginOtpFragmentDirections
+                                        ickLoginViewModel.requestRegisterOtp(binding.edtPassword.text.toString(), binding.edtRePassword.text.toString())
+                                            .observe(viewLifecycleOwner) {
+                                                dismissLoadingScreen()
+                                                if (it?.statusCode == "200") {
+                                                    val action = IckLoginOtpFragmentDirections
                                                         .actionIckLoginOtpFragmentToIckOtpFragment(
-                                                                it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
+                                                            it.data?.token, binding.edtPhone.text.toString(), args.loginType, null, null
                                                         )
-                                                findNavController().navigate(action)
-                                            } else {
-                                                it?.message?.let { msg ->
-                                                    requireContext().showShortErrorToast(msg)
+                                                    findNavController().navigate(action)
+                                                } else {
+                                                    it?.message?.let { msg ->
+                                                        requireContext().showShortErrorToast(msg)
+                                                    }
                                                 }
                                             }
-                                        }
                                     } else {
-//                        showError("Xác nhận mật khẩu không trùng khớp")
                                         dismissLoadingScreen()
                                         binding.edtRePassword.requestFocus()
-                                        binding.edtRePassword.setSelection(binding.edtRePassword.text?.length
-                                                ?: 0)
+                                        binding.edtRePassword.setSelection(
+                                            binding.edtRePassword.text?.length
+                                                ?: 0
+                                        )
                                         binding.edtRePassword.setError("Xác nhận mật khẩu không trùng khớp")
                                         requireActivity().forceShowKeyboard()
                                     }
@@ -195,40 +236,11 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             }
             findNavController().popBackStack()
         }
-        ickLoginViewModel.nationLiveData.observe(viewLifecycleOwner) {
-            binding.tvPhoneHead simpleText it.dialCode
-            binding.tvNation simpleText it.name
-        }
-
-        setupListener()
-    }
-
-    private fun setupListener() {
-        binding.edtPassword.setOnFocusChangeListener { _, _ ->
-            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboard, binding.edtPassword)
-        }
-        binding.edtPassword.setCenterView(binding.btnKeyboard)
-
-        binding.btnKeyboard.setOnClickListener {
-            WidgetUtils.changePasswordInput(binding.edtPassword)
-        }
-
-        binding.edtRePassword.setOnFocusChangeListener { _, _ ->
-            WidgetUtils.setButtonKeyboardMargin(binding.btnKeyboardNew, binding.edtRePassword)
-        }
-        binding.edtRePassword.setCenterView(binding.btnKeyboardNew)
-
-        binding.btnKeyboardNew.setOnClickListener {
-            WidgetUtils.changePasswordInput(binding.edtRePassword)
-        }
     }
 
     private fun validate() {
         if (args.loginType != REGISTER) {
             when {
-//                binding.edtPhone.text?.length == 10 && binding.edtPhone.text.toString().startsWith("0") -> {
-//                    enableContinue()
-//                }
                 binding.edtPhone.text?.length ?: 0 > 0 -> {
                     enableContinue()
                 }
@@ -236,13 +248,6 @@ class IckLoginOtpFragment : BaseFragmentMVVM() {
             }
         } else {
             when {
-//                binding.edtPhone.text?.length == 10 && binding.edtPhone.text.toString().startsWith("0") -> {
-//                    if (binding.edtRePassword.text?.length!! >= 6 && binding.edtPassword.text?.length!! >= 6) {
-//                        enableContinue()
-//                    } else {
-//                        disableContinue()
-//                    }
-//                }
                 binding.edtPhone.text?.length ?: 0 > 0 -> {
                     enableContinue()
                 }

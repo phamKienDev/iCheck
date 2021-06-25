@@ -82,9 +82,9 @@ class PostInteractor : BaseInteractor() {
             val list = mutableListOf<ICMedia>()
             for (item in listImage) {
                 if (item.contains(".mp4")) {
-                    list.add(ICMedia(item, "video"))
+                    list.add(ICMedia(item, type = "video"))
                 } else {
-                    list.add(ICMedia(item, "image"))
+                    list.add(ICMedia(item, type = "image"))
                 }
             }
             body.media = list
@@ -147,7 +147,7 @@ class PostInteractor : BaseInteractor() {
             queries["content"] = content.trim()
         }
         if (!image.isNullOrEmpty()) {
-            queries["media"] = listOf(ICMedia(image, if (image.contains(".mp4")) {
+            queries["media"] = listOf(ICMedia(image, type = if (image.contains(".mp4")) {
                 "video"
             } else {
                 "image"
