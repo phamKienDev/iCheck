@@ -716,6 +716,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
                 }
             } else {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME))
+                ChatSocialDetailActivity.finishAllChat()
             }
         }
 
@@ -726,6 +727,7 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
         tvGoToHome.setOnClickListener {
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
             EventBus.getDefault().post(hashMapOf("goHome" to true))
+            ChatSocialDetailActivity.finishAllChat()
         }
 
         tvShare.setOnClickListener {

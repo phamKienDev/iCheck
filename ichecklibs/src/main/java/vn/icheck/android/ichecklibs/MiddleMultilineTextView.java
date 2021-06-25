@@ -55,7 +55,12 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
         int lstrip = (int) Math.ceil(toremove / 2);
         int rstrip = toremove - lstrip;
 
-        String result = string.substring(0, midpoint - lstrip - 4) + SYMBOL + string.substring(midpoint + rstrip);
+        int subTo = midpoint - lstrip - 4;
+        if (subTo < 0){
+            subTo = 0;
+        }
+
+        String result = string.substring(0, subTo) + SYMBOL + string.substring(midpoint + rstrip);
 
         return result;
     }
