@@ -15,22 +15,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/font_6"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:includeFontPadding="false"
         android:text="@string/ban_co_thac_mac_gi_ve_san_pham_khong"
         android:textSize="@dimen/font_14" />
 
     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
         android:gravity="center"
+        android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="@string/san_pham_nay_hien_chua_co_cau_hoi_nao_hay_dat_n_cau_hoi_de_cung_thao_luan_o_day_nhe"
+        android:text="@string/san_pham_nay_chua_co_cau_hoi_nao"
         android:textSize="@dimen/font_14" />
 
     <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/btnQueston"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_36"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
