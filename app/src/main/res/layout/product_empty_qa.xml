@@ -17,6 +17,10 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semi_bold"
         android:lineSpacingExtra="@dimen/font_6"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:includeFontPadding="false"
         android:text="Bạn có thắc mắc gì về sản phẩm này không?"
         android:textColor="#212121"
         android:textSize="@dimen/font_14" />
@@ -24,18 +28,22 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
+        android:layout_marginEnd="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
+        android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Sản phẩm này hiện chưa có câu hỏi nào. Hãy đặt\ncâu hỏi để cùng thảo luận ở đây nhé!"
+        android:text="@string/san_pham_nay_chua_co_cau_hoi_nao"
         android:textColor="#757575"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnQueston"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_36"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
