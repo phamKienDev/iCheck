@@ -20,7 +20,7 @@
         android:layout_marginRight="@dimen/size_12"
         android:textAllCaps="false"
         android:layout_marginBottom="@dimen/size_20"
-        android:text="Lưu thay đổi"
+        android:text="@string/luu_thay_doi"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

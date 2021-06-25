@@ -33,7 +33,7 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:padding="@dimen/size_8"
-            android:text="Chia sẻ"
+            android:text="@string/chia_se"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -174,12 +174,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_8"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:text="Đang cập nhật"
                             android:textSize="@dimen/font_16"
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_mathecao"
                             app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -201,7 +201,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/size_32"
                             android:ellipsize="end"
-                            android:hint="Đang cập nhật"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
                             android:textSize="@dimen/font_14"
@@ -209,6 +208,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvRefuse"
                             app:layout_constraintTop_toTopOf="@id/tvRefuse"
+                            android:hint="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -236,12 +236,12 @@
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
-                            android:text="Đang cập nhật"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintBottom_toBottomOf="@id/tvTime"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvTime"
                             app:layout_constraintTop_toTopOf="@id/tvTime"
+                            android:text="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
                         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -251,7 +251,7 @@
                             android:layout_marginStart="@dimen/size_32"
                             android:layout_marginTop="@dimen/size_8"
                             android:lineSpacingExtra="@dimen/font_6"
-                            android:text="Mã thẻ cào"
+                            android:text="@string/ma_the_cao"
                             android:textSize="@dimen/font_14"
                             android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
@@ -278,7 +278,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:text="Địa chỉ đến lấy quà"
+                    android:text="@string/dia_chi_den_lay_qua"
                     android:textSize="@dimen/font_14" />
 
                 <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
@@ -342,7 +342,7 @@
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginLeft="@dimen/size_8"
                     android:lineSpacingExtra="@dimen/font_14"
-                    android:text="Đơn vị tài trợ"
+                    android:text="@string/don_vi_tai_tro"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
                     app:layout_constraintTop_toTopOf="@id/imgLogoSupplier" />
@@ -378,7 +378,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:text="Thông tin quà"
+                    android:text="@string/thong_tin_qua"
                     android:textSize="@dimen/font_14" />
 
                 <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor

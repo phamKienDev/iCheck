@@ -74,7 +74,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
         if (productRow.distance != null) {
             TextHelper.convertMtoKm(productRow.distance!!, tv_distance, "Khoảng cách: ")
         } else {
-            tv_distance.text = "Khoảng cách: " + context.getString(R.string.dang_cap_nhat)
+            tv_distance.setText(R.string.khoang_cach_dang_cap_nhat)
         }
 
         tv_score.text = String.format("%.1f", productRow.rating).replace(".", ",")
@@ -110,7 +110,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
         val listService = mutableListOf<ICServiceShopVariant>()
 
         if (productRow.isOffline == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
         if (!productRow.title.isNullOrEmpty()) {

@@ -115,7 +115,9 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
         if (intent?.getLongExtra(Constant.DATA_2, -1) != -1L) {
 
             WidgetUtils.loadImageUrl(imgAvatar, intent.getStringExtra(Constant.DATA_4), R.drawable.ic_business_v2)
-            edtContent.hint = "Hãy chia sẻ những thông tin hữu ích nào!"
+            edtContent.apply {
+                hint = context.getString(R.string.hay_chia_se_nhung_thong_tin_huu_ich_nao)
+            }
             tvType.beGone()
             imgStatus.beGone()
             tvName.text = intent.getStringExtra(Constant.DATA_3)
@@ -136,7 +138,9 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                         setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
-                edtContent.hint = "Bạn đã sử dụng sản phẩm nào? Hãy chia sẻ cảm nhận nhé!"
+                edtContent.apply {
+                    hint = context.getString(R.string.ban_da_su_dung_san_pham_nao_hay_chia_se_cam_nhan_nhe)
+                }
                 tvType.beVisible()
             }
         }
@@ -482,7 +486,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
     override fun onBackPressed() {
         if (layoutImage.childCount > 1 || edtContent.text.toString().isNotEmpty() || layoutProduct.childCount > 0) {
             if (viewModel.postDetail?.id == null) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ bài viết này?", null, "Tiếp tục chỉnh sửa", "Bỏ bài viết", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bai_viet_nay), null, getString(R.string.tiep_tuc_chinh_sua), getString(R.string.bo_bai_viet), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
 
                     }
@@ -492,7 +496,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     }
                 })
             } else {
-                DialogHelper.showConfirm(this, "Tiếp tục chỉnh sửa bài viết?", null, "Để sau", "Tiếp tục", true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.tiep_tuc_chinh_sua_bai_viet), null, getString(R.string.de_sau), getString(R.string.tiep_tuc), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         finish()
                     }
@@ -534,7 +538,7 @@ class CreateOrUpdatePostActivity : BaseActivityMVVM(), TakeMediaHelper.TakeCamer
                     if (product.status == "ok" && product.state == "active") {
                         addProduct(product)
                     } else {
-                        showShortErrorToast("Không tìm thấy sản phẩm")
+                        showShortErrorToast(getString(R.string.khong_tim_thay_san_pham))
                     }
                 }
             }

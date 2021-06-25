@@ -86,7 +86,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Xem quà của tôi"
+                android:text="@string/xem_qua_cua_toi"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>

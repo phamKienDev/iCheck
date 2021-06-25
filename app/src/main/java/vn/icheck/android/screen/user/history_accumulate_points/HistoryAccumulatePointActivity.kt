@@ -24,7 +24,7 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
     }
 
     private fun initToolbar(){
-        txtTitle.text = "Lịch sử điểm tích lũy"
+        txtTitle.setText(R.string.lich_su_diem_tich_luy)
         imgBack.setOnClickListener {
             onBackPressed()
         }
@@ -38,8 +38,8 @@ class HistoryAccumulatePointActivity : BaseActivityMVVM() {
         get() {
             val list = mutableListOf<ICFragment>()
 
-            list.add(ICFragment(ICheckApplication.getString(R.string.diem_da_nhan), HistoryPointsReceivedFragment()))
-            list.add(ICFragment(ICheckApplication.getString(R.string.diem_da_dung), HistoryPointUsedFragment()))
+            list.add(ICFragment( getString(R.string.diem_da_nhan), HistoryPointsReceivedFragment()))
+            list.add(ICFragment( getString(R.string.diem_da_dung), HistoryPointUsedFragment()))
 
             return list
         }

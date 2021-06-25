@@ -96,13 +96,13 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     ickUserWallViewModel.linkFacebook(it).observe(viewLifecycleOwner, Observer { response ->
                         if (response?.statusCode == "200") {
                             val name = intent.getStringExtra(FACEBOOK_USERNAME)
-                            binding.edtConnectFb.setText(name ?: "Đã xác thực")
+                            binding.edtConnectFb.setText(name ?: getString(R.string.da_xac_thuc))
                             binding.edtConnectFb.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
                             ickUserWallViewModel.getUserInfo().observe(viewLifecycleOwner, Observer { userInfo ->
                                 SessionManager.updateUser(userInfo?.data?.createICUser())
                             })
                         } else {
-                            requireContext().showShortErrorToast("Tài khoản facebook đã được đăng ký trên hệ thống")
+                            requireContext().showShortErrorToast(getString(R.string.tai_khoan_facebook_da_duoc_dang_ky_tren_he_thong))
                         }
                     })
 
@@ -270,7 +270,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     }
                     val d = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse("$year-$months-$days")
                     if (ickUserWallViewModel.currentDate.before(d)) {
-                        requireContext().showShortErrorToast("Ngày sinh không đúng")
+                        requireContext().showShortErrorToast(getString(R.string.ngay_sinh_khong_dung))
                     } else {
                         ickUserWallViewModel.calendar.set(year, month, day)
                         val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -301,8 +301,8 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     ickUserWallViewModel.editUserInfo[CITY_ID] = city.id
                     binding.txtProvince.text = city.name
 
-                    binding.txtDistrict.setText("Tùy chọn")
-                    binding.tvWard.setText("Tùy chọn")
+                    binding.txtDistrict.setText(R.string.tuy_chon)
+                    binding.tvWard.setText(R.string.tuy_chon)
 
                     ColorManager.getDisableTextColor(requireContext()).apply {
                         binding.txtDistrict.setTextColor(this)
@@ -327,7 +327,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                             ickUserWallViewModel.editUserInfo[DISTRICT_ID] = city.id
                             binding.txtDistrict.text = city.name
 
-                            binding.tvWard.setText("Tùy chọn")
+                            binding.tvWard.setText(R.string.tuy_chon)
                             binding.tvWard.setTextColor(ColorManager.getDisableTextColor(requireContext()))
                             binding.edtAddress.setText("")
 
@@ -349,7 +349,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     cityPicker?.show(childFragmentManager, null)
                 }
                 else -> {
-                    requireContext().showShortErrorToast("Vui lòng chọn tỉnh thành trước")
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_chon_tinh_truoc))
                 }
             }
         }
@@ -381,7 +381,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     cityPicker?.show(childFragmentManager, null)
                 }
                 else -> {
-                    requireContext().showShortErrorToast("Vui lòng chọn quận huyện trước")
+                    requireContext().showShortErrorToast(getString(R.string.vui_long_chon_quan_huyen_truoc))
                 }
             }
         }
@@ -408,7 +408,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     updateInfo()
                     return@setOnClickListener
                 } else {
-                    requireContext().showShortErrorToast("Nhập sai định dạng email!")
+                    requireContext().showShortErrorToast(getString(R.string.nhap_sai_dinh_dang_email))
 //                    binding.edtEmail.setError("Nhập sai định dạng. Thử lại!", ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null))
                     return@setOnClickListener
                 }
@@ -481,7 +481,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                     ickUserWallViewModel.getUserInfo().observe(viewLifecycleOwner, androidx.lifecycle.Observer { userInfo ->
                         SessionManager.updateUser(userInfo?.data?.createICUser())
                         InsiderHelper.setUserAttributes()
-                        requireContext() showShortSuccessToast ("Bạn đã lưu thông tin thành công")
+                        requireContext() showShortSuccessToast (getString(R.string.ban_da_luu_thong_tin_thanh_cong))
                         findNavController().popBackStack()
                     })
                 }
@@ -543,7 +543,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
         ickUserWallViewModel.userInfo?.let { user ->
             SessionManager.updateUser(user.data?.createICUser())
             if (!user.data?.linkedFbId.isNullOrEmpty()) {
-                binding.edtConnectFb.setText("Đã xác thực")
+                binding.edtConnectFb.setText(R.string.da_xac_thuc)
                 binding.edtConnectFb.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
 
             }
@@ -656,7 +656,7 @@ class EditMyInformationFragment : BaseFragmentMVVM() {
                 }
                 3 -> {
                     binding.txtConfirmedDanhtinh.setBackgroundResource(R.drawable.bg_red_20_corner_23)
-                    binding.txtConfirmedDanhtinh.setText("Lỗi xác thực")
+                    binding.txtConfirmedDanhtinh.setText(R.string.loi_xac_thuc)
                     binding.txtConfirmedDanhtinh.setTextColor(ColorManager.getAccentRedColor(requireContext()))
                     binding.txtConfirmedDanhtinh.setOnClickListener {
                         lifecycleScope.launch {

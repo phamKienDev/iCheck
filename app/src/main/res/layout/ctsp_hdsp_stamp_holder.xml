@@ -20,14 +20,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hỏi đáp về sản phẩm"
+            android:text="@string/hoi_dap_ve_san_pham"
             android:textSize="@dimen/font_18" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_xtcrv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Xem tất cả" />
+            android:text="@string/xem_tat_ca" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -181,7 +181,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                             DialogHelper.closeLoading(activity)
                         }
                         if (objNotification.isReaded == false && isShowLoading) {
-                            itemView.context.showShortSuccessToast("Bạn đã đọc thông báo này")
+                            itemView.context.showShortSuccessToast(activity.getString(R.string.ban_da_doc_thong_bao_nay))
                         }
                         objNotification.isReaded = true
                         checkRead(objNotification.isReaded == true)
@@ -258,7 +258,7 @@ class OtherNotificationHolder(parent: ViewGroup) : BaseViewHolder<ICNotification
                         DialogHelper.closeLoading(activity)
 
                         listener?.onClick(null)
-                        itemView.context.showShortSuccessToast("Xóa thông báo thành công")
+                        itemView.context.showShortSuccessToast(activity.getString(R.string.xoa_thong_bao_thanh_cong))
                     }
 
                     override fun onError(error: ICResponseCode?) {

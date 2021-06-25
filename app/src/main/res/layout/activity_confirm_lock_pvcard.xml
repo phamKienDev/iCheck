@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Xác nhận khóa thẻ"
+            android:text="@string/xac_nhan_khoa_the"
             android:textSize="@dimen/font_18" />
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_40"
             android:gravity="center_horizontal"
-            android:text="Nhập mã pin của thẻ"
+            android:text="@string/nhap_ma_pin_cua_the"
             android:textSize="@dimen/font_20" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +84,7 @@
                 android:background="@drawable/bg_corner_gray_topup_4"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="Xác nhận" />
+                android:text="@string/xac_nhan" />
 
         </LinearLayout>
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

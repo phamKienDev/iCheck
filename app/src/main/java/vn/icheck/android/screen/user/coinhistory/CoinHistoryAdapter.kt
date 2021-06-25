@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_header_coin_history.view.*
 import kotlinx.android.synthetic.main.item_history_transaction_pv_combank.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
@@ -16,12 +17,14 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICCoinHistory
 import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
+import vn.icheck.android.ichecklibs.util.setText
 
 class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData = mutableListOf<ICCoinHistory?>()
@@ -59,9 +62,9 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
         listData.add(null)
         if (filter) {
-            listData.add(ICCoinHistory(-1L, 0, "Bộ lọc đã chọn"))
+            listData.add(ICCoinHistory(-1L, 0, getString(R.string.bo_loc_da_chon)))
         } else {
-            listData.add(ICCoinHistory(-1L, 0, "Lịch sử giao dịch"))
+            listData.add(ICCoinHistory(-1L, 0, getString(R.string.lich_su_giao_dich)))
         }
 
         listData.addAll(list)
@@ -101,7 +104,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
                 break
             }
         }
-        setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", null, -1)
+        setError(R.drawable.ic_group_120dp, getString(R.string.chua_co_lich_su_giao_dich), null, -1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -185,7 +188,7 @@ class CoinHistoryAdapter(val callback: ICoinHistoryView) : RecyclerView.Adapter<
 
     inner class HeaderCoinHolder(parent: ViewGroup) : BaseViewHolder<String>(LayoutInflater.from(parent.context).inflate(R.layout.item_header_coin_history, parent, false)) {
         override fun bind(obj: String) {
-            itemView.tvCoin.text = "${TextHelper.formatMoneyPhay(SessionManager.getCoin())} Xu"
+            itemView.tvCoin.setText(R.string.s_xu, TextHelper.formatMoneyPhay(SessionManager.getCoin()))
         }
     }
 

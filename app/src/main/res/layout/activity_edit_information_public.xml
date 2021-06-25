@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20"
-            android:text="Thông tin cá nhân của bạn chưa được cập nhật"
+            android:text="@string/thong_tin_ca_nhan_cua_ban_chua_duoc_cap_nhat"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -63,7 +63,7 @@
             android:layout_marginEnd="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Cập nhật thông tin cá nhân"
+            android:text="@string/cap_nhat_thong_tin_ca_nhan"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16" />
 
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Thông tin công khai là những thông tin cá nhân bạn cho phép người khác nhìn thấy trên trang cá nhân của mình."
+            android:text="@string/thong_tin_cong_khai"
             android:textSize="@dimen/font_14" />
 
         <androidx.recyclerview.widget.RecyclerView

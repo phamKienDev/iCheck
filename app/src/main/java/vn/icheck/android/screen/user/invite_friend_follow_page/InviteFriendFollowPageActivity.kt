@@ -110,10 +110,10 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
             } else {
                 if (isFirst) {
                     edtSearch.beGone()
-                    adapter.setEmpity(R.drawable.img_user_not_friend, "Danh sách bạn bè trống ", "Kết bạn để cùng chia sẻ những thông tin hữu ích về sản phẩm chính hãng nhé!")
+                    adapter.setEmpity(R.drawable.img_user_not_friend, getString(R.string.danh_sach_ban_be_trong), getString(R.string.ket_ban_de_cung_chia_se_nhung_thong_tin_huu_ich_ve_san_pham_chinh_hang_nhe))
                 } else {
                     edtSearch.beVisible()
-                    adapter.setEmpity(R.drawable.ic_search_90dp, null, "Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn")
+                    adapter.setEmpity(R.drawable.ic_search_90dp, null, getString(R.string.khong_ket_qua_tim_kiem))
                 }
                 view46.beGone()
                 tvInvite.beGone()
@@ -140,7 +140,7 @@ class InviteFriendFollowPageActivity : BaseActivityMVVM(), InviteFriendFollowPag
         })
 
         viewModel.onInvitationSuccess.observe(this, {
-            DialogHelper.showDialogSuccessBlack(this, "Bạn đã gửi lời mời thành công")
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_gui_loi_moi_thanh_cong))
             Handler().postDelayed({
                 finish()
             }, 1800)

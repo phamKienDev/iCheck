@@ -12,6 +12,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.network.models.detail_stamp_v6.ICObjectOtherProductV6
 import vn.icheck.android.screen.user.detail_stamp_v6.more_business_v6.view.IMoreBusinessV6View
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MoreProductVerifiedInBusinessV6Adapter(val view: IMoreBusinessV6View) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -107,7 +108,7 @@ class MoreProductVerifiedInBusinessV6Adapter(val view: IMoreBusinessV6View) : Re
 
             if (obj.price != null) {
                 itemView.tvPrice.visibility = View.VISIBLE
-                itemView.tvPrice.text = TextHelper.formatMoneyPhay(obj.price) + "đ"
+                itemView.tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(obj.price))
             }
         }
     }

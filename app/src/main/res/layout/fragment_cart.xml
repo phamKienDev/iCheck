@@ -112,7 +112,7 @@
         android:layout_marginBottom="@dimen/size_20"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Nhập địa chỉ nhận hàng"
+        android:text="@string/nhap_dia_chi_nhan_hang"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_16"
@@ -154,7 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn chưa có sản phẩm nào trong giỏ hàng" />
+            android:text="@string/ban_chua_co_san_pham_nao_trong_gio_hang" />
     </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
 
 </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

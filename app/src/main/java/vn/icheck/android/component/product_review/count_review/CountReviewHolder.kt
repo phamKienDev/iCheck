@@ -18,15 +18,14 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.user.list_product_review.ListProductReviewActivity
+import vn.icheck.android.ichecklibs.util.setText
 
 class CountReviewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(creatView(parent.context)) {
 
     fun bind(obj: CountReviewModel, show: Boolean) {
         //show = true: hiện textview xem tất cả
         (itemView as ViewGroup).run {
-            (getChildAt(0) as AppCompatTextView).run {
-                text = String.format(itemView.context.getString(R.string.danh_gia_san_pham_x), obj.count)
-            }
+            (getChildAt(0) as AppCompatTextView).setText(R.string.danh_gia_san_pham_d, obj.count)
 
             (getChildAt(1) as AppCompatTextView).run {
                 setOnClickListener {

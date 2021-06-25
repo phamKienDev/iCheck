@@ -4,10 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
@@ -74,7 +72,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
+        val span = SpannableString(getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -167,7 +165,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    btnResend.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    btnResend.text = getString(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }
@@ -175,7 +173,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
 
             override fun onFinish() {
                 btnResend.setTextColor(ColorManager.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
-                btnResend.text = "Gửi lại mã"
+                btnResend.text = getString(R.string.gui_lai_ma)
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)
                     btnResend.setTextColor(ColorManager.getSecondTextColor(this@ConfirmUnlockPVCardActivity))

@@ -19,6 +19,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
 import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -108,7 +109,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                                 it.setMargins(0, 0, 0, 0)
                             }
-                            setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.chua_co_danh_gia_i)))
+                            text = Html.fromHtml(getString(R.string.chua_co_danh_gia_i))
                             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
                             setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
                         }

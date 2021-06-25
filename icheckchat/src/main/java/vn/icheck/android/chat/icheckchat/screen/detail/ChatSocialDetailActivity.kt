@@ -62,6 +62,8 @@ import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.icheckscanditv6.IcheckScanActivity
 import java.io.File
 import java.util.regex.Pattern
@@ -378,8 +380,12 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                             if (obj.child("is_block").child("from_id").value != null && obj.child("is_block").child("from_id").value.toString().contains(FirebaseAuth.getInstance().uid.toString())) {
                                 binding.layoutBlock.setVisible()
                                 setGoneView(binding.layoutChat, binding.layoutUserBlock)
-
-                                binding.tvTitle.text = "Bạn đã chặn tin nhắn của ${conversation?.targetUserName}"
+                                conversation?.targetUserName?.let {
+                                    binding.tvTitle.setText(
+                                        R.string.ban_da_chan_tin_nhan_cua_s,
+                                        it
+                                    )
+                                }
 
                                 binding.btnUnBlock.setOnClickListener {
                                     this@ChatSocialDetailActivity.showConfirm(getString(R.string.bo_chan_tin_nhan), getString(R.string.message_unblock), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
@@ -398,7 +404,7 @@ class ChatSocialDetailActivity : BaseActivityChat<ActivityChatSocialDetailBindin
                                 checkKeyboard()
                                 setGoneView(binding.layoutChat, binding.layoutBlock)
                                 binding.layoutUserBlock.setVisible()
-                                binding.tvUserTitle.text = "Bạn đã bị ${conversation?.targetUserName} chặn tin nhắn"
+                                binding.tvUserTitle.setText(R.string.ban_da_bi_s_chan_tin_nhan, conversation?.targetUserName?:"")
                             }
                         } else {
                             setGoneView(binding.layoutUserBlock, binding.layoutBlock)

@@ -45,7 +45,7 @@ class SelectProvinceStampActivity : BaseActivityMVVM(), SelectProvinceStampView 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
         if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select City"
+            txtTitle.setText(R.string.select_city)
         } else {
             txtTitle.setText(R.string.chon_tinh_thanh_pho)
         }

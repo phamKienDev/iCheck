@@ -67,7 +67,7 @@
         android:drawableStart="@drawable/ic_alternate_16_px"
         android:drawablePadding="@dimen/size_4"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Chỉ đường"
+        android:text="@string/chi_duong"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@+id/tvCountReview"
         app:layout_constraintEnd_toEndOf="parent"

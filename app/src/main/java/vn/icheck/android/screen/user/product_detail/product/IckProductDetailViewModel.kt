@@ -41,6 +41,7 @@ import vn.icheck.android.component.product_review.submit_review.SubmitReviewMode
 import vn.icheck.android.component.shopvariant.product_detail.ShopProductModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.category.CategoryAttributesItem
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.ads.AdsRepository
@@ -143,7 +144,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
     fun getProductLayout(isUpdate: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorRequest.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            errorRequest.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -175,9 +176,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
                 override fun onError(error: ICResponseCode?) {
                     if (error?.message.isNullOrEmpty()) {
-                        error?.message = ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
+                        error?.message =  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
                     }
-                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?:  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
                 }
             })
         } else {
@@ -188,9 +189,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
                 override fun onError(error: ICResponseCode?) {
                     if (error?.message.isNullOrEmpty()) {
-                        error?.message = ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
+                        error?.message =  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
                     }
-                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                    errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message ?:  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
                 }
             })
         }
@@ -204,10 +205,10 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 if (error?.message.isNullOrEmpty()) {
-                    error?.message = ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
+                    error?.message =  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)
                 }
                 errorRequest.postValue(ICError(R.drawable.ic_error_request, error?.message
-                        ?: ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+                        ?:  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
             }
         })
     }
@@ -278,7 +279,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         }
 
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -293,7 +294,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -304,7 +305,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         }
 
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -319,7 +320,7 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -1027,7 +1028,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (!listData.isNullOrEmpty()) {
             val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", owner?.id.toString())
             val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-            layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, "Sản phẩm cùng doanh nghiệp sở hữu", listData)
+            layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params,  getString(R.string.san_pham_cung_doanh_nghiep_so_huu), listData)
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -1039,7 +1040,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                         val params = hashMapOf<String, Any>().apply {
                             put("empty_product", 0)
                         }
-                        layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params, "Sản phẩm cùng doanh nghiệp sở hữu", obj.data?.rows!!)
+                        layout.data = RelatedProductModel(ICViewTypes.OWNER_PRODUCT_TYPE, url, params,  getString(R.string.san_pham_cung_doanh_nghiep_so_huu), obj.data?.rows!!)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
@@ -1060,7 +1061,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         if (!listData.isNullOrEmpty()) {
             val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", productID.toString())
             val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-            layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, "Sản phẩm liên quan", listData)
+            layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params,  getString(R.string.san_pham_lien_quan), listData)
             onAddLayout.value = layout
         } else if (!layout.request.url.isNullOrEmpty()) {
             onAddLayout.value = layout
@@ -1070,7 +1071,7 @@ class IckProductDetailViewModel : BaseViewModel() {
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         val url = APIConstants.socialHost + APIConstants.Product.GET_RELATED_PRODUCT_SOCIAL.replace("{id}", productID.toString())
                         val params = hashMapOf<String, Any>().apply { put("empty_product", 0) }
-                        layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params, "Sản phẩm liên quan", obj.data?.rows!!)
+                        layout.data = RelatedProductModel(ICViewTypes.RELATED_PRODUCT_TYPE, url, params,  getString(R.string.san_pham_lien_quan), obj.data?.rows!!)
                         onUpdateLayout.value = layout
                     } else {
                         checkTotalError(layout)
@@ -1199,7 +1200,7 @@ class IckProductDetailViewModel : BaseViewModel() {
         totalError++
 
         if (totalError == totalRequest) {
-            errorRequest.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
+            errorRequest.postValue(ICError(R.drawable.ic_error_request,  getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai)))
         }
     }
 
@@ -1214,14 +1215,14 @@ class IckProductDetailViewModel : BaseViewModel() {
         productRepository.postTransparency(yesOrno, productId, object : ICNewApiListener<ICResponse<ICTransparency>> {
             override fun onSuccess(obj: ICResponse<ICTransparency>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.data != null) {
-                    onPostTransparency.postValue(obj.data!!)
+                obj.data?.let {
+                    onPostTransparency.postValue(it)
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorMessage.postValue(error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue(error?.message ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -1234,7 +1235,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
     fun getProductShareLink(id: Long) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
-            errorMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -1244,23 +1245,25 @@ class IckProductDetailViewModel : BaseViewModel() {
             override fun onSuccess(obj: ICResponse<String>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data.isNullOrEmpty()) {
-                    onShareLinkProduct.postValue(obj.data!!)
+                    obj.data?.let {
+                        onShareLinkProduct.postValue(it)
+                    }
                 } else {
-                    errorMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    errorMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 errorMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
 
     fun getProductShareLink(objPost: ICPost? = null) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance().applicationContext)) {
-            errorMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -1281,7 +1284,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorMessage.postValue(error?.message ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue(error?.message ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -1293,7 +1296,9 @@ class IckProductDetailViewModel : BaseViewModel() {
 
         postInteractor.getPostDetail(postId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
-                onDetailPost.postValue(obj.data!!)
+                obj.data?.let {
+                    onDetailPost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -1316,8 +1321,8 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             productRepository.getMyReview(url, pageId, object : ICNewApiListener<ICResponse<ICProductMyReview>> {
                 override fun onSuccess(obj: ICResponse<ICProductMyReview>) {
-                    if (obj.data != null) {
-                        onMyReviewData.postValue(obj.data!!)
+                    obj.data?.let {
+                        onMyReviewData.postValue(it)
                     }
                 }
 
@@ -1330,7 +1335,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
     fun registerBuyProduct() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorMessage.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorMessage.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -1343,7 +1348,7 @@ class IckProductDetailViewModel : BaseViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 errorMessage.postValue(if (error?.message.isNullOrEmpty()) {
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                     getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 } else {
                     error?.message
                 })

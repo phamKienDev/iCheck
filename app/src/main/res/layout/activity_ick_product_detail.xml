@@ -192,7 +192,7 @@
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
+                android:text="@string/lien_he_icheck"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -204,7 +204,7 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Đóng góp thông tin"
+                android:text="@string/dong_gop_thong_tin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
@@ -217,7 +217,7 @@
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_38"
             android:gravity="center"
-            android:text="Liên hệ iCheck"
+            android:text="@string/lien_he_icheck"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
@@ -238,7 +238,7 @@
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
+                android:text="@string/lien_he_icheck"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView

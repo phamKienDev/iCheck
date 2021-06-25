@@ -64,7 +64,9 @@ class BottomReviewsAdapter(val data: List<ProductReviewsBottomDialog.BottomChild
 
         fun bind(progressBottom: ProductReviewsBottomDialog.ProgressBottom) {
             itemView.tv_title.text = progressBottom.name
-            itemView.tv_score.text = String.format("%.1f", progressBottom.point?.times(2))
+            itemView.tv_score.apply {
+                text = context.getString(R.string.format_1_f, progressBottom.point?.times(2))
+            }
             progressBottom.point?.let {
                 itemView.tv_progress.progress = (it * 20).toInt()
             }

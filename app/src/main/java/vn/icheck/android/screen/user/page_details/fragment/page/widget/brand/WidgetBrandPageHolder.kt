@@ -36,10 +36,10 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
             (getChildAt(0) as AppCompatTextView).run {
                 when (type) {
                     Constant.PAGE_BRAND_TYPE -> {
-                        text = "Các nhãn hàng"
+                        text = context.getString(R.string.cac_nhan_hang)
                     }
                     Constant.PAGE_EXPERT_TYPE -> {
-                        text = "Đại sứ thương hiệu"
+                        text = context.getString(R.string.dai_su_thuong_hieu)
                     }
                 }
             }
@@ -81,7 +81,7 @@ class WidgetBrandPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createV
                         text.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         text.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context))
                         text.includeFontPadding = false
-                        text.text = "Các nhãn hàng"
+                        text.setText(R.string.cac_nhan_hang)
                         text.setPadding(0, 0, 0, 0)
                     })
 

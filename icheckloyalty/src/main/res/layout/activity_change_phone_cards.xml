@@ -22,7 +22,7 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Để nhận quà này, bạn vui lòng nhập\nsố điện thoại và chọn nhà mạng để nhận thẻ cào."
+        android:text="@string/de_nhan_qua_nay_ban_vui_long_nhap_so_dien_thoai_va_chon_nha_mang_de_nhan_the_cao"
         android:textColor="@color/darkGray1"
         android:textSize="14sp" />
 

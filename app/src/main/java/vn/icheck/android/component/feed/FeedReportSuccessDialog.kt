@@ -77,7 +77,7 @@ class FeedReportSuccessDialog(val context: Context) : BaseBottomSheetDialog(cont
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
                     ColorManager.getSecondTextColor(context),
                     14f).also {
-                it.setText(R.string.noi_dung_bao_cao)
+                it.setText(R.string.noi_dung_bao_cao_colon)
             })
 
             layoutParent.addView(RecyclerView(context).also { recyclerView ->

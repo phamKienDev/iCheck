@@ -83,7 +83,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     private fun initData() {
         viewModel.onSetTransaction.observe(this, Observer {
             if (it.isNullOrEmpty()) {
-                transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
+                transactionAdapter.setError(R.drawable.ic_group_120dp, getString(R.string.chua_co_lich_su_giao_dich), -1)
             } else {
                 transactionAdapter.setListData(it)
             }
@@ -96,7 +96,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         viewModel.onError.observe(this, Observer {
             if (cardAdapter.isEmpty && transactionAdapter.isEmpty) {
-                transactionAdapter.setError(R.drawable.ic_group_120dp, "Chưa có lịch sử giao dịch", -1)
+                transactionAdapter.setError(R.drawable.ic_group_120dp, getString(R.string.chua_co_lich_su_giao_dich), -1)
             } else {
                 showShortError(it.message ?: "")
             }
@@ -123,7 +123,7 @@ class HistoryPVCardActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                 }
                 Status.ERROR_NETWORK -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 }
                 Status.ERROR_REQUEST -> {
                     viewModel.statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)

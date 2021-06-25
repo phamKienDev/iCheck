@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_12"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Số điện thoại"
+                android:text="@string/so_dien_thoai"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
@@ -74,7 +74,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:drawableEnd="@drawable/ic_phonebook_24dp"
                 android:layout_marginEnd="@dimen/size_12"
-                android:hint="Bắt buộc"
+                android:hint="@string/bat_buoc"
                 android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_12"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Họ của bạn"
+                android:text="@string/ho_cua_ban"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
@@ -115,7 +115,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:hint="Bắt buộc"
+                android:hint="@string/bat_buoc"
                 android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_12"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Tên đệm của bạn"
+                android:text="@string/ten_dem_cua_ban"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
@@ -155,7 +155,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:hint="Không bắt buộc"
+                android:hint="@string/khong_bat_buoc"
                 android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_12"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Tên của bạn"
+                android:text="@string/ten_cua_ban"
                 android:layout_marginTop="@dimen/size_16"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12" />
@@ -195,7 +195,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:hint="Bắt buộc"
+                android:hint="@string/bat_buoc"
                 android:textSize="@dimen/font_14"
                 android:gravity="center|start"
                 android:fontFamily="@font/barlow_medium"
@@ -225,7 +225,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Email"
+                android:text="@string/email"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
@@ -236,7 +236,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
                 android:gravity="start|center"
-                android:hint="Không bắt buộc"
+                android:hint="@string/khong_bat_buoc"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
@@ -265,7 +265,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Địa chỉ"
+                android:text="@string/dia_chi"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
@@ -276,7 +276,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
                 android:gravity="start|center"
-                android:hint="Không bắt buộc"
+                android:hint="@string/khong_bat_buoc"
                 android:fontFamily="@font/barlow_medium"
                 android:paddingStart="@dimen/size_10"
                 android:paddingEnd="@dimen/size_10"
@@ -305,7 +305,7 @@
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_16"
                 android:lineSpacingExtra="@dimen/font_14"
-                android:text="Ghi chú"
+                android:text="@string/ghi_chu"
                 android:textSize="@dimen/font_12" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
@@ -315,7 +315,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
-                android:hint="Không bắt buộc"
+                android:hint="@string/khong_bat_buoc"
                 android:gravity="start|center"
                 android:paddingStart="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"

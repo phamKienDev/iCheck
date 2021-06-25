@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_close_blue_14" />
+                app:srcCompat="@drawable/ic_close_blue_14" />
         </LinearLayout>
 
         <View

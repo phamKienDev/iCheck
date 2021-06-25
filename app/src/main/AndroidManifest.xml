@@ -174,7 +174,7 @@
         <activity android:name=".screen.user.list_trending_products.ListTrendingProductsActivity" />
         <activity
             android:name=".screen.user.shipping.ship.ShipActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -329,7 +329,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.share_post_of_page.SharePostActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -720,7 +719,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.recharge_phone.RechargePhoneActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -814,7 +812,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.listproduct.ListProductActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -840,7 +837,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.home.HomeActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.OverStatusBar"

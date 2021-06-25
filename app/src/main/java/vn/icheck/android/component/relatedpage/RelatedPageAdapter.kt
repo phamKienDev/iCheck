@@ -3,7 +3,6 @@ package vn.icheck.android.component.relatedpage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_city.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
@@ -14,8 +13,7 @@ import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -51,7 +49,7 @@ class RelatedPageAdapter() : RecyclerView.Adapter<RelatedPageAdapter.ViewHolder>
             }
 
             if (obj.followCount > 0) {
-                binding.tvFollowCount.text = TextHelper.formatMoneyPhay(obj.followCount) + " Người theo dõi"
+                binding.tvFollowCount.setText(R.string.d_nguoi_theo_doi, obj.followCount)
             }
 
             binding.tvAction.apply {

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:text="Sản phẩm nổi bật"
+        android:text="@string/san_pham_noi_bat"
         android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:fontFamily="@font/barlow_medium"
-        android:text="Xem tất cả"
+        android:text="@string/xem_tat_ca"
         app:layout_constraintBottom_toBottomOf="@+id/textView53"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView53" />

@@ -70,16 +70,16 @@
                             android:textSize="@dimen/font_18"
                             tools:text="Trang của tôi (12)" />
 
-                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
-                            android:id="@+id/tvOwnerAll"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/size_12"
-                            android:text="@string/xem_tat_ca"
-                            android:textSize="@dimen/font_14"
-                            app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+                        android:id="@+id/tvOwnerAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_12"
+                        android:text="@string/xem_tat_ca"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView

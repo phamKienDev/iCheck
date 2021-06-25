@@ -276,7 +276,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
             swipeLayout.isRefreshing = false
 
             if (it.isNullOrEmpty())
-                questionAdapter.setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+                questionAdapter.setError(R.drawable.ic_empty_questions, getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
             else
                 questionAdapter.setListData(it)
         })
@@ -428,9 +428,9 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     override fun onAnswer(obj: ICProductQuestion) {
         tvActor.visibility = View.VISIBLE
         tvActor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, if (obj.page == null) {
-            obj.user!!.getName
+            obj.user?.getName?:""
         } else {
-            obj.page!!.getName
+            obj.page?.getName?:""
         }),this))
         tvActor.tag = if (obj.parentID == null) obj.id else obj.parentID
 
@@ -445,7 +445,7 @@ class ListProductQuestionActivity : BaseActivityMVVM(), IListProductQuestionView
     }
 
     override fun onDelete(obj: ICProductQuestion) {
-        DialogHelper.showConfirm(this@ListProductQuestionActivity, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@ListProductQuestionActivity, getString(R.string.ban_chac_chan_muon_xoa_binh_luan_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
             override fun onDisagree() {
 
             }

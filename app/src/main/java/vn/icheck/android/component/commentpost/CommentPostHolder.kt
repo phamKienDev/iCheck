@@ -172,7 +172,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 }
 
                 override fun onDelete() {
-                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(dialog.context, dialog.context.getString(R.string.ban_chac_chan_muon_xoa_binh_luan_nay), null, dialog.context.getString(R.string.de_sau), dialog.context.getString(R.string.dong_y), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }

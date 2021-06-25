@@ -44,7 +44,7 @@ class CollectionListProductVerticalHolder(parent: ViewGroup) : BaseViewHolder<IC
                             ICheckApplication.currentActivity()?.let { activity ->
                                 val url = APIConstants.defaultHost + APIConstants.Product.LIST
                                 val params = hashMapOf<String, Any>()
-                                params.put("collection_id", id)
+                                params["collection_id"] = id
 
                                 TrackingAllHelper.trackCategoryViewed(obj.collection?.name, (it as AppCompatTextView).text.toString())
                                 ListProductActivity.start(activity, url, params, obj.collection?.name)

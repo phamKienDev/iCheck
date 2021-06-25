@@ -34,9 +34,9 @@ class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProduc
 
     fun onInitView() {
         if (StampDetailActivity.isVietNamLanguage == false){
-            txtTitle.text = "Information"
+            txtTitle.setText(R.string.information)
         } else {
-            txtTitle.text = "Thông tin"
+            txtTitle.setText(R.string.thong_tin)
         }
 
         presenter.getDataIntent(intent)
@@ -60,7 +60,7 @@ class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProduc
             Constant.ERROR_INTERNET -> {
                 imgError.setImageResource(R.drawable.ic_error_network)
                 if (StampDetailActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Checking network. Please try again"
+                    tvMessageError.setText(R.string.checking_network_please_try_again)
                 } else {
                     tvMessageError.text = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
@@ -68,7 +68,7 @@ class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProduc
             Constant.ERROR_UNKNOW -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
                 if (StampDetailActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Occurred. Please try again"
+                    tvMessageError.setText(R.string.occurred_please_try_again)
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
@@ -76,7 +76,7 @@ class MoreInformationProductActivity : BaseActivityMVVM(),IMoreInformationProduc
             Constant.ERROR_EMPTY -> {
                 imgError.setImageResource(R.drawable.ic_error_request)
                 if (StampDetailActivity.isVietNamLanguage == false) {
-                    tvMessageError.text = "Occurred. Please try again"
+                    tvMessageError.setText(R.string.occurred_please_try_again)
                 } else {
                     tvMessageError.text = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

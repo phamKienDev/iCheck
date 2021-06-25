@@ -909,7 +909,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 }
             }
             R.id.tv_logout -> {
-                object : ConfirmDialog(this@HomeActivity, "Đăng xuất", "Bạn muốn thoát tài khoản này?", "Để Sau", "Đồng ý", true) {
+                object : ConfirmDialog(this@HomeActivity, getString(R.string.dang_xuat), getString(R.string.ban_muon_thoat_tai_khoan_nay), getString(R.string.de_sau), getString(R.string.dong_y), true) {
                     override fun onDisagree() {
                     }
 
@@ -942,7 +942,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Hướng dẫn sử dụng")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.huong_dan_su_dung))
                     }
                 })
             }
@@ -953,7 +953,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                     }
                 })
             }
@@ -964,7 +964,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     }
 
                     override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, "Câu hỏi thường gặp")
+                        WebViewActivity.start(this@HomeActivity, list?.firstOrNull()?.value, null, getString(R.string.cau_hoi_thuong_gap))
                     }
                 })
             }

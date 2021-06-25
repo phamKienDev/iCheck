@@ -214,24 +214,15 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
         tvExtra.setOnClickListener {
             val phone = viewModel.pageDetail?.phone ?: ""
             if (phone.isNotEmpty()) {
-                DialogHelper.showConfirm(
-                    this,
-                    ViewHelper.setPrimaryHtmlString(applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_x, Constant.formatPhone(phone)),this),
-                    null,
-                    "Để sau",
-                    "Đồng ý",
-                    null,
-                    null,
-                    true,
-                    object : ConfirmDialogListener {
-                        override fun onDisagree() {
+                DialogHelper.showConfirm(this, ViewHelper.setPrimaryHtmlString(applicationContext.getString(R.string.ban_co_muon_goi_dien_thoai_den_s, Constant.formatPhone(phone)),this), null, "Để sau", "Đồng ý", null, null, true, object : ConfirmDialogListener {
+                    override fun onDisagree() {
 
-                        }
+                    }
 
-                        override fun onAgree() {
-                            phone.startCallPhone()
-                        }
-                    })
+                    override fun onAgree() {
+                        phone.startCallPhone()
+                    }
+                })
             } else {
                 DialogHelper.showDialogErrorBlack(this, this.getString(R.string.sdt_dang_cap_nhat))
             }
@@ -284,20 +275,13 @@ class PageDetailActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun unfollowAndFollowPage(data: ICPageOverview) {
         if (data.id != null) {
             if (viewModel.isFollowPage) {
-                DialogHelper.showConfirm(
-                    this@PageDetailActivity,
-                    getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay),
-                    null,
-                    getString(R.string.de_sau),
-                    getString(R.string.dong_y),
-                    true,
-                    object : ConfirmDialogListener {
-                        override fun onDisagree() {}
+                DialogHelper.showConfirm(this@PageDetailActivity, getString(R.string.ban_chac_chan_bo_theo_doi_trang_nay), null, getString(R.string.de_sau), getString(R.string.dong_y), true, object : ConfirmDialogListener {
+                    override fun onDisagree() {}
 
-                        override fun onAgree() {
-                            viewModel.unFollowPage(data.id)
-                        }
-                    })
+                    override fun onAgree() {
+                        viewModel.unFollowPage(data.id)
+                    }
+                })
             } else {
                 viewModel.followPage(data.id)
             }

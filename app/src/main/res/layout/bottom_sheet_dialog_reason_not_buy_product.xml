@@ -28,7 +28,7 @@
             android:drawableStart="@drawable/ic_warning_white_40px"
             android:drawablePadding="@dimen/size_14"
             android:gravity="start|center"
-            android:text="Tiếc quá,\nBạn không thể mua hàng tại nhà sản xuất!"
+            android:text="@string/tiec_qua_n_ban_khong_the_mua_hang_tai_nha_san_xuat"
             android:textColor="@color/white"
             android:textSize="@dimen/font_14" />
 

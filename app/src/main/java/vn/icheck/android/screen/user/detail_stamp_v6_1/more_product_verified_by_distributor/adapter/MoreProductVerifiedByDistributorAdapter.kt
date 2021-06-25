@@ -14,6 +14,8 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectListMoreProductVerified
 import vn.icheck.android.screen.user.detail_stamp_v6_1.more_product_verified_by_distributor.view.IMoreProductVerifiedByDistributorView
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class MoreProductVerifiedByDistributorAdapter(val viewCallback: IMoreProductVerifiedByDistributorView, val vietNamLanguage: Boolean?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -151,7 +153,7 @@ class MoreProductVerifiedByDistributorAdapter(val viewCallback: IMoreProductVeri
                 item.name
             } else {
                 if (vietNamLanguage == false){
-                    "updating"
+                    itemView.context.getString(R.string.updating)
                 } else {
                     itemView.context.getString(R.string.dang_cap_nhat)
                 }

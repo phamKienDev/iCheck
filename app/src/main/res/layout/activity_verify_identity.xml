@@ -42,8 +42,7 @@
                 android:drawablePadding="@dimen/size_10"
                 android:fontFamily="@font/barlow_medium"
                 android:padding="@dimen/size_4"
-                android:text="Có lỗi trong việc xác thực danh tính của bạn.
-\nVui lòng kiểm tra kỹ lại thông tin và ảnh chụp giấy tờ chính chủ. Cảm ơn!"
+                android:text="@string/co_loi_trong_viec_xac_thuc_danh_tinh_cua_ban_n_vui_long_kiem_tra_ky_lai_thong_tin_va_anh_chup_giay_to_chinh_chu_cam_on"
                 android:textColor="@color/white"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +58,7 @@
                 android:layout_marginEnd="@dimen/size_62"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Xác thực danh tính để bảo vệ tài khoản và nhận Dấu Tích Xanh từ iCheck."
+                android:text="@string/xac_thuc_danh_tinh_de_bao_ve_tai_khoan_va_nhan_dau_tich_xanh_tu_icheck"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorVerify" />
@@ -75,7 +74,7 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="Dấu Tích Xanh là gì?"
+                android:text="@string/dau_tich_xanh_la_gi"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

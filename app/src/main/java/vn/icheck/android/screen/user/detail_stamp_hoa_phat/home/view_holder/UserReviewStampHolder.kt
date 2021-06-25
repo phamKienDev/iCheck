@@ -17,6 +17,8 @@ import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.EditRevi
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class UserReviewStampHolder(parent: ViewGroup, val headerImagelistener: SlideHeaderStampHoaPhatListener) :
     BaseViewHolder<ICCriteria>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_customer_rv_holder, parent, false)) {
@@ -27,7 +29,12 @@ class UserReviewStampHolder(parent: ViewGroup, val headerImagelistener: SlideHea
     override fun bind(obj: ICCriteria) {
         listCriteriaChild.clear()
         listImg.clear()
-        itemView.tv_your_score.text = String.format("%.1f tuyệt vời", obj.customerEvaluation?.averagePoint!! * 2)
+        obj.customerEvaluation?.averagePoint?.let {
+            itemView.tv_your_score.setText(
+                R.string.x_tuyet_voi,
+                it * 2
+            )
+        }
         itemView.customer_rating.rating = obj.customerEvaluation?.averagePoint!!
         if (obj.customerEvaluation?.imageThumbs!!.isNotEmpty()) {
             for (i in obj.customerEvaluation?.imageThumbs!!.indices) {

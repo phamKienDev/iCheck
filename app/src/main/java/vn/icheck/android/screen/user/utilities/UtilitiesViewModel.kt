@@ -7,6 +7,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -25,7 +26,7 @@ class UtilitiesViewModel : ViewModel() {
 
     fun getAllUtility(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -48,16 +49,18 @@ class UtilitiesViewModel : ViewModel() {
                     }
                 }
 
-                if (isLoadMore)
-                    onAddData.postValue(obj.data)
-                else
-                    onSetData.postValue(obj.data)
+                obj.data?.let {
+                    if (isLoadMore)
+                        onAddData.postValue(it)
+                    else
+                        onSetData.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {
                 onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
                 onError.postValue(ICError(R.drawable.ic_error_request, error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
 
         })

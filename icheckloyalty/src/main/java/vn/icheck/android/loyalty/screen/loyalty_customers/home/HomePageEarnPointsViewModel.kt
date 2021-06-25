@@ -26,7 +26,9 @@ class HomePageEarnPointsViewModel : BaseViewModel<Any>() {
 
         repositoryHeader.getHeaderHomePage(collectionID, object : ICApiListener<ICKResponse<ICKLongTermProgram>> {
             override fun onSuccess(obj: ICKResponse<ICKLongTermProgram>) {
-                setHeader.postValue(obj.data)
+                obj.data?.let {
+                    setHeader.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {
@@ -48,7 +50,8 @@ class HomePageEarnPointsViewModel : BaseViewModel<Any>() {
                 if (!obj.data?.rows.isNullOrEmpty()) {
                     setItem.postValue(obj.data?.rows)
                 } else {
-                    setErrorEmpty(R.drawable.ic_loyalty_point_empty2, "Chưa có lịch sử giao dịch!", "", "", 0, R.color.white)
+                    setErrorEmpty(R.drawable.ic_loyalty_point_empty2,
+                        vn.icheck.android.ichecklibs.util.getString(R.string.chua_co_lich_su_giao_dich), "", "", 0, R.color.white)
                 }
             }
 

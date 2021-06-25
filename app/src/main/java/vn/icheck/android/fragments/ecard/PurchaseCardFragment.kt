@@ -1,22 +1,16 @@
 package vn.icheck.android.fragments.ecard
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_purchase_card.*
 import kotlinx.android.synthetic.main.toolbar_blue.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.adapters.McardAdapter
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -128,7 +122,7 @@ class PurchaseCardFragment : Fragment() {
                 bundle.putString("denomition", denomition)
                 bundle.putInt("id", mspId)
                 checkOutFragment.arguments = bundle
-                activity!!.supportFragmentManager.beginTransaction()
+                requireActivity().supportFragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
                         .replace(R.id.content, checkOutFragment)
                         .addToBackStack(null)
@@ -143,13 +137,13 @@ class PurchaseCardFragment : Fragment() {
         btn_checkout.setBackgroundResource(R.drawable.bg_checkout_border_35)
         btn_checkout.isEnabled = false
 
-        tv_total.text = getString(R.string.xxx_d, "0")
+        tv_total.text = getString(R.string.s_d, "0")
     }
 
     fun changePrice(price: String) {
         btn_checkout.background=ViewHelper.bgSecondaryCorners35(requireContext())
         btn_checkout.isEnabled = true
 
-        tv_total.text = getString(R.string.xxx_d, TextHelper.formatMoney(price))
+        tv_total.text = getString(R.string.s_d, TextHelper.formatMoney(price))
     }
 }

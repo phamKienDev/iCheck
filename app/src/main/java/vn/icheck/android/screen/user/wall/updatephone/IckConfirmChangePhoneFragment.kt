@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import vn.icheck.android.R
 import vn.icheck.android.databinding.FragmentConfirmChangePhoneBinding
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class IckConfirmChangePhoneFragment:Fragment() {
     private var _binding:FragmentConfirmChangePhoneBinding? = null
@@ -44,8 +47,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
     private fun initViews() {
         binding.constraintLayout.background=ViewHelper.bgWhiteCornersTop20(requireContext())
 
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến\n" +
-                "số điện thoại <span style='color:${vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(requireContext())}'>%s</span></p>", args.phone)
+        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_n_sdt)} <span style='color:${vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(requireContext())}'>%s</span></p>", args.phone)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textView25.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
         } else {
@@ -55,7 +57,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
             findNavController().popBackStack()
         }
         binding.tvTimer.setOnClickListener {
-            if (binding.tvTimer.text == "Gửi lại mã") {
+            if (binding.tvTimer.text == getString(R.string.gui_lai_ma)) {
                 initTimer()
             }
         }
@@ -68,7 +70,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
             override fun onFinish() {
                 try {
                     binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(requireContext()))
-                    binding.tvTimer.text = "Gửi lại mã"
+                    binding.tvTimer.setText(R.string.gui_lai_ma)
                 } catch (e: Exception) {
                     this.cancel()
                 }
@@ -76,7 +78,7 @@ class IckConfirmChangePhoneFragment:Fragment() {
 
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    binding.tvTimer.text = String.format("Gửi lại mã(%d)s", millisUntilFinished / 1000)
+                    binding.tvTimer.setText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }

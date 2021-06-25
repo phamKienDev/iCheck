@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_14"
-        android:text="Tùy chỉnh nút"
+        android:text="@string/tuy_chinh_nut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:text="Nút chính"
+            android:text="@string/nut_chinh"
             android:textSize="@dimen/font_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider27" />
@@ -70,7 +70,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_12"
-            android:text="Là nút nổi bật màu xanh trên trang Doanh nghiệp của bạn, đây sẽ là hành động chính người dùng thực hiện với trang của bạn"
+            android:text="@string/la_nut_noi_bat_mau_xanh_tren_trang_doanh_nghiep_cua_ban_day_se_la_hanh_dong_chinh_nguoi_dung_thuc_hien_voi_trang_cua_ban"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvMain"
             app:layout_constraintTop_toBottomOf="@+id/tvMain" />
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:text="Nút phụ"
+            android:text="@string/nut_phu"
             android:textSize="@dimen/font_14" />
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -121,7 +121,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginRight="@dimen/size_12"
-            android:text="Là nút thứ cấp trên trang Doanh nghiệp của bạn, đây là hành động phụ người dùng có thể thực hiện với trang của bạn"
+            android:text="@string/la_nut_thu_cap_tren_trang_doanh_nghiep_cua_ban_day_la_hanh_dong_phu_nguoi_dung_co_the_thuc_hien_voi_trang_cua_ban"
             app:layout_constraintEnd_toEndOf="parent" />
 
 

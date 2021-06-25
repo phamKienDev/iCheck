@@ -107,7 +107,7 @@ class MbttHolder(view: View) : BaseHolder(view) {
     private fun hideVoteLayout() {
         hideView(R.id.btn_yes)
         hideView(R.id.btn_no)
-        itemView.tvName.text = "Câu trả lời của bạn đã được ghi nhận:"
+        itemView.tvName.setText(R.string.cau_tra_loi_cua_ban_da_duoc_ghi_nhan)
     }
 
     private fun hideLayoutProgress() {

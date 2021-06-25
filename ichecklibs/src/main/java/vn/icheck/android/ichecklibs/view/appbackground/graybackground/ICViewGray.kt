@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import vn.icheck.android.ichecklibs.ColorManager
-import vn.icheck.android.ichecklibs.Constant
 
 class ICViewGray : View {
     constructor(context: Context) : super(context) {

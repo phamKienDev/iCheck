@@ -22,7 +22,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.presenter.VerifiedPhonePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.view.IVerifiedPhoneView
-
 @AndroidEntryPoint
 class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
     private lateinit var binding: ActivityVerifiedPhoneBinding

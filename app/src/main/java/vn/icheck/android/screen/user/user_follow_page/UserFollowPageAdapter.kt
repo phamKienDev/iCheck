@@ -148,7 +148,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
     class CountHolder(parent: ViewGroup) : RecyclerView.ViewHolder(createView(parent.context)) {
         fun bind(count: Int) {
             (itemView as AppCompatTextView).run {
-                text = "$count Người theo dõi trang này"
+                text = context.getString(R.string.d_nguoi_theo_doi_trang_nay, count)
             }
         }
 
@@ -266,7 +266,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
             } else {
                 if (isFriendInvitationMeUser != null && isMyFriend != null && isMyFriendInvitationUser != null) {
                     val content = if (obj.relateFriendCount > 0) {
-                        "${obj.relateFriendCount} bạn chung"
+                        itemView.context.getString(R.string.d_ban_chung, obj.relateFriendCount)
                     } else {
                         ""
                     }
@@ -278,7 +278,7 @@ class UserFollowPageAdapter(callback: IRecyclerViewCallback) : RecyclerViewCusto
                             itemView.btnConfirm.isEnabled = true
                             itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             itemView.btnConfirm.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
-                            itemView.btnConfirm.text = "Đồng ý kết bạn"
+                            itemView.btnConfirm.setText(R.string.dong_y_ket_ban)
                             itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                             itemView.btnConfirm.visibility = View.VISIBLE

@@ -50,11 +50,11 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                     when (obj.state) {
                         "running" -> {
                             setTextColor(ColorManager.getAccentRedColor(itemView.context))
-                            text = "Đang diễn ra"
+                            text = context.getString(R.string.dang_dien_ra)
                         }
                         "finished" -> {
                             setTextColor(ColorManager.getNormalTextColor(context))
-                            text = "Đã kết thúc"
+                            text = context.getString(R.string.da_ket_thuc)
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }
                         else -> {
@@ -75,7 +75,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(3) as AppCompatTextView).run {
                 text = if (obj.daysLeft != null && obj.daysLeft != 0) {
-                    "Còn ${obj.daysLeft} ngày"
+                    context.getString(R.string.con_d_ngay, obj.daysLeft)
                 } else {
                     itemView.context.getString(R.string.dang_cap_nhat)
                 }
@@ -83,7 +83,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(4) as LinearLayout).run {
                 setOnClickListener {
-                    ToastUtils.showLongWarning(itemView.context, "onClickJoin")
+                    ToastUtils.showLongWarning(itemView.context, it.context.getString(R.string.on_click_join))
                 }
             }
         }

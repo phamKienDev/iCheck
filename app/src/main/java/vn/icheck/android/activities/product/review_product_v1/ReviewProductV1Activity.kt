@@ -305,7 +305,7 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
 
         KeyboardUtils.showSoftInput(edt_enter_message)
 
-        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_xxx, nameOwner),this))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.binh_luan_s, nameOwner),this))
 
         img_send.setOnClickListener {
             if (edt_enter_message.text.toString().isNotEmpty()) {
@@ -474,11 +474,11 @@ class ReviewProductV1Activity : BaseActivityMVVM(), IReviewProductView, TakePhot
             override fun onSuccess(t: ICShare) {
                 if (t.link.isNotEmpty()) {
                     val share = Intent()
-                    share.setAction(Intent.ACTION_SEND)
+                    share.action = Intent.ACTION_SEND
                     share.putExtra(Intent.EXTRA_SUBJECT, product?.name)
                     share.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.chia_se_danh_gia, averagePoint * 2, message, t.link))
-                    share.setType("text/plain")
-                    startActivity(Intent.createChooser(share, "Chia sẻ ${product?.name}"))
+                    share.type = "text/plain"
+                    startActivity(Intent.createChooser(share, getString(R.string.chia_se_s, product?.name)))
                 }
                 shareDialog.dismiss()
             }

@@ -205,11 +205,11 @@ class LayoutInputOtp : LinearLayout {
 
         when (receiveOtpType) {
             CALL_PHONE_TYPE -> {
-                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_goi_toi, phoneNumber),context)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_nhan_otp_da_duoc_thong_dai_goi_toi_so_dien_thoai, phoneNumber),context)
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_sms)
             }
             SEND_SMS_TYPE -> {
-                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_thuc_otp_da_duoc_gui_toi, phoneNumber),context)
+                sendToPhoneMessage = vn.icheck.android.ichecklibs.ViewHelper.setPrimaryHtmlString(context.getString(R.string.login_ma_xac_nhan_otp_da_duoc_gui_toi_so_dien_thoai, phoneNumber),context)
                 receiverMessageType = context.getString(R.string.doi_phuong_thuc_nhan_cuoc_goi)
             }
             else -> {
@@ -254,10 +254,10 @@ class LayoutInputOtp : LinearLayout {
 
             text = when (receiveOtpType) {
                 CALL_PHONE_TYPE -> {
-                    context.getString(R.string.goi_lai_ma_xxx_s, getTimeSecond(timeToSendOtp))
+                    context.getString(R.string.goi_lai_ma_s_s, getTimeSecond(timeToSendOtp))
                 }
                 SEND_SMS_TYPE -> {
-                    context.getString(R.string.gui_lai_ma_xxx_s, getTimeSecond(timeToSendOtp))
+                    context.getString(R.string.gui_lai_ma_s_s, getTimeSecond(timeToSendOtp))
                 }
                 else -> {
                     getTimeSecond(timeToSendOtp)
@@ -277,10 +277,10 @@ class LayoutInputOtp : LinearLayout {
                 ((getChildAt(1) as ViewGroup?)?.getChildAt(1) as AppCompatCheckedTextView?)?.run {
                     text = when (receiveOtpType) {
                         CALL_PHONE_TYPE -> {
-                            context.getString(R.string.goi_lai_ma_xxx_s, getTimeSecond(millisecond))
+                            context.getString(R.string.goi_lai_ma_s_s, getTimeSecond(millisecond))
                         }
                         SEND_SMS_TYPE -> {
-                            context.getString(R.string.gui_lai_ma_xxx_s, getTimeSecond(millisecond))
+                            context.getString(R.string.gui_lai_ma_s_s, getTimeSecond(millisecond))
                         }
                         else -> {
                             getTimeSecond(millisecond)

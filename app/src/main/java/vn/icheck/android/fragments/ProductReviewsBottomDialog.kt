@@ -16,6 +16,8 @@ import vn.icheck.android.adapters.BottomReviewsAdapter.Companion.TYPE_PROGRESS
 import vn.icheck.android.adapters.BottomReviewsAdapter.Companion.TYPE_XMB
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCriteria
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ReviewPointText
 
 class ProductReviewsBottomDialog: BottomSheetDialogFragment() {
@@ -44,12 +46,15 @@ class ProductReviewsBottomDialog: BottomSheetDialogFragment() {
             icCriteria = it.get("criteria") as ICCriteria
         }
         icCriteria?.let {
-            tv_score.text = String.format("%.1f", it.productEvaluation?.averagePoint?.times(2))
+            it.productEvaluation?.averagePoint?.times(2)?.let { safe ->
+                tv_score.setText(R.string.format_1_f, safe)
+            }
             it.productEvaluation?.averagePoint?.let {
                 tv_quality.text = ReviewPointText.getText(it)
             }
-
-            tv_total_reviews.text = String.format("%,d đánh giá", it.totalReviews)
+            it.totalReviews?.let { totalReviews ->
+                tv_total_reviews.setText(R.string.d_danh_gia, totalReviews)
+            }
         }
         icCriteria?.productGather?.let {
 

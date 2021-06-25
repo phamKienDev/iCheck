@@ -71,21 +71,21 @@ class CityPicker(val type:Int, private val onCityClick: OnCityClick,val cityId:I
         binding.rcvNation.adapter = cityAdapter
         when (type) {
             CITY -> {
-                binding.tvTitle.text = "Chọn tỉnh thành"
+                binding.tvTitle.setText(R.string.chon_tinh_thanh)
                 locationViewModel.getCities().observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })
                 initSearch()
             }
             DISTRICT -> {
-                binding.tvTitle.text = "Chọn quận huyện"
+                binding.tvTitle.setText(R.string.chon_quan_huyen)
                 locationViewModel.getDistricts(cityId).observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })
                 initSearch()
             }
             WARD -> {
-                binding.tvTitle.text = "Chọn phường xã"
+                binding.tvTitle.setText(R.string.chon_phuong_xa)
                 locationViewModel.getWards(cityId).observe(viewLifecycleOwner, Observer {
                     submitItems(it)
                 })

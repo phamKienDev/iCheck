@@ -6,7 +6,6 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.base.ICMessageEvent
-import vn.icheck.android.loyalty.base.showCustomErrorToast
 import vn.icheck.android.loyalty.dialog.DialogErrorScanGame
 import vn.icheck.android.loyalty.dialog.DialogSuccessScanGame
 import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
@@ -19,7 +18,6 @@ import vn.icheck.android.loyalty.model.*
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.repository.RedeemPointRepository
 import vn.icheck.android.loyalty.repository.VQMMRepository
-import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.loyalty_customers.gift_shop.GiftShopActivity
 
 object ScanLoyaltyHelper {
@@ -73,7 +71,7 @@ object ScanLoyaltyHelper {
                 if (obj.statusCode == 200 && obj.data?.play != null) {
                     mPickerScan(true)
 
-                    object : DialogSuccessScanGame(activity, "Bạn có thêm ${obj.data.play} lượt quay", obj.data.campaign?.name
+                    object : DialogSuccessScanGame(activity, activity.getString(R.string.ban_co_them_d_luot_quay, obj.data.play) , obj.data.campaign?.name
                             ?: nameCampaign, nameShop, avatarShop) {
                         override fun onDone() {
                             dismiss()
@@ -91,7 +89,7 @@ object ScanLoyaltyHelper {
                     when (obj.status) {
                         "OUT_OF_TURN" -> {
                             object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game,
-                                    "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                    activity.getString(R.string.ma_qrcode_cua_san_pham_nay_khong_con_duoc_quay), activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_them_luot_quay_nhan_ngan_qua_hay_nhe)) {
                                 override fun onDismiss() {
                                     mPickerScan(false)
                                 }
@@ -100,7 +98,7 @@ object ScanLoyaltyHelper {
                         }
                         "INVALID_PARAM" -> {
                             object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game_1,
-                                    "Mã QRcode của sản phẩm này không thuộc chương trình", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                    activity.getString(R.string.ma_qrcode_cua_san_pham_nay_khong_thuoc_chuong_trinh), activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_them_luot_quay_nhan_ngan_qua_hay_nhe)) {
                                 override fun onDismiss() {
                                     mPickerScan(false)
                                 }
@@ -109,7 +107,7 @@ object ScanLoyaltyHelper {
                         }
                         "USED_TARGET" -> {
                             object : DialogErrorScanGame(activity, R.drawable.ic_error_scan_game,
-                                    "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                    activity.getString(R.string.ma_qrcode_cua_san_pham_nay_khong_con_duoc_quay), activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_them_luot_quay_nhan_ngan_qua_hay_nhe)) {
                                 override fun onDismiss() {
                                     mPickerScan(false)
                                 }
@@ -152,9 +150,9 @@ object ScanLoyaltyHelper {
 
                             if (type == 1) {
                                 DialogHelperGame.dialogScanLoyaltyError(activity,
-                                        R.drawable.ic_error_scan_game_1, "Mã QRcode của sản phẩm này\nkhông thuộc chương trình",
-                                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                                        null, "Quét tiếp", false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
+                                        R.drawable.ic_error_scan_game_1, activity.getString(R.string.ma_qrcode_cua_san_pham_nay_n_khong_thuoc_chuong_trinh),
+                                        activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                                        null, activity.getString(R.string.quet_tiep), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
                                                 mPickerScan(false)
@@ -166,9 +164,9 @@ object ScanLoyaltyHelper {
                                 })
                             } else {
                                 DialogHelperGame.dialogScanLoyaltyError(activity,
-                                        R.drawable.ic_error_scan_game_1, "Mã QRcode của sản phẩm này\nkhông thuộc chương trình",
-                                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                                        null, "Quét tiếp", false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
+                                        R.drawable.ic_error_scan_game_1, activity.getString(R.string.ma_qrcode_cua_san_pham_nay_n_khong_thuoc_chuong_trinh),
+                                        activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                                        null, activity.getString(R.string.quet_tiep), false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
                                                 mPickerScan(false)
@@ -181,15 +179,15 @@ object ScanLoyaltyHelper {
                             }
                         }
                         "USED_TARGET" -> {
-                            val it = "Mã QRcode của sản phẩm này\nkhông còn điểm cộng"
+                            val it = activity.getString(R.string.ma_qrcode_cua_san_pham_nay_n_khong_con_diem_cong)
 
                             mPickerScan(true)
 
                             if (type == 1) {
                                 DialogHelperGame.dialogScanLoyaltyError(activity,
                                         R.drawable.ic_error_scan_game, it,
-                                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                                        null, "Quét tiếp", false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
+                                        activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                                        null, activity.getString(R.string.quet_tiep), false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
                                                 mPickerScan(false)
@@ -202,8 +200,8 @@ object ScanLoyaltyHelper {
                             } else {
                                 DialogHelperGame.dialogScanLoyaltyError(activity,
                                         R.drawable.ic_error_scan_game, it,
-                                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                                        null, "Quét tiếp", false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
+                                        activity.getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                                        null, activity.getString(R.string.quet_tiep), false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
                                         object : IClickButtonDialog<ICKNone> {
                                             override fun onClickButtonData(obj: ICKNone?) {
                                                 mPickerScan(false)
@@ -221,8 +219,8 @@ object ScanLoyaltyHelper {
                             if (type == 1) {
                                 DialogHelperGame.dialogCustomerError(activity,
                                         R.drawable.ic_error_scan_game,
-                                        "Bạn không thuộc danh sách\ntham gia chương trình",
-                                        "Liên hệ với ${SharedLoyaltyHelper(activity).getString(ConstantsLoyalty.OWNER_NAME)} để biết thêm chi tiết", object : IClickButtonDialog<ICKNone> {
+                                        activity.getString(R.string.ban_khong_thuoc_danh_sach_tham_gia_chuong_trinh),
+                                        activity.getString(R.string.lien_he_voi_s_de_biet_them_chi_tiet, SharedLoyaltyHelper(activity).getString(ConstantsLoyalty.OWNER_NAME)), object : IClickButtonDialog<ICKNone> {
                                     override fun onClickButtonData(obj: ICKNone?) {
                                         activity.onBackPressed()
                                     }
@@ -258,7 +256,7 @@ object ScanLoyaltyHelper {
                                 override fun onDismiss() {
                                     mPickerScan(false)
                                 }
-                            }, "Đổi quà bằng điểm tích lũy ngay để\nnhận những phần quà cực hấp dẫn!")
+                            }, activity.getString(R.string.doi_qua_bang_diem_tich_luy_ngay_de_nhan_nhung_phan_qua_cuc_hap_dan))
                         } else {
                             DialogHelperGame.dialogAccumulatePointSuccess(activity,
                                     it?.point,

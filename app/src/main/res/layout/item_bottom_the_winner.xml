@@ -17,7 +17,7 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:text="Cập nhật mới nhất"
+        android:text="@string/cap_nhat_moi_nhat"
         android:textSize="@dimen/font_16"
         android:visibility="gone" />
 

@@ -112,13 +112,17 @@ class FastSurveyHolder(parent: ViewGroup) : BaseViewHolder<ICFastSurvey>(ViewHel
             // Layout top
             (getChildAt(0) as ViewGroup).run {
                 // Text left
-                (getChildAt(0) as AppCompatTextView).run {
-                    text = ("${obj.product1Rating}%")
+                obj.product1Rating?.let {
+                    (getChildAt(0) as AppCompatTextView).run {
+                        text = context.getString(R.string.format_rating, it)
+                    }
                 }
 
                 // Text right
-                (getChildAt(1) as AppCompatTextView).run {
-                    text = ("${obj.product2Rating}%")
+                obj.product2Rating?.let {
+                    (getChildAt(1) as AppCompatTextView).run {
+                        text = context.getString(R.string.format_rating, it)
+                    }
                 }
             }
 

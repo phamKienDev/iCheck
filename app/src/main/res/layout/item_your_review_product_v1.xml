@@ -13,7 +13,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:includeFontPadding="false"
-        android:text="Đánh giá của bạn"
+        android:text="@string/danh_gia_cua_ban"
         android:textColor="#434343"
         android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toStartOf="@+id/customer_rating"
@@ -58,7 +58,7 @@
         android:drawableEnd="@drawable/ic_down_blue_18px"
         android:includeFontPadding="false"
         android:paddingBottom="@dimen/size_8"
-        android:text="Xem chi tiết"
+        android:text="@string/xem_chi_tiet"
         app:layout_constraintEnd_toEndOf="@+id/customer_rating"
         app:layout_constraintTop_toBottomOf="@+id/customer_rating" />
 
@@ -87,8 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
+            android:text="@string/nhan_xet_colon"
             android:includeFontPadding="false"
-            android:text="Nhận xét:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rcv_customer" />
 
@@ -113,7 +113,7 @@
             android:layout_marginStart="@dimen/size_24"
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_24"
-            android:text="Chỉnh sửa đánh giá"
+            android:text="@string/chinh_sua_danh_gia"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginBottom="@dimen/size_8"
             android:drawableEnd="@drawable/ic_up_blue_18px"
-            android:text="Thu gọn"
+            android:text="@string/thu_gon"
             app:layout_constraintEnd_toEndOf="@+id/btn_edit"
             app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
 

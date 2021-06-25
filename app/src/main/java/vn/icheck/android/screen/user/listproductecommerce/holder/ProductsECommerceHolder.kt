@@ -27,7 +27,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
         if (obj.finalPrice != null) {
             if (obj.sellPrice != null) {
                 binding.tvOldPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                     paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     beVisible()
                 }
@@ -37,7 +37,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
 
             if (obj.finalPrice != null) {
                 binding.tvPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.finalPrice) + "đ")
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.finalPrice))
                     beVisible()
                 }
             } else {
@@ -46,7 +46,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
         } else {
             binding.tvOldPrice.beGone()
             binding.tvPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                 beVisible()
             }
         }

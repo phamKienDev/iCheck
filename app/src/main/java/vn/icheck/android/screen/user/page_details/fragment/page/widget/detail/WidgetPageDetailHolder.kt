@@ -118,7 +118,7 @@ class WidgetPageDetailHolder(parent: ViewGroup, val type: String) : BaseViewHold
                     text = obj.phone
 
                     setOnClickListener {
-                        DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thong_bao), itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_so, obj.phone), itemView.context.getString(R.string.huy), itemView.context.getString(R.string.dong_y), true, object : ConfirmDialogListener {
+                        DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thong_bao), itemView.context.getString(R.string.ban_co_muon_goi_dien_thoai_den_so_s_nay_khong, obj.phone), itemView.context.getString(R.string.huy), itemView.context.getString(R.string.dong_y), true, object : ConfirmDialogListener {
                             override fun onDisagree() {
                             }
 
@@ -146,7 +146,7 @@ class WidgetPageDetailHolder(parent: ViewGroup, val type: String) : BaseViewHold
                         val data = Uri.parse("mailto:?to=${obj.mail}")
                         mailIntent.data = data
                         try {
-                            itemView.context.startActivity(Intent.createChooser(mailIntent, "Send mail..."))
+                            itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.getString(R.string.send_mail)))
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

@@ -120,7 +120,7 @@ class HeaderInforProductComponent(view: View, val listener: ProductDetailListene
         if (!productHeaderModel.icBarcodeProduct.barcode.isNullOrEmpty()) {
             itemView.tvBarcode.text = productHeaderModel.icBarcodeProduct.barcode
         } else {
-            itemView.tvBarcode.text = itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvBarcode.setText(R.string.dang_cap_nhat)
         }
 
         itemView.img_fav.setOnClickListener {

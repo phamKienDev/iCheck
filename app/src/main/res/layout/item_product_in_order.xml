@@ -33,7 +33,6 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:maxLines="2"
-        android:text="Sữa rửa mặt sạch dầu (1 dòng)..  ssgfafafafafafafaafafafafafa."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgProduct"
         app:layout_constraintTop_toTopOf="@id/imgProduct" />
@@ -45,7 +44,7 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:text="x1"
+        android:text="@string/x1"
         android:layout_marginTop="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvProduct"

@@ -39,8 +39,7 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
         binding.toolbar.imgBack.setOnClickListener {
             callback?.onClickLeftMenu()
         }
-
-        binding.toolbar.txtTitle.text = getString(R.string.tin_nhan)
+        binding.toolbar.txtTitle.setText(R.string.tin_nhan)
 
         binding.toolbar.imgAction.setVisible()
 

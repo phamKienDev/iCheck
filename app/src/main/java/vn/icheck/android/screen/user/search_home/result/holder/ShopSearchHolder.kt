@@ -24,6 +24,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -57,7 +58,7 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
         }
 
         itemView.setOnClickListener {
-            ToastUtils.showLongError(itemView.context, "Shop Detail")
+            ToastUtils.showLongError(itemView.context, getString(R.string.shop_detail))
         }
 
         itemView.tv_follow_shop.apply {

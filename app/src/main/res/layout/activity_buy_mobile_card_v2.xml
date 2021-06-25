@@ -31,7 +31,7 @@
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:gravity="center"
-            android:text="Mua thẻ điện thoại" />
+            android:text="@string/mua_the_dien_thoai" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/imgActionHistoryTopup"
@@ -77,7 +77,7 @@
             android:layout_marginTop="@dimen/size_16"
             android:layout_marginEnd="@dimen/size_40"
             android:fontFamily="sans-serif-medium"
-            android:text="Thử Lại"
+            android:text="@string/thu_lai"
             android:textSize="@dimen/font_16"
             android:textStyle="normal" />
     </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Nhà mạng" />
+                    android:text="@string/nha_mang" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvNetwork"
@@ -137,7 +137,7 @@
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:text="Mệnh giá" />
+                    android:text="@string/menh_gia" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvCardValue"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
-                android:text="Chú ý:" />
+                android:text="@string/chu_y" />
 
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
@@ -188,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:text="Thành tiền"
+            android:text="@string/thanh_tien_colon"
             app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:gravity="end"
-            android:hint="0 đ"
+            android:hint="@string/zero_d"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSubPrice"
             app:layout_constraintTop_toTopOf="@id/tvSubPrice" />
@@ -208,7 +208,7 @@
             android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thanh toán"
+            android:text="@string/thanh_toan"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"

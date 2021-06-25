@@ -102,7 +102,9 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
             if (isSend == true) {
                 getChildAt(3).visibility = View.INVISIBLE
                 getChildAt(4).visibility = View.VISIBLE
-                (getChildAt(4) as TextView?)?.text = "Nhắn tin"
+                (getChildAt(4) as TextView?)?.let {
+                    it.text = it.context.getString(R.string.nhan_tin)
+                }
                 getChildAt(5).visibility = View.VISIBLE
                 // Text nhan tin
                 getChildAt(4).setOnClickListener {
@@ -112,8 +114,9 @@ class FriendSuggestionHolder(parent: ViewGroup) : BaseViewHolder<ICUser>(LayoutI
                 getChildAt(3).visibility = View.VISIBLE
                 getChildAt(4).visibility = View.VISIBLE
                 getChildAt(5).visibility = View.GONE
-                (getChildAt(4) as TextView?)?.text = "Xóa"
-
+                (getChildAt(4) as TextView?)?.let{
+                    it.text = it.context.getString(R.string.xoa)
+                }
                 // Text disagree
                 getChildAt(4).apply {
                     background = ViewHelper.btnWhiteStrokePrimary1Corners4(context)

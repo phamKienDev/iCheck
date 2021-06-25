@@ -31,6 +31,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
@@ -51,6 +52,8 @@ import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.dismissLoadingScreen
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.showLoadingTimeOut
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 
 class IckOtpFragment : Fragment() {
@@ -90,9 +93,9 @@ class IckOtpFragment : Fragment() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
+        val span = SpannableString("${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} ${arr.joinToString(separator = "")}")
         span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=${ColorManager.getPrimaryColorCode(requireContext())}>%s</font></p>", arr.joinToString(separator = ""))
+        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} <font color=${ColorManager.getPrimaryColorCode(requireContext())}>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -114,7 +117,7 @@ class IckOtpFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.tvTimer.setOnClickListener {
-            if (binding.tvTimer.text == "Gửi lại mã") {
+            if (binding.tvTimer.text == getString(R.string.gui_lai_ma)) {
                 initTimer()
             }
         }
@@ -145,7 +148,7 @@ class IckOtpFragment : Fragment() {
             override fun onFinish() {
                 try {
                     binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(requireContext()))
-                    binding.tvTimer.text = "Gửi lại mã"
+                    binding.tvTimer.setText(R.string.gui_lai_ma)
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {
                             ickLoginViewModel.waitResponse = true
@@ -211,7 +214,7 @@ class IckOtpFragment : Fragment() {
 
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    binding.tvTimer.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    binding.tvTimer.setText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }

@@ -30,6 +30,7 @@ import vn.icheck.android.databinding.FriendInWallHolderBinding
 import vn.icheck.android.databinding.ItemCreatePostBinding
 import vn.icheck.android.databinding.ItemUserProfileWallBinding
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.posts.PostViewModel
@@ -262,7 +263,9 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
             binding.groupFollowed goneIf data?.infoPrivacyConfig?.gender
             binding.moreInfo goneIf data?.infoPrivacyConfig?.birthday
             binding.tvAddress.text = data?.city?.name.getInfo()
-            binding.tvId.text = "IC - " + data?.id
+            data?.id?.let{
+                binding.tvId.setText(R.string.ic_d, it)
+            }
             if (SessionManager.session.user?.id == ickUserProfileModel.id) {
                 binding.tvFollow.text = "${RelationshipManager.getTotalFollowed()}"
                 binding.tvWatch.text = "${RelationshipManager.getTotalFollow()}"
@@ -394,7 +397,7 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
         }
         binding.btnAddFriend.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                if (binding.tvAddFriend.text == "Đồng ý kết bạn") {
+                if ((binding.tvAddFriend.text == binding.tvAddFriend.context.getString(R.string.dong_y_ket_ban)||binding.tvAddFriend.text == "Đồng ý kết bạn")) {
                     it.context.sendBroadcast(Intent(USER_WALL_BROADCAST).apply {
                         putExtra(USER_WALL_BROADCAST, USER_WALL_ACCEPT_FRIEND)
                     })
@@ -426,13 +429,13 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 }
                 isFriendInvitationMeUser -> {
                     binding.btnAddFriend.beVisible()
-                    binding.tvAddFriend.setText("Đồng ý kết bạn")
+                    binding.tvAddFriend.setText(R.string.dong_y_ket_ban)
                     binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
                     binding.tvRequestSent.beGone()
                 }
                 else -> {
                     binding.tvAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_add_white_12px, 0, 0, 0)
-                    binding.tvAddFriend.setText("Kết bạn")
+                    binding.tvAddFriend.setText(R.string.ket_ban)
                     binding.btnAddFriend.beVisible()
                     binding.tvRequestSent.beGone()
                 }

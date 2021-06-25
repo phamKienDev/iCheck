@@ -197,7 +197,7 @@ class IckLoginActivity : BaseActivityMVVM() {
     private fun launchLogin() {
 
         if (ickLoginViewModel.hasData() && ickLoginViewModel.registerType == REGISTER) {
-            DialogHelper.showConfirm(this, "Bạn chắc chắn muốn <br /> thay đổi phương thức đăng nhập?", null, "Không", "Chắc chắn", true, object : ConfirmDialogListener {
+            DialogHelper.showConfirm(this, getString(R.string.ban_chac_chan_muon_thay_doi_phuong_thuc_dang_nhap), null, getString(R.string.khong), getString(R.string.chac_chan), true, object : ConfirmDialogListener {
                 override fun onDisagree() {
 
                 }

@@ -228,7 +228,7 @@ class NewDetailV2Activity : BaseActivityMVVM() {
                 constraintLayout.visibility = View.VISIBLE
 
                 tvTitleNew.text = if (it.obj?.articleCategory?.name.isNullOrEmpty()) {
-                    "Tin tức liên quan"
+                    getString(R.string.tin_tuc_lien_quan)
                 } else {
                     it.obj?.articleCategory?.name
                 }

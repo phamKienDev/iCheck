@@ -22,7 +22,7 @@
             android:layout_weight="2"
             android:fontFamily="@font/roboto_regular"
             android:includeFontPadding="false"
-            android:text="Điểm tích lũy:"
+            android:text="@string/diem_tich_luy"
             android:textColor="#434343"
             android:textSize="14sp" />
 

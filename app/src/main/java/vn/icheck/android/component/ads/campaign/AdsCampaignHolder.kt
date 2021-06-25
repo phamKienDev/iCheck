@@ -25,7 +25,7 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
     private var adsAdapter = AdsCampaignAdapter()
 
     fun bind(obj: ICAdsNew) {
-        itemView.tvTitle.text = obj.name ?: ""
+        itemView.tvTitle.text = obj.name
 
         itemView.rcvCampaign.apply {
             onFlingListener = null

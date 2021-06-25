@@ -1,7 +1,6 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.game_list
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_game_loyalty.view.*
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
@@ -53,10 +53,12 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             val endDate = sdf.parse(obj.endAt)
             val timeString = "${show.format(startDate)} - ${show.format(endDate)}"
 
-            itemView.tvName.text = if (!obj.owner?.name.isNullOrEmpty()) {
-                obj.owner?.name
-            } else {
-                "Đang cập nhật"
+            itemView.tvName.apply {
+                text = if (!obj.owner?.name.isNullOrEmpty()) {
+                    obj.owner?.name
+                } else {
+                    context.getString(R.string.dang_cap_nhat)
+                }
             }
 
             if (obj.statusTime != "RUNNING") {
@@ -80,13 +82,15 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         itemView.tvPlay.setGone()
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
-                            if (obj.statisticWinnerAccumulatePoint?.get(0)?.points != null) {
-                                itemView.tvPoint.text = "${obj.statisticWinnerAccumulatePoint?.get(0)?.points} Điểm"
+                            if (obj.statisticWinnerAccumulatePoint[0].points != null) {
+                                obj.statisticWinnerAccumulatePoint[0].points?.let {
+                                    itemView.tvPoint.setText(R.string.d_diem, it)
+                                }
                             } else {
-                                itemView.tvPoint.text = "${0} Điểm"
+                                itemView.tvPoint.setText(R.string.d_diem, 0)
                             }
                         } else {
-                            itemView.tvPoint.text = "${0} Điểm"
+                            itemView.tvPoint.setText(R.string.d_diem, 0)
                         }
                     }
                     CampaignType.RECEIVE_GIFT -> {
@@ -99,14 +103,16 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
                                 itemView.tvPlay.setTextColor(ColorManager.getPrimaryColor(itemView.context))
-                                itemView.tvPlay.text = "${obj.campaignGameUser?.get(0)?.play} lượt quay"
+                                obj.campaignGameUser[0]?.play?.let {
+                                    itemView.tvPlay.setText(R.string.d_luot_quay, it)
+                                }
                             } else {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                                itemView.tvPlay.text = "Hết lượt quay"
+                                itemView.tvPlay.setText(R.string.het_luot_quay)
                             }
                         } else {
                             itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                            itemView.tvPlay.text = "Hết lượt quay"
+                            itemView.tvPlay.setText(R.string.het_luot_quay)
                         }
                     }
                     else -> {

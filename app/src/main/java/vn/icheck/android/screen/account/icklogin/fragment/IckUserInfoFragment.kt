@@ -142,7 +142,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                     val timeInMills = Calendar.getInstance().timeInMillis
                     ickLoginViewModel.calendar.set(year, month, day)
                     if (timeInMills < ickLoginViewModel.calendar.timeInMillis) {
-                        requireContext().showShortErrorToast("Không cho phép chọn ngày sinh là ngày tương lai!")
+                        requireContext().showShortErrorToast(getString(R.string.khong_cho_phep_ngay_sinh_la_tuong_lai))
                     } else {
                         val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                         ickLoginViewModel.setBirthDay(df.format(ickLoginViewModel.calendar.time))
@@ -250,7 +250,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                 }, ickLoginViewModel.getDistrict())
                 cityPicker?.show(childFragmentManager, null)
             } else {
-                binding.edtQuan.setError("Vui lòng chọn quận/huyện")
+                binding.edtQuan.setError(getString(R.string.vui_long_chon_quan_huyen))
 //                showError("Vui lòng chọn quận huyện")
             }
         }
@@ -298,7 +298,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                     if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
                         finalStep()
                     } else {
-                        binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
+                        binding.edtEmailInput.error = getString(R.string.nhap_sai_dinh_dang_thu_lai)
 //                    binding.tvErrorEmail.beVisible()
                         return@setOnClickListener
                     }

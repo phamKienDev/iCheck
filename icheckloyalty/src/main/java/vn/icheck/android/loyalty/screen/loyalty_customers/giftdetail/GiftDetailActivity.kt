@@ -127,7 +127,7 @@ class GiftDetailActivity : BaseActivityGame() {
 
         viewModel.setData.observe(this, Observer {
             swipeLayout.isRefreshing = false
-            txtTitle.text = it?.gift?.name ?: "Quà tặng đổi thưởng"
+            txtTitle.text = it?.gift?.name ?: getString(R.string.qua_tang_doi_thuong)
 
             adapter?.setData(it)
         })

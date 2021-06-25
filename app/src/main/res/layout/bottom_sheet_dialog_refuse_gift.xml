@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Lý do từ chối nhận quà"
+            android:text="@string/ly_do_tu_choi_nhan_qua"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         android:textSize="@dimen/font_14"
         android:fontFamily="@font/barlow_medium"
         android:gravity="top|start"
-        android:hint="Mô tả nội dung khác"
+        android:hint="@string/mo_ta_noi_dung_khac"
         android:paddingStart="@dimen/size_10"
         android:paddingTop="@dimen/size_6"
         android:paddingBottom="@dimen/size_6"
@@ -74,6 +74,6 @@
         android:layout_marginBottom="@dimen/size_12"
         android:gravity="center"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Gửi báo cáo"/>
+        android:text="@string/gui_bao_cao"/>
 
 </LinearLayout>

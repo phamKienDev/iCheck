@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
-        android:text="x1"
+        android:text="@string/x1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_gift"
         app:layout_constraintTop_toBottomOf="@+id/tv_gift" />

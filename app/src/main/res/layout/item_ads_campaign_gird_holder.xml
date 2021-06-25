@@ -32,7 +32,6 @@
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:text="CHỦ NHẬT TUẦN NÀY: 21:00"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCampaign" />
@@ -47,7 +46,6 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="2"
-            android:text="Scan Coca Cola nhận quà (tên 2 dòng).."
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTimeStart"
@@ -59,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_2"
             android:includeFontPadding="false"
-            android:text="Còn 29 ngày"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />

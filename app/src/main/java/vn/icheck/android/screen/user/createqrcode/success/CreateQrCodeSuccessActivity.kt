@@ -106,7 +106,7 @@ class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView
     }
 
     override fun onSaveQrCodeSuccess() {
-        showShortSuccessToast("Tải xuống thành công")
+        showShortSuccessToast(getString(R.string.tai_xuong_thanh_cong))
     }
 
     override fun onShareQrCode(contentUri: Uri) {
@@ -114,7 +114,7 @@ class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.setDataAndType(contentUri, contentResolver.getType(contentUri))
         intent.putExtra(Intent.EXTRA_STREAM, contentUri)
-        startActivity(Intent.createChooser(intent, "iCheck Share"))
+        startActivity(Intent.createChooser(intent, getString(R.string.icheck_share)))
     }
 
     override fun showError(errorMessage: String) {

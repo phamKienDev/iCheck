@@ -10,6 +10,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.ichecklibs.util.setText
 
 class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICBarcodeProductV1.Vendor>(LayoutInflater.from(parent.context).inflate(R.layout.dnsh_stamp, parent, false)) {
 
@@ -17,7 +18,7 @@ class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStam
         itemView.tv_owner_name.text = obj.vendorPage.name
         itemView.img_not_verified.visibility = View.VISIBLE
         if (obj.vendorPage.tax != null) {
-            itemView.tv_owner_mst.text = String.format("MST: %s", obj.vendorPage.tax)
+            itemView.tv_owner_mst.setText(R.string.ma_so_thue_icheck, obj.vendorPage.tax!!)
         } else {
             itemView.tv_owner_mst.visibility = View.GONE
         }

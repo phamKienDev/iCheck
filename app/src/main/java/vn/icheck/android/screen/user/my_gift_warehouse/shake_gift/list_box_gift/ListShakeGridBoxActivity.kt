@@ -269,13 +269,13 @@ class ListShakeGridBoxActivity : BaseActivityMVVM() {
         if (viewModel.typeCheckDialogGift == 1) {
             if (lifecycleScope.isActive) {
                 if (viewModel.isMissionSuccess) {
-                    showEmpityGiftDialog("Bạn đã hết lượt mở quà rồi!")
+                    showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
                 } else {
-                    showEmpityGiftDialog("Bạn chưa có lượt mở quà nào!")
+                    showEmpityGiftDialog(getString(R.string.ban_chua_co_luot_mo_qua_nao))
                 }
             }
         } else {
-            showEmpityGiftDialog("Bạn đã hết lượt mở quà rồi!")
+            showEmpityGiftDialog(getString(R.string.ban_da_het_luot_mo_qua_roi))
         }
     }
 

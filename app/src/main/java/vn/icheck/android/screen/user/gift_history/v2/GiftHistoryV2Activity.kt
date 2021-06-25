@@ -46,7 +46,7 @@ class GiftHistoryV2Activity : BaseActivityGame(), IRecyclerViewCallback {
 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
-        txtTitle.text = "Lịch sử mở quà"
+        txtTitle.setText(R.string.lich_su_mo_qua)
 
         imgBack.setOnClickListener {
             onBackPressed()

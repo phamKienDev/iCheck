@@ -651,7 +651,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            showShortSuccess("Cập nhật thông tin thành công")
+            showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         }
     }
 

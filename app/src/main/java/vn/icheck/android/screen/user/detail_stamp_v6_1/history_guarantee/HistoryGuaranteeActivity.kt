@@ -30,9 +30,9 @@ class HistoryGuaranteeActivity : BaseActivityMVVM(), IRecyclerViewCallback {
         setContentView(binding.root)
 
         binding.layoutToolbar.txtTitle.text =  if (StampDetailActivity.isVietNamLanguage == false) {
-            "Warranty log"
+            getString(R.string.warranty_log)
         } else {
-            "Lịch sử bảo hành"
+            getString(R.string.lich_su_bao_hanh)
         }
 
         setupRecyclerView()

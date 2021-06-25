@@ -55,7 +55,7 @@
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Khi bỏ theo dõi, các bài viết của người này sẽ không hiển thị trên trang chủ của bạn nữa."
+                android:text="@string/feed_option_off_follow_user_message"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
@@ -96,7 +96,7 @@
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Lời mời kết bạn trước đó sẽ bị hủy bỏ. Bạn vẫn có thể gửi lại  lời mời kết bạn cho người này."
+                android:text="@string/loi_moi_ket_ban_truoc_do_se_bi_huy_bo_ban_van_co_the_gui_lai__loi_moi_ket_ban_cho_nguoi_nay"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_10"
-                android:text="Báo cáo người dùng"
+                android:text="@string/bao_cao_nguoi_dung"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintStart_toEndOf="@id/imgReport"
                 app:layout_constraintTop_toTopOf="@id/imgReport" />
@@ -138,7 +138,7 @@
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Bạn nhận thấy người dùng này có những hoạt động mang nội dung spam, nhạy cảm? Hãy cho chúng tôi biết."
+                android:text="@string/ban_nhan_thay_nguoi_dung_nay_co_nhung_hoat_dong_mang_noi_dung_spam_nhay_cam_hay_cho_chung_toi_biet"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:fontFamily="@font/barlow_medium"

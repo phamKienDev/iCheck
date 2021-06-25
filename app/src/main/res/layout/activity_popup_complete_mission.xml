@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Chúc mừng bạn!" />
+            android:text="@string/chuc_mung_ban" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -101,7 +101,7 @@
             android:layout_marginRight="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Bạn nhận được 1 lượt mở quà"
+            android:text="@string/ban_nhan_duoc_1_luot_mo_qua"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="@dimen/font_16" />
@@ -116,7 +116,7 @@
             android:gravity="center"
             android:paddingLeft="@dimen/size_60"
             android:paddingRight="@dimen/size_60"
-            android:text="Mở ngay để nhận những phần quà cực giá trị nào"
+            android:text="@string/mo_ngay_de_nhan_nhung_phan_qua_cuc_gia_tri_nao"
             android:textAlignment="center"
             android:textColor="#828282"
             android:textSize="@dimen/font_14" />
@@ -130,7 +130,7 @@
             android:layout_marginEnd="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Mở quà"
+            android:text="@string/mo_qua"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toStartOf="parent"

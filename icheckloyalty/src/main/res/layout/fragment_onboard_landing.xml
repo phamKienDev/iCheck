@@ -14,7 +14,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginBottom="20dp"
         android:background="#FF0000"
-        android:text="CTA"
+        android:text="@string/cta"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

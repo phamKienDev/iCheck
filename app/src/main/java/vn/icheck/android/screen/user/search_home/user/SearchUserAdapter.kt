@@ -139,7 +139,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
 
         private fun checkStatus(obj: ICSearchUser) {
             val friend = if (obj.relateFriendCount > 0) {
-                "${obj.relateFriendCount} bạn chung"
+                itemView.context.getString(R.string.d_ban_chung, obj.relateFriendCount)
             } else {
                 ""
             }
@@ -178,7 +178,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
                         itemView.btnConfirm.isEnabled = true
                         itemView.btnConfirm.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         itemView.btnConfirm.background = ViewHelper.bgPrimaryCorners4(itemView.context)
-                        itemView.btnConfirm.text = "Đồng ý kết bạn"
+                        itemView.btnConfirm.setText(R.string.dong_y_ket_ban)
                         itemView.btnConfirm.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
 
                         itemView.btnConfirm.visibility = View.VISIBLE

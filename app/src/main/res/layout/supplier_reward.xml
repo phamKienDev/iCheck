@@ -34,7 +34,7 @@
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
         app:layout_constraintTop_toTopOf="@id/imgLogoSupplier"
-        android:text="Được cung cấp bởi" />
+        android:text="@string/duoc_cung_cap_boi" />
 
     <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvNameSupplier"

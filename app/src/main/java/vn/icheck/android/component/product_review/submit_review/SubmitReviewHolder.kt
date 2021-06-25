@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICMedia
@@ -152,7 +153,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnSubmit.isClickable = true
                 ToastUtils.showShortError(
                     itemView.context,
-                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi_danh_gia)
                 )
             }
         }
@@ -204,7 +205,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 DialogHelper.closeLoading(activity)
             }
             btnSubmit.isClickable = true
-            ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -232,7 +233,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                     DialogHelper.closeLoading(activity)
                 }
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
@@ -274,7 +275,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 if (obj.data != null) {
                     listener.onPostReviewSuccess(obj.data!!)
                 } else {
-                    ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
@@ -283,7 +284,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                     DialogHelper.closeLoading(activity)
                 }
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

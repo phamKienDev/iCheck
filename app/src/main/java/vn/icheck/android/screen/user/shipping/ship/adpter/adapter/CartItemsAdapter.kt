@@ -14,9 +14,12 @@ import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.model.cart.ItemCartItem
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.ick.getLayoutInflater
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -41,8 +44,7 @@ class CartItemsAdapter(val listData: List<ItemCartItem>, val onAdd: (Int) -> Uni
         holder.binding.tvGift simpleText cartItem.product?.name
         WidgetUtils.loadImageUrlRounded(holder.binding.imgGift, cartItem.product?.imageUrl, R.drawable.img_default_product_big, SizeHelper.size4)
         holder.binding.tvTotal simpleText cartItem.quantity.toString()
-        holder.binding.tvQuantityGift simpleText "${TextHelper.formatMoneyPhay(cartItem.price)} Xu"
-
+        holder.binding.tvQuantityGift.setText(R.string.s_xu, TextHelper.formatMoneyPhay(cartItem.price))
         holder.binding.checkBox.isChecked = cartItem.isSelected
 
         if (cartItem.quantity ?: 0 > 1) {

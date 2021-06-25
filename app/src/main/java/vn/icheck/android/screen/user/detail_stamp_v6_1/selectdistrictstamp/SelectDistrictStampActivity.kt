@@ -48,7 +48,7 @@ class SelectDistrictStampActivity : BaseActivityMVVM(), SelectDistrictStampView 
     @SuppressLint("SetTextI18n")
     private fun initToolbar() {
         if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select District"
+            txtTitle.setText(R.string.select_district)
         } else {
             txtTitle.setText(R.string.chon_quan_huyen)
         }

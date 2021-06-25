@@ -42,7 +42,7 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
     }
 
     private fun setupToolbar() {
-        txtTitle.text = "Điểm bán gần đây"
+        txtTitle.setText(R.string.diem_ban_gan_day)
         imgAction.visibility = View.VISIBLE
         imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
 
@@ -126,10 +126,10 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
                 intent.putExtra("avatarShop", item.avatar)
                 startActivity(intent)
             } else {
-                showShortError("Vị trí của shop đang được cập nhật")
+                showShortError(getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
             }
         } else {
-            showShortError("Vị trí của shop đang được cập nhật")
+            showShortError(getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
         }
     }
 }

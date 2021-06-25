@@ -96,7 +96,7 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                 itemView.btnAgree.visibility = View.GONE
                 itemView.btnDisagree.visibility = View.GONE
                 itemView.tvStatus.visibility = View.VISIBLE
-                itemView.tvStatus.text = Html.fromHtml(itemView.tvStatus.context.getString(R.string.ban_da_tu_choi_loi_moi_ket_ban_cua, itemView.tvName.text))
+                itemView.tvStatus.text = Html.fromHtml(itemView.tvStatus.context.getString(R.string.ban_da_tu_choi_loi_moi_ket_ban_cua_s, itemView.tvName.text))
             }
             else -> {
                 itemView.btnAgree.visibility = View.VISIBLE
@@ -148,7 +148,9 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_ACCEPTED
                     } else {
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_DENIED
-                        itemView.context.showShortSuccessToast("Bạn đã từ chối kết bạn với ${objFriend.getName}")
+                        itemView.context.apply {
+                            showShortSuccessToast(getString(R.string.ban_da_tu_choi_ket_ban_voi_s, objFriend.getName))
+                        }
                     }
 
                     checkFriend(objFriend.requestStatus)

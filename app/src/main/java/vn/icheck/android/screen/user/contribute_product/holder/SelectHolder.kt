@@ -18,6 +18,8 @@ import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemSelectBinding
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.model.category.OptionsItem
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
@@ -54,7 +56,7 @@ class SelectHolder(private val itemSelectBinding: ItemSelectBinding) : RecyclerV
             itemSelectBinding.imgHelp.beVisible()
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            itemSelectBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            itemSelectBinding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name?:"")
         } else {
             itemSelectBinding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }

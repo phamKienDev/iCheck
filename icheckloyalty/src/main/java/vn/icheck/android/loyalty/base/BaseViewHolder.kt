@@ -22,7 +22,7 @@ abstract class BaseViewHolder<T>(getLayoutID: Int, parent: ViewGroup) : Recycler
 
     val default: String
         get() {
-            return getString(R.string.dang_cap_nhat)
+            return itemView.context.getString(R.string.dang_cap_nhat)
         }
 
     fun checkNullOrEmpty(textView: AppCompatTextView, dataCheck: String?) {

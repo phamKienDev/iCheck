@@ -4,22 +4,14 @@ import android.app.Activity
 import android.app.DownloadManager
 import android.content.*
 import android.database.Cursor
-import android.graphics.Bitmap
-import android.graphics.Matrix
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
-import android.provider.MediaStore.Images
 import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import java.io.File
-import java.io.FileNotFoundException
-import java.io.IOException
-import java.io.OutputStream
 
 
 class DownloadHelper(private val downloadManager: DownloadManager, val activity: Activity, val callback: DownloadHelperCallback) {
@@ -33,7 +25,7 @@ class DownloadHelper(private val downloadManager: DownloadManager, val activity:
 
     private var onNotificationClick: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            Toast.makeText(context, "The download notification was clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.the_download_notification_was_clicked), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -64,10 +56,10 @@ class DownloadHelper(private val downloadManager: DownloadManager, val activity:
         val request = DownloadManager.Request(Uri.parse(url))
 
                 // Title of the Download Notification
-                .setTitle(ICheckApplication.getInstance().getString(R.string.app_name))
+                .setTitle( getString(R.string.app_name))
 
                 // Description of the Download Notification
-                .setDescription(ICheckApplication.getInstance().getString(R.string.dang_tai_tep))
+                .setDescription( getString(R.string.dang_tai_tep))
 
                 // Visibility of the download Notification
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)

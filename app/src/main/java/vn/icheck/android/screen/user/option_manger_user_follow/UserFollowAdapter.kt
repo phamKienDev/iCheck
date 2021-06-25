@@ -25,7 +25,8 @@ import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -184,7 +185,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
 
             if (item.relateFriendCount > 0) {
                 itemView.tv_related_friend.beVisible()
-                itemView.tv_related_friend simpleText "${item.relateFriendCount} bạn chung"
+                itemView.tv_related_friend.setText(R.string.d_ban_chung, item.relateFriendCount)
             } else {
                 itemView.tv_related_friend.beGone()
             }
@@ -260,24 +261,24 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
             when (errorCode) {
                 Constant.ERROR_EMPTY_SEARCH -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = "Xin lỗi chúng tôi không thể tìm kiếm được kết quả phù hợp với tìm kiếm của bạn"
+                    itemView.txtMessageDetail.setText(R.string.xin_loi_chung_toi_khong_the_tim_kiem_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
                 }
                 Constant.ERROR_EMPTY_WATCHING -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.ban_chua_theo_doi_nguoi_nao)
+                    itemView.txtMessageDetail.setText(R.string.ban_chua_theo_doi_nguoi_nao)
                 }
                 Constant.ERROR_EMPTY_FOLLOW -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.chua_co_nguoi_nao_theo_doi_ban)
+                    itemView.txtMessageDetail.setText(R.string.chua_co_nguoi_nao_theo_doi_ban)
                 }
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    itemView.txtMessageDetail.setText(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    itemView.txtMessageDetail.setText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
             }
         }

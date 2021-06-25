@@ -588,7 +588,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Cách tích điểm")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.cach_tinh_diem))
                         }
                     })
                 }
@@ -601,7 +601,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Hướng dẫn sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.huong_dan_su_dung))
                         }
                     })
                 }
@@ -614,7 +614,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }
@@ -627,7 +627,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }

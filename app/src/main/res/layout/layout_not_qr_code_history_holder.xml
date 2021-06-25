@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginRight="@dimen/size_48"
         android:gravity="center"
-        android:text="Bạn chưa có mã QR nào"
+        android:text="@string/ban_chua_co_ma_qr_nao"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView

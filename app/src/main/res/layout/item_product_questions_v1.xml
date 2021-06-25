@@ -95,7 +95,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:fontFamily="sans-serif-medium"
         android:includeFontPadding="false"
-        android:text="Trả lời"
+        android:text="@string/tra_loi"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@id/tvTimeLeft"

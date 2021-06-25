@@ -25,6 +25,7 @@ import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
 import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryHolderBinding = LayoutProductHistoryHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
@@ -88,7 +89,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (obj.product?.reviewCount!! < 1000) {
                         "(${obj.product?.reviewCount})"
                     } else {
-                        "(999+)"
+                        context.getString(R.string.count_999)
                     }
                 } else {
                     beGone()
@@ -105,7 +106,12 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
         }
 
         if (obj.numShopSell != null && obj.numShopSell != 0) {
-            binding.tvCountShop.text = "Có ${obj.numShopSell} cửa hàng bán sản phẩm này"
+            obj.numShopSell?.let {
+                binding.tvCountShop.setText(
+                    R.string.co_s_cua_hang_ban_san_pham_nay,
+                    it
+                )
+            }
             binding.tvCountShop.visibility = View.VISIBLE
             binding.layoutShop.visibility = View.VISIBLE
         } else {

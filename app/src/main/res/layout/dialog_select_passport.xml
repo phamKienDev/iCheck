@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_10"
-        android:text="Chọn loại giấy tờ"
+        android:text="@string/chon_loai_giay_to"
         app:layout_constraintBottom_toTopOf="@id/divider31"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

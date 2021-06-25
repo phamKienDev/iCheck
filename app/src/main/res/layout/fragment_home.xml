@@ -54,9 +54,7 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="Xem tất cả lời nhắc"
-                app:drawableEndCompat="@drawable/ic_arrow_down_blue_24dp"
-                app:drawableRightCompat="@drawable/ic_arrow_down_blue_24dp"
+                android:text="@string/xem_tat_ca_loi_nhac"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
@@ -108,7 +106,7 @@
                 <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                     android:id="@+id/tv_action"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
@@ -117,13 +115,20 @@
                     android:layout_marginBottom="@dimen/size_10"
                     android:lines="1"
                     android:textSize="@dimen/font_16"
-                    app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView14"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_reminder_content"
                     tools:text="Thanh toán ngay" />
+                <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_action"
+                    app:layout_constraintStart_toEndOf="@+id/tv_action"
+                    app:layout_constraintTop_toTopOf="@+id/tv_action"
+                    app:srcCompat="@drawable/ic_arrow_right_light_blue_24dp"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

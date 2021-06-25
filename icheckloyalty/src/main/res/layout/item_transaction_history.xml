@@ -14,7 +14,7 @@
         android:layout_marginBottom="@dimen/size_8"
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
-        android:text="Lịch sử giao dịch"
+        android:text="@string/lich_su_giao_dich"
         android:textColor="@color/blueVip"
         android:textSize="16sp"
         android:visibility="gone"

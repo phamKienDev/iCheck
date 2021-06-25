@@ -52,7 +52,6 @@
             android:layout_marginRight="@dimen/size_10"
             android:ellipsize="end"
             android:includeFontPadding="false"
-            android:text="Giày thể thao cao cổ Converse hàng Limited size 42"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"

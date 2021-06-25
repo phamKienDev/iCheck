@@ -62,7 +62,7 @@
                             android:fontFamily="@font/roboto_medium"
                             android:includeFontPadding="false"
                             android:singleLine="true"
-                            android:text="Chào"
+                            android:text="@string/chao"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -74,7 +74,7 @@
                             android:fontFamily="@font/roboto_regular"
                             android:includeFontPadding="false"
                             android:singleLine="true"
-                            android:text="Điểm thành viên của bạn:"
+                            android:text="@string/diem_thanh_vien_cua_ban"
                             android:textColor="@color/darkGray1"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -132,7 +132,7 @@
                         android:drawablePadding="@dimen/size_10"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_horizontal"
-                        android:text="Chương trình"
+                        android:text="@string/chuong_trinh"
                         android:textColor="@color/blueVip"
                         android:textSize="12sp" />
 
@@ -145,7 +145,7 @@
                         android:drawablePadding="@dimen/size_10"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_horizontal"
-                        android:text="Cửa hàng\nquà tặng"
+                        android:text="@string/cua_hang_n_qua_tang"
                         android:textColor="@color/blueVip"
                         android:textSize="12sp" />
 
@@ -158,7 +158,7 @@
                         android:drawablePadding="@dimen/size_10"
                         android:fontFamily="@font/roboto_regular"
                         android:gravity="center_horizontal"
-                        android:text="Lịch sử\nđổi quà"
+                        android:text="@string/lich_su_n_doi_qua"
                         android:textColor="@color/blueVip"
                         android:textSize="12sp" />
                 </LinearLayout>

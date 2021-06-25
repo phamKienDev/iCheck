@@ -9,6 +9,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.Result
 import vn.icheck.android.network.base.ResultHelper
@@ -31,7 +32,7 @@ open class BaseViewModel : ViewModel() {
         return liveData(job + Dispatchers.IO) {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 emit(Result.stopLoading())
-                emit(Result.errorNetwork(data = null, message = ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                emit(Result.errorNetwork(data = null, message = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 return@liveData
             }
 
@@ -57,7 +58,7 @@ open class BaseViewModel : ViewModel() {
         return liveData(job + Dispatchers.IO) {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
                 emit(Result.stopLoading())
-                emit(Result.errorNetwork(data = null, message = ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                emit(Result.errorNetwork(data = null, message = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 return@liveData
             }
 

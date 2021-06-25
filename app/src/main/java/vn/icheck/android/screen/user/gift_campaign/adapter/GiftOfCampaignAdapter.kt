@@ -91,10 +91,10 @@ class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?
                         itemView.btnMore.run {
                             text = if (adapter.showButton) {
                                 setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_light_blue_accent_24px, 0)
-                                "Xem thêm"
+                                context.getString(R.string.xem_them)
                             } else {
                                 setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up_blue_24dp, 0)
-                                "Thu gọn"
+                                context.getString(R.string.thu_gon)
                             }
                         }
                     } else {
@@ -102,7 +102,7 @@ class GiftOfCampaignAdapter(callback: IRecyclerViewCallback, val banner: String?
                         adapter.notifyDataSetChanged()
                         itemView.btnMore.run {
                             setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_light_blue_accent_24px, 0)
-                            text = "Xem thêm"
+                            text = context.getString(R.string.xem_them)
                         }
                     }
                 }

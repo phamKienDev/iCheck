@@ -38,9 +38,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
-import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -440,11 +440,11 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
             when {
                 RelationshipManager.unreadNotify > 9 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount.setText("9+")
+                    binding.tvNotificationCount.setText(R.string.count_9)
                 }
                 RelationshipManager.unreadNotify > 0 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount.setText(RelationshipManager.unreadNotify.toString())
+                    binding.tvNotificationCount.text = RelationshipManager.unreadNotify.toString()
                 }
                 else -> binding.tvNotificationCount.beInvisible()
             }
@@ -500,7 +500,7 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
             }
             ICMessageEvent.Type.UNFRIEND -> {
                 if (isActivityVisble) {
-                    requireContext().showShortSuccessToast("Bạn đã hủy kết bạn với ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                    requireContext().showShortSuccessToast(getString(R.string.ban_da_huy_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                 }
             }
             ICMessageEvent.Type.ERROR_SERVER -> {
@@ -523,7 +523,7 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
                         val icViewModel = PostViewModel(post)
                         ickUserWallViewModel.addView(ickUserWallViewModel.posCreatePost + 1, icViewModel)
                         ickUserWallAdapter.addPost(ickUserWallViewModel.posCreatePost + 1, icViewModel)
-                        requireContext().showShortSuccessToast("Bạn đã tạo bài viết thành công!")
+                        requireContext().showShortSuccessToast(getString(R.string.ban_da_tao_bai_viet_thanh_cong))
                     }
                 }
                 EDIT_MY_PUBLIC_INFO -> {

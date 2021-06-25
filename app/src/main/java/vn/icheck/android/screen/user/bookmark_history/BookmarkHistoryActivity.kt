@@ -1,13 +1,11 @@
 package vn.icheck.android.screen.user.bookmark_history
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -15,6 +13,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ColorManager
@@ -38,8 +37,7 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
 
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-
-        binding.header.txtTitle simpleText "Sản phẩm yêu thích"
+        binding.header.txtTitle.setText(R.string.san_pham_yeu_thich)
         binding.header.imgBack.setOnClickListener {
             finish()
         }
@@ -58,7 +56,7 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beVisible()
                     binding.tvNoBookmark.beVisible()
-                    binding.tvNoBookmark.text = "Không tìm thấy sản phẩm!"
+                    binding.tvNoBookmark.setText(R.string.khong_tim_thay_san_pham_1)
                 } else {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beGone()

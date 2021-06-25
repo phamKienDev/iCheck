@@ -313,7 +313,7 @@ class DetailStampHoaPhatActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhatLi
         if (email != null) {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:$email")
-            startActivity(Intent.createChooser(intent, "Send To"))
+            startActivity(Intent.createChooser(intent, getString(R.string.send_to)))
         }
     }
 

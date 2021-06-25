@@ -71,10 +71,10 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     private fun initView() {
         val list = mutableListOf<ICNameId>()
-        list.add(ICNameId(1, "Tôi không hài lòng với giá trị phần quà"))
-        list.add(ICNameId(2, "Phí ship quá cao"))
-        list.add(ICNameId(3, "Phần quà không rõ nguồn gốc"))
-        list.add(ICNameId(4, "Khác"))
+        list.add(ICNameId(1, getString(R.string.toi_khong_hai_long_voi_gia_tri_phan_qua)))
+        list.add(ICNameId(2, getString(R.string.phi_ship_qua_cao)))
+        list.add(ICNameId(3, getString(R.string.phan_qua_khong_ro_nguon_goc)))
+        list.add(ICNameId(4, getString(R.string.khac)))
 
         for (i in list) {
             layoutCheckbox.addView(CheckBox(context).also { radioButton ->
@@ -135,7 +135,7 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
         if (!inputReason.text?.trim().isNullOrEmpty()) {
             listMessage.add(inputReason.text.toString())
             val id = listMessage.indexOfFirst {
-                it == "Khác"
+                it == getString(R.string.khac)
             }
             listMessage.removeAt(id)
         }

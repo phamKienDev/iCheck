@@ -112,7 +112,7 @@
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginBottom="@dimen/size_10"
             android:gravity="center"
-            android:text="Sản phẩm chưa có đánh giá.\nHãy là người đầu tiên để lại đánh giá!"
+            android:text="@string/san_pham_chua_co_danh_gia_n_hay_la_nguoi_dau_tien_de_lai_danh_gia"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

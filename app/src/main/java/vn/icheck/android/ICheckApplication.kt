@@ -26,6 +26,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.icheckscanditv6.DataCaptureManager
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
@@ -571,10 +572,6 @@ class ICheckApplication : Application(), Configuration.Provider {
 
         fun currentActivity(): Activity? {
             return INSTANCE.mFTActivityLifecycleCallbacks.currentActivity
-        }
-
-        fun getString(resource: Int): String {
-            return INSTANCE.getString(resource)
         }
 
         fun getError(message: String?): String {

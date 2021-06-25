@@ -5,7 +5,6 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import kotlinx.android.synthetic.main.dialog_enter_the_prize_code.*
-import kotlinx.android.synthetic.main.item_loyalty_holder.view.*
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.dialog.base.BaseDialog
 import vn.icheck.android.loyalty.base.setGone

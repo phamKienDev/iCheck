@@ -131,7 +131,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.tvCountMessage.setVisible()
                 when {
                     obj.unreadCount!! > 9 -> {
-                        binding.tvCountMessage.text = "9+"
+                        binding.tvCountMessage.setText(R.string.count_9)
                         binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
                     }
                     obj.unreadCount!! > 0 -> {
@@ -177,7 +177,7 @@ class ListConversationAdapter(callback: IRecyclerViewCallback) : BaseRecyclerVie
                 binding.tvCountMessage.setVisible()
                 when {
                     obj.unreadCount!! > 9 -> {
-                        binding.tvCountMessage.text = "9+"
+                        binding.tvCountMessage.setText(R.string.count_9)
                         binding.layout.setBackgroundColor(Color.parseColor("#1A057DDA"))
                     }
                     obj.unreadCount!! > 0 -> {

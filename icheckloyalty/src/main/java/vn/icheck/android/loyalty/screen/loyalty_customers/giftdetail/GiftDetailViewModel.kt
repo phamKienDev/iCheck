@@ -24,7 +24,9 @@ class GiftDetailViewModel : BaseViewModel<Any>() {
         repository.dispose()
         repository.getDetailGift(collectionID, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
             override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
-                setData.postValue(obj.data)
+                obj.data?.let {
+                    setData.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {
@@ -42,7 +44,9 @@ class GiftDetailViewModel : BaseViewModel<Any>() {
         repository.dispose()
         repository.getDetailGiftStore(collectionID, object : ICApiListener<ICKResponse<ICKRedemptionHistory>> {
             override fun onSuccess(obj: ICKResponse<ICKRedemptionHistory>) {
-                setData.postValue(obj.data)
+                obj.data?.let {
+                    setData.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {

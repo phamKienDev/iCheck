@@ -30,7 +30,7 @@ class SharePostActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
-        txtTitle.text = "Chia sẻ trang cá nhân"
+        txtTitle.setText(R.string.chia_se_trang_ca_nhan)
     }
 
     private fun listenerGetData() {

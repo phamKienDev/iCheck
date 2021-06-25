@@ -81,17 +81,17 @@ class AddMoreTurnAdapter(val context: Context) : RecyclerView.Adapter<RecyclerVi
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgError.setImageResource(R.drawable.ic_emty_shake_list_mission)
-                    itemView.tvMessage.text = "Hiện tại chưa có sự kiện nào!"
+                    itemView.tvMessage.setText(R.string.hien_tai_chua_co_su_kien_nao)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgError.setImageResource(R.drawable.ic_error_request)
-                    itemView.tvMessage.text = itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    itemView.tvMessage.setText(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgError.setImageResource(R.drawable.ic_error_network)
-                    itemView.tvMessage.text = itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    itemView.tvMessage.setText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
             }
         }

@@ -88,7 +88,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                 media.exoPlayer?.addListener(object : Player.EventListener {
                     override fun onPlayerError(error: ExoPlaybackException) {
                         super.onPlayerError(error)
-                        itemView.context.showLongErrorToast("Trình phát video lỗi")
+                        itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                         itemView.progress.visibility = View.GONE
                         media.mediaError = true
                     }
@@ -99,7 +99,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                         when (playbackState) {
                             Player.STATE_IDLE -> {
                                 itemView.progress.visibility = View.GONE
-                                itemView.context.showLongErrorToast("Trình phát video lỗi")
+                                itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                             }
                             Player.STATE_BUFFERING -> {
                                 itemView.progress.visibility = View.VISIBLE

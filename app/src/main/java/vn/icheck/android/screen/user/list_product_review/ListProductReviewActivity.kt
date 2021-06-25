@@ -187,9 +187,9 @@ class ListProductReviewActivity : BaseActivityMVVM(), ISubmitReviewListener, IRe
                     val share = Intent()
                     share.action = Intent.ACTION_SEND
                     share.putExtra(Intent.EXTRA_SUBJECT, viewModel.currentProduct?.basicInfo?.name)
-                    share.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.chia_se_danh_gia, it.avgPoint, it.content, it.link))
+                    share.putExtra(Intent.EXTRA_TEXT, getString(R.string.chia_se_danh_gia, it.avgPoint, it.content, it.link))
                     share.type = "text/plain"
-                    startActivity(Intent.createChooser(share, "Chia sẻ ${viewModel.currentProduct?.basicInfo?.name}"))
+                    startActivity(Intent.createChooser(share, getString(R.string.chia_se_s,viewModel.currentProduct?.basicInfo?.name)))
                 }
             }
         })

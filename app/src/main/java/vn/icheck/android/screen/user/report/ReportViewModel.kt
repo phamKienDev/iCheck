@@ -9,6 +9,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -44,7 +45,7 @@ class ReportViewModel : ViewModel() {
 
     private fun getReportOrder() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -57,14 +58,14 @@ class ReportViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             }
         })
     }
 
     fun putOrder(listIdReason: MutableList<Int>, message: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -76,14 +77,14 @@ class ReportViewModel : ViewModel() {
                     if (obj.data is Int || obj.data is Double) {
                         onReport.postValue(1)
                     } else {
-                        onError.postValue(ICError(R.drawable.ic_error_request, "Đã report đơn hàng trước đó"))
+                        onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.da_report_don_hang_truoc_do)))
                     }
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     onError.postValue(ICError(R.drawable.ic_error_request, error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
                 }
             })
         }

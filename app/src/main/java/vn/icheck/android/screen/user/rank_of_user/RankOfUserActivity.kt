@@ -22,6 +22,7 @@ import vn.icheck.android.screen.user.list_campaign.ListCampaignActivity
 import vn.icheck.android.screen.user.mygift.MyGiftActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.logDebug
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -53,7 +54,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
         SessionManager.session.user?.rank?.let {
             val score = TextHelper.formatMoneyPhay(it.score)
 
-            tvPointCurrent.text = "Điểm hiện tại: ${score}"
+            tvPointCurrent.setText(R.string.diem_hien_tai_s, score)
 
             if (SessionManager.session.user?.avatar.isNullOrEmpty()) {
                 imgAvatar.borderWidth = 0
@@ -75,33 +76,33 @@ class RankOfUserActivity : BaseActivityMVVM() {
 
             when (it.level) {
                 Constant.USER_LEVEL_STANDARD -> {
-                    tvPoint.text = "${score} Điểm"
+                    tvPoint.setText(R.string.s_diem, score)
                     tvPoint.setTextColor(Color.parseColor("#ff5757"))
-                    tvNameRank.text = "Thành viên Chuẩn"
+                    tvNameRank.setText(R.string.thanh_vien_chuan)
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_standard_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_standard_8)
                     imgBanner.setImageResource(R.drawable.ic_account_level_standard)
                 }
                 Constant.USER_LEVEL_SILVER -> {
-                    tvPoint.text = "${score} Điểm"
+                    tvPoint.setText(R.string.s_diem, score)
                     tvPoint.setTextColor(Color.parseColor("#696969"))
-                    tvNameRank.text = "Thành viên Bạc"
+                    tvNameRank.setText(R.string.thanh_vien_bac)
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_silver_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_silver_8)
                     imgBanner.setImageResource(R.drawable.ic_account_level_silver)
                 }
                 Constant.USER_LEVEL_GOLD -> {
-                    tvPoint.text = "${score} Điểm"
+                    tvPoint.setText(R.string.s_diem, score)
                     tvPoint.setTextColor(Color.parseColor("#ffb800"))
-                    tvNameRank.text = "Thành viên Vàng"
+                    tvNameRank.setText(R.string.thanh_vien_vang)
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_gold_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_gold_8)
                     imgBanner.setImageResource(R.drawable.ic_account_level_gold)
                 }
                 Constant.USER_LEVEL_DIAMOND -> {
-                    tvPoint.text = "${score} Điểm"
+                    tvPoint.setText(R.string.s_diem, score)
                     tvPoint.setTextColor(Color.parseColor("#057dda"))
-                    tvNameRank.text = "Thành viên Kim cương"
+                    tvNameRank.setText(R.string.thanh_vien_kim_cuong)
                     img_rank_user.setImageResource(R.drawable.ic_leftmenu_avatar_diamond_36dp)
                     goToHistory.setImageResource(R.drawable.ic_arrow_right_diamond_8)
                     imgBanner.setImageResource(R.drawable.ic_account_level_diamond)
@@ -112,20 +113,20 @@ class RankOfUserActivity : BaseActivityMVVM() {
             when (it.level) {
                 1 -> {
                     imgLevel.setImageResource(R.drawable.ic_point_silver_24_px)
-                    tvMessageUpRank.text = Html.fromHtml("Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Bạc")
+                    tvMessageUpRank.text = Html.fromHtml("${getString(R.string.diem_tich_luy_dung_de_tang_han_thanh_vien_cua_ban_tich_luy_them)} <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Bạc")
                 }
                 2 -> {
                     imgLevel.setImageResource(R.drawable.ic_point_gold_24_px)
-                    tvMessageUpRank.text = Html.fromHtml("Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Vàng")
+                    tvMessageUpRank.text = Html.fromHtml("${getString(R.string.diem_tich_luy_dung_de_tang_han_thanh_vien_cua_ban_tich_luy_them)} <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Vàng")
                 }
                 3 -> {
                     imgLevel.setImageResource(R.drawable.ic_point_diamond_24_px)
-                    tvMessageUpRank.text = Html.fromHtml("Điểm tích lũy dùng để tăng hạng thành viên của bạn. Tích luỹ thêm <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Kim Cương")
+                    tvMessageUpRank.text = Html.fromHtml("${getString(R.string.diem_tich_luy_dung_de_tang_han_thanh_vien_cua_ban_tich_luy_them)} <font color=#434343><b>${avaiablePoint}</b></font> điểm để đạt Thành viên Kim Cương")
                 }
                 4 -> {
                     imgLevel.setImageResource(R.drawable.ic_point_diamond_24_px)
                     tvMessageUpRank.typeface = ResourcesCompat.getFont(this, R.font.barlow_semi_bold)
-                    tvMessageUpRank.text = Html.fromHtml("Chúc mừng bạn đã là thành viên Kim Cương!")
+                    tvMessageUpRank.text = Html.fromHtml(getString(R.string.chuc_mung_ban_da_la_thanh_vien_kim_cuong))
                 }
             }
         }
@@ -205,7 +206,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
 
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                    WebViewActivity.start(this@RankOfUserActivity, list?.firstOrNull()?.value, null, "Cách tích điểm")
+                    WebViewActivity.start(this@RankOfUserActivity, list?.firstOrNull()?.value, null, getString(R.string.cach_tinh_diem))
                 }
             })
 //            WebViewActivity.start(this, "https://icheck.vn/ranking-support.suport-url", null,"Cách tích điểm")
@@ -217,7 +218,7 @@ class RankOfUserActivity : BaseActivityMVVM() {
                 }
 
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                    WebViewActivity.start(this@RankOfUserActivity, list?.firstOrNull()?.value, null, "Câu hỏi thường gặp")
+                    WebViewActivity.start(this@RankOfUserActivity, list?.firstOrNull()?.value, null, getString(R.string.cau_hoi_thuong_gap))
                 }
             })
         }

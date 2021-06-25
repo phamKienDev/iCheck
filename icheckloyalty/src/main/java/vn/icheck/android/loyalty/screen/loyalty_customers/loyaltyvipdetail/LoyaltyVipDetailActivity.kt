@@ -32,7 +32,7 @@ class LoyaltyVipDetailActivity : BaseActivityGame() {
         viewModel.collectionID = obj?.id ?: intent.getLongExtra(ConstantsLoyalty.DATA_1, -1)
 
         if (viewModel.collectionID == -1L) {
-            object : DialogNotification(this@LoyaltyVipDetailActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), "Ok", false) {
+            object : DialogNotification(this@LoyaltyVipDetailActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), getString(R.string.ok), false) {
                 override fun onDone() {
                     onBackPressed()
                 }
@@ -105,7 +105,7 @@ class LoyaltyVipDetailActivity : BaseActivityGame() {
 
             if (obj?.status_time != "RUNNING") {
                 if (obj?.customer_status?.code == "COMING_SOON") {
-                    ComingSoonOrOutOfGiftDialog(this, R.drawable.ic_coming_soon, "Chương trình chưa diễn ra", "Mời bạn qua lại sau để\ntham gia chương trình nhé!").show()
+                    ComingSoonOrOutOfGiftDialog(this, R.drawable.ic_coming_soon, getString(R.string.chuong_trinh_chua_dien_ra), getString(R.string.moi_ban_quay_lai_sau_de_tham_gia_chuong_trinh_nhe)).show()
                 } else {
                     if (obj?.type == "accumulation_long_term_point") {
                         DialogHelperGame.scanOrEnterAccumulatePointLongTime(this, obj?.id

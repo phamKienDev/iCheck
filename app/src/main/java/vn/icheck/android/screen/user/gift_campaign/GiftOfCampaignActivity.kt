@@ -40,7 +40,7 @@ class GiftOfCampaignActivity : BaseActivityGame(), IRecyclerViewCallback {
     }
 
     private fun initToolbar(){
-        txtTitle.text = "Quà tặng đang chờ bạn"
+        txtTitle.setText(R.string.qua_tang_dang_cho_ban)
 
         imgBack.setOnClickListener {
             onBackPressed()

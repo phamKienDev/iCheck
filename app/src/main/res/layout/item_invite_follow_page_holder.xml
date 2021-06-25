@@ -58,7 +58,7 @@
         android:layout_marginRight="@dimen/size_24"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="Mời thêm bạn bè để cùng cập nhập các thông tin mới nhất từ trang này"
+        android:text="@string/moi_them_ban_be_de_cung_cap_nhap_cac_thong_tin_moi_nhat_tu_trang_nay"
         android:textSize="@dimen/font_14"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

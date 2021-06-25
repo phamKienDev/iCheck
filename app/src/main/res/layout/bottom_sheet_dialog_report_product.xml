@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18.6dp"
         android:gravity="center"
-        android:text="Cảm ơn bạn đã tố cáo sản phẩm này!"
+        android:text="@string/cam_on_ban_da_to_cao_san_pham_nay"
         android:textSize="@dimen/font_16" />
 
     <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/size_62"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Đội ngũ iCheck sẽ kiểm tra và giải quyết báo cáo của bạn sớm."
+        android:text="@string/feed_report_success_message"
         android:textSize="@dimen/font_14" />
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
@@ -45,7 +45,7 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_12"
         android:lineSpacingExtra="@dimen/font_6"
-        android:text="Nội dung tố cáo:"
+        android:text="@string/noi_dung_to_cao_colon"
         android:textSize="@dimen/font_14" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -66,7 +66,7 @@
         android:layout_marginBottom="@dimen/size_20"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
-        android:text="Xong"
+        android:text="@string/xong"
         android:textColor="@color/white" />
 
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop10>

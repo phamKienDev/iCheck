@@ -22,6 +22,7 @@ import vn.icheck.android.databinding.ItemConfirmShipBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.report.ReportActivity
@@ -54,7 +55,7 @@ class ConfirmShipFragment : Fragment() {
         binding.toolbar.txtTitle simpleText "Xác nhận giao hàng"
 
         if (viewModel.arrayCart.isEmpty()) {
-            binding.btnConfirm simpleText "Thanh toán"
+            binding.btnConfirm.setText(R.string.thanh_toan)
         }
         if (viewModel.detailOrderId == 0L) {
             if (savedInstanceState == null) {
@@ -62,8 +63,8 @@ class ConfirmShipFragment : Fragment() {
                     if (it.data?.isJsonObject == true) {
                         val obj = it.data!! as JsonObject
                         val fee = obj.get("deliveryCharges").asLong
-                        binding.tvFee simpleText "${TextHelper.formatMoneyPhay(fee)}đ"
-                        binding.tvTotalFee simpleText "${TextHelper.formatMoneyPhay(fee)}đ"
+                        binding.tvFee.setText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
+                        binding.tvTotalFee.setText(R.string.s_d, TextHelper.formatMoneyPhay(fee))
 //                        if (paymentStartInsider) {
 //                            TekoHelper.tagPaymentStartAndSuccess(fee)
 //                            paymentStartInsider = false
@@ -168,7 +169,7 @@ class ConfirmShipFragment : Fragment() {
                 val total = filter.sumBy {
                     it.quantity!!
                 }
-                binding.tvQuantity simpleText "$total sản phẩm"
+                binding.tvQuantity.setText(R.string.d_san_pham, total)
                 binding.tvQuantityGift.beGone()
                 binding.imgGift.beGone()
                 binding.tvGift.beGone()
@@ -192,8 +193,8 @@ class ConfirmShipFragment : Fragment() {
 //                    } else {
 //                        binding.tvBusinessName simpleText "iCheck"
 //                    }
-                    binding.tvBusinessName simpleText "iCheck Campaign"
-                    binding.tvQuantity simpleText "1 sản phẩm"
+                    binding.tvBusinessName.setText(R.string.icheck_campaign)
+                    binding.tvQuantity.setText(R.string.mot_san_pham)
 
                     if (!it.data?.image.isNullOrEmpty()) {
                         binding.imgGift.loadRoundedImage(it.data?.image, R.drawable.img_product_shop_default, corner = 4)
@@ -225,7 +226,7 @@ class ConfirmShipFragment : Fragment() {
     }
 
     private fun getDetailOrder() {
-        binding.toolbar.txtTitle simpleText "Thông tin đơn hàng"
+        binding.toolbar.txtTitle.setText(R.string.thong_tin_don_hang)
         binding.imgStatus.beVisible()
         viewModel.getDetailOrder().observe(viewLifecycleOwner, {
             it.data?.let { detailOrderResponse ->
@@ -238,12 +239,18 @@ class ConfirmShipFragment : Fragment() {
 
                 binding.businessLogo.loadImageWithHolder(detailOrderResponse.shop?.avatar,R.drawable.ic_icheck_logo)
                 binding.tvBusinessName simpleText detailOrderResponse.shop?.name
-                binding.tvFee simpleText String.format("%,dđ", detailOrderResponse.deliveryCharges).replace(".", ",")
-                binding.tvTotalFee simpleText String.format("%,dđ", detailOrderResponse.deliveryCharges).replace(".", ",")
+                detailOrderResponse.deliveryCharges?.let { safe ->
+                    binding.tvFee.text =
+                        getString(R.string.d_vnd, safe).replace(".",",")
+                    binding.tvTotalFee.text =
+                        getString(R.string.d_vnd, safe).replace(".", ",")
+                }
                 val total = detailOrderResponse.orderItem?.sumBy { item ->
                     item?.quantity!!
                 }
-                binding.tvQuantity simpleText "$total sản phẩm"
+                total?.let { safe ->
+                    binding.tvQuantity.setText(R.string.d_san_pham, safe)
+                }
                 binding.tvQuantityGift.beGone()
                 binding.imgGift.beGone()
                 binding.tvGift.beGone()
@@ -260,7 +267,9 @@ class ConfirmShipFragment : Fragment() {
                     binding.containter.addView(bd.root, 5)
                 }
                 binding.tvShipTime simpleText "${detailOrderResponse.createdAt?.getHourMinutesTime()}"
-                binding.tvShipCode simpleText "Mã đơn hàng: ${detailOrderResponse.code}"
+                detailOrderResponse.code?.let { safe ->
+                    binding.tvShipCode.setText(R.string.ma_don_hang_s, safe)
+                }
                 binding.tvName simpleText detailOrderResponse.shippingAddress?.getName()
                 val arr = arrayListOf<Char>()
                 arr.addAll(detailOrderResponse.shippingAddress?.phone.toString().toList())
@@ -273,7 +282,7 @@ class ConfirmShipFragment : Fragment() {
                 if (detailOrderResponse.note.isNullOrEmpty()) {
                     binding.groupNote.beGone()
                 } else {
-                    val ss = SpannableString("Ghi chú: ${detailOrderResponse.note}")
+                    val ss = SpannableString(getString(R.string.ghi_chu_s, detailOrderResponse.note?:""))
                     ss.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext())), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     binding.groupNote.beVisible()
                     binding.edtNotes.isFocusable = false
@@ -285,12 +294,12 @@ class ConfirmShipFragment : Fragment() {
                 when (detailOrderResponse.status) {
                     0, 2 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_pending)
-                        binding.btnConfirm simpleText "Hủy đơn"
+                        binding.btnConfirm.setText(R.string.huy_don)
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext()))
                         binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener {
-                            DialogHelper.showConfirm(requireContext(),"Bạn chắc chắn muốn hủy \n đơn hàng này?",null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
+                            DialogHelper.showConfirm(requireContext(),getString(R.string.ban_chac_chan_muon_huy_n_don_hang_nay),null ,getString(R.string.de_sau), getString(R.string.dong_y),true, object : ConfirmDialogListener{
                                 override fun onDisagree() {
                                 }
 
@@ -305,37 +314,37 @@ class ConfirmShipFragment : Fragment() {
 
                         }
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, "Báo lỗi đơn hàng", requireActivity())
+                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
                         }
                     }
                     3, 4 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipping)
-                        binding.btnConfirm simpleText "Hủy đơn"
+                        binding.btnConfirm.setText(R.string.huy_don)
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext()))
                         binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
                         binding.btnConfirm.alpha = 0.7f
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener(null)
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, "Báo lỗi đơn hàng", requireActivity())
+                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
                         }
-                        binding.textView91 simpleText "Thời gian cập nhật"
+                        binding.textView91.setText(R.string.thoi_gian_cap_nhat)
                         binding.tvShipTime simpleText detailOrderResponse.updatedAt?.getHourMinutesTime()
                     }
                     5 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_shipped)
-                        binding.btnConfirm simpleText "Đánh giá đơn hàng"
+                        binding.btnConfirm.setText(R.string.danh_gia_don_hang)
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext()))
                         binding.btnConfirm.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnConfirm.context)
-                        binding.textView91 simpleText "Thời gian nhận hàng"
+                        binding.textView91.setText(R.string.thoi_gian_nhan_hang)
                         binding.tvShipTime simpleText detailOrderResponse.completedAt?.getHourMinutesTime()
                     }
                     6, 7 -> {
                         binding.imgStatus.setImageResource(R.drawable.img_cancelled)
-                        binding.btnConfirm simpleText "Mua lại đơn này"
+                        binding.btnConfirm.setText(R.string.mua_lai_don_nay)
                         binding.btnConfirm.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext()))
                         binding.btnConfirm.background = ViewHelper.bgOutlinePrimary1Corners4(requireContext())
-                        binding.textView91 simpleText "Thời gian hủy đơn"
+                        binding.textView91.setText(R.string.thoi_gian_huy_don)
                         binding.tvShipTime simpleText detailOrderResponse.cancelledAt?.getHourMinutesTime()
                         binding.btnConfirm.setOnClickListener {
                             viewModel.rebuy(detailOrderResponse)

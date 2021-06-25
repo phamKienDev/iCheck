@@ -48,6 +48,8 @@ import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -274,13 +276,13 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
                     binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
-                    binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
+                    binding.tvTime.setText(R.string.dang_gui)
                     binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
                 else -> {
                     binding.imgRetry.setVisible()
                     binding.tvTime.setTextColor(ColorManager.getAccentRedColor(itemView.context))
-                    binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
+                    binding.tvTime.setText(R.string.loi_gui_tin_nhan)
                     binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
             }

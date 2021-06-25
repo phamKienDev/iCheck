@@ -203,7 +203,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
         viewModel.scanLoyalty = true
         viewModel.collectionID = intent.getLongExtra(Constant.DATA_1, -1)
         type = intent.getIntExtra(Constant.DATA_2, 0)
-        name = intent.getStringExtra(Constant.DATA_3) ?: "Chương trình của doanh nghiệp"
+        name = intent.getStringExtra(Constant.DATA_3) ?: getString(R.string.chuong_trinh_cua_doanh_nghiep)
 
         _binding?.btnMyCode.beGone()
         _binding?.btnQm.beGone()
@@ -229,7 +229,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                         override fun onDismiss() {
                             resetCamera()
                         }
-                    }, "Đổi quà bằng điểm tích lũy ngay để\nnhận những phần quà cực hấp dẫn!")
+                    }, getString(R.string.doi_qua_bang_diem_tich_luy_ngay_de_nhan_nhung_phan_qua_cuc_hap_dan))
                 } else {
                     DialogHelperGame.dialogAccumulatePointSuccess(this,
                             it?.point,
@@ -255,32 +255,44 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
             if (type == 1) {
                 DialogHelperGame.dialogScanLoyaltyError(this,
-                        R.drawable.ic_error_scan_game_1, it,
-                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                        null, "Quét tiếp", false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
-                        object : IClickButtonDialog<ICKNone> {
-                            override fun onClickButtonData(obj: ICKNone?) {
-                                resetCamera()
-                            }
-                        }, object : IDismissDialog {
-                    override fun onDismiss() {
-                        resetCamera()
-                    }
-                })
+                    R.drawable.ic_error_scan_game_1,
+                    it,
+                    getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                    null,
+                    getString(R.string.quet_tiep),
+                    false,
+                    R.drawable.bg_button_not_enough_point_blue,
+                    R.color.blueVip,
+                    object : IClickButtonDialog<ICKNone> {
+                        override fun onClickButtonData(obj: ICKNone?) {
+                            resetCamera()
+                        }
+                    },
+                    object : IDismissDialog {
+                        override fun onDismiss() {
+                            resetCamera()
+                        }
+                    })
             } else {
                 DialogHelperGame.dialogScanLoyaltyError(this,
-                        R.drawable.ic_error_scan_game_1, it,
-                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                        null, "Quét tiếp", false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
-                        object : IClickButtonDialog<ICKNone> {
-                            override fun onClickButtonData(obj: ICKNone?) {
-                                resetCamera()
-                            }
-                        }, object : IDismissDialog {
-                    override fun onDismiss() {
-                        resetCamera()
-                    }
-                })
+                    R.drawable.ic_error_scan_game_1,
+                    it,
+                    getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                    null,
+                    getString(R.string.quet_tiep),
+                    false,
+                    R.drawable.bg_gradient_button_orange_yellow,
+                    R.color.white,
+                    object : IClickButtonDialog<ICKNone> {
+                        override fun onClickButtonData(obj: ICKNone?) {
+                            resetCamera()
+                        }
+                    },
+                    object : IDismissDialog {
+                        override fun onDismiss() {
+                            resetCamera()
+                        }
+                    })
             }
         })
 
@@ -289,32 +301,44 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
             if (type == 1) {
                 DialogHelperGame.dialogScanLoyaltyError(this,
-                        R.drawable.ic_error_scan_game, it,
-                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                        null, "Quét tiếp", false, R.drawable.bg_button_not_enough_point_blue, R.color.blueVip,
-                        object : IClickButtonDialog<ICKNone> {
-                            override fun onClickButtonData(obj: ICKNone?) {
-                                resetCamera()
-                            }
-                        }, object : IDismissDialog {
-                    override fun onDismiss() {
-                        resetCamera()
-                    }
-                })
+                    R.drawable.ic_error_scan_game,
+                    it,
+                    getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                    null,
+                    getString(R.string.quet_tiep),
+                    false,
+                    R.drawable.bg_button_not_enough_point_blue,
+                    R.color.blueVip,
+                    object : IClickButtonDialog<ICKNone> {
+                        override fun onClickButtonData(obj: ICKNone?) {
+                            resetCamera()
+                        }
+                    },
+                    object : IDismissDialog {
+                        override fun onDismiss() {
+                            resetCamera()
+                        }
+                    })
             } else {
                 DialogHelperGame.dialogScanLoyaltyError(this,
-                        R.drawable.ic_error_scan_game, it,
-                        "Thử quét với những mã QRcode khác\nđể cộng điểm tích lũy nhé!",
-                        null, "Quét tiếp", false, R.drawable.bg_gradient_button_orange_yellow, R.color.white,
-                        object : IClickButtonDialog<ICKNone> {
-                            override fun onClickButtonData(obj: ICKNone?) {
-                                resetCamera()
-                            }
-                        }, object : IDismissDialog {
-                    override fun onDismiss() {
-                        resetCamera()
-                    }
-                })
+                    R.drawable.ic_error_scan_game,
+                    it,
+                    getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_cong_diem_tich_luy_nhe),
+                    null,
+                    getString(R.string.quet_tiep),
+                    false,
+                    R.drawable.bg_gradient_button_orange_yellow,
+                    R.color.white,
+                    object : IClickButtonDialog<ICKNone> {
+                        override fun onClickButtonData(obj: ICKNone?) {
+                            resetCamera()
+                        }
+                    },
+                    object : IDismissDialog {
+                        override fun onDismiss() {
+                            resetCamera()
+                        }
+                    })
             }
         })
 
@@ -343,11 +367,11 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initBarcodeCapture() {
         if (DataCaptureManager.barcodeCapture == null) {
-            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
             finish()
         }
         if (DataCaptureManager.dataCaptureContext == null) {
-            showShortErrorToast("Đã xảy ra lỗi vui lòng thử lại sau")
+            showShortErrorToast(getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
             finish()
         }
         barcodeCapture = DataCaptureManager.barcodeCapture!!
@@ -614,7 +638,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
             }
         }
         if (code == nc) {
-            showLongError(this@V6ScanLoyaltyActivity, "Đây không phải là QR code vui lòng quét lại!")
+            showLongError(this@V6ScanLoyaltyActivity, getString(R.string.day_khong_phai_la_qr_code_vui_long_quet_lai))
             resetCamera()
         } else {
             viewModel.postAccumulatePoint(nc)
@@ -667,7 +691,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showShortErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
+            showShortErrorToast(getString(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai))
             enableCapture(barcodeCapture)
         })
         viewModel.stampFake.observe(this, {
@@ -817,7 +841,7 @@ class V6ScanLoyaltyActivity : AppCompatActivity(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showShortErrorToast("Không tìm thấy ứng dụng google map!")
+                        showShortErrorToast(getString(R.string.khong_tim_thay_ung_dung_google_map))
                         enableCapture(barcodeCapture)
                     }
                 }

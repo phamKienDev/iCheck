@@ -1,7 +1,5 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.vqmm.fragment
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -383,13 +381,13 @@ class ScanForGameFragment : Fragment() {
                 }
             }
             if (code == nc) {
-                ToastHelper.showLongError(requireContext(), "Đây không phải là QR code vui lòng quét lại!")
+                ToastHelper.showLongError(requireContext(), getString(R.string.day_khong_phai_la_qr_code_vui_long_quet_lai))
             } else {
                 scanGameViewModel.scanGameRepository.getGamePlay(args.campaignId, nc, object : ICApiListener<ReceiveGameResp> {
                     override fun onSuccess(obj: ReceiveGameResp) {
                         if (obj.statusCode == 200 && obj.data?.play != null) {
 
-                            object : DialogSuccessScanGame(requireContext(), "Bạn có thêm ${obj.data.play} lượt quay", obj.data.campaign?.name
+                            object : DialogSuccessScanGame(requireContext(), getString(R.string.ban_co_them_d_luot_quay, obj.data.play), obj.data.campaign?.name
                                     ?: args.nameCampaign, args.nameShop, args.avatarShop) {
                                 override fun onDone() {
                                     dismiss()
@@ -407,7 +405,7 @@ class ScanForGameFragment : Fragment() {
                             when (obj.status) {
                                 "OUT_OF_TURN" -> {
                                     object : DialogErrorScanGame(requireContext(), R.drawable.ic_error_scan_game,
-                                            "Mã QRcode của sản phẩm này không còn lượt quay", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                            getString(R.string.ma_qrcode_cua_san_pham_nay_khong_con_duoc_quay), getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_them_luot_quay_nhan_ngan_qua_hay_nhe)) {
                                         override fun onDismiss() {
                                             findNavController().popBackStack()
                                         }
@@ -416,7 +414,7 @@ class ScanForGameFragment : Fragment() {
                                 }
                                 "INVALID_PARAM" -> {
                                     object : DialogErrorScanGame(requireContext(), R.drawable.ic_error_scan_game_1,
-                                            "Mã QRcode của sản phẩm này không thuộc chương trình", "Thử quét với những mã QRcode khác để thêm lượt quay nhận ngàn quà hay nhé") {
+                                            getString(R.string.ma_qrcode_cua_san_pham_nay_khong_thuoc_chuong_trinh), getString(R.string.thu_quet_voi_nhung_ma_qrcode_khac_de_them_luot_quay_nhan_ngan_qua_hay_nhe)) {
                                         override fun onDismiss() {
                                             findNavController().popBackStack()
                                         }

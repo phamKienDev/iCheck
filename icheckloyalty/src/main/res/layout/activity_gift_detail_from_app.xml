@@ -47,7 +47,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnUsed"
-                    android:layout_width="@dimen/size_0"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/size_6"
                     android:layout_weight="1"
@@ -58,8 +58,9 @@
                     android:gravity="center"
                     android:paddingTop="@dimen/size_10"
                     android:paddingBottom="@dimen/size_10"
-                    android:text="Dùng ngay"
-                    android:textColor="@color/white" />
+                    android:text="@string/dung_ngay"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/size_6" />
 
                 <LinearLayout
                     android:id="@+id/layoutButtonNotVoucher"
@@ -80,7 +81,7 @@
                         android:gravity="center"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Từ chối nhận"
+                        android:text="@string/tu_choi_nhan"
                         android:textColor="@color/colorSecondary"
                         android:textSize="16sp" />
 
@@ -96,8 +97,9 @@
                         android:gravity="center"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Nhận quà"
-                        android:textColor="@color/white" />
+                        android:text="@string/nhan_qua"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="@dimen/size_6" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

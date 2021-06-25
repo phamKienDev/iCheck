@@ -78,14 +78,14 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
             binding.tvStatus.text = obj.status?.name
             binding.tvState.apply {
                 text = if (!obj.state?.name.isNullOrEmpty()) {
-                    context.getString(R.string.tinh_trang_v2_xxx, obj.state!!.name)
+                    context.getString(R.string.tinh_trang_v2_xxx, obj.state!!.name?:"")
                 } else {
                     context.getString(R.string.tinh_trang_v2_xxx, context.getString(R.string.dang_cap_nhat))
                 }
             }
             binding.tvDateTime.apply {
                 text = if (!obj.created_time.isNullOrEmpty()) {
-                    context.getString(R.string.thoi_gian_v2_xxx, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_time))
+                    context.getString(R.string.thoi_gian_v2_xxx, TimeHelper.convertDateTimeSvToTimeDateVn(obj.created_time)?:"")
                 } else {
                     context.getString(R.string.thoi_gian_v2_xxx, context.getString(R.string.dang_cap_nhat))
                 }
@@ -106,14 +106,14 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
             val message = when (errorCode) {
                 Constant.ERROR_INTERNET -> {
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        "Checking network. Please try again"
+                        itemView.context.getString(R.string.checking_network_please_try_again)
                     } else {
                         itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     }
                 }
                 Constant.ERROR_UNKNOW -> {
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        "Occurred. Please try again"
+                        itemView.context.getString(R.string.occurred_please_try_again)
                     } else {
                         itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     }
@@ -121,7 +121,7 @@ class HistoryGuaranteeAdapter(val listener: IRecyclerViewCallback) : RecyclerVie
                 Constant.ERROR_EMPTY -> {
                     itemView.btnTryAgain.beGone()
                     if (StampDetailActivity.isVietNamLanguage == false) {
-                        "No Data"
+                        itemView.context.getString(R.string.no_data)
                     } else {
                         itemView.context.getString(R.string.khong_co_du_lieu)
                     }

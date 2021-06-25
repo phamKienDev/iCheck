@@ -100,7 +100,7 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
             }
 
             if (securityType.isNullOrEmpty()){
-                showShortError("Bạn cần phải chọn kiểu bảo mật")
+                showShortError(getString(R.string.ban_can_phai_chon_kieu_bao_mat))
                 return@setOnClickListener
             }
 

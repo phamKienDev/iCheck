@@ -18,8 +18,7 @@
         android:layout_marginEnd="@dimen/size_8"
         android:drawableTop="@drawable/ic_contribute_page"
         android:drawablePadding="@dimen/size_12"
-        android:text="Hiện tại sản phẩm này chưa có doanh nghiệp sở hữu.
-Đóng góp ngay nếu bạn biết thông tin chính xác."
+        android:text="@string/hien_tai_san_pham_nay_chua_co_doanh_nghiep_so_huu_dong_gop_ngay_neu_ban_biet_thong_tin_chinh_xac"
         android:textAlignment="center"
         android:textColor="#434343" />
 
@@ -29,8 +28,7 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
-        android:text="iCheck sẽ gửi tặng bạn những phần quà hấp dẫn
-khi thông tin được kiểm duyệt. Xin cảm ơn"
+        android:text="@string/icheck_se_gui_tang_ban_nhung_phan_qua_hap_dan_khi_thong_tin_duoc_kiem_duyet_xin_cam_on"
         android:textAlignment="center"
         android:textColor="#434343" />
 
@@ -42,7 +40,7 @@ khi thông tin được kiểm duyệt. Xin cảm ơn"
         android:layout_marginTop="@dimen/size_20"
         android:layout_marginEnd="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_12"
-        android:text="Đóng góp ngay"
+        android:text="@string/dong_gop_ngay"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_14" />

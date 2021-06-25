@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="Bạn chưa có quà tặng nào"
+            android:text="@string/ban_chua_co_qua_tang_nao"
             android:visibility="gone" />
     </LinearLayout>
 </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICSwipeRefreshLayoutGray>

@@ -14,6 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.network.base.SettingManager
+import vn.icheck.android.ichecklibs.util.setText
 
 class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : BaseHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product_bottom_info, parent, false)) {
     private val adapter = ContactSettingAdapter(listener)
@@ -31,7 +32,7 @@ class BottomInfoHolder(parent: ViewGroup,val listener: ProductDetailListener) : 
             itemView.tvEmail.fillDrawableStartText(R.drawable.ic_list_blue_12dp)
 
         itemView.tvAddress.text = productContact.find { it.key == "product-contact.address" }?.value ?: itemView.context.getString(R.string.dia_chi_icheck)
-        itemView.tvMst.text = itemView.context.getString(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.tax-code" }?.value ?: "0106875900")
+        itemView.tvMst.setText(R.string.ma_so_thue_icheck, productContact.find { it.key == "product-contact.tax-code" }?.value ?: "0106875900")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             itemView.tvPhone.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.tong_dai_icheck, productContact.find { it.key == "product-contact.phone" }?.value ?: "0902195488"),itemView.context), Html.FROM_HTML_MODE_COMPACT)
             itemView.tvEmail.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.email_icheck, productContact.find { it.key == "product-contact.mail" }?.value ?: "cskh@icheck.vn"),itemView.context), Html.FROM_HTML_MODE_COMPACT)

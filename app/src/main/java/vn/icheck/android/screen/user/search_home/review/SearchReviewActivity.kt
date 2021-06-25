@@ -207,7 +207,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
 
     fun setFilterTime() {
         if (viewModel.getReviewYear.isNullOrEmpty()) {
-            btn_filer_time.setTextEmpitySearch(R.string.year)
+            btn_filer_time.setTextEmpitySearch(R.string.year_nam)
         } else {
             val listString = viewModel.getReviewYear.filterIndexed { index: Int, _: String -> index < 3 }
             var years = listString.toString().substring(1, listString.toString().length - 1)

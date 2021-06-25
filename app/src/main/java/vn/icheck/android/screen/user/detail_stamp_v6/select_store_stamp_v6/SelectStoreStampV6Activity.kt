@@ -43,7 +43,7 @@ class SelectStoreStampV6Activity : BaseActivityMVVM(), ISelectStoreStampV6View {
     }
 
     private fun listener() {
-        txtTitle.text = "Chọn điểm bán"
+        txtTitle.setText(R.string.chon_diem_ban)
 
         imgBack.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)

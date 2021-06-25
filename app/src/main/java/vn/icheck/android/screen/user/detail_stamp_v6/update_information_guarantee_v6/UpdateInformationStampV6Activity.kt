@@ -42,7 +42,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     fun onInitView() {
-        txtTitle.text = "Thông tin khách hàng"
+        txtTitle.setText(R.string.thong_tin_khach_hang)
 
         setupView()
 
@@ -145,7 +145,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameCityFail() {
-        tvCities.text = "Tùy chọn"
+        tvCities.setText(R.string.tuy_chon)
     }
 
     override fun onGetNameDistrictSuccess(obj: ICNameDistricts) {
@@ -153,7 +153,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
     }
 
     override fun onGetNameDistrictFail() {
-        tvDistricts.text = "Tùy chọn"
+        tvDistricts.setText(R.string.tuy_chon)
     }
 
     override fun showError(errorMessage: String) {
@@ -176,7 +176,7 @@ class UpdateInformationStampV6Activity : BaseActivityMVVM(), IUpdateInformationS
         val intent = Intent()
         intent.putExtra(Constant.DATA_1, objUpdate)
         setResult(Activity.RESULT_OK, intent)
-        showShortSuccess("Cập nhật thông tin thành công")
+        showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         onBackPressed()
     }
 

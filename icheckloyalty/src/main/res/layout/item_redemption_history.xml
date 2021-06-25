@@ -90,7 +90,7 @@
         android:id="@+id/btnManagerPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quản lý Xu"
+        android:text="@string/quan_ly_xu"
         android:drawableRight="@drawable/ic_right_point"
         android:background="@drawable/bg_corner_10_top_left_bottom_right_yellow"
         android:drawablePadding="@dimen/size_5"

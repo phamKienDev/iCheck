@@ -123,7 +123,7 @@ class MapHistoryActivity : BaseActivityMVVM() {
                         this@MapHistoryActivity,
                         tvDescription,
                         5,
-                        "Đọc tiếp",
+                        context.getString(R.string.doc_tiep),
                         vn.icheck.android.ichecklibs.ColorManager.getPrimaryColorCode(this@MapHistoryActivity),
                         obj.newDetail?.description!!
                     )

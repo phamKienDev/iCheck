@@ -61,12 +61,13 @@ class ProductInPostComponent : LinearLayout {
     }
 
     fun setData(obj: ICProductInPost) {
-        WidgetUtils.loadImageUrlRounded(getChildAt(0) as AppCompatImageView, obj?.avatar_product, SizeHelper.size4)
+        WidgetUtils.loadImageUrlRounded(getChildAt(0) as AppCompatImageView,
+            obj.avatar_product, SizeHelper.size4)
 
         (getChildAt(1) as LinearLayout).run {
-            (getChildAt(0) as AppCompatTextView).text = obj?.name_product ?: context.getString(R.string.dang_cap_nhat)
+            (getChildAt(0) as AppCompatTextView).text = obj.name_product ?: context.getString(R.string.dang_cap_nhat)
 
-            (getChildAt(1) as AppCompatTextView).text = obj?.name_busniness ?: context.getString(R.string.dang_cap_nhat)
+            (getChildAt(1) as AppCompatTextView).text = obj.name_busniness ?: context.getString(R.string.dang_cap_nhat)
         }
     }
 }

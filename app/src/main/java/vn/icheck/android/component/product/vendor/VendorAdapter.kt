@@ -95,7 +95,7 @@ class VendorAdapter(val listData: List<ICPage>) : RecyclerView.Adapter<VendorAda
                 binding.tvMST.text = "Mã số thuế: " + obj.tax
                 binding.tvDangCapNhatMST.visibility = View.GONE
             } else {
-                binding.tvMST.text = "Mã số thuế: "
+                binding.tvMST.setText(R.string.ma_so_thue)
                 binding.tvDangCapNhatMST.visibility = View.VISIBLE
             }
 

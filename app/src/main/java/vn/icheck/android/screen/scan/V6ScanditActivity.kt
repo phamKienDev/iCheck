@@ -725,7 +725,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         }
                     }
                     if (code == nc) {
-                        showLongError("Đây không phải là tem iCheck vui lòng quét lại!")
+                        showLongError(getString(R.string.day_khong_phai_la_tem_icheck_vui_long_quet_lai))
                         resetCamera()
                     } else {
                         val type = intent.getStringExtra("type")
@@ -910,7 +910,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast("Sản phẩm không cho quét",3000)
+        showDurationErrorToast(getString(R.string.san_pham_khong_cho_quet),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 
@@ -918,7 +918,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast("Sản phẩm bị ẩn bởi doanh nghiệp sở hữu",3000)
+        showDurationErrorToast(getString(R.string.san_pham_bi_an_boi_doanh_nghiep_so_huu),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 
@@ -926,7 +926,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
         if (tracking) {
             TrackingAllHelper.trackScanFailed(Constant.MA_VACH)
         }
-        showDurationErrorToast("Không tìm thấy sản phẩm",3000)
+        showDurationErrorToast(getString(R.string.khong_tim_thay_san_pham),3000)
         Handler().postDelayed({enableCapture()},3000)
     }
 
@@ -982,7 +982,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
 
     private fun initListener() {
         viewModel.errorString.observe(this, {
-            showShortErrorToast("Kết nối mạng của bạn có vấn đề.\nVui lòng thử lại.")
+            showShortErrorToast(getString(R.string.ket_noi_mang_cua_ban_co_van_de_n_vui_long_thu_lai))
             enableCapture()
         })
         viewModel.stampFake.observe(this, {
@@ -1145,7 +1145,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
     private fun handleQr(type: Int, data: String) {
         when (type) {
             Constant.TYPE_URL -> {
-                WebViewActivity.start(this, data, 0, "Chi tiết Qr Code")
+                WebViewActivity.start(this, data, 0, getString(R.string.chi_tiet_qr_code))
             }
             Constant.TYPE_SMS -> {
                 try {
@@ -1224,7 +1224,7 @@ class V6ScanditActivity : BaseActivityMVVM(), BarcodeCaptureListener {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                         startActivity(intent);
                     } catch (exception: ActivityNotFoundException) {
-                        showShortErrorToast("Không tìm thấy ứng dụng google map!")
+                        showShortErrorToast(getString(R.string.khong_tim_thay_ung_dung_google_map))
                         enableCapture()
                     }
                 }

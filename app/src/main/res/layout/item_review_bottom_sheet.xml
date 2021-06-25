@@ -11,22 +11,20 @@
     <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tvVote"
         android:layout_width="0dp"
-        android:layout_weight="4"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:drawableStart="@drawable/ic_list_blue_12dp"
         android:drawableLeft="@drawable/ic_list_blue_12dp"
         android:drawablePadding="@dimen/size_2"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
-        android:singleLine="true"
         android:textSize="@dimen/font_14"
         tools:text="Chất lượng sản phẩm" />
 
     <com.willy.ratingbar.ScaleRatingBar
         android:id="@+id/ratingReview"
-        android:layout_width="@dimen/size_0"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
         app:srb_clickable="false"
         app:srb_drawableEmpty="@drawable/ic_star_empty_36px"
         app:srb_drawableFilled="@drawable/star_active_36px"
@@ -35,7 +33,6 @@
         app:srb_rating="0"
         app:srb_scrollable="false"
         app:srb_starHeight="@dimen/size_36"
-        android:gravity="end"
         app:srb_starPadding="@dimen/size_0"
         app:srb_starWidth="@dimen/size_36" />
 </LinearLayout>

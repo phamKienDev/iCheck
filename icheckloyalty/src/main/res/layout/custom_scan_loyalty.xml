@@ -21,7 +21,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:elevation="2dp"
-        android:text="Quét mã vạch, QR code, tem chống giả được dán trên sản phẩm để nhận lượt quay may mắn!"
+        android:text="@string/quet_ma_vach_qr_code_tem_chong_gia_duoc_dan_tren_san_pham_de_nhan_luot_quay_may_man"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="14sp"
@@ -88,7 +88,8 @@
         android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/scandit_tracking_logo" />
+        app:srcCompat="@drawable/scandit_tracking_logo"
+        android:layout_marginEnd="32dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView16"
@@ -100,7 +101,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_flash"
         app:srcCompat="@drawable/ic_group_guide"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/textView24"
@@ -108,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:elevation="2dp"
-        android:text="Bật đèn để quét\nmã dễ hơn "
+        android:text="@string/bat_den_de_quet_ma_de_hon"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:visibility="invisible"
@@ -124,14 +126,15 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:elevation="2dp"
-        android:text="Đưa mã sản phẩm vào\nvùng quét"
+        android:text="@string/dua_ma_san_pham_vao_vung_quet"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/imageView33"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:layout_marginEnd="32dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView33"
@@ -198,7 +201,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Lưu ý: Vui lòng giữ lại nhãn sản phẩm có chứa mã dự thưởng để đối chứng khi trúng thưởng. Trong trường hợp không giữ lại nhãn sản phẩm, kết quả trúng thưởng của bạn sẽ bị hủy bỏ."
+        android:text="@string/luu_y"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/view29"

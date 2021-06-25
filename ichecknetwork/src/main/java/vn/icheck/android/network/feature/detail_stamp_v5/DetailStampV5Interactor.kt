@@ -6,6 +6,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.detail_stamp_v6.ICDetailStampV6
@@ -42,7 +45,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -71,7 +74,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -104,7 +107,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                     }
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -121,7 +124,7 @@ class DetailStampV5Interactor : BaseInteractor() {
 
             override fun onFailure(call: Call<IC_Config_Error>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -153,7 +156,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -185,7 +188,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                     }
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -202,7 +205,7 @@ class DetailStampV5Interactor : BaseInteractor() {
 
             override fun onFailure(call: Call<ICNameCity>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -233,7 +236,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                     }
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -250,7 +253,7 @@ class DetailStampV5Interactor : BaseInteractor() {
 
             override fun onFailure(call: Call<ICNameDistricts>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -278,7 +281,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -337,7 +340,7 @@ class DetailStampV5Interactor : BaseInteractor() {
                             }
 
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                         }
                 )
         composite.add(disposable)

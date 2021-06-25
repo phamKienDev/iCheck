@@ -61,7 +61,7 @@ class MoreBusinessV5Activity : BaseActivityMVVM(), IMoreBusinessV5View {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_TEXT, tvEmail.text.toString())
-                startActivity(Intent.createChooser(intent, "Send To"))
+                startActivity(Intent.createChooser(intent, getString(R.string.send_to)))
             }
         }
 

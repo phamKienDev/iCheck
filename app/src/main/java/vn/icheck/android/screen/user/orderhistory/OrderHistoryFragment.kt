@@ -78,7 +78,7 @@ class OrderHistoryFragment : BaseFragmentMVVM(), IRecyclerViewCallback {
             if (!it.isNullOrEmpty()) {
                 adapter.setListData(it)
             } else {
-                adapter.setError(R.drawable.ic_group_120dp, "Bạn chưa có đơn hàng nào!", -1)
+                adapter.setError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_don_hang_nao), -1)
             }
         })
 

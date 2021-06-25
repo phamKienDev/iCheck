@@ -35,7 +35,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:text="Tin tức"
+            android:text="@string/tin_tuc"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -63,7 +63,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:text="Chương trình mới"
+            android:text="@string/chuong_trinh_moi"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -92,7 +92,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:text="Tin nhắn"
+            android:text="@string/tin_nhan"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -126,7 +126,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:text="Rung"
+            android:text="@string/rung"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -154,7 +154,7 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
-            android:text="Âm thanh"
+            android:text="@string/am_thanh"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -183,7 +183,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Xóa cache"
+            android:text="@string/xoa_cache"
             android:textSize="@dimen/font_14" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
@@ -218,7 +218,7 @@
             android:layout_marginTop="@dimen/size_15"
             android:layout_marginBottom="@dimen/size_15"
             android:fontFamily="@font/barlow_medium"
-            android:text="Ngôn ngữ:"
+            android:text="@string/ngon_ngu_colon"
             android:textSize="@dimen/font_14" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
@@ -230,7 +230,7 @@
             android:layout_marginBottom="@dimen/size_15"
             android:layout_toRightOf="@id/textView"
             android:fontFamily="@font/barlow_semi_bold"
-            android:text="Tiếng Việt"
+            android:text="@string/tieng_viet"
             android:textSize="@dimen/font_14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -276,7 +276,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/barlow_medium"
-                android:text="Language:"
+                android:text="@string/language_colon"
                 android:textSize="@dimen/font_14" />
 
             <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
@@ -287,7 +287,7 @@
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_toRightOf="@id/appCompatTextView"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="English"
+                android:text="@string/english"
                 android:textSize="@dimen/font_14" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -320,6 +320,6 @@
         android:gravity="center"
         android:paddingTop="@dimen/size_9"
         android:paddingBottom="@dimen/size_9"
-        android:text="Đặt lại mặc định"
+        android:text="@string/dat_lai_mac_dinh"
         android:textSize="@dimen/font_16" />
 </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>

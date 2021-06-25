@@ -12,7 +12,7 @@
         android:textColor="#434343"
         android:layout_margin="@dimen/size_12"
         android:layout_height="wrap_content"
-        android:text="Chọn tiêu đề nội dung" />
+        android:text="@string/chon_tieu_de_noi_dung" />
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"

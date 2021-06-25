@@ -24,17 +24,17 @@ class ListReviewHolder(val view: View, val listener: IReviewProductView) : BaseV
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Hữu ích (%d)", number)
+            view.context.getString(R.string.huu_ich_d, number)
         } else {
-            "Hữu ích"
+            view.context.getString(R.string.huu_ich)
         }
     }
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Không hữu ích (%d)", number)
+            view.context.getString(R.string.khong_huu_ich_d, number)
         } else {
-            "Không hữu ích"
+            view.context.getString(R.string.khong_huu_ich)
         }
     }
 

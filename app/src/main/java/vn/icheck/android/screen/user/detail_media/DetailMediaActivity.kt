@@ -151,14 +151,14 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
             override fun downloadSuccess() {
                 imgDownload.setImageResource(R.drawable.ic_download_24_white)
                 imgDownload.isEnabled = false
-                DialogHelper.showDialogSuccessBlack(this@DetailMediaActivity, "Tải xuống thành công")
+                DialogHelper.showDialogSuccessBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_thanh_cong))
 
             }
 
             override fun downloadError() {
                 imgDownload.setImageResource(R.drawable.ic_download_24_white)
                 imgDownload.isEnabled = false
-                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, "Tải xuống thất bại")
+                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_that_bai))
                 downloadHelper?.cancelDownload(downloadId)
 
             }
@@ -174,7 +174,7 @@ class DetailMediaActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun downloadMedia() {
         if (!adapter.getListData.isNullOrEmpty()) {
             if (adapter.getListData[positionView].mediaError || NetworkHelper.isNotConnected(this)) {
-                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, "Tải xuống thất bại")
+                DialogHelper.showDialogErrorBlack(this@DetailMediaActivity, getString(R.string.tai_xuong_that_bai))
             } else {
                 imgDownload.setImageResource(R.drawable.ic_download_24_gray)
                 imgDownload.isEnabled = false

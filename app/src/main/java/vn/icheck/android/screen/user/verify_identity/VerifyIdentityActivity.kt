@@ -48,7 +48,7 @@ class VerifyIdentityActivity : BaseActivityMVVM(), View.OnClickListener {
         viewModel.getKyc()
         viewModel.kycResponseLiveData.observe(this, {
             it.firstOrNull()?.let { item ->
-                tvComplete.setText("Cập nhật giấy tờ")
+                tvComplete.setText(R.string.cap_nhat_giay_to)
                 val kycDocuments = item.kycValue?.kycDocuments
                 if (kycDocuments?.firstOrNull()?.type == 1) {
                     textView46.setText(R.string.mat_truoc_cmnd)

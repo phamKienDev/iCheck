@@ -6,8 +6,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,6 +13,7 @@ import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
@@ -26,11 +25,9 @@ import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.ichecklibs.util.visibleOrGone
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEvent
-import vn.icheck.android.lib.keyboard.KeyboardVisibilityEventListener
-import vn.icheck.android.lib.keyboard.Unregistrar
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -49,7 +46,6 @@ import vn.icheck.android.util.AfterTextWatcher
 import vn.icheck.android.util.ick.*
 import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
-import android.view.ViewTreeObserver.OnGlobalLayoutListener as OnGlobalLayoutListener1
 
 @AndroidEntryPoint
 class IckLoginFragment : BaseFragmentMVVM() {
@@ -105,16 +101,18 @@ class IckLoginFragment : BaseFragmentMVVM() {
                 binding.edtPhone.text?.trim().toString().isPhoneNumber() -> {
                     when {
                         binding.edtPassword.text.isNullOrEmpty() -> {
-                            binding.edtPassword.requestFocus()
-                            binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
-                                    ?: 0)
-                            binding.edtPassword.setError("Bạn chưa nhập mật khẩu")
+                            binding.edtPassword.apply {
+                                requestFocus()
+                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
+                                error = context.getString(R.string.ban_chua_nhap_mat_khau)
+                            }
                         }
                         binding.edtPassword.text?.toString()?.length ?: 0 < 6 -> {
-                            binding.edtPassword.requestFocus()
-                            binding.edtPassword.setSelection(binding.edtPassword.text?.toString()?.length
-                                    ?: 0)
-                            binding.edtPassword.setError("Mật khẩu phải lớn hơn hoặc bằng 6 kí tự")
+                            binding.edtPassword.apply {
+                                requestFocus()
+                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
+                                error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            }
                         }
                         else -> {
                             login()
@@ -124,7 +122,9 @@ class IckLoginFragment : BaseFragmentMVVM() {
                 }
                 else -> {
                     showFocus()
-                    binding.edtPhone.setError("Số điện thoại không đúng định dạng")
+                    binding.edtPhone.apply {
+                        error = context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
+                    }
                 }
 
             }
@@ -150,7 +150,7 @@ class IckLoginFragment : BaseFragmentMVVM() {
                 }
 
                 override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, "Hỗ trợ đăng nhập")
+                    WebViewActivity.start(requireActivity(), list?.firstOrNull()?.value, null, it.context.getString(R.string.ho_tro_dang_nhap))
                 }
             })
 //            WebViewActivity.start(requireActivity(), "http://quotes.icheck.com.vn/van-de-khi-dang-nhap/")

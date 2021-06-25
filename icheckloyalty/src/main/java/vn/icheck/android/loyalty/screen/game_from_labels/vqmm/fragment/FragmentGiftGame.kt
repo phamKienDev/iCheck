@@ -128,7 +128,7 @@ class FragmentGiftGame : Fragment() {
             layoutContent.findViewById<AppCompatImageButton>(R.id.imgProduct).setImageBitmap(screenShot(img_bg_center))
             layoutContent.findViewById<CircleImageView>(R.id.imgBusiness).setImageBitmap(screenShot(imgBusiness))
             layoutContent.findViewById<AppCompatTextView>(R.id.tvDescription).apply {
-                val spannableString = SpannableString("Tải ngay   app để tham gia chương trình")
+                val spannableString = SpannableString(context.getString(R.string.tai_ngay_app_de_tham_gia_chuong_trinh))
                 spannableString.setSpan(ImageSpan(requireContext(), R.drawable.ic_icheck_small_white, ImageSpan.ALIGN_BASELINE), 9, 10, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
                 text = spannableString
             }
@@ -140,14 +140,21 @@ class FragmentGiftGame : Fragment() {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "*/*"
             val mBitmap = screenShot(layoutContent)
-            val path = MediaStore.Images.Media.insertImage(activity?.contentResolver, mBitmap, "Anh chup man hinh", null)
+            val path = MediaStore.Images.Media.insertImage(activity?.contentResolver, mBitmap, getString(R.string.anh_chup_man_hinh), null)
             val uri = Uri.parse(path)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            shareIntent.putExtra(Intent.EXTRA_TEXT,
-                    "Chúc mừng ${SessionManager.session.user?.name} " +
-                            "đã trúng \"${args.giftName}\" khi tham gia sự kiện \"${args.campaignName}\" của nhà tài trợ \"${args.owner}\"")
-            startActivity(Intent.createChooser(shareIntent, "Chia sẻ qua app"))
+            shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            shareIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                getString(
+                    R.string.chuc_muong_s_da_trung_s_khi_tham_gia_su_kien_s_cua_nha_tai_tro_s,
+                    SessionManager.session.user?.name?:"",
+                    args.giftName,
+                    args.campaignName,
+                    args.owner
+                )
+            )
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.chia_se_qua_app)))
 
             root_shot.removeView(layoutParent)
         }

@@ -143,7 +143,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             it.minLines = 3
             it.maxLines = 6
             it.setPadding(SizeHelper.size10, SizeHelper.size6, SizeHelper.size10, SizeHelper.size6)
-            it.setHint(R.string.mo_ta_noi_dung_bao_cao_khac)
+            it.setHint(R.string.mo_ta_noi_dung_bao_cao)
             it.gravity = Gravity.TOP
             it.visibility = View.GONE
         })
@@ -172,7 +172,7 @@ class ReportProductActivity : BaseActivityMVVM() {
             }
 
             if (!listReasonID.isNullOrEmpty()) {
-                DialogHelper.showConfirm(this, "Bạn muốn bỏ báo cáo này?", null, "Tiếp tục báo cáo", "Bỏ báo cáo", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bao_cao_nay), null, getString(R.string.tiep_tuc_bao_cao), getString(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         DialogHelper.closeLoading(this@ReportProductActivity)
                     }

@@ -14,8 +14,8 @@ abstract class ContactDialogBottomSheet(context: Context, private var phone: Str
         dialog.tvLowtoHigh.visibility = View.GONE
         dialog.tvHightoLow.visibility = View.GONE
         dialog.tvNew.text = phone
-        dialog.tvTheBestSeller.text = "Gửi tin nhắn"
-        dialog.tvClose.text = "Hủy"
+        dialog.tvTheBestSeller.setText(R.string.gui_tin_nhan)
+        dialog.tvClose.setText(R.string.huy)
 
         dialog.view.visibility = View.GONE
         dialog.view1.visibility = View.GONE

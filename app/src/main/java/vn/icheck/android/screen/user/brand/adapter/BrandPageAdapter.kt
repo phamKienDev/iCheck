@@ -161,9 +161,9 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
                 (getChildAt(2) as AppCompatTextView).run {
                     text = if (obj.followCount != null) {
                         if (obj.followCount < 1000) {
-                            "${obj.followCount} người thích trang này"
+                            context.getString(R.string.d_nguoi_thich_trang_nay, obj.followCount)
                         } else {
-                            "${(obj.followCount) / 1000}k người thích trang này"
+                            context.getString(R.string.d_k_nguoi_thich_trang_nay, (obj.followCount) / 1000)
                         }
                     } else {
                         itemView.context.getString(R.string.dang_cap_nhat)
@@ -175,13 +175,13 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
 
                         text = if (obj.likeCount != null) {
                             if (obj.followers?.get(0)?.name.isNullOrEmpty()) {
-                                "${obj.likeCount} bạn khác thích trang này"
+                                context.getString(R.string.d_ban_khac_thich_trang_nay, obj.likeCount)
                             } else {
-                                "${obj.followers?.get(0)?.name} và ${obj.likeCount} bạn khác thích trang này"
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name?:"", obj.likeCount)
                             }
                         } else {
                             if (!obj.followers?.get(0)?.name.isNullOrEmpty()) {
-                                "${obj.followers?.get(0)?.name} và ${obj.followers!!.size - 1} bạn khác thích trang này"
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name?:"", obj.followers!!.size - 1)
                             } else {
                                 itemView.context.getString(R.string.dang_cap_nhat)
                             }
@@ -214,11 +214,11 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
             // Text follow
             tvFollow.run {
                 if (isFollow) {
-                    text = "Đang theo dõi"
+                    setText(R.string.dang_theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
                     setTextColor(ColorManager.getSecondTextColor(context))
                 } else {
-                    text = "Theo dõi"
+                    setText(R.string.theo_doi)
                     background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
                     setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
                 }
@@ -239,7 +239,7 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
                 ICheckApplication.currentActivity()?.let { activity ->
                     DialogHelper.showConfirm(activity,
                             activity.getString(R.string.bo_theo_doi_trang),
-                            activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_xxx_chu, obj.name),
+                            activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_s_chu, obj.name),
                             object : ConfirmDialogListener {
                                 override fun onDisagree() {}
 
