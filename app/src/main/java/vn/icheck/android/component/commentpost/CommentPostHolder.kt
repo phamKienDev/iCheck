@@ -74,7 +74,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         if (obj.media.isNullOrEmpty()) {
             binding.imageView.visibility = View.GONE
         } else {
-            if ((obj.media!![0]!!.content ?: "").contains(".mp4")) {
+            if ((obj.media!!.first()!!.content ?: "").contains(".mp4")||obj.media!!.first()!!.type =="video") {
                 binding.btnPlay.visibility = View.VISIBLE
             } else {
                 binding.btnPlay.visibility = View.GONE
