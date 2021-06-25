@@ -663,5 +663,8 @@
     <style name="text_black_barlow">
         <item name="android:fontFamily">@font/barlow_medium</item>
         <item name="android:textColor">#212121</item>
+        <item name="android:paddingTop">@dimen/size_12</item>
+        <item name="android:paddingBottom">@dimen/size_12</item>
+        <item name="android:textSize">@dimen/font_14</item>
     </style>
 </resources>
