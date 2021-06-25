@@ -150,7 +150,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
-            ds.setColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(ICheckApplication.getInstance()))
+            ds.color = ColorManager.getPrimaryColor(ICheckApplication.getInstance())
         }
     }
 
@@ -158,13 +158,12 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         override fun onClick(p0: View) {
             drawerLayout.closeDrawer(GravityCompat.START)
             startActivity<IckLoginActivity>()
-//            this@HomeActivity simpleStartActivity IckLoginActivity::class.java
         }
 
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = true
-            ds.setColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(ICheckApplication.getInstance()))
+            ds.color = ColorManager.getPrimaryColor(ICheckApplication.getInstance())
         }
     }
 
@@ -240,7 +239,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         listPage.add(ICFragment(null, HomePageFragment()))
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
-//        listPage.add(ICFragment(null, SocialChatFragment()))
         listPage.add(ICFragment(null, ChatSocialFragment().apply {
             setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
                 override fun getCountMessage(count: Long) {
@@ -277,7 +275,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         when (position) {
             1 -> {
                 if (!isChecked(tvHome)) {
-//                    TrackingAllHelper.trackHomePageViewed()
                     viewPager.setCurrentItem(0, false)
                     HideWebUtils.showWeb("Home")
                     HomePageFragment.INSTANCE?.scrollToTop()
@@ -306,7 +303,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 }
             }
             5 -> {
-//                unCheckAll()
                 isScan = true
 
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -316,7 +312,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), ICK_REQUEST_CAMERA)
                     }
                 } else {
-//                    ICKScanActivity.create(this)
                     V6ScanditActivity.create(this)
                 }
             }
@@ -523,7 +518,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             tv_user_rank.visibility = View.VISIBLE
-            tv_user_rank.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this))
+            tv_user_rank.setTextColor(ColorManager.getNormalTextColor(this))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val spannableString = SpannableString(Html.fromHtml(getString(R.string.vui_long_dang_ky_hoac_dang_nhap), Html.FROM_HTML_MODE_COMPACT))
                 spannableString.setSpan(registerClickable, 9, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -663,7 +658,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ICK_REQUEST_CAMERA) {
             if (PermissionHelper.checkResult(grantResults)) {
-//                ICKScanActivity.create(this)
                 V6ScanditActivity.create(this)
             }
         }
