@@ -112,9 +112,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         createPost()
                     }
                     USER_WALL_OPEN_SCAN -> {
-//                        val i = Intent(requireContext(), ICKScanActivity::class.java)
-//                        requireActivity().finish()
-//                        startActivity(i)
                         if (ContextCompat.checkSelfPermission(
                                         requireActivity(),
                                         Manifest.permission.CAMERA
@@ -127,8 +124,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         } else {
                             V6ScanditActivity.reviewOnly(requireActivity())
                         }
-
-//                        ICKScanActivity.reviewOnly(requireActivity())
                     }
                     EDIT_POST -> {
                         hideBottomBar()
@@ -179,9 +174,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    requireContext().showShortErrorToast(error?.message
-                                            ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-//                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    requireContext().showShortErrorToast(error?.message ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                 }
                             })
                         } else {
@@ -307,7 +300,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val totalItemCount = binding.rcvIckUserWall.layoutManager!!.itemCount
                 val linearLayoutManager = binding.rcvIckUserWall.layoutManager!! as LinearLayoutManager
                 val pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition()
 
@@ -363,21 +355,9 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
             if (ickUserWallViewModel.updatePost == 0) {
                 ickUserWallAdapter.updateList(it)
-//                if (ickUserWallViewModel.arrPost.size < ickUserWallViewModel.totalPost) {
-//                    ickUserWallAdapter.addPosts(ickUserWallViewModel.arrPost)
-//                } else {
-//                    ickUserWallViewModel.updatePost = 0
-//                    if (it.size < ickUserWallViewModel.totalPost + 4) {
-//                        ickUserWallAdapter.updateList(it)
-//                    }
-//                }
             } else {
                 ickUserWallViewModel.updatePost = 0
                 ickUserWallAdapter.addPosts(ickUserWallViewModel.arrPost)
-
-//                if (it.size < ickUserWallViewModel.totalPost + 4) {
-//                    ickUserWallAdapter.updateList(it)
-//                }
             }
             setNotify()
         })
@@ -407,7 +387,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
             requireContext() showShortErrorToast it
         }
         ickUserWallViewModel.showSuccessReport.observe(viewLifecycleOwner, Observer {
-//            ReportUserSuccessDialog().show(childFragmentManager, null)
             val listReason = ickUserWallViewModel.arrReport.filter { it.checked }.map { ICReportForm(null, it.data?.name) }.toMutableList()
             ickUserWallViewModel.arrReport.lastOrNull()?.content?.let { content ->
                 if (content.isNotEmpty()) {
@@ -444,14 +423,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 putExtra(USER_WALL_BROADCAST, USER_WALL_EDIT_PERSONAL)
             })
         }
-//        if (ickUserWallViewModel.userInfo?.data?.id == SessionManager.session.user?.id) {
-//            RelationshipManager.getFriendList().observe(viewLifecycleOwner, {
-//                if (it.size != ickUserWallViewModel.totalFriend) {
-//                    ickUserWallViewModel.updateFriendList()
-//                    ickUserWallAdapter.notifyFriendList()
-//                }
-//            })
-//        }
     }
 
 
@@ -480,7 +451,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
             ICMessageEvent.Type.FRIEND_LIST_UPDATE -> {
                 if (event.data as Int == RelationshipManager.FRIEND_LIST_UPDATE) {
                     getLayout()
-//                    ickUserWallAdapter.notifyFriendList()
                 }
             }
             ICMessageEvent.Type.SHOW_FULL_MEDIA -> {

@@ -120,20 +120,20 @@ class IckUserWallAdapter(val listener: IPostListener) : RecyclerView.Adapter<Rec
                     (holder as FriendRequestWallHolder).apply {
                         bind((listData[position] as ICWallModel).data as ICListResponse<ICSearchUser>)
 
-                        setOnRemoveListener({
+                        setOnRemoveListener {
                             listData.removeAt(position)
                             notifyItemRemoved(position)
-                        })
+                        }
                     }
                 }
                 ICViewTypes.FRIEND_SUGGESTION_TYPE -> {
                     (holder as FriendSuggestionComponent).apply {
                         bind(((listData[position] as ICWallModel).data as ICListResponse<ICUser>).rows)
 
-                        setOnRemoveListener({
+                        setOnRemoveListener {
                             listData.removeAt(position)
                             notifyItemRemoved(position)
-                        })
+                        }
                     }
                 }
                 ICViewTypes.ITEM_USER_POST -> {
