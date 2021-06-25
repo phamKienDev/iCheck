@@ -52,26 +52,35 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
-                        android:id="@+id/tvOwnerTitle"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/linearLayoutOwner"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_12"
-                        tools:text="Trang của tôi (12)"
-                        android:textSize="@dimen/font_18"
+                        android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
-                        android:id="@+id/tvOwnerAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/size_12"
-                        android:text="@string/xem_tat_ca"
-                        android:textSize="@dimen/font_14"
-                        app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+                            android:id="@+id/tvOwnerTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/font_18"
+                            tools:text="Trang của tôi (12)" />
+
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+                            android:id="@+id/tvOwnerAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:text="@string/xem_tat_ca"
+                            android:textSize="@dimen/font_14"
+                            app:layout_constraintBottom_toBottomOf="@id/tvOwnerTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvOwnerTitle" />
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvOwner"
@@ -80,7 +89,7 @@
                         android:paddingTop="@dimen/size_6"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvOwnerTitle" />
+                        app:layout_constraintTop_toBottomOf="@id/linearLayoutOwner" />
                 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
                 <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
@@ -91,26 +100,39 @@
                     android:paddingTop="@dimen/size_10"
                     android:visibility="gone">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
-                        android:id="@+id/tvFollowTitle"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/linearLayoutFollow"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_12"
-                        tools:text="Trang của tôi (12)"
-                        android:textSize="@dimen/font_18"
+                        android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
-                        android:id="@+id/tvFollowAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/size_12"
-                        android:text="@string/xem_tat_ca"
-                        android:textSize="@dimen/font_14"
-                        app:layout_constraintBottom_toBottomOf="@id/tvFollowTitle"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvFollowTitle" />
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+                            android:id="@+id/tvFollowTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/font_18"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Trang của tôi (12)" />
+
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
+                            android:id="@+id/tvFollowAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:text="@string/xem_tat_ca"
+                            android:textSize="@dimen/font_14"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFollowTitle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvFollowTitle" />
+
+                    </LinearLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvFollow"
@@ -119,7 +141,7 @@
                         android:paddingTop="@dimen/size_6"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvFollowTitle" />
+                        app:layout_constraintTop_toBottomOf="@id/linearLayoutFollow" />
                 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 

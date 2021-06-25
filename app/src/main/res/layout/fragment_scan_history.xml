@@ -84,53 +84,76 @@
                     android:layout_height="0.5dp"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
-                    android:id="@+id/tvSort"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_12"
-                    android:drawableStart="@drawable/ic_selected_history_27"
-                    android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
-                    android:drawablePadding="@dimen/size_5"
-                    android:gravity="center"
-                    android:text="Sắp xếp: Mới nhất"
-                    android:textSize="@dimen/font_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvFilter"
-                    app:layout_constraintBottom_toBottomOf="@id/tvFilter"/>
+                    app:layout_constraintTop_toBottomOf="@id/view">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFilterHis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_7"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvFilter"
-                    app:layout_constraintEnd_toStartOf="@+id/tvFilter"
-                    app:layout_constraintTop_toTopOf="@+id/tvFilter"
-                    app:srcCompat="@drawable/ic_filter_gray_24_px" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
-                    android:id="@+id/tvFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="@dimen/size_13"
-                    android:layout_marginTop="@dimen/size_12"
-                    android:layout_marginBottom="@dimen/size_12"
-                    android:gravity="center_horizontal|end"
-                    android:text="Lọc theo"
-                    android:textSize="@dimen/font_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view" />
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+                            android:id="@+id/tvSort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_12"
+                            android:drawableStart="@drawable/ic_selected_history_27"
+                            android:drawableEnd="@drawable/ic_sort_arrow_down_gray_24_px"
+                            android:drawablePadding="@dimen/size_5"
+                            android:gravity="center"
+                            android:text="Sắp xếp: Mới nhất"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvFilter"
+                            app:layout_constraintEnd_toStartOf="@id/imgFilterHis"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvFilter" />
+                    </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgDot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="@+id/imgFilterHis"
-                    app:layout_constraintTop_toTopOf="@+id/imgFilterHis"
-                    app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgFilterHis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/size_7"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_filter_gray_24_px" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgDot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="@+id/imgFilterHis"
+                            app:layout_constraintTop_toTopOf="@+id/imgFilterHis"
+                            app:srcCompat="@drawable/ic_dot_red_filter_coin" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
+                        android:id="@+id/tvFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_12"
+                        android:layout_marginEnd="@dimen/size_13"
+                        android:layout_marginBottom="@dimen/size_12"
+                        android:gravity="center_horizontal|end"
+                        android:text="Lọc theo"
+                        android:textSize="@dimen/font_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgFilterHis"
+                        app:layout_constraintTop_toBottomOf="@id/view" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
