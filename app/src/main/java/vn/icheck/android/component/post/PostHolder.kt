@@ -333,7 +333,7 @@ class PostHolder(parent: ViewGroup, val listener: IPostListener? = null) : Corou
                 itemView.containerImage.beGone()
             } else {
                 itemView.containerImage.beVisible()
-                if (comments.media!!.first()!!.content?.endsWith(".mp4")==true) {
+                if (comments.media!!.first()!!.content?.endsWith(".mp4")==true||comments.media!!.first()!!.type=="video") {
                     itemView.btnPlay.beVisible()
                 } else {
                     itemView.btnPlay.beGone()

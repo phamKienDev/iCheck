@@ -73,7 +73,7 @@ class ItemListReviewHolder(context: Context) : RecyclerView.ViewHolder(ViewHelpe
             tvName.text = data.page!!.name
         } else {
             imgAvatar.setData(data.user?.avatar, data.user?.rank?.level, R.drawable.ic_avatar_default_84dp)
-            tvName.text = data.user!!.getName
+            tvName.text = data.user?.getName ?: ""
         }
 
 
