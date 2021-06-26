@@ -46,6 +46,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -218,17 +219,17 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (!theme?.homeHeaderIconColor.isNullOrEmpty()) {
             txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp),
-                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, theme!!.homeHeaderIconColor!!)
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_menu_white_24dp, ColorManager.convertColorRGBA(theme!!.homeHeaderIconColor!!))
             ), null, null, null)
 
             tvViewCart.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_shop_white_24dp),
-                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, theme.homeHeaderIconColor!!)
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_home_shop_white_24dp, ColorManager.convertColorRGBA(theme.homeHeaderIconColor!!))
             ), null, null, null)
 
             txtNotification.setCompoundDrawablesWithIntrinsicBounds(ViewHelper.createDrawableStateList(
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_notification_white_24),
-                    ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, theme.homeHeaderIconColor!!)
+                    ViewHelper.getDrawableFillColor(R.drawable.ic_notification_white_24, ColorManager.convertColorRGBA(theme.homeHeaderIconColor!!))
             ), null, null, null)
         } else {
             txtAvatar.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_home_menu_white_24dp), null, null, null)
@@ -406,7 +407,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupSwipeLayout() {
-        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        val swipeColor = ColorManager.getPrimaryColor(requireContext())
         swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
@@ -427,7 +428,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
 
         swipeLayout.isRefreshing = true
-        //            setToolbarBackground(0f)
         homeAdapter.removeAllView()
         viewModel.getHomeLayout()
         lifecycleScope.launch {

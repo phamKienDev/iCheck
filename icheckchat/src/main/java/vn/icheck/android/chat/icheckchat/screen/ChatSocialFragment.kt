@@ -18,9 +18,10 @@ import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 
 class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
 
-    private var callback: ListConversationFragment.Companion.ICountMessageListener? = null
-    private var isUserLogged: Boolean = false
-
+    companion object{
+        var callback: ListConversationFragment.Companion.ICountMessageListener? = null
+        var isUserLogged: Boolean = false
+    }
     override fun setBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentChatSocialBinding {
         return FragmentChatSocialBinding.inflate(inflater, container, false)
     }
@@ -59,11 +60,6 @@ class ChatSocialFragment : BaseFragmentChat<FragmentChatSocialBinding>() {
         binding.tvContact.setOnClickListener {
             selectTab(2)
         }
-    }
-
-    fun setDataFromHome(callback: ListConversationFragment.Companion.ICountMessageListener, isUserLogged: Boolean) {
-        this.callback = callback
-        this.isUserLogged = isUserLogged
     }
 
     private fun setupViewPager() {
