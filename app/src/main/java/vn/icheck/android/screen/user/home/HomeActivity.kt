@@ -620,9 +620,9 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             if (file.exists()) {
                 FileHelper.deleteTheme(file)
             }
-            SettingManager.themeSetting = null
-//            setupTheme()
             SettingManager.setAppThemeColor(null,this@HomeActivity)
+            SettingManager.themeSetting = null
+            setupTheme()
 
             val themeSettingRes = try {
                 withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
@@ -632,9 +632,9 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             SettingManager.themeSetting = themeSettingRes?.data
             SettingManager.setAppThemeColor(themeSettingRes?.data?.theme,this@HomeActivity)
 
-//            viewModel.downloadTheme()
+            viewModel.downloadTheme()
 
-            recreate()
+//            recreate()
         }
     }
 
