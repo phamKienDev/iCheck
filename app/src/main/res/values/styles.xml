@@ -332,7 +332,8 @@
     <!-- Update Profile -->
     <style name="UpdateProfile_Title">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/size_45</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minHeight">@dimen/size_45</item>
         <item name="android:padding">@dimen/size_12</item>
         <item name="android:textSize">12sp</item>
         <item name="android:gravity">center_vertical</item>
@@ -341,7 +342,8 @@
 
     <style name="UpdateProfile_Title_Seccond">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/size_40</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minHeight">@dimen/size_40</item>
         <item name="android:padding">@dimen/size_12</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black_75</item>
@@ -349,15 +351,16 @@
     </style>
 
     <style name="UpdateProfile_Input">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/barlow_medium</item>
         <item name="android:textColor">#434343</item>
-        <item name="android:singleLine">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">@dimen/size_0</item>
         <item name="android:paddingEnd">@dimen/size_12</item>
+        <item name="android:paddingTop">@dimen/size_12</item>
+        <item name="android:paddingBottom">@dimen/size_12</item>
         <item name="android:layout_weight">1</item>
         <item name="android:drawablePadding">@dimen/size_12</item>
         <item name="android:background">@android:color/transparent</item>
@@ -596,5 +599,9 @@
 
     <style name="text_black_barlow">
         <item name="android:fontFamily">@font/barlow_medium</item>
+        <item name="android:paddingTop">@dimen/size_12</item>
+        <item name="android:paddingBottom">@dimen/size_12</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>
