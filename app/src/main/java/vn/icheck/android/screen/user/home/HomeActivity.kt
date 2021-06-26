@@ -240,7 +240,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         listPage.add(ICFragment(null, ListNewsFragment.newInstance(false)))
         listPage.add(ICFragment(null, ScanHistoryFragment()))
         listPage.add(ICFragment(null, ChatSocialFragment().apply {
-            setDataFromHome(object : ListConversationFragment.Companion.ICountMessageListener {
+            ChatSocialFragment.callback=object : ListConversationFragment.Companion.ICountMessageListener {
                 override fun getCountMessage(count: Long) {
 
                     val tvChatCount = findViewById<AppCompatTextView>(R.id.tvChatCount)
@@ -262,7 +262,8 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 override fun onClickLeftMenu() {
                     openSlideMenu()
                 }
-            }, SessionManager.isUserLogged)
+            }
+            ChatSocialFragment.isUserLogged=SessionManager.isUserLogged
         }))
 
         viewPager.offscreenPageLimit = 5
@@ -542,16 +543,17 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     private fun setupTheme() {
         val theme = SettingManager.themeSetting?.theme
 
-        if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
-            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.grayB4), Color.parseColor(theme!!.bottomBarSelectedTextColor))
+        val colorTextSelected= if (!theme?.bottomBarSelectedTextColor.isNullOrEmpty()) {
+            ViewHelper.createColorStateList(ContextCompat.getColor(this@HomeActivity, R.color.grayB4), Color.parseColor(ColorManager.convertColorRGBA(theme!!.bottomBarSelectedTextColor!!)))
         } else {
             vn.icheck.android.ichecklibs.ViewHelper.textColorDisableTextUncheckPrimaryChecked(this)
-        }.apply {
-            tvHome.setTextColor(this)
-            tvFeed.setTextColor(this)
-            tvHistory.setTextColor(this)
-            tvChat.setTextColor(this)
         }
+        tvHome.setTextColor(colorTextSelected)
+        tvFeed.setTextColor(colorTextSelected)
+        tvHistory.setTextColor(colorTextSelected)
+        tvChat.setTextColor(colorTextSelected)
+
+
 
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
