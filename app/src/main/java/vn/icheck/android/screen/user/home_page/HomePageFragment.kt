@@ -84,6 +84,7 @@ import vn.icheck.android.util.ick.loadImageWithHolder
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
+import java.io.File
 
 /**
  * Created by VuLCL on 9/19/2019.
@@ -619,36 +620,35 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                tvCartCount.visibleOrInvisible(count != null)
 //                tvCartCount.text = count
 //            }
-//            ICMessageEvent.Type.ON_LOG_IN -> {
+            ICMessageEvent.Type.ON_LOG_IN -> {
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                    delay(400)
+                    getReminders()
+                    refreshHomeData()
+                }
+            }
+            ICMessageEvent.Type.ON_LOG_OUT -> {
+                lifecycleScope.launch {
+                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
+                    if (file.exists()) {
+                        FileHelper.deleteTheme(file)
+                    }
+                    homeAdapter.notifyDataSetChanged()
+                    checkTheme()
+                    delay(400)
+                    getReminders()
+                }
 
-//                lifecycleScope.launch {
-//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-//                    if (file.exists()) {
-//                        FileHelper.deleteTheme(file)
-//                    }
-//                    homeAdapter.notifyDataSetChanged()
-//                    checkTheme()
-//                    delay(400)
-//                    getReminders()
-//                    refreshHomeData()
-//                }
-//            }
-//            ICMessageEvent.Type.ON_LOG_OUT -> {
-//                lifecycleScope.launch {
-//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-//                    if (file.exists()) {
-//                        FileHelper.deleteTheme(file)
-//                    }
-//                    homeAdapter.notifyDataSetChanged()
-//                    checkTheme()
-//                    delay(400)
-//                    getReminders()
-//                }
-//                getCoin()
-//
-//                layoutContainer.setTransition(R.id.no_reminder)
-//                tvCartCount.beGone()
-//            }
+                getCoin()
+                layoutContainer.setTransition(R.id.no_reminder)
+                tvCartCount.beGone()
+            }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
                 if (isOpen) {
                     ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)

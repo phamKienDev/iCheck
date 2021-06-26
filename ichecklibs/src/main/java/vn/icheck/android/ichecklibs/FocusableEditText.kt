@@ -55,13 +55,14 @@ open class FocusableEditText : AppCompatEditText {
         initFont()
     }
 
-    private val isSetDrawable: Boolean
+    private val isInputPassword: Boolean
         get() {
             if (isPassword == null) {
                 isPassword = when (inputType) {
                     TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD -> true
                     TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_VISIBLE_PASSWORD -> true
                     TYPE_CLASS_NUMBER or TYPE_NUMBER_VARIATION_PASSWORD -> true
+                    TYPE_NUMBER_VARIATION_PASSWORD -> true
                     TYPE_TEXT_VARIATION_PASSWORD -> true
                     else -> {
                         false
@@ -74,7 +75,7 @@ open class FocusableEditText : AppCompatEditText {
 
     private fun initFont() {
         typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-        if (isSetDrawable) {
+        if (isInputPassword) {
             if (transformationMethod == null) {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
             } else {
@@ -141,7 +142,7 @@ open class FocusableEditText : AppCompatEditText {
     private fun setDrawableFocusable() {
         if (rightDrawable == null) {
             if (currentText.isNotEmpty() && isFocused) {
-                if (!isSetDrawable) {
+                if (!isInputPassword) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable
                             ?: drawableClear, null)
                 } else {
@@ -160,7 +161,7 @@ open class FocusableEditText : AppCompatEditText {
                 }
             }
         } else {
-            if (isSetDrawable) {
+            if (isInputPassword) {
                 if (transformationMethod == null) {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
                 } else {
@@ -198,7 +199,7 @@ open class FocusableEditText : AppCompatEditText {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
             if (event.rawX > right - totalPaddingRight) {
-                if (inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD || inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                if (isInputPassword) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                         PasswordTransformationMethod()

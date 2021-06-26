@@ -14,10 +14,10 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_image_cover_in_wall"
-        app:layout_constraintDimensionRatio="H,375:139"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layoutAvatar" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/img_back"
@@ -44,7 +44,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:stretchColumns="2">
+            android:shrinkColumns="1">
 
             <TableRow
                 android:id="@id/layoutConfirmUpdate"
@@ -134,6 +134,8 @@
             <TableRow android:id="@+id/row_gender">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/gioi_tinh" />
 
@@ -170,8 +172,6 @@
                         android:id="@id/rbFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginLeft="@dimen/size_10"
                         android:background="@drawable/bg_update_gender_female"
                         android:button="@null"
                         android:checked="false"
@@ -191,8 +191,6 @@
                         android:id="@+id/rbGay"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/size_30"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_marginLeft="@dimen/size_10"
                         android:background="@drawable/bg_update_gender_gay"
                         android:button="@null"
                         android:checked="false"
@@ -213,10 +211,12 @@
             <TableRow>
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="@string/ho" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_first_name"
                     style="@style/text_black_barlow"
                     tools:text="Tran" />
@@ -233,10 +233,12 @@
             <TableRow>
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title_Seccond"
                     android:text="@string/ten" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/edt_last_name"
                     style="@style/text_black_barlow"
                     tools:text="Van tam"
@@ -255,10 +257,12 @@
             <TableRow android:id="@+id/row_birthday">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/ngay_sinh" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtBirthday"
                     style="@style/text_black_barlow"
                     tools:text="24/10/2010"/>
@@ -275,10 +279,12 @@
             <TableRow android:id="@+id/row_phone">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/so_dien_thoai" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtPhone"
                     style="@style/text_black_barlow"
                     tools:text="0989187893"/>
@@ -292,6 +298,8 @@
                 <View />
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtConfirmPhone"
                     style="@style/UpdateProfile_Gift"
                     android:layout_marginBottom="@dimen/size_12"
@@ -310,10 +318,12 @@
             <TableRow android:id="@+id/row_email">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/email" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtEmail"
                     style="@style/text_black_barlow"
                     tools:text="donsogd@gmail.com"
@@ -327,6 +337,8 @@
                 <View />
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:layout_marginBottom="@dimen/size_12"
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtConfirmEmail"
                     style="@style/UpdateProfile_Gift"
                     android:text="@string/update_profile_gift_email" />
@@ -344,10 +356,12 @@
             <TableRow android:id="@+id/row_city">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tinh_thanh" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtProvince"
                     style="@style/text_black_barlow"
                     tools:text="Ha noi" />
@@ -366,13 +380,11 @@
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
                     style="@style/UpdateProfile_Title"
-                    android:paddingStart="@dimen/size_12"
-                    android:paddingLeft="@dimen/size_12"
-                    android:paddingEnd="@dimen/size_32"
-                    android:paddingRight="@dimen/size_32"
+                    android:gravity="center_vertical"
                     android:text="@string/quan_huyen" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/txtDistrict"
                     style="@style/text_black_barlow"
                     tools:text="Thanh xuan" />
@@ -390,10 +402,12 @@
             <TableRow android:id="@+id/row_ward">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/phuong_xa" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/tvWard"
                     style="@style/text_black_barlow"
                     tools:text="Cau giay" />
@@ -411,10 +425,12 @@
             <TableRow android:id="@+id/row_address">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/dia_chi" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@id/edtAddress"
                     style="@style/text_black_barlow"
                     tools:text="48 le van luong"
@@ -430,15 +446,16 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TableRow android:gravity="center_vertical"
+            <TableRow
                 android:visibility="gone">
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/danh_tinh" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
@@ -480,10 +497,12 @@
             <TableRow>
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/tai_khoan" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/id_user"
                     style="@style/text_black_barlow"
                     tools:text="IC-5u892"
@@ -492,10 +511,12 @@
             <TableRow>
 
                 <vn.icheck.android.ichecklibs.view.second_text.TextSecond
+                    android:gravity="center_vertical"
                     style="@style/UpdateProfile_Title"
                     android:text="@string/nguoi_theo_doi" />
 
                 <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
+                    android:paddingEnd="@dimen/size_12"
                     android:id="@+id/total_follower"
                     style="@style/text_black_barlow"
                     tools:text="100.000"
@@ -519,7 +540,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user_svg"
+            app:srcCompat="@drawable/ic_user_svg"
             app:civ_border_color="@color/white"
             app:civ_border_width="@dimen/size_2"
             app:layout_constraintBottom_toTopOf="@id/layoutCenter"
