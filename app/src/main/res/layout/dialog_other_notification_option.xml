@@ -6,26 +6,24 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICViewBgWhiteRadius10
+        android:id="@+id/view"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_6"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bg_white_corners_10" />
+        android:layout_gravity="center_horizontal" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_12"
-        android:background="@drawable/bg_white_corners_top_16">
+        android:layout_marginTop="@dimen/size_12">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@id/imgAvatar"
             android:layout_width="@dimen/size_36"
             android:layout_height="@dimen/size_36"
-            android:background="@drawable/bg_outline_gray_1_corners_4"
             android:padding="@dimen/size_1"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/size_10"
@@ -42,31 +40,28 @@
             app:layout_constraintTop_toTopOf="@id/imgAvatar"
             tools:drawableEnd="@drawable/ic_notification_voucher_20dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16"
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgAvatar"
             tools:text="Hà Linh vừa bình luận về bài đánh giá bạn đang theo dõi (giới hạn 3 dòng)" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
-            android:background="@color/black_50"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <LinearLayout
@@ -79,17 +74,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewLine">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 style="@style/Interactive_Option_Item"
                 android:drawableStart="@drawable/ic_read_40dp"
                 android:drawableLeft="@drawable/ic_read_40dp"
                 android:text="@string/danh_dau_da_doc" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 style="@style/Interactive_Option_Item"
                 android:drawableStart="@drawable/ic_unfollow_40dp"
                 android:drawableLeft="@drawable/ic_unfollow_40dp"
                 android:text="@string/xoa_thong_bao_nay" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 </LinearLayout>

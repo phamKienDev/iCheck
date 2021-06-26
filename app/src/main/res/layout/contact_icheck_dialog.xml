@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/size_4"
         android:gravity="center"
         android:paddingTop="@dimen/size_6"
-        android:text="Liên hệ Admin iCheck"
+        android:text="@string/lien_he_admin_icheck"
         android:textColor="@android:color/white"
         android:textSize="@dimen/font_12" />
 </LinearLayout>

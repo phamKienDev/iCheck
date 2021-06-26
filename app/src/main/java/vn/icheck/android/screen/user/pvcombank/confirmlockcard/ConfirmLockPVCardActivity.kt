@@ -10,6 +10,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.pvcombank.confirmlockcard.viewmodel.ConfirmLockPVCardViewModel
 import vn.icheck.android.util.AfterTextWatcher
 
@@ -50,7 +51,7 @@ class ConfirmLockPVCardActivity : BaseActivityMVVM() {
 
     private fun checkForm() {
         if (edt_pin.text?.length ?: 0 >= 6){
-            btnConfirm.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+            btnConfirm.background = ViewHelper.bgPrimaryCorners4(this@ConfirmLockPVCardActivity)
             btnConfirm.isEnabled = true
         } else {
             btnConfirm.setBackgroundResource(R.drawable.bg_corner_gray_topup_4)

@@ -33,7 +33,7 @@ class CertificationsHolder(parent: ViewGroup, viewPool: RecyclerView.RecycledVie
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0,SizeHelper.size10,0,0)
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // Text title
                 layoutParent.addView(ViewHelper.createTitle(context))

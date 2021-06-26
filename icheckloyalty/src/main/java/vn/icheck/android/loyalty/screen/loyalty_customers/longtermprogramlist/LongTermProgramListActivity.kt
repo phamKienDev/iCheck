@@ -30,7 +30,7 @@ class LongTermProgramListActivity : BaseActivityGame(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle.text = "Khách hàng thân thiết"
+        txtTitle.setText(R.string.khach_hang_than_thiet)
     }
 
     private fun initRecyclerView() {

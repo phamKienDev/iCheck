@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.databinding.ItemNotificationPageBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -39,15 +41,20 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
         holder.bind(listData[position])
     }
 
-    class PageRelatedHolder(parent: ViewGroup) : BaseViewHolder<ICNotificationPage>(LayoutInflater.from(parent.context).inflate(R.layout.item_notification_page, parent, false)) {
+    class PageRelatedHolder(parent: ViewGroup, val binding: ItemNotificationPageBinding = ItemNotificationPageBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<ICNotificationPage>(binding.root) {
 
         override fun bind(obj: ICNotificationPage) {
             (itemView as ViewGroup).apply {
-                WidgetUtils.loadImageUrlRounded(getChildAt(0) as SquareImageView, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
-                getChildAt(0).setOnClickListener {
-                    PageDetailActivity.start(itemView.context, obj.id)
+                binding.imgAvatar.apply {
+                    background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+                    WidgetUtils.loadImageUrlRounded(this, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
+
+                    setOnClickListener {
+                        PageDetailActivity.start(itemView.context, obj.id)
+                    }
                 }
-                (getChildAt(1) as AppCompatTextView).also {
+
+                binding.tvName.also {
                     it.text = obj.name
 
                     if (obj.isVerify) {
@@ -57,8 +64,12 @@ class NotificationPageAdapter : RecyclerView.Adapter<NotificationPageAdapter.Pag
                     }
                 }
 
-                getChildAt(2).setOnClickListener {
-                    followPage(obj)
+                binding.btnFollow.apply {
+                    background = ViewHelper.btnPrimaryCorners4(context)
+
+                    setOnClickListener {
+                        followPage(obj)
+                    }
                 }
 
                 checkFollow(obj.userFollowIdList?.contains(SessionManager.session.user?.id))

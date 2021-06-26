@@ -17,6 +17,8 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import java.util.concurrent.TimeUnit
 
@@ -38,6 +40,8 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
     }
 
     private fun initView() {
+        edtSearch.background=vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(this)
+
         img_back.setOnClickListener {
             onBackPressed()
         }
@@ -48,7 +52,8 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
 
         StatusBarUtils.setOverStatusBarDark(this)
 
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_layout.setOnRefreshListener {
             getData()
         }
@@ -74,10 +79,10 @@ class MyOwnerPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
                     if (offset == 0) {
                         if (it.data?.data?.rows.isNullOrEmpty()) {
                             tvPageCount.beGone()
-                            adapter.setError(R.drawable.ic_search_90dp, "Xin lỗi chúng tôi không thể tìm được kết quả phù hợp với tìm kiếm của bạn", -1)
+                            adapter.setError(R.drawable.ic_search_90dp, getString(R.string.khong_ket_qua_tim_kiem), -1)
                         } else {
                             tvPageCount.beVisible()
-                            tvPageCount.text = TextHelper.formatMoneyPhay(it.data?.data?.count) + " Trang của tôi"
+                            tvPageCount.setText(R.string.s_trang_cua_toi, TextHelper.formatMoneyPhay(it.data?.data?.count))
                             adapter.setListData(it.data?.data?.rows ?: mutableListOf())
                         }
                     } else {

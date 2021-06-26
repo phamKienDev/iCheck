@@ -85,8 +85,8 @@ class CreateEventQrCodePresenter(val view: ICreateEventQrCodeView) : BaseFragmen
 
         val mStartDate = TimeHelper.convertDateTimeVnToEventFormat(start) ?: ""
         val mEndDate = TimeHelper.convertDateTimeVnToEventFormat(end) ?: ""
-        val code = view.mContext!!.getString(R.string.qr_code_event_format, eventName, eventAddress, eventLink, mStartDate, mEndDate)
+        val code = view.mContext?.getString(R.string.qr_code_event_format, eventName, eventAddress, eventLink, mStartDate, mEndDate)
 
-        view.onValidSuccess(code)
+        view.onValidSuccess(code?:"")
     }
 }

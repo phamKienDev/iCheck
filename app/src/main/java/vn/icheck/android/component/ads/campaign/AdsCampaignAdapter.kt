@@ -4,9 +4,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.SimpleExoPlayer
-import kotlinx.android.synthetic.main.item_ads_campaign_horizontal_holder.view.*
 import kotlinx.android.synthetic.main.item_ads_campaign_slide_holder.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -15,6 +16,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -94,26 +97,32 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ItemCampaignHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(obj: ICAdsData) {
-            if (!obj.media.isNullOrEmpty()) {
-                if (!obj.media!![0].content.isNullOrEmpty()) {
-                    WidgetUtils.loadImageUrlRoundedCenterCrop(itemView.imgCampaign, obj.media!![0].content, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+            itemView.findViewById<AppCompatImageView>(R.id.imgCampaign)?.apply {
+                if (!obj.media.isNullOrEmpty()) {
+                    if (!obj.media!![0].content.isNullOrEmpty()) {
+                        WidgetUtils.loadImageUrlRoundedCenterCrop(this, obj.media!![0].content, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    } else {
+                        WidgetUtils.loadImageUrlRoundedCenterCrop(this, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    }
                 } else {
-                    WidgetUtils.loadImageUrlRoundedCenterCrop(itemView.imgCampaign, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
+                    WidgetUtils.loadImageUrlRoundedCenterCrop(this, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
                 }
-            } else {
-                WidgetUtils.loadImageUrlRoundedCenterCrop(itemView.imgCampaign, null, R.drawable.bg_error_campaign, R.drawable.bg_error_campaign, SizeHelper.size4, RoundedCornersTransformation.CornerType.TOP)
             }
-            itemView.tvName.text = obj.name
-            itemView.tvTimeStart.text = "${TimeHelper.getDayOfWeek(obj.startTime)}, ${TimeHelper.getDayAndMonth(obj.startTime)} - ${TimeHelper.getDayAndMonth(obj.endTime)}"
-            itemView.tvTimeLeft.text = TimeHelper.convertDateTimeSvToCurrentTimeLeftCampaign(obj.endTime)
 
+            itemView.findViewById<AppCompatTextView>(R.id.tvName).text = obj.name
+            itemView.findViewById<AppCompatTextView>(R.id.tvTimeStart).text = ("${TimeHelper.getDayOfWeek(obj.startTime)}, ${TimeHelper.getDayAndMonth(obj.startTime)} - ${TimeHelper.getDayAndMonth(obj.endTime)}")
+            itemView.findViewById<AppCompatTextView>(R.id.tvTimeLeft).text = TimeHelper.convertDateTimeSvToCurrentTimeLeftCampaign(obj.endTime)
+
+            itemView.findViewById<AppCompatTextView>(R.id.tvJoin)?.apply {
+                background = ViewHelper.bgPrimaryCorners4(itemView.context)
+            }
 
             if (targetType == campaignApproach) {
-                itemView.tvJoin.visibility = View.VISIBLE
-                itemView.tvJoin1.visibility = View.VISIBLE
+                itemView.findViewById<AppCompatTextView>(R.id.tvJoin)?.visibility = View.VISIBLE
+                itemView.findViewById<AppCompatTextView>(R.id.tvJoin1)?.visibility = View.VISIBLE
             } else {
-                itemView.tvJoin.visibility = View.GONE
-                itemView.tvJoin1.visibility = View.GONE
+                itemView.findViewById<AppCompatTextView>(R.id.tvJoin)?.visibility = View.GONE
+                itemView.findViewById<AppCompatTextView>(R.id.tvJoin1)?.visibility = View.GONE
             }
 
             itemView.setOnClickListener {
@@ -128,6 +137,8 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var exoPlayer: SimpleExoPlayer? = null
 
         fun bind(obj: ICAdsData) {
+            itemView.tvJoinSlide.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+
             itemView.imgImage.visibility = View.VISIBLE
             itemView.mediaView.visibility = View.INVISIBLE
             if (!obj.media.isNullOrEmpty()) {
@@ -151,7 +162,9 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
             itemView.tvNameSlide.text = obj.name
-            itemView.tvTimeStartSlide.text = "${TimeHelper.getDayOfWeek(obj.startTime)}, ${TimeHelper.getDayAndMonth(obj.startTime)} - ${TimeHelper.getDayAndMonth(obj.endTime)}"
+            itemView.tvTimeStartSlide.apply {
+                text = context.getString(R.string.format_s_s_s, TimeHelper.getDayOfWeek(obj.startTime), TimeHelper.getDayAndMonth(obj.startTime), TimeHelper.getDayAndMonth(obj.endTime))
+            }
             itemView.tvTimeLeftSlide.text = TimeHelper.convertDateTimeSvToCurrentTimeLeftCampaign(obj.endTime)
 
             if (targetType == campaignApproach) {
@@ -208,7 +221,7 @@ class AdsCampaignAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     val message = if (error?.message.isNullOrEmpty()) {
-                        ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                        getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     } else {
                         error!!.message
                     }

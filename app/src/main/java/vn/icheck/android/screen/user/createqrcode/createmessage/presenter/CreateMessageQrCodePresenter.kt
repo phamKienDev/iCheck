@@ -37,6 +37,6 @@ class CreateMessageQrCodePresenter(val view: ICreateMessageQrCodeView) : BaseFra
             return
         }
 
-        view.onValidSuccess(view.mContext!!.getString(R.string.qr_code_send_sms_format, phone, message))
+        view.onValidSuccess(view.mContext?.getString(R.string.qr_code_send_sms_format, phone, message)?:"")
     }
 }

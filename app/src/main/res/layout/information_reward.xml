@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/containerShop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Địa chỉ đến lấy quà"
-            android:textColor="@color/colorSecondary"
+            android:text="@string/dia_chi_den_lay_qua"
             android:textSize="@dimen/font_14" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginTop="9.5dp"
-            android:background="#d8d8d8" />
+            android:layout_marginTop="9.5dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,43 +35,36 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte " />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_12"
-            android:background="@color/darkGray6" />
-    </LinearLayout>
+            android:layout_height="@dimen/size_12" />
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
-            android:fontFamily="@font/barlow_semi_bold"
             android:lineSpacingExtra="@dimen/font_6"
-            android:text="Thông tin quà"
-            android:textColor="@color/colorSecondary"
+            android:text="@string/thong_tin_qua"
             android:textSize="@dimen/font_14" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginTop="9.5dp"
-            android:background="#d8d8d8" />
+            android:layout_marginTop="9.5dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,19 +72,16 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_10"
-            android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte tháng 9/2019 và các chương trình khuyến mãi mới nhất của Lotte. Lưu lại nếu bạn thấy hữu ích, chia sẻ với bạn bè
 Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng đến bạn trong vòng 3 - 9 ngày kể từ khi bạn xác nhận nhận phần quà này.
 Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé.
  Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận thông tin của bạn và thỏa thuận phí vận chuyển quà. Hãy để ý điện thoại để không bỏ lỡ phần quà hấp dẫn nhé." />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_12"
-            android:background="@color/darkGray6" />
-    </LinearLayout>
+            android:layout_height="@dimen/size_12" />
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

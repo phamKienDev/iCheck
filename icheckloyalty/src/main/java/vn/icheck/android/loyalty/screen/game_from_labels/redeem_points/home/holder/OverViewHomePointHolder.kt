@@ -33,7 +33,7 @@ class OverViewHomePointHolder(parent: ViewGroup) : BaseViewHolder<ICKPointUser>(
         itemView.btnInfor.setOnClickListener {
             itemView.context.startActivity(Intent(itemView.context, WebViewActivity::class.java).apply {
                 putExtra(ConstantsLoyalty.DATA_1, HomeRedeemPointActivity.description)
-                putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                putExtra(ConstantsLoyalty.DATA_3, itemView.context.getString(R.string.thong_tin_chuong_trinh))
             })
         }
 

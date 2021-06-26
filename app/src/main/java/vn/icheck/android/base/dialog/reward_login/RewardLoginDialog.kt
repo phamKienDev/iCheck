@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.dialog_reward_login.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.base.dialog.notify.base.BaseDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.checktheme.CheckThemeActivity
 
 class RewardLoginDialog : DialogFragment() {
@@ -60,17 +62,24 @@ class RewardLoginDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         currentFragmentManager = null
-        btnLogin.setOnClickListener {
-            isStartLogin = true
-            dismiss()
-            listener?.onLogin()
+        btnLogin.apply{
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                isStartLogin = true
+                dismiss()
+                listener?.onLogin()
+            }
         }
 
-        btnRegister.setOnClickListener {
-            isStartLogin = true
-            dismiss()
-            listener?.onRegister()
+        btnRegister.apply{
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                isStartLogin = true
+                dismiss()
+                listener?.onRegister()
+            }
         }
+
 
         tvClose?.setOnClickListener {
             dismiss()

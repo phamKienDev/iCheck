@@ -2,9 +2,11 @@ package vn.icheck.android.screen.user.contribute_product.holder
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.balloon.*
 import vn.icheck.android.R
@@ -12,6 +14,10 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemMultiSelectBinding
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.*
 
@@ -20,7 +26,6 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
     fun bind(categoryAttributesModel: CategoryAttributesModel){
         if (categoryAttributesModel.categoryItem.description.isNullOrEmpty()) {
             binding.imgHelp.beGone()
-//            TooltipCompat.setTooltipText(binding.imgHelp,null)
         } else {
             binding.imgHelp.beVisible()
             balloon = createBalloon(itemView.context){
@@ -41,10 +46,9 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
                     balloon?.dismiss()
                 }
             }
-//            TooltipCompat.setTooltipText(binding.imgHelp,categoryAttributesModel.categoryItem.description)
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            binding.tvTitle.setText(R.string.s_bat_buoc, categoryAttributesModel.categoryItem.name?:"")
         } else {
             binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
         }
@@ -62,6 +66,10 @@ class MultiSelectHolder(val binding:ItemMultiSelectBinding):RecyclerView.ViewHol
             }
             for (item in categoryAttributesModel.categoryItem.options ?: arrayListOf()) {
                 binding.root.addView(CheckBox(binding.root.context).apply {
+                    setTextColor(ViewHelper.createColorStateList(ColorManager.getSecondTextColor(itemView.context), ColorManager.getNormalTextColor(itemView.context)))
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        buttonTintList= ViewHelper.createColorStateList(ContextCompat.getColor(itemView.context,R.color.grayB4), ColorManager.getPrimaryColor(itemView.context))
+                    }
                     viewTreeObserver.addOnGlobalLayoutListener {
                         val lp = layoutParams as LinearLayout.LayoutParams
                         lp.setMargins(10.dpToPx(), 0,10.dpToPx(), 0)

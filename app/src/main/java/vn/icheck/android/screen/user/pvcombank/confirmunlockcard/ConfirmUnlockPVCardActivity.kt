@@ -4,10 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
@@ -15,6 +13,7 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_confirm_unlock_pvcard.*
@@ -24,6 +23,8 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.screen.user.pvcombank.confirmunlockcard.viewModel.ConfirmUnlockPVCardViewModel
 import vn.icheck.android.util.ick.forceHideKeyboard
@@ -71,8 +72,8 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val span = SpannableString(getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt_s, arr.joinToString(separator = "")))
+        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
             override fun onClick(widget: View) {
@@ -96,7 +97,7 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
 
         edt_otp.addTextChangedListener {
             if (!it?.trim().isNullOrEmpty()) {
-                btnConfirm.setBackgroundResource(R.drawable.bg_corners_4_light_blue_solid)
+                btnConfirm.background = ViewHelper.bgPrimaryCorners4(this@ConfirmUnlockPVCardActivity)
                 btnConfirm.isEnabled = true
             } else {
                 btnConfirm.setBackgroundResource(R.drawable.bg_corner_gray_topup_4)
@@ -164,18 +165,18 @@ class ConfirmUnlockPVCardActivity : BaseActivityMVVM() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    btnResend.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    btnResend.text = getString(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }
             }
 
             override fun onFinish() {
-                btnResend.setTextColor(Color.parseColor("#3C5A99"))
-                btnResend.text = "Gửi lại mã"
+                btnResend.setTextColor(ColorManager.getSecondaryColor(this@ConfirmUnlockPVCardActivity))
+                btnResend.text = getString(R.string.gui_lai_ma)
                 btnResend.setOnClickListener {
                     btnResend.setOnClickListener(null)
-                    btnResend.setTextColor(Color.parseColor("#757575"))
+                    btnResend.setTextColor(ColorManager.getSecondTextColor(this@ConfirmUnlockPVCardActivity))
                     viewModel.getData(intent)
                     start()
                 }

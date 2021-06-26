@@ -12,6 +12,7 @@ import com.google.gson.internal.LinkedTreeMap
 import org.json.JSONObject
 import vn.icheck.android.R
 import vn.icheck.android.databinding.ItemMyContributeBinding
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
 import vn.icheck.android.util.ick.*
@@ -25,7 +26,7 @@ class MyContributionAdapter(val listCategory: List<CategoryAttributesModel>, val
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as MyContributionHolder
         if (position % 2 != 0) {
-            holder.binding.root.setBackgroundColor(Color.WHITE)
+            holder.binding.root.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(holder.binding.root.context))
         }
         try {
             val data = listCategory[position]

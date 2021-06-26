@@ -24,6 +24,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.ICK_IMAGE_UPLOADED_SRC
 import vn.icheck.android.databinding.FragmentUserInfoBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
@@ -76,8 +78,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
             avatar?.let {
                 Glide.with(it.context.applicationContext)
                         .load(file)
-                        .error(R.drawable.user_placeholder)
-                        .placeholder(R.drawable.user_placeholder)
+                        .error(R.drawable.ic_avatar_default_84dp)
+                        .placeholder(R.drawable.ic_avatar_default_84dp)
                         .into(it)
             }
         }
@@ -101,6 +103,8 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.root.requestFocus()
+
+        binding.btnGenderMale.setTextColor(ColorManager.getDisableTextColor(requireContext()))
 
         takeImageListener.avatar = binding.userAva
         ickLoginViewModel.setGender(1)
@@ -138,7 +142,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                     val timeInMills = Calendar.getInstance().timeInMillis
                     ickLoginViewModel.calendar.set(year, month, day)
                     if (timeInMills < ickLoginViewModel.calendar.timeInMillis) {
-                        requireContext().showShortErrorToast("Không cho phép chọn ngày sinh là ngày tương lai!")
+                        requireContext().showShortErrorToast(getString(R.string.khong_cho_phep_ngay_sinh_la_tuong_lai))
                     } else {
                         val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                         ickLoginViewModel.setBirthDay(df.format(ickLoginViewModel.calendar.time))
@@ -152,17 +156,26 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         ickLoginViewModel.facebookAvatar?.let {
             Glide.with(view.context.applicationContext)
                     .load(it)
-                    .placeholder(R.drawable.user_placeholder)
-                    .error(R.drawable.user_placeholder)
+                    .placeholder(R.drawable.ic_avatar_default_84dp)
+                    .error(R.drawable.ic_avatar_default_84dp)
                     .into(binding.userAva)
         }
         if (!ickLoginViewModel.facebookUsername.isNullOrEmpty()) {
             binding.tvFirstname.setText(ickLoginViewModel.facebookUsername)
             ickLoginViewModel.setFirstName(ickLoginViewModel.facebookUsername)
         }
-        binding.edtTinh.enableRightClick = false
-        binding.edtQuan.enableRightClick = false
-        binding.edtPhuongXa.enableRightClick = false
+        binding.edtTinh.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtQuan.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+            enableRightClick = false
+        }
+        binding.edtPhuongXa.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+            enableRightClick = false
+        }
         binding.edtTinh.setOnClickListener {
             hideKeyboard()
             if (cityPicker?.isVisible == true) {
@@ -237,7 +250,7 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                 }, ickLoginViewModel.getDistrict())
                 cityPicker?.show(childFragmentManager, null)
             } else {
-                binding.edtQuan.setError("Vui lòng chọn quận/huyện")
+                binding.edtQuan.setError(getString(R.string.vui_long_chon_quan_huyen))
 //                showError("Vui lòng chọn quận huyện")
             }
         }
@@ -251,10 +264,13 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
                 ickLoginViewModel.setLastName(s?.trim().toString())
             }
         })
-        binding.edtEmailInput.addTextChangedListener {
+        binding.edtEmailInput.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+            addTextChangedListener {
 //            binding.tvErrorEmail.beGone()
-            if (it?.trim().toString().isValidEmail()) {
-                ickLoginViewModel.setEmail(it?.trim().toString())
+                if (it?.trim().toString().isValidEmail()) {
+                    ickLoginViewModel.setEmail(it?.trim().toString())
+                }
             }
         }
         binding.edtMgt.addTextChangedListener {
@@ -275,21 +291,27 @@ class IckUserInfoFragment : BaseFragmentMVVM() {
         binding.edtDiaChi.addTextChangedListener {
             ickLoginViewModel.setAddress(it?.trim().toString())
         }
-        binding.btnContinue.setOnClickListener {
-            if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
-                if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
-                    finalStep()
-                } else {
-                    binding.edtEmailInput.setError("Nhập sai định dạng. Thử lại!")
+        binding.btnContinue.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (binding.edtEmailInput.text!!.trim().isNotEmpty()) {
+                    if (binding.edtEmailInput.text!!.trim().isValidEmail()) {
+                        finalStep()
+                    } else {
+                        binding.edtEmailInput.error = getString(R.string.nhap_sai_dinh_dang_thu_lai)
 //                    binding.tvErrorEmail.beVisible()
-                    return@setOnClickListener
+                        return@setOnClickListener
+                    }
                 }
+                finalStep()
             }
-            finalStep()
         }
-        binding.btnSkip.setOnClickListener {
-            hideKeyboard()
-            ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+        binding.btnSkip.apply {
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            setOnClickListener {
+                hideKeyboard()
+                ickLoginViewModel.mState.postValue(CHOOSE_TOPIC)
+            }
         }
         hideKeyboard()
     }

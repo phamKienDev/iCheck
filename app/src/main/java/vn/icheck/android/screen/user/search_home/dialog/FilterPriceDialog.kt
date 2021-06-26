@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.dialog_filter_price.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterPriceDialog(price: String?, val callback: FilterPriceCallback) : BaseBottomSheetDialogFragment() {
 
@@ -59,8 +60,11 @@ class FilterPriceDialog(price: String?, val callback: FilterPriceCallback) : Bas
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            selectedItem(tv_all)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                selectedItem(tv_all)
+            }
         }
     }
 

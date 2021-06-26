@@ -24,7 +24,7 @@
             android:layout_marginRight="@dimen/size_24"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Xác nhận đổi điểm"
+            android:text="@string/xac_nhan_doi_diem"
             android:textColor="@color/colorSecondary"
             android:textSize="16sp" />
 
@@ -50,11 +50,12 @@
                 android:layout_marginLeft="@dimen/size_4"
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Quà đổi: "
+                android:text="@string/qua_doi"
                 android:textColor="#434343"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/size_4" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNameProduct"
@@ -72,7 +73,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textView"
                 app:layout_constraintTop_toTopOf="@id/textView"
-                tools:text="iPhone 11 64GB - Hàng ( 1 dòng)..." />
+                tools:text="iPhone 11 64GB - Hàng ( 1 dòng)..."
+                android:layout_marginStart="@dimen/size_12"
+                android:layout_marginEnd="@dimen/size_10" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView1"
@@ -81,7 +84,7 @@
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginBottom="@dimen/size_8"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Điểm đổi: "
+                android:text="@string/diem_doi"
                 android:textColor="#434343"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -112,7 +115,7 @@
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginRight="@dimen/size_18"
             android:fontFamily="@font/roboto_regular"
-            android:text="Chú thích: Điểm sẽ trừ thẳng vào tài khoản Điểm tích lũy của bạn trong chương trình này."
+            android:text="@string/chu_thich"
             android:textColor="#828282"
             android:textSize="12sp" />
 
@@ -135,7 +138,7 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:text="Hủy"
+                android:text="@string/huy"
                 tools:visibility="gone"
                 android:textColor="#FE4E1B"
                 android:textSize="16sp" />
@@ -151,9 +154,10 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
-                android:text="Xác nhận"
+                android:text="@string/xac_nhan"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginStart="@dimen/size_9" />
         </LinearLayout>
     </LinearLayout>
 

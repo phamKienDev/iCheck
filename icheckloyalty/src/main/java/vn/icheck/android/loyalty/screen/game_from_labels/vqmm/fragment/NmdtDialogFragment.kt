@@ -16,7 +16,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_nmdt.*
-import kotlinx.android.synthetic.main.item_loyalty_holder.view.*
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModel
 import vn.icheck.android.loyalty.screen.game_from_labels.vqmm.viewmodel.LuckyGameViewModelFactory
@@ -76,17 +77,17 @@ class NmdtDialogFragment : DialogFragment() {
                         } else {
                             root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.error_shake))
                             tv_error.visibility = View.VISIBLE
-                            tv_error.text = response?.data?.message ?: "Mã ${edt_nmdt.text} đã được sử dụng"
+                            tv_error.text = response?.data?.message ?: getString(R.string.ma_s_da_duoc_su_dung, edt_nmdt.text)
                         }
                     } catch (e: Exception) {
                         tv_error.visibility = View.VISIBLE
-                        tv_error.text =  "Mã ${edt_nmdt.text} đã được sử dụng"
+                        tv_error.setText(R.string.ma_s_da_duoc_su_dung, edt_nmdt.text)
                         root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.error_shake))
                     }
                 })
             }else{
                 tv_error.visibility = View.VISIBLE
-                tv_error.text =  "Bạn chưa nhập mã dự thưởng"
+                tv_error.setText(R.string.ban_chua_nhap_ma_du_thuong)
                 root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.error_shake))
             }
         }

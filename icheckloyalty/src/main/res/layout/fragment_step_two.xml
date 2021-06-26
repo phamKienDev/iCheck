@@ -90,7 +90,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Quay lại"
+            android:text="@string/quay_lai"
             android:textColor="#057DDA"
             android:textSize="16sp" />
 

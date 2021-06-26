@@ -14,9 +14,11 @@
 <!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".screen.user_information.UserInformationActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.detail.ChatSocialDetailActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
     </application>
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <include
         android:id="@id/layoutToolbar"
@@ -51,9 +50,9 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_blue_corners_top_10"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -65,7 +64,7 @@
                             android:layout_marginEnd="@dimen/size_12"
                             android:fontFamily="sans-serif-medium"
                             android:includeFontPadding="false"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
@@ -78,7 +77,7 @@
                             android:layout_marginEnd="@dimen/size_12"
                             android:fontFamily="sans-serif-medium"
                             android:includeFontPadding="false"
-                            android:textColor="#ffffff"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/font_16"
                             android:textStyle="normal" />
 
@@ -163,30 +162,26 @@
         android:paddingEnd="@dimen/size_18"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnHome"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_weight="1"
-            android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:text="@string/trang_chu_title"
             android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
             android:visibility="gone" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@id/btnLeft"
             android:layout_width="@dimen/size_0"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_weight="1"
-            android:background="@drawable/btn_white_outline_blue_1_corners_6"
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/font_16"
             android:textStyle="normal"
             tools:text="Câu 1" />
@@ -198,7 +193,6 @@
             android:layout_marginStart="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_6"
             android:layout_weight="1"
-            android:background="@drawable/btn_blue_corners_6"
             android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -206,4 +200,4 @@
             android:textStyle="normal"
             tools:text="Tiếp theo" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

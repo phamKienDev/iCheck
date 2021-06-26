@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".screen.user.pvcombank.home.HomePVCardActivity">
 
@@ -12,16 +11,16 @@
         android:id="@+id/toolbarPv"
         layout="@layout/toolbar_pvcombank" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarPv">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/darkGray6">
+            android:layout_height="wrap_content">
 
             <View
                 android:id="@+id/viewBlue"
@@ -41,13 +40,13 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="Số dư tài khoản"
+                android:text="@string/so_du_tai_khoan"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 app:layout_constraintStart_toStartOf="@id/viewBlue"
                 app:layout_constraintTop_toTopOf="@id/viewBlue" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentyellow.TextAccentYellow
                 android:id="@+id/tvMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +54,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="bottom"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorAccentYellow"
                 android:textSize="@dimen/font_24"
                 app:layout_constraintStart_toStartOf="@id/tvTitleMoney"
                 app:layout_constraintTop_toBottomOf="@id/tvTitleMoney"
@@ -76,7 +74,6 @@
                 android:id="@+id/viewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="224dp"
-                android:background="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/viewBlue" />
 
             <vn.icheck.android.ui.colorcardview.ColorCardView
@@ -102,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvNapTien"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -110,13 +107,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_recharge_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Nạp tiền"
-                        android:textColor="@color/colorSecondText"
+                        android:text="@string/nap_tien"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvDanhSachThe"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -124,13 +119,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_list_card_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Danh sách thẻ"
-                        android:textColor="@color/colorSecondText"
+                        android:text="@string/danh_sach_the"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvSuaTaiKhoan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -138,13 +131,11 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_pv_home_edit_card_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Sửa tài khoản"
-                        android:textColor="@color/colorSecondText"
+                        android:text="@string/sua_tai_khoan"
                         android:textSize="@dimen/font_12" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                         android:id="@+id/tvTaoThemThe"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -152,10 +143,8 @@
                         android:layout_marginBottom="@dimen/size_17"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_disable_pv_home_newcard_54px"
-                        android:fontFamily="@font/barlow_medium"
                         android:gravity="center_horizontal"
-                        android:text="Tạo thêm thẻ"
-                        android:textColor="@color/colorSecondText"
+                        android:text="@string/tao_them_the"
                         android:textSize="@dimen/font_12" />
                 </LinearLayout>
             </vn.icheck.android.ui.colorcardview.ColorCardView>
@@ -186,7 +175,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/size_20"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -205,7 +193,7 @@
                     app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_pv_home_id_32px"
@@ -216,8 +204,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Định danh tài khoản"
-                        android:textColor="@color/colorNormalText" />
+                        android:text="@string/dinh_danh_tai_khoan"/>
                 </androidx.cardview.widget.CardView>
 
 
@@ -231,7 +218,7 @@
                     app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_pv_home_promotion_32px"
@@ -242,8 +229,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Chương trình ưu đãi"
-                        android:textColor="@color/colorNormalText" />
+                        android:text="@string/chuong_trinh_uu_dai" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -257,7 +243,7 @@
                     app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_pv_home_help_32px"
@@ -268,8 +254,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Chính sách sử dụng"
-                        android:textColor="@color/colorNormalText" />
+                        android:text="@string/chinh_sach_su_dung" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -283,7 +268,7 @@
                     app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_pv_home_contact_32px"
@@ -294,8 +279,7 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Liên hệ"
-                        android:textColor="@color/colorNormalText" />
+                        android:text="@string/lien_he" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -310,7 +294,7 @@
                     app:cardCornerRadius="@dimen/size_4"
                     app:cardShadowColorEnd="#0D000000">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_search_pv_bank"
@@ -321,12 +305,11 @@
                         android:paddingStart="@dimen/size_12"
                         android:paddingTop="@dimen/size_10"
                         android:paddingBottom="@dimen/size_10"
-                        android:text="Lịch sử giao dịch"
-                        android:textColor="@color/colorNormalText" />
+                        android:text="@string/lich_su_giao_dich" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICNestedScrollViewWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 

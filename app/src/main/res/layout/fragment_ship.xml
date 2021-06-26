@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     >
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_back"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
@@ -16,15 +16,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
-        android:layout_marginRight="@dimen/size_50"
-        android:fontFamily="@font/barlow_medium"
-        android:text="Chọn địa chỉ giao hàng"
-        android:textColor="#057DDA"
+        android:text="@string/chon_dia_chi_giao_hang"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,9 +30,7 @@
 
     <View
         android:id="@+id/divider10"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_1"
-        android:background="?android:attr/listDivider"
+        style="@style/Shadow_Bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" />
@@ -52,14 +47,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:gravity="center"
-        android:background="@drawable/background_button_disable"
         android:padding="@dimen/size_8"
         android:textColor="@android:color/white"
         android:fontFamily="@font/barlow_medium"
@@ -67,17 +61,16 @@
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
         android:textAllCaps="false"
-        android:text="Hoàn tất"
+        android:text="@string/hoan_tat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/divider16"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
+        style="@style/Shadow_Bottom"
+        android:rotation="180"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

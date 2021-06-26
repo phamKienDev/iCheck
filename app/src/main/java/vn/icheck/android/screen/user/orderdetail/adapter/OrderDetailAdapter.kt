@@ -5,6 +5,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,10 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_order_detail_status.view.*
 import vn.icheck.android.R
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICOrderDetail
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 import vn.icheck.android.screen.user.orderdetail.view.IOrderDetailView
 import vn.icheck.android.screen.user.orderhistory.OrderHistoryActivity
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
@@ -142,7 +145,7 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
                     itemView.tvStatus.setText(R.string.cho_xac_nhan)
                 }
                 OrderHistoryActivity.delivery -> {
-                    itemView.layoutTop.setBackgroundColor(Color.parseColor("#00BAF2"))
+                    itemView.layoutTop.setBackgroundColor(Color.parseColor(ColorManager.getAccentBlueCode))
                     itemView.tvStatus.setText(R.string.dang_giao)
                 }
                 OrderHistoryActivity.delivered -> {
@@ -209,15 +212,15 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
     private inner class PaymentHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind() {
-            itemView.findViewById<AppCompatTextView>(R.id.tvTotalMoney).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.grand_total))
-            itemView.findViewById<AppCompatTextView>(R.id.tvCountProduct).text = itemView.context.getString(R.string.so_luong_xxx_san_pham, obj?.items?.size?.toString())
+            itemView.findViewById<AppCompatTextView>(R.id.tvTotalMoney).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.grand_total))
+            itemView.findViewById<AppCompatTextView>(R.id.tvCountProduct).text = itemView.context.getString(R.string.so_luong_s_san_pham, obj?.items?.size?.toString()?:"")
 
             if (obj?.shipping_method?.provider == "default") {
-                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.sub_total))
+                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.sub_total))
                 itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = Html.fromHtml(itemView.context.getString(R.string.thoa_thuan_voi_cua_hang_red))
             } else {
-                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.sub_total))
-                itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj?.shipping_amount))
+                itemView.findViewById<AppCompatTextView>(R.id.tvProductPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.sub_total))
+                itemView.findViewById<AppCompatTextView>(R.id.tvShippingPrice).text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj?.shipping_amount))
             }
         }
     }
@@ -245,6 +248,8 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
     private inner class ProductHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind() {
+            itemView.findViewById<AppCompatImageView>(R.id.viewBottom).background=ViewHelper.lineDottedHorizontalSecondary()
+
             itemView.findViewById<CircleImageView>(R.id.imgAvatar).run {
                 WidgetUtils.loadImageUrl(this, obj?.shop?.avatar_thumbnails?.small, R.drawable.img_shop_default, R.drawable.img_shop_default)
 
@@ -271,6 +276,7 @@ class OrderDetailAdapter(val listener: IOrderDetailView) : RecyclerView.Adapter<
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.tvNote).text = obj?.note
+
         }
     }
 }

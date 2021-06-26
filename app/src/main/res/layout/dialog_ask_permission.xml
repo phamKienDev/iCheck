@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:id="@+id/constraintLayout"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/bg_white_corners_10"
     android:gravity="center_horizontal"
     android:maxWidth="335dp"
     android:minWidth="335dp"
@@ -25,16 +25,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_permission_call" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvTitle"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
         android:textAlignment="gravity"
-        android:textColor="#35384b"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,16 +40,14 @@
         app:layout_constraintTop_toBottomOf="@id/imgIcon"
         tools:text="Cấp quyền truy cập Thông báo" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvMessage"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
         android:textAlignment="gravity"
-        android:textColor="#828282"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,11 +60,10 @@
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_48"
         android:layout_marginTop="@dimen/size_40"
-        android:background="@drawable/btn_blue_corners_6"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:textAlignment="gravity"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,17 +71,15 @@
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         tools:text="Cấp quyền Cuộc gọi" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
         android:id="@id/tvSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_12"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:padding="@dimen/size_8"
         android:text="@string/de_sau"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"

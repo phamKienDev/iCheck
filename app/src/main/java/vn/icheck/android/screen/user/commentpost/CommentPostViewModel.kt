@@ -16,6 +16,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.comment.CommentRepository
 import vn.icheck.android.network.feature.page.PageRepository
@@ -148,7 +149,7 @@ class CommentPostViewModel : ViewModel() {
 
     fun getListComments(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -247,7 +248,7 @@ class CommentPostViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 onShowMessage.postValue(error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 onAddListReplies.postValue(mutableListOf(ICCommentPost().apply {
                     parentID = objMore.parentID
                 }))
@@ -284,8 +285,9 @@ class CommentPostViewModel : ViewModel() {
                         listEmoji = socialRepository.getStickers(id).data
                         listSticker[id] = listEmoji
                     }
-
-                    onSetChildEmoji.postValue(listEmoji)
+                    listEmoji.let {
+                        onSetChildEmoji.postValue(it)
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -310,7 +312,7 @@ class CommentPostViewModel : ViewModel() {
 
                     override fun onError(error: ICBaseResponse?) {
                         onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                        onShowMessage.postValue(ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        onShowMessage.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 })
             } else {
@@ -330,7 +332,7 @@ class CommentPostViewModel : ViewModel() {
     }
 
     private fun postComment(pageID: Long?, image: String?, content: String) {
-        postInteraction.commentPost(postID, pageID, content, image, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteraction.commentPost(postID, pageID, content, image,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 obj.data?.let { data ->
@@ -347,7 +349,7 @@ class CommentPostViewModel : ViewModel() {
                 onShowMessage.postValue(if (!error?.message.isNullOrEmpty())
                     error?.message
                 else
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -376,7 +378,7 @@ class CommentPostViewModel : ViewModel() {
                 onShowMessage.postValue(if (!error?.message.isNullOrEmpty())
                     error?.message
                 else
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -399,10 +401,10 @@ class CommentPostViewModel : ViewModel() {
             override fun onError(error: ICResponseCode?) {
                 onStatus.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 val message = if (error?.message.isNullOrEmpty())
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 else
                     error?.message
-                onShowMessage.postValue(message)
+                onShowMessage.postValue(message?:"")
             }
         })
     }
@@ -431,7 +433,7 @@ class CommentPostViewModel : ViewModel() {
                 onShowMessage.postValue(if (!error?.message.isNullOrEmpty())
                     error?.message
                 else
-                    ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

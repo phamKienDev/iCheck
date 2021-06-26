@@ -34,7 +34,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:text="Tiếc quá, bạn không có lượt quay nào!"
+            android:text="@string/tiec_qua_ban_khong_co_luot_quay_nao"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -48,7 +48,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Quét tem để nhận thêm lượt quay và có cơ hội\ntrúng hàng ngàn giải thưởng hấp dẫn nào!"
+            android:text="@string/quet_tem_de_nhan_them_luot_quay_va_co_co_hoi_trung_hang_ngan_giai_thuong_hap_dan_nao"
             android:textColor="#828282"
             android:textSize="14sp"
             android:textStyle="normal" />
@@ -64,7 +64,7 @@
             android:background="@drawable/bg_corners_53_blue"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Thêm lượt quay ngay"
+            android:text="@string/them_luot_quay_ngay"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>

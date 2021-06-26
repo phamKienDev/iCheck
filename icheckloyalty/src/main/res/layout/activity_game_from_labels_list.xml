@@ -51,7 +51,7 @@
                     android:layout_marginRight="@dimen/size_40"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    android:text="Bạn đang không có chương trình nào!"
+                    android:text="@string/ban_dang_khong_co_chuong_trinh_nao"
                     android:textColor="#212121"
                     android:textSize="16sp" />
 
@@ -63,7 +63,7 @@
                     android:layout_marginRight="@dimen/size_40"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
-                    android:text="Thường xuyên tham gia các chương trình\nđể có cơ hội nhận các phần quà hấp dẫn"
+                    android:text="@string/thuong_xuyen_tham_gia_cac_chuong_trinh_de_co_co_hoi_nhan_cac_phan_qua_hap_dan"
                     android:textColor="#757575"
                     android:textSize="14sp" />
             </LinearLayout>

@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/size_22"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Đổi quà thành công."
+            android:text="@string/doi_qua_thanh_cong"
             android:textColor="#434343" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_6"
             android:gravity="center"
-            android:text="Theo dõi quà này tại Kho quà của bạn"
+            android:text="@string/theo_doi_qua_nay_tai_kho_qua_cua_ban"
             android:textColor="#434343" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -59,7 +59,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Xem kho quà"
+            android:text="@string/xem_kho_qua"
             android:textColor="@color/white" />
     </LinearLayout>
 

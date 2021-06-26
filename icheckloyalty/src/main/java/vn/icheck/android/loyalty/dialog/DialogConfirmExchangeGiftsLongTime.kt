@@ -87,7 +87,7 @@ open class DialogConfirmExchangeGiftsLongTime(
                     }
                 }
             } else {
-                ComingSoonOrOutOfGiftDialog(context, R.drawable.ic_out_of_gift, "Tiếc quá, bạn vừa bỏ lỡ mất rồi", "Món quà cuối cùng đã được đổi.\nHãy lựa chọn món quà khác nhé!").show()
+                ComingSoonOrOutOfGiftDialog(context, R.drawable.ic_out_of_gift, context.getString(R.string.tiec_qua_ban_vua_bo_lo_mat_roi), context.getString(R.string.mon_qua_cuoi_cung_da_duoc_doi_roi_hay_lua_chon_mon_qua_khac_nhe)).show()
             }
         }
     }

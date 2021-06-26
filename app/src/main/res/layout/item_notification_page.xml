@@ -12,29 +12,27 @@
         android:id="@id/imgAvatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gray_stroke_corner_4"
         android:padding="@dimen/size_1"
         tools:src="@drawable/ic_square_avatar_default" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
+        android:id="@id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:drawablePadding="@dimen/size_2"
         android:ellipsize="middle"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         tools:text="Trang sức hàng ngày" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/btnFollow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_10"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -42,6 +40,6 @@
         android:paddingBottom="@dimen/size_8"
         android:text="@string/theo_doi"
         android:textAlignment="gravity"
-        android:textColor="#ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_14" />
 </LinearLayout>

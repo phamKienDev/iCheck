@@ -33,7 +33,7 @@ class ProductNoticeHolder(parent: ViewGroup) : BaseViewHolder<ICNotification>(La
         WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_business_v2)
 
         val name = obj.sourceUser?.firstOrNull()?.getName
-        itemView.tvTitle.text = Html.fromHtml(itemView.context.getString(R.string.html_bold_xxx_xxx, name, obj.description))
+        itemView.tvTitle.text = Html.fromHtml(itemView.context.getString(R.string.html_bold_xxx_xxx, name?:"", obj.description?:""))
         itemView.tvDate.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(obj.createdAt)
 
         itemView.setOnClickListener {

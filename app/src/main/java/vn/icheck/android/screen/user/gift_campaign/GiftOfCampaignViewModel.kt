@@ -10,6 +10,7 @@ import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.CAMPAIGN_ID
 import vn.icheck.android.constant.LOGO
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
@@ -138,19 +139,19 @@ class GiftOfCampaignViewModel : ViewModel() {
 
                     listData.apply {
                         if (!listProduct.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.PRODUCT_CAMPAIGN_TYPE, listProduct, "Quà hiện vật"))
+                            add(GiftOfCampaignModel(ICViewTypes.PRODUCT_CAMPAIGN_TYPE, listProduct, getString(R.string.qua_hien_vat)))
                         }
                         if (!listVoucher.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.VOUCHER_CAMPAIGN_TYPE, listVoucher, "Quà dịch vụ"))
+                            add(GiftOfCampaignModel(ICViewTypes.VOUCHER_CAMPAIGN_TYPE, listVoucher, getString(R.string.qua_dich_vu)))
                         }
                         if (!listICoin.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.ICOIN_CAMPAIGN_TYPE, listICoin, "Quà thưởng Xu"))
+                            add(GiftOfCampaignModel(ICViewTypes.ICOIN_CAMPAIGN_TYPE, listICoin, getString(R.string.qua_thuong_xu)))
                         }
                         if (!listMorale.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.MORALE_CAMPAIGN_TYPE, listMorale, "Quà tinh thần"))
+                            add(GiftOfCampaignModel(ICViewTypes.MORALE_CAMPAIGN_TYPE, listMorale, getString(R.string.qua_tinh_than)))
                         }
                         if (!listCampaign365.isNullOrEmpty()) {
-                            add(GiftOfCampaignModel(ICViewTypes.CAMPAIGN_365_TYPE, listCampaign365, "Mã dự thưởng"))
+                            add(GiftOfCampaignModel(ICViewTypes.CAMPAIGN_365_TYPE, listCampaign365, getString(R.string.ma_du_thuong)))
                         }
                     }
 
@@ -158,7 +159,7 @@ class GiftOfCampaignViewModel : ViewModel() {
                         onNotEmpty.postValue("")
                         onSuccess.postValue(listData)
                     } else {
-                        onErrorEmpty.postValue("Quà tặng đang cập nhật")
+                        onErrorEmpty.postValue(getString(R.string.qua_tang_dang_cap_nhat))
                     }
                 }
             }
@@ -171,14 +172,14 @@ class GiftOfCampaignViewModel : ViewModel() {
 
     fun getData() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
         getCampaignRewards(1)
 
         if (requestError == 5) {
-            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             return
         }
     }

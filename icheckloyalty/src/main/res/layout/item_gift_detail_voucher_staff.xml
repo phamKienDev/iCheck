@@ -100,7 +100,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:includeFontPadding="false"
-                android:text="Hạn sử dụng"
+                android:text="@string/han_su_dung"
                 android:textColor="#757575" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
                 android:includeFontPadding="false"
-                android:text="Loại quà"
+                android:text="@string/loai_qua"
                 android:textColor="#757575" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -161,7 +161,7 @@
             android:layout_marginTop="@dimen/size_12"
             android:fontFamily="@font/roboto_medium"
             android:paddingLeft="@dimen/size_12"
-            android:text="Thông tin quà"
+            android:text="@string/thong_tin_qua"
             android:textColor="@color/blueVip" />
 
         <View
@@ -204,7 +204,7 @@
                 android:layout_marginTop="@dimen/size_12"
                 android:fontFamily="@font/roboto_medium"
                 android:paddingLeft="@dimen/size_12"
-                android:text="Phí vận chuyển"
+                android:text="@string/phi_van_chuyen"
                 android:textColor="@color/blueVip" />
 
             <View
@@ -222,7 +222,7 @@
                 android:layout_marginBottom="@dimen/size_10"
                 android:fontFamily="@font/roboto_regular"
                 android:paddingLeft="@dimen/size_12"
-                android:text="Người nhận tự thanh toán phí vận chuyển quà."
+                android:text="@string/nguoi_nhan_tu_thanh_toan_phi_van_chuyen_qua"
                 android:textColor="#212121" />
         </LinearLayout>
 
@@ -253,7 +253,7 @@
                 android:layout_marginLeft="@dimen/size_8"
                 android:layout_marginRight="@dimen/size_12"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Được cung cấp bởi"
+                android:text="@string/duoc_cung_cap_boi"
                 android:textColor="#828282"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -288,7 +288,7 @@
         android:gravity="center"
         android:paddingTop="@dimen/size_10"
         android:paddingBottom="@dimen/size_10"
-        android:text="Đổi quà"
+        android:text="@string/doi_qua"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:visibility="gone"

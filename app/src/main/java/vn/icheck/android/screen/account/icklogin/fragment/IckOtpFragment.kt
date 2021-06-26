@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.account.icklogin.fragment
 
-import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.ContextWrapper
 import android.content.Intent
@@ -14,7 +13,9 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
 import android.widget.EditText
@@ -30,23 +31,29 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
+import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
-import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.helper.ShareSessionToModule
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoData
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
 import vn.icheck.android.screen.account.icklogin.REGISTER
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
 import vn.icheck.android.tracking.TrackingAllHelper
-import vn.icheck.android.util.ick.*
+import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.util.ick.dismissLoadingScreen
+import vn.icheck.android.util.ick.forceHideKeyboard
+import vn.icheck.android.util.ick.showLoadingTimeOut
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 
 class IckOtpFragment : Fragment() {
@@ -71,7 +78,7 @@ class IckOtpFragment : Fragment() {
         lifecycleScope.launch {
             delay(200)
             binding.otpEditText.requestFocus()
-            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
     }
@@ -86,9 +93,9 @@ class IckOtpFragment : Fragment() {
         arr.addAll(number)
         arr.add(7, ' ')
         arr.add(4, ' ')
-        val span = SpannableString("Mã xác nhận OTP đã được gửi đến số điện thoại ${arr.joinToString(separator = "")}")
-        span.setSpan(ForegroundColorSpan(Color.parseColor("#057DDA")), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val text = String.format("<p>Mã xác nhận OTP đã được gửi đến số điện thoại <font color=#057DDA>%s</font></p>", arr.joinToString(separator = ""))
+        val span = SpannableString("${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} ${arr.joinToString(separator = "")}")
+        span.setSpan(ForegroundColorSpan(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())), 45, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val text = String.format("<p>${getString(R.string.ma_xac_nhan_otp_da_duoc_gui_den_sdt)} <font color=${ColorManager.getPrimaryColorCode(requireContext())}>%s</font></p>", arr.joinToString(separator = ""))
 
         val spannableString = SpannableString(span)
         val onclickPhone = object : ClickableSpan() {
@@ -110,7 +117,7 @@ class IckOtpFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.tvTimer.setOnClickListener {
-            if (binding.tvTimer.text == "Gửi lại mã") {
+            if (binding.tvTimer.text == getString(R.string.gui_lai_ma)) {
                 initTimer()
             }
         }
@@ -140,8 +147,8 @@ class IckOtpFragment : Fragment() {
         timer = object : CountDownTimer(61000, 1000) {
             override fun onFinish() {
                 try {
-                    binding.tvTimer.setTextColor(Color.parseColor("#3C5A99"))
-                    binding.tvTimer.text = "Gửi lại mã"
+                    binding.tvTimer.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(requireContext()))
+                    binding.tvTimer.setText(R.string.gui_lai_ma)
                     binding.tvTimer.setOnClickListener {
                         if (!ickLoginViewModel.waitResponse) {
                             ickLoginViewModel.waitResponse = true
@@ -151,7 +158,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.requestLoginOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                            binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -163,7 +170,7 @@ class IckOtpFragment : Fragment() {
                                     ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                         if (it?.statusCode == "200") {
                                             binding.tvTimer.setOnClickListener(null)
-                                            binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                            binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                             ickLoginViewModel.waitResponse = false
                                             start()
                                         } else {
@@ -176,7 +183,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.resendRegisterOtp().observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                                binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
@@ -187,7 +194,7 @@ class IckOtpFragment : Fragment() {
                                         ickLoginViewModel.requestRegisterFacebook(ickLoginViewModel.facebookPhone.toString(), ickLoginViewModel.facebookToken.toString()).observe(viewLifecycleOwner) {
                                             if (it?.statusCode == "200") {
                                                 binding.tvTimer.setOnClickListener(null)
-                                                binding.tvTimer.setTextColor(Color.parseColor("#757575"))
+                                                binding.tvTimer.setTextColor(Color.parseColor(ColorManager.getSecondTextCode(requireContext())))
                                                 ickLoginViewModel.waitResponse = false
                                                 start()
                                             } else {
@@ -207,7 +214,7 @@ class IckOtpFragment : Fragment() {
 
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    binding.tvTimer.text = String.format("Gửi lại mã (%ds)", millisUntilFinished / 1000)
+                    binding.tvTimer.setText(R.string.gui_lai_ma_d_s, millisUntilFinished / 1000)
                 } catch (e: Exception) {
                     this.cancel()
                 }
@@ -357,7 +364,7 @@ class IckOtpFragment : Fragment() {
 //        binding.otpEditText.clearComposingText()
 //        requireActivity().forceHideKeyboard(binding.otpEditText)
 
-        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.otpEditText.windowToken, 0)
     }
 

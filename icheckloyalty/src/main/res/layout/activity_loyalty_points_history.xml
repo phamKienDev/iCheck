@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Lịch sử giao dịch"
+            android:text="@string/lich_su_giao_dich"
             android:textColor="@color/colorSecondary"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
@@ -51,7 +51,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
-        android:text="Bộ lọc"
+        android:text="@string/bo_loc"
         android:textColor="@color/darkGray1"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
         android:background="@android:color/white"
         android:fontFamily="@font/roboto_medium"
         android:padding="10dp"
-        android:text="Lịch sử giao dịch"
+        android:text="@string/lich_su_giao_dich"
         android:textColor="#0064B1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Bộ lọc"
+                android:text="@string/bo_loc"
                 android:textColor="@color/colorSecondary"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_clear"
@@ -152,7 +152,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="Xong"
+                android:text="@string/xong"
                 android:textColor="#49AA2D"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,7 +176,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:text="Phân loại giao dịch"
+                android:text="@string/phan_loai_giao_dich"
                 android:textColor="@color/darkGray1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:textColor="#212121"
-                    android:text="Tất cả" />
+                    android:text="@string/tat_ca" />
 
                 <RadioButton
                     android:id="@+id/btn_earn"
@@ -210,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:checked="false"
-                    android:text="Tích điểm"
+                    android:text="@string/tich_diem"
                     android:textColor="#757575" />
 
                 <RadioButton
@@ -218,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Đổi điểm"
+                    android:text="@string/doi_diem"
                     android:textColor="#757575" />
             </RadioGroup>
 
@@ -229,7 +229,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Thời gian giao dịch"
+                android:text="@string/thoi_gian_giao_dich"
                 android:textColor="@color/darkGray1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
@@ -248,7 +248,7 @@
                 android:drawableRight="@drawable/ic_outline_date_range_gray_24dp"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="Chọn tháng"
+                android:hint="@string/chon_thang"
                 android:inputType="textPersonName"
                 android:padding="8dp"
                 android:textSize="14sp"
@@ -266,7 +266,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_dark_gray_corner_18"
                 android:padding="8dp"
-                android:text="Thiết lập lại"
+                android:text="@string/thiet_lap_lai"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

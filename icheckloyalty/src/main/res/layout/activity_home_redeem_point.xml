@@ -38,7 +38,7 @@
                     android:drawableTop="@drawable/ic_point_loyalty_empty"
                     android:drawablePadding="@dimen/size_10"
                     android:gravity="center"
-                    android:text="Hệ thống đang cập nhật quà" />
+                    android:text="@string/he_thong_dang_cap_nhat_qua" />
             </LinearLayout>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

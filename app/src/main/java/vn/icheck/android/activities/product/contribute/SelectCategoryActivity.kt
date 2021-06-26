@@ -22,6 +22,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_select_category.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.models.ICCategory
@@ -41,6 +42,8 @@ class SelectCategoryActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_select_category)
 
         instance = this
+
+        txtSearch.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
 
         categoryAdapter = CategoryAdapter()
         rcv_category.adapter = categoryAdapter

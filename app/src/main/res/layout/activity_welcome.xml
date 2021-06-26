@@ -41,14 +41,13 @@
         android:paddingBottom="@dimen/size_1"
         app:piv_radius="@dimen/size_3"
         app:piv_selectedColor="@color/white"
-        app:piv_unselectedColor="#d8d8d8"
+        app:piv_unselectedColor="@color/grayD8"
         app:piv_viewPager="@id/viewPager" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/txtSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
         android:paddingStart="@dimen/size_12"
         android:paddingTop="@dimen/size_10"
         android:paddingEnd="@dimen/size_12"
@@ -60,11 +59,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/waveLoadingView" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.TextBarlowMedium
         android:id="@+id/txtNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
         android:paddingStart="@dimen/size_12"
         android:paddingTop="@dimen/size_10"
         android:paddingEnd="@dimen/size_12"

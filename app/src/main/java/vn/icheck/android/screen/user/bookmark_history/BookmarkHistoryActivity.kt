@@ -1,13 +1,11 @@
 package vn.icheck.android.screen.user.bookmark_history
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -15,8 +13,11 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.R
 import vn.icheck.android.databinding.ActivityBookmarkHistoryBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.tracking.TrackingAllHelper
@@ -31,12 +32,16 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookmarkHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupView()
+
         TrackingAllHelper.trackBookmarkViewed()
         DialogHelper.showLoading(this)
-        binding.header.tvTitle simpleText "Sản phẩm yêu thích"
-        binding.header.icBack.setOnClickListener {
+        binding.header.txtTitle.setText(R.string.san_pham_yeu_thich)
+        binding.header.imgBack.setOnClickListener {
             finish()
         }
+
         lifecycleScope.launch {
             bookmarkHistoryViewModel.getBookmarks().collectLatest {
                 bookmarkHistoryAdapter.submitData(it)
@@ -51,7 +56,7 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beVisible()
                     binding.tvNoBookmark.beVisible()
-                    binding.tvNoBookmark.text = "Không tìm thấy sản phẩm!"
+                    binding.tvNoBookmark.setText(R.string.khong_tim_thay_san_pham_1)
                 } else {
                     binding.rcvBookmark.beGone()
                     binding.edtSearch.beGone()
@@ -99,6 +104,11 @@ class BookmarkHistoryActivity : BaseActivityMVVM() {
                 }
             }
         }
+    }
+
+    private fun setupView() {
+        binding.edtSearch.setHintTextColor(ColorManager.getDisableTextColor(this))
+        binding.edtSearch.setTextColor(ColorManager.getNormalTextColor(this))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

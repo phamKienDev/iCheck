@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.dialog_exchange_phonecard_success.*
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 
 class ExchangePhonecardSuccessDialog(val phoneNumber: String?, val service: String?): DialogFragment() {
@@ -18,8 +20,8 @@ class ExchangePhonecardSuccessDialog(val phoneNumber: String?, val service: Stri
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvMessage.text = "Thẻ cào đã được cộng vào tài khoản $phoneNumber"
-        tvPoint.text = "Thẻ cào $service"
+        tvMessage.setText(R.string.the_cao_da_duoc_cong_vao_tai_khoan_s, phoneNumber?:"")
+        tvPoint.setText(R.string.the_cao_s, service?:"")
         imgClose.setOnClickListener {
             dismiss()
         }

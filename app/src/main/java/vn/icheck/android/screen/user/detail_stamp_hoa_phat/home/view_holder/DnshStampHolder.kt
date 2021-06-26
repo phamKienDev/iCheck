@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.dnsh_stamp.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.ichecklibs.util.setText
 
 class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICBarcodeProductV1.Vendor>(LayoutInflater.from(parent.context).inflate(R.layout.dnsh_stamp, parent, false)) {
 
@@ -16,7 +18,7 @@ class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStam
         itemView.tv_owner_name.text = obj.vendorPage.name
         itemView.img_not_verified.visibility = View.VISIBLE
         if (obj.vendorPage.tax != null) {
-            itemView.tv_owner_mst.text = String.format("MST: %s", obj.vendorPage.tax)
+            itemView.tv_owner_mst.setText(R.string.ma_so_thue_icheck, obj.vendorPage.tax!!)
         } else {
             itemView.tv_owner_mst.visibility = View.GONE
         }
@@ -43,7 +45,7 @@ class DnshStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStam
 
         if (obj.vendorPage.verified) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                itemView.owner_name_vg.background = itemView.context.resources.getDrawable(R.drawable.bg_owner_verified, null)
+                itemView.owner_name_vg.background = ViewHelper.bgSecondaryCornersTop10(itemView.context)
             }
             itemView.img_not_verified.setImageResource(R.drawable.ic_verified_green_24px)
         } else {

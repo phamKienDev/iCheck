@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.*
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.btnCreate
 import kotlinx.android.synthetic.main.fragment_create_phone_qr_code.edtContent
@@ -25,6 +24,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.base.presenter.BaseCreateQrCodePresenter
 import vn.icheck.android.screen.user.createqrcode.base.view.IBaseCreateQrCodeView
@@ -59,6 +59,7 @@ class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtContent)
     }
@@ -68,6 +69,14 @@ class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
         imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+
+        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
+            edtContent.background=this
         }
     }
 
@@ -104,7 +113,7 @@ class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
         KeyboardUtils.hideSoftInput(edtContent)
 
         val intent = Intent(requireContext(), CreateQrCodeSuccessActivity::class.java)
@@ -115,7 +124,7 @@ class CreatePhoneQrCodeFragment : BaseFragmentMVVM(), IBaseCreateQrCodeView {
     override fun showError(errorMessage: String) {
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = errorMessage
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 

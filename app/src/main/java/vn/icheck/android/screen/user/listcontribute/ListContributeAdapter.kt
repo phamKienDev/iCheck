@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_contribute.view.*
 import kotlinx.android.synthetic.main.item_contribute.view.imgAvatar
 import kotlinx.android.synthetic.main.item_contribute.view.tvName
-import kotlinx.android.synthetic.main.item_me_follow_page_holder.view.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -23,18 +22,21 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -164,14 +166,16 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
     inner class ViewHolder(parent: ViewGroup, val fragmentManager: FragmentActivity) : BaseViewHolder<ICContribute>(LayoutInflater.from(parent.context).inflate(R.layout.item_contribute, parent, false)) {
         val interactor = ProductInteractor()
-        private var dialog: ReportWrongContributionDialog? = null
+        private var dialog: ReportDialog? = null
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICContribute) {
             unCheckAll()
 
+            itemView.tvName.setTextColor(ColorManager.getNormalTextColor(itemView.context))
+
             itemView.imgAvatar.run {
-                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrlRounded4(this, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
 
                 setOnClickListener {
                     IckUserWallActivity.create(obj.user?.id, itemView.context)
@@ -224,13 +228,13 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvPrice.run {
                 if (obj.data?.price != null && obj.data?.price != 0L) {
-                    setTextColor(getColor(R.color.colorPrimary))
+                    setTextColor(ColorManager.getPrimaryColor(context))
                     typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
-                    text = itemView.context.getString(R.string.xxx__d, TextHelper.formatMoney(obj.data?.price))
+                    text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.data?.price))
                 } else {
-                    setTextColor(getColor(R.color.colorDisableText))
+                    setTextColor(ColorManager.getDisableTextColor(context))
                     setTypeface(null, Typeface.ITALIC)
-                    text = getString(R.string.gia_dang_cap_nhat)
+                    text = context.getString(R.string.gia_dang_cap_nhat)
                 }
             }
 
@@ -250,11 +254,12 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvYes.run {
                 visibility = View.VISIBLE
+                setTextColor(ViewHelper.textColorDisableTextUncheckPrimaryChecked(context))
 
                 text = if (obj.upVotes > 0) {
-                    "Đúng (${obj.upVotes})"
+                    context.getString(R.string.dung_d, obj.upVotes)
                 } else {
-                    "Đúng"
+                    context.getString(R.string.dung_d)
                 }
 
 
@@ -263,7 +268,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                         postVote(obj, null, this)
                     } else {
                         if (obj.myVote == false) {
-                            DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thay_doi_binh_chon), itemView.context.getString(R.string.content_change_vote_contribution), "Không, tôi muốn giữ", "Chắc chắn", true, object : ConfirmDialogListener {
+                            DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.thay_doi_binh_chon), itemView.context.getString(R.string.content_change_vote_contribution), itemView.context.getString(R.string.khong_toi_khong_muon_giu), itemView.context.getString(R.string.chac_chan), true, object : ConfirmDialogListener {
                                 override fun onDisagree() {
                                 }
 
@@ -280,11 +285,12 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvNo.run {
                 visibility = View.VISIBLE
+                setTextColor(ViewHelper.textColorDisableTextUncheckAccentYellowChecked(context))
 
                 text = if (obj.downVotes > 0) {
-                    "Sai (${obj.downVotes})"
+                    context.getString(R.string.sai_d, obj.downVotes)
                 } else {
-                    "Sai"
+                    context.getString(R.string.sai)
                 }
 
 
@@ -299,13 +305,13 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 }
             }
 
-            itemView.btnAction.visibility = if (!obj.isMe) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
-
-            itemView.btnAction.run {
+            itemView.btnAction.apply {
+                background = ViewHelper.bgOutlinePrimary1Corners4(context)
+                visibility = if (!obj.isMe) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let {
                         obj.data?.barcode?.let { barcode -> IckContributeProductActivity.start(it, barcode, obj.productId, "Chỉnh sửa đóng góp") }
@@ -354,21 +360,23 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                                         data.downVotes = data.downVotes - 1
                                         itemView.tvNo.text = if (data.downVotes > 0) {
-                                            "Sai (${data.downVotes})"
+                                            itemView.context.getString(R.string.sai_d, data.downVotes)
                                         } else {
-                                            "Sai"
+                                            itemView.context.getString(R.string.sai)
                                         }
 
                                         data.upVotes = data.upVotes + 1
-                                        itemView.tvYes.text = "Đúng (${data.upVotes})"
+                                        itemView.tvYes.setText(R.string.dung_d, data.upVotes)
                                     } else {
                                         data.myVote = null
 
                                         data.upVotes = data.upVotes - 1
-                                        itemView.tvYes.text = if (data.upVotes > 0) {
-                                            "Đúng (${data.upVotes})"
-                                        } else {
-                                            "Đúng"
+                                        itemView.tvYes.apply {
+                                            text = if (data.upVotes > 0) {
+                                                context.getString(R.string.dung_d, data.upVotes)
+                                            } else {
+                                                context.getString(R.string.dung)
+                                            }
                                         }
                                     }
                                 } else {
@@ -376,24 +384,28 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                                         data.myVote = null
 
                                         data.downVotes = data.downVotes - 1
-                                        itemView.tvNo.text = if (data.downVotes > 0) {
-                                            "Sai (${data.downVotes})"
-                                        } else {
-                                            "Sai"
+                                        itemView.tvNo.apply {
+                                            text = if (data.downVotes > 0) {
+                                                context.getString(R.string.sai_d, data.downVotes)
+                                            } else {
+                                                context.getString(R.string.sai)
+                                            }
                                         }
 
                                     } else {
                                         data.myVote = null
 
                                         data.upVotes = data.upVotes - 1
-                                        itemView.tvYes.text = if (data.upVotes > 0) {
-                                            "Đúng (${data.upVotes})"
-                                        } else {
-                                            "Đúng"
+                                        itemView.tvYes.apply {
+                                            text = if (data.upVotes > 0) {
+                                                context.getString(R.string.dung_d, data.upVotes)
+                                            } else {
+                                                context.getString(R.string.dung)
+                                            }
                                         }
 
                                         data.downVotes = data.downVotes + 1
-                                        itemView.tvNo.text = "Sai (${data.downVotes})"
+                                        itemView.tvNo.setText(R.string.sai_d, data.downVotes)
                                     }
                                 }
                             } else {
@@ -401,10 +413,10 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                                 if (isVote) {
                                     data.upVotes = data.upVotes + 1
-                                    itemView.tvYes.text = "Đúng (${data.upVotes})"
+                                    itemView.tvYes.setText(R.string.dung_d, data.upVotes)
                                 } else {
                                     data.downVotes = data.downVotes + 1
-                                    itemView.tvNo.text = "Sai (${data.downVotes})"
+                                    itemView.tvNo.setText(R.string.sai_d, data.downVotes)
                                 }
                             }
                         } else {
@@ -412,18 +424,22 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                                 if (data.myVote == false) {
                                     data.downVotes = data.downVotes - 1
-                                    itemView.tvNo.text = if (data.downVotes > 0) {
-                                        "Sai (${data.downVotes})"
-                                    } else {
-                                        "Sai"
+                                    itemView.tvNo.apply {
+                                        text = if (data.downVotes > 0) {
+                                            context.getString(R.string.sai_d, data.downVotes)
+                                        } else {
+                                            context.getString(R.string.sai)
+                                        }
                                     }
 
                                 } else {
                                     data.upVotes = data.upVotes - 1
-                                    itemView.tvYes.text = if (data.upVotes > 0) {
-                                        "Đúng (${data.upVotes})"
-                                    } else {
-                                        "Đúng"
+                                    itemView.tvYes.apply {
+                                        text = if (data.upVotes > 0) {
+                                            context.getString(R.string.dung_d, data.upVotes)
+                                        } else {
+                                            context.getString(R.string.dung)
+                                        }
                                     }
                                 }
                                 data.myVote = null
@@ -463,9 +479,9 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                     itemView.tvNo.isClickable = true
 
                     if (!obj.data?.rows.isNullOrEmpty()) {
-                        dialog = ReportWrongContributionDialog(obj.data?.rows!!)
+                        dialog = ReportDialog(obj.data?.rows!!)
 
-                        dialog?.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                        dialog?.setListener(object : ReportDialog.DialogClickListener {
                             override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                                 sendReportContribute(listReason, message, data, listMessage, view)
                             }
@@ -513,7 +529,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                             }
                         }
 
-                        val dialogFragment = ReportWrongContributionSuccessDialog(itemView.context, true, data.id, isContributed = didContribute)
+                        val dialogFragment = ReportSuccessDialog(itemView.context, true, data.id, isContributed = didContribute)
 
                         dialogFragment.show(listData, "contributor", null, data.data?.barcode)
 

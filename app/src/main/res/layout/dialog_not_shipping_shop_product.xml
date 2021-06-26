@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius10 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_10"
-    android:background="@drawable/bg_corner_white_10"
     android:paddingBottom="@dimen/size_16">
 
 
@@ -17,13 +16,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close_blue_24" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
         android:fontFamily="sans-serif-medium"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_18"
         android:text="@string/don_vi_van_chuyen"
         android:textStyle="normal"
@@ -31,14 +29,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <View
         android:id="@+id/view27"
         style="@style/Line_Gray.Horizontal"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/img_close" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
         android:id="@+id/tvTitleShipping"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -48,7 +45,6 @@
         android:includeFontPadding="false"
         android:maxLines="1"
         android:text="@string/hinh_thuc_van_chuyen_cua_hang_van_chuyen"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view27" />
@@ -68,4 +64,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvTitleShipping"
         app:layout_constraintTop_toBottomOf="@id/tvTitleShipping" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadius10>

@@ -49,7 +49,7 @@
             android:textColorHint="#D8A35D"
             android:textSize="16sp"
             android:inputType="textCapCharacters"
-            tools:hint="@string/nhap_ma_vao_day"
+            tools:hint="@string/nhap_ma_vao_day_i"
             tools:text="0974815770" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -64,7 +64,8 @@
             android:includeFontPadding="false"
             android:textColor="@color/colorAccentRed"
             android:visibility="gone"
-            tools:text="Mã không tồn tại. Vui lòng thử lại asdjalskj  djalksjd" />
+            tools:text="Mã không tồn tại. Vui lòng thử lại asdjalskj  djalksjd"
+            android:drawableStart="@drawable/ic_error_red_18px" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btnAccept"
@@ -79,7 +80,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Xác nhận"
+            android:text="@string/xac_nhan"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <include
         android:id="@id/layoutToolbar"
@@ -17,19 +16,19 @@
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
         android:id="@+id/edt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:layout_marginEnd="@dimen/size_12"
         android:background="@drawable/bg_gray_f0_corners_4"
+        android:layout_marginEnd="@dimen/size_12"
         android:drawableStart="@drawable/ic_search_gray_24dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"
         android:drawablePadding="@dimen/size_8"
         android:fontFamily="@font/barlow_medium"
-        android:hint="Tìm kiếm"
+        android:hint="@string/tim_kiem"
         android:padding="@dimen/size_6"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,4 +52,4 @@
             android:descendantFocusability="blocksDescendants"
             tools:listitem="@layout/item_friend_request" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ship"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:animateLayoutChanges="true">
 
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="@dimen/size_50"
-        android:layout_height="@dimen/size_50"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back_blue_24px_new" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_50"
-        android:layout_marginRight="@dimen/size_50"
-        android:fontFamily="@font/barlow_semi_bold"
-        tools:text="Giỏ hàng"
-        android:textColor="#057DDA"
-        android:textSize="@dimen/font_18"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_light_blue" />
 
     <View
         android:id="@+id/divider10"
@@ -39,15 +18,15 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/group_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
-        android:paddingBottom="@dimen/size_10"
         android:background="@android:color/white"
+        android:paddingBottom="@dimen/size_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider10"
@@ -58,15 +37,15 @@
             android:layout_width="@dimen/size_30"
             android:layout_height="@dimen/size_30"
             android:layout_marginStart="@dimen/size_12"
-            app:civ_border_color="@color/colorDisableText"
-            app:civ_border_width="@dimen/size_1"
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_12"
-            tools:src="@drawable/ic_icheck_logo"
+            app:civ_border_color="@color/grayB4"
+            app:civ_border_width="@dimen/size_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_icheck_logo" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_business_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,15 +55,13 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:maxLines="1"
-            android:textColor="#212121"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@+id/business_logo"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Innissfree VN (tên 1 dòng)...   " />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tv_quantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -93,20 +70,18 @@
             android:layout_marginTop="@dimen/size_4"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
             android:textSize="@dimen/font_12"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@+id/business_logo"
             app:layout_constraintTop_toBottomOf="@+id/tv_business_name"
             tools:text="2/2 sản phẩm" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:fontFamily="@font/barlow_semi_bold"
-            android:textColor="@color/colorAccentRed"
             app:layout_constraintBottom_toBottomOf="@+id/business_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/business_logo"
@@ -126,23 +101,22 @@
         app:layout_constraintTop_toBottomOf="@+id/group_items"
         tools:listitem="@layout/item_cart" />
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="@dimen/size_36"
-        android:textAllCaps="false"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
-        android:textSize="@dimen/font_16"
-        android:visibility="gone"
-        android:gravity="center"
-        android:background="@drawable/background_button_enable"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/barlow_medium"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_20"
-        android:text="Nhập địa chỉ nhận hàng"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="@string/nhap_dia_chi_nhan_hang"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_16"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -157,11 +131,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray
         android:id="@+id/cart_no_item"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#E5E5E5"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -176,12 +149,12 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_no_campaign" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView59"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn chưa có sản phẩm nào trong giỏ hàng" />
-    </LinearLayout>
+            android:text="@string/ban_chua_co_san_pham_nao_trong_gio_hang" />
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICLinearLayoutGray>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

@@ -21,9 +21,11 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemGiftListMissionTitleBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : RecyclerViewCustomAdapter<ICCampaign>(callback) {
@@ -97,6 +99,8 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
 
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICCampaign) {
+            itemView.btnJoinCampaign.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            itemView.tvEnded.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
 
             WidgetUtils.loadImageUrlRounded4(itemView.imgBanner, obj.image, R.drawable.bg_error_campaign)
 
@@ -107,8 +111,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
             when (obj.state.toString().toDouble().toInt()) {
                 //Chưa bắt đầu
                 0 -> {
-                    itemView.tv1.text = "Thời gian diễn ra"
-                    itemView.txtCountUserJoin.beGone()
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.setText(R.string.thoi_gian_dien_ra)
                     itemView.tv2.beGone()
                     itemView.view.beGone()
                     itemView.tvReward.beGone()
@@ -116,11 +119,11 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.btnJoinCampaign.beGone()
                     itemView.tvEnded.beGone()
 
-                    itemView.txtDate.text = "Từ ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)} - ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                    itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.tu_s_s, TimeHelper.convertDateTimeSvToDayMonthVn(obj.beginAt)?:"", TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?:"")
                 }
                 //Chưa tham gia
                 1 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.setText(R.string.thoi_gian)
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -130,15 +133,17 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.imgUpcoming.beGone()
 
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
-                        itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?.let {
+                            itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, it)
+                        }
                     }
 
                 }
                 //Đã tham gia
                 2 -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.setText(R.string.thoi_gian)
                     itemView.txtCountUserJoin.beVisible()
                     itemView.tv2.beVisible()
                     itemView.view.beVisible()
@@ -148,15 +153,19 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     itemView.tvEnded.beGone()
 
                     if (obj.beginAt.isNullOrEmpty() || obj.endedAt.isNullOrEmpty()) {
-                        itemView.txtDate.text = itemView.context.getString(R.string.dang_cap_nhat)
+                        itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.text = itemView.context.getString(R.string.dang_cap_nhat)
                     } else {
-                        itemView.txtDate.text = "Đến ${TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)}"
+                        TimeHelper.convertDateTimeSvToDayMonthVn(obj.endedAt)?.let {
+                            itemView.findViewById<AppCompatTextView>(R.id.txtDate)?.setText(R.string.den_s, it)
+                        }
                     }
-                    itemView.tvReward.text = "${obj.itemCount} lượt mở"
+                    obj.itemCount?.let{
+                        itemView.tvReward.setText(R.string.d_luot_mo, it)
+                    }
                 }
                 //Đã hết hạn
                 else -> {
-                    itemView.tv1.text = "Thời gian"
+                    itemView.findViewById<AppCompatTextView>(R.id.tv1)?.setText(R.string.thoi_gian)
                     itemView.txtCountUserJoin.beGone()
                     itemView.tv2.beGone()
                     itemView.view.beGone()
@@ -174,7 +183,7 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
     fun createView(context: Context): LinearLayout {
         return LinearLayout(context).also {
             it.layoutParams = ViewHelper.createLayoutParams()
-            it.setBackgroundColor(Color.WHITE)
+            it.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(it.context))
             it.gravity = Gravity.CENTER_HORIZONTAL
             it.orientation = LinearLayout.VERTICAL
 
@@ -190,20 +199,18 @@ class ListCampaignAdapter constructor(val callback: ListCampaignCallback) : Recy
                     it.topMargin = SizeHelper.size28
 
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorNormalText))
+                it.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(context))
                 it.gravity = Gravity.CENTER
                 it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 it.textSize = 16f
                 it.text = context.getString(R.string.hien_tai_dang_khong_co_su_kien_nao)
             })
 
-            it.addView(AppCompatTextView(context).also {
+            it.addView(TextSecondBarlowMedium(context).also {
                 it.layoutParams = ViewHelper.createLayoutParams().also {
                     it.setMargins(SizeHelper.size38, SizeHelper.size10, SizeHelper.size38, 0)
                 }
-                it.setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
                 it.gravity = Gravity.CENTER
-                it.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                 it.textSize = 14f
                 it.text = context.getString(R.string.thuong_xuyen_tham_gia_su_kien)
             })

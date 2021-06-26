@@ -18,6 +18,8 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper.setTextNameProduct
 import vn.icheck.android.helper.TextHelper.setTextPriceProduct
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
@@ -87,7 +89,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                                 it.setMargins(SizeHelper.size6, 0, SizeHelper.size6, 0)
                             }
-                            setTextColor(getColor(R.color.colorPrimary))
+                            setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
                             typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
                             text = "${obj.rating * 2}"
                         }
@@ -107,9 +109,9 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).also {
                                 it.setMargins(0, 0, 0, 0)
                             }
-                            setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.chua_co_danh_gia_i)))
+                            text = Html.fromHtml(getString(R.string.chua_co_danh_gia_i))
                             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-                            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+                            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
                         }
                         (getChildAt(2) as AppCompatTextView).run {
                             visibility = View.GONE
@@ -138,7 +140,7 @@ class ListProductHorizontalAdapter(val url: String, val params: HashMap<String, 
             (itemView as ViewGroup).run {
                 layoutParams = ViewHelper.createLayoutParams(SizeHelper.size150, LinearLayout.LayoutParams.MATCH_PARENT, 0, 0, SizeHelper.size1, 0)
 
-                itemView.setBackgroundColor(Color.WHITE)
+                itemView.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(itemView.context))
                 (getChildAt(0) as AppCompatImageView).run {
                     layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
                     setImageResource(R.drawable.group_more_product)

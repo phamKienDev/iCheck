@@ -44,7 +44,7 @@ class LandingPageFragment(private val landingPage: String?, private val titleBut
         if (!landingPage.isNullOrEmpty()) {
             loadWebView(landingPage)
         } else {
-            object : DialogNotification(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, "Ok", false) {
+            object : DialogNotification(requireContext(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, getString(R.string.ok), false) {
                 override fun onDone() {
                     findNavController().popBackStack()
                 }

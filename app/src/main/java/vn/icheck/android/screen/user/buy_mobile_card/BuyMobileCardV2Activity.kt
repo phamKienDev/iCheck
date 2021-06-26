@@ -28,6 +28,7 @@ import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -64,13 +65,21 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buy_mobile_card_v2)
+
         viewModel = ViewModelProvider(this).get(RechargePhoneVIewModel::class.java)
+
+        setupView()
         listenerGetData()
         initListNetworkOperator()
         initListMenhGia()
         displayData()
         listener()
         TrackingAllHelper.trackIcheckPhoneTopupStart()
+    }
+
+    private fun setupView() {
+        btnPayment.background = ViewHelper.bgPaymentState(this)
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
     }
 
     private fun listenerGetData() {
@@ -99,15 +108,15 @@ class BuyMobileCardV2Activity : BaseActivityMVVM() {
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })

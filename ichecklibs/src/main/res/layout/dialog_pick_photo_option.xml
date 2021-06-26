@@ -13,20 +13,19 @@
         android:background="@drawable/bg_white_corners_8"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="@string/chon_anh"
             android:visibility="gone"
-            android:textColor="#b4b4b4"
             android:textSize="14sp"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@id/txtCamera"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
@@ -34,35 +33,31 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/chup_anh"
-            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="normal" />
 
         <View style="@style/Line_Gray.Horizontal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@id/txtDocument"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_50"
-            android:background="@drawable/btn_white_bottom_corners_8"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/quay_video"
-            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="normal" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextPrimary
         android:id="@id/txtCancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_50"
         android:layout_marginTop="@dimen/size_8"
-        android:background="@drawable/btn_white_corners_8"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:text="@string/bo_qua"
-        android:textColor="@color/colorPrimary"
+        android:background="@drawable/btn_white_corners_8"
         android:textSize="18sp"
         android:textStyle="bold" />
 </LinearLayout>

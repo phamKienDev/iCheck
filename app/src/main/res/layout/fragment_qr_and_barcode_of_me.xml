@@ -94,15 +94,13 @@
             android:background="@drawable/group_my_code_bottom"
             android:orientation="vertical">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tv_default_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Đây là ID của bạn"
-                android:textColor="#212121"
+                android:text="@string/day_la_id_cua_ban"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone" />
 
@@ -114,7 +112,7 @@
                 android:gravity="center"
                 android:paddingStart="@dimen/size_8"
                 android:paddingEnd="@dimen/size_8"
-                android:text="Đưa mã này cho người khác quét để  cùng kết bạn với họ trên iCheck nhé"
+                android:text="@string/dua_ma_nay_cho_nguoi_khac_quet_de_cung_ket_ban_voi_ho_tren_icheck_nhe"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -124,7 +122,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                     android:id="@+id/tv_campaign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,9 +132,7 @@
                     android:layout_marginEnd="@dimen/size_16"
                     android:layout_marginBottom="@dimen/size_16"
                     android:layout_weight="1"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
-                    android:textColor="#333333"
                     tools:text="Đưa mã barcode hoặc QR này cho nhân viên để kích hoạt" />
 
                 <TextView
@@ -145,7 +141,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_16"
                     android:layout_weight="0"
-                    android:background="@drawable/background_button_enable"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:padding="@dimen/size_8"
                     android:textColor="@android:color/white"
@@ -165,7 +160,7 @@
         android:layout_marginBottom="@dimen/size_32"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Quét mã"
+        android:text="@string/quet_ma"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
@@ -179,7 +174,7 @@
         android:layout_marginBottom="@dimen/size_32"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Scan &amp; buy"
+        android:text="@string/scan_buy"
         android:textColor="@android:color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -196,7 +191,7 @@
         android:background="@drawable/bg_selected_scan_text"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Mã của tôi"
+        android:text="@string/ma_cua_toi"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -14,17 +14,17 @@ import com.google.firebase.auth.FirebaseAuth
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.base.BaseActivityChat
-import vn.icheck.android.chat.icheckchat.base.ConstantChat.DATA_1
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.KEY
 import vn.icheck.android.chat.icheckchat.base.ConstantChat.NAME
 import vn.icheck.android.chat.icheckchat.base.recyclerview.IRecyclerViewCallback
 import vn.icheck.android.chat.icheckchat.base.view.*
 import vn.icheck.android.chat.icheckchat.databinding.ActivityUserInformationBinding
-import vn.icheck.android.chat.icheckchat.model.MCConversation
 import vn.icheck.android.chat.icheckchat.model.MCMedia
 import vn.icheck.android.chat.icheckchat.model.MCMessageEvent
 import vn.icheck.android.chat.icheckchat.model.MCStatus
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>(), IRecyclerViewCallback {
 
@@ -56,7 +56,8 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
             onBackPressed()
         }
 
-        binding.toolbar.txtTitle.text = getString(R.string.cai_dat_tin_nhan)
+//        binding.toolbar.txtTitle.text = getString(R.string.cai_dat_tin_nhan)
+        println(getString(R.string.ban_da_chan_tin_nhan_cua_s))
     }
 
     private fun setUpView() {
@@ -156,9 +157,9 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
 
                 binding.btnBlock.apply {
                     text = if (toType.contains("page")) {
-                        getString(R.string.chan_tin_nhan_tu_trang)
+                        context.getString(R.string.chan_tin_nhan_tu_trang)
                     } else {
-                        getString(R.string.chan_tin_nhan_tu_nguoi_nay)
+                        context.getString(R.string.chan_tin_nhan_tu_nguoi_nay)
                     }
 
                     if (obj.child("is_block").value != null) {
@@ -168,7 +169,7 @@ class UserInformationActivity : BaseActivityChat<ActivityUserInformationBinding>
                     }
 
                     setOnClickListener {
-                        this@UserInformationActivity.showConfirm(getString(R.string.chan_tin_nhan), getString(R.string.message_block), getString(R.string.de_sau), getString(R.string.dong_y), false, object : ConfirmDialogListener {
+                        this@UserInformationActivity.showConfirm(context.getString(R.string.chan_tin_nhan), context.getString(R.string.message_block), context.getString(R.string.de_sau), context.getString(R.string.dong_y), false, object : ConfirmDialogListener {
                             override fun onDisagree() {
 
                             }

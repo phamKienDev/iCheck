@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.ic_image_holder2.view.*
 import kotlinx.android.synthetic.main.video_detail_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -71,6 +72,8 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
 
     inner class VideoHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.video_detail_holder, parent, false)) {
         fun bind(media: ICExoMedia) {
+            itemView.tvError.background=ViewHelper.bgAccentRedCorners24(itemView.context)
+
             if (media.progressiveMediaSource != null) {
 //                media.exoPlayer?.playWhenReady = true
                 media.exoPlayer?.prepare(media.progressiveMediaSource!!, false, true)
@@ -85,7 +88,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                 media.exoPlayer?.addListener(object : Player.EventListener {
                     override fun onPlayerError(error: ExoPlaybackException) {
                         super.onPlayerError(error)
-                        itemView.context.showLongErrorToast("Trình phát video lỗi")
+                        itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                         itemView.progress.visibility = View.GONE
                         media.mediaError = true
                     }
@@ -96,7 +99,7 @@ class MediaInPostAdapter(val isFullMedia: Boolean) : RecyclerView.Adapter<Recycl
                         when (playbackState) {
                             Player.STATE_IDLE -> {
                                 itemView.progress.visibility = View.GONE
-                                itemView.context.showLongErrorToast("Trình phát video lỗi")
+                                itemView.context.showLongErrorToast(itemView.context.getString(R.string.trinh_phat_video_loi))
                             }
                             Player.STATE_BUFFERING -> {
                                 itemView.progress.visibility = View.VISIBLE

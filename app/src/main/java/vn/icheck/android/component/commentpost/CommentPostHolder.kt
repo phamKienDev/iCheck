@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.component.view.ViewHelper.onDelayClick
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ItemCommentPostBinding
 import vn.icheck.android.helper.DialogHelper
@@ -50,7 +51,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 binding.tvTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
-            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84px, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(binding.imgAvatar, obj.user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
             binding.tvTitle.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
@@ -73,7 +74,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         if (obj.media.isNullOrEmpty()) {
             binding.imageView.visibility = View.GONE
         } else {
-            if ((obj.media!![0]!!.content ?: "").contains(".mp4")) {
+            if ((obj.media!!.first()!!.content ?: "").contains(".mp4")||obj.media!!.first()!!.type =="video") {
                 binding.btnPlay.visibility = View.VISIBLE
             } else {
                 binding.btnPlay.visibility = View.GONE
@@ -123,13 +124,13 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
             listener.onAnswer(obj)
         }
 
-        binding.imageView.setOnClickListener {
+        binding.imageView.onDelayClick({
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.media))
-        }
+        },2000)
 
-        binding.btnPlay.setOnClickListener {
+        binding.btnPlay.onDelayClick({
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.SHOW_FULL_MEDIA, obj.media))
-        }
+        },2000)
 
         itemView.setOnLongClickListener {
             showOption(obj)
@@ -151,7 +152,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
         binding.tvLike.setTextColor(if (isLike != null) {
             ContextCompat.getColor(itemView.context, R.color.red_like_question)
         } else {
-            ContextCompat.getColor(itemView.context, R.color.black_50)
+            vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context)
         })
     }
 
@@ -171,7 +172,7 @@ class CommentPostHolder(val binding: ItemCommentPostBinding, val listener: IComm
                 }
 
                 override fun onDelete() {
-                    DialogHelper.showConfirm(dialog.context, "Bạn chắc chắn muốn xóa bình luận này?", null, "Để sau", "Đồng ý", true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(dialog.context, dialog.context.getString(R.string.ban_chac_chan_muon_xoa_binh_luan_nay), null, dialog.context.getString(R.string.de_sau), dialog.context.getString(R.string.dong_y), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }

@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.user.selectdistrict.adapter
+package vn.icheck.android.screen.user.detail_stamp_v6_1.selectdistrictstamp.adapter
 
 import android.view.LayoutInflater
 import android.view.View

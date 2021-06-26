@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -47,7 +48,7 @@ class V6ViewModel: ViewModel() {
 
     fun getMyID() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -61,7 +62,7 @@ class V6ViewModel: ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }
@@ -85,7 +86,7 @@ class V6ViewModel: ViewModel() {
 
     fun checkQrStampSocial() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            errorString.postValue(ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            errorString.postValue(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -99,16 +100,24 @@ class V6ViewModel: ViewModel() {
             override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
                 when (obj.data?.theme) {
                     1 -> {
-                        stampHoaPhat.postValue(obj.data)
+                        obj.data?.let {
+                            stampHoaPhat.postValue(it)
+                        }
                     }
                     2 -> {
-                        stampThinhLong.postValue(obj.data)
+                        obj.data?.let {
+                            stampThinhLong.postValue(it)
+                        }
                     }
                     else -> {
                         if (obj.data?.suggest_apps.isNullOrEmpty()) {
-                            checkStampSocial.postValue(obj.data)
+                            obj.data?.let {
+                                checkStampSocial.postValue(it)
+                            }
                         } else {
-                            showDialogSuggestApp.postValue(obj.data)
+                            obj.data?.let {
+                                showDialogSuggestApp.postValue(it)
+                            }
                         }
                     }
                 }

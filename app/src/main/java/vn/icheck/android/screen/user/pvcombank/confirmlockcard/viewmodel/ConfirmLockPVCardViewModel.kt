@@ -57,7 +57,9 @@ class ConfirmLockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null){
-                    dataLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataLockCard.postValue(it)
+                    }
                 } else {
                     errorData.postValue(Constant.ERROR_EMPTY)
                 }

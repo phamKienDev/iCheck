@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Quét mã QRcode được dán\ntrên bao bì sản phẩm để nhận lượt\nquay may mắn!"
+                android:text="@string/quet_ma_qrcode_duoc_dan_tren_bao_bi_san_pham_de_nhan_luot_quay_may_man"
                 android:textColor="#828282"
                 android:textSize="14sp"
                 android:textStyle="normal" />

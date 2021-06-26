@@ -22,6 +22,10 @@ import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
+import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -61,12 +65,16 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
     @SuppressLint("SetTextI18n")
     fun bind(productRow: ICShopVariantV2) {
+        vg_shop_top.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
+        layoutLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+        tvChiDuong.fillDrawableStartText(R.drawable.ic_location_item_shop_variant)
+
         tv_shop_name.text = productRow.name
 
         if (productRow.distance != null) {
             TextHelper.convertMtoKm(productRow.distance!!, tv_distance, "Khoảng cách: ")
         } else {
-            tv_distance.text = "Khoảng cách: " + context.getString(R.string.dang_cap_nhat)
+            tv_distance.setText(R.string.khoang_cach_dang_cap_nhat)
         }
 
         tv_score.text = String.format("%.1f", productRow.rating).replace(".", ",")
@@ -90,17 +98,19 @@ class ProductDetailShopVariantComponent : LinearLayout {
                 layoutAddToCart?.visibility = View.GONE
             }
 
-            if (productRow.isOffline == true) {
-                layoutLocation?.visibility = View.VISIBLE
-            } else {
-                layoutLocation?.visibility = View.GONE
+            layoutLocation.apply {
+                if (productRow.isOffline == true) {
+                    beVisible()
+                } else {
+                    beGone()
+                }
             }
         }
 
         val listService = mutableListOf<ICServiceShopVariant>()
 
         if (productRow.isOffline == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
         if (!productRow.title.isNullOrEmpty()) {
@@ -150,6 +160,8 @@ class ProductDetailShopVariantComponent : LinearLayout {
             tv_price?.beInvisible()
         }
 
+        viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+
         vg_shop_top.setOnClickListener {
 
         }
@@ -162,29 +174,32 @@ class ProductDetailShopVariantComponent : LinearLayout {
             showMap(productRow)
         }
 
-        layoutAddToCart.setOnClickListener {
-            if (SessionManager.isUserLogged) {
-                if (NetworkHelper.isNotConnected(context)) {
-                    ToastUtils.showShortError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
-                    return@setOnClickListener
-                }
-
-                cartInteraction.addCart(productRow.id!!, 1, object : ICApiListener<ICRespCart> {
-                    override fun onSuccess(obj: ICRespCart) {
-                        cartHelper.saveCart(obj)
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_CART))
-                        ToastUtils.showShortSuccess(context, context.getString(R.string.them_vao_gio_hang_thanh_cong))
+        layoutAddToCart.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (SessionManager.isUserLogged) {
+                    if (NetworkHelper.isNotConnected(context)) {
+                        ToastUtils.showShortError(context, context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                        return@setOnClickListener
                     }
 
-                    override fun onError(error: ICBaseResponse?) {
-                        val message = error?.message
+                    cartInteraction.addCart(productRow.id!!, 1, object : ICApiListener<ICRespCart> {
+                        override fun onSuccess(obj: ICRespCart) {
+                            cartHelper.saveCart(obj)
+                            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_CART))
+                            ToastUtils.showShortSuccess(context, context.getString(R.string.them_vao_gio_hang_thanh_cong))
+                        }
+
+                        override fun onError(error: ICBaseResponse?) {
+                            val message = error?.message
                                 ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
-                        ToastUtils.showShortError(context, message)
+                            ToastUtils.showShortError(context, message)
+                        }
+                    })
+                } else {
+                    ICheckApplication.currentActivity()?.let { activity ->
+                        ActivityUtils.startActivity<IckLoginActivity>(activity)
                     }
-                })
-            } else {
-                ICheckApplication.currentActivity()?.let { activity ->
-                    ActivityUtils.startActivity<IckLoginActivity>(activity)
                 }
             }
         }

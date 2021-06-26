@@ -47,7 +47,7 @@
                 android:id="@id/layoutAvatar"
                 android:layout_width="@dimen/size_30"
                 android:layout_height="@dimen/size_30"
-                app:civ_border_color="#D8D8D8"
+                app:civ_border_color="@color/grayD8"
                 app:civ_border_width="@dimen/size_1"
                 android:layout_marginStart="@dimen/size_14"
                 android:layout_marginLeft="@dimen/size_14"
@@ -55,7 +55,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imgLevel" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
                 android:id="@id/edtComment"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
@@ -63,13 +63,11 @@
                 android:layout_marginLeft="@dimen/size_5"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:background="@drawable/bg_outline_gray_1_corners_4"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="top"
                 android:hint="@string/viet_binh_luan"
                 android:minLines="5"
                 android:padding="@dimen/size_4"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutAvatar"
@@ -93,14 +91,12 @@
         android:background="@drawable/shadow_bottom"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
-    <vn.icheck.android.component.view.ButtonWhiteOutlineLightBlueCorners4
+    <vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
         android:id="@id/btnCancel"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_10"
-        android:layout_marginLeft="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_6"
-        android:layout_marginRight="@dimen/size_6"
         android:layout_marginBottom="@dimen/size_10"
         android:fontFamily="@font/barlow_semi_bold"
         android:text="@string/huy"

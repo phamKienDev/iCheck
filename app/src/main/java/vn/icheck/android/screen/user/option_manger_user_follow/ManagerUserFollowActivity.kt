@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.option_manger_user_follow
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -18,7 +19,10 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import java.util.concurrent.TimeUnit
 
 class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
@@ -42,6 +46,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manager_user_follow)
+
         initView()
         initSwipeLayput()
         listener()
@@ -52,10 +57,12 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
 
     private fun initView() {
         txtTitle.setText(R.string.quan_ly_danh_sach_nguoi_theo_doi)
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
     }
 
     private fun initSwipeLayput() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {
             swipe_layout.isRefreshing = true
@@ -91,7 +98,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
         runOnUiThread {
             viewModel.listData.observe(this, Observer {
                 swipe_layout.isRefreshing = false
-                tvCount.text = it.count.toString() + " người đang theo dõi bạn"
+                tvCount.setText(R.string.d_nguoi_dang_theo_doi_ban, it.count)
                 adapter.addListData(it.rows)
                 if (!initFirst){
                     initTextListener()

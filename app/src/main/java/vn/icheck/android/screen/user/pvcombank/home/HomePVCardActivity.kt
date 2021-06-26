@@ -23,6 +23,8 @@ import vn.icheck.android.screen.user.newslistv2.NewsListV2Activity
 import vn.icheck.android.screen.user.pvcombank.cardhistory.HistoryPVCardActivity
 import vn.icheck.android.screen.user.pvcombank.listcard.ListPVCardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -88,7 +90,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
                 }
                 Status.ERROR_NETWORK -> {
                     viewModel.onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
-                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                    viewModel.onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 }
                 Status.ERROR_REQUEST -> {
                     viewModel.onState.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
@@ -106,7 +108,7 @@ class HomePVCardActivity : BaseActivityMVVM(), View.OnClickListener {
     private fun setTvMoney() {
         if (sharedPreferences.getBoolean(keyPVCardPreferences, true)) {
             tvEye.setImageResource(R.drawable.ic_eye_on_white_24px)
-            tvMoney.text = ("${TextHelper.formatMoney(avlBalance)} đ")
+            tvMoney.setText(R.string.s_space_d, TextHelper.formatMoney(avlBalance))
         } else {
             tvEye.setImageResource(R.drawable.ic_eye_off_white_24px)
             tvMoney.text = "*****"

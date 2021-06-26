@@ -42,26 +42,28 @@ class FeedHolder(parent: ViewGroup) : BaseViewHolder<ICFeed>(ViewHelper.createFe
                     (getChildAt(0) as AppCompatTextView).run {
                         val totalRating = obj.rating * 2
 
+                        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
+
                         when {
                             totalRating < 6 -> {
-                                text = context.getString(R.string.x_diem_danh_gia)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                                setText(R.string.diem_danh_gia)
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                             }
                             totalRating < 7 -> {
-                                text = context.getString(R.string.x_hai_long)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                                setText(R.string.hai_long)
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                             }
                             totalRating < 8 -> {
-                                text = context.getString(R.string.x_tot)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                                setText(R.string.tot)
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                             }
                             totalRating < 9 -> {
-                                text = context.getString(R.string.x_tuyet_voi)
+                                setText(R.string.tuyet_voi)
                                 background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.red_v2), SizeHelper.size14.toFloat())
                             }
                             else -> {
-                                text = context.getString(R.string.x_tren_ca_tuyet_voi)
-                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                                setText(R.string.tren_ca_tuyet_voi)
+                                background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                             }
                         }
                     }

@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/size_140"
             android:layout_height="@dimen/size_88"
-            android:src="#03A9F4"/>
+            android:src="#03A9F4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,44 +23,36 @@
             android:layout_marginStart="@dimen/size_10"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
+                android:maxLines="2"
                 android:textSize="@dimen/font_16"
-                android:textColor="#212121"
                 tools:text="Chào hè quét mã nhận ngay quà khủng" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_12"
                 android:layout_marginTop="@dimen/size_8"
-                android:textColor="#757575"
-                tools:text="Còn lại 29 ngày"
-                android:fontFamily="@font/barlow_medium"/>
+                android:fontFamily="@font/barlow_medium"
+                android:textSize="@dimen/font_12"
+                tools:text="Còn lại 29 ngày" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextPrimary
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_6"
                 android:drawableStart="@drawable/ic_exclusive_privileges"
                 android:drawablePadding="6.7dp"
                 android:textSize="@dimen/font_14"
-                android:textColor="#057dda"
-                tools:text="150.000 điểm"
-                />
-
+                tools:text="150.000 điểm" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="11.5dp"
-        android:background="#d8d8d8"/>
+        android:layout_marginTop="11.5dp" />
 
 </LinearLayout>

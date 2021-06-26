@@ -10,6 +10,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.history.HistoryInteractor
@@ -52,7 +53,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
     fun getData() {
         viewModelScope.launch {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                onError.postValue(ICError(R.drawable.ic_error_network, null, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                onError.postValue(ICError(R.drawable.ic_error_network, null, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
                 return@launch
             }
 
@@ -88,7 +89,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
                     val list = mutableListOf<ICScanHistory>()
                     val item = ICScanHistory(ICViewTypes.LIST_BIG_CORP)
                     listCategory.clear()
-                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name = "Tất cả"))
+                    listCategory.add(0, ICBigCorp(avatar_all = R.drawable.ic_all_history_31dp, name =  getString(R.string.tat_ca)))
                     if (!obj.data?.rows.isNullOrEmpty()) {
                         for (i in obj.data?.rows ?: mutableListOf()) {
                             listCategory.add(i)
@@ -102,19 +103,19 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
                     onAddBigCorp.value = list
                 } else {
-                    onError.postValue(ICError(R.drawable.ic_error_emty_history_topup, null, ICheckApplication.getInstance().getString(R.string.ban_chua_co_lich_su_quet_ma), null))
+                    onError.postValue(ICError(R.drawable.ic_error_emty_history_topup, null, getString(R.string.ban_chua_co_lich_su_quet_ma), null))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null))
+                onError.postValue(ICError(R.drawable.ic_error_request, null, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null))
             }
         })
     }
 
     fun getListScanHistory(sort: Int? = null, listIdBigCorp: MutableList<Any>? = null, listType: MutableList<Any>? = null, isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onErrorString.value = ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            onErrorString.value = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
         }
 
@@ -145,7 +146,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
                 if (!isLoadMore) {
                     if (obj.data?.rows.isNullOrEmpty()) {
-                        val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_emty_history_topup, null, ICheckApplication.getInstance().getString(R.string.ban_chua_co_lich_su_quet_ma), R.string.thu_lai))
+                        val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_emty_history_topup, null, getString(R.string.ban_chua_co_lich_su_quet_ma), R.string.thu_lai))
                         list.add(item)
                         onErrorListData.value = list
                     } else {
@@ -159,11 +160,11 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
             override fun onError(error: ICResponseCode?) {
                 if (!isLoadMore) {
                     val list = mutableListOf<ICScanHistory>()
-                    val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
+                    val item = ICScanHistory(ICViewTypes.MESSAGE_SCAN_HISTORY, ICError(R.drawable.ic_error_request, null, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), R.string.thu_lai))
                     list.add(item)
                     onErrorListData.value = list
                 } else {
-                    onErrorString.value = ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    onErrorString.value = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
             }
         })
@@ -198,7 +199,7 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
 
     fun checkQrStampSocial(code: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onErrorString.value = ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            onErrorString.value = getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
             return
         }
 
@@ -207,27 +208,31 @@ class ScanHistoryViewModel @ViewModelInject constructor(@Assisted val savedState
         interactor.checkScanQrCode(code, object : ICNewApiListener<ICResponse<ICValidStampSocial>> {
             override fun onSuccess(obj: ICResponse<ICValidStampSocial>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                when (obj.data?.theme) {
-                    1 -> {
-                        stampHoaPhat.postValue(obj.data)
-                    }
-                    2 -> {
-                        stampThinhLong.postValue(obj.data)
-                    }
-                    else -> {
-                        if (obj.data?.suggest_apps.isNullOrEmpty()) {
-                            checkStampSocial.postValue(obj.data)
-                        } else {
-                            showDialogSuggestApp.postValue(obj.data)
+                obj.data?.let {
+                    when (obj.data?.theme) {
+                        1 -> {
+
+                            stampHoaPhat.postValue(it)
+                        }
+                        2 -> {
+                            stampThinhLong.postValue(it)
+                        }
+                        else -> {
+                            if (obj.data?.suggest_apps.isNullOrEmpty()) {
+                                checkStampSocial.postValue(it)
+                            } else {
+                                showDialogSuggestApp.postValue(it)
+                            }
                         }
                     }
                 }
+
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (error?.code == 400) {
-                    stampFake.postValue("Sản phẩm này có dấu hiệu làm giả sản phẩm chính hãng.\nXin vui lòng liên hệ với đơn vị phân phối chính hãng để được hỗ trợ.")
+                    stampFake.postValue( getString(R.string.san_pham_nay_co_dau_hieu_lam_gia_san_pham_chinh_hang))
                 } else {
                     errorQr.postValue(code)
                 }

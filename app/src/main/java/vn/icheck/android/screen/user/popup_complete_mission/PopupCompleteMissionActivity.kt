@@ -11,7 +11,9 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.my_gift_warehouse.shake_gift.list_box_gift.ListShakeGridBoxActivity
+import vn.icheck.android.ichecklibs.util.setText
 
 class PopupCompleteMissionActivity : BaseActivityMVVM() {
 
@@ -34,24 +36,26 @@ class PopupCompleteMissionActivity : BaseActivityMVVM() {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
 
-        val giftCount = intent.getIntExtra("giftCount",0)
+        val giftCount = intent.getIntExtra("giftCount", 0)
         val campaignId = intent.getStringExtra("campaignId")
 
-        tvNameGift.text = "Bạn nhận được $giftCount lượt mở quà"
+        tvNameGift.setText(R.string.ban_nhan_duoc_d_luot_mo_qua, giftCount)
 
         btnClose.setOnClickListener {
             finish()
             this.overridePendingTransition(0, 0)
         }
 
-        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_MISSION_SUCCESS,campaignId))
+        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REQUEST_MISSION_SUCCESS, campaignId))
 
-        btnGift.setOnClickListener {
-            if (campaignId != null) {
-                startActivity<ListShakeGridBoxActivity>(Constant.DATA_1, campaignId)
+        btnGift.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                if (campaignId != null) {
+                    startActivity<ListShakeGridBoxActivity>(Constant.DATA_1, campaignId)
+                }
+                finish()
             }
-            finish()
         }
     }
-
 }

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
     android:paddingBottom="@dimen/size_10">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.primary.ICViewPrimary
         android:id="@+id/backgroundVerified"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/colorPrimary" />
+        app:layout_constraintBottom_toTopOf="@id/view"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgAvatar"
@@ -102,30 +100,28 @@
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
         app:layout_constraintTop_toBottomOf="@id/view">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
             android:layout_width="wrap_content"
-            android:textColor="@color/colorPrimary"
             tools:text="0325.332.201" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvDangCapNhatSDT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:drawableStart="@drawable/ic_list_blue_12px"
+            android:drawableStart="@drawable/ic_list_blue_12dp"
             android:drawablePadding="@dimen/size_2"
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
-            android:text="Số điện thoại đang cập nhật"
-            android:textColor="#B4B4B4"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:text="@string/so_dien_thoai_dang_cap_nhat" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvAddress"
             style="@style/style_text_barlow_page"
             android:hint="@string/dia_chi_dang_cap_nhat" />
@@ -137,28 +133,25 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_list_blue_12px"
                 android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/darkGray1"
                 android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvDangCapNhatMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_regular"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
-                android:text="Đang cập nhật"
-                android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
+                android:text="@string/dang_cap_nhat"
                 android:textStyle="italic"
                 android:visibility="visible" />
 
@@ -172,4 +165,4 @@
         android:layout_marginTop="@dimen/size_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

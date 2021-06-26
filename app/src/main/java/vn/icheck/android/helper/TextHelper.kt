@@ -1,17 +1,18 @@
 package vn.icheck.android.helper
 
 import android.graphics.Color
-import android.text.*
+import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.style.ImageSpan
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_search_review.*
-import kotlinx.android.synthetic.main.activity_search_users.*
-import kotlinx.android.synthetic.main.item_header_infor_page.view.*
-import kotlinx.android.synthetic.main.item_product_search_result.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.view.normal_text.TextNormalMiddleMultiline
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.models.ICCountry
 import vn.icheck.android.network.models.ICDistrict
 import vn.icheck.android.network.models.ICProvince
@@ -298,39 +299,39 @@ object TextHelper {
 
     fun AppCompatTextView.setTextNameProduct(name: String?) {
         if (name.isNullOrEmpty()) {
-            text = ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat)
+            text =  getString(R.string.ten_dang_cap_nhat)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_medium)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.black_21_v2))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 
     fun AppCompatTextView.setTextNameProductInPost(name: String?) {
         if (name.isNullOrEmpty()) {
-            setText(Html.fromHtml(ICheckApplication.getInstance().getString(R.string.ten_dang_cap_nhat_i)))
+            setText(Html.fromHtml( getString(R.string.ten_dang_cap_nhat_i)))
             textSize = 14f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             setText(name)
             textSize = 16f
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.darkGray1))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 
     fun AppCompatTextView.setTextPriceProduct(price: Long?) {
         if (price == null) {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold_italic)
-            text = ICheckApplication.getInstance().getString(R.string.gia_dang_cap_nhat)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorDisableText))
+            text =  getString(R.string.gia_dang_cap_nhat)
+            setTextColor(ColorManager.getDisableTextColor(ICheckApplication.getInstance()))
         } else {
             typeface = ViewHelper.createTypeface(ICheckApplication.getInstance(), R.font.barlow_semi_bold)
-            setText(ICheckApplication.getInstance().getString(R.string.xxx__d, formatMoneyPhay(price)))
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            setText( getString(R.string.s_d, formatMoneyPhay(price)))
+            setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
         }
     }
 
@@ -338,12 +339,12 @@ object TextHelper {
     fun AppCompatTextView.setTextEmpitySearch(text: Int) {
         background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_bottom_filter_8dp, 0)
-        setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
+        setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         setText(text)
     }
 
     fun AppCompatTextView.setTextDataSearch(text: String) {
-        background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corners_4_light_blue_solid)
+        background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
         setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_filter_white_8dp, 0)
         setTextColor(Color.WHITE)
         setText(text)
@@ -351,15 +352,26 @@ object TextHelper {
 
     fun AppCompatTextView.setTextChooseSearch(choose: Boolean) {
         if (choose) {
-            background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corners_4_light_blue_solid)
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
             setTextColor(Color.WHITE)
         } else {
             background = ContextCompat.getDrawable(ICheckApplication.getInstance(), R.drawable.bg_corner_gray_4)
-            setTextColor(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorNormalText))
+            setTextColor(ColorManager.getNormalTextColor(ICheckApplication.getInstance()))
         }
     }
 
     fun AppCompatTextView.setDrawbleNextEndText(text: String?, icon: Int) {
+        val drawable = ContextCompat.getDrawable(this.context, icon)
+        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+
+        val spannableString = SpannableString("$text  ") // cộng thêm khoảng trắng
+        val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
+
+        spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        this.text = spannableString
+    }
+
+    fun TextNormalMiddleMultiline.setDrawbleNextEndText(text: String?, icon: Int) {
         val drawable = ContextCompat.getDrawable(this.context, icon)
         drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 

@@ -100,7 +100,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
         */
         viewModel.dataLockCard.observe(this, Observer {
             if (it.verification?.bypass == "N") {
-                showShortSuccessToast("Thẻ đã khóa thành công")
+                showShortSuccessToast(getString(R.string.the_da_khoa_thanh_cong))
                 adapter.setLockCard(viewModel.cardId, viewModel.pos, true)
             }
         })
@@ -325,7 +325,7 @@ class ListPVCardActivity : BaseActivityMVVM(), CardPVComBankListener {
                 requestUnLockCard -> {
                     val id = data?.getStringExtra(Constant.DATA_1)
                     if (id != null) {
-                        showShortSuccessToast("Thẻ đã mở khóa thành công")
+                        showShortSuccessToast(getString(R.string.the_da_khoa_thanh_cong))
                         adapter.setLockCard(id, viewModel.pos, false)
                     }
                 }

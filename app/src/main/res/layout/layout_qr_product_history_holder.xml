@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,6 @@
     android:layout_marginTop="@dimen/size_8"
     android:layout_marginEnd="@dimen/size_12"
     android:layout_marginBottom="@dimen/size_8"
-    android:background="@drawable/bg_corners_white_4_border_05"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvTenSpUpdating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,16 +38,15 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_14"
-            android:textColor="#b4b4b4"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
             app:layout_constraintTop_toTopOf="@+id/imgAvaProduct"
             android:visibility="invisible"
-            android:text="Tên đang cập nhật" />
+            android:text="@string/ten_dang_cap_nhat" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,10 +54,8 @@
             android:layout_marginLeft="@dimen/size_10"
             android:drawablePadding="@dimen/size_5"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgAvaProduct"
@@ -74,14 +70,12 @@
             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
             app:layout_constraintTop_toBottomOf="@id/tvNameProduct">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvQrcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_history_qrcode_18px"
                 android:drawablePadding="@dimen/size_8"
-                android:fontFamily="@font/barlow_medium"
-                android:textColor="#828282"
                 android:textSize="@dimen/font_14"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -92,4 +86,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>

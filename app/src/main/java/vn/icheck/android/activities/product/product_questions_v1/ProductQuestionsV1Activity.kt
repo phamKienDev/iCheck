@@ -9,7 +9,6 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_product_questions_v1.*
 import kotlinx.android.synthetic.main.item_base_send_message_product.*
@@ -24,6 +23,7 @@ import vn.icheck.android.activities.product.product_questions_v1.adapter.Product
 import vn.icheck.android.screen.user.product_questions.presenter.ProductQuestionsPresenter
 import vn.icheck.android.activities.product.product_questions_v1.view.IProductQuestionsView
 import vn.icheck.android.activities.product.review_product_v1.adapter.HorizontalImageSendAdapter
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.network.models.v1.ICBarcodeProductV1
@@ -71,6 +71,10 @@ class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, Ta
 
         container_comment.visibility = View.VISIBLE
         tv_answer_actor.visibility = View.GONE
+
+        linearLayoutActor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tv_answer_actor.background=ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+
         WidgetUtils.setClickListener(this, img_send, img_choose_image, tv_answer_actor)
     }
 
@@ -85,7 +89,8 @@ class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, Ta
     }
 
     private fun initSwipeLayout() {
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_container.setOnRefreshListener {
             getProductQuestion()
@@ -190,12 +195,11 @@ class ProductQuestionsV1Activity : BaseActivityMVVM(), IProductQuestionsView, Ta
         edt_enter_message.setText("")
     }
 
-
     override fun onClickCreateAnswer(questionId: Long, actorName: String, position: Int) {
         KeyboardUtils.showSoftInput(this)
         edt_enter_message.requestFocus()
         tv_answer_actor.visibility = View.VISIBLE
-        tv_answer_actor.text = Html.fromHtml(resources.getString(R.string.tra_loi_xxx, actorName))
+        tv_answer_actor.text = Html.fromHtml(ViewHelper.setSecondaryHtmlString(resources.getString(R.string.tra_loi_xxx, actorName),this))
         this.questionId = questionId
         positionAnswer = position
     }

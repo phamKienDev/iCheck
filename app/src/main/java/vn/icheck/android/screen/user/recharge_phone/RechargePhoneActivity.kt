@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -34,6 +35,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
@@ -44,6 +47,7 @@ import vn.icheck.android.screen.user.recharge_phone.adapter.MenhGiaTheAdapter
 import vn.icheck.android.screen.user.recharge_phone.adapter.NetworkAdapter
 import vn.icheck.android.screen.user.recharge_phone.viewmodel.RechargePhoneVIewModel
 import vn.icheck.android.tracking.TrackingAllHelper
+import vn.icheck.android.ichecklibs.util.setText
 
 class RechargePhoneActivity : BaseActivityMVVM() {
 
@@ -72,6 +76,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recharge_phone)
+
         viewModel = ViewModelProvider(this).get(RechargePhoneVIewModel::class.java)
         initView()
         listenerGetData()
@@ -83,6 +88,10 @@ class RechargePhoneActivity : BaseActivityMVVM() {
     }
 
     private fun initView() {
+        btnPayment.background = ViewHelper.bgPaymentState(this)
+        tvPrice.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this))
+        edtPhone.fillDrawableEndText(R.drawable.ic_phonebook_24dp)
+
         if (SessionManager.isUserLogged) {
             tv1.visibility = View.VISIBLE
         } else {
@@ -116,15 +125,15 @@ class RechargePhoneActivity : BaseActivityMVVM() {
             when (typeMessage) {
                 Constant.ERROR_UNKNOW -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_EMPTY -> {
                     imgError.setImageResource(R.drawable.ic_error_request)
-                    tvMessageError.text = "Không thể truy cập. Vui lòng thử lại sau"
+                    tvMessageError.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
                 Constant.ERROR_INTERNET -> {
                     imgError.setImageResource(R.drawable.ic_error_network)
-                    tvMessageError.text = "Kết nối mạng của bạn có vấn đề. Vui lòng thử lại"
+                    tvMessageError.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         })
@@ -175,7 +184,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 }
                 listBuyTopup[position].select = true
                 nhaMangAdapter.notifyDataSetChanged()
-                tvPrice.text = TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()) + "đ"
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
             }
         })
     }
@@ -195,7 +204,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 value = listMenhGia[position].menhGia
                 listMenhGia[position].select = true
                 menhGiaAdapter.notifyDataSetChanged()
-                tvPrice.text = TextHelper.formatMoneyPhay(listMenhGia[position].menhGia.toLong()) + "đ"
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[position].menhGia.toLong()))
             }
         })
     }
@@ -320,7 +329,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
                 }
                 listMenhGia[0].select = true
                 value = listMenhGia[0].menhGia
-                tvPrice.text = TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()) + "đ"
+                tvPrice.setText(R.string.s_d, TextHelper.formatMoneyPhay(listMenhGia[0].menhGia.toLong()))
             }
             menhGiaAdapter.notifyDataSetChanged()
         } catch (e: Exception) {
@@ -333,7 +342,7 @@ class RechargePhoneActivity : BaseActivityMVVM() {
         when (event.type) {
             ICMessageEvent.Type.REFRESH_DATA -> {
                 edtPhone.setText("")
-                tvPrice.text = "0 đ"
+                tvPrice.setText(R.string.zero_d)
                 selectNetWork(0)
             }
         }

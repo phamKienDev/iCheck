@@ -3,12 +3,13 @@ package vn.icheck.android.constant
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.view.WindowManager
-import androidx.core.content.ContextCompat.getSystemService
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsNew
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -334,12 +335,12 @@ object Constant {
         }
     }
 
-    fun getVerticalProductBackground(itemType: Int): Int {
+    fun getVerticalProductBackground(itemType: Int,context: Context): Drawable {
         return when (itemType) {
-            1 -> R.drawable.bg_product_item_top_left
-            2 -> R.drawable.bg_product_item_top_right
-            3 -> R.drawable.bg_product_item_bottom_left
-            else -> R.drawable.bg_product_item_bottom_right
+            1 -> ViewHelper.bgProductItemTopLeft(context)
+            2 -> ViewHelper.bgProductItemTopRight(context)
+            3 ->  ViewHelper.bgProductItemBottemLeft(context)
+            else ->ViewHelper.bgProductItemBottemRight(context)
         }
     }
 
@@ -468,7 +469,7 @@ object Constant {
         }
     }
 
-    fun getName(lastName: String?, firstName: String?, default: String = ICheckApplication.getString(R.string.dang_cap_nhat)): String {
+    fun getName(lastName: String?, firstName: String?, default: String = getString(R.string.dang_cap_nhat)): String {
         return if (!lastName.isNullOrEmpty() || !firstName.isNullOrEmpty()) {
             "${lastName ?: ""} ${firstName ?: ""}".trim()
         } else {

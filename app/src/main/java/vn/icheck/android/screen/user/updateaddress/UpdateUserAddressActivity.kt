@@ -17,6 +17,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICAddress
 import vn.icheck.android.screen.user.selectdistrict.SelectDistrictActivity
 import vn.icheck.android.screen.user.selectprovince.SelectProvinceActivity
@@ -45,6 +46,7 @@ class UpdateUserAddressActivity : BaseActivityMVVM(), IUpdateUserAddressView, Vi
 
     fun onInitView() {
         setupToolbar()
+        setupView()
         setupListener()
     }
 
@@ -54,6 +56,10 @@ class UpdateUserAddressActivity : BaseActivityMVVM(), IUpdateUserAddressView, Vi
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnCreate.background= ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupListener() {

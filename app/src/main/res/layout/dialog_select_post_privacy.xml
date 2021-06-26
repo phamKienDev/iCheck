@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_corners_top_16">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@id/imgClose"
@@ -20,37 +19,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_11"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:text="@string/chinh_sua_quyen_rieng_tu"
-        android:textColor="#057dda"
         android:textSize="@dimen/font_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@id/viewLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
         android:layout_marginTop="@dimen/size_9"
-        android:background="@color/gray"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/textView33"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Ai có thể xem bài viết này của bạn?"
-        android:textColor="#212121"
+        android:text="@string/ai_co_the_xem_bai_viet_nay_cua_ban"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewLine" />
@@ -79,7 +73,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/background_button_enable"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -92,4 +85,4 @@
                 android:textSize="@dimen/font_18" />
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>

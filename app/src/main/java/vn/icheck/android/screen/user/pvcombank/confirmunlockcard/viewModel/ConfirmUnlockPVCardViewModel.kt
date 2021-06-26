@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -62,7 +63,7 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -73,15 +74,17 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
                     fullcard = obj.data?.fullCard
-                    dataUnLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataUnLockCard.postValue(it)
+                    }
                 } else {
-                    errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorData.postValue(error?.message?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -93,7 +96,7 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
         }
 
         if (cardId.isNullOrEmpty()) {
-            errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             return
         }
 
@@ -103,15 +106,17 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICLockCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    dataUnLockCard.postValue(obj.data)
+                    obj.data?.let {
+                        dataUnLockCard.postValue(it)
+                    }
                 } else {
-                    errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                errorData.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorData.postValue(error?.message?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }
@@ -128,15 +133,17 @@ class ConfirmUnlockPVCardViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICInfoPVCard>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (!obj.data?.fullCard.isNullOrEmpty()) {
-                    unlockCardSuccess.postValue(obj.data!!.fullCard)
+                    obj.data?.fullCard?.let {
+                        unlockCardSuccess.postValue(it)
+                    }
                 } else {
-                    verifyError.postValue(obj.data?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    verifyError.postValue(obj.data?.message?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                verifyError.postValue(error?.message?:ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                verifyError.postValue(error?.message?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

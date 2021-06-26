@@ -8,16 +8,14 @@
     android:layout_marginRight="@dimen/size_12"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="#212121"
         android:textSize="@dimen/font_14"
         tools:text="Đánh giá đơn hàng" />
 
@@ -27,7 +25,7 @@
         android:layout_marginTop="@dimen/size_2"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,15 +33,13 @@
             android:layout_marginRight="@dimen/size_50"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:minLines="1"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2Bạn nhận được từ đơn hàng mã KGFICIS2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@+id/tvPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,12 +47,11 @@
             android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_14"
             tools:text="+2.000" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,13 +60,11 @@
         android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="#B4B4B4"
         android:textSize="@dimen/font_12"
         tools:text="15:12, 24/5/2018" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0_5"
-        android:layout_marginTop="@dimen/size_6"
-        android:background="#d8d8d8" />
+        android:layout_marginTop="@dimen/size_6" />
 </LinearLayout>

@@ -58,7 +58,9 @@ class UrlGiftDetailViewModel : BaseViewModel<Any>() {
         repository.dispose()
         repository.getGiftDetail(collectionID, object : ICApiListener<ICKResponse<ICKLoyalty>> {
             override fun onSuccess(obj: ICKResponse<ICKLoyalty>) {
-                onSuccess.postValue(obj.data)
+                obj.data?.let {
+                    onSuccess.postValue(it)
+                }
             }
 
             override fun onError(error: ICKBaseResponse?) {

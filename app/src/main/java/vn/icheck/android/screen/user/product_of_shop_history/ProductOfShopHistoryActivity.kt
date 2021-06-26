@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.product_of_shop_history
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -15,6 +16,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.models.history.ICProductOfShopHistory
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryView {
 
@@ -35,7 +38,9 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     @SuppressLint("SetTextI18n")
     private fun initViewModel() {
         viewModel.dataIntent.observe(this, {
-            txtTitle.text = "Cửa hàng ${it.name}"
+            it.name?.let { it1 ->
+                txtTitle.setText(R.string.cua_hang_s, it1)
+            }
         })
 
         adapter.disableLoadMore()
@@ -101,7 +106,8 @@ class ProductOfShopHistoryActivity : BaseActivityMVVM(), ProductOfShopHistoryVie
     }
 
     private fun initSwipeLayout() {
-        swipe_layout.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_layout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_layout.setOnRefreshListener {
             getData()

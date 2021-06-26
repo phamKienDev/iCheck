@@ -10,6 +10,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
 import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
@@ -57,7 +58,7 @@ class RechargePhoneVIewModel : ViewModel() {
                 override fun onError(error: ICResponseCode?) {
                     statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     val message = error?.message
-                            ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     errorData.postValue(message)
                 }
             })

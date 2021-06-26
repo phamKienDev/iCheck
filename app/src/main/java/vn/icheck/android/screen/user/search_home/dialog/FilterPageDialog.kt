@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_filter_page_search.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCategorySearch
 import vn.icheck.android.network.models.ICProvince
 
@@ -28,6 +29,8 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
         selectedCategory.addAll(category ?: mutableListOf())
         selectedVerified = verified
 
+        switch_verfied.trackDrawable=ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(requireContext())
+
         setLocation(selectedLocations)
         switch_verfied.isChecked = selectedVerified
         setFiltterCategory(selectedCategory)
@@ -36,10 +39,13 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            switch_verfied.isChecked = false
-            setFiltterCategory(null)
-            setLocation(null)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                switch_verfied.isChecked = false
+                setFiltterCategory(null)
+                setLocation(null)
+            }
         }
 
         img_clear_location.setOnClickListener {
@@ -76,11 +82,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setLocation(locations: MutableList<ICProvince>?) {
         selectedLocations = locations ?: mutableListOf()
         if (locations.isNullOrEmpty()) {
-            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
+            tv_location.setTextColor(ColorManager.getSecondTextColor(dialog?.context!!))
             img_clear_location.visibility = View.GONE
             tv_location.text = getString(R.string.tat_ca)
         } else {
-            tv_location.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorPrimary))
+            tv_location.setTextColor(ColorManager.getPrimaryColor(dialog!!.context))
             img_clear_location.visibility = View.VISIBLE
 
             val list = mutableListOf<String>()
@@ -104,11 +110,11 @@ class FilterPageDialog(val locations: MutableList<ICProvince>?, val verified: Bo
     private fun setFiltterCategory(category: MutableList<ICCategorySearch>?) {
         selectedCategory = category ?: mutableListOf()
         if (category.isNullOrEmpty()) {
-            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorSecondText))
+            tv_category.setTextColor(ColorManager.getSecondTextColor(dialog?.context!!))
             img_clear_cate.visibility = View.GONE
             tv_category.text = getString(R.string.tat_ca)
         } else {
-            tv_category.setTextColor(ContextCompat.getColor(dialog?.context!!, R.color.colorPrimary))
+            tv_category.setTextColor(ColorManager.getPrimaryColor(dialog!!.context))
             img_clear_cate.visibility = View.VISIBLE
             tv_category.text = category.last().name.toString()
         }

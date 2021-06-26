@@ -4,5 +4,5 @@
     <corners
         android:topLeftRadius="@dimen/size_13"
         android:topRightRadius="@dimen/size_13" />
-    <solid android:color="@color/white" />
+    <solid android:color="@color/warning_scan_buy" />
 </shape>

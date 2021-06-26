@@ -5,14 +5,13 @@
     android:id="@id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".screen.user.home.HomeActivity">
     <!--    tools:openDrawer="start"-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_height="match_parent">
 
         <vn.icheck.android.helper.ViewPagerNoScroll
             android:id="@id/viewPager"

@@ -16,6 +16,7 @@ import vn.icheck.android.component.tag_view.Tag
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.search_home.result.SearchResultActivity
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -61,6 +62,8 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
         tag_view_popular.setOnTagClickListener { i, tagClick ->
             clickTagView(tagClick.text.toString())
         }
+
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
     }
 
 
@@ -157,7 +160,7 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                 val tag = Tag(viewModel.listRecent[i])
                 tag.radius = SizeHelper.size4.toFloat()
                 tag.layoutColor = resources.getColor(R.color.campaign_space)
-                tag.tagTextColor = resources.getColor(R.color.black_blue)
+                tag.tagTextColor = vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)
                 tag.tagTextSize = 14f
                 tag.fontFamily = R.font.barlow_medium
                 listTag.add(tag)
@@ -179,7 +182,7 @@ class SearchHomeActivity : BaseActivityMVVM(), View.OnClickListener, IRecyclerVi
                 val tag = Tag(viewModel.listPopular[i])
                 tag.radius = SizeHelper.size4.toFloat()
                 tag.layoutColor = resources.getColor(R.color.campaign_space)
-                tag.tagTextColor = resources.getColor(R.color.black_blue)
+                tag.tagTextColor = vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)
                 tag.tagTextSize = 14f
                 tag.fontFamily = R.font.barlow_medium
                 listTag.add(tag)

@@ -11,6 +11,7 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.setText
 
 class ProductListReviewHolder(parent: ViewGroup, recycledViewPool: RecyclerView.RecycledViewPool?) : RecyclerView.ViewHolder(ViewHelper.createListReviewProductHolder(parent.context)) {
     val adapter = ItemReviewAdapter(1)
@@ -28,7 +29,7 @@ class ProductListReviewHolder(parent: ViewGroup, recycledViewPool: RecyclerView.
                 } else {
                     beVisible()
 
-                    (getChildAt(0) as AppCompatTextView).text = String.format(context.getString(R.string.danh_gia_san_pham_x), obj.count)
+                    (getChildAt(0) as AppCompatTextView).setText(R.string.danh_gia_san_pham_d, obj.count)
 
                     getChildAt(1).setOnClickListener {
                         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_LIST_REVEWS))

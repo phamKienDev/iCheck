@@ -5,6 +5,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.helper.JsonHelper
 import vn.icheck.android.loyalty.network.ICApiListener
 import vn.icheck.android.loyalty.model.ICKBaseResponse
@@ -35,7 +38,7 @@ internal open class BaseRepository {
 
     private fun checkRequestError(throws: Throwable, listener: ICApiListener<*>) {
         val errorBody = ICKBaseResponse()
-        errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+        errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
         when (throws) {
             is RetrofitException -> {

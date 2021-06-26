@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -16,17 +15,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_group_120dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_30"
         android:gravity="center"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,8 +32,6 @@
         android:layout_marginEnd="@dimen/size_68"
         android:includeFontPadding="false"
         android:gravity="center"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -47,7 +42,6 @@
         android:layout_marginLeft="@dimen/size_35"
         android:layout_marginRight="@dimen/size_35"
         android:visibility="gone"
-        android:background="@drawable/bg_corners_4_light_blue_solid"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:paddingTop="@dimen/size_8"
@@ -55,4 +49,4 @@
         android:text="@string/xem_them_thu_thach"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

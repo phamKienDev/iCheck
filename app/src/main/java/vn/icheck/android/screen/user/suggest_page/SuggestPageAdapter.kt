@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_suggest_follow_friend.view.*
 import kotlinx.android.synthetic.main.item_suggest_item_page.view.*
@@ -18,6 +17,7 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.ICListResponse
 import vn.icheck.android.network.models.ICSuggestPage
 import vn.icheck.android.network.models.ICUser
@@ -84,12 +84,12 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     listFriend.add(friend.avatar ?: "")
                 }
                 val icUser = ICAvatarOfFriend(listFriend, obj.count)
-                itemView.img_list_avatar.bind(icUser, null, true, R.drawable.ic_avatar_default_84px)
+                itemView.img_list_avatar.bind(icUser, null, true, R.drawable.ic_avatar_default_84dp)
             }
 
             if (obj.count > 0) {
                 itemView.tv_number.beVisible()
-                itemView.tv_number.text = itemView.context.getString(R.string.x_ban_be_dang_su_dung_icheck, obj.count)
+                itemView.tv_number.text = itemView.context.getString(R.string.d_ban_be_dang_su_dung_icheck, obj.count)
             } else {
                 itemView.tv_number.beGone()
             }
@@ -110,7 +110,7 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     it.setMargins(SizeHelper.size30, SizeHelper.size6, SizeHelper.size30, SizeHelper.size12)
                 },
                 null, ViewHelper.createTypeface(parent.context, R.font.barlow_medium),
-                ContextCompat.getColor(parent.context, R.color.colorSecondText), 14f).also {
+                ColorManager.getSecondTextColor(parent.context), 14f).also {
             it.gravity = Gravity.CENTER
             it.includeFontPadding = false
             it.text = parent.context.getString(R.string.goi_y_page)
@@ -132,18 +132,21 @@ class SuggestPageAdapter(val callback: IRecyclerViewCallback) : RecyclerViewCust
                     ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             itemView.tv_number_follow.text = if (obj.followCount > 0) {
-                itemView.context.getString(R.string.x_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount.toLong()))
+                itemView.context.getString(R.string.s_nguoi_dang_theo_doi, TextHelper.formatMoneyPhay(obj.followCount.toLong()))
             } else {
                 itemView.context.getString(R.string.chua_co_nguoi_theo_doi)
 
             }
 
-            itemView.tv_follow.setOnClickListener {
-                if (!obj.selected) {
-                    itemView.tv_follow.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
-                    itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
-                    itemView.tv_follow.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_gray_f0_corners_4)
-                    listSelected.add(obj)
+            itemView.tv_follow.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                setOnClickListener {
+                    if (!obj.selected) {
+                        itemView.tv_follow.setTextColor(ColorManager.getSecondTextColor(itemView.context))
+                        itemView.tv_follow.text = itemView.context.getString(R.string.dang_theo_doi)
+                        itemView.tv_follow.background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(itemView.context)
+                        listSelected.add(obj)
+                    }
                 }
             }
         }

@@ -8,6 +8,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.gift_store.GiftStoreInteractor
 import vn.icheck.android.network.models.ICStoreiCheck
@@ -33,7 +34,7 @@ class ListProductStoreViewModel : ViewModel() {
 
     fun getListStore(isLoadMore: Boolean) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -63,14 +64,14 @@ class ListProductStoreViewModel : ViewModel() {
             }
 
             override fun onError(error: ICResponseCode?) {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         })
     }
 
     fun addToCart(data: ICStoreiCheck) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onErrorString.postValue(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onErrorString.postValue(getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -83,13 +84,13 @@ class ListProductStoreViewModel : ViewModel() {
                     AppDatabase.getDatabase(ICheckApplication.getInstance()).productIdInCartDao().insertProduct(ICProductIdInCart(data.id, data.price ?: 0, 1))
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_PRICE))
                 } else {
-                    onErrorString.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    onErrorString.postValue(getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 onErrorString.postValue(error?.message
-                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

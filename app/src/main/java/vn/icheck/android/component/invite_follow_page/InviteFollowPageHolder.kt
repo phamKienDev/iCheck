@@ -13,6 +13,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -37,11 +38,17 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
 
 
             WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.avatar, R.drawable.ic_business_v2, R.drawable.ic_business_v2)
-            itemView.tvName.text = "Bạn đã theo dõi ${obj.name}"
+            itemView.tvName.apply {
+                text = context.getString(R.string.ban_da_theo_doi_s, obj.name)
+            }
 
-            itemView.tvInvite.setOnClickListener {
-                ICheckApplication.currentActivity()?.let {
-                    ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+            itemView.tvInvite.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.btnPrimaryCorners4(context)
+
+                setOnClickListener {
+                    ICheckApplication.currentActivity()?.let {
+                        ActivityUtils.startActivity<InviteFriendFollowPageActivity, Long>(it, Constant.DATA_1, obj.id!!)
+                    }
                 }
             }
 
@@ -60,7 +67,7 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
     private fun skipInvite(pageId: Long) {
         ICheckApplication.currentActivity()?.let { activity ->
             if (NetworkHelper.isNotConnected(activity)) {
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
                 return
             }
             DialogHelper.showLoading(activity)
@@ -72,7 +79,7 @@ class InviteFollowPageHolder(parent: ViewGroup) : BaseViewHolder<ICPageOverview>
 
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
-                    ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

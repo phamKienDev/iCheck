@@ -1,6 +1,9 @@
 package vn.icheck.android.network.base
 
+import android.content.Context
 import com.google.gson.Gson
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.network.models.ICConfigUpdateApp
@@ -86,6 +89,17 @@ object SettingManager {
 
     fun setDeviceID(deviceID: String) {
         SPStaticUtils.put(TagConstants.DEVICE_ID, deviceID)
+    }
+
+    fun setAppThemeColor(theme: ICThemeSetting.ICTheme?,context: Context) {
+        ColorManager.saveColor(context,Constant.PRIMARY_COLOR,theme?.primaryColor)
+        ColorManager.saveColor(context,Constant.SECONDARY_COLOR,theme?.secondaryColor)
+        ColorManager.saveColor(context,Constant.NORMAL_TEXT_COLOR,theme?.normalTextColor)
+        ColorManager.saveColor(context,Constant.SECOND_TEXT_COLOR,theme?.secondTextColor)
+        ColorManager.saveColor(context,Constant.DISABLE_TEXT_COLOR,theme?.disableTextColor)
+        ColorManager.saveColor(context,Constant.LINE_COLOR,theme?.lineColor)
+        ColorManager.saveColor(context,Constant.APP_BACKGROUND_COLOR,theme?.appBackgroundColor)
+        ColorManager.saveColor(context,Constant.POPUP_BACKGROUND_COLOR,theme?.popupBackgroundColor)
     }
 
     val getDeviceID: String

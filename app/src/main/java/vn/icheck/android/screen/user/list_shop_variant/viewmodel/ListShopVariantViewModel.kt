@@ -11,6 +11,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.feature.cart.CartInteractor
@@ -61,12 +62,12 @@ class ListShopVariantViewModel : ViewModel() {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 cartHelper.saveCart(obj)
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UPDATE_COUNT_CART))
-                successData.postValue(ICheckApplication.getInstance().getString(R.string.them_vao_gio_hang_thanh_cong))
+                successData.postValue( getString(R.string.them_vao_gio_hang_thanh_cong))
             }
 
             override fun onError(error: ICBaseResponse?) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                val message = error?.message ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                val message = error?.message ?:  getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 errorData.postValue(message)
             }
         })

@@ -2,6 +2,7 @@ package vn.icheck.android.network.feature.post
 
 import vn.icheck.android.network.base.*
 import com.google.gson.JsonObject
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.network.feature.base.BaseInteractor
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICMedia
@@ -15,10 +16,6 @@ class PostInteractor : BaseInteractor() {
     fun getPostDetail(id: Long, listener: ICNewApiListener<ICResponse<ICPost>>) {
         val url = APIConstants.socialHost + APIConstants.Post.GET_POST_DETAIL.replace("{id}", id.toString())
         requestNewApi(ICNetworkClient.getNewSocialApi().getPostDetail(url), listener)
-    }
-
-    suspend fun getPostDetailV2(id: Long,listener: ICNewApiListener<ICResponse<ICPost>>){
-
     }
 
     fun getPostPrivacy(postID: Long?, listener: ICNewApiListener<ICResponse<ICListResponse<ICPrivacy>>>) {
@@ -82,9 +79,9 @@ class PostInteractor : BaseInteractor() {
             val list = mutableListOf<ICMedia>()
             for (item in listImage) {
                 if (item.contains(".mp4")) {
-                    list.add(ICMedia(item, "video"))
+                    list.add(ICMedia(item, type = "video"))
                 } else {
-                    list.add(ICMedia(item, "image"))
+                    list.add(ICMedia(item, type = "image"))
                 }
             }
             body.media = list
@@ -119,8 +116,12 @@ class PostInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getNewSocialApi().deleteComment(url, hashMapOf()), listener)
     }
 
-    fun commentPost(postID: Long, message: String, pageId: Long?, media: ICMedia?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
-        val url = APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+    fun commentPost(postID: Long, message: String, pageId: Long?, media: ICMedia?,reviewType:String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
+        val url =if(reviewType==Constant.REVIEW){
+            APIConstants.socialHost + APIConstants.Post.REVIEW_COMMENT.replace("{id}", postID.toString())
+        }else{
+            APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+        }
 
         val queries = hashMapOf<String, Any>()
         if (pageId != null) {
@@ -136,8 +137,12 @@ class PostInteractor : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().postCommentPost(url, queries), listener)
     }
 
-    fun commentPost(postID: Long, pageId: Long?, content: String, image: String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
-        val url = APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+    fun commentPost(postID: Long, pageId: Long?, content: String, image: String?,reviewType:String?, listener: ICNewApiListener<ICResponse<ICCommentPost>>) {
+        val url =if(reviewType==Constant.REVIEW){
+            APIConstants.socialHost + APIConstants.Post.REVIEW_COMMENT.replace("{id}", postID.toString())
+        }else{
+            APIConstants.socialHost + APIConstants.Post.POST_COMMENT.replace("{id}", postID.toString())
+        }
 
         val queries = hashMapOf<String, Any>()
         if (pageId != null) {
@@ -147,7 +152,7 @@ class PostInteractor : BaseInteractor() {
             queries["content"] = content.trim()
         }
         if (!image.isNullOrEmpty()) {
-            queries["media"] = listOf(ICMedia(image, if (image.contains(".mp4")) {
+            queries["media"] = listOf(ICMedia(image, type = if (image.contains(".mp4")) {
                 "video"
             } else {
                 "image"

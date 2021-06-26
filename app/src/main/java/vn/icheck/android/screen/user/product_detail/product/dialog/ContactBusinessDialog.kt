@@ -8,6 +8,7 @@ import vn.icheck.android.base.activity.requestLogin
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.ick.beGone
 
 class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R.layout.dialog_contact_business, true) {
@@ -45,12 +46,16 @@ class ContactBusinessDialog(context: Context) : BaseBottomSheetDialog(context, R
             }
         }
 
-        dialog.btnChat.setOnClickListener {
-            requestLogin({
-                ICheckApplication.currentActivity()?.let { activity ->
-                    ChatSocialDetailActivity.createRoomChat(activity, id ?: -1, "page")
-                }
-            })
+        dialog.btnChat.apply {
+            background = ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+
+            setOnClickListener {
+                requestLogin({
+                    ICheckApplication.currentActivity()?.let { activity ->
+                        ChatSocialDetailActivity.createRoomChat(activity, id ?: -1, "page")
+                    }
+                })
+            }
         }
 
         dialog.imgCancel.setOnClickListener {

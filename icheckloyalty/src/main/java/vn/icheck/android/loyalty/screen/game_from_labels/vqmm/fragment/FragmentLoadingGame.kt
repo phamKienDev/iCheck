@@ -97,7 +97,7 @@ class FragmentLoadingGame : Fragment() {
                     try {
                         newArr.awaitAll()
                     } catch (e: Exception) {
-                        ToastHelper.showShortError(requireContext(), "Đã xảy ra lỗi vui lòng thử lại sau")
+                        ToastHelper.showShortError(requireContext(), getString(R.string.da_xay_ra_loi_vui_long_thu_lai_sau))
                         findNavController().popBackStack()
                     }
                 }

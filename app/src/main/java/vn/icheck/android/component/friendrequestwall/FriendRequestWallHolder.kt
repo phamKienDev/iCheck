@@ -35,7 +35,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
 
                 // Text title
                 (getChildAt(0) as AppCompatTextView).apply {
-                    text = context.getString(R.string.loi_moi_ket_ban_xxx, "(${obj.count})")
+                    text = context.getString(R.string.loi_moi_ket_ban_s, "(${obj.count})")
                 }
 
                 // Text view more
@@ -54,14 +54,14 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                 adapter = friendRequestAdapter
                 friendRequestAdapter.setData(obj.rows)
 
-                friendRequestAdapter.setUpdateTitleListener(View.OnClickListener {
+                friendRequestAdapter.setUpdateTitleListener {
                     obj.count--
                     setTitle(obj.count)
-                })
+                }
 
-                friendRequestAdapter.setOnRemoveListener(View.OnClickListener {
+                friendRequestAdapter.setOnRemoveListener {
                     listener?.onClick(null)
-                })
+                }
             }
         }
     }
@@ -71,7 +71,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
     }
 
     private fun setTitle(count: Int) {
-        (((itemView as ViewGroup).getChildAt(0) as ViewGroup).getChildAt(0) as AppCompatTextView).text = itemView.context.getString(R.string.loi_moi_ket_ban_xxx, "($count)")
+        (((itemView as ViewGroup).getChildAt(0) as ViewGroup).getChildAt(0) as AppCompatTextView).text = itemView.context.getString(R.string.loi_moi_ket_ban_s, "($count)")
     }
 
     companion object {
@@ -80,7 +80,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
             return LinearLayout(context).also { layoutParent ->
                 layoutParent.layoutParams = ViewHelper.createLayoutParams(0, 0, 0, 10.dpToPx())
                 layoutParent.orientation = LinearLayout.VERTICAL
-                layoutParent.setBackgroundColor(Color.WHITE)
+                layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(layoutParent.context))
 
                 // ALayout title
                 layoutParent.addView(LinearLayout(context).also { layoutTitle ->
@@ -89,11 +89,13 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                     layoutTitle.orientation = LinearLayout.HORIZONTAL
                     layoutTitle.gravity = Gravity.CENTER_VERTICAL
 
+                    val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context)
+
                     layoutTitle.addView(ViewHelper.createText(context,
                             ViewHelper.createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f),
                             null,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             18f
                     ).also {
                         it.setPadding(0, 0, SizeHelper.size12, 0)
@@ -103,7 +105,7 @@ class FriendRequestWallHolder(parent: ViewGroup) : BaseViewHolder<ICListResponse
                             ViewHelper.createLayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT),
                             ViewHelper.outValue.resourceId,
                             ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
-                            ContextCompat.getColor(context, R.color.colorSecondary),
+                            secondaryColor,
                             14f
                     ).also {
                         it.setPadding(0, SizeHelper.size6, 0, SizeHelper.size6)

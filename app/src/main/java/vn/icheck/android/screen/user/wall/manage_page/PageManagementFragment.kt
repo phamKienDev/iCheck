@@ -32,6 +32,8 @@ import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPag
 import vn.icheck.android.screen.user.wall.manage_page.my_follow_page.MyFollowPageAdapter
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageActivity
 import vn.icheck.android.screen.user.wall.manage_page.my_owner_page.MyOwnerPageAdapter
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 class PageManagementFragment : Fragment() {
@@ -75,7 +77,8 @@ class PageManagementFragment : Fragment() {
     }
 
     private fun initSwipeLayout() {
-        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        binding.swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.swipeLayout.setOnRefreshListener {
             getData()
         }
@@ -91,7 +94,7 @@ class PageManagementFragment : Fragment() {
 
     private fun getData() {
         if (NetworkHelper.isNotConnected(context)) {
-            setError(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            setError(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -122,13 +125,13 @@ class PageManagementFragment : Fragment() {
             binding.swipeLayout.isRefreshing = false
 
             if (countError >= 2) {
-                setError(ICError(R.drawable.ic_error_request, ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+                setError(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
             } else {
                 if (!myFollowPage?.data?.rows.isNullOrEmpty() || !myOwnerPage?.data?.rows.isNullOrEmpty()) {
                     setFollowPage(myFollowPage?.data)
                     setOwnerPage(myOwnerPage?.data)
                 } else {
-                    setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
+                    setError(ICError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_trang_nao)))
                 }
             }
         }
@@ -146,7 +149,7 @@ class PageManagementFragment : Fragment() {
                 }
             }
             if (myFollowPage?.data?.rows.isNullOrEmpty() && binding.containerOwner.isGone) {
-                setError(ICError(R.drawable.ic_group_120dp, ICheckApplication.getString(R.string.ban_chua_co_trang_nao)))
+                setError(ICError(R.drawable.ic_group_120dp, getString(R.string.ban_chua_co_trang_nao)))
             } else {
                 setFollowPage(myFollowPage?.data)
                 binding.layoutMessage.containerMessage.beGone()
@@ -162,7 +165,7 @@ class PageManagementFragment : Fragment() {
             binding.containerFollow.beVisible()
             pageFollowCount = it?.count ?: 0
             binding.containerFollow.beVisible()
-            binding.tvFollowTitle.text = "Trang đang theo dõi (${pageFollowCount})"
+            binding.tvFollowTitle.setText(R.string.trang_dang_theo_doi_d, pageFollowCount)
             followAdaper.setListData(it!!.rows)
         }
     }
@@ -172,7 +175,9 @@ class PageManagementFragment : Fragment() {
             binding.containerOwner.beGone()
         } else {
             binding.containerOwner.beVisible()
-            binding.tvOwnerTitle.text = "Trang của tôi (${it?.count})"
+            it?.count?.let { safe ->
+                binding.tvOwnerTitle.setText(R.string.trang_cua_toi_d, safe)
+            }
             ownerAdaper.setListData(it!!.rows)
         }
     }

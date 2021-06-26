@@ -13,7 +13,6 @@ import vn.icheck.android.network.models.detail_stamp_v6.IC_RESP_UpdateCustomerGu
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameCity
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICNameDistricts
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICObjectCustomerHistoryGurantee
-import vn.icheck.android.network.models.detail_stamp_v6_1.IC_RESP_UpdateCustomerGuarantee
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.room.entity.ICDistrict
 import vn.icheck.android.room.entity.ICProvince

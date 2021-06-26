@@ -13,7 +13,7 @@ class QAIncomingMessageViewHolder (view: View) : BaseViewHolder<ICQAInPost>(view
 
     override fun bind(obj: ICQAInPost) {
         itemView.tvMessage.text = obj.msg
-        ViewHelper.makeTextViewResizable(itemView.tvMessage,3,"Xem Thêm",true,"#3C5A99")
+        ViewHelper.makeTextViewResizable(itemView.tvMessage,3, itemView.tvMessage.context.getString(R.string.xem_them),true, vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(itemView.context))
     }
 
     companion object {

@@ -47,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/size_6"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/size_6">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNameCampaign"
@@ -89,7 +90,7 @@
             android:gravity="center"
             android:maxLines="2"
             android:minLines="1"
-            android:text="Quay thưởng ngay vận may chắc chắn tới 100% trúng quà cực cool đó!"
+            android:text="@string/quay_thuong_ngay_van_may_chac_chan_toi_100_trung_qua_cuc_cool_do"
             android:textColor="#828282"
             android:textSize="14sp"
             android:textStyle="normal" />

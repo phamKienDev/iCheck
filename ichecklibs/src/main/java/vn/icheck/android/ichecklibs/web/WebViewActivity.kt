@@ -1,18 +1,17 @@
 package vn.icheck.android.ichecklibs.web
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.util.Patterns
 import android.webkit.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.activity_web_view.*
+import kotlinx.android.synthetic.main.activity_web_view_libs.*
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.ichecklibs.*
 import vn.icheck.android.ichecklibs.util.PermissionHelper
@@ -74,7 +73,7 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+        setContentView(R.layout.activity_web_view_libs)
 
         url = intent?.getStringExtra(Constant.DATA_1) ?: ""
         var isScan = intent?.getIntExtra(Constant.DATA_2, 0) ?: 0
@@ -186,7 +185,7 @@ class WebViewActivity : AppCompatActivity() {
                 webViewUrl.loadUrl(url)
             }
         } else {
-            webViewUrl.settings.defaultFontSize = 14.dpToPx()
+            webViewUrl.settings.defaultFontSize = 14
             webViewUrl.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
 
@@ -236,7 +235,7 @@ class WebViewActivity : AppCompatActivity() {
             }
 
             override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback?) {
-                DialogHelper.showConfirm(this@WebViewActivity, null, "'$origin' muốn biết vị trí của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_biet_vi_tri_cua_ban, origin?:""), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
                     override fun onDisagree() {
                         callback?.invoke(origin, false, false)
 
@@ -265,7 +264,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun confirmAllowCamera(request: PermissionRequest?) {
-        DialogHelper.showConfirm(this@WebViewActivity, null, "'${URL(webViewUrl.url).host}' muốn sử dụng camera của bạn", "Từ chối", "Cho phép", true, null, R.color.colorSecondary, object : ConfirmDialogListener {
+        DialogHelper.showConfirm(this@WebViewActivity, null, getString(R.string.s_muon_su_dung_camera_cua_ban, URL(webViewUrl.url).host), getString(R.string.tu_choi), getString(R.string.cho_phep), true, null, R.color.colorSecondary, object : ConfirmDialogListener {
             override fun onDisagree() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     request?.deny()

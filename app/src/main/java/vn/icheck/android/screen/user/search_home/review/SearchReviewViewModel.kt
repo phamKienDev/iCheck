@@ -3,6 +3,7 @@ package vn.icheck.android.screen.user.search_home.review
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.viewmodel.BaseViewModel
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.feature.search.SearchInteractor
 
@@ -48,10 +49,10 @@ class SearchReviewViewModel : BaseViewModel() {
         if (!reviewFrom.isNullOrEmpty()) {
             for (i in reviewFrom) {
                 when (i) {
-                    ICheckApplication.getString(R.string.chinh_ban) -> {
+                    getString(R.string.chinh_ban) -> {
                         froms.add("me")
                     }
-                    ICheckApplication.getString(R.string.trang_cua_ban) -> {
+                    getString(R.string.trang_cua_ban) -> {
                         froms.add("myPages")
                     }
                     else -> {
@@ -62,7 +63,7 @@ class SearchReviewViewModel : BaseViewModel() {
         }
 
         val from = if (!froms.isNullOrEmpty()) {
-            froms.toString().substring(1, froms.toString().length - 1)
+            froms.toString().substring(1, froms.toString().length - 1).replace(", ",",")
         } else {
             ""
         }

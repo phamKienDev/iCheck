@@ -1,6 +1,5 @@
 package vn.icheck.android.component.ads.page
 
-import android.graphics.Color
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,8 @@ import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -35,7 +36,6 @@ import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import kotlin.random.Random
 
 class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<ICAdsData>()
@@ -111,7 +111,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
-
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             if (!obj.media.isNullOrEmpty()) {
                 if (obj.media!![0].type == Constant.VIDEO) {
                     binding.imgPlay.visibility = View.VISIBLE
@@ -142,9 +142,13 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             }
 
             if (obj.followCount != null && obj.followCount!! > 0) {
-                binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                }
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.chua_co_nguoi_theo_doi)
+                }
             }
             binding.tvContent.text = obj.description
 
@@ -212,6 +216,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 }
 
             }
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
             binding.imgImage.visibility = View.VISIBLE
             binding.surfaceView.visibility = View.INVISIBLE
             binding.progressBar.visibility = View.INVISIBLE
@@ -244,9 +249,13 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
             if (obj.followCount != null && obj.followCount!! > 0) {
-                binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
+                }
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.apply {
+                    text = context.getString(R.string.chua_co_nguoi_theo_doi)
+                }
             }
 
             setButtonText(binding.btnAction, obj.isFollow, 0)
@@ -304,6 +313,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
         override fun bind(obj: ICAdsData) {
             binding.imgImage.visibility = View.VISIBLE
+            binding.btnAction.background=ViewHelper.btnWhiteStrokePrimary1Corners4(binding.btnAction.context)
 
             if (!obj.media.isNullOrEmpty()) {
                 if (!obj.media!![0].content.isNullOrEmpty()) {
@@ -328,7 +338,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             if (obj.followCount != null && obj.followCount!! > 0) {
                 binding.tvStatus.text = binding.tvStatus.context.getString(R.string.xxx_nguoi_theo_doi, TextHelper.formatMoney(obj.followCount))
             } else {
-                binding.tvStatus.text = "Chưa có người theo dõi"
+                binding.tvStatus.setText(R.string.chua_co_nguoi_theo_doi)
             }
 
             setButtonText(binding.tvAction, obj.isFollow, 0)
@@ -374,10 +384,10 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
             }
             Constant.PAGE_CHANGE_SUBCRIBE -> { // Chuyển đổi tham gia
                 if (isFollow) {
-                    tvButton.setTextColor(Color.parseColor("#757575"))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(tvButton.context))
                     tvButton.setText(R.string.dang_theo_doi)
                 } else {
-                    tvButton.setTextColor(Color.parseColor("#057DDA"))
+                    tvButton.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(tvButton.context))
                     tvButton.setText(R.string.theo_doi)
                 }
             }
@@ -445,7 +455,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
                 override fun onError(error: ICResponseCode?) {
                     DialogHelper.closeLoading(activity)
                     ToastUtils.showLongError(ICheckApplication.getInstance(), error?.message
-                            ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                            ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             })
         }

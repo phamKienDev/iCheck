@@ -18,7 +18,6 @@ import vn.icheck.android.loyalty.dialog.base.DialogHelperGame
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKBoxGifts
-import vn.icheck.android.loyalty.model.ICKPointUser
 import vn.icheck.android.loyalty.network.SessionManager
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.point_history.PointHistoryLoyaltyActivity
 import vn.icheck.android.loyalty.screen.game_from_labels.redeem_points.the_winner_point.TheWinnerPointActivity
@@ -62,7 +61,7 @@ class HomeRedeemPointActivity : BaseActivityGame(), IRecyclerViewCallback, View.
         if (campaignID != -1L) {
             viewModel.collectionID = campaignID
         } else {
-            object : DialogNotification(this, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, "Ok", false) {
+            object : DialogNotification(this, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, getString(R.string.ok), false) {
                 override fun onDone() {
                     onBackPressed()
                 }
@@ -196,7 +195,7 @@ class HomeRedeemPointActivity : BaseActivityGame(), IRecyclerViewCallback, View.
             R.id.imgInfor -> {
                 startActivity(Intent(this@HomeRedeemPointActivity, WebViewActivity::class.java).apply {
                     putExtra(ConstantsLoyalty.DATA_1, description)
-                    putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                    putExtra(ConstantsLoyalty.DATA_3, getString(R.string.thong_tin_chuong_trinh))
                 })
             }
             R.id.imgRank -> startActivity<TheWinnerPointActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)
@@ -205,7 +204,7 @@ class HomeRedeemPointActivity : BaseActivityGame(), IRecyclerViewCallback, View.
             R.id.btnInfor -> {
                 startActivity(Intent(this@HomeRedeemPointActivity, WebViewActivity::class.java).apply {
                     putExtra(ConstantsLoyalty.DATA_1, description)
-                    putExtra(ConstantsLoyalty.DATA_3, "Thông tin chương trình")
+                    putExtra(ConstantsLoyalty.DATA_3, getString(R.string.thong_tin_chuong_trinh))
                 })
             }
             R.id.btnRanking -> startActivity<TheWinnerPointActivity, Long>(ConstantsLoyalty.DATA_1, campaignID)

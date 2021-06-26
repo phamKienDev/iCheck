@@ -1,16 +1,8 @@
 package vn.icheck.android.ichecklibs;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
 import android.util.AttributeSet;
-import android.widget.TextView;
-
-import androidx.core.content.ContextCompat;
 
 public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompatTextView {
 
@@ -20,10 +12,8 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
     public MiddleMultilineTextView(Context context) {
         super(context);
     }
-
-    public MiddleMultilineTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
+    public MiddleMultilineTextView(Context context, AttributeSet attrs) { super(context, attrs); }
+    public MiddleMultilineTextView(Context context, AttributeSet attrs,int defStyleAttr) { super(context, attrs,defStyleAttr); }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -55,7 +45,12 @@ public class MiddleMultilineTextView extends androidx.appcompat.widget.AppCompat
         int lstrip = (int) Math.ceil(toremove / 2);
         int rstrip = toremove - lstrip;
 
-        String result = string.substring(0, midpoint - lstrip - 4) + SYMBOL + string.substring(midpoint + rstrip);
+        int subTo = midpoint - lstrip - 4;
+        if (subTo < 0){
+            subTo = 0;
+        }
+
+        String result = string.substring(0, subTo) + SYMBOL + string.substring(midpoint + rstrip);
 
         return result;
     }

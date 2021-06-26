@@ -1,13 +1,8 @@
 package vn.icheck.android.screen.user.scan_history.holder
 
-import android.animation.AnimatorSet
-import android.animation.ValueAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.core.animation.doOnEnd
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_shop_history_holder.view.*
 import vn.icheck.android.R
@@ -67,6 +62,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 //            View.GONE
 //        }
 
+        itemView.tvBuyNow.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
 
         //PRODUCT
 
@@ -76,7 +72,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
             itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_collapse_history_24dp, 0)
             itemView.viewLine2.visibility = View.VISIBLE
         } else {
-            itemView.tvAllProduct.text = "12 sản phẩm có sẵn"
+            itemView.tvAllProduct.setText(R.string.x_san_pham_co_san)
             itemView.tvCollapse.text = itemView.context.getString(R.string.xem_them)
             itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_extend_history_24dp, 0)
             itemView.viewLine2.visibility = View.GONE
@@ -84,7 +80,7 @@ class ShopHistoryHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 
         itemView.tvCollapse.setOnClickListener {
             if (expand) {
-                itemView.tvAllProduct.text = "12  sản phẩm có sẵn"
+                itemView.tvAllProduct.setText(R.string.x_san_pham_co_san)
                 itemView.tvCollapse.text = itemView.context.getString(R.string.xem_them)
                 itemView.tvCollapse.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_extend_history_24dp, 0)
                 itemView.viewLine2.visibility = View.GONE

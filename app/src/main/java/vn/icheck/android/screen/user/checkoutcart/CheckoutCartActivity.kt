@@ -13,6 +13,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.*
 import vn.icheck.android.screen.user.checkoutcart.adapter.CheckoutCartAdapter
 import vn.icheck.android.screen.user.checkoutcart.dialog.SelectShippingDialog
@@ -44,8 +45,10 @@ class CheckoutCartActivity : BaseActivityMVVM(), ICheckoutCartView {
 
     fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupListener()
+
     }
 
     private fun setupToolbar() {
@@ -54,6 +57,10 @@ class CheckoutCartActivity : BaseActivityMVVM(), ICheckoutCartView {
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        btnDone.background = ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupRecyclerView() {
@@ -100,7 +107,7 @@ class CheckoutCartActivity : BaseActivityMVVM(), ICheckoutCartView {
 
     override fun onSetCheckout(list: MutableList<Checkout>, grandTotal: Long) {
         adapter.setListData(list)
-        tvMoney?.text = getString(R.string.xxx_d, TextHelper.formatMoney(grandTotal))
+        tvMoney?.text = getString(R.string.s_d, TextHelper.formatMoney(grandTotal))
     }
 
     override fun onMessageClicked() {

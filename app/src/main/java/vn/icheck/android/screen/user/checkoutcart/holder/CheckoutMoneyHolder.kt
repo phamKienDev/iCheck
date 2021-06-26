@@ -10,8 +10,8 @@ import vn.icheck.android.screen.user.checkoutcart.entity.Checkout
 class CheckoutMoneyHolder(view: View) : BaseViewHolder<Checkout>(view) {
 
     override fun bind(obj: Checkout) {
-        itemView.tvTotalPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.sub_total))
-        itemView.tvShippingPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.shipping_amount))
-        itemView.tvMoney.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.grand_total))
+        itemView.tvTotalPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.sub_total))
+        itemView.tvShippingPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.shipping_amount))
+        itemView.tvMoney.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.grand_total))
     }
 }

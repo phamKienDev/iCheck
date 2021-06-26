@@ -7,6 +7,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.databinding.ItemWrongStampBinding
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.SizeHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICStampConfig
 
@@ -16,8 +17,8 @@ class ICWrongStampHolder(parent: ViewGroup, val binding: ItemWrongStampBinding =
 
     override fun bind(obj: ICStampConfig) {
         binding.tvMessage.apply {
-            background = ViewHelper.createShapeDrawable(ContextCompat.getColor(binding.root.context, R.color.colorAccentRed), SizeHelper.size4.toFloat())
-            text = context.getString(R.string.canh_bao_down_line_xxx, obj.errorMessage ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            background = ViewHelper.createShapeDrawable(ColorManager.getAccentRedColor(itemView.context), SizeHelper.size4.toFloat())
+            text = context.getString(R.string.canh_bao_down_line_s, obj.errorMessage ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
         }
 
         binding.recyclerView.apply {

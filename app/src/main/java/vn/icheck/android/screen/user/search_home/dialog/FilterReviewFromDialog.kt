@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.dialog_filter_review_from.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterReviewFromDialog(val from: MutableList<String>, val callback: ReviewFromCallback) : BaseBottomSheetDialogFragment() {
     val arrItem = mutableListOf<TextView>()
@@ -65,9 +66,12 @@ class FilterReviewFromDialog(val from: MutableList<String>, val callback: Review
             dismiss()
         }
 
-        tv_clear.setOnClickListener {
-            selectedFrom.clear()
-            checkSelected(selectedFrom)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                selectedFrom.clear()
+                checkSelected(selectedFrom)
+            }
         }
 
         tvDone.setOnClickListener {

@@ -1,21 +1,25 @@
 package vn.icheck.android.loyalty.screen.game_from_labels.game_list
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_game_loyalty.view.*
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.*
 import vn.icheck.android.loyalty.base.commons.RecyclerViewCustomAdapter
 import vn.icheck.android.loyalty.base.listener.IClickListener
 import vn.icheck.android.loyalty.base.listener.IRecyclerViewCallback
+import vn.icheck.android.loyalty.helper.SharedLoyaltyHelper
 import vn.icheck.android.loyalty.helper.WidgetHelper
 import vn.icheck.android.loyalty.model.ICKGame
 import vn.icheck.android.loyalty.screen.web.WebViewActivity
+import vn.icheck.android.loyalty.sdk.CampaignType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,10 +53,12 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             val endDate = sdf.parse(obj.endAt)
             val timeString = "${show.format(startDate)} - ${show.format(endDate)}"
 
-            itemView.tvName.text = if (!obj.owner?.name.isNullOrEmpty()) {
-                obj.owner?.name
-            } else {
-                "Đang cập nhật"
+            itemView.tvName.apply {
+                text = if (!obj.owner?.name.isNullOrEmpty()) {
+                    obj.owner?.name
+                } else {
+                    context.getString(R.string.dang_cap_nhat)
+                }
             }
 
             if (obj.statusTime != "RUNNING") {
@@ -64,54 +70,53 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
                 itemView.tvDate.text = timeString
             } else {
                 itemView.tvDate.visibility = View.GONE
+                itemView.imgUpcoming.setInvisible()
+                itemView.layoutRight.setVisible()
+                itemView.tvDateRight.setVisible()
+                itemView.tvPlay.setGone()
+                itemView.tvPoint.setGone()
 
                 when (obj.type) {
-                    "accumulate_point" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
+                    CampaignType.ACCUMULATE_POINT -> {
                         itemView.tvPoint.setVisible()
                         itemView.tvPlay.setGone()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.statisticWinnerAccumulatePoint.isNullOrEmpty()) {
-                            if (obj.statisticWinnerAccumulatePoint?.get(0)?.points != null) {
-                                itemView.tvPoint.text = "${obj.statisticWinnerAccumulatePoint?.get(0)?.points} Điểm"
+                            if (obj.statisticWinnerAccumulatePoint[0].points != null) {
+                                obj.statisticWinnerAccumulatePoint[0].points?.let {
+                                    itemView.tvPoint.setText(R.string.d_diem, it)
+                                }
                             } else {
-                                itemView.tvPoint.text = "${0} Điểm"
+                                itemView.tvPoint.setText(R.string.d_diem, 0)
                             }
                         } else {
-                            itemView.tvPoint.text = "${0} Điểm"
+                            itemView.tvPoint.setText(R.string.d_diem, 0)
                         }
                     }
-                    "receive_gift" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+                    CampaignType.RECEIVE_GIFT -> {
+
                     }
-                    "mini_game" -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setVisible()
+                    CampaignType.MINI_GAME, CampaignType.MINI_GAME_QR_MAR -> {
                         itemView.tvPoint.setGone()
                         itemView.tvPlay.setVisible()
-                        itemView.tvDateRight.setVisible()
 
                         if (!obj.campaignGameUser.isNullOrEmpty()) {
                             if (obj.campaignGameUser[0]?.play!! > 0) {
-                                itemView.tvPlay.setTextColor(Color.parseColor("#057DDA"))
-                                itemView.tvPlay.text = "${obj.campaignGameUser?.get(0)?.play} lượt quay"
+                                itemView.tvPlay.setTextColor(ColorManager.getPrimaryColor(itemView.context))
+                                obj.campaignGameUser[0]?.play?.let {
+                                    itemView.tvPlay.setText(R.string.d_luot_quay, it)
+                                }
                             } else {
                                 itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                                itemView.tvPlay.text = "Hết lượt quay"
+                                itemView.tvPlay.setText(R.string.het_luot_quay)
                             }
                         } else {
                             itemView.tvPlay.setTextColor(Color.parseColor("#828282"))
-                            itemView.tvPlay.text = "Hết lượt quay"
+                            itemView.tvPlay.setText(R.string.het_luot_quay)
                         }
                     }
                     else -> {
-                        itemView.imgUpcoming.setInvisible()
-                        itemView.layoutRight.setInvisible()
-                        itemView.tvDateRight.setInvisible()
+
                     }
                 }
 
@@ -119,6 +124,13 @@ internal class GameFromLabelsListAdapter(callback: IRecyclerViewCallback, val cl
             }
 
             itemView.setOnClickListener {
+
+                if (obj.type == "mini_game_qr_mar") {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, true)
+                } else {
+                    SharedLoyaltyHelper(itemView.context).putBoolean(CampaignType.ACCUMULATE_LONG_TERM_POINT_QR_MAR, false)
+                }
+
                 clickListener.onClick(obj)
             }
         }

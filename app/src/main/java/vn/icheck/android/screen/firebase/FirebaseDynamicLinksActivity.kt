@@ -1,14 +1,5 @@
 package vn.icheck.android.screen.firebase
 
-//import vn.teko.android.auth.core.TerraAuth
-//import vn.teko.android.auth.login.TerraLogin
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_IDTOKEN
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_EXTRA_CUSTOM_TOKEN_PROVIDER
-//import vn.teko.android.auth.login.provider.AUTH_MANAGER_RC_LOGIN
-//import vn.teko.android.auth.login.provider.LoginType
-//import vn.teko.hestia.android.TerraHestia
-//import vn.teko.hestia.android.utils.uiHelper.DefaultAndroidHestiaUIHelper
-//import vn.teko.terra.core.android.terra.TerraApp
 import android.Manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -34,7 +25,6 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.constant.ICK_REQUEST_CAMERA
 import vn.icheck.android.helper.*
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -188,6 +178,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val memberPointExchangedGift = "member_point_exchanged_gift"
     private val loyaltyReward = "loyalty_reward"
     private val notification = "notification"
+    private val goToHomeAndOpenScan = "go_to_home_and_open_scan"
 
     private var deepLink: Uri? = null
     private var targetType: String = ""
@@ -198,6 +189,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private var nameShop: String? = null
     private var avatarShop: String? = null
     private var currentCount: Int? = null
+
+    private val requestCamera = 1
+    private val requestMyCard = 2
 
     companion object {
         @MainThread
@@ -372,6 +366,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
     private fun checkTarget() {
         when (targetType.toLowerCase(Locale.ROOT)) {
+            goToHomeAndOpenScan -> {
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 5))
+            }
             home -> {
                 if (HomeActivity.isOpen == true) {
                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.GO_TO_HOME, 1))
@@ -405,7 +402,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     null
                 }
 
-                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, requestCamera)) {
                     if (typeLoyalty.isNullOrEmpty()) {
                         V6ScanditActivity.create(this)
                     } else {
@@ -416,7 +413,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                 }
             }
             scanAndBuy -> {
-                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
+                if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, requestCamera)) {
                     V6ScanditActivity.create(this, 2)
                 } else {
                     return
@@ -591,7 +588,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Cách tích điểm")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.cach_tinh_diem))
                         }
                     })
                 }
@@ -604,7 +601,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Hướng dẫn sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.huong_dan_su_dung))
                         }
                     })
                 }
@@ -617,7 +614,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }
@@ -630,7 +627,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                         }
 
                         override fun onGetClientSuccess(list: MutableList<ICClientSetting>?) {
-                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, "Điều khoản sử dụng")
+                            WebViewActivity.start(this@FirebaseDynamicLinksActivity, list?.firstOrNull()?.value, null, getString(R.string.dieu_khoan_su_dung))
                         }
                     })
                 }
@@ -667,7 +664,7 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
                     showLoginDialog()
                     return
                 } else {
-                    if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, ICK_REQUEST_CAMERA)) {
+                    if (PermissionHelper.checkPermission(this@FirebaseDynamicLinksActivity, Manifest.permission.CAMERA, requestMyCard)) {
 //                        V6ScanditActivity.create(this, 3)
                         MyQrActivity.createOnly(this)
                     } else {
@@ -1326,13 +1323,16 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (PermissionHelper.checkResult(grantResults)) {
-            if (requestCode == ICK_REQUEST_CAMERA) {
-                if (requestCode == ICK_REQUEST_CAMERA) {
+            when (requestCode) {
+                requestCamera -> {
                     if (typeLoyalty.isNullOrEmpty()) {
                         V6ScanditActivity.create(this)
                     } else {
                         campaignId?.let { V6ScanditActivity.scanOnlyLoyalty(this, typeLoyalty!!, it, nameCampaign, nameShop, avatarShop, currentCount) }
                     }
+                }
+                requestMyCard -> {
+                    MyQrActivity.createOnly(this)
                 }
             }
         }

@@ -13,6 +13,8 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 
 class FilterYearDialog(val listSelected: MutableList<String>, private val timeCallBack: TimeCallBack) : BaseBottomSheetDialogFragment() {
     private var selectedTime = mutableListOf<String>()
@@ -41,8 +43,11 @@ class FilterYearDialog(val listSelected: MutableList<String>, private val timeCa
             dismiss()
         }
 
-        tvClear.setOnClickListener {
-            adapter.resetSelected()
+        tvClear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                adapter.resetSelected()
+            }
         }
 
         tvDone.setOnClickListener {
@@ -114,7 +119,7 @@ class FilterYearDialog(val listSelected: MutableList<String>, private val timeCa
                 }
 
                 itemView.setOnClickListener {
-                    if (obj == ICheckApplication.getString(R.string.tat_ca)) {
+                    if (obj == getString(R.string.tat_ca)) {
                         resetSelected()
                     } else {
                         var selected = false

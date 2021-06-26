@@ -38,7 +38,7 @@
                 android:drawablePadding="@dimen/size_12"
                 android:fontFamily="sans-serif-medium"
                 android:includeFontPadding="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_12"
                 android:textStyle="normal" />
 

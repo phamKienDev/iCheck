@@ -47,7 +47,9 @@ class RelatedProductAdapter( val list: List<ICProduct>): RecyclerView.Adapter<Re
             }
             holder.rating.rating = child.rating
             if (child.price > 0) {
-                holder.price.text = String.format("%,dđ", child.price)
+                holder.price.apply {
+                    text = context.getString(R.string.d_vnd, child.price)
+                }
             } else {
                 holder.price.visibility = View.INVISIBLE
             }

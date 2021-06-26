@@ -22,7 +22,7 @@
             android:layout_marginTop="90dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
-            android:text="Bạn đã đổi quà thành công"
+            android:text="@string/ban_da_doi_qua_thanh_cong"
             android:textColor="#434343" />
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -47,9 +47,9 @@ class HistoryGameFragment : BaseFragmentGame(), IRecyclerViewCallback {
         }
 
         txtTitle.text = if (SharedLoyaltyHelper(requireContext()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM)) {
-            "Lịch sử nhập mã"
+            getString(R.string.lich_su_nhap_ma)
         } else {
-            "Lịch sử quét QR"
+            getString(R.string.lich_su_quet_qr)
         }
     }
 

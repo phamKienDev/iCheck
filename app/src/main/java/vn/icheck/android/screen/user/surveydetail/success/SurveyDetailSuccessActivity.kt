@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.fragment_answer_survey_success.*
 import kotlinx.android.synthetic.main.toolbar_black.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
+import vn.icheck.android.ichecklibs.ViewHelper
 
 /**
  * Created by VuLCL on 10/22/2019.
@@ -22,6 +23,7 @@ class SurveyDetailSuccessActivity : BaseActivityMVVM() {
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
     }
 
@@ -31,6 +33,11 @@ class SurveyDetailSuccessActivity : BaseActivityMVVM() {
     private fun initToolbar() {
         txtTitle.setText(R.string.khao_sat_nhan_qua_title)
         imgBack.visibility = View.GONE
+    }
+
+    private fun setupView() {
+        btnShare.background = ViewHelper.btnPrimaryCorners4(this)
+        btnHome.background = ViewHelper.btnWhiteStrokeSecondary1Corners4(this)
     }
 
     /**

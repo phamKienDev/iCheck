@@ -78,7 +78,7 @@
                 android:paddingTop="@dimen/size_10"
                 android:paddingBottom="@dimen/size_10"
                 android:layout_marginBottom="@dimen/size_20"
-                android:text="Quét tiếp"
+                android:text="@string/quet_tiep"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>

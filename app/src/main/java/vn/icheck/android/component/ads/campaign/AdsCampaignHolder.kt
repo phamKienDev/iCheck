@@ -25,7 +25,7 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
     private var adsAdapter = AdsCampaignAdapter()
 
     fun bind(obj: ICAdsNew) {
-        itemView.tvTitle.text = obj.name ?: ""
+        itemView.tvTitle.text = obj.name
 
         itemView.rcvCampaign.apply {
             onFlingListener = null
@@ -41,8 +41,8 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
                         itemView.btnArrowRight.visibility = View.VISIBLE
 
                         layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                        setBackgroundColor(Color.WHITE)
-                        itemView.layoutParent.setBackgroundColor(Color.WHITE)
+                        setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                        itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                         setPadding(SizeHelper.size6, SizeHelper.size10, SizeHelper.size6, SizeHelper.size10)
                         PagerSnapHelper().attachToRecyclerView(itemView.rcvCampaign)
 
@@ -70,7 +70,7 @@ class AdsCampaignHolder(parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.
                         itemView.btnArrowRight.visibility = View.GONE
 
                         layoutManager = CustomGridLayoutManager(itemView.context, 2)
-                        setBackgroundColor(Color.WHITE)
+                        setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                         itemView.layoutParent.setBackgroundColor(Color.TRANSPARENT)
                         setPadding(SizeHelper.size8, SizeHelper.size4, SizeHelper.size8, SizeHelper.size4)
 

@@ -13,6 +13,7 @@ import vn.icheck.android.chat.icheckchat.model.MCError
 import vn.icheck.android.chat.icheckchat.model.MCResponseCode
 import vn.icheck.android.chat.icheckchat.model.MCResult
 import vn.icheck.android.chat.icheckchat.network.parseJson
+import vn.icheck.android.ichecklibs.util.getString
 
 open class BaseViewModelChat : ViewModel() {
 
@@ -24,7 +25,7 @@ open class BaseViewModelChat : ViewModel() {
 
     fun <T> request(call: suspend () -> T) = liveData(Dispatchers.IO) {
         if (NetworkHelper.isNotConnected(ShareHelperChat.getApplicationByReflect())) {
-            emit(MCResult.errorNetwork(data = null, message = ShareHelperChat.getString(R.string.khong_co_mang)))
+            emit(MCResult.errorNetwork(data = null, message = getString(R.string.khong_co_mang)))
             return@liveData
         }
 
@@ -46,13 +47,13 @@ open class BaseViewModelChat : ViewModel() {
         if (isConnected) {
             if (!dataEmpty) {
                 onError.postValue(MCError(message = message
-                        ?: ShareHelperChat.getString(R.string.error_default)))
+                        ?: getString(R.string.error_default)))
             } else {
                 onError.postValue(MCError(title = title
-                        ?: ShareHelperChat.getString(R.string.khong_co_du_lieu)))
+                        ?: getString(R.string.khong_co_du_lieu)))
             }
         } else {
-            onError.postValue(MCError(message = ShareHelperChat.getString(R.string.khong_co_mang)))
+            onError.postValue(MCError(message = getString(R.string.khong_co_mang)))
         }
     }
 

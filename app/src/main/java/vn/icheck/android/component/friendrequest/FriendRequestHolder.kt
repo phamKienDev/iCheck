@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -58,8 +59,12 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
         }
 
         // Text agree
-        itemView.btnAgree.setOnClickListener {
-            updateFriendInvitation(2, obj)
+        itemView.btnAgree.apply {
+            background = ViewHelper.btnPrimaryCorners4(context)
+
+            setOnClickListener {
+                updateFriendInvitation(2, obj)
+            }
         }
 
         // Text disagree
@@ -91,7 +96,7 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                 itemView.btnAgree.visibility = View.GONE
                 itemView.btnDisagree.visibility = View.GONE
                 itemView.tvStatus.visibility = View.VISIBLE
-                itemView.tvStatus.text = Html.fromHtml(itemView.tvStatus.context.getString(R.string.ban_da_tu_choi_loi_moi_ket_ban_cua, itemView.tvName.text))
+                itemView.tvStatus.text = Html.fromHtml(itemView.tvStatus.context.getString(R.string.ban_da_tu_choi_loi_moi_ket_ban_cua_s, itemView.tvName.text))
             }
             else -> {
                 itemView.btnAgree.visibility = View.VISIBLE
@@ -143,7 +148,9 @@ class FriendRequestHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInf
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_ACCEPTED
                     } else {
                         objFriend.requestStatus = Constant.FRIEND_REQUEST_DENIED
-                        itemView.context.showShortSuccessToast("Bạn đã từ chối kết bạn với ${objFriend.getName}")
+                        itemView.context.apply {
+                            showShortSuccessToast(getString(R.string.ban_da_tu_choi_ket_ban_voi_s, objFriend.getName))
+                        }
                     }
 
                     checkFriend(objFriend.requestStatus)

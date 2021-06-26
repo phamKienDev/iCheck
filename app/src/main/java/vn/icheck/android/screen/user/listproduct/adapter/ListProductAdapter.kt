@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_message.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
-import vn.icheck.android.component.collection.vertical.AdsProductVerticalHolder
 import vn.icheck.android.component.collection.vertical.AdsProductVerticalHolderV2
 import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.models.ICProduct
 import vn.icheck.android.network.models.ICProductTrend
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.listproduct.view.IListProductView
 
 class ListProductAdapter(val listener: IListProductView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

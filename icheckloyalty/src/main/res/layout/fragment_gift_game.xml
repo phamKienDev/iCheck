@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
-            android:text="Cảm ơn bạn đã tham gia sự kiện "
+            android:text="@string/cam_on_ban_da_tham_gia_su_kien"
             android:textAlignment="center" />
 
         <LinearLayout

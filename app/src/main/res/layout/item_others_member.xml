@@ -12,7 +12,7 @@
         android:id="@+id/other_member"
         android:layout_width="@dimen/size_36"
         android:layout_height="@dimen/size_36"
-        android:src="@drawable/user_placeholder"
+        android:src="@drawable/ic_avatar_default_84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -101,7 +101,7 @@ class WebViewActivity : BaseActivityGame() {
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.allowUniversalAccessFromFileURLs = true
-        webView.settings.defaultFontSize = 16.spToPx()
+        webView.settings.defaultFontSize = 16
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW

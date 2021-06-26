@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
             android:layout_marginBottom="@dimen/size_7"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
-            android:text="Thông tin\nsản phẩm"
+            android:text="@string/thong_tin_n_san_pham"
             android:textColor="#000000"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +58,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
-            android:text="Truy xuất\nnguồn gốc trứng"
             android:textColor="#000000"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/tvSub1"
@@ -84,11 +82,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_horizontal"
-            android:text="Chứng chỉ,\nChứng nhận"
+            android:text="@string/chung_chi_n_chung_nhan"
             android:textColor="#000000"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/tvSub2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvSub2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>

@@ -18,6 +18,6 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="#828282"
-        android:text="Bạn chưa có tin nhắn nào"
+        android:text="@string/ban_chua_co_tin_nhan_nao"
         android:gravity="center_horizontal" />
 </LinearLayout>

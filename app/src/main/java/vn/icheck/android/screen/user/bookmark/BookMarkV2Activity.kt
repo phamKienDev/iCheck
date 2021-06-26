@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_book_mark_v2.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.screen.user.cart.CartActivity
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
@@ -42,6 +44,7 @@ class BookMarkV2Activity : BaseActivityMVVM(), IScanHistoryView, IRecyclerViewCa
         viewModel = ViewModelProvider(this).get(BookMarkV2ViewModel::class.java)
 
         initToolbar()
+        setupView()
         initRecyclerView()
         initSwipeLayout()
         initListener()
@@ -57,6 +60,11 @@ class BookMarkV2Activity : BaseActivityMVVM(), IScanHistoryView, IRecyclerViewCa
         imgAction.setOnClickListener {
             startActivity<CartActivity>()
         }
+    }
+
+    private fun setupView() {
+        edtSearch.background = ViewHelper.bgGrayCorners4(this)
+        edtSearch.setHintTextColor(ColorManager.getDisableTextColor(this))
     }
 
     private fun initRecyclerView() {
@@ -85,12 +93,12 @@ class BookMarkV2Activity : BaseActivityMVVM(), IScanHistoryView, IRecyclerViewCa
             }
         })
         dispose = RxTextView.afterTextChangeEvents(edtSearch)
-                .skipInitialValue().debounce(400, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    search = it.view().text.toString()
-                    viewModel.getListBookMark(false, it.view().text.toString())
-                }
+            .skipInitialValue().debounce(400, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                search = it.view().text.toString()
+                viewModel.getListBookMark(false, it.view().text.toString())
+            }
 
         viewModel.onError.observe(this, Observer {
             swipeLayout.isRefreshing = false

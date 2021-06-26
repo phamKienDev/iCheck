@@ -19,7 +19,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import de.hdodenhof.circleimageview.CircleImageView
 import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.CustomLayoutToastBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.chat.icheckchat.helper.ShareHelperChat
+import vn.icheck.android.ichecklibs.util.getString
 import java.io.File
 import java.io.FileInputStream
 import java.text.DecimalFormat
@@ -58,7 +60,7 @@ fun Context.showToastError(msg: String? = null) {
     if (!msg.isNullOrEmpty()) {
         showCustomIconToast(msg, R.drawable.ic_waring_1_white_40dp_chat)
     } else {
-        showCustomIconToast(getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
+        showCustomIconToast(vn.icheck.android.ichecklibs.util.getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
     }
 }
 
@@ -66,7 +68,7 @@ fun Context.showToastSuccess(msg: String? = null) {
     if (!msg.isNullOrEmpty()) {
         showCustomIconToast(msg, R.drawable.ic_success_white_40dp_chat)
     } else {
-        showCustomIconToast(getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
+        showCustomIconToast(vn.icheck.android.ichecklibs.util.getString(R.string.error_default), R.drawable.ic_waring_1_white_40dp_chat)
     }
 }
 
@@ -91,6 +93,7 @@ fun Context.showCustomIconToast(msg: String, @DrawableRes id: Int) {
     val binding = CustomLayoutToastBinding.inflate(LayoutInflater.from(this))
     toast?.cancel()
     toast = Toast(this)
+    binding.root.background=ViewHelper.bgPopupCorners4(this)
     binding.tvContent.text = msg
     binding.icCustom.setImageResource(id)
     toast?.view = binding.root
@@ -386,10 +389,10 @@ fun convertDateTimeSvToCurrentDay(millisecond: Long?): String {
 
     return when {
         time <= intervalMinute -> {
-            "Vừa xong"
+            getString(R.string.vua_xong)
         }
         time <= intervalHour -> {
-            (time / intervalMinute).toString() + " phút trước"
+            getString(R.string.s_phut_truoc, (time / intervalMinute).toString())
         }
         time < AlarmManager.INTERVAL_DAY -> {
             if (soSanhCungNgay(millisecond)) {

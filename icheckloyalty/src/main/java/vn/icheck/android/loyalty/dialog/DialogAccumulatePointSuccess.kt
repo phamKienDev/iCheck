@@ -35,10 +35,12 @@ abstract class DialogAccumulatePointSuccess(
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_UPDATE_POINT))
         }
 
-        tvPoint.text = if (!pointName.isNullOrEmpty()) {
-            "${TextHelper.formatMoneyPhay(point)} $pointName"
-        } else {
-            "${TextHelper.formatMoneyPhay(point)} Điểm tích lũy"
+        tvPoint.apply {
+            text = if (!pointName.isNullOrEmpty()) {
+                "${TextHelper.formatMoneyPhay(point)} $pointName"
+            } else {
+                context.getString(R.string.s_diem_tich_luy, TextHelper.formatMoneyPhay(point))
+            }
         }
 
         tvMessage.text = message

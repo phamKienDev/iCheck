@@ -14,7 +14,7 @@
         layout="@layout/toolbar_light_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <vn.icheck.android.ichecklibs.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
         android:id="@id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +22,8 @@
         android:layout_marginTop="@dimen/size_16"
         android:gravity="center_horizontal"
         android:textAlignment="gravity"
-        android:textColor="@color/colorSecondText"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
-        tools:text="@string/login_ma_xac_thuc_otp_da_duoc_gui_toi" />
+        tools:text="@string/login_ma_xac_nhan_otp_da_duoc_gui_toi_so_dien_thoai" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,29 +68,26 @@
                     android:theme="@style/Theme_Blue"
                     android:visibility="invisible" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:id="@id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:fontFamily="sans-serif-medium"
                     android:paddingStart="@dimen/size_8"
                     android:paddingTop="@dimen/size_4"
                     android:paddingEnd="@dimen/size_8"
                     android:paddingBottom="@dimen/size_4"
-                    android:textColor="#3c5a99"
                     android:textSize="@dimen/font_14"
                     android:textStyle="normal" />
             </LinearLayout>
 
-            <vn.icheck.android.ichecklibs.view.TextBody2
+            <vn.icheck.android.ichecklibs.view.second_text.TextBody2Second
                 android:id="@id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textAlignment="gravity"
-                android:textColor="@color/colorSecondText" />
+                android:textAlignment="gravity" />
         </FrameLayout>
     </LinearLayout>
 
@@ -107,7 +103,6 @@
         android:layout_height="@dimen/size_36"
         android:layout_margin="@dimen/size_12"
         android:visibility="gone"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/xac_nhan"
         android:textAlignment="gravity"

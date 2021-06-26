@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_dialog"
     android:orientation="vertical"
     android:paddingBottom="@dimen/size_20">
 
@@ -15,10 +14,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_1"
-        android:background="@color/gray" />
+        android:layout_height="@dimen/size_1" />
 
 
     <LinearLayout
@@ -28,15 +26,13 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:gravity="center_horizontal"
-            android:text="Ai có thể xem bài viết này của bạn?"
-            android:textColor="@color/colorNormalText"
-            android:textSize="@dimen/font_14"
-            app:fontFamily="@font/barlow_semi_bold" />
+            android:text="@string/ai_co_the_xem_bai_viet_nay_cua_ban"
+            android:textSize="@dimen/font_14"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -51,7 +47,6 @@
             android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_30"
             android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:paddingTop="@dimen/size_8"
@@ -68,4 +63,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

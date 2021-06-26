@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.bottom_sheet_add_more_turn.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class AddMoreTurnBottomSheet(val context: Context) : BaseBottomSheetDialog(context,R.layout.bottom_sheet_add_more_turn, true) {
 
@@ -26,8 +27,11 @@ class AddMoreTurnBottomSheet(val context: Context) : BaseBottomSheetDialog(conte
             dialog.dismiss()
         }
 
-        dialog.btnInforCampaign.setOnClickListener {
+        dialog.btnInforCampaign.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
 
+            }
         }
     }
 

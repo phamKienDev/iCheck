@@ -31,7 +31,7 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Lịch sử nhập mã"
+            android:text="@string/lich_su_nhap_ma"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="normal" />

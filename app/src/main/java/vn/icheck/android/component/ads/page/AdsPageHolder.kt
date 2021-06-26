@@ -24,7 +24,7 @@ class AdsPageHolder (parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.fro
     private val adsAdapter = AdsPageAdapter()
 
     fun bind(obj: ICAdsNew) {
-        itemView.tvTitle.text = obj.name ?: ""
+        itemView.tvTitle.text = obj.name
 
         itemView.viewBackground.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
             itemView.tvStart.visibility = view.visibility
@@ -43,8 +43,8 @@ class AdsPageHolder (parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.fro
                     itemView.tvStart.visibility = View.VISIBLE
                     itemView.tvEnd.visibility = View.VISIBLE
 
-                    itemView.layoutParent.setBackgroundColor(Color.WHITE)
-                    setBackgroundColor(Color.WHITE)
+                    itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                    setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                     setPadding(SizeHelper.size6, SizeHelper.size10, SizeHelper.size6, SizeHelper.size10)
 
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -76,8 +76,8 @@ class AdsPageHolder (parent: ViewGroup) : BaseVideoViewHolder(LayoutInflater.fro
                     itemView.tvStart.visibility = View.GONE
                     itemView.tvEnd.visibility = View.GONE
 
-                    itemView.layoutParent.setBackgroundColor(Color.WHITE)
-                    setBackgroundColor(Color.WHITE)
+                    itemView.layoutParent.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
+                    setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(itemView.context))
                     setPadding(SizeHelper.size6, SizeHelper.size8, SizeHelper.size6, SizeHelper.size8)
 
                     layoutManager = CustomGridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)

@@ -14,7 +14,7 @@
             android:layout_weight="1"
             android:textSize="@dimen/font_12"
             android:textColor="#828282"
-            android:text="Đánh giá được xác minh bởi" />
+            android:text="@string/danh_gia_duoc_xac_minh_boi" />
 
         <ImageView
             android:layout_width="@dimen/size_60"
@@ -24,18 +24,15 @@
             app:srcCompat="@drawable/small_logo_icheck" />
     </LinearLayout>
 
-    <Button
+    <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
         android:id="@+id/btn_xall"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginBottom="@dimen/size_12"
-        android:background="@drawable/btn_white_outline_blue_1_corners_36"
         android:fontFamily="sans-serif-medium"
-        android:text="Xem tất cả đánh giá"
+        android:text="@string/xem_tat_ca_danh_gia"
         android:textAllCaps="false"
-        android:textColor="#3C5A99"
         android:textSize="@dimen/font_14" />
-
 </LinearLayout>

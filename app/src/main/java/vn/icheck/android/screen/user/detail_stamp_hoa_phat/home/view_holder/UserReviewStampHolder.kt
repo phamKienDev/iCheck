@@ -10,14 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.ctsp_customer_rv_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCriteria
 import vn.icheck.android.network.models.v1.ICImage
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.EditReviewImgV1Adapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaAdapter
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.adapter.criteria.CriteriaChild
 import vn.icheck.android.screen.user.detail_stamp_hoa_phat.home.call_back.SlideHeaderStampHoaPhatListener
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
-class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHeaderStampHoaPhatListener) : BaseViewHolder<ICCriteria>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_customer_rv_holder, parent, false)) {
+class UserReviewStampHolder(parent: ViewGroup, val headerImagelistener: SlideHeaderStampHoaPhatListener) :
+    BaseViewHolder<ICCriteria>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_customer_rv_holder, parent, false)) {
 
     private val listImg = mutableListOf<ICImage>()
     val listCriteriaChild = mutableListOf<CriteriaChild>()
@@ -25,7 +29,12 @@ class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHead
     override fun bind(obj: ICCriteria) {
         listCriteriaChild.clear()
         listImg.clear()
-        itemView.tv_your_score.text = String.format("%.1f tuyệt vời", obj.customerEvaluation?.averagePoint!! * 2)
+        obj.customerEvaluation?.averagePoint?.let {
+            itemView.tv_your_score.setText(
+                R.string.x_tuyet_voi,
+                it * 2
+            )
+        }
         itemView.customer_rating.rating = obj.customerEvaluation?.averagePoint!!
         if (obj.customerEvaluation?.imageThumbs!!.isNotEmpty()) {
             for (i in obj.customerEvaluation?.imageThumbs!!.indices) {
@@ -41,19 +50,24 @@ class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHead
             for (item in it.indices) {
                 try {
                     if (it.get(item).criteria.id == obj.customerEvaluation?.customerCriteria!![item].criteria_id
-                            && obj.customerEvaluation?.customerCriteria!![item] != null) {
-                        listCriteriaChild.add(CriteriaChild(
+                        && obj.customerEvaluation?.customerCriteria!![item] != null
+                    ) {
+                        listCriteriaChild.add(
+                            CriteriaChild(
                                 it.get(item),
                                 obj.customerEvaluation?.customerCriteria!!
-                                        .get(item).point.toFloat(),
+                                    .get(item).point.toFloat(),
                                 true
-                        ))
+                            )
+                        )
                     } else {
-                        listCriteriaChild.add(CriteriaChild(
+                        listCriteriaChild.add(
+                            CriteriaChild(
                                 it.get(item),
                                 null,
                                 true
-                        ))
+                            )
+                        )
                     }
                 } catch (e: Exception) {
                 }
@@ -73,9 +87,12 @@ class UserReviewStampHolder(parent: ViewGroup,val headerImagelistener: SlideHead
 //            view.tv_xct.setOnClickListener {
 //                ProductDetailActivity.INSTANCE?.showAllReviews()
 //            }
-        itemView.findViewById<Button>(R.id.btn_edit).setOnClickListener {
-            obj.let { objCriteria ->
-                headerImagelistener.editReview(objCriteria)
+        itemView.findViewById<Button>(R.id.btn_edit).apply {
+            background = ViewHelper.bgSecondaryCorners40(context)
+            setOnClickListener {
+                obj.let { objCriteria ->
+                    headerImagelistener.editReview(objCriteria)
+                }
             }
         }
     }

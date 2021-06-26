@@ -34,7 +34,7 @@
             android:layout_width="@dimen/size_32"
             android:layout_height="@dimen/size_32"
             android:layout_marginBottom="@dimen/size_5"
-            android:src="@color/colorSecondary"
+            tools:src="@color/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -71,37 +71,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
-                    android:text="Thời gian"
-                    android:textColor="#757575"
+                    android:text="@string/thoi_gian"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@id/txtDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_2"
                     android:layout_marginBottom="@dimen/size_6"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     tools:text="Đến 31/12" />
             </LinearLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@id/view"
                 android:layout_width="@dimen/size_1"
                 android:layout_height="@dimen/size_20"
                 android:layout_marginStart="@dimen/size_24"
                 android:layout_marginLeft="@dimen/size_24"
-                android:background="@color/darkGray6"
                 app:layout_constraintBottom_toBottomOf="@id/containerTime"
                 app:layout_constraintStart_toEndOf="@+id/containerTime"
                 app:layout_constraintTop_toTopOf="@id/containerTime" />
@@ -117,18 +112,16 @@
                 app:layout_constraintStart_toEndOf="@id/view"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/nguoi_tham_gia"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_12" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/txtCountUserJoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,24 +129,19 @@
                     android:drawableEnd="@drawable/ic_fire_18px"
                     android:drawableRight="@drawable/ic_fire_18px"
                     android:drawablePadding="@dimen/size_5"
-                    android:fontFamily="@font/barlow_medium"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     tools:text="27,254" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@id/tvReward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_8"
-                android:layout_marginRight="@dimen/size_8"
                 android:layout_marginBottom="@dimen/size_8"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:textColor="@color/colorPrimary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -165,9 +153,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_10"
-                android:layout_marginRight="@dimen/size_10"
                 android:layout_marginBottom="@dimen/size_10"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -189,15 +175,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_upcoming_mission" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvEnded"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="@string/da_ket_thuc"
-                android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_16"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"

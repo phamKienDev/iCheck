@@ -23,6 +23,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -35,17 +37,19 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_shop_search_result_holder, parent, false)) {
 
     fun bind(obj: ICShopQuery) {
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
+        itemView.tv_following.background=ViewHelper.bgGrayCorners4(itemView.context)
+
+
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar)
 //        checkStatusOwner(obj.id)
         checkStatusFollow(obj.id)
         itemView.tv_name.text = obj.name
-        itemView.tv_info_shop.text = Html.fromHtml(itemView.context.getString(R.string.info_shop_x, obj.productCount.toString(),
-                (obj.rating ?: 0 * 2).toString()))
-
+        itemView.tv_info_shop.text = Html.fromHtml(ViewHelper.setPrimaryHtmlString(itemView.context.getString(R.string.info_shop_x, obj.productCount.toString(), (obj.rating ?: 0 * 2).toString()),itemView.context))
 
         if (obj.isOffline) {
             itemView.img_avatar.setPadding(SizeHelper.size3, SizeHelper.size3, SizeHelper.size3, SizeHelper.size3)
-            itemView.img_avatar.setBackgroundResource(R.drawable.bg_circle_border_orange_1dp)
+            itemView.img_avatar.background=ViewHelper.bgCircleWhiteStrokeOrange1Size45(itemView.context)
             itemView.tv_verified.visibility = View.VISIBLE
         } else {
             itemView.img_avatar.setPadding(0, 0, 0, 0)
@@ -54,12 +58,16 @@ class ShopSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
         }
 
         itemView.setOnClickListener {
-            ToastUtils.showLongError(itemView.context, "Shop Detail")
+            ToastUtils.showLongError(itemView.context, getString(R.string.shop_detail))
         }
 
-        itemView.tv_follow_shop.setOnClickListener {
-            followShop(obj)
+        itemView.tv_follow_shop.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                followShop(obj)
+            }
         }
+
         itemView.tv_following.setOnClickListener {
             unFollow(obj)
         }

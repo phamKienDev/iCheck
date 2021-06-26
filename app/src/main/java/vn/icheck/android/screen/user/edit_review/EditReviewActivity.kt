@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.take_media.TakeMediaDialog
 import vn.icheck.android.ichecklibs.take_media.TakeMediaListener
 import vn.icheck.android.network.models.ICCriteriaReview
@@ -28,7 +29,6 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -48,9 +48,16 @@ class EditReviewActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_edit_review)
 
         viewModel = ViewModelProvider(this).get(EditReviewViewModel::class.java)
+
+        setupView()
         initView()
         initRcvImage()
         listenerData()
+    }
+
+    private fun setupView() {
+        containerSubmit.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+        btnSend.background = ViewHelper.btnPrimaryCorners4(this)
     }
 
     private fun initView() {
@@ -133,7 +140,7 @@ class EditReviewActivity : BaseActivityMVVM() {
                 edtContent.setText(it.myReview!!.content)
             } else {
                 viewModel.createReview = true
-                tv_title simpleText "Đánh giá sản phẩm"
+                tv_title.setText(R.string.danh_gia_san_pham)
                 it.criteria?.let { criteria ->
                     listDataRating.addAll(criteria)
                 }
@@ -192,9 +199,9 @@ class EditReviewActivity : BaseActivityMVVM() {
         setResult(RESULT_OK, intent)
         EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.RESULT_EDIT_POST, review))
         if (viewModel.createReview) {
-            DialogHelper.showDialogSuccessBlack(this, "Bạn đã tạo đánh giá thành công", null, 1000)
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_tao_danh_gia_thanh_cong), null, 1000)
         } else {
-            DialogHelper.showDialogSuccessBlack(this, "Bạn đã chỉnh sửa đánh giá thành công", null, 1000)
+            DialogHelper.showDialogSuccessBlack(this, getString(R.string.ban_da_chinh_sua_danh_gia_thanh_cong), null, 1000)
         }
         finish()
     }
@@ -247,7 +254,7 @@ class EditReviewActivity : BaseActivityMVVM() {
                 viewModel.uploadImage(edtContent.text.toString(), criterias, listImageAdapter.getlistData)
             }
         } else {
-            ToastUtils.showShortError(this, getString(R.string.vui_long_dien_day_du_tieu_chi))
+            ToastUtils.showShortError(this, getString(R.string.vui_long_dien_day_du_tieu_chi_danh_gia))
         }
     }
 

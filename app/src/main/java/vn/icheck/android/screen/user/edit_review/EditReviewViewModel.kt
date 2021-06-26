@@ -205,7 +205,7 @@ class EditReviewViewModel : ViewModel() {
 
         val listImage = mutableListOf<ICMedia>()
         for (item in listImageString) {
-            listImage.add(ICMedia(item, if (item.contains(".mp4")) {
+            listImage.add(ICMedia(item, type = if (item.contains(".mp4")) {
                 Constant.VIDEO
             } else {
                 Constant.IMAGE
@@ -215,7 +215,9 @@ class EditReviewViewModel : ViewModel() {
         ProductReviewInteractor().postReview(productId, message, criteria, listImage, pageId, object : ICNewApiListener<ICResponse<ICPost>> {
             override fun onSuccess(obj: ICResponse<ICPost>) {
                 onStatusMessage.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING, null))
-                onPostReviewSuccess.postValue(obj.data)
+                obj.data?.let {
+                    onPostReviewSuccess.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {

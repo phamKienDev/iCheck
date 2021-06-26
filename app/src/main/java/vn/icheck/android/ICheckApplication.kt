@@ -2,6 +2,8 @@ package vn.icheck.android
 
 //import vn.teko.hestia.trackingbridge.AppTrackingBridgeManager
 //import vn.teko.hestia.trackingbridge.TrackingBridgeManager
+//import vn.teko.terra.core.android.terra.TerraApp
+//import vn.teko.terra.core.android.terra.TerraApp
 import android.app.Activity
 import android.app.Application
 import android.content.Context
@@ -24,6 +26,8 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.icheckscanditv6.DataCaptureManager
 import vn.icheck.android.loyalty.helper.CampaignLoyaltyHelper
 import vn.icheck.android.loyalty.model.ICKLoyalty
 import vn.icheck.android.loyalty.sdk.LoyaltySdk
@@ -38,11 +42,7 @@ import vn.icheck.android.tracking.insider.TrackingBridge
 import vn.teko.android.tracker.core.Tracker
 import vn.teko.android.tracker.core.TrackerConfig
 import vn.teko.hestia.trackingbridge.AppTrackingBridgeManager
-//import vn.teko.terra.core.android.terra.TerraApp
-//import vn.teko.terra.core.android.terra.TerraApp
 import javax.inject.Inject
-import vn.icheck.android.BuildConfig
-import vn.icheck.android.icheckscanditv6.DataCaptureManager
 
 @HiltAndroidApp
 class ICheckApplication : Application(), Configuration.Provider {
@@ -572,10 +572,6 @@ class ICheckApplication : Application(), Configuration.Provider {
 
         fun currentActivity(): Activity? {
             return INSTANCE.mFTActivityLifecycleCallbacks.currentActivity
-        }
-
-        fun getString(resource: Int): String {
-            return INSTANCE.getString(resource)
         }
 
         fun getError(message: String?): String {

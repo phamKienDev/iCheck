@@ -13,12 +13,15 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.base.ConstantsLoyalty
 import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.loyalty.screen.gift_detail_from_app.GiftDetailFromAppActivity
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICItemReward
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
+import vn.icheck.android.base.holder.LoadingHolder
 import vn.icheck.android.screen.user.detail_my_reward.DetailMyRewardActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.screen.user.webview.WebViewActivity
@@ -143,9 +146,12 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
 
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(LayoutInflater.from(parent.context).inflate(R.layout.item_item_reward_v2, parent, false)) {
         override fun bind(obj: ICItemReward) {
+            itemView.view.background=ViewHelper.lineDottedVerticalLineColor(itemView.context)
+            itemView.tvState.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
+            itemView.tv_gift_state.background=ViewHelper.bgTransparentStrokeLineColor1Corners4(itemView.context)
             if (bindingAdapterPosition == 0 && obj.totalGifts != 0) {
                 itemView.tv_total_gifts.beVisible()
-                itemView.tv_total_gifts simpleText "Sản phẩm quà: ${obj.totalGifts}"
+                itemView.tv_total_gifts.setText(R.string.san_pham_qua_d, obj.totalGifts)
             } else {
                 itemView.tv_total_gifts.beGone()
             }
@@ -162,45 +168,45 @@ class RewardItemV2Adapter(private val listenerRecyclerView: IRecyclerViewCallbac
             }
             when (obj.state) {
                 2 -> {
-                    itemView.tv_gift_state simpleText "Đã xác nhận giao quà"
+                    itemView.tv_gift_state.setText(R.string.da_xac_nhan_giao_qua)
                 }
                 3 -> {
-                    itemView.tv_gift_state simpleText "Bạn đã từ chối nhận quà này"
+                    itemView.tv_gift_state.setText(R.string.ban_da_tu_choi_nhan_qua_nay)
                 }
                 4 -> {
-                    itemView.tv_gift_state simpleText "Giao quà thành công"
+                    itemView.tv_gift_state.setText(R.string.giao_qua_thanh_cong)
                 }
                 else -> {
-                    itemView.tv_gift_state simpleText "Hết hạn"
+                    itemView.tv_gift_state.setText(R.string.het_han)
                 }
             }
             itemView.tvPage.text = if (!obj.businessName.isNullOrEmpty()) {
-                Html.fromHtml("<font color=#757575>Từ </font>" + "<b>" + obj.businessName + "</b>")
+                Html.fromHtml("<font color=${vn.icheck.android.ichecklibs.ColorManager.getSecondTextCode(itemView.context)}}>${itemView.context.getString(R.string.tu)} </font>" + "<b>" + obj.businessName + "</b>")
             } else {
                 itemView.context.getString(R.string.dang_cap_nhat)
             }
 
             when (obj.rewardType) {
                 "PRODUCT_SHIP" -> {
-                    itemView.tvState simpleText "Giao tận nơi"
+                    itemView.tvState.setText(R.string.giao_tan_noi)
                 }
                 "PRODUCT_IN_SHOP" -> {
-                    itemView.tvState simpleText "Nhận tại cửa hàng"
+                    itemView.tvState.setText(R.string.nhan_tai_cua_hang)
                 }
                 "CARD" -> {
-                    itemView.tvState simpleText "Quà thẻ cào"
+                    itemView.tvState.setText(R.string.qua_the_cao)
                 }
                 "LUCKY" -> {
-                    itemView.tvState simpleText "Quà tinh thần"
+                    itemView.tvState.setText(R.string.qua_tinh_than)
                 }
                 "CODE" -> {
-                    itemView.tvState simpleText "Mã dự thưởng"
+                    itemView.tvState.setText(R.string.ma_du_thuong)
                 }
                 "VOUCHER" -> {
-                    itemView.tvState simpleText "Voucher"
+                    itemView.tvState.setText(R.string.voucher)
                 }
                 else -> {
-                    itemView.tvState simpleText "Quà hiện vật"
+                    itemView.tvState.setText(R.string.qua_hien_vat)
                 }
             }
 

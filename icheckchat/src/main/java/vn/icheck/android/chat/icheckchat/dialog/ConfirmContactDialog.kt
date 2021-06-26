@@ -4,7 +4,9 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.widget.FrameLayout
+import vn.icheck.android.chat.icheckchat.R
 import vn.icheck.android.chat.icheckchat.databinding.DialogConfirmContactBinding
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 
 open class ConfirmContactDialog(context: Context, val onAgree: () -> Unit, val onTerm: () -> Unit) : Dialog(context) {
 
@@ -21,6 +23,8 @@ open class ConfirmContactDialog(context: Context, val onAgree: () -> Unit, val o
     }
 
     private fun onInitView() {
+        binding.tvDksd.fillDrawableEndText(R.drawable.ic_arrow_right_blue_24dp_chat)
+
         binding.btnDisagree.setOnClickListener {
             dismiss()
         }

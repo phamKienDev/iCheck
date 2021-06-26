@@ -2,6 +2,7 @@ package vn.icheck.android.screen.user.list_campaign
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -55,7 +56,8 @@ class ListCampaignActivity : BaseActivityMVVM(), ListCampaignCallback {
             finish()
         }
 
-        swipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipe.setOnRefreshListener {
             getData()
