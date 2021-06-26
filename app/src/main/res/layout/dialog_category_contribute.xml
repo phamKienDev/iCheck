@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_dialog"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_dialog">
+        android:layout_height="wrap_content">
 
-        <ImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/btn_clear"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
@@ -21,49 +19,45 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Danh mục"
-            android:textColor="#057DDA"
+            android:text="@string/danh_muc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view9"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_1"
-            android:background="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/btn_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
-            android:text="Xong"
-            android:textColor="#057DDA"
+            android:text="@string/xong"
             app:layout_constraintBottom_toTopOf="@+id/view9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/edt_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:background="@drawable/bg_gray_f0_corners_4"
             android:drawableStart="@drawable/ic_search_gray_24dp"
             android:drawableLeft="@drawable/ic_search_gray_24dp"
             android:drawablePadding="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
-            android:hint="Tìm kiếm"
+            android:hint="@string/tim_kiem"
             android:padding="@dimen/size_6"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_search"
             tools:listitem="@layout/item_category_title" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 
 
     <TextView
@@ -108,4 +102,4 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_ick_category" />
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutBgWhiteRadiusTop16>

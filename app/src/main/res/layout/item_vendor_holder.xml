@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="331dp"
     android:id="@+id/constraintLayout1"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
     android:paddingBottom="@dimen/size_10">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -32,30 +31,24 @@
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSubheader2Secondary
             android:id="@+id/tvNamePage"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:drawablePadding="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center_vertical"
-            android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/font_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvPageCategory"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_3"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toStartOf="@+id/imgDetail"
@@ -94,31 +87,29 @@
         app:layout_constraintStart_toStartOf="@id/view"
         app:layout_constraintTop_toBottomOf="@id/view">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tvPhone"
             style="@style/style_text_barlow_page"
-            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             tools:text="0325.332.201" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@+id/tvDangCapNhatSDT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/size_12"
-            android:drawableStart="@drawable/ic_list_blue_12px"
+            android:drawableStart="@drawable/ic_list_blue_12dp"
             android:visibility="visible"
             android:drawablePadding="@dimen/size_2"
             android:textStyle="italic"
             android:includeFontPadding="false"
-            android:textColor="#B4B4B4"
             android:textSize="@dimen/font_14"
-            android:text="Số điện thoại đang cập nhật"
-            android:drawableLeft="@drawable/ic_list_blue_12px" />
+            android:text="@string/so_dien_thoai_dang_cap_nhat"
+            android:drawableLeft="@drawable/ic_list_blue_12dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@+id/tvAddress"
             style="@style/style_text_barlow_page"
             tools:text="Tầng 12, Diamond Flower Tower, 48 Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội" />
@@ -130,12 +121,12 @@
             android:layout_marginTop="@dimen/size_12"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_list_blue_12px"
-                android:drawableLeft="@drawable/ic_list_blue_12px"
+                android:drawableStart="@drawable/ic_list_blue_12dp"
+                android:drawableLeft="@drawable/ic_list_blue_12dp"
                 android:drawablePadding="@dimen/size_2"
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
@@ -143,7 +134,7 @@
                 android:textSize="@dimen/font_14"
                 tools:text="MST: 5822948" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvDangCapNhatMST"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,9 +143,8 @@
                 android:visibility="visible"
                 android:textStyle="italic"
                 android:includeFontPadding="false"
-                android:textColor="#B4B4B4"
                 android:textSize="@dimen/font_14"
-                android:text="Đang cập nhật"/>
+                android:text="@string/dang_cap_nhat"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -165,4 +155,4 @@
         android:layout_marginTop="@dimen/size_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

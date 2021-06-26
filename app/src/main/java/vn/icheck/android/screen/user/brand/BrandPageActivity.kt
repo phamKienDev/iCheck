@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.brand
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,7 +37,7 @@ class BrandPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        txtTitle.text = "Các nhãn hàng"
+        txtTitle.setText(R.string.cac_nhan_hang)
     }
 
     private fun setUpRecyclerView() {

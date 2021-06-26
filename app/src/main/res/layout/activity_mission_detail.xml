@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_item_search">
+    android:background="@color/gra1y_item_search">
 
 
     <androidx.core.widget.NestedScrollView
@@ -54,16 +54,14 @@
                     android:paddingEnd="@dimen/size_8"
                     android:paddingBottom="@dimen/size_10">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
                         android:id="@+id/tvEnded"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_semi_bold"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/size_20"
                         android:layout_marginBottom="@dimen/size_20"
                         android:text="@string/da_ket_thuc"
-                        android:textColor="@color/colorSecondText"
                         android:textSize="@dimen/font_14"
                         android:visibility="gone" />
 
@@ -90,36 +88,31 @@
                                 android:layout_weight="1"
                                 android:orientation="vertical">
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                                     android:id="@+id/tvTimeTilte"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/barlow_medium"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/colorSecondText"
                                     android:textSize="@dimen/font_12"
                                     tools:text="Thời gian còn lại" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                                     android:id="@id/tvDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/size_2"
                                     android:ellipsize="end"
-                                    android:fontFamily="@font/barlow_semi_bold"
                                     android:includeFontPadding="false"
                                     android:singleLine="true"
-                                    android:textColor="@color/light_blue"
                                     android:textSize="@dimen/font_14"
                                     tools:text="2 ngày, 14 giờ 12 phút" />
                             </LinearLayout>
 
-                            <View
+                            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                                 android:layout_width="@dimen/size_0_5"
-                                android:layout_height="match_parent"
-                                android:background="@color/gray" />
+                                android:layout_height="match_parent" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                                 android:id="@+id/tvGift"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/size_34"
@@ -137,16 +130,14 @@
                                 android:paddingEnd="@dimen/size_15"
                                 android:paddingRight="@dimen/size_15"
                                 android:textAlignment="gravity"
-                                android:textColor="@color/colorAccentRed"
                                 android:textSize="@dimen/font_14"
                                 tools:text="5 Lượt mở quà" />
 
                         </LinearLayout>
 
-                        <View
+                        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                             android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#D8D8D8"/>
+                            android:layout_height="0.5dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -154,25 +145,21 @@
                             android:layout_marginTop="@dimen/size_8"
                             android:orientation="vertical">
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                                 android:id="@+id/tvProgress"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/barlow_semi_bold"
                                 android:includeFontPadding="false"
                                 android:textSize="@dimen/font_14"
-                                android:textColor="#3C5A99"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Tiến độ thực hiện nhiệm vụ: 100%" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                                 android:id="@+id/tvProgressTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_4"
-                                android:fontFamily="@font/barlow_medium"
                                 android:includeFontPadding="false"
-                                android:textColor="@color/colorSecondText"
                                 android:textSize="@dimen/font_14"
                                 android:visibility="gone"
                                 app:layout_constraintTop_toBottomOf="@id/tvProgress"
@@ -192,30 +179,26 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:src="@drawable/ic_mission_barcode_inprogress_24dp" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                                     android:id="@+id/tvProgressTitle"
                                     android:layout_width="@dimen/size_0"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/size_12"
                                     android:layout_marginEnd="@dimen/size_12"
-                                    android:fontFamily="@font/barlow_semi_bold"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/colorNormalText"
                                     android:textSize="@dimen/font_14"
                                     app:layout_constraintEnd_toStartOf="@id/tvProgressCount"
                                     app:layout_constraintStart_toEndOf="@id/imgIcon"
                                     app:layout_constraintTop_toTopOf="@id/imgIcon"
                                     tools:text="Quét mã sản phẩm Quétn phẩm" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                                     android:id="@+id/tvProgressCount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/size_12"
                                     android:layout_marginEnd="@dimen/size_12"
-                                    android:fontFamily="@font/barlow_medium"
                                     android:includeFontPadding="false"
-                                    android:textColor="@color/colorSecondText"
                                     android:textSize="@dimen/font_14"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="@id/tvProgressTitle"
@@ -228,7 +211,6 @@
                                     android:layout_width="@dimen/size_0"
                                     android:layout_height="@dimen/size_8"
                                     android:layout_marginTop="@dimen/size_8"
-                                    android:progressDrawable="@drawable/progress_mission_detail"
                                     app:layout_constraintEnd_toStartOf="@id/tvProgressState"
                                     app:layout_constraintStart_toStartOf="@id/tvProgressTitle"
                                     app:layout_constraintTop_toBottomOf="@id/tvProgressTitle" />
@@ -250,25 +232,22 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@+id/containerGuide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/size_12"
                 android:paddingTop="@dimen/size_10"
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_10">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/huong_dan_thuc_hien"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -283,14 +262,13 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/darkGray1"
                     android:textSize="@dimen/font_14" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@id/layoutProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/size_12"
@@ -298,13 +276,11 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_12">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_san_pham"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -319,19 +295,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_15"
-                    android:drawableRight="@drawable/ic_arrow_down_blue_24px"
+                    android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/xem_tat_ca"
                     android:textColor="@color/light_blue" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@id/layoutCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/size_12"
@@ -339,13 +314,11 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_10">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_danh_muc"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -360,19 +333,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_15"
-                    android:drawableRight="@drawable/ic_arrow_down_blue_24px"
+                    android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/xem_tat_ca"
                     android:textColor="@color/light_blue" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@+id/layoutCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@color/white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/size_12"
@@ -380,13 +352,11 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_10">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/ap_dung_cho_doanh_nghiep"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -401,35 +371,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_15"
-                    android:drawableRight="@drawable/ic_arrow_down_blue_24px"
+                    android:drawableRight="@drawable/ic_arrow_down_blue_24dp"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/xem_tat_ca"
                     android:textColor="@color/light_blue" />
-            </LinearLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layoutDescription"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginBottom="@dimen/size_10"
-                android:background="@color/white"
                 android:paddingStart="@dimen/size_12"
                 android:paddingTop="@dimen/size_7"
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_10">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_12"
-                    android:layout_marginRight="@dimen/size_12"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:includeFontPadding="false"
                     android:text="@string/thong_tin_chi_tiet_chuong_trinh"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="@id/tvViewInfomation"
                     app:layout_constraintEnd_toStartOf="@id/tvViewInfomation"
@@ -445,20 +411,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/tvInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_5"
                     android:ellipsize="end"
-                    android:fontFamily="@font/barlow_medium"
                     android:maxLines="3"
-                    android:textColor="#757575"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvViewInfomation"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing sed do eiusmod tempor. Lorem ipsum dolor sit amet. (hiển thị tối đa 3 dòng) Dẫn về chi tiết chương trình..." />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -478,10 +442,9 @@
             android:layout_height="@dimen/size_4"
             android:background="@drawable/shadow_top" />
 
-        <LinearLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_66"
-            android:background="@color/white"
             android:orientation="vertical"
             android:visibility="visible">
 
@@ -492,13 +455,12 @@
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginEnd="@dimen/size_12"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16"
                 tools:text="@string/quet_ma_ngay" />
-        </LinearLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
     </LinearLayout>
 
     <include
@@ -523,12 +485,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@id/layoutToolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingTop="@dimen/size_32"
         app:layout_constraintTop_toTopOf="parent">
@@ -543,7 +504,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -556,7 +517,6 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgBack"
@@ -569,7 +529,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/size_12"
             app:layout_constraintTop_toBottomOf="@id/imgBack" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

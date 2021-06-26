@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.payment_topup.viewmodel
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import vn.icheck.android.ICheckApplication
@@ -12,6 +11,7 @@ import vn.icheck.android.base.viewmodel.BaseViewModel
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.ICNameValue
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
@@ -47,11 +47,11 @@ class PaymentViewModel : BaseViewModel() {
 
         val listValue = mutableListOf<ICNameValue>()
         if (type == 1) {
-            listValue.add(ICNameValue("Dịch vụ:", "Nạp thẻ điện thoại"))
+            listValue.add(ICNameValue(getString(R.string.dich_vu_colon), getString(R.string.nap_the_dien_thoai)))
         } else {
-            listValue.add(ICNameValue("Dịch vụ:", "Mua mã thẻ điện thoại"))
+            listValue.add(ICNameValue(getString(R.string.dich_vu_colon), getString(R.string.mua_ma_the_dien_thoai)))
         }
-        listValue.add(ICNameValue("Nhà mạng:", card?.provider))
+        listValue.add(ICNameValue(getString(R.string.nha_mang_colon), card?.provider))
         if (type == 1) {
             if (phoneNumber.isNullOrEmpty()) {
                 val replacePhone = SessionManager.session.user?.phone?.let {
@@ -59,13 +59,13 @@ class PaymentViewModel : BaseViewModel() {
                         replace(0, 2, "0")
                     }.toString()
                 }
-                listValue.add(ICNameValue("Nạp cho số:", replacePhone))
+                listValue.add(ICNameValue(getString(R.string.nap_cho_so_colon), replacePhone))
             } else {
-                listValue.add(ICNameValue("Nạp cho số:", phoneNumber))
+                listValue.add(ICNameValue(getString(R.string.nap_cho_so_colon), phoneNumber))
             }
         }
-        listValue.add(ICNameValue("Mệnh giá:", TextHelper.formatMoneyPhay(value?.toLong()) + "đ"))
-        listValue.add(ICNameValue("Phí dịch vụ:", "Miễn phí"))
+        listValue.add(ICNameValue(getString(R.string.menh_gia), getString(R.string.s_d, TextHelper.formatMoneyPhay(value?.toLong()))))
+        listValue.add(ICNameValue(getString(R.string.phi_dich_vu_colon), getString(R.string.mien_phi)))
 
 //        dataIntent.postValue(ICPaymentLocal(value, card?.serviceId, card, listValue, phoneNumber, type))
         dataIntent.postValue(ICPaymentLocal(value, card, listValue, phoneNumber, type))
@@ -112,7 +112,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (obj.data != null && obj.statusCode == "200") {
                         dataBuyCard.postValue(ICPaymentLocal(null, obj.data, null, null, mType))
                     } else {
-                        errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
 
@@ -138,7 +138,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (obj.data != null && obj.statusCode == "200") {
                         dataBuyCard.postValue(ICPaymentLocal(null, obj.data, null, null, mType))
                     } else {
-                        errorData.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        errorData.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                     }
                 }
 
@@ -148,7 +148,7 @@ class PaymentViewModel : BaseViewModel() {
                     if (error?.statusCode != "S50002") {
                         postError(error?.message)
                     } else {
-                        errorData.postValue("Thông tin nhà mạng không đúng.\nVui lòng liên hệ với iCheck để được hỗ trợ!")
+                        errorData.postValue(getString(R.string.thong_tin_khong_dung_vui_long_lien_he_voi_icheck_de_duoc_ho_tro))
                     }
                 }
             })
@@ -181,20 +181,22 @@ class PaymentViewModel : BaseViewModel() {
     fun getDetailCard(orderId: Long) {
         viewModelScope.launch {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                errorMessage.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                errorMessage.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 return@launch
             }
 
             interactor.getDetailCard(orderId, object : ICNewApiListener<ICResponse<ICRechargePhone>> {
                 override fun onSuccess(obj: ICResponse<ICRechargePhone>) {
-                    detailCard.postValue(obj.data)
+                    obj.data?.let {
+                        detailCard.postValue(it)
+                    }
                 }
 
                 override fun onError(error: ICResponseCode?) {
                     if (error?.statusCode != "S50002"){
                         errorMessage.postValue(error?.message)
                     }else{
-                        errorMessage.postValue("Thông tin nhà mạng không đúng.\nVui lòng liên hệ với iCheck để được hỗ trợ!")
+                        errorMessage.postValue(getString(R.string.thong_tin_khong_dung_vui_long_lien_he_voi_icheck_de_duoc_ho_tro))
                     }
                 }
             })
@@ -204,7 +206,7 @@ class PaymentViewModel : BaseViewModel() {
     fun postError(message: String?) {
         statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
         val message = message
-                ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
         errorData.postValue(message)
     }
 

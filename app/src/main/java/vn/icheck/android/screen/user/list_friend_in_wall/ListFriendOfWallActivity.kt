@@ -13,25 +13,25 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_list_friend_of_wall.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionDialog
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.forceShowKeyboard
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.simpleText
 import java.util.concurrent.TimeUnit
 
@@ -49,7 +49,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     private var itemId: Long? = null
 
-    private lateinit var dialog: ReportWrongContributionDialog
+    private lateinit var dialog: ReportDialog
 
     private var disposable: Disposable? = null
 
@@ -65,7 +65,8 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun initView() {
-        txtTitle.text = "Danh sách bạn bè"
+        txtTitle.setText(R.string.danh_sach_ban_be)
+        edtSearch.background=ViewHelper.bgGrayCorners4(this)
     }
 
     private fun listener() {
@@ -111,7 +112,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.listData.observe(this, Observer {
                 adapter.addListData(it)
                 tv_total_friend.visibility = View.VISIBLE
-                tv_total_friend simpleText if (viewModel.friendCount > 0) "${viewModel.friendCount} Bạn bè" else "Bạn bè"
+                tv_total_friend simpleText if (viewModel.friendCount > 0) getString(R.string.d_ban_be, viewModel.friendCount) else getString(R.string.ban_be)
             })
 
             viewModel.isLoadMoreData.observe(this, Observer {
@@ -121,7 +122,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.unFriend.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã hủy kết bạn với $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast( getString(R.string.ban_da_huy_ket_ban_voi_s, nameItem))
                     adapter.removeItem(positionList!!)
                     setResult(RESULT_OK)
                 }
@@ -130,15 +131,15 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
             viewModel.followOrUnFollow.observe(this, Observer {
                 lifecycleScope.launch {
                     delay(100)
-                    this@ListFriendOfWallActivity.showShortSuccessToast("Bạn đã bỏ theo dõi $nameItem")
+                    this@ListFriendOfWallActivity.showShortSuccessToast( getString(R.string.ban_da_bo_theo_doi_s, nameItem))
                 }
             })
 
             viewModel.listReport.observe(this, Observer {
-                dialog = ReportWrongContributionDialog(it, R.string.bao_cao_nguoi_dung_nay, R.string.mo_ta_noi_dung_bao_cao)
+                dialog = ReportDialog(it, R.string.bao_cao_nguoi_dung_nay, R.string.mo_ta_noi_dung_bao_cao)
                 dialog.show(supportFragmentManager, dialog.tag)
 
-                dialog.setListener(object : ReportWrongContributionDialog.DialogClickListener {
+                dialog.setListener(object : ReportDialog.DialogClickListener {
                     override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
                         viewModel.sendReportuser(itemId, listReason, listMessage, message)
                     }
@@ -147,7 +148,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
             viewModel.reportSuccess.observe(this, Observer {
                 dialog.dismiss()
-                val dialogFragment = ReportWrongContributionSuccessDialog(this)
+                val dialogFragment = ReportSuccessDialog(this)
                 dialogFragment.show(it, "")
             })
 
@@ -236,7 +237,6 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
 
     override fun goToChat(item: ICUserFollowWall) {
         ChatSocialDetailActivity.createRoomChat(this@ListFriendOfWallActivity, item.id ?: -1, "user")
-//        SocialChatActivity.createRoomChat(this, item.id)
     }
 
     override fun goToAddFriend(item: ICUserFollowWall, position: Int) {
@@ -267,9 +267,12 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     override fun showBottomSheetMoreAction(item: ICUserFollowWall, position: Int) {
+        this.forceHideKeyboard()
+
         positionList = position
         nameItem = item.getUserName()
         itemId = item.id
+
         object : MoreListFriendDialog(this, item) {
             override fun onClickUnfollow() {
                 dialog.dismiss()
@@ -289,7 +292,7 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
     }
 
     private fun showDialogConfirmUnFriend(item: ICUserFollowWall) {
-        object : ConfirmDialog(this@ListFriendOfWallActivity, "Bạn có chắc chắn hủy kết bạn với ${item.getUserName()} chứ?", null, "Để Sau", "Đồng ý", true) {
+        object : ConfirmDialog(this@ListFriendOfWallActivity, getString(R.string.ban_co_chac_chan_huy_ket_ban_voi_s_chu, item.getUserName()), null, getString(R.string.de_sau), getString(R.string.dong_y), true) {
             override fun onDisagree() {
                 dismiss()
             }

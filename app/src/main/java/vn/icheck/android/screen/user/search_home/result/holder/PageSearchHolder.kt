@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.search_home.result.holder
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +16,13 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
 import vn.icheck.android.network.models.ICPageQuery
-import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.room.entity.ICMyFollowingPage
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -33,6 +31,9 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
     private var isFollow: Boolean? = null
 
     fun bind(obj: ICPageQuery) {
+        itemView.rootView.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(itemView.context)
+        itemView.tv_following.background=ViewHelper.bgGrayCorners4(itemView.context)
+
         WidgetUtils.loadImageUrl(itemView.img_avatar, obj.avatar, R.drawable.ic_business_v2)
         itemView.tv_name.text = if (!obj.name.isNullOrEmpty()) {
             obj.name
@@ -53,8 +54,11 @@ class PageSearchHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflat
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.OPEN_DETAIL_PAGE, obj.id))
         }
 
-        itemView.tv_follow_shop.setOnClickListener {
-            followPage(obj)
+        itemView.tv_follow_shop.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                followPage(obj)
+            }
         }
 
         itemView.tv_following.setOnClickListener {

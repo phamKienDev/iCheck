@@ -43,7 +43,7 @@ class HelpGameFragment : Fragment() {
         webView.settings.useWideViewPort = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.allowUniversalAccessFromFileURLs = true
-        webView.settings.defaultFontSize = 16.spToPx()
+        webView.settings.defaultFontSize = 16
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
@@ -51,9 +51,9 @@ class HelpGameFragment : Fragment() {
     }
 
     private fun setData() {
-        val html = args.description
+        val html = args.description.replace("null", "")
 
-        if (html.isNotEmpty()) {
+        if (!html.isEmpty()) {
             webView.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null)
         } else {
 //            DialogHelper.showNotification(requireContext(), R.string.thong_bao, R.string.co_loi_xay_ra_vui_long_thu_lai, false, object : NotificationDialogListener {

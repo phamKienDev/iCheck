@@ -4,17 +4,17 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_error_history_topup.view.*
-import kotlinx.android.synthetic.main.item_load_more.view.*
 import kotlinx.android.synthetic.main.item_history_suggestion_store.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.network.feature.recharge_phone.RechargePhoneInteractor
 import vn.icheck.android.network.models.history.ICSuggestStoreHistory
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.base.holder.LongMessageHolder
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -151,10 +151,15 @@ class SuggestStoreHistoryAdapter constructor(val view: SuggestStoreHistoryView) 
     class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICSuggestStoreHistory) {
             WidgetUtils.loadImageUrl(itemView.imgAvatar, item.avatar, R.drawable.ic_error_load_shop_40_px, R.drawable.ic_error_load_shop_40_px)
-            itemView.tvNameShop.text = item.name
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvNameShop.text = item.name ?: itemView.context.getString(R.string.dang_cap_nhat)
             itemView.tvCountRating.text = String.format("%.1f", item.rating)
-            itemView.tvCountProductOfShop.text = "Có ${item.numProductSell} sản phẩm có sẵn"
+
+            itemView.tvGoMap.fillDrawableStartText(R.drawable.ic_alternate_16_px,vn.icheck.android.ichecklibs.ColorManager.getSecondaryColorCode(itemView.context))
+
+            itemView.tvCountProductOfShop.fillDrawableEndText(R.drawable.ic_down_light_blue_18_px)
+            item.numProductSell?.let {
+                itemView.tvCountProductOfShop.setText(R.string.co_d_san_pham_co_san, it)
+            }
         }
     }
 }

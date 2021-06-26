@@ -86,8 +86,7 @@ public class MonthYearPickerDialog extends DialogFragment {
         else
             monthPicker.setValue(cal.get(Calendar.MONTH) + 1);
 
-        monthPicker.setDisplayedValues(new String[]{"Tháng một","Tháng hai","Tháng ba","Tháng tư","Tháng năm","Tháng sáu","Tháng bảy",
-                "Tháng tám","Tháng chín","Tháng mười","Tháng mười một","Tháng mười hai"});
+        monthPicker.setDisplayedValues(getActivity().getResources().getStringArray(R.array.thang));
 
 
         dayPicker.setMinValue(1);
@@ -174,7 +173,7 @@ public class MonthYearPickerDialog extends DialogFragment {
                         listener.onDateSet(null, year, monthPicker.getValue(), dayPicker.getValue());
                     }
                 })
-                .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.huy, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         MonthYearPickerDialog.this.getDialog().cancel();
                     }

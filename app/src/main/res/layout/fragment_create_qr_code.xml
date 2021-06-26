@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGray6"
     android:clickable="true"
     android:focusable="true">
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_44"
             android:layout_marginStart="@dimen/size_44"
             android:layout_marginEnd="@dimen/size_44"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/font_18"
             android:textStyle="normal"
             tools:text="Tiêu đề" />
 
@@ -48,7 +43,7 @@
             android:layout_gravity="end"
             android:background="?android:attr/selectableItemBackground"
             android:visibility="gone" />
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layoutText"
@@ -64,7 +59,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtText"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_document_40"
@@ -86,7 +81,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtLink"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_link_40"
@@ -108,7 +103,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtPhone"
             style="@style/Create_Qr_Code_Action_Text"
             android:layout_marginEnd="@dimen/size_5"
@@ -129,7 +124,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtMessage"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_message_40"
@@ -148,7 +143,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtEmail"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_email_40"
@@ -171,7 +166,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtLocation"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_location_40"
@@ -195,7 +190,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtContact"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_contact_40"
@@ -214,7 +209,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtEvent"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_event_40"
@@ -233,7 +228,7 @@
         card_view:cardCornerRadius="@dimen/size_6"
         card_view:cardUseCompatPadding="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
             android:id="@id/txtWifi"
             style="@style/Create_Qr_Code_Action_Text"
             android:drawableTop="@drawable/ic_network_40"
@@ -241,16 +236,14 @@
             android:text="@string/wifi" />
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_20"
-        android:fontFamily="@font/barlow_medium"
         android:singleLine="true"
         android:text="@string/ma_qr_chia_se_thong_tin_cua_ban"
-        android:textColor="#828282"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

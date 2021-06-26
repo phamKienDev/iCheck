@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_error_history_topup.view.*
 import kotlinx.android.synthetic.main.item_history_buy_topup.view.*
@@ -15,6 +14,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -24,6 +24,8 @@ import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.history_buy_topup.view.IHistoryBuyTopupView
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -162,12 +164,14 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
         fun bind(item: ICRechargePhone) {
             WidgetUtils.loadImageFitCenterUrl(itemView.imgTopup, item.avatar)
-
-            itemView.tvNameNetwork.text = "Thẻ ${item.provider}"
+            itemView.layoutImg.background=ViewHelper.bgWhiteStrokeGrayD4Corners8(itemView.context)
+            item.provider?.let {
+                itemView.tvNameNetwork.setText(R.string.the_s, it)
+            }
 
             if (item.denomination is String) {
                 if (!(item.denomination as String).isNullOrEmpty()) {
-                    itemView.tvPriceTopup.text = TextHelper.formatMoneyPhay((item.denomination as String).toLong()) + "đ"
+                    itemView.tvPriceTopup.setText(R.string.s_space_d,  TextHelper.formatMoneyPhay((item.denomination as String).toLong()))
                 } else {
                     itemView.tvPriceTopup.text = itemView.context.getString(R.string.dang_cap_nhat)
                 }
@@ -218,7 +222,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
             interactor.onTickUseTopup(id, object : ICNewApiListener<ICResponse<ICNone>> {
                 override fun onSuccess(obj: ICResponse<ICNone>) {
-                    itemView.context.showShortSuccessToast("Bạn đã đánh dấu đã nạp thẻ này!")
+                    itemView.context.showShortSuccessToast(itemView.context.getString(R.string.ban_da_danh_dau_nap_the_nay))
                     itemView.tvSelectUsed.visibility = View.GONE
                     itemView.view.visibility = View.GONE
                     itemView.tvLoadNow.visibility = View.GONE
@@ -226,7 +230,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
                 }
 
                 override fun onError(error: ICResponseCode?) {
-                    itemView.context.showShortErrorToast( "Bạn đã đánh dấu đã nạp thẻ này!")
+                    itemView.context.showShortErrorToast(itemView.context.getString(R.string.ban_da_danh_dau_nap_the_nay))
                 }
             })
         }
@@ -234,7 +238,7 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
 
     class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -243,7 +247,9 @@ class HistoryBuyTopupAdapter constructor(val view: IHistoryBuyTopupView) : Recyc
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Bạn chưa mua thẻ nào!"
+                    itemView.txtMessage.apply {
+                        text = context.getString(R.string.ban_chua_mua_the_nao)
+                    }
                 }
 
                 Constant.ERROR_SERVER -> {

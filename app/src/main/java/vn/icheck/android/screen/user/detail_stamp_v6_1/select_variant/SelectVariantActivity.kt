@@ -51,9 +51,9 @@ class SelectVariantActivity : BaseActivityMVVM(), ISelectVariantView {
     @SuppressLint("SetTextI18n")
     private fun initHeader() {
         if (StampDetailActivity.isVietNamLanguage == false) {
-            txtTitle.text = "Select Varitation"
+            txtTitle.setText(R.string.select_variation)
         } else {
-            txtTitle.text = "Chọn biến thể"
+            txtTitle.setText(R.string.chon_bien_the)
         }
     }
 
@@ -100,7 +100,7 @@ class SelectVariantActivity : BaseActivityMVVM(), ISelectVariantView {
         when(errorType){
             Constant.ERROR_INTERNET -> {
                 if (StampDetailActivity.isVietNamLanguage == false){
-                    DialogHelper.showConfirm(this@SelectVariantActivity, "Checking network. Please try again", false, object : ConfirmDialogListener {
+                    DialogHelper.showConfirm(this@SelectVariantActivity, getString(R.string.checking_network_please_try_again), false, object : ConfirmDialogListener {
                         override fun onDisagree() {
                             onBackPressed()
                         }

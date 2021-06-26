@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_post_detail.view.*
-import kotlinx.coroutines.coroutineScope
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -22,8 +22,10 @@ import vn.icheck.android.databinding.ItemPostDetailBinding
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.helper.TextHelper.setTextNameProductInPost
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -34,8 +36,6 @@ import vn.icheck.android.network.models.post.ICImageInPost
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -63,7 +63,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
                 binding.tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
         } else {
-            WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84px)
+            WidgetUtils.loadImageUrl(binding.imgLogo, obj.user?.avatar, R.drawable.ic_avatar_default_84dp)
             binding.tvName.apply {
                 text = obj.user?.getName
                 if (obj.user?.kycStatus == 2) {
@@ -126,6 +126,7 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
     }
 
     private fun setupProduct(obj: ICPost) {
+        binding.layoutProduct.background=ViewHelper.bgGrayCorners4(binding.layoutProduct.context)
         if (obj.meta?.product != null) {
             binding.layoutProduct.visibility = View.VISIBLE
 
@@ -209,6 +210,12 @@ class DetailPostHolder(val binding: ItemPostDetailBinding, val listener: IDetail
         } else {
             R.drawable.ic_like_on_24dp
         }, 0, 0, 0)
+
+        binding.tvLike.setTextColor(if (obj.expressive == null) {
+            vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(itemView.context)
+        } else {
+            ContextCompat.getColor(itemView.context, R.color.red_like_question)
+        })
     }
 
     private fun sharePost(obj: ICPost) {

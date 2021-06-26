@@ -1,6 +1,7 @@
 package vn.icheck.android.screen.user.image_asset_page
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -152,7 +153,7 @@ class ImageAssetPageAdapter constructor(val view: IImageAssetPageView) : Recycle
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -161,17 +162,17 @@ class ImageAssetPageAdapter constructor(val view: IImageAssetPageView) : Recycle
             when (errorCode) {
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_emty_history_topup)
-                    itemView.txtMessage.text = "Hiện tại page chưa cập nhật ảnh"
+                    itemView.txtMessage.setText(R.string.hien_tai_page_chua_cap_nhat_anh)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
+                    itemView.txtMessage.setText(R.string.khong_the_truy_cap_vui_long_thu_lai_sau)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.ket_noi_mang_cua_ban_co_van_de_vui_long_thu_lai)
                 }
             }
         }

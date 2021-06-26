@@ -7,18 +7,16 @@
     android:layout_marginEnd="@dimen/size_12"
     android:orientation="vertical">
 
-    <vn.icheck.android.ichecklibs.view.TextCaption
+    <vn.icheck.android.ichecklibs.view.normal_text.TextCaptionNormal
         android:id="@+id/tvTitleDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorNormalText" />
+        android:layout_height="wrap_content" />
 
-    <vn.icheck.android.ichecklibs.view.TextBody1
+    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
         android:id="@+id/edtInputDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:background="@drawable/bg_transparent_corners_4"
         android:drawableEnd="@drawable/ic_outline_date_range_gray_24dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
@@ -28,7 +26,5 @@
         android:paddingEnd="@dimen/size_8"
         android:paddingBottom="@dimen/size_6"
         android:singleLine="true"
-        android:textAlignment="gravity"
-        android:textColor="@color/colorNormalText"
-        android:textColorHint="@color/colorSecondText" />
+        android:textAlignment="gravity" />
 </LinearLayout>

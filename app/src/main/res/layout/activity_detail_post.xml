@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgBack"
             android:layout_width="@dimen/size_44"
             android:layout_height="@dimen/size_44"
             android:background="?android:attr/selectableItemBackground"
             app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-        <vn.icheck.android.ichecklibs.view.TextHeader
+        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/tvNameProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,16 +29,15 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/chi_tiet_bai_viet"
-            android:textColor="#057dda" />
+            android:text="@string/chi_tiet_bai_viet" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/imgAction"
             android:layout_width="@dimen/size_44"
             android:layout_height="@dimen/size_44"
             android:padding="@dimen/size_6"
             android:src="@drawable/ic_more_blue_24px" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -58,11 +55,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewShadow">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRecylerViewWhite
             android:id="@+id/rcvContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:descendantFocusability="blocksDescendants"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -76,12 +72,11 @@
         app:layout_constraintBottom_toTopOf="@id/containerSent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
             android:layout_marginBottom="@dimen/size_2"
-            android:background="@color/gray"
             android:visibility="gone"
             tools:visibility="visible"
             app:layout_constraintTop_toTopOf="parent" />
@@ -162,8 +157,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@color/colorPrimary"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="@color/grayLoyalty"
             app:civ_border_width="@dimen/size_0_5" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -171,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rotation="0"
-            android:src="@drawable/ic_arrow_down_blue_24px" />
+            android:src="@drawable/ic_arrow_down_blue_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerEnter"
@@ -180,7 +174,6 @@
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
             android:layout_weight="1"
-            android:background="@drawable/bg_border_gray_4dp_shop"
             android:orientation="vertical">
 
             <LinearLayout
@@ -199,7 +192,6 @@
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginLeft="@dimen/size_8"
                     android:layout_marginTop="@dimen/size_4"
-                    android:background="@drawable/bg_solid_gray_stroke_1_5_radius_10"
                     android:drawableStart="@drawable/ic_close_gray_18_dp"
                     android:drawableLeft="@drawable/ic_close_gray_18_dp"
                     android:drawablePadding="@dimen/size_4"
@@ -217,7 +209,7 @@
                     tools:text="Trả lời  Đặng Trung Đ  Đặng Trung Đức ặng Trung Đức ặng Trung Đức" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@+id/edtEnter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -231,8 +223,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:hint="@string/viet_binh_luan"
                 android:maxLines="4"
-                android:textColor="@color/darkGray1"
-                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"
@@ -359,7 +349,6 @@
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/size_7"
-            android:background="@drawable/bg_blue_border_6"
             android:orientation="vertical"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/size_4"
@@ -372,7 +361,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_6"
@@ -380,9 +369,7 @@
                     android:layout_marginEnd="@dimen/size_6"
                     android:lineSpacingExtra="@dimen/font_14"
                     android:text="@string/binh_luan_voi_tu_cach"
-                    android:textColor="#757575"
-                    android:textSize="@dimen/font_12"
-                    app:fontFamily="@font/barlow_medium" />
+                    android:textSize="@dimen/font_12" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvPermission"
@@ -396,4 +383,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

@@ -7,16 +7,19 @@ import android.os.Handler
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.*
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_dialog_refuse_gift.*
 import vn.icheck.android.R
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.model.ICNameId
 
 class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
@@ -55,16 +58,23 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
         initView()
         listener()
     }
 
+    private fun setupView() {
+        btnSendRefuse.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(btnSendRefuse.context)
+        edtContent.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokeGrayD4Corners4(btnSendRefuse.context)
+    }
+
     private fun initView() {
         val list = mutableListOf<ICNameId>()
-        list.add(ICNameId(1, "Tôi không hài lòng với giá trị phần quà"))
-        list.add(ICNameId(2, "Phí ship quá cao"))
-        list.add(ICNameId(3, "Phần quà không rõ nguồn gốc"))
-        list.add(ICNameId(4, "Khác"))
+        list.add(ICNameId(1, getString(R.string.toi_khong_hai_long_voi_gia_tri_phan_qua)))
+        list.add(ICNameId(2, getString(R.string.phi_ship_qua_cao)))
+        list.add(ICNameId(3, getString(R.string.phan_qua_khong_ro_nguon_goc)))
+        list.add(ICNameId(4, getString(R.string.khac)))
 
         for (i in list) {
             layoutCheckbox.addView(CheckBox(context).also { radioButton ->
@@ -72,8 +82,8 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
                 radioButton.typeface = ViewHelper.createTypeface(requireContext(), R.font.barlow_medium)
                 radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                 radioButton.setTextColor(ViewHelper.createColorStateList(
-                        ContextCompat.getColor(requireContext(), R.color.colorSecondText),
-                        ContextCompat.getColor(requireContext(), R.color.colorNormalText)))
+                        ColorManager.getNormalTextColor(requireContext()),
+                        ColorManager.getNormalTextColor(requireContext())))
                 radioButton.includeFontPadding = false
                 radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                 radioButton.maxLines = 1
@@ -125,7 +135,7 @@ class RefuseRoundedBottomSheet(val mId: String?) : BottomSheetDialogFragment() {
         if (!inputReason.text?.trim().isNullOrEmpty()) {
             listMessage.add(inputReason.text.toString())
             val id = listMessage.indexOfFirst {
-                it == "Khác"
+                it == getString(R.string.khac)
             }
             listMessage.removeAt(id)
         }

@@ -34,13 +34,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_back_blue_24px" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tao_nhom_chat_moi"
                 android:textAlignment="center"
-                android:textColor="#3C5A99"
                 android:textSize="@dimen/font_18"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:text="Tiếp tục"
+                android:text="@string/tiep_tuc"
                 android:textColor="#62AF58"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
@@ -69,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_12"
                 android:layout_marginRight="@dimen/size_12"
-                android:text="Tạo"
+                android:text="@string/tao"
                 android:textColor="#62AF58"
                 android:textSize="@dimen/font_14"
                 android:visibility="gone"
@@ -81,11 +80,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view35"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_1"
-            android:background="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
@@ -100,7 +98,7 @@
             android:layout_marginRight="@dimen/size_55"
             android:drawableTop="@drawable/no_friend"
             android:drawablePadding="@dimen/size_16"
-            android:text="Danh sách bạn bè trống nên không thể tạo nhóm chat. Vui lòng thử lại sau"
+            android:text="@string/danh_sach_ban_be_trong_nen_khong_the_tao_nhom_chat_vui_long_thu_lai_sau"
             android:textAlignment="center"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

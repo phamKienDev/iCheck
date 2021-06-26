@@ -26,6 +26,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityUpdateInformationFirstBinding
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ValidHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
@@ -70,6 +71,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         StampDetailActivity.listActivities.add(this)
 
         setupToolbar()
+        setupView()
         setupListener()
         setupSearchCustomer()
         checkData()
@@ -82,6 +84,35 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
 
         binding.layoutToolbar.txtTitle.setText(R.string.thong_tin_khach_hang)
     }
+
+    private fun setupView() {
+        ViewHelper.bgTransparentStrokeLineColor1Corners4(this).apply {
+            binding.layoutSelectCity.background=this
+            binding.layoutSelectDistrict.background=this
+            binding.edtPhone.background=this
+            binding.edtName.background=this
+            binding.edtEmail.background=this
+            binding.edtAddress.background=this
+            binding.edtProductCode.background=this
+            binding.edtVariant.background=this
+        }
+
+        vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this).apply {
+            binding.edtPhone.setHintTextColor(this)
+            binding.edtName.setHintTextColor(this)
+            binding.edtEmail.setHintTextColor(this)
+            binding.tvCities.setHintTextColor(this)
+            binding.tvDistricts.setHintTextColor(this)
+            binding.edtAddress.setHintTextColor(this)
+            binding.edtProductCode.setHintTextColor(this)
+            binding.edtVariant.setHintTextColor(this)
+        }
+
+        binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
+        binding.tvViewVerifiedPhoneNumber.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this))
+    }
+
+
 
     private fun setupListener() {
         binding.layoutSelectCity.setOnClickListener {
@@ -620,7 +651,7 @@ class UpdateInformationFirstActivity : BaseActivityMVVM(), IUpdateInformationFir
         for (act in StampDetailActivity.listActivities) {
             act.finish()
             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
-            showShortSuccess("Cập nhật thông tin thành công")
+            showShortSuccess(getString(R.string.cap_nhat_thong_tin_thanh_cong))
         }
     }
 

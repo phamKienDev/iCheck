@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 
 class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -169,6 +170,8 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
 
     private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ICUserFollowWall) {
+            setupView()
+
             when (item.userRelationStatus) {
                 //Chưa là bạn bè
                 1 -> {
@@ -220,11 +223,28 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                 }
             }
         }
+
+        private fun setupView() {
+            itemView.imgMore.fillDrawableColor(R.drawable.ic_more_disable_24dp)
+            itemView.btnRefuseFriend.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
+            }
+
+            vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                itemView.tvChat.background = this
+                itemView.tvAddFriend.background = this
+                itemView.layoutAccept.background = this
+            }
+
+            itemView.tvSendRequest.apply {
+                background = vn.icheck.android.ichecklibs.ViewHelper.bgGrayCorners4(context)
+            }
+        }
     }
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            itemView.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            itemView.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -239,28 +259,28 @@ class ListFriendOfWallAdapter(val view: ListFriendListener) : RecyclerView.Adapt
                     layoutParams.setMargins(SizeHelper.size50, SizeHelper.size12, SizeHelper.size50, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
                     itemView.txtMessage2.layoutParams = layoutParams
-                    itemView.txtMessage2.text = itemView.context.getString(R.string.xin_loi_chung_toi_khong_the_tim_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
+                    itemView.txtMessage2.setText(R.string.xin_loi_chung_toi_khong_the_tim_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
                 }
 
                 Constant.ERROR_EMPTY -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.ban_chua_co_ban_be_nao)
+                    itemView.txtMessage.setText(R.string.ban_chua_co_ban_be_nao)
 
                     val layoutParams = ViewHelper.createLayoutParams()
                     layoutParams.setMargins(SizeHelper.size67, SizeHelper.size6, SizeHelper.size67, 0)
                     itemView.txtMessage2.visibility = View.VISIBLE
-                    itemView.txtMessage2.text = "Kết bạn bốn phương để cùng thảo luận về sản phẩm chính hãng nhé"
+                    itemView.txtMessage2.setText(R.string.ket_ban_bon_phuong_de_cung_thao_luan_ve_san_pham_chinh_hang)
                 }
 
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    itemView.txtMessage.setText(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     itemView.txtMessage2.visibility = View.INVISIBLE
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessage.text = itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    itemView.txtMessage.setText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                     itemView.txtMessage2.visibility = View.INVISIBLE
                 }
             }

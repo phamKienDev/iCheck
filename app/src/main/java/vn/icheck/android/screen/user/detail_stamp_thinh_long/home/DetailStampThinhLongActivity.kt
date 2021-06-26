@@ -8,7 +8,6 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,6 +27,7 @@ import vn.icheck.android.fragments.ProductReviewsBottomDialog
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICCriteria
@@ -75,6 +75,9 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
         INSTANCE = this
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        btnRequestPermission.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+        btnEnableLocation.background=ViewHelper.bgWhiteStrokeSecondary1Corners40(this)
+
         setupRecyclerView()
         setupSwipeLayout()
         setupViewModel()
@@ -91,7 +94,8 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true
@@ -281,7 +285,7 @@ class DetailStampThinhLongActivity : BaseActivityMVVM(), SlideHeaderStampHoaPhat
         if (email != null) {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:$email")
-            startActivity(Intent.createChooser(intent, "Send To"))
+            startActivity(Intent.createChooser(intent, getString(R.string.send_to)))
         }
     }
 

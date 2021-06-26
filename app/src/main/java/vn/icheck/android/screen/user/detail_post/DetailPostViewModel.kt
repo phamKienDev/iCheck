@@ -17,6 +17,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.feature.post.PostInteractor
@@ -25,7 +26,6 @@ import vn.icheck.android.network.models.*
 import vn.icheck.android.network.models.chat.Stickers
 import vn.icheck.android.network.models.upload.UploadResponse
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.util.kotlin.ToastUtils
 import java.io.File
 
 class DetailPostViewModel : ViewModel() {
@@ -83,14 +83,14 @@ class DetailPostViewModel : ViewModel() {
                 getListPermission()
             }
             else -> {
-                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
             }
         }
     }
 
     private fun getPostDetail() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
         onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_SHOW_LOADING))
@@ -99,7 +99,9 @@ class DetailPostViewModel : ViewModel() {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
 
                 if (obj.data != null) {
-                    onDetailPost.postValue(obj.data)
+                    obj.data?.let {
+                        onDetailPost.postValue(it)
+                    }
                     post = obj.data
                     involeType = obj.data!!.involveType
                 } else {
@@ -123,7 +125,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun getListComment(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -253,7 +255,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun getListChildComment(obj: ICCommentPostMore) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -310,16 +312,16 @@ class DetailPostViewModel : ViewModel() {
                             Constant.IMAGE
                         }
                         if (parent == null) {
-                            postComment(pageId, message, ICMedia(obj.src, typeMedia))
+                            postComment(pageId, message, ICMedia(obj.src, type= typeMedia))
                         } else {
-                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, typeMedia))
+                            postChildComment(pageId, message, parent as ICCommentPost, ICMedia(obj.src, type= typeMedia))
                         }
                     }
 
                     override fun onError(error: ICBaseResponse?) {
                         onError.postValue(ICError(R.drawable.ic_error_request,
                                 error?.message
-                                        ?: ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
+                                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null))
                     }
                 })
             } else {
@@ -330,11 +332,11 @@ class DetailPostViewModel : ViewModel() {
 
     fun postComment(pageId: Long?, message: String, media: ICMedia? = null) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
-        postInteractor.commentPost(postId, message, pageId, media, object : ICNewApiListener<ICResponse<ICCommentPost>> {
+        postInteractor.commentPost(postId, message, pageId, media,post?.involveType, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
                 if (obj.data != null) {
@@ -342,7 +344,9 @@ class DetailPostViewModel : ViewModel() {
                     //cho phép hiện trả lời
                     obj.data!!.isReply = isReply
                     obj.data!!.involveType = involeType
-                    onPostComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostComment.postValue(it)
+                    }
                     addCommentPostData(obj.data!!)
                 }
             }
@@ -362,7 +366,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun postChildComment(pageId: Long?, message: String, parent: ICCommentPost, media: ICMedia? = null) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -372,8 +376,9 @@ class DetailPostViewModel : ViewModel() {
                 if (obj.data != null) {
                     obj.data!!.marginTop = SizeHelper.size3
                     obj.data!!.marginStart = SizeHelper.size36
-
-                    onPostChildComment.postValue(obj.data)
+                    obj.data?.let {
+                        onPostChildComment.postValue(it)
+                    }
                 }
             }
 
@@ -391,13 +396,15 @@ class DetailPostViewModel : ViewModel() {
 
     fun deleteComment(comment: ICCommentPost) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
         interactor.deleteComment(comment.id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
-                onDeleteComment.postValue(obj.data)
+                obj.data?.let {
+                    onDeleteComment.postValue(it)
+                }
                 deleteCommentPostData(comment)
             }
 
@@ -405,7 +412,7 @@ class DetailPostViewModel : ViewModel() {
                 val message = if (error?.message.isNullOrEmpty()) {
                     error?.message!!
                 } else {
-                    ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
                 onError.postValue(ICError(R.drawable.ic_error_request, message, null, null))
             }
@@ -415,7 +422,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun pinPost(objPost: ICPost, isPin: Boolean) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -445,7 +452,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun deletePost(id: Long) {
         if (NetworkHelper.isNotConnected(ICheckApplication.currentActivity())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
@@ -455,7 +462,9 @@ class DetailPostViewModel : ViewModel() {
         postInteractor.deletePost(id, object : ICNewApiListener<ICResponse<ICCommentPost>> {
             override fun onSuccess(obj: ICResponse<ICCommentPost>) {
                 onStatus.postValue(ICMessageEvent(ICMessageEvent.Type.ON_CLOSE_LOADING))
-                onDeletePost.postValue(obj.data)
+                obj.data?.let {
+                    onDeletePost.postValue(it)
+                }
             }
 
             override fun onError(error: ICResponseCode?) {
@@ -472,7 +481,7 @@ class DetailPostViewModel : ViewModel() {
 
     fun likePost() {
         if (NetworkHelper.isNotConnected(ICheckApplication.currentActivity())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 

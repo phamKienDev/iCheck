@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/size_8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_time"
-        tools:src="@drawable/ic_avatar_default_84px" />
+        tools:src="@drawable/ic_avatar_default_84dp" />
 
     <TextView
         android:id="@+id/tv_message"
@@ -33,13 +33,12 @@
         app:layout_constraintTop_toBottomOf="@id/tv_time"
         tools:text="Hôm nay bạn có việc bận à?ng thấy nghe máy." />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
-        android:textColor="#B4B4B4"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toEndOf="@+id/user_avatar"
         app:layout_constraintTop_toTopOf="parent"

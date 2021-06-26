@@ -12,53 +12,51 @@ import retrofit2.Callback
 import retrofit2.Response
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.ICNetworkClient
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.feature.base.BaseInteractor
-import vn.icheck.android.network.models.ICMedia
 import vn.icheck.android.network.models.upload.UploadResponse
 import java.io.File
 import java.util.*
-import kotlin.collections.HashMap
 
 object ImageHelper : BaseInteractor() {
 
     val thumbSmallSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_small_size)
+            return getString(R.string.thumb_small_size)
         }
 
     val thumbMediumSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_medium_size)
+            return getString(R.string.thumb_medium_size)
         }
 
     val thumbLargeSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.thumb_large_size)
+            return getString(R.string.thumb_large_size)
         }
 
     val smallSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.small_size)
+            return getString(R.string.small_size)
         }
 
     val mediumSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.medium_size)
+            return getString(R.string.medium_size)
         }
 
     val largeSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.large_size)
+            return getString(R.string.large_size)
         }
 
     val originalSize: String
         get() {
-            return ICheckApplication.getInstance().getString(R.string.original_size)
+            return getString(R.string.original_size)
         }
 
     /**
@@ -113,7 +111,7 @@ object ImageHelper : BaseInteractor() {
                 } else {
                     val error = ICBaseResponse()
                     error.statusCode = -1
-                    error.message = ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    error.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                     listener.onError(error)
                 }
             }
@@ -121,7 +119,7 @@ object ImageHelper : BaseInteractor() {
             override fun onFailure(call: Call<ICResponse<UploadResponse>>, t: Throwable) {
                 val error = ICBaseResponse()
                 error.statusCode = -1
-                error.message = ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                error.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 listener.onError(error)
             }
         })

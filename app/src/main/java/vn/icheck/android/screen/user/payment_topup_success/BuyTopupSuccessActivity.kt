@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.payment_topup_success
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_buy_topup_success.*
 import org.greenrobot.eventbus.EventBus
@@ -12,6 +11,7 @@ import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -19,6 +19,8 @@ import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.screen.user.recharge_phone.RechargePhoneActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class BuyTopupSuccessActivity : BaseActivityMVVM() {
     lateinit var viewModel: PaymentViewModel
@@ -49,7 +51,7 @@ class BuyTopupSuccessActivity : BaseActivityMVVM() {
         val data = intent.getLongExtra(Constant.DATA_2, -1)
 
         if (data != -1L){
-            tvTypePayment.text = "VNPAY"
+            tvTypePayment.setText(R.string.vnpay)
             viewModel.getDetailCard(data)
         }else{
             onBackPressed()
@@ -73,10 +75,13 @@ class BuyTopupSuccessActivity : BaseActivityMVVM() {
             }
         }
 
-        btnTopupAgain.setOnClickListener {
-            for (act in RechargePhoneActivity.listActivities) {
-                act.finish()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+        btnTopupAgain.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                for (act in RechargePhoneActivity.listActivities) {
+                    act.finish()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+                }
             }
         }
 
@@ -101,17 +106,22 @@ class BuyTopupSuccessActivity : BaseActivityMVVM() {
     }
 
     fun setDataView(data: ICRechargePhone) {
-        tvMessageSuccess.text = "Quý khách đã nạp thành công \n 1 mã thẻ điện thoại " + data?.provider
+        data.provider?.let {
+            tvMessageSuccess.setText(
+                R.string.quy_khach_da_nap_thanh_cong_mot_ma_the_dien_thoai_s,
+                it
+            )
+        }
 
-        tvName.text = data?.provider
+        tvName.text = data.provider
 
         if (data.denomination is String) {
             if (vnPayType) {
-                tvTotal.text = TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " đ"
-                tvTypePayment.text = "VNPAY"
+                tvTotal.setText(R.string.s_space_d, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
+                tvTypePayment.setText(R.string.vnpay)
             } else {
-                tvTotal.text = TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " Xu"
-                tvTypePayment.text = "Ví iCheck"
+                tvTotal.setText(R.string.s_xu, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
+                tvTypePayment.setText(R.string.vi_icheck)
             }
         }
 

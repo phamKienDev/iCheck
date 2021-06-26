@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_detail_survey_question.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICQuestions
 import vn.icheck.android.network.models.ICReqDirectSurvey
 import vn.icheck.android.screen.user.campaign.calback.IOptionListener
@@ -67,7 +68,10 @@ class DetailSurveyQuestionAdapter : RecyclerView.Adapter<DetailSurveyQuestionAda
     inner class ViewHolder(view: View) : BaseViewHolder<ICQuestions>(view) {
 
         override fun bind(obj: ICQuestions) {
-            itemView.txtTitle.text = itemView.context.getString(R.string.cau_xxx, (adapterPosition + 1).toString())
+            itemView.txtTitle.apply {
+                background = ViewHelper.bgSecondaryCornersTop10(context)
+                text = itemView.context.getString(R.string.cau_s, (adapterPosition + 1).toString())
+            }
             itemView.txtContent.text = obj.title
 
             itemView.recyclerView.layoutManager = CustomLinearLayoutManager(itemView.context)

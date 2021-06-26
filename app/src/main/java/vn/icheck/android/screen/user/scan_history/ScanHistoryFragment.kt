@@ -41,7 +41,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICValidStampSocial
 import vn.icheck.android.network.models.history.ICBigCorp
@@ -113,11 +115,18 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
     }
 
     private fun initView() {
+        setupView()
+
         viewModel.getData()
 
         swipe_container.setOnRefreshListener {
             getData()
         }
+    }
+
+    private fun setupView() {
+        tvCountCart.background=ViewHelper.bgCircleWhiteCountCard22dp(requireContext())
+        btnGps.background = ViewHelper.bgPrimaryCorners4(requireContext())
     }
 
     fun getData(isLogout: Boolean? = false) {
@@ -130,7 +139,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                     val i = it.data
                     when {
                         i ?: 0 > 9 -> {
-                            tvCountCart.text = "9+"
+                            tvCountCart.setText(R.string.count_9)
                             tvCountCart.beVisible()
                         }
                         i ?: 0 > 0 -> {
@@ -247,7 +256,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             override fun onGoToEmail(target: String?, content: String?) {
                 startActivity(Intent.createChooser(Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:$target")
-                }, "Send Email"))
+                }, getString(R.string.send_to)))
             }
 
             override fun onGoToLink(target: String?, content: String?) {
@@ -349,7 +358,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
     private fun handleQr(type: Int, data: String) {
         when (type) {
             Constant.TYPE_URL -> {
-                WebViewActivity.start(requireActivity(), data, 0, "Chi tiết Qr Code")
+                WebViewActivity.start(requireActivity(), data, 0, getString(R.string.chi_tiet_qr_code))
             }
             Constant.TYPE_SMS -> {
                 Handler().postDelayed({
@@ -459,7 +468,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=$a"))
                             startActivity(intent)
                         } catch (exception: ActivityNotFoundException) {
-                            requireContext().showShortErrorToast("Không tìm thấy ứng dụng google map!")
+                            requireContext().showShortErrorToast(getString(R.string.khong_tim_thay_ung_dung_google_map))
                         }
                     }
                 }, 800)
@@ -587,7 +596,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
         if (item.id != null) {
             listIdBigCorp.add(item.id!!)
         }
-        if (item.name != "Tất cả") {
+        if (item.name != getString(R.string.tat_ca)) {
             adapter?.hideSuggestShop()
         } else {
             adapter?.showSuggest()
@@ -633,14 +642,14 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             R.id.btnNearest -> {
                 checkTextOnTick(btnNearest, btnfurthest, isNearest = true, isFurthest = false)
                 showCategory(false)
-                tvSort.text = ("Sắp xếp: Mới nhất")
+                tvSort.setText(R.string.sap_xep_moi_nhat)
                 sort = 2
                 viewModel.getListScanHistory(sort, listIdBigCorp, listType, false)
             }
             R.id.btnfurthest -> {
                 checkTextOnTick(btnNearest, btnfurthest, isNearest = false, isFurthest = true)
                 showCategory(false)
-                tvSort.text = ("Sắp xếp: Cũ nhất")
+                tvSort.setText(R.string.sap_xep_cu_nhat)
                 sort = 1
                 viewModel.getListScanHistory(sort, listIdBigCorp, listType, false)
             }
@@ -729,12 +738,12 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
             ICMessageEvent.Type.ON_TICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_24px)
                 imgDot.beVisible()
-                tvFilter.setTextColor(Color.parseColor("#057DDA"))
+                tvFilter.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             }
             ICMessageEvent.Type.ON_UNTICK_HISTORY -> {
                 imgFilterHis.setImageResource(R.drawable.ic_filter_gray_24_px)
                 imgDot.beInvisible()
-                tvFilter.setTextColor(Color.parseColor("#757575"))
+                tvFilter.setTextColor(ColorManager.getSecondTextColor(requireContext()))
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
                 listType.clear()
@@ -760,7 +769,8 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
 
         if (!isCreateView) {
             layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
-            swipe_container.setColorSchemeColors(ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary), ContextCompat.getColor(ICheckApplication.getInstance(), R.color.colorPrimary))
+            val primaryColor = ColorManager.getPrimaryColor(requireContext())
+            swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
             if (!checkAllowPermission || !NetworkHelper.isOpenedGPS(requireContext())) {
                 containerGps.visibility = View.VISIBLE
@@ -791,7 +801,7 @@ class ScanHistoryFragment : BaseFragmentMVVM(), View.OnClickListener, IScanHisto
                     val i = it.data
                     when {
                         i ?: 0 > 9 -> {
-                            tvCountCart.text = "9+"
+                            tvCountCart.setText(R.string.count_9)
                             tvCountCart.beVisible()
                         }
                         i ?: 0 > 0 -> {

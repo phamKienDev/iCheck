@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.msp_holder.view.*
 import vn.icheck.android.R
 import vn.icheck.android.fragments.ecard.PurchaseCardFragment
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.topup.TopupServices
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -86,7 +87,7 @@ class McardAdapter : RecyclerView.Adapter<McardAdapter.NetworkHolder>() {
         fun bind(price: String) {
             itemView.imgIcon.visibility = View.GONE
             itemView.tvPrice.visibility = View.VISIBLE
-            itemView.tvPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(price))
+            itemView.tvPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(price))
 
             if (selectedPosition != -1) {
                 PurchaseCardFragment.INSTANCE?.changePrice(listData[servicePosition].denomination[selectedPosition])
@@ -101,7 +102,7 @@ class McardAdapter : RecyclerView.Adapter<McardAdapter.NetworkHolder>() {
                 itemView.tvPrice.setTextColor(Color.parseColor("#434343"))
             } else {
                 itemView.layoutContent.setBackgroundResource(R.drawable.bg_default_card_loyalty)
-                itemView.tvPrice.setTextColor(Color.parseColor("#b4b4b4"))
+                itemView.tvPrice.setTextColor(ColorManager.getDisableTextColor(itemView.context))
             }
         }
 

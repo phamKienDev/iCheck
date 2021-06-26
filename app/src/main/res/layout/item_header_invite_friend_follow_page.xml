@@ -26,18 +26,16 @@
             android:layout_marginBottom="@dimen/size_5"
             android:src="@drawable/img_emoji_65dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_16"
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_12"
             android:layout_weight="1"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="top"
             android:includeFontPadding="false"
-            android:text="Khi mọi người theo dõi Trang bạn mời, những người khác sẽ dễ dàng tìm thấy Trang và xem bài viết nhiều hơn."
-            android:textColor="@color/colorSecondText"
+            android:text="@string/khi_moi_nguoi_theo_doi_trang_ban_moi_nhung_nguoi_khac_se_de_dang_tim_thay_trang_va_xem_bai_viet_nhieu_hon"
             android:textSize="@dimen/font_14" />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -48,7 +46,7 @@
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvSpam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,53 +55,45 @@
         android:layout_marginRight="@dimen/size_12"
         android:layout_weight="1"
         android:background="@drawable/bg_red_opacity_corners_4"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="top"
         android:includeFontPadding="false"
         android:padding="@dimen/size_12"
-        android:text="Để tránh spam, chúng tôi sẽ giới hạn số lời mời có thể gửi đi trong ngày. Hãy gửi lời mời hôm nay rồi mai quay lại gửi thêm nhé!"
-        android:textColor="@color/colorSecondText"
+        android:text="@string/de_tranh_spam_chung_toi_se_gioi_han_so_loi_moi_co_the_gui_di_trong_ngay_hay_gui_loi_moi_hom_nay_roi_mai_quay_lai_gui_them_nhe"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
         android:id="@+id/tvFriendCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_14"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/colorSecondary"
         android:textSize="@dimen/font_16"
-        android:text="sadfsadf"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSpam" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_2"
-        android:fontFamily="@font/barlow_medium"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:text="Để tránh spam, chúng tôi sẽ giới hạn tối đa 50 lời mời có thể gửi đi trong ngày. Hãy gửi lời mời tới những người bạn thân thiết nhé!"
-        android:textColor="@color/colorSecondText"
+        android:text="@string/de_tranh_spam_chung_toi_se_gioi_han_toi_da_50_loi_moi_co_the_gui_di_trong_ngay_hay_gui_loi_moi_toi_nhung_nguoi_ban_than_thiet_nhe"
         android:textSize="@dimen/font_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFriendCount" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/view45"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_0_5"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:background="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNote" />
 

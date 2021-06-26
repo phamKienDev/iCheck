@@ -15,13 +15,13 @@ class RelatedPageHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
 
         when (type) {
             Constant.PAGE_BRAND_TYPE -> {
-                itemView.tvTitle.text = "Trang liên quan"
+                itemView.tvTitle.setText(R.string.trang_lien_quan)
             }
             Constant.PAGE_EXPERT_TYPE -> {
-                itemView.tvTitle.text = "Gợi ý cho bạn"
+                itemView.tvTitle.setText(R.string.goi_y_cho_ban)
             }
             Constant.PAGE_ENTERPRISE_TYPE -> {
-                itemView.tvTitle.text = "Trang liên quan"
+                itemView.tvTitle.setText(R.string.trang_lien_quan)
             }
         }
 

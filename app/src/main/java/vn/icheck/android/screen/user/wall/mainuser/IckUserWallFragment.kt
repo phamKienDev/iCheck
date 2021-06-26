@@ -38,6 +38,9 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.post.IPostListener
 import vn.icheck.android.constant.*
 import vn.icheck.android.databinding.FragmentUserWallBinding
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.model.ApiErrorResponse
@@ -55,6 +58,7 @@ import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICFriendInvitationMeUserId
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
+import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.commentpost.CommentPostActivity
 import vn.icheck.android.screen.user.createpost.CreateOrUpdatePostActivity
 import vn.icheck.android.screen.user.detail_media.DetailMediaActivity
@@ -65,7 +69,7 @@ import vn.icheck.android.screen.user.list_friend_in_wall.ListFriendOfWallActivit
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.listnotification.friendrequest.ListFriendRequestActivity
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
-import vn.icheck.android.screen.user.product_detail.product.wrongcontribution.ReportWrongContributionSuccessDialog
+import vn.icheck.android.screen.dialog.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.EDIT_MY_PUBLIC_INFO
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.screen.user.wall.OPEN_INFOR
@@ -74,7 +78,7 @@ import vn.icheck.android.screen.user.wall.friend_wall_setting.FriendWallSettings
 import vn.icheck.android.screen.user.wall.report_user.ReportUserDialog
 import vn.icheck.android.util.ick.*
 
-class IckUserWallFragment : Fragment(), IPostListener {
+class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
     private var _binding: FragmentUserWallBinding? = null
     private var isActivityVisble = false
     private var requestLogin = 11
@@ -110,9 +114,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         createPost()
                     }
                     USER_WALL_OPEN_SCAN -> {
-//                        val i = Intent(requireContext(), ICKScanActivity::class.java)
-//                        requireActivity().finish()
-//                        startActivity(i)
                         if (ContextCompat.checkSelfPermission(
                                         requireActivity(),
                                         Manifest.permission.CAMERA
@@ -125,8 +126,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         } else {
                             V6ScanditActivity.reviewOnly(requireActivity())
                         }
-
-//                        ICKScanActivity.reviewOnly(requireActivity())
                     }
                     EDIT_POST -> {
                         hideBottomBar()
@@ -177,9 +176,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
-                                    requireContext().showShortErrorToast(error?.message
-                                            ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
-//                        ToastUtils.showLongError(activity, R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    requireContext().showShortErrorToast(error?.message ?: requireContext().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                                 }
                             })
                         } else {
@@ -284,7 +281,8 @@ class IckUserWallFragment : Fragment(), IPostListener {
             EventBus.getDefault().register(this)
         }
         binding.root.isRefreshing = true
-        binding.root.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorSecondary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        binding.root.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
         binding.root.setOnRefreshListener {
             binding.root.isRefreshing = true
             ickUserWallViewModel.reachedEnd = false
@@ -294,7 +292,9 @@ class IckUserWallFragment : Fragment(), IPostListener {
         binding.btnBack.setOnClickListener {
             activity?.finish()
         }
-        ickUserWallAdapter = IckUserWallAdapter(this)
+
+        binding.tvNotificationCount.background= ViewHelper.bgRedCircle22dp(requireContext())
+        ickUserWallAdapter = IckUserWallAdapter(this,this)
         binding.rcvIckUserWall.adapter = ickUserWallAdapter
         binding.rcvIckUserWall.layoutManager = WrapContentLinearLayoutManager(requireContext())
 
@@ -302,7 +302,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val totalItemCount = binding.rcvIckUserWall.layoutManager!!.itemCount
                 val linearLayoutManager = binding.rcvIckUserWall.layoutManager!! as LinearLayoutManager
                 val pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition()
 
@@ -313,12 +312,13 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 if (pastVisibleItems > 1) {
                     if (!showToolbar) {
                         binding.toolbar.title simpleText ickUserWallViewModel.userInfo?.data?.createICUser()?.getName
-                        binding.toolbar.background = ColorDrawable(Color.WHITE)
-                        binding.toolbar.btn_back.setImageResource(R.drawable.ic_back_blue_24px_new)
+                        binding.toolbar.setBackgroundColor(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundWhiteColor(requireContext()))
+                        binding.toolbar.btn_back.fillDrawableColor(R.drawable.ic_back_blue_24px_new)
+
                         if (ickUserWallViewModel.userInfo?.data?.id!=SessionManager.session.user?.id) {
-                            binding.notify.setImageResource(R.drawable.ic_home_blue_v2_24px)
+                            binding.notify.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
                         } else {
-                            binding.notify.setImageResource(R.drawable.ic_homenoti_empty_blue_24px)
+                            binding.notify.fillDrawableColor(R.drawable.ic_homenoti_empty_blue_24px)
                         }
                         binding.titleDiv.beVisible()
                         if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {
@@ -357,21 +357,9 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
             if (ickUserWallViewModel.updatePost == 0) {
                 ickUserWallAdapter.updateList(it)
-//                if (ickUserWallViewModel.arrPost.size < ickUserWallViewModel.totalPost) {
-//                    ickUserWallAdapter.addPosts(ickUserWallViewModel.arrPost)
-//                } else {
-//                    ickUserWallViewModel.updatePost = 0
-//                    if (it.size < ickUserWallViewModel.totalPost + 4) {
-//                        ickUserWallAdapter.updateList(it)
-//                    }
-//                }
             } else {
                 ickUserWallViewModel.updatePost = 0
                 ickUserWallAdapter.addPosts(ickUserWallViewModel.arrPost)
-
-//                if (it.size < ickUserWallViewModel.totalPost + 4) {
-//                    ickUserWallAdapter.updateList(it)
-//                }
             }
             setNotify()
         })
@@ -398,10 +386,13 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
         }
         ickUserWallViewModel.mErr.observe(viewLifecycleOwner) {
-            requireContext() showShortErrorToast it
+            if (ickUserWallAdapter.listData.size>1) {
+                requireContext() showShortErrorToast it
+            }else{
+                ickUserWallAdapter.setError(R.drawable.ic_error_request,it)
+            }
         }
         ickUserWallViewModel.showSuccessReport.observe(viewLifecycleOwner, Observer {
-//            ReportUserSuccessDialog().show(childFragmentManager, null)
             val listReason = ickUserWallViewModel.arrReport.filter { it.checked }.map { ICReportForm(null, it.data?.name) }.toMutableList()
             ickUserWallViewModel.arrReport.lastOrNull()?.content?.let { content ->
                 if (content.isNotEmpty()) {
@@ -414,7 +405,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 }
             }
 
-            ReportWrongContributionSuccessDialog(requireContext()).apply {
+            ReportSuccessDialog(requireContext()).apply {
                 show(listReason)
             }
         })
@@ -438,14 +429,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 putExtra(USER_WALL_BROADCAST, USER_WALL_EDIT_PERSONAL)
             })
         }
-//        if (ickUserWallViewModel.userInfo?.data?.id == SessionManager.session.user?.id) {
-//            RelationshipManager.getFriendList().observe(viewLifecycleOwner, {
-//                if (it.size != ickUserWallViewModel.totalFriend) {
-//                    ickUserWallViewModel.updateFriendList()
-//                    ickUserWallAdapter.notifyFriendList()
-//                }
-//            })
-//        }
     }
 
 
@@ -457,11 +440,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
             when {
                 RelationshipManager.unreadNotify > 9 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount.setText("9+")
+                    binding.tvNotificationCount.setText(R.string.count_9)
                 }
                 RelationshipManager.unreadNotify > 0 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount.setText(RelationshipManager.unreadNotify.toString())
+                    binding.tvNotificationCount.text = RelationshipManager.unreadNotify.toString()
                 }
                 else -> binding.tvNotificationCount.beInvisible()
             }
@@ -474,7 +457,6 @@ class IckUserWallFragment : Fragment(), IPostListener {
             ICMessageEvent.Type.FRIEND_LIST_UPDATE -> {
                 if (event.data as Int == RelationshipManager.FRIEND_LIST_UPDATE) {
                     getLayout()
-//                    ickUserWallAdapter.notifyFriendList()
                 }
             }
             ICMessageEvent.Type.SHOW_FULL_MEDIA -> {
@@ -518,7 +500,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
             }
             ICMessageEvent.Type.UNFRIEND -> {
                 if (isActivityVisble) {
-                    requireContext().showShortSuccessToast("Bạn đã hủy kết bạn với ${ickUserWallViewModel.userInfo?.data?.getName()}")
+                    requireContext().showShortSuccessToast(getString(R.string.ban_da_huy_ket_ban_voi_s, ickUserWallViewModel.userInfo?.data?.getName()))
                 }
             }
             ICMessageEvent.Type.ERROR_SERVER -> {
@@ -541,7 +523,7 @@ class IckUserWallFragment : Fragment(), IPostListener {
                         val icViewModel = PostViewModel(post)
                         ickUserWallViewModel.addView(ickUserWallViewModel.posCreatePost + 1, icViewModel)
                         ickUserWallAdapter.addPost(ickUserWallViewModel.posCreatePost + 1, icViewModel)
-                        requireContext().showShortSuccessToast("Bạn đã tạo bài viết thành công!")
+                        requireContext().showShortSuccessToast(getString(R.string.ban_da_tao_bai_viet_thanh_cong))
                     }
                 }
                 EDIT_MY_PUBLIC_INFO -> {
@@ -572,9 +554,18 @@ class IckUserWallFragment : Fragment(), IPostListener {
     }
 
     private fun getLayout() {
-        ickUserWallViewModel.getLayout().observe(viewLifecycleOwner) {
-            if (it != null) {
-                ickUserWallViewModel.initLayout(it)
+        if (NetworkHelper.isNotConnected(requireContext())) {
+            binding.root.isRefreshing = false
+            if (ickUserWallAdapter.listData.size>1) {
+                requireContext() showShortErrorToast requireContext().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+            }else{
+                ickUserWallAdapter.setError(R.drawable.ic_error_network,requireContext().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            }
+        }else{
+            ickUserWallViewModel.getLayout().observe(viewLifecycleOwner) {
+                if (it != null) {
+                    ickUserWallViewModel.initLayout(it)
+                }
             }
         }
     }
@@ -613,6 +604,11 @@ class IckUserWallFragment : Fragment(), IPostListener {
                 }
             }
         }
+    }
+
+    override fun onMessageClicked() {
+        binding.root.isRefreshing=true
+        getLayout()
     }
 
 }

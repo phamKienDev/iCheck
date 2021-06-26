@@ -8,6 +8,7 @@ import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.campaign.ListCampaignInteractor
 import vn.icheck.android.network.models.ICCampaign
@@ -25,7 +26,7 @@ class ListCampaignViewModel : ViewModel() {
 
     fun getListCampaign(isLoadMore: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.ON_NO_INTERNET, ICError(R.drawable.ic_error_network, ICheckApplication.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null)))
+            statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.ON_NO_INTERNET, ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null)))
             return
         }
 
@@ -78,7 +79,7 @@ class ListCampaignViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
                 statusCode.postValue(ICMessageEvent(ICMessageEvent.Type.MESSAGE_ERROR, ICError(R.drawable.ic_error_request, error?.message
-                        ?: ICheckApplication.getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null)))
+                        ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai), null, null)))
 
             }
         })

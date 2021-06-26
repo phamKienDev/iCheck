@@ -7,10 +7,9 @@
     android:orientation="vertical"
     tools:context=".screen.user.search_home.product.SearchProductActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/layoutEdittext"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,11 +44,10 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/bo_loc"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_verify"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,11 +58,10 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/da_xac_thuc"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,12 +74,11 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/gia_tu"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                     android:id="@+id/btn_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,14 +91,13 @@
                     android:paddingRight="@dimen/size_10"
                     android:paddingBottom="@dimen/size_6"
                     android:text="@string/danh_gia"
-                    android:textColor="@color/colorNormalText"
                     android:textSize="@dimen/font_14"
                     app:fontFamily="@font/barlow_medium" />
 
             </LinearLayout>
 
         </HorizontalScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
     <View
         style="@style/Shadow_Bottom"

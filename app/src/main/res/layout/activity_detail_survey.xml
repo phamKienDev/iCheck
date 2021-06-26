@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:clickable="true"
     android:focusable="true">
 
@@ -24,11 +23,11 @@
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
         android:id="@id/btnSkip"
         style="@style/Button_White_Corners_6"
         android:layout_width="@dimen/size_0"
-        android:layout_height="@dimen/size_48"
+        android:layout_height="@dimen/size_36"
         android:layout_marginStart="@dimen/size_24"
         android:layout_marginEnd="@dimen/size_6"
         android:layout_marginBottom="@dimen/size_16"
@@ -49,4 +48,4 @@
         app:layout_constraintStart_toEndOf="@id/btnSkip"
         app:layout_constraintTop_toTopOf="@id/btnSkip" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

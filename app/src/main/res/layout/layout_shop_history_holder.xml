@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <vn.icheck.android.ui.view.TextBarlowSemiBold
+    <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
         android:id="@+id/tvTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,13 +21,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
-        android:background="@drawable/bg_corners_white_4_border_05"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTime">
@@ -59,7 +58,6 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="Tạp hóa Ngọc Lan"
                 android:textColor="@color/black_blue"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +82,7 @@
                 android:paddingEnd="@dimen/size_6"
                 android:paddingRight="@dimen/size_6"
                 android:paddingBottom="@dimen/size_2"
-                android:text="Khoảng cách: 5km"
+                android:text="@string/khoang_cach_5km"
                 android:textColor="@color/violet_2"
                 android:textSize="@dimen/font_12"
                 app:fontFamily="@font/barlow_medium"
@@ -156,23 +154,21 @@
                 app:layout_constraintStart_toStartOf="@+id/imgVerified"
                 app:srcCompat="@drawable/ic_shop_verified" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/viewLine1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginTop="@dimen/size_12"
-                android:background="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <RelativeLayout
+        <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite
             android:id="@+id/containerProduct"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/white">
+            android:layout_height="0dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgAvaProduct"
@@ -183,7 +179,7 @@
                 android:layout_marginTop="@dimen/size_14"
                 android:src="@drawable/ic_default_square" />
 
-            <vn.icheck.android.ui.view.TextBarlowSemiBold
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                 android:id="@+id/tvNameProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,15 +192,12 @@
                 android:layout_toEndOf="@id/imgAvaProduct"
                 android:layout_toRightOf="@id/imgAvaProduct"
                 android:ellipsize="end"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="Nước hoa hồng Langege dung tích 201..."
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14" />
 
 
-            <vn.icheck.android.ui.view.TextBarlowMedium
+            <vn.icheck.android.ichecklibs.view.TextBarlowMedium
                 android:id="@+id/tvBarcodeProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,16 +243,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <vn.icheck.android.ui.view.TextBarlowSemiBold
+                <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                     android:id="@+id/tvCountRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_4"
-                    android:layout_marginLeft="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_10"
-                    android:layout_marginRight="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintEnd_toStartOf="@+id/tvVerify"
@@ -288,15 +277,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/viewLine"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_below="@id/imgAvaProduct"
-                android:layout_marginTop="@dimen/size_15"
-                android:background="@color/gray" />
+                android:layout_marginTop="@dimen/size_15" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
                 android:id="@+id/tvPriceProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -307,10 +295,9 @@
                 android:fontFamily="@font/barlow_semi_bold"
                 android:includeFontPadding="false"
                 android:text="23,004,000đ"
-                android:textColor="@color/colorAccentRed"
                 android:textSize="@dimen/font_16" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceSale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -321,7 +308,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
                 android:text="23,504,000đ"
-                android:textColor="@color/colorDisableText"
                 android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -329,11 +315,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_32"
                 android:layout_below="@id/viewLine"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/size_12"
                 android:layout_marginEnd="@dimen/size_10"
-                android:layout_marginRight="@dimen/size_10"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
+                android:layout_marginStart="@dimen/size_10"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:paddingLeft="@dimen/size_20"
@@ -342,17 +327,17 @@
                 android:text="@string/mua"
                 android:textColor="@color/white" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgAddCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/viewLine"
                 android:layout_marginTop="@dimen/size_12"
-                android:layout_marginRight="@dimen/size_8"
-                android:layout_toLeftOf="@id/tvBuyNow"
+                android:layout_marginEnd="@dimen/size_8"
+                android:layout_toStartOf="@id/tvBuyNow"
                 app:srcCompat="@drawable/ic_add_cart_32dp" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
                 android:id="@+id/tvCountCart"
                 android:layout_width="@dimen/size_32"
                 android:layout_height="@dimen/size_32"
@@ -364,7 +349,6 @@
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:text="1"
-                android:textColor="@color/colorNormalText"
                 android:textSize="@dimen/font_14" />
 
             <ImageView
@@ -377,15 +361,14 @@
                 android:layout_toLeftOf="@id/tvCountCart"
                 app:srcCompat="@drawable/ic_minus_cart_32dp" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/viewLine2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
                 android:layout_below="@id/tvBuyNow"
-                android:layout_marginTop="@dimen/size_12"
-                android:background="@color/gray" />
+                android:layout_marginTop="@dimen/size_12"/>
 
-        </RelativeLayout>
+        </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICRelativeLayoutWhite>
 
 
         <RelativeLayout
@@ -394,17 +377,15 @@
             android:layout_marginTop="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_15">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                 android:id="@+id/tvAllProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
-                android:layout_marginLeft="@dimen/size_12"
-                android:drawableRight="@drawable/ic_arrow_right_light_blue_24dp"
+                android:drawableEnd="@drawable/ic_arrow_right_light_blue_24dp"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center_vertical"
                 android:text="@string/xem_tat_ca_san_pham"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_14" />
 
             <TextView
@@ -424,7 +405,7 @@
                 app:layout_constraintTop_toTopOf="@id/tvAllProduct"
                 tools:text="@string/xem_them" />
         </RelativeLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

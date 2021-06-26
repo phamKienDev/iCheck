@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/txtMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,22 +25,19 @@
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
         android:textAlignment="gravity"
-        android:textColor="#828282"
         android:textSize="@dimen/font_14"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICButtonSecondaryBtnWhiteStrokeSecondary1
         android:id="@id/btnTryAgain"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_44"
         android:layout_marginTop="@dimen/size_16"
-        android:background="@drawable/btn_white_outline_blue_1_corners_6"
         android:fontFamily="sans-serif-medium"
         android:text="@string/thu_lai"
         android:textAllCaps="false"
-        android:textColor="#3c5a99"
         android:textSize="@dimen/font_16"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"

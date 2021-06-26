@@ -15,7 +15,7 @@ abstract class ProductNoticeOptionDialog(context: Context) : BaseBottomSheetDial
         WidgetUtils.loadImageUrl(dialog.imgAvatar, obj.sourceUser?.firstOrNull()?.avatar, R.drawable.ic_business_v2)
 
         val name = obj.sourceUser?.firstOrNull()?.getName
-        dialog.tvTitle.text = Html.fromHtml(dialog.context.getString(R.string.html_bold_xxx_xxx, name, obj.description))
+        dialog.tvTitle.text = Html.fromHtml(dialog.context.getString(R.string.html_bold_xxx_xxx, name?:"", obj.description?:""))
 
         dialog.layoutContent.apply {
             getChildAt(0).apply {

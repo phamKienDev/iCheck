@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.checkoutcart.adapter
 
-import android.app.AlarmManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import kotlinx.android.synthetic.main.item_checkout_shipping.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TimeHelper
 import vn.icheck.android.network.models.ICShipping
 
 class SelectShippingAdapter(val shippingID: Int, val listData: MutableList<ICShipping>) : RecyclerView.Adapter<SelectShippingAdapter.ViewHolder>() {
@@ -38,7 +36,7 @@ class SelectShippingAdapter(val shippingID: Int, val listData: MutableList<ICShi
 
         override fun bind(obj: ICShipping) {
             itemView.tvName.text = if (obj.shipping_amount > 0L) {
-                itemView.context.getString(R.string.xxx_xxx, obj.method.name, itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.shipping_amount)))
+                itemView.context.getString(R.string.xxx_xxx, obj.method.name, itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.shipping_amount)))
             } else {
                 obj.method.name
             }

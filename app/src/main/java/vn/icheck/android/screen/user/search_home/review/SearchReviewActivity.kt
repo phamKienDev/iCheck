@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -23,6 +22,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper.setTextChooseSearch
 import vn.icheck.android.helper.TextHelper.setTextDataSearch
 import vn.icheck.android.helper.TextHelper.setTextEmpitySearch
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.Status
 import vn.icheck.android.network.models.ICPost
@@ -86,12 +86,14 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
                     refreshData()
                 }
 
+        edtSearch.background= ViewHelper.bgGrayCorners4(this)
         WidgetUtils.setClickListener(this, btn_filer, btn_filter_watched, btn_filer_time, btn_filer_from, imgBack, imgClear)
     }
 
     private fun initSwipeLayout() {
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
         swipe_container.isRefreshing = true
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        swipe_container.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
         swipe_container.setOnRefreshListener {
             refreshData()
         }
@@ -205,7 +207,7 @@ class SearchReviewActivity : BaseActivityMVVM(), View.OnClickListener, IRecycler
 
     fun setFilterTime() {
         if (viewModel.getReviewYear.isNullOrEmpty()) {
-            btn_filer_time.setTextEmpitySearch(R.string.year)
+            btn_filer_time.setTextEmpitySearch(R.string.year_nam)
         } else {
             val listString = viewModel.getReviewYear.filterIndexed { index: Int, _: String -> index < 3 }
             var years = listString.toString().substring(1, listString.toString().length - 1)

@@ -9,6 +9,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
@@ -33,7 +34,7 @@ class MissionDetailViewModel(application: Application) : AndroidViewModel(applic
         }
 
         if (missionID.isEmpty()) {
-            onError.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+            onError.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
         } else {
             getMissionDetail()
         }
@@ -41,7 +42,7 @@ class MissionDetailViewModel(application: Application) : AndroidViewModel(applic
 
     fun getMissionDetail(isUpdate: Boolean = false) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            onError.postValue( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -52,18 +53,20 @@ class MissionDetailViewModel(application: Application) : AndroidViewModel(applic
             override fun onSuccess(obj: ICResponse<ICMissionDetail>) {
                 onChangeState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 if (obj.data != null) {
-                    onMissionDetail.postValue(obj.data)
+                    obj.data?.let {
+                        onMissionDetail.postValue(it)
+                    }
                     missionData = obj.data
                 } else {
                     if (!isUpdate)
-                        onError.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                        onError.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
             override fun onError(error: ICResponseCode?) {
                 if (!isUpdate) {
                     onChangeState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                    onError.postValue(ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    onError.postValue( getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
         })

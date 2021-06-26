@@ -7,7 +7,7 @@
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true">
 
-    <ImageView
+    <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
         android:id="@+id/btn_back"
         android:layout_width="@dimen/size_50"
         android:layout_height="@dimen/size_50"
@@ -17,14 +17,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back_blue_24px_new" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_50"
         android:layout_marginRight="@dimen/size_50"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="#212121"
         android:textSize="@dimen/font_18"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/textView25"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,11 +54,9 @@
                 android:layout_marginLeft="@dimen/size_62"
                 android:layout_marginEnd="@dimen/size_62"
                 android:layout_marginRight="@dimen/size_62"
-                android:fontFamily="@font/barlow_medium"
                 android:gravity="center_horizontal"
                 android:lineHeight="@dimen/size_20"
                 android:textAlignment="center"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +64,7 @@
                 tools:text="Số điện thoại của bạn được sử dụng để đăng nhập tài khoản iCheck"
                 tools:visibility="gone" />
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tv_nation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,8 +72,7 @@
                 android:layout_marginLeft="@dimen/size_34"
                 android:layout_marginTop="@dimen/size_16"
                 android:fontFamily="@font/barlow_semi_bold"
-                android:text="Việt Nam"
-                android:textColor="#B4B4B4"
+                android:text="@string/viet_nam"
                 android:textSize="@dimen/font_18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
@@ -93,33 +88,30 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_nation"
                 app:srcCompat="@drawable/ic_arrow_right_gray_24dp" />
 
-            <View
+            <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                 android:id="@+id/divider18"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_1"
                 android:layout_marginTop="@dimen/size_12"
-                android:background="#F0F0F0"
                 app:layout_constraintEnd_toEndOf="@+id/ic_nation"
                 app:layout_constraintStart_toStartOf="@+id/tv_nation"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nation" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.FocusableEditText
                 android:id="@+id/tv_phone_head"
                 android:layout_width="@dimen/size_50"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_16"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:fontFamily="@font/barlow_medium"
                 android:hint="+84"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#757575"
                 android:textSize="@dimen/font_20"
                 app:layout_constraintBottom_toBottomOf="@+id/edt_phone"
                 app:layout_constraintStart_toStartOf="@+id/divider18"
                 app:layout_constraintTop_toBottomOf="@+id/divider18" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
                 android:id="@+id/edt_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -128,17 +120,16 @@
                 android:focusableInTouchMode="true"
                 android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
-                android:hint="Nhập số điện thoại"
+                android:hint="@string/nhap_so_dien_thoai"
                 android:imeOptions="actionSend"
                 android:inputType="number"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:textSize="@dimen/font_20"
                 app:layout_constraintEnd_toEndOf="@+id/divider18"
                 app:layout_constraintStart_toEndOf="@+id/tv_phone_head"
                 app:layout_constraintTop_toTopOf="@+id/tv_phone_head" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
                 android:id="@id/edtPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -147,11 +138,11 @@
                 android:layout_marginEnd="@dimen/size_34"
                 android:drawablePadding="@dimen/size_40"
                 android:focusableInTouchMode="true"
-                android:hint="Nhập mật khẩu"
+                android:hint="@string/nhap_mat_khau"
+                android:backgroundTint="@android:color/holo_green_light"
                 android:inputType="numberPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +161,7 @@
                 app:layout_constraintEnd_toEndOf="@id/edtPassword"
                 app:layout_constraintTop_toTopOf="@id/edtPassword" />
 
-            <vn.icheck.android.ui.edittext.FocusableEditText
+            <vn.icheck.android.ichecklibs.view.normal_text.FocusableEdittextNormal
                 android:id="@id/edtRePassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -180,11 +171,10 @@
                 android:layout_marginBottom="@dimen/size_16"
                 android:drawablePadding="@dimen/size_40"
                 android:focusableInTouchMode="true"
-                android:hint="Nhập lại mật khẩu"
+                android:hint="@string/nhap_lai_mat_khau"
                 android:inputType="numberPassword"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/size_20"
-                android:textColor="#212121"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +197,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <vn.icheck.android.ui.EnableButton
+    <vn.icheck.android.ichecklibs.EnableButton
         android:id="@+id/btn_continue"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_36"
@@ -215,7 +205,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Tiếp tục"
+        android:text="@string/tiep_tuc"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/font_16"

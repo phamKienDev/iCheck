@@ -36,12 +36,12 @@ class FilterTypeHistoryHolder(parent: ViewGroup, val listener: IScanHistoryView)
 
     private fun checkShowMore(isShow:Boolean) {
         if (isShow) {
-            itemView.tvMoreType.text = "Thu gọn"
+            itemView.tvMoreType.setText(R.string.thu_gon)
             itemView.tvMoreType.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up_gray, 0)
             adapter.showMore()
             ScanMenuHistoryAdapter.isShowType = true
         } else {
-            itemView.tvMoreType.text = "Hiển thị thêm"
+            itemView.tvMoreType.setText(R.string.hien_thi_them)
             itemView.tvMoreType.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_gray_10dp, 0)
             adapter.hide()
             ScanMenuHistoryAdapter.isShowType = false

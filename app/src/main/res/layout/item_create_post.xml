@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
         android:id="@+id/textView36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_medium"
-        android:text="Đăng bài mới"
-        android:textColor="#3C5A99"
+        android:text="@string/dang_bai_moi"
         android:textSize="@dimen/font_18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +23,8 @@
         android:layout_height="@dimen/size_40"
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginBottom="@dimen/size_18"
-        android:src="@drawable/user_placeholder"
-        app:civ_border_color="@color/gray"
+        android:src="@drawable/ic_avatar_default_84dp"
+        app:civ_border_color="@color/grayLoyalty"
         app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView36"
@@ -44,7 +41,7 @@
         app:layout_constraintStart_toStartOf="@id/user_avatar"
         tools:src="@drawable/ic_avatar_silver_24dp" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/textView45"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -54,8 +51,7 @@
         android:layout_marginRight="@dimen/size_8"
         android:gravity="center_vertical"
         android:lineSpacingExtra="@dimen/size_4"
-        android:text="Bạn đã sử dụng sản phẩm nào?\nHãy chia sẻ cảm nhận nhé!"
-        android:textColor="#B4B4B4"
+        android:text="@string/ban_da_su_dung_san_pham_nao_n_hay_chia_se_cam_nhan_nhe"
         android:textSize="@dimen/font_12"
         app:layout_constraintBottom_toBottomOf="@+id/user_avatar"
         app:layout_constraintEnd_toEndOf="parent"

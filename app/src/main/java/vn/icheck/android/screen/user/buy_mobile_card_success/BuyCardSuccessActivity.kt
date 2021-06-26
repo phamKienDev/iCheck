@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_buy_card_success.*
@@ -20,6 +19,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICRechargePhone
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
 import vn.icheck.android.screen.user.history_loading_card.home.HistoryCardActivity
@@ -27,6 +27,7 @@ import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.payment_topup.viewmodel.PaymentViewModel
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class BuyCardSuccessActivity : BaseActivityMVVM() {
@@ -34,7 +35,7 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
     lateinit var viewModel: PaymentViewModel
 
     private var code: String? = ""
-    private var typePayment = "Ví iCheck"
+    private var typePayment = getString(R.string.vi_icheck)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,17 +103,23 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
             startActivity(intent)
         }
 
-        btn_again.setOnClickListener {
-            for (act in BuyMobileCardV2Activity.listActivities) {
-                act.finish()
-                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+        btn_again.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                for (act in BuyMobileCardV2Activity.listActivities) {
+                    act.finish()
+                    EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_DATA))
+                }
             }
         }
 
-        btn_charge.setOnClickListener {
-            val chargePhone = Intent(Intent.ACTION_DIAL)
-            chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
-            startActivity(chargePhone)
+        btn_charge.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                val chargePhone = Intent(Intent.ACTION_DIAL)
+                chargePhone.data = Uri.parse("tel:" + Uri.encode("*100*$code#"))
+                startActivity(chargePhone)
+            }
         }
 
         tv_serial.setOnTouchListener(OnTouchListener { v, event ->
@@ -121,9 +128,9 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
                 tv_serial.getLocationOnScreen(textLocation)
                 if (event.rawX >= textLocation[0] + tv_serial.width - tv_serial.totalPaddingRight) {
                     val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("Số serie", tv_serial.text)
+                    val clip = ClipData.newPlainText(getString(R.string.so_serie), tv_serial.text)
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(this, "Copy Số serie: " + tv_serial.text)
+                    ToastUtils.showShortSuccess(this, getString(R.string.copy_so_serie_s, tv_serial.text))
                     return@OnTouchListener true
                 }
             }
@@ -136,9 +143,9 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
                 tv_code.getLocationOnScreen(textLocation)
                 if (event.rawX >= textLocation[0] + tv_code.width - tv_code.totalPaddingRight) {
                     val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("Mã thẻ", tv_code.text)
+                    val clip = ClipData.newPlainText(getString(R.string.ma_the), tv_code.text)
                     clipboard.setPrimaryClip(clip)
-                    ToastUtils.showShortSuccess(this, "Copy Mã thẻ: " + tv_code.text)
+                    ToastUtils.showShortSuccess(this, getString(R.string.copy_ma_the_s, tv_code.text))
                     return@OnTouchListener true
                 }
             }
@@ -148,14 +155,19 @@ class BuyCardSuccessActivity : BaseActivityMVVM() {
 
     @SuppressLint("SetTextI18n")
     private fun setData(data: ICRechargePhone) {
-        tvMessageSuccess.text = "Quý khách đã mua thành công\nmã thẻ điện thoại ${data.provider}"
+        data.phone?.let {
+            tvMessageSuccess.setText(
+                R.string.quy_khach_da_mua_thanh_cong_ma_the_dien_thoai_s,
+                it
+            )
+        }
         tvName.text = data.provider
 
         if (data.denomination is String) {
-            tvTotal.text = if (typePayment == "Ví iCheck") {
-                TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " Xu"
+            tvTotal.text = if (typePayment == getString(R.string.vi_icheck)) {
+                getString(R.string.s_xu, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
             } else {
-                TextHelper.formatMoneyPhay(data.denomination.toString().toLong()) + " đ"
+                getString(R.string.s_space_d, TextHelper.formatMoneyPhay(data.denomination.toString().toLong()))
             }
         }
         tvTypePayment.text = typePayment

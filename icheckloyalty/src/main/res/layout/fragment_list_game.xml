@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="Khách hàng thân thiết"
+                android:text="@string/khach_hang_than_thiet"
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondary"
                 android:textSize="16sp" />
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:gravity="center_horizontal"
-            android:text="Bạn đang không có game nào!"
+            android:text="@string/ban_dang_khong_co_game_nao"
             android:textAlignment="center"
             android:textColor="#212121"
             android:textSize="16sp"
@@ -91,7 +91,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:gravity="center_horizontal"
-            android:text="Thường xuyên theo dõi các chương trình để tham gia game trúng quà hấp dẫn nhé"
+            android:text="@string/thuong_xuyen_theo_doi_cac_chuong_trinh_de_tham_gia_game_trung_qua_hap_dan_nhe"
             android:textAlignment="center"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -106,7 +106,7 @@
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:visibility="gone"
-            android:text="Check mã tham gia game ngay"
+            android:text="@string/check_ma_tham_gia_ngay"
             android:textColor="@color/white" />
     </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

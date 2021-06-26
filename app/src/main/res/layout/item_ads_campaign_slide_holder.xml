@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/size_6"
-    android:layout_marginEnd="@dimen/size_6"
-    android:background="@drawable/bg_corner_gray_solid_white">
+    android:layout_marginEnd="@dimen/size_6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="@id/mediaView"
             app:layout_constraintStart_toStartOf="@id/mediaView" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.accent.accentred.TextAccentRed
             android:id="@+id/tvTimeStartSlide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,13 +71,12 @@
             android:layout_marginTop="@dimen/size_8"
             android:fontFamily="@font/barlow_medium"
             android:includeFontPadding="false"
-            android:textColor="@color/colorAccentRed"
             android:textSize="@dimen/font_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mediaView"
             tools:text="CHỦ NHẬT TUẦN NÀY: 21:00" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvNameSlide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,11 +85,9 @@
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/font_6"
             android:maxLines="1"
-            android:textColor="@color/colorNormalText"
             android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTimeStartSlide"
@@ -107,15 +103,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameSlide">
 
-            <TextView
+            <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@+id/tvTimeLeftSlide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_marginLeft="@dimen/size_8"
-                android:fontFamily="@font/barlow_medium"
                 android:includeFontPadding="false"
-                android:textColor="@color/colorSecondText"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintBottom_toBottomOf="@id/tvJoin"
                 app:layout_constraintStart_toStartOf="@+id/tvName"
@@ -128,9 +122,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_50"
-                android:layout_marginLeft="@dimen/size_50"
                 android:layout_marginEnd="@dimen/size_5"
-                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
                 android:visibility="visible">
 
@@ -138,7 +130,6 @@
                     android:id="@+id/tvJoinSlide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_corners_4_light_blue_solid"
                     android:paddingTop="@dimen/size_4"
                     android:paddingBottom="@dimen/size_4"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_star_white_14"
-                    android:drawableRight="@drawable/ic_star_white_14"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:gravity="center"
                     android:text="@string/tham_gia"
@@ -162,4 +152,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</vn.icheck.android.ichecklibs.view.line_color.LinearLayoutBgWhiteRadius4Stroke05>

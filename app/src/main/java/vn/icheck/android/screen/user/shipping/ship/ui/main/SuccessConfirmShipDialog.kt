@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import vn.icheck.android.databinding.DialogConfirmShipSuccessBinding
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 
 class SuccessConfirmShipDialog(val orderId:Long):DialogFragment() {
@@ -43,10 +44,13 @@ class SuccessConfirmShipDialog(val orderId:Long):DialogFragment() {
             dismiss()
             action?.invoke()
         }
-        binding.btnObserve.setOnClickListener{
-            ShipActivity.startDetailOrder(requireContext(),orderId )
-            dismiss()
-            requireActivity().finish()
+        binding.btnObserve.apply {
+            background = ViewHelper.bgPrimaryCorners4(context)
+            setOnClickListener {
+                ShipActivity.startDetailOrder(requireContext(), orderId)
+                dismiss()
+                requireActivity().finish()
+            }
         }
     }
 }

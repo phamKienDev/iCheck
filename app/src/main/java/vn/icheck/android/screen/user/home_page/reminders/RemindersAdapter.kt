@@ -6,6 +6,7 @@ import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.ItemReminderBinding
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.network.model.reminders.ReminderResponse
 import vn.icheck.android.util.ick.*
 
@@ -30,9 +31,6 @@ class RemindersAdapter(val listData: List<ReminderResponse>, val onDismissRemind
             }
             binding.tvAction.setOnClickListener {
                 EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DO_REMINDER, reminderResponse.redirectPath))
-//                ICheckApplication.currentActivity()?.let { activity ->
-//                    FirebaseDynamicLinksActivity.startTargetPath(activity as FragmentActivity, reminderResponse.redirectPath)
-//                }
             }
             binding.imageView14.loadImageWithHolder(reminderResponse.icon, R.drawable.ic_reminder_item)
             if (reminderResponse.type != null) {

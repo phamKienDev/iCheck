@@ -1,9 +1,10 @@
 package vn.icheck.android.network.models
 
-import android.content.Context
-import android.os.Build
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.R
 import java.io.Serializable
 
 class ICUser : Serializable {
@@ -171,7 +172,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhoneOnly()
             } else {
-                "Chưa cập nhật"
+                getString(R.string.chua_cap_nhat)
             }
         }
 
@@ -183,7 +184,7 @@ class ICUser : Serializable {
             } else if (!phone?.trim().isNullOrEmpty()) {
                 getPhonePVCombank()
             } else {
-                "Chưa cập nhật"
+                getString(R.string.chua_cap_nhat)
             }
         }
 
@@ -195,7 +196,7 @@ class ICUser : Serializable {
 
             }.toString()
         } else {
-            "Chưa cập nhật"
+            getString(R.string.chua_cap_nhat)
         }
     }
 
@@ -207,10 +208,10 @@ class ICUser : Serializable {
                             .insert(4, " ")
                 }.toString()
             } catch (e: Exception) {
-                "Chưa cập nhật"
+                getString(R.string.chua_cap_nhat)
             }
         } else {
-            "Chưa cập nhật"
+            getString(R.string.chua_cap_nhat)
         }
     }
 
@@ -218,23 +219,23 @@ class ICUser : Serializable {
         return if (phone != null) {
             phone.toString()
         } else {
-            "Chưa cập nhật"
+            getString(R.string.chua_cap_nhat)
         }
     }
 
     fun getUserLevelName(): String {
         return when (rank?.level) {
             2 -> {
-                "Thành viên Bạc"
+                getString(R.string.thanh_vien_bac)
             }
             3 -> {
-                "Thành viên Vàng"
+                getString(R.string.thanh_vien_vang)
             }
             4 -> {
-                "Thành viên Kim Cương"
+                getString(R.string.thanh_vien_kim_cuong)
             }
             else -> {
-                "Thành viên Chuẩn"
+                getString(R.string.thanh_vien_chuan)
             }
         }
     }

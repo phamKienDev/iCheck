@@ -59,6 +59,8 @@ class EditCommentActivity : BaseActivityMVVM() {
     private fun setupToolbar() {
         layoutContainer.setPadding(0, getStatusBarHeight, 0, 0)
 
+        edtComment.background=vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor1Corners4(this)
+
         txtTitle.setText(R.string.chinh_sua_binh_luan)
         txtTitle.typeface = ViewHelper.createTypeface(this, R.font.barlow_semi_bold)
 
@@ -79,7 +81,7 @@ class EditCommentActivity : BaseActivityMVVM() {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
             } else {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
             }
 
@@ -99,7 +101,7 @@ class EditCommentActivity : BaseActivityMVVM() {
                 WidgetUtils.loadImageUrl(layoutAvatar, it.page?.avatar, R.drawable.ic_business_v2)
                 imgLevel.beGone()
             } else {
-                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84px)
+                WidgetUtils.loadImageUrl(layoutAvatar, it.user?.avatar, R.drawable.ic_avatar_default_84dp)
                 imgLevel.setImageResource(Constant.getAvatarLevelIcon16(it.user?.rank?.level))
             }
 

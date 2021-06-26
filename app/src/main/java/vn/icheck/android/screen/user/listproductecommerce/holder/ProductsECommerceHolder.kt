@@ -8,6 +8,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.databinding.ItemProductEcommerceBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICProductECommerce
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.util.ick.beGone
@@ -19,12 +20,14 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
     override fun bind(obj: ICProductECommerce) {
         WidgetUtils.loadImageUrlRounded(binding.imgAvatar, obj.avatar, R.drawable.ic_business_v2, SizeHelper.size4)
 
+        binding.root.background=ViewHelper.btnWhiteStrokeLineColor0_5Corners4(binding.root.context)
+
         binding.tvName.text = obj.name
 
         if (obj.finalPrice != null) {
             if (obj.sellPrice != null) {
                 binding.tvOldPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                     paintFlags = binding.tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     beVisible()
                 }
@@ -34,7 +37,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
 
             if (obj.finalPrice != null) {
                 binding.tvPrice.apply {
-                    text = (TextHelper.formatMoneyPhay(obj.finalPrice) + "đ")
+                    text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.finalPrice))
                     beVisible()
                 }
             } else {
@@ -43,7 +46,7 @@ class ProductsECommerceHolder(parent: ViewGroup, val binding: ItemProductEcommer
         } else {
             binding.tvOldPrice.beGone()
             binding.tvPrice.apply {
-                text = (TextHelper.formatMoneyPhay(obj.sellPrice) + "đ")
+                text = context.getString(R.string.s_d, TextHelper.formatMoneyPhay(obj.sellPrice))
                 beVisible()
             }
         }

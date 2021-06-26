@@ -49,7 +49,7 @@
                     android:includeFontPadding="false"
                     android:layout_marginTop="@dimen/size_38"
                     android:lineHeight="@dimen/size_20"
-                    android:text="Tích lũy điểm thưởng để trở thành \n người đầu tiên đổi quà thành công nhé!"
+                    android:text="@string/tich_luy_diem_thuong_de_tro_thanh_nguoi_dau_tien_doi_qua_thanh_cong_nhe"
                     android:textColor="#434343" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -64,7 +64,7 @@
                     android:includeFontPadding="false"
                     android:paddingTop="@dimen/size_9"
                     android:paddingBottom="@dimen/size_9"
-                    android:text="Tích điểm ngay"
+                    android:text="@string/tich_diem_ngay"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
             </LinearLayout>

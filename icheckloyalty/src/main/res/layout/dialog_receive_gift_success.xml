@@ -9,7 +9,7 @@
     android:gravity="center"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/transparent"
+    android:background="@color/black_60"
     android:orientation="vertical"
     android:paddingStart="@dimen/size_12"
     android:paddingEnd="@dimen/size_12">
@@ -37,7 +37,7 @@
                 android:layout_marginTop="@dimen/size_17"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
-                android:text="Chúc mừng bạn!"
+                android:text="@string/chuc_muong_ban"
                 android:textColor="@color/colorAccentRed" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,7 +102,7 @@
                 android:paddingLeft="@dimen/size_12"
                 android:paddingRight="@dimen/size_12"
                 android:singleLine="true"
-                android:text="Cảm ơn bạn đã tham gia sự kiện"
+                android:text="@string/cam_on_ban_da_tham_gia_su_kien"
                 android:textColor="#828282"
                 android:textSize="14sp" />
 
@@ -153,7 +153,7 @@
                 android:id="@+id/btnCTCC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chi tiết chương trình"
+                android:text="@string/chi_tiet_chuong_trinh"
                 android:layout_marginTop="@dimen/size_13"
                 android:layout_gravity="center"
                 android:visibility="gone"
@@ -186,13 +186,13 @@
                     android:paddingTop="@dimen/size_8"
                     android:paddingEnd="@dimen/size_15"
                     android:paddingBottom="@dimen/size_8"
-                    android:text="Khoe bạn bè"
+                    android:text="@string/khoe_ban_be"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnViewGift"
-                    android:layout_width="@dimen/size_0"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/size_10"
                     android:layout_weight="1"
@@ -201,9 +201,10 @@
                     android:gravity="center"
                     android:paddingTop="@dimen/size_8"
                     android:paddingBottom="@dimen/size_8"
-                    android:text="Xem quà"
+                    android:text="@string/xem_qua"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_marginStart="@dimen/size_10" />
             </LinearLayout>
         </LinearLayout>
 

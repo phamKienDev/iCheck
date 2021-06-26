@@ -22,6 +22,7 @@ import vn.icheck.android.helper.AddToCartHelper
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
@@ -32,6 +33,7 @@ import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.TestTimeUtil
@@ -51,6 +53,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
         initListener(obj)
         initRemove(obj)
 
+        itemView.linearLayoutContainer.background=ViewHelper.bgTransparentStrokeLineColor0_5Corners4(itemView.context)
+
         itemView.imgDelete.visibility = View.INVISIBLE
         itemView.progressHistory.visibility = View.INVISIBLE
 
@@ -67,10 +71,13 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvNameProduct.text = itemView.context.getString(R.string.dang_cap_nhat)
         }
 
-        if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
-            itemView.tvAddToCart.visibility = View.VISIBLE
-        } else {
-            itemView.tvAddToCart.visibility = View.INVISIBLE
+        itemView.tvAddToCart.apply {
+            background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            visibility = if (obj.variant?.can_add_to_cart == true && obj.shop?.is_online == true) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
         }
 
         if (!obj.product?.barcode.isNullOrEmpty()) {
@@ -99,12 +106,12 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
         itemView.ratingBar.rating = obj.product?.rating!!
 
-        if (obj.product?.rating != null) {
-            itemView.tvCountRating.text = String.format("%.1f", (obj.product?.rating!! * 2))
+        obj.product?.rating?.let{
+            itemView.tvCountRating.setText(R.string.format_1_f, it * 2)
         }
 
         if (obj.product?.verified == true) {
-            itemView.tvVerify.text = "Verified"
+            itemView.tvVerify.setText(R.string.verified)
             itemView.tvVerify.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
         } else {
             itemView.tvVerify.text = ""
@@ -130,6 +137,8 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
             itemView.tvTime.visibility = View.GONE
         }
 
+        itemView.layoutShop.background=ViewHelper.bgGrayF5StrokeLineColor0_5CornersBottom4(itemView.context)
+
         if (obj.shop?.id == null || obj.shop?.id == 0L) {
             itemView.layoutShop.visibility = View.GONE
         } else {
@@ -146,15 +155,15 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
         val listService = mutableListOf<ICServiceShopVariant>()
         if (obj.shop?.is_offline == true) {
-            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+            listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
         }
 
         if (obj.shop?.verified == true) {
-            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, "Đại lý chính hãng", "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+            listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context.getString(R.string.dai_ly_chinh_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
         }
 
         if (obj.shop?.is_online == true) {
-            listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, "Bán Online", "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
+            listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context.getString(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
         }
 
         if (!listService.isNullOrEmpty()) {
@@ -169,17 +178,17 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
 
                 if (obj.shop?.distance?.value != null) {
                     itemView.tvMap.visibility = View.VISIBLE
-                    itemView.tvDistance.text = "Khoảng cách: " + km + obj.shop?.distance?.unit
+                    itemView.tvDistance.setText(R.string.khoang_cach_s_s, km?:"" , obj.shop?.distance?.unit?:"")
                 } else {
-                    itemView.tvDistance.text = "Khoảng cách: " + itemView.context.getString(R.string.dang_cap_nhat)
+                    itemView.tvDistance.setText(R.string.khoang_cach_s, itemView.context.getString(R.string.dang_cap_nhat))
                     itemView.tvMap.visibility = View.GONE
                 }
             } else {
-                itemView.tvDistance.text = "Khoảng cách: " + itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvDistance.setText(R.string.khoang_cach_dang_cap_nhat)
                 itemView.tvMap.visibility = View.GONE
             }
         } else {
-            itemView.tvDistance.text = "Khoảng cách: " + itemView.context.getString(R.string.dang_cap_nhat)
+            itemView.tvDistance.setText(R.string.khoang_cach_dang_cap_nhat)
             itemView.tvMap.visibility = View.GONE
         }
     }
@@ -229,10 +238,10 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
                         act.startActivity(intent)
                     }
                 } else {
-                    ToastUtils.showShortError(itemView.context, "Vị trí của shop đang được cập nhật")
+                    ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
                 }
             } else {
-                ToastUtils.showShortError(itemView.context, "Vị trí của shop đang được cập nhật")
+                ToastUtils.showShortError(itemView.context, itemView.context.getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
             }
         }
 
@@ -256,7 +265,7 @@ class ShopVariantHistoryHolder(view: View, val listData: MutableList<ICHistory_P
     private fun initRemove(obj: ICHistory_Product) {
         val runnableDelete = Runnable {
             if (SessionManager.isUserLogged) {
-                DialogHelper.showConfirm(itemView.context, "Bạn có muốn xóa sản phẩm này?", true, object : ConfirmDialogListener {
+                DialogHelper.showConfirm(itemView.context, itemView.context.getString(R.string.ban_co_muon_xoa_san_pham_nay), true, object : ConfirmDialogListener {
                     override fun onDisagree() {
                     }
 

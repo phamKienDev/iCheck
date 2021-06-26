@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_no_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
-        android:text="Không có kết quả nào trong danh bạ"
-        android:textColor="@color/black_21_v2"
+        android:text="@string/khong_co_ket_qua_nao_trong_danh_ba"
         app:drawableTopCompat="@drawable/ic_no_campaign"
         app:layout_constraintBottom_toTopOf="@+id/tv_no_result_desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +21,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:visibility="gone" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_no_result_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,8 +30,7 @@
         android:layout_marginEnd="@dimen/size_48"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Đồng bộ danh bạ để trao đổi với những người bạn đang sử dụng app iCheck nhé!"
-        android:textColor="@color/black_21_v2"
+        android:text="@string/dong_bo_danh_ba_de_trao_doi_voi_nhung_nguoi_ban_dang_su_dung_app_icheck_nhe"
         app:layout_constraintBottom_toTopOf="@+id/tv_sync_phone_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,7 +45,6 @@
         android:layout_marginStart="@dimen/size_38"
         android:layout_marginTop="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_38"
-        android:background="@drawable/background_button_enable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,7 +57,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Đồng bộ danh bạ"
+            android:text="@string/dong_bo_danh_ba"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_16"
             app:drawableStartCompat="@drawable/ic_phonebook_white_24px"
@@ -70,21 +67,19 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
         android:id="@+id/tv_sync_phone_book_rcv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
         android:background="#1A057DDA"
         android:drawablePadding="@dimen/size_10"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
         android:padding="@dimen/size_14"
-        android:text="Đồng bộ danh bạ"
-        android:textColor="@color/colorPrimary"
+        android:text="@string/dong_bo_danh_ba"
         android:visibility="gone"
         app:drawableEndCompat="@drawable/ic_arrow_right_light_blue_24dp"
-        app:drawableStartCompat="@drawable/ic_phonebook_24px"
+        app:drawableStartCompat="@drawable/ic_phonebook_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

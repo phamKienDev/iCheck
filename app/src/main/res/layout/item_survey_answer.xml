@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.AppCompatCheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICTextDisableUncheckSecondaryCheckedSurvey xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/txtTitle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_6"
-    android:background="@drawable/bg_detail_survey_option"
     android:drawablePadding="@dimen/size_8"
     android:ellipsize="end"
     android:fontFamily="sans-serif"
@@ -16,7 +15,6 @@
     android:paddingTop="@dimen/size_10"
     android:paddingEnd="@dimen/size_20"
     android:paddingBottom="@dimen/size_10"
-    android:textColor="@color/text_color_detail_survey_option"
     android:textSize="@dimen/font_14"
     android:textStyle="normal"
     tools:text="Cũng bình thường" />

@@ -73,7 +73,7 @@ abstract class BaseButton : AppCompatTextView {
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonStrokeColor)) {
-            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, ContextCompat.getColor(context, R.color.colorPrimary))
+            defaultStrokeColor = typedArray.getColor(R.styleable.BaseButton_buttonStrokeColor, vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
         }
 
         if (typedArray.hasValue(R.styleable.BaseButton_buttonRadius)) {
@@ -127,7 +127,7 @@ abstract class BaseButton : AppCompatTextView {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), ViewHelper.createRippleDrawable(context, resource))
                                 statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled),
-                                        ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.gray), defaultRadius)
+                                        ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.grayLoyalty), defaultRadius)
                                 )
                             } else {
                                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), resource)
@@ -145,15 +145,15 @@ abstract class BaseButton : AppCompatTextView {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), ViewHelper.createRippleDrawable(Color.parseColor(color), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
-                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.gray), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
+                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.grayD8), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
             } else {
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_enabled), ViewHelper.createShapeDrawable(Color.parseColor(color), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
                 statesListDrawable.addState(intArrayOf(android.R.attr.state_pressed), ViewHelper.createShapeDrawable(Color.parseColor(hover), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
-                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.gray), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
+                statesListDrawable.addState(intArrayOf(-android.R.attr.state_enabled), ViewHelper.createShapeDrawable(ContextCompat.getColor(context, R.color.grayD8), defaultStrokeWidth, defaultStrokeColor, defaultRadius))
             }
 
             background = ViewHelper.createStateListDrawable(
-                    ContextCompat.getColor(context, R.color.gray), Color.parseColor(color), Color.parseColor(hover),
+                    ContextCompat.getColor(context, R.color.grayD8), Color.parseColor(color), Color.parseColor(hover),
                     defaultStrokeColor, defaultStrokeColor, defaultStrokeColor,
                     defaultStrokeWidth, defaultRadius
             )

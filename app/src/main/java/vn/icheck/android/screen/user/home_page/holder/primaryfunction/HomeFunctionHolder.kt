@@ -19,6 +19,8 @@ import vn.icheck.android.databinding.ItemHomeFunctionInfoBinding
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.loyalty.base.setVisible
 import vn.icheck.android.network.base.SessionManager
@@ -27,6 +29,8 @@ import vn.icheck.android.network.models.pvcombank.ICListCardPVBank
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home_page.callback.IHomePageView
 import vn.icheck.android.screen.user.home_page.holder.secondfunction.HomeSecondaryFunctionAdapter
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHomePageView,
                          val binding: ItemHomeFunctionBinding = ItemHomeFunctionBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : BaseViewHolder<MutableList<Any?>>(binding.root) {
@@ -175,7 +179,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                 binding.avatarUser.apply {
                     avatarSize = SizeHelper.size32
                     rankSize = SizeHelper.size12
-                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84px)
+                    setData(user?.avatar, user?.rank?.level, R.drawable.ic_avatar_default_84dp)
 
                     setOnClickListener {
                         if (SessionManager.isUserLogged) {
@@ -190,7 +194,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
 
                 binding.tvName.apply {
                     text = if (user != null && SessionManager.isUserLogged) {
-                        if (user.getName == "Chưa cập nhật") {
+                        if (user.getName == context.getString(R.string.chua_cap_nhat)) {
                             user.getPhoneOnly()
                         } else {
                             user.getName
@@ -249,6 +253,8 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
             override fun bind(obj: ICListCardPVBank) {
                 setMoney(obj)
 
+                binding.tvMoney.setTextColor(ColorManager.getAccentYellowColor(itemView.context))
+
                 binding.tvMoney.setOnClickListener {
                     binding.tvMoney.isChecked = !binding.tvMoney.isChecked
                     setMoney(obj)
@@ -272,7 +278,7 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     TextHelper.formatMoney(obj.avlBalance
                             ?: "").replace("[0-9]".toRegex(), "*") + "**"
                 } else {
-                    TextHelper.formatMoney(obj.avlBalance ?: "") + " đ"
+                    binding.tvMoney.context.getString(R.string.s_space_d, TextHelper.formatMoney(obj.avlBalance ?: ""))
                 }
             }
         }
@@ -284,8 +290,12 @@ class HomeFunctionHolder(parent: ViewGroup, isExistTheme: Boolean, listener: IHo
                     listener.onCreatePVCombank()
                 }
 
-                binding.btnCreate.setOnClickListener {
-                    listener.onCreatePVCombank()
+                binding.btnCreate.apply {
+                    background = ViewHelper.btnPrimaryCorners4(context)
+
+                    setOnClickListener {
+                        listener.onCreatePVCombank()
+                    }
                 }
             }
         }

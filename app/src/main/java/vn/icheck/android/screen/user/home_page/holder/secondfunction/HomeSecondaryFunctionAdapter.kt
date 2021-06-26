@@ -1,7 +1,6 @@
 package vn.icheck.android.screen.user.home_page.holder.secondfunction
 
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -35,7 +33,8 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
         holder.bind(listData[position])
     }
 
-    inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICThemeFunction>(LayoutInflater.from(parent.context).inflate(R.layout.item_second_functions_holder, parent, false)) {
+    inner class ViewHolder(parent: ViewGroup) :
+        BaseViewHolder<ICThemeFunction>(LayoutInflater.from(parent.context).inflate(R.layout.item_second_functions_holder, parent, false)) {
 
         override fun bind(obj: ICThemeFunction) {
             (itemView as ConstraintLayout).run {
@@ -65,11 +64,11 @@ class HomeSecondaryFunctionAdapter(private val listData: MutableList<ICThemeFunc
                 (getChildAt(1) as AppCompatTextView).run {
                     text = obj.label
 
-                    if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
-                        setTextColor(Color.parseColor(obj.label_color))
-                    } else {
-                        setTextColor(ContextCompat.getColor(context, R.color.colorSecondText))
-                    }
+//                    if (isUseTheme && !obj.label_color.isNullOrEmpty()) {
+//                        setTextColor(Color.parseColor(obj.label_color))
+//                    } else {
+//                    setTextColor(Constant.getSecondTextColor(context))
+//                    }
                 }
 
                 (getChildAt(2) as AppCompatImageView).run {

@@ -109,6 +109,8 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
+    api 'com.romandanylyk:pageindicatorview:1.0.3'
+
 
     //paging library
     //Paging
@@ -135,5 +137,11 @@ dependencies {
 
     // EXIF Interface
     api 'androidx.exifinterface:exifinterface:1.3.2'
+
+    /** Room database **/
+    api "androidx.room:room-runtime:2.2.6"
+    api "androidx.room:room-ktx:2.2.6"
+    api "androidx.room:room-rxjava2:2.2.6"
+    kapt "androidx.room:room-compiler:2.2.6"
 
 }

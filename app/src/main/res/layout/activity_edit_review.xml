@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/btnBack"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
@@ -29,7 +29,7 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_cancel_light_blue_24dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextPrimary
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -41,7 +41,6 @@
             android:paddingEnd="@dimen/size_12"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             app:fontFamily="@font/barlow_semi_bold"
             android:text="@string/chinh_sua_danh_gia" />
@@ -76,7 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider3" />
 
-
     <LinearLayout
         android:id="@+id/containerSubmit"
         android:layout_width="match_parent"
@@ -84,13 +82,12 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@drawable/bg_border_gray_4dp_shop"
         android:orientation="vertical"
         android:paddingLeft="@dimen/size_10"
         android:paddingRight="@dimen/size_10"
         app:layout_constraintTop_toBottomOf="@id/rcvRating">
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormal
             android:id="@+id/edtContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,15 +99,12 @@
             android:hint="@string/viet_danh_gia"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColor="@color/colorNormalText"
-            android:textColorHint="@color/colorSecondText"
             android:textSize="@dimen/font_14" />
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
-            android:layout_marginTop="@dimen/size_12"
-            android:background="@color/gray" />
+            android:layout_marginTop="@dimen/size_12" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -140,7 +134,6 @@
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_20"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:gravity="center"
         android:text="@string/hoan_tat"
         android:textAllCaps="false"

@@ -27,7 +27,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewsTimeUtils
 import vn.icheck.android.util.ui.GlideUtil
 
-class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductReviews.ReviewsRow>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_reviewcontent_holder_v1, parent, false)) {
+class ReviewsContentStampHolder(val parent: ViewGroup) : BaseViewHolder<ICProductReviews.ReviewsRow>(LayoutInflater.from(parent.context).inflate(R.layout.ctsp_reviewcontent_holder_v1, parent, false)) {
     var useful = 0
     var unuseful = 0
 
@@ -51,15 +51,17 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
             itemView.gv_useful.visibility = View.GONE
         }
 
+        val secondaryColor = vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(itemView.context)
+
         obj.actionUseful?.let {
             if ("useful" == it) {
                 itemView.tv_1_useful.text = setTextUseful(obj.useful)
-                itemView.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                itemView.tv_1_useful.setTextColor(secondaryColor)
                 itemView.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                 useful = 1
             } else if ("unuseful" == it) {
                 itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                itemView.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                itemView.tv_1_unuseful.setTextColor(secondaryColor)
                 itemView.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                 unuseful = 1
             }
@@ -69,7 +71,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
                 if (useful == 0) {
                     obj.useful++
                     itemView.tv_1_useful.text = setTextUseful(obj.useful)
-                    itemView.tv_1_useful.setTextColor(Color.parseColor("#3C5A99"))
+                    itemView.tv_1_useful.setTextColor(secondaryColor)
                     itemView.tv_1_useful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_useful_fc_24px, 0, 0, 0)
                     useful = 1
                     if (unuseful == 1) {
@@ -98,7 +100,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
                 if (unuseful == 0) {
                     obj.unuseful++
                     itemView.tv_1_unuseful.text = setTextUnUseful(obj.unuseful)
-                    itemView.tv_1_unuseful.setTextColor(Color.parseColor("#3C5A99"))
+                    itemView.tv_1_unuseful.setTextColor(secondaryColor)
                     itemView.tv_1_unuseful.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unuseful_fc_24px, 0, 0, 0)
                     unuseful = 1
                     if (useful == 1) {
@@ -189,17 +191,17 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
 
     fun setTextUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Hữu ích (%d)", number)
+            parent.context.getString(R.string.huu_ich_d, number)
         } else {
-            "Hữu ích"
+            parent.context.getString(R.string.huu_ich)
         }
     }
 
     fun setTextUnUseful(number: Long): String {
         return if (number > 0) {
-            String.format("Không hữu ích (%d)", number)
+            parent.context.getString(R.string.khong_huu_ich_d, number)
         } else {
-            "Không hữu ích"
+            parent.context.getString(R.string.khong_huu_ich)
         }
     }
 
@@ -231,7 +233,7 @@ class ReviewsContentStampHolder(parent: ViewGroup) : BaseViewHolder<ICProductRev
 
     fun voteReviews(id: Long, vote: String?) {
         val body = hashMapOf<String, Any?>()
-        body.put("action", vote)
+        body["action"] = vote
 
         val host = APIConstants.defaultHost + APIConstants.CRITERIAVOTEREVIEW().replace("{id}", id.toString())
         ICNetworkClient.getApiClient().postVoteReview(host, body).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : SingleObserver<ICProductReviews.Comments> {

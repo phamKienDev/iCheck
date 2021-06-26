@@ -22,6 +22,7 @@ import vn.icheck.android.component.tendency.ICTopTrend
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.reminders.ReminderResponse
 import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.base.*
@@ -74,7 +75,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
 
     fun getHomeLayout() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            onError.postValue(ICError(R.drawable.ic_error_network, ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai), null, null))
             return
         }
 
@@ -175,9 +176,9 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
                                     // trendProducts
                                     totalRequest++
                                     val listCategory = mutableListOf<ICExperienceCategory>()
-                                    listCategory.add(ICExperienceCategory(0, "Sản phẩm", true))
-                                    listCategory.add(ICExperienceCategory(0, "Doanh nghiệp", false))
-                                    listCategory.add(ICExperienceCategory(0, "Chuyên gia", false))
+                                    listCategory.add(ICExperienceCategory(0, getString(R.string.san_pham), true))
+                                    listCategory.add(ICExperienceCategory(0, getString(R.string.doanh_nghiep), false))
+                                    listCategory.add(ICExperienceCategory(0, getString(R.string.chuyen_gia), false))
                                     addLayoutToAdapter(item.apply {
                                         viewType = ICViewTypes.TREND
                                         data = ICTopTrend(listCategory)
@@ -208,9 +209,9 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
 
             override fun onError(error: ICResponseCode?) {
                 if (!error?.message.isNullOrEmpty()) {
-                    onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+                    onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
                 }
-//                onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+//                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
             }
         })
     }
@@ -230,7 +231,7 @@ class HomePageViewModel @ViewModelInject constructor(@Assisted val savedStateHan
         }
 
         if (errorRequest == totalRequest) {
-//            onError.postValue(ICError(R.drawable.ic_error_request, ICheckApplication.getInstance().getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
+//            onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.khong_lay_duoc_du_lieu_vui_long_thu_lai), null, null))
         }
     }
 

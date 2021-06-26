@@ -18,6 +18,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import vn.icheck.android.R
 import vn.icheck.android.databinding.DialogCategoryContributeBinding
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductViewModel
 import vn.icheck.android.screen.user.contribute_product.adapter.IckCategoryAdapter
 import vn.icheck.android.util.AfterTextWatcher
@@ -47,7 +49,7 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
         dialog?.setOnShowListener {
             val bottomSheetDialog = it as BottomSheetDialog
             (bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?)?.let { bottomSheet ->
-                bottomSheet.setBackgroundResource(R.drawable.rounded_dialog)
+                dialog?.context?.let { it1 -> bottomSheet.background = ViewHelper.bgWhiteCornersTop16(it1) }
                 BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             }
         }
@@ -58,6 +60,9 @@ class IckCategoryBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.edtSearch.background= ViewHelper.bgGrayCorners4(requireContext())
+
         ickContributeProductViewModel.listCategory.clear()
         ickContributeProductViewModel.listCategory.add(null)
         categoryHeadlineAdapter = CategoryHeadlineAdapter({

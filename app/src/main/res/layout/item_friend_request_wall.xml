@@ -13,18 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_128" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:drawablePadding="@dimen/size_4"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:singleLine="true"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_14"
         tools:text="Xuyến Đỗ" />
 
@@ -33,7 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_28"
         android:layout_marginTop="@dimen/size_6"
-        android:background="@drawable/btn_light_blue_corners_4"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center"
         android:includeFontPadding="false"

@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_share_post_with_wall.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class SharePostActivity : BaseActivityMVVM() {
@@ -19,13 +20,17 @@ class SharePostActivity : BaseActivityMVVM() {
         setContentView(R.layout.activity_share_post_with_wall)
         viewmodel = ViewModelProvider(this).get(SharePostViewModel::class.java)
         viewmodel.getDataIntent(intent)
+
+        linearLayout.background=ViewHelper.bgTransparentStrokeLineColor1(this)
+        layoutBottom.background=ViewHelper.bgWhiteCornersTop25(this)
+
         initView()
         listenerGetData()
         listener()
     }
 
     private fun initView() {
-        txtTitle.text = "Chia sẻ trang cá nhân"
+        txtTitle.setText(R.string.chia_se_trang_ca_nhan)
     }
 
     private fun listenerGetData() {
@@ -62,7 +67,7 @@ class SharePostActivity : BaseActivityMVVM() {
         })
 
         viewmodel.user.observe(this, Observer {
-            avatarUser.setData(it.avatar, it.level, R.drawable.ic_avatar_default_84px)
+            avatarUser.setData(it.avatar, it.level, R.drawable.ic_avatar_default_84dp)
             tvName.text = it.getName
         })
 

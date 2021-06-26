@@ -57,7 +57,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
     private fun initToolbar() {
         viewModel.getDataIntent(intent)
 
-        txtTitle.text = "Đổi quà thẻ cào"
+        txtTitle.setText(R.string.doi_qua_the_cao)
 
         imgBack.setOnClickListener {
             onBackPressed()
@@ -86,15 +86,15 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
                         }
                     }
                     edtPhone.text.toString().isEmpty() -> {
-                        showLongError("Bạn chưa nhập số điện thoại!")
+                        showLongError(getString(R.string.ban_chua_nhap_so_dien_thoai))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                     edtPhone.text.toString().trim().contains("-") -> {
-                        showLongError("Số điện thoại không được nhập ký tự đặc biệt!")
+                        showLongError(getString(R.string.so_dien_thoai_khong_duoc_nhap_ky_tu_dac_biet))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                     else -> {
-                        showLongError("Số điện thoại bạn nhập không hợp lệ!")
+                        showLongError(getString(R.string.so_dien_thoai_ban_nhap_khong_hop_le))
                         btnAccept.setBackgroundResource(R.drawable.bg_b4_corner_20dp)
                     }
                 }
@@ -102,7 +102,7 @@ class ChangePhoneCardsActivity : BaseActivityGame() {
         })
 
         viewModel.showErrorDialog.observe(this@ChangePhoneCardsActivity, Observer {
-            object : DialogNotification(this@ChangePhoneCardsActivity, null, it, "Ok", false) {
+            object : DialogNotification(this@ChangePhoneCardsActivity, null, it, getString(R.string.ok), false) {
                 override fun onDone() {
                     onBackPressed()
                 }

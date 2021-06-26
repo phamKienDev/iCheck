@@ -9,22 +9,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@android:color/white"
-        android:layout_height="@dimen/size_44">
+        android:layout_height="@dimen/size_44"
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/size_12"
-            android:textSize="@dimen/font_18"
-            android:textColor="@color/darkBlue"
             android:fontFamily="sans-serif-medium"
-            android:text="Giao dịch thành công"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:paddingEnd="@dimen/size_12"
+            android:text="@string/giao_dich_thanh_cong"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/font_18"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/btn_history"
@@ -33,22 +33,22 @@
             android:layout_gravity="center_vertical"
             android:background="@null"
             android:paddingEnd="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="@id/btn_home"
             app:layout_constraintEnd_toStartOf="@+id/btn_home"
-            app:srcCompat="@drawable/ic_history_mission_24px"
             app:layout_constraintTop_toTopOf="@id/btn_home"
-            app:layout_constraintBottom_toBottomOf="@id/btn_home"/>
+            app:srcCompat="@drawable/ic_history_mission_24px" />
 
         <ImageButton
             android:id="@+id/btn_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:paddingEnd="@dimen/size_12"
             android:background="@null"
-            app:srcCompat="@drawable/ic_home_blue_24px"
+            android:paddingEnd="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:srcCompat="@drawable/ic_home_blue_24px" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -65,16 +65,15 @@
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_32"
         android:layout_marginBottom="@dimen/size_32"
-        tools:text="Quý khách đã mua thành công mã thẻ điện thoại Mobifone"
         android:textAlignment="center"
-        android:textColor="#35384B" />
+        android:textColor="#35384B"
+        tools:text="Quý khách đã mua thành công mã thẻ điện thoại Mobifone" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ViewLineDotted
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_5"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/dotted"
         android:layerType="software" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:text="Nhà mạng:"
+            android:text="@string/nha_mang_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,9 +100,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
             android:layout_marginEnd="@dimen/size_8"
-            android:textSize="@dimen/font_14"
-            android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mobifone" />
@@ -113,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Tổng thanh toán:"
+            android:text="@string/tong_thanh_toan_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -123,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Hình thức thanh toán:"
+            android:text="@string/hinh_thuc_thanh_toan_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView51"
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
@@ -132,9 +131,9 @@
             android:id="@+id/tv_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/font_14"
-            android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tv_msp"
             app:layout_constraintTop_toTopOf="@+id/textView51"
             tools:text="150,000đ" />
@@ -142,10 +141,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ví iCoin"
-            android:textSize="@dimen/font_14"
-            android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
+            android:text="@string/vi_icoin"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toEndOf="@+id/tv_total"
             app:layout_constraintTop_toTopOf="@+id/textView73" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -154,18 +153,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
-        android:paddingBottom="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_12"
-        android:background="@drawable/bg_gray_corner_10">
+        android:background="@drawable/bg_gray_corner_10"
+        android:paddingBottom="@dimen/size_8">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.secondary.TextSecondary
             android:id="@+id/textView76"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_8"
             android:layout_marginTop="@dimen/size_8"
-            android:text="MÃ THẺ"
-            android:textColor="#3C5A99"
+            android:text="@string/ma_the_upcase"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -174,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Số seri:"
+            android:text="@string/so_seri_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView76"
             app:layout_constraintTop_toBottomOf="@+id/textView76" />
@@ -184,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
-            android:text="Mã nạp:"
+            android:text="@string/ma_nap_colon"
             android:textColor="#434343"
             app:layout_constraintStart_toStartOf="@+id/textView77"
             app:layout_constraintTop_toBottomOf="@+id/textView77" />
@@ -211,24 +209,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_4"
-            tools:text="05613081439641"
-            android:textSize="@dimen/font_14"
-            android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/imageView30"
-            app:layout_constraintTop_toTopOf="@+id/textView77" />
+            app:layout_constraintTop_toTopOf="@+id/textView77"
+            tools:text="05613081439641" />
 
         <TextView
             android:id="@+id/tv_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_4"
-            tools:text="05613081439641"
-            android:textSize="@dimen/font_14"
-            android:textColor="@color/darkGray1"
             android:fontFamily="sans-serif-medium"
+            android:textColor="@color/darkGray1"
+            android:textSize="@dimen/font_14"
             app:layout_constraintEnd_toStartOf="@+id/imageView31"
-            app:layout_constraintTop_toTopOf="@+id/textView78" />
+            app:layout_constraintTop_toTopOf="@+id/textView78"
+            tools:text="05613081439641" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -237,7 +235,7 @@
         android:layout_marginStart="@dimen/size_32"
         android:layout_marginTop="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_32"
-        android:text="Trải nghiệm này tuyệt vời chứ? Vui lòng đánh giá trải nghiệm của bạn"
+        android:text="@string/trai_nghiem_nay_tuyet_voi_chu_vui_long_danh_gia_trai_nghiem_cua_ban"
         android:textAlignment="center"
         android:textColor="#717E8E"
         android:visibility="gone" />
@@ -260,26 +258,23 @@
         android:orientation="horizontal"
         android:padding="@dimen/size_12">
 
-        <Button
+        <vn.icheck.android.ichecklibs.view.secondary.ButtonSecondary
             android:id="@+id/btn_again"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_weight="1"
-            android:background="@drawable/bg_blue_corners_40_solid_white"
-            android:text="Mua mã thẻ khác"
-            android:textAllCaps="false"
             android:layout_marginBottom="@dimen/size_8"
-            android:textColor="#3C5A99" />
+            android:layout_weight="1"
+            android:text="@string/mua_ma_the_khac"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btn_charge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_blue_corners_40"
             android:layout_marginBottom="@dimen/size_8"
-            android:text="Nạp ngay"
+            android:layout_weight="1"
+            android:text="@string/nap_ngay"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
     </LinearLayout>

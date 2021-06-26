@@ -175,14 +175,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_25"
-            app:srcCompat="@drawable/ic_mo_qua_btn" />
+            app:srcCompat="@drawable/ic_mo_qua_btn"
+            android:layout_marginStart="@dimen/size_25" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnQA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_25"
-            app:srcCompat="@drawable/ic_hoi_dap" />
+            app:srcCompat="@drawable/ic_hoi_dap"
+            android:layout_marginStart="@dimen/size_25" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnHistory"
@@ -200,11 +202,12 @@
         android:layout_marginBottom="@dimen/size_8"
         android:drawableTop="@drawable/ic_add_count_game"
         android:gravity="center"
-        android:text="Thêm lượt"
+        android:text="@string/them_luot"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/size_20" />
 
     <TextView
         android:id="@+id/tv_total_turn"

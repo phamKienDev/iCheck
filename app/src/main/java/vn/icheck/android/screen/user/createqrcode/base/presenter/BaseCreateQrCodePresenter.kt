@@ -48,6 +48,6 @@ class BaseCreateQrCodePresenter(val view: IBaseCreateQrCodeView) : BaseFragmentP
             return
         }
 
-        view.onValidSuccess(view.mContext!!.getString(R.string.qr_code_call_phone_format, phone))
+        view.onValidSuccess(view.mContext?.getString(R.string.qr_code_call_phone_format, phone)?:"")
     }
 }

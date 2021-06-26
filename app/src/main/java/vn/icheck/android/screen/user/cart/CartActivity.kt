@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +31,7 @@ import vn.icheck.android.screen.user.checkoutcart.CheckoutCartActivity
  */
 class CartActivity : BaseActivityMVVM(), ICartView {
     private val adapter = CartParentAdapter(this)
-private val presenter = CartPresenter(this@CartActivity)
+    private val presenter = CartPresenter(this@CartActivity)
     private val requestCheckout = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ private val presenter = CartPresenter(this@CartActivity)
         setContentView(R.layout.activity_cart)
         onInitView()
     }
+
 
     fun onInitView() {
         setupToolbar()
@@ -71,7 +73,8 @@ private val presenter = CartPresenter(this@CartActivity)
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
             presenter.getCartOnline()
@@ -135,7 +138,7 @@ private val presenter = CartPresenter(this@CartActivity)
         if (count > 0) {
             presenter.updateItemQuantity(obj, count, parentPosition, childPosition)
         } else {
-            object : ConfirmDialog(this@CartActivity, null, getString(R.string.ban_muon_xoa_xxx_khoi_gio_hang, obj.name), null, null, true) {
+            object : ConfirmDialog(this@CartActivity, null, getString(R.string.ban_muon_xoa_s_khoi_gio_hang, obj.name), null, null, true) {
                 override fun onDisagree() {
                     onRefreshCart(obj, parentPosition, childPosition)
                 }

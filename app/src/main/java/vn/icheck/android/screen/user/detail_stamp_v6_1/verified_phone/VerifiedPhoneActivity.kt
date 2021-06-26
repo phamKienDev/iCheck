@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_verified_phone.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -12,6 +13,7 @@ import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.ActivityVerifiedPhoneBinding
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVariantProductStampV6_1
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICVerifiedPhone
 import vn.icheck.android.screen.account.icklogin.viewmodel.IckLoginViewModel
@@ -20,7 +22,6 @@ import vn.icheck.android.screen.user.detail_stamp_v6_1.home.StampDetailActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.update_information_first.UpdateInformationFirstActivity
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.presenter.VerifiedPhonePresenter
 import vn.icheck.android.screen.user.detail_stamp_v6_1.verified_phone.view.IVerifiedPhoneView
-
 @AndroidEntryPoint
 class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
     private lateinit var binding: ActivityVerifiedPhoneBinding
@@ -43,6 +44,7 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
         StampDetailActivity.listActivities.add(this)
 
         setupToolbar()
+        setupView()
         setupViewModel()
         setupListener()
 
@@ -55,6 +57,15 @@ class VerifiedPhoneActivity : BaseActivityMVVM(), IVerifiedPhoneView {
         binding.layoutToolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        binding.tvCountry.background=ViewHelper.lineUnderColorLine1(this)
+        binding.tvCode.background=ViewHelper.lineUnderColorLine1(this)
+        binding.edtPhone.background=ViewHelper.lineUnderColorLine1(this)
+        binding.btnUpdate.background=ViewHelper.btnPrimaryCorners4(this)
+
+        binding.edtPhone.setHintTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(this))
     }
 
     private fun setupViewModel() {

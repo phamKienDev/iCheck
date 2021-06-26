@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.FileHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.loyalty.helper.ActivityHelper
@@ -78,6 +80,7 @@ import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.AdsUtils
 import vn.icheck.android.util.ick.loadImageWithHolder
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.simpleText
 import vn.icheck.android.util.kotlin.WidgetUtils
 import java.io.File
@@ -140,7 +143,10 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupView() {
+        tvNotificationCount.background=vn.icheck.android.ichecklibs.ViewHelper.bgRedNotifyHome(requireContext())
+        tv_count.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentRedCorners6(requireContext())
         layoutHeader.setPadding(0, getStatusBarHeight + SizeHelper.size16, 0, 0)
+        tvCartCount.background=vn.icheck.android.ichecklibs.ViewHelper.bgAccentGreenNotificationHome(requireContext())
 
 //        txtSearch.background = ViewHelper.createDrawableStateList(
 //                ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
@@ -201,13 +207,13 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (theme != null) {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         } else {
             txtSearch.background = ViewHelper.createDrawableStateList(
                     ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.white_opacity_unknow), SizeHelper.size4.toFloat()),
-                    ViewHelper.createShapeDrawable(ContextCompat.getColor(requireContext(), R.color.darkGray6), SizeHelper.size4.toFloat())
+                    ViewHelper.createShapeDrawable(vn.icheck.android.ichecklibs.ColorManager.getAppBackgroundGrayColor(requireContext()), SizeHelper.size4.toFloat())
             )
             txtSearch.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_icheck_70dp_17dp), null, null, null)
         }
@@ -245,14 +251,14 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 
     private fun setupViewModel() {
         viewModel.onShowPopup.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             AdsUtils.showAdsPopup(activity, it)
         })
 
         viewModel.onUpdateAds.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             if (it == true) {
@@ -262,7 +268,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onError.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             closeLoading()
@@ -272,14 +278,14 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onAddData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             homeAdapter.addItem(it)
         })
 
         viewModel.onUpdateData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             if (it.data != null) {
@@ -290,7 +296,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         })
 
         viewModel.onUpdateListData.observe(viewLifecycleOwner, Observer {
-            if(recyclerView == null){
+            if(viewLifecycleOwner == null){
                 return@Observer
             }
             homeAdapter.updateItem(it)
@@ -403,7 +409,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary), ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(requireContext())
+        swipeLayout.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipeLayout.setOnRefreshListener {
             refreshHomeData()
@@ -614,7 +621,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                tvCartCount.text = count
 //            }
             ICMessageEvent.Type.ON_LOG_IN -> {
-
                 lifecycleScope.launch {
                     val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
                     if (file.exists()) {
@@ -638,8 +644,8 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     delay(400)
                     getReminders()
                 }
-                getCoin()
 
+                getCoin()
                 layoutContainer.setTransition(R.id.no_reminder)
                 tvCartCount.beGone()
             }
@@ -735,7 +741,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         if (requireActivity().intent?.getStringExtra(Constant.DATA_3).isNullOrEmpty()) {
             if (!isViewCreated) {
                 isViewCreated = true
-                Handler().post {
+                Handler(Looper.getMainLooper()).post {
                     setupViewModel()
                     setupRecyclerView()
                     setupSwipeLayout()
@@ -748,7 +754,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             requireActivity().intent?.putExtra(Constant.DATA_3, "")
         }
 
-        viewModel.getAds(true)
+//        viewModel.getAds(true)
         tvNotificationCount.visibility = if (RelationshipManager.unreadNotify > 0) {
             if (RelationshipManager.unreadNotify > 9) {
                 tvNotificationCount simpleText "9+"
@@ -811,8 +817,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                         layoutContainer.setTransition(R.id.reminder)
                         tv_count.beVisible()
                         group_notification.beVisible()
-                        tv_show_all_reminders.text = "Xem tất cả lời nhắc (${viewModel.getRemindersCount()})"
+                        tv_show_all_reminders.setText(R.string.xem_tat_ca_loi_nhac_d, viewModel.getRemindersCount())
                         tv_reminder_content.text = it?.data?.rows?.firstOrNull()?.message
+                        tv_show_all_reminders.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
                         if (!it?.data?.rows?.firstOrNull()?.label.isNullOrEmpty()) {
                             tv_action.text = it?.data?.rows?.firstOrNull()?.label
                         } else {
@@ -846,6 +853,7 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
         super.onDestroy()
         INSTANCE = null
+       viewModel.onUpdateAds.value=null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

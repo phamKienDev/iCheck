@@ -1,14 +1,13 @@
 package vn.icheck.android.base.adapter
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.screen.user.campaign.holder.base.LoadingHolder
-import vn.icheck.android.screen.user.campaign.holder.base.LongMessageHolder
+import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.base.holder.LongMessageHolder
 
 abstract class RecyclerViewCustomAdapter<T>(open val listener: IRecyclerViewCallback? = null) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     protected val listData = mutableListOf<T>()

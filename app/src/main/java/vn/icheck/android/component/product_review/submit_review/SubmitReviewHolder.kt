@@ -21,6 +21,7 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ImageHelper
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product_review.ProductReviewInteractor
 import vn.icheck.android.network.models.ICMedia
@@ -28,7 +29,6 @@ import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICReqCriteriaReview
 import vn.icheck.android.network.models.ICCommentPermission
 import vn.icheck.android.ui.layout.CustomLinearLayoutManager
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.logError
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -85,7 +85,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
 
         if (SettingManager.getPostPermission() != null) {
             WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (SettingManager.getPostPermission()?.type == Constant.USER) {
-                R.drawable.ic_avatar_default_84px
+                R.drawable.ic_avatar_default_84dp
             } else {
                 R.drawable.ic_business_v2
             })
@@ -153,7 +153,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 btnSubmit.isClickable = true
                 ToastUtils.showShortError(
                     itemView.context,
-                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi)
+                    itemView.context.getString(R.string.vui_long_dien_day_du_tieu_chi_danh_gia)
                 )
             }
         }
@@ -177,7 +177,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 override fun getPermission(permission: ICCommentPermission?) {
                     if (permission != null) {
                         WidgetUtils.loadImageUrl(imgPermission, SettingManager.getPostPermission()?.avatar, if (permission.type == Constant.USER) {
-                            R.drawable.ic_user_orange_circle
+                            R.drawable.ic_user_svg
                         } else {
                             R.drawable.ic_business_v2
                         })
@@ -186,7 +186,6 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 }
 
             }).show((it as AppCompatActivity).supportFragmentManager, null)
-
         }
     }
 
@@ -206,7 +205,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 DialogHelper.closeLoading(activity)
             }
             btnSubmit.isClickable = true
-            ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
+            ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai))
             return
         }
 
@@ -234,7 +233,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                     DialogHelper.closeLoading(activity)
                 }
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         }
     }
@@ -249,7 +248,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
             }.apply {
                 if (!this.isNullOrEmpty()) {
                     val value = this[this.keys.first()] ?: ""
-                    listMedia.add(ICMedia(value, if (value.contains(".mp4")) {
+                    listMedia.add(ICMedia(value, type = if (value.contains(".mp4")) {
                         Constant.VIDEO
                     } else {
                         Constant.IMAGE
@@ -276,7 +275,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                 if (obj.data != null) {
                     listener.onPostReviewSuccess(obj.data!!)
                 } else {
-                    ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
                 }
             }
 
@@ -285,7 +284,7 @@ class SubmitReviewHolder(parent: ViewGroup, val recycledViewPool: RecyclerView.R
                     DialogHelper.closeLoading(activity)
                 }
                 btnSubmit.isClickable = true
-                ToastUtils.showShortError(ICheckApplication.getInstance(), ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                ToastUtils.showShortError(ICheckApplication.getInstance(), getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
             }
         })
     }

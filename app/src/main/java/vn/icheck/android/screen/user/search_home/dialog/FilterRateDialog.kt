@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.dialog_filter_rate.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterRateDialog(val reviews: MutableList<String>, val callback: FilterRateCallback) : BaseBottomSheetDialogFragment() {
     private var selectedReviews = mutableListOf<String>()
@@ -69,10 +70,13 @@ class FilterRateDialog(val reviews: MutableList<String>, val callback: FilterRat
 
             }
         }
-        tv_clear.setOnClickListener {
-            for (itemView in arrItem) {
-                selectedReviews.remove(itemView.text.toString())
-                itemView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                for (itemView in arrItem) {
+                    selectedReviews.remove(itemView.text.toString())
+                    itemView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                }
             }
         }
 

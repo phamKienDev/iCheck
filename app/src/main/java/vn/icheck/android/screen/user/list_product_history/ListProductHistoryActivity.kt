@@ -1,5 +1,6 @@
 package vn.icheck.android.screen.user.list_product_history
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -36,7 +37,9 @@ class ListProductHistoryActivity : BaseActivityMVVM(), View.OnClickListener {
 
     private fun initView() {
         WidgetUtils.setClickListener(this, imgClose)
-        swipe_container.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+
+        val swipeColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipe_container.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
 
         swipe_container.setOnRefreshListener {
             getData()

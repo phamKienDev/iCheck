@@ -50,10 +50,12 @@ internal class AccumulationHistoryAdapter(callback: IRecyclerViewCallback) : Rec
                 setTextColor(ContextCompat.getColor(context, R.color.green2))
             }
 
-            itemView.tvHintSerial.text = if (!type) {
-                "Mã serial:"
-            } else {
-                "Mã code:"
+            itemView.tvHintSerial.apply {
+                text = if (!type) {
+                    context.getString(R.string.ma_serial)
+                } else {
+                    context.getString(R.string.ma_code)
+                }
             }
 
             itemView.tvSerial.run {

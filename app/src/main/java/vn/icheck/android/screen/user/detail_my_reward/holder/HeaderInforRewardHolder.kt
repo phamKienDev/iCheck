@@ -1,18 +1,15 @@
 package vn.icheck.android.screen.user.detail_my_reward.holder
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.header_infor_reward.*
 import kotlinx.android.synthetic.main.header_infor_reward.view.*
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.TimeHelper
-import vn.icheck.android.network.models.ICDetail_Campaign
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.util.kotlin.WidgetUtils
 
@@ -44,21 +41,21 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
         itemView.tvRefuseDes.visibility = View.VISIBLE
         itemView.tvTimeDes.visibility = View.VISIBLE
 
-        itemView.tvRefuse.text = "Mã thẻ cào"
-        itemView.tvTime.text = "Hạn sử dụng"
+        itemView.tvRefuse.setText(R.string.ma_cao_the)
+        itemView.tvTime.setText(R.string.han_su_dung)
         itemView.tvTimeDes.text = TimeHelper.convertDateSvToDateVn(obj.remainTime)
 
         when (obj.state) {
             //chưa dùng
             1 -> {
-                itemView.tvRefuseDes.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
+                itemView.tvRefuseDes.setTextColor(ColorManager.getAccentGreenColor(itemView.context))
                 itemView.tvRefuseDes.text = obj.refuse
 
                 itemView.imgUsed.visibility = View.GONE
             }
             //đã dùng
             2 -> {
-                itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
+                itemView.tvRefuseDes.setTextColor(ColorManager.getNormalTextColor(itemView.context))
                 itemView.tvRefuseDes.text = obj.refuse
 
                 itemView.imgUsed.visibility = View.VISIBLE
@@ -74,43 +71,43 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
         itemView.tvRefuseDes.visibility = View.VISIBLE
         itemView.tvTimeDes.visibility = View.VISIBLE
 
-        itemView.tvRefuse.text = "Hạn lấy quà"
-        itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
+        itemView.tvRefuse.setText(R.string.han_lay_qua)
+        itemView.tvRefuseDes.setTextColor(ColorManager.getNormalTextColor(itemView.context))
         itemView.tvRefuseDes.text = obj.refuse
 
-        itemView.tvTime.text = "Loại quà"
-        itemView.tvTimeDes.setTextColor(Color.parseColor("#212121"))
-        itemView.tvRefuseDes.text = "Qùa lấy tại cửa hàng"
+        itemView.tvTime.setText(R.string.loai_qua)
+        itemView.tvTimeDes.setTextColor(ColorManager.getNormalTextColor(itemView.context))
+        itemView.tvRefuseDes.setText(R.string.qua_lay_tai_cua_hang)
 
     }
 
     fun stateProductShip(obj: ICItemReward) {
         itemView.imgUsed.visibility = View.GONE
-        itemView.tvRefuseDes.setTextColor(Color.parseColor("#212121"))
-        itemView.tvTimeDes.setTextColor(Color.parseColor("#212121"))
+        itemView.tvRefuseDes.setTextColor(ColorManager.getNormalTextColor(itemView.context))
+        itemView.tvTimeDes.setTextColor(ColorManager.getNormalTextColor(itemView.context))
         when (obj.state) {
             //chưa nhận
             1 -> {
                 itemView.tvState.visibility = View.GONE
 
                 itemView.tvRefuse.visibility = View.VISIBLE
-                itemView.tvRefuse.text = "Hạn nhận quà"
+                itemView.tvRefuse.setText(R.string.han_nhan_qua)
                 itemView.tvRefuseDes.visibility = View.VISIBLE
                 itemView.tvRefuseDes.text = TimeHelper.convertDateSvToDateVn(obj.remainTime)
 
                 itemView.tvTime.visibility = View.VISIBLE
-                itemView.tvTime.text = "Loại quà"
+                itemView.tvTime.setText(R.string.loai_qua)
                 itemView.tvTimeDes.visibility = View.VISIBLE
                 itemView.tvTimeDes.text = TimeHelper.convertDateSvToDateVn(obj.refuse)
             }
             //đã ship
             2 -> {
                 itemView.tvState.visibility = View.VISIBLE
-                itemView.tvState.setTextColor(Color.parseColor("#057DDA"))
-                itemView.tvState.text = "Đã xác nhận giao quà"
+                itemView.tvState.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(itemView.context))
+                itemView.tvState.setText(R.string.da_xac_nhan_giao_qua)
 
                 itemView.tvRefuse.visibility = View.VISIBLE
-                itemView.tvRefuse.text = "Thời gian xác nhận"
+                itemView.tvRefuse.setText(R.string.thoi_gian_xac_nhan)
                 itemView.tvRefuse.text = TimeHelper.convertDateSvToDateVn(obj.remainTime)
 
                 itemView.tvTime.visibility = View.GONE
@@ -122,23 +119,23 @@ class HeaderInforRewardHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(
                 itemView.tvRefuse.visibility = View.VISIBLE
                 itemView.tvTime.visibility = View.VISIBLE
 
-                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
-                itemView.tvState.text = "Bạn đã từ chối nhận quà"
+                itemView.tvState.setTextColor(ColorManager.getAccentRedColor(itemView.context))
+                itemView.tvState.setText(R.string.ban_da_tu_choi_nhan_qua)
 
-                itemView.tvRefuse.text = "Lý do từ chối"
-                itemView.tvRefuseDes.text = "Phí ship cao quá (1 dòng)"
+                itemView.tvRefuse.setText(R.string.ly_do_tu_choi)
+                itemView.tvRefuseDes.setText(R.string.phi_ship_qua_cao_1_dong)
 
-                itemView.tvTime.text = "Thời gian từ chối"
+                itemView.tvTime.setText(R.string.thoi_gian_tu_choi)
                 itemView.tvTimeDes.text = TimeHelper.convertDateSvToDateVn(obj.remainTime)
             }
             //giao thành công
             4 -> {
                 itemView.tvState.visibility = View.VISIBLE
-                itemView.tvState.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentGreen))
-                itemView.tvState.text = "Giao quà thành công"
+                itemView.tvState.setTextColor(ColorManager.getAccentGreenColor(itemView.context))
+                itemView.tvState.setText(R.string.giao_qua_thanh_cong)
 
                 itemView.tvRefuse.visibility = View.VISIBLE
-                itemView.tvRefuse.text = "Thời gian giao"
+                itemView.tvRefuse.setText(R.string.thoi_gian_giao)
                 itemView.tvRefuse.text = TimeHelper.convertDateSvToDateVn(obj.remainTime)
 
                 itemView.tvTime.visibility = View.GONE

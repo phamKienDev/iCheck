@@ -1,7 +1,6 @@
 package vn.icheck.android.network.feature.detail_stamp_v6_1
 
 import android.util.Base64
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,6 +9,9 @@ import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.R
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICStampV61
 import vn.icheck.android.network.models.detail_stamp_v6_1.*
@@ -188,7 +190,7 @@ class DetailStampRepository : BaseRepository() {
                             dispose()
 
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             when (it) {
                                 is RetrofitException -> {
@@ -274,7 +276,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -309,7 +311,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -349,7 +351,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -384,7 +386,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -414,7 +416,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -443,7 +445,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             try {
                                 val errorBody = ICBaseResponse()
-                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                                 if (it is HttpException) {
                                     val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -484,7 +486,7 @@ class DetailStampRepository : BaseRepository() {
                 } else {
                     try {
                         val errorBody = ICBaseResponse()
-                        errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                        errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                         if (errorBody is HttpException) {
                             val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -503,7 +505,7 @@ class DetailStampRepository : BaseRepository() {
 
             override fun onFailure(call: Call<ICNameCity>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -535,7 +537,7 @@ class DetailStampRepository : BaseRepository() {
                     }
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -553,7 +555,7 @@ class DetailStampRepository : BaseRepository() {
             override fun onFailure(call: Call<ICNameDistricts>, t: Throwable) {
                 try {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -624,7 +626,7 @@ class DetailStampRepository : BaseRepository() {
 
                             try {
                                 val errorBody = ICBaseResponse()
-                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                                 when (it) {
                                     is RetrofitException -> {
@@ -768,7 +770,7 @@ class DetailStampRepository : BaseRepository() {
                             dispose()
                             try {
                                 val errorBody = ICBaseResponse()
-                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                                 if (it is HttpException) {
                                     val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -819,7 +821,7 @@ class DetailStampRepository : BaseRepository() {
                     listener.onSuccess(body)
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -836,7 +838,7 @@ class DetailStampRepository : BaseRepository() {
 
             override fun onFailure(call: Call<ICListResponse<ICShopVariantStamp>>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -868,7 +870,7 @@ class DetailStampRepository : BaseRepository() {
                     }
                 } else {
                     val errorBody = ICBaseResponse()
-                    errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                    errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                     if (errorBody is HttpException) {
                         val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -885,7 +887,7 @@ class DetailStampRepository : BaseRepository() {
 
             override fun onFailure(call: Call<IC_Config_Error>, t: Throwable) {
                 val errorBody = ICBaseResponse()
-                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                 if (errorBody is HttpException) {
                     val error = parseJson(errorBody.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -919,7 +921,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             dispose()
                             val errorBody = ICBaseResponse()
-                            errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                            errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                             if (it is HttpException) {
                                 val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -954,7 +956,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             try {
                                 val errorBody = ICBaseResponse()
-                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                                 if (it is HttpException) {
                                     val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)
@@ -1007,7 +1009,7 @@ class DetailStampRepository : BaseRepository() {
                         {
                             try {
                                 val errorBody = ICBaseResponse()
-                                errorBody.message = "Có lỗi xảy ra. Vui lòng thử lại."
+                                errorBody.message = getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
 
                                 if (it is HttpException) {
                                     val error = parseJson(it.response()?.errorBody()?.string(), ICResponseErrorStamp::class.java)

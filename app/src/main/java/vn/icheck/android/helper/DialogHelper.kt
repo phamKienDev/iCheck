@@ -23,7 +23,7 @@ import vn.icheck.android.base.dialog.notify.notification.NotificationDialog
 import vn.icheck.android.base.dialog.notify.shaking.DialogEmtyBoxGift
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
-import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
 import vn.icheck.android.network.models.ICMission

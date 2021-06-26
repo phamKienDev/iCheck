@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_product_header_holder.view.*
 import kotlinx.android.synthetic.main.layout_list_product_header_history_holder.view.*
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.screen.user.scan_history.ScanHistoryFragment
 import vn.icheck.android.screen.user.scan_history.view.IScanHistoryView
@@ -52,15 +54,14 @@ class ListBigCorpHolder(parent: ViewGroup, val listener: IScanHistoryView) : Rec
                     WidgetUtils.loadImageUrl(itemView.imgBigCorp, item.avatar, R.drawable.ic_big_corp_40_px, R.drawable.ic_big_corp_40_px)
                 }
 
-                itemView.tvNameBigCorp.text = item.name
-                        ?: itemView.context.getString(R.string.dang_cap_nhat)
+                itemView.tvNameBigCorp.text = item.name ?: itemView.context.getString(R.string.dang_cap_nhat)
 
                 if (selectedPos == absoluteAdapterPosition) {
-                    itemView.bgItem.setBackgroundResource(R.drawable.bg_corner_white_4_stroke_light_blue)
-                    itemView.tvNameBigCorp.setTextColor(Color.parseColor("#057DDA"))
+                    itemView.bgItem.background = ViewHelper.bgWhiteStrokePrimary1Corners4(itemView.context)
+                    itemView.tvNameBigCorp.setTextColor(ColorManager.getPrimaryColor(itemView.context))
                 } else {
-                    itemView.bgItem.setBackgroundResource(R.drawable.bg_corners_white_4)
-                    itemView.tvNameBigCorp.setTextColor(Color.parseColor("#757575"))
+                    itemView.bgItem.background=ViewHelper.bgWhiteCorners4(itemView.context)
+                    itemView.tvNameBigCorp.setTextColor(ColorManager.getSecondTextColor(itemView.context))
                 }
 
                 itemView.setOnClickListener {

@@ -8,6 +8,7 @@ import okhttp3.ResponseBody
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.ICK_URI
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.posts.PostResponse
 import vn.icheck.android.network.model.privacy.UserPrivacyResponse
 import vn.icheck.android.network.model.wall.LayoutResponse
@@ -49,7 +50,7 @@ class IckUserWallRepository @Inject constructor(
     }
 
     fun getFacebook(): String? {
-        return sharedPreferences.getString("FACEBOOK_USERNAME", "Chưa liên kết")
+        return sharedPreferences.getString("FACEBOOK_USERNAME", getString(R.string.chua_lien_ket))
     }
 
     suspend fun getUserInfo(): IckUserInfoResponse? {
@@ -326,7 +327,7 @@ class IckUserWallRepository @Inject constructor(
             ickApi.deletePost(url, body)
         }, {
             mErr.postValue(if (it?.message.isNullOrEmpty()) {
-                ICheckApplication.getInstance().getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
             } else {
                 it?.message
             })

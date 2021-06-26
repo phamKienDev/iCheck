@@ -17,12 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICRecyclerViewGray
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#f0f0f0"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <FrameLayout
@@ -51,17 +50,16 @@
             android:src="@drawable/ic_more_black_28dp" />
     </FrameLayout>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@id/layoutToolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,22 +69,18 @@
             android:padding="@dimen/size_10"
             android:src="@drawable/ic_back_blue_v2_24px" />
 
-        <vn.icheck.android.ui.view.TextBarlowSemiBold
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/txtTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_40"
-            android:layout_marginLeft="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_8"
-            android:layout_marginRight="@dimen/size_8"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
             android:singleLine="true"
             android:text="2335432323327"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_18"
             tools:text="Tiêu đề" />
 
@@ -100,7 +94,7 @@
             android:padding="@dimen/size_4"
             android:src="@drawable/ic_like_off_24dp" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@id/imgAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +103,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="@dimen/size_8"
             android:src="@drawable/ic_more_light_blue_24dp" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <FrameLayout
         android:id="@id/layoutLoading"
@@ -132,11 +126,10 @@
             app:lottie_rawRes="@raw/loading_short" />
     </FrameLayout>
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@id/layoutStatus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:gravity="top|center"
@@ -158,30 +151,26 @@
             android:layout_marginTop="@dimen/size_60"
             tools:src="@drawable/ic_holder_product_notfound" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
             android:id="@+id/tvTitleError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16"
             android:layout_marginTop="@dimen/size_30"
             android:layout_marginEnd="@dimen/size_16"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:textColor="#212121"
             android:textSize="@dimen/font_16"
             tools:text="Thông tin sản phẩm chưa được cập nhật" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/tvDescError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_16"
-            android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
-            android:textColor="#757575"
             android:textSize="@dimen/font_14"
             tools:text="Chúng tôi không thể giúp bạn kiểm tra thông tin nguồn gốc xuất xứ của sản phầm này." />
 
@@ -196,18 +185,14 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/btn_contact_not_found"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
-                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
-                android:textColor="#057dda"
+                android:text="@string/lien_he_icheck"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -215,29 +200,24 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_5"
-                android:layout_marginLeft="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="Đóng góp thông tin"
+                android:text="@string/dong_gop_thong_tin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btn_lien_he"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_38"
             android:layout_marginTop="@dimen/size_40"
             android:layout_marginEnd="@dimen/size_38"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
-            android:text="Liên hệ iCheck"
-            android:textColor="#057dda"
+            android:text="@string/lien_he_icheck"
             android:textSize="@dimen/font_16"
             android:visibility="gone" />
 
@@ -251,18 +231,14 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/btn_contact_icheck"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginEnd="@dimen/size_5"
-                android:layout_marginRight="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_no_solid"
-                android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
-                android:text="Liên hệ iCheck"
-                android:textColor="#057dda"
+                android:text="@string/lien_he_icheck"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -270,16 +246,14 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_5"
-                android:layout_marginLeft="@dimen/size_5"
                 android:layout_weight="1"
-                android:background="@drawable/bg_corners_4_light_blue_solid"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:text="@string/lien_he_doanh_nghiep"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />
         </LinearLayout>
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <View
         android:id="@id/view"
@@ -290,11 +264,10 @@
         app:layout_constraintEnd_toEndOf="@id/layoutBottom"
         app:layout_constraintStart_toStartOf="@id/layoutBottom" />
 
-    <LinearLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:id="@+id/layoutBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/size_25"
         android:visibility="gone"
@@ -336,7 +309,6 @@
             android:layout_marginTop="@dimen/size_5"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/background_button_enable"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/lien_he_n_doanh_nghiep"
@@ -344,7 +316,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_14"
             tools:text="@string/lien_he_n_doanh_nghiep" />
-    </LinearLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/layoutAction"

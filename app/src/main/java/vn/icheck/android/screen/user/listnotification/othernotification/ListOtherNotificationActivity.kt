@@ -78,7 +78,8 @@ class ListOtherNotificationActivity : BaseActivityMVVM(), IRecyclerViewCallback 
     }
 
     private fun setupSwipeLayout() {
-        swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorSecondary), ContextCompat.getColor(this, R.color.colorPrimary))
+        val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(this)
+        swipeLayout.setColorSchemeColors(primaryColor, primaryColor, primaryColor)
 
         swipeLayout.setOnRefreshListener {
             swipeLayout.isRefreshing = true

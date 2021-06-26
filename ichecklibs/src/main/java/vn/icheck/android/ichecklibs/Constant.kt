@@ -1,11 +1,8 @@
 package vn.icheck.android.ichecklibs
 
-import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
 import android.net.MailTo
-import android.net.Uri
-import java.util.regex.Pattern
 
 object Constant {
 
@@ -37,6 +34,20 @@ object Constant {
     const val MA_QR = "Mã QR"
 
     const val CART = "cart"
+
+    const val PRIMARY_COLOR="primaryColor"
+    const val SECONDARY_COLOR="secondaryColor"
+    const val ACCENT_BLUE_COLOR="accentBlueColor"
+    const val ACCENT_GREEN_COLOR="accentGreenColor"
+    const val ACCENT_RED_COLOR="accentRedColor"
+    const val ACCENT_CYAN_COLOR="accentCyanColor"
+    const val ACCENT_YELLOW_COLOR="accentYellowColor"
+    const val NORMAL_TEXT_COLOR="normalTextColor"
+    const val SECOND_TEXT_COLOR="secondTextColor"
+    const val DISABLE_TEXT_COLOR="disableTextColor"
+    const val LINE_COLOR="lineColor"
+    const val APP_BACKGROUND_COLOR="appBackgroundColor"
+    const val POPUP_BACKGROUND_COLOR="popupBackgroundColor"
 
     const val REGISTER_TYPE = "register_type"
     const val LOGIN_FACEBOOK_TYPE = "login_facebook_type"

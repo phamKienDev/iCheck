@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.fragment_create_message_qr_code.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -19,6 +18,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ContactHelper
 import vn.icheck.android.helper.PermissionHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.showLongErrorToast
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.createqrcode.createmessage.presenter.CreateMessageQrCodePresenter
@@ -54,6 +54,7 @@ class CreateMessageQrCodeFragment : BaseFragmentMVVM(), ICreateMessageQrCodeView
 
     fun onInitView() {
         initToolbar()
+        setupView()
         initListener()
         focusView(edtPhone)
     }
@@ -63,6 +64,16 @@ class CreateMessageQrCodeFragment : BaseFragmentMVVM(), ICreateMessageQrCodeView
 
         imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+    }
+
+    private fun setupView() {
+        btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
+        edtPhone.setCompoundDrawablesWithIntrinsicBounds(null,null,ViewHelper.fillDrawableColor(R.drawable.ic_phonebook_24dp,requireContext()),null)
+
+        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
+            edtPhone.background=this
+            edtContent.background=this
         }
     }
 
@@ -99,33 +110,33 @@ class CreateMessageQrCodeFragment : BaseFragmentMVVM(), ICreateMessageQrCodeView
 
     override fun onInvalidPhoneSuccess() {
         tvMessage.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
     }
 
     override fun onInvalidPhone(error: String) {
         tvMessage.visibility = View.VISIBLE
         tvMessage.text = error
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtPhone.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtPhone.requestFocus()
     }
 
     override fun onInvalidContentSuccess() {
         tvMessageContent.visibility = View.GONE
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtContent.context)
     }
 
     override fun onInvalidContent(error: String) {
         tvMessageContent.visibility = View.VISIBLE
         tvMessageContent.text = error
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_stroke_red_4)
+        edtContent.background = ViewHelper.bgTransparentStrokeAccentRed0_5Corners4(requireContext())
         edtContent.requestFocus()
     }
 
     override fun onValidSuccess(text: String) {
         tvMessage.visibility = View.GONE
         tvMessageContent.visibility = View.GONE
-        edtPhone.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
-        edtContent.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_corner_gray_solid_white)
+        edtPhone.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(edtPhone.context)
         KeyboardUtils.hideSoftInput(edtPhone)
 
         val intent = Intent(requireContext(), CreateQrCodeSuccessActivity::class.java)

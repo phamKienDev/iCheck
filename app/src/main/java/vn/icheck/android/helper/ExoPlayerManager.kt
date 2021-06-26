@@ -1,7 +1,6 @@
 package vn.icheck.android.helper
 
 import android.net.Uri
-import android.util.Log
 import android.view.SurfaceView
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,13 +11,10 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
-import com.jakewharton.rxbinding3.view.layoutChangeEvents
-import com.jakewharton.rxbinding3.view.layoutChanges
-import kotlinx.android.synthetic.main.back_img_holder.view.*
-import kotlinx.android.synthetic.main.fragment_page_detail.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseVideoViewHolder
+import vn.icheck.android.ichecklibs.util.getString
 
 object ExoPlayerManager {
     var manager = mutableListOf<SimpleExoPlayer>()
@@ -54,7 +50,7 @@ object ExoPlayerManager {
 
         if (currentSurfaceView != surfaceView) { //  || player?.playbackState == Player.STATE_ENDED
             stopVideo()
-            val dataSourceFactory = DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), ICheckApplication.getString(R.string.app_name)))
+            val dataSourceFactory = DefaultDataSourceFactory(ICheckApplication.getInstance(), Util.getUserAgent(ICheckApplication.getInstance(), getString(R.string.app_name)))
             player?.prepare(ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url)))
             player?.setVideoSurfaceView(surfaceView)
             player?.playWhenReady = true

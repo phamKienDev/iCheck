@@ -1,14 +1,16 @@
 package vn.icheck.android.base.dialog.notify.confirm
 
+import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
+import android.os.Bundle
 import android.text.Html
+import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.dialog_confirm.*
 import vn.icheck.android.R
-import vn.icheck.android.base.dialog.notify.base.BaseDialog
-import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.databinding.DialogConfirmBinding
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beVisible
 
 abstract class ConfirmDialog(
         context: Context,
@@ -21,57 +23,83 @@ abstract class ConfirmDialog(
         private val colorAgree: Int? = null,
         private val colorTitle: Int? = null,
         private val colorMessage: Int? = null
-) : BaseDialog(context, R.style.DialogTheme) {
+) : Dialog(context, R.style.DialogTheme) {
+    private lateinit var binding: DialogConfirmBinding
 
-    override val getLayoutID: Int
-        get() = R.layout.dialog_confirm
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window?.setLayout(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+        setCancelable(isCancelable)
+        setCanceledOnTouchOutside(isCancelable)
 
-    override val getIsCancelable: Boolean
-        get() = isCancelable
+        binding = DialogConfirmBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        onInitView()
+    }
 
     @Suppress("DEPRECATION")
-    override fun onInitView() {
+    private fun onInitView() {
+        binding.btnDisagree.background=ViewHelper.btnWhiteCornersBottomLeft8(context)
+        binding.btnAgree.background=ViewHelper.btnWhiteCornersBottomRight8(context)
+
         if (colorTitle != null)
-            txtTitle.setTextColor(ContextCompat.getColor(context, colorTitle))
+            binding.txtTitle.setTextColor(getColor(colorTitle))
 
         if (!title.isNullOrEmpty()) {
-            txtTitle.beVisible()
-            txtTitle.text = Html.fromHtml(title)
+            binding.txtTitle.beVisible()
+            binding.txtTitle.text = Html.fromHtml(title)
         } else {
-            txtTitle.beGone()
+            binding.txtTitle.beGone()
         }
 
         if (colorMessage != null)
-            txtMessage.setTextColor(ContextCompat.getColor(context, colorMessage))
+            binding.txtMessage.setTextColor(getColor(colorMessage))
 
         if (!message.isNullOrEmpty()) {
-            txtMessage.beVisible()
-            txtMessage.text = Html.fromHtml(message)
+            binding.txtMessage.beVisible()
+            binding.txtMessage.text = Html.fromHtml(message)
         } else {
-            txtMessage.beGone()
+            binding.txtMessage.beGone()
         }
 
-
         if (!disagree.isNullOrEmpty())
-            btnDisagree.text = Html.fromHtml(disagree)
+            binding.btnDisagree.text = Html.fromHtml(disagree)
 
         if (!agree.isNullOrEmpty())
-            btnAgree.text = Html.fromHtml(agree)
+            binding.btnAgree.text = Html.fromHtml(agree)
 
         if (colorDisagree != null)
-            btnDisagree.setTextColor(ContextCompat.getColor(context, colorDisagree))
+            binding.btnDisagree.setTextColor(getColor(colorDisagree))
 
         if (colorAgree != null)
-            btnAgree.setTextColor(ContextCompat.getColor(context, colorAgree))
+            binding.btnAgree.setTextColor(getColor(colorAgree))
 
-        btnDisagree.setOnClickListener {
+        binding.btnDisagree.setOnClickListener {
             dismiss()
             onDisagree()
         }
 
-        btnAgree.setOnClickListener {
+        binding.btnAgree.setOnClickListener {
             dismiss()
             onAgree()
+        }
+    }
+
+    private fun getColor(color: Int): Int {
+        return when (color) {
+            R.color.colorPrimary -> {
+                vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
+            }
+            R.color.colorSecondary -> {
+                vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context)
+            }
+            R.color.colorAccentRed -> {
+                vn.icheck.android.ichecklibs.ColorManager.getAccentRedColor(context)
+            }
+            else -> {
+                ContextCompat.getColor(context, color)
+            }
         }
     }
 

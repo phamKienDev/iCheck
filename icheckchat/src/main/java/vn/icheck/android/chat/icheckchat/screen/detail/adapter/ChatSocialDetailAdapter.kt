@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.text.Html
 import android.text.util.Linkify
@@ -42,8 +43,13 @@ import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.chat.icheckchat.screen.detail_image.ImageDetailActivity
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk
 import vn.icheck.android.chat.icheckchat.sdk.ChatSdk.openActivity
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listData = mutableListOf<MCDetailMessage>()
@@ -166,9 +172,7 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
     inner class SenderHolder(val binding: ItemSenderBinding) : BaseViewHolder<MCDetailMessage>(binding) {
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
-            binding.layoutImageDetail.root.gravity = Gravity.RIGHT
-
-            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
+            setupView()
 
             if (!obj.content.isNullOrEmpty()) {
                 if (obj.content!!.contains("http://") || obj.content!!.contains("https://")) {
@@ -197,6 +201,21 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             initClick(obj)
         }
 
+        private fun setupView() {
+            binding.layoutImageDetail.root.gravity = Gravity.RIGHT
+
+            binding.layoutProduct.background=ViewHelper.bgGrayCorners10(itemView.context)
+            binding.btnProductDetail.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+
+            setGoneView(
+                binding.layoutProduct,
+                binding.tvMessage,
+                binding.layoutImageDetail.layoutOneImage,
+                binding.layoutImageDetail.recyclerView,
+                binding.layoutImageDetail.imgView
+            )
+        }
+
         private fun setupProduct(obj: MCDetailMessage) {
             if (obj.product != null) {
                 binding.layoutProduct.setVisible()
@@ -218,11 +237,11 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 }
 
                 binding.btnProductDetail.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
 
                 binding.layoutProduct.setOnClickListener {
-                    ChatSdk.openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
+                    openActivity("product?id=${obj.product!!.productId}&barcode=${obj.product!!.barcode}")
                 }
             }
         }
@@ -249,23 +268,22 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
             when (obj.status) {
                 MCStatus.SUCCESS -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
+                    binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
                     obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
                     binding.tvTime.text = obj.timeText
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvMessage.background = ViewHelper.createShapeDrawable(ContextCompat.getColor(itemView.context,R.color.colorSecondary),SizeHelper.size10.toFloat())
                 }
                 MCStatus.LOADING -> {
                     binding.imgRetry.setGone()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.gray_b4))
-                    binding.tvTime.text = itemView.context.getString(R.string.dang_gui)
-//                    binding.tvMessage.setBackgroundDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity))
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue)
+                    binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
+                    binding.tvTime.setText(R.string.dang_gui)
+                    binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
                 else -> {
                     binding.imgRetry.setVisible()
-                    binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
-                    binding.tvTime.text = itemView.context.getString(R.string.loi_gui_tin_nhan)
-                    binding.tvMessage.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_corner_10_blue_opacity)
+                    binding.tvTime.setTextColor(ColorManager.getAccentRedColor(itemView.context))
+                    binding.tvTime.setText(R.string.loi_gui_tin_nhan)
+                    binding.tvMessage.background=ViewHelper.createShapeDrawable(Color.parseColor("#A63C5A99"),SizeHelper.size10.toFloat())
                 }
             }
         }
@@ -354,9 +372,10 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
     inner class ReceiverHolder(val binding: ItemReceiverBinding) : BaseViewHolder<MCDetailMessage>(binding) {
         @SuppressLint("RtlHardcoded")
         override fun bind(obj: MCDetailMessage) {
+            setupView()
+
             loadImageUrl(binding.imgAvatarUser, obj.avatarSender, R.drawable.ic_user_default_52dp, R.drawable.ic_user_default_52dp)
             binding.layoutImageDetail.root.gravity = Gravity.LEFT
-            setGoneView(binding.layoutProduct, binding.tvMessage, binding.layoutImageDetail.layoutOneImage, binding.layoutImageDetail.recyclerView, binding.layoutImageDetail.imgView)
 
             if (ChatSocialDetailActivity.toType == "user") {
                 binding.imgAvatarUser.setBackgroundResource(0)
@@ -381,14 +400,31 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
                 binding.tvMessage.setGone()
             }
             obj.timeText = convertDateTimeSvToCurrentDay(obj.time)
-            binding.tvTime.text = obj.timeText
 
+            binding.tvTime.text = obj.timeText
+            binding.tvTime.setTextColor(ColorManager.getDisableTextColor(itemView.context))
 
             setupProduct(obj)
             setupMedia(obj)
             setupSticker(obj)
             setupShowStatus(obj)
             initClick(obj)
+        }
+
+        private fun setupView() {
+            ViewHelper.bgPrimaryCorners4(itemView.context).apply {
+                binding.btnProductDetail.background=this
+                binding.tvGheTham.background=this
+                binding.btnViewProductApply.background=this
+            }
+
+            setGoneView(
+                binding.layoutProduct,
+                binding.tvMessage,
+                binding.layoutImageDetail.layoutOneImage,
+                binding.layoutImageDetail.recyclerView,
+                binding.layoutImageDetail.imgView
+            )
         }
 
         private fun setupProduct(obj: MCDetailMessage) {
@@ -517,7 +553,15 @@ class ChatSocialDetailAdapter(val callback: IRecyclerViewCallback) : RecyclerVie
         }
     }
 
-    private fun setUpLink(layoutLink: View, link: AppCompatTextView, image: AppCompatImageView?, title: AppCompatTextView, description: AppCompatTextView, content: String, context: Context) {
+    private fun setUpLink(
+        layoutLink: View,
+        link: AppCompatTextView,
+        image: AppCompatImageView?,
+        title: AppCompatTextView,
+        description: AppCompatTextView,
+        content: String,
+        context: Context
+    ) {
         layoutLink.apply {
             setVisible()
 

@@ -22,7 +22,7 @@
             android:layout_marginTop="90dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="Bạn được cộng"
+            android:text="@string/ban_duoc_cong"
             android:textColor="#434343" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -54,11 +54,12 @@
                 android:layout_height="@dimen/size_36" />
 
             <LinearLayout
-                android:layout_width="@dimen/size_0"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/size_6"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/size_6">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNameCampaign"
@@ -94,7 +95,7 @@
             android:layout_marginRight="@dimen/size_32"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
-            android:text="Đổi điểm tích lũy để nhận\nnhững phần quà cực cool nhé!"
+            android:text="@string/doi_diem_tich_luy_de_nhan_nhung_phan_qua_cuc_cool_nhe"
             android:textColor="#434343" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -110,7 +111,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/size_10"
             android:paddingBottom="@dimen/size_10"
-            android:text="Đổi quà ngay"
+            android:text="@string/doi_qua_ngay"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>

@@ -13,16 +13,17 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
 import vn.icheck.android.network.models.ICItemReward
 import vn.icheck.android.screen.user.coinhistory.CoinHistoryActivity
 import vn.icheck.android.screen.user.detail_my_reward.DetailMyRewardActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
-import java.net.URL
 
 class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustomAdapter<Any>(callback) {
 
@@ -93,6 +94,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
 
     inner class HeaderViewHolder(parent: ViewGroup) : BaseViewHolder<String>(R.layout.item_header_gift_campaign, parent) {
         override fun bind(obj: String) {
+            itemView.textView.background=ViewHelper.bgWhiteCornersTop20(itemView.context)
             WidgetUtils.loadImageUrl(itemView.imgBanner, obj, R.drawable.bg_error_campaign)
         }
     }
@@ -100,17 +102,19 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
     inner class ViewHolder(parent: ViewGroup) : BaseViewHolder<ICItemReward>(R.layout.layout_gift_recevied_history_holder, parent) {
         @SuppressLint("SetTextI18n")
         override fun bind(obj: ICItemReward) {
+            itemView.imgGift.background=ViewHelper.bgGrayCorners4(itemView.context)
+            itemView.tvAction.background=ViewHelper.bgAccentGreenCornersTopLeft14(itemView.context)
 
             WidgetUtils.loadImageUrl(itemView.imgLogoPage, obj.logo, R.drawable.ic_business_v2)
 
             itemView.tvNamePage.text = TimeHelper.convertDateTimeSvToTimeDateVnPhay(obj.receiveAt)
 
             if (obj.value != null) {
-                itemView.tvName.text = "${TextHelper.formatMoneyPhay(obj.value)} Xu"
+                itemView.tvName.setText(R.string.s_xu, TextHelper.formatMoneyPhay(obj.value))
 
                 WidgetUtils.loadImageUrlFitCenter(itemView.imgGift,obj.icoinIcon,R.drawable.ic_icheck_xu)
 
-                itemView.tvAction simpleText "Quản lý Xu"
+                itemView.tvAction.setText(R.string.quan_ly_xu)
                 itemView.tvAction.setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         ActivityUtils.startActivity<CoinHistoryActivity>(activity)
@@ -124,7 +128,7 @@ class GiftHistoryAdapterV2(callback: IRecyclerViewCallback) : RecyclerViewCustom
                 }
 
                 WidgetUtils.loadImageUrl(itemView.imgGift, obj.image)
-                itemView.tvAction simpleText "Xem chi tiết"
+                itemView.tvAction.setText(R.string.xem_chi_tiet)
                 itemView.tvAction.setOnClickListener {
                     ICheckApplication.currentActivity()?.let { activity ->
                         if (obj.rewardType == "CODE") {

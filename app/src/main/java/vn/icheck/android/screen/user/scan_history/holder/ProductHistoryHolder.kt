@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.scan_history.holder
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.LayoutProductHistoryHolderBinding
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
@@ -24,6 +25,7 @@ import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
 import vn.icheck.android.screen.user.product_detail.product.IckProductDetailActivity
 import vn.icheck.android.screen.user.store_sell_history.StoreSellHistoryActivity
 import vn.icheck.android.util.KeyboardUtils
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryHolderBinding = LayoutProductHistoryHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)) : RecyclerView.ViewHolder(binding.root) {
@@ -46,13 +48,13 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#212121"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_verify_16dp, 0, 0, 0)
                         binding.tvNameProduct.compoundDrawablePadding = SizeHelper.size5
                     }
@@ -60,12 +62,12 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (!obj.product?.name.isNullOrEmpty()) {
                         binding.tvNameProduct.text = obj.product?.name
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_regular)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#212121"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     } else {
                         binding.tvNameProduct.text = itemView.context.getString(R.string.ten_dang_cap_nhat)
                         binding.tvNameProduct.typeface = ResourcesCompat.getFont(itemView.context, R.font.barlow_semi_bold_italic)
-                        binding.tvNameProduct.setTextColor(Color.parseColor("#B4B4B4"))
+                        binding.tvNameProduct.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(itemView.context))
                         binding.tvNameProduct.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     }
                 }
@@ -87,7 +89,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                     if (obj.product?.reviewCount!! < 1000) {
                         "(${obj.product?.reviewCount})"
                     } else {
-                        "(999+)"
+                        context.getString(R.string.count_999)
                     }
                 } else {
                     beGone()
@@ -104,13 +106,20 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
         }
 
         if (obj.numShopSell != null && obj.numShopSell != 0) {
-            binding.tvCountShop.text = "Có ${obj.numShopSell} cửa hàng bán sản phẩm này"
+            obj.numShopSell?.let {
+                binding.tvCountShop.setText(
+                    R.string.co_s_cua_hang_ban_san_pham_nay,
+                    it
+                )
+            }
             binding.tvCountShop.visibility = View.VISIBLE
             binding.layoutShop.visibility = View.VISIBLE
         } else {
             binding.tvCountShop.visibility = View.INVISIBLE
             binding.layoutShop.visibility = View.GONE
         }
+
+        binding.btnSearchNear.background=ViewHelper.bgAccentCyanCornersTop8(binding.btnSearchNear.context)
 
         if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE
@@ -121,8 +130,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 binding.avaShop.setImageResource(R.drawable.ic_error_load_shop_40_px)
             }
 
-            binding.tvNameShop.text = obj.nearestShop?.shop?.name
-                    ?: itemView.context.getString(R.string.dang_cap_nhat)
+            binding.tvNameShop.text = obj.nearestShop?.shop?.name ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
                 TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)

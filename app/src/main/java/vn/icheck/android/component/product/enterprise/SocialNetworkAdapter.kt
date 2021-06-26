@@ -96,7 +96,7 @@ class SocialNetworkAdapter(val type: String) : RecyclerView.Adapter<SocialNetwor
             val data = Uri.parse("mailto:?to=${email}")
             mailIntent.data = data
             try {
-                itemView.context.startActivity(Intent.createChooser(mailIntent, "Send mail..."))
+                itemView.context.startActivity(Intent.createChooser(mailIntent, itemView.context.getString(R.string.send_mail)))
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -14,6 +14,8 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCheckoutOrder
 import vn.icheck.android.network.models.ICItemCart
 import vn.icheck.android.network.models.ICShipping
@@ -24,13 +26,14 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
     private var textWatcher: TextWatcher? = null
 
     override fun bind(obj: ICCheckoutOrder) {
-        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_circle_avatar_default, R.drawable.ic_circle_avatar_default, SizeHelper.size12)
+        itemView.viewDot.background=ViewHelper.lineDottedHorizontalSecondary()
+        WidgetUtils.loadImageUrlRounded(itemView.imgAvatar, obj.shop.avatar_thumbnails?.small, R.drawable.ic_user_svg, R.drawable.ic_user_svg, SizeHelper.size12)
         itemView.tvName.text = obj.shop.name
 
         if (obj.sub_total < obj.shop.min_order_value ?: 0) {
             itemView.layoutNote.visibility = View.VISIBLE
             itemView.viewIndicator.visibility = View.VISIBLE
-            itemView.tvNote.text = itemView.context.getString(R.string.text_checkout_cart_min_value, itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.shop.min_order_value)))
+            itemView.tvNote.text = itemView.context.getString(R.string.text_checkout_cart_min_value, itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.shop.min_order_value)))
         } else {
             itemView.layoutNote.visibility = View.GONE
             itemView.viewIndicator.visibility = View.INVISIBLE
@@ -41,7 +44,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
         val shippingMethod = getShippingMethod(obj.shipping_method_id, obj.shipping_methods)
         if (shippingMethod != null) {
             itemView.tvShippingName.text = if (shippingMethod.shipping_amount > 0L) {
-                itemView.context.getString(R.string.xxx_xxx, shippingMethod.method.name, itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(shippingMethod.shipping_amount)))
+                itemView.context.getString(R.string.xxx_xxx, shippingMethod.method.name, itemView.context.getString(R.string.s_d, TextHelper.formatMoney(shippingMethod.shipping_amount)))
             } else {
                 shippingMethod.method.name
             }
@@ -51,7 +54,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
             itemView.tvShippingTime.setText(R.string.dang_cap_nhat)
         }
 
-        itemView.tvMoney.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(obj.grand_total))
+        itemView.tvMoney.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(obj.grand_total))
 
         itemView.tvShippingUnit.setOnClickListener {
             listener.onChangeShippingUnit(obj.shop_id, obj.shipping_method_id, obj.shipping_methods)
@@ -96,7 +99,7 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
             if (parent.childCount > 0) {
                 val view = View(parent.context)
                 view.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size1)
-                view.setBackgroundColor(ContextCompat.getColor(parent.context, R.color.gray))
+                view.setBackgroundColor(ColorManager.getLineColor(parent.context))
                 parent.addView(view)
             }
 
@@ -111,10 +114,10 @@ class CheckoutOrderHolder(view: View, val listener: ICheckoutCartView) : BaseVie
             WidgetUtils.loadImageUrlRounded6(imgAvatar, item.image?.square, R.drawable.ic_default_square, R.drawable.ic_default_square)
             tvName.text = item.name
             tvCount.text = ("x" + item.quantity)
-            tvPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(item.price))
+            tvPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(item.price))
 
             if (item.origin_price > item.price) {
-                tvOldPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney(item.origin_price))
+                tvOldPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney(item.origin_price))
                 tvOldPrice.paintFlags = tvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             } else {
                 tvOldPrice.text = null

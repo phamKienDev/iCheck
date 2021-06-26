@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_welcome.view.*
 import vn.icheck.android.R
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.screen.user.home.HomeActivity
 
 /**
@@ -38,13 +39,10 @@ class WelcomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_welcome, container, false)
 
-        var status = arguments
-        var type = status?.getInt(Constant.DATA_1, -1)
-
         /**
          * setup design cho viewpager
          */
-        when (type) {
+        when (arguments?.getInt(Constant.DATA_1, -1)) {
             WelcomeActivity.type1 -> {
                 view.txtWelcome.textSize = 18f
                 view.txtWelcome.text = requireContext().getString(R.string.vi_sao_ban_nen_dung_icheck)
@@ -85,6 +83,7 @@ class WelcomeFragment : Fragment() {
             }
         }
 
+        view.btnHome.background = ViewHelper.bgPrimaryOutline3Corners20(requireContext())
         return view
     }
 
@@ -92,8 +91,8 @@ class WelcomeFragment : Fragment() {
      * Lưu lại trạng thái mở app lần đầu tiên
      */
     private fun setupSharedPreferences() {
-        var sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        var edit: SharedPreferences.Editor = sharedPreferences.edit()
+        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        val edit: SharedPreferences.Editor = sharedPreferences.edit()
         edit.putBoolean("first_run", false)
         edit.apply()
     }

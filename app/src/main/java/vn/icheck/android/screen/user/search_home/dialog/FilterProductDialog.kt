@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.dialog_filter_product_search.*
 import kotlinx.android.synthetic.main.layout_title_filter_search.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialogFragment
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 
 class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, price: String?, val reviews: MutableList<String>?) : BaseBottomSheetDialogFragment() {
 
@@ -25,6 +28,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
 
         selectedReviews.addAll(reviews ?: mutableListOf())
 
+        product_verified_switch.trackDrawable=ViewHelper.btnSwitchGrayUncheckedGreenCheckedWidth50Height30(requireContext())
         product_verified_switch.isChecked = selectedVerify
         setPrice(selectedPrice)
         setReview(selectedReviews)
@@ -59,10 +63,13 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             setReview(null)
         }
 
-        tv_clear.setOnClickListener {
-            product_verified_switch.isChecked = false
-            setReview(null)
-            setPrice(null)
+        tv_clear.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                product_verified_switch.isChecked = false
+                setReview(null)
+                setPrice(null)
+            }
         }
 
         tvDone.setOnClickListener {
@@ -75,7 +82,7 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
         selectedReviews = listSelected ?: mutableListOf()
         if (listSelected.isNullOrEmpty()) {
             tv_all_review.setText(R.string.tat_ca)
-            tv_all_review.setTextColor(Color.parseColor("#757575"))
+            tv_all_review.setTextColor(ColorManager.getSecondTextColor(tv_all_review.context))
             img_clear_review.visibility = View.GONE
         } else {
             val listRate = mutableListOf<String>()
@@ -93,20 +100,20 @@ class FilterProductDialog(val listener: FilterProductCallback, verify: Boolean, 
             }
 
             tv_all_review.text = rates
-            tv_all_review.setTextColor(Color.parseColor("#057DDA"))
+            tv_all_review.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             img_clear_review.visibility = View.VISIBLE
         }
     }
 
     fun setPrice(price: String?) {
         selectedPrice = price
-        if (price == ICheckApplication.getInstance().getString(R.string.tat_ca) || price == null) {
+        if (price == getString(R.string.tat_ca) || price == null) {
             tv_price.setText(R.string.tat_ca)
-            tv_price.setTextColor(Color.parseColor("#757575"))
+            tv_price.setTextColor(ColorManager.getSecondTextColor(requireContext()))
             img_clear_price.visibility = View.GONE
         } else {
             tv_price.setText(price)
-            tv_price.setTextColor(Color.parseColor("#057DDA"))
+            tv_price.setTextColor(ColorManager.getPrimaryColor(requireContext()))
             img_clear_price.visibility = View.VISIBLE
         }
     }

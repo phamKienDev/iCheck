@@ -10,6 +10,7 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICProductTrend
 import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.screen.user.listproduct.ListProductActivity
@@ -35,7 +36,7 @@ class RelatedProductHolder(parent: ViewGroup, val viewPool: RecyclerView.Recycle
                 (getChildAt(1) as AppCompatTextView).run {
                     if (obj.listProduct.size > 4) {
                         beVisible()
-                        setTextColor(ContextCompat.getColor(context, R.color.colorSecondary))
+                        setTextColor(ColorManager.getSecondaryColor(context))
                         typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                         background = ContextCompat.getDrawable(itemView.context, R.color.transparent)
                         setOnClickListener {
@@ -53,7 +54,7 @@ class RelatedProductHolder(parent: ViewGroup, val viewPool: RecyclerView.Recycle
             (getChildAt(1) as RecyclerView).run {
                 layoutManager = CustomGridLayoutManager(itemView.context, 2)
                 setRecycledViewPool(viewPool)
-                setBackgroundColor(Color.WHITE)
+                setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(itemView.context))
 
                 val listProduct = mutableListOf<ICProductTrend>()
                 // màn Page hiển thị tối đa 4 sp

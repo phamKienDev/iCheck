@@ -24,12 +24,17 @@ import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.util.beGone
+import vn.icheck.android.ichecklibs.util.beInvisible
+import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ICheckTextUtils
 
 class ListShopVariantAdapter constructor(val view: IListShopVariantView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -72,9 +77,12 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     view.onClickShowMap(item)
                 }
 
-                holder.itemView.layoutAddToCart.setOnClickListener {
-                    if (item.id != null) {
-                        view.onClickAddToCart(item.id!!)
+                holder.itemView.layoutAddToCart.apply {
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(context)
+                    setOnClickListener {
+                        if (item.id != null) {
+                            this@ListShopVariantAdapter.view.onClickAddToCart(item.id!!)
+                        }
                     }
                 }
             }
@@ -87,7 +95,7 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             if (listData.isNotEmpty()) {
                 if (adapterPosition == 0) {
                     itemView.tvCount.visibility = View.VISIBLE
-                    itemView.tvCount.text = "${listData.size} Điểm bán gần đây"
+                    itemView.tvCount.setText(R.string.d_diem_ban_gan_day, listData.size)
                 } else {
                     itemView.tvCount.visibility = View.GONE
                 }
@@ -96,7 +104,7 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             itemView.tv_shop_name.text = item.name
 
             if (item.distance != null) {
-                TextHelper.convertMtoKm(item.distance!!, itemView.tv_distance, "Khoảng cách: ")
+                TextHelper.convertMtoKm(item.distance!!, itemView.tv_distance, itemView.context.getString(R.string.khoang_cach))
             }
 //            itemView.tv_distance.text = "Khoảng cách: " + String.format("%.0f%s", icShopVariant.distance.value, icShopVariant.distance.unit)
 
@@ -121,25 +129,28 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                     itemView.layoutAddToCart.visibility = View.GONE
                 }
 
-                if (item.isOffline == true) {
-                    itemView.layoutLocation.visibility = View.VISIBLE
-                } else {
-                    itemView.layoutLocation.visibility = View.GONE
+                itemView.layoutLocation.apply {
+                    background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
+                    if (item.isOffline == true) {
+                        beVisible()
+                    } else {
+                        beGone()
+                    }
                 }
             }
 
             val listService = mutableListOf<ICServiceShopVariant>()
 
             if (item.isOffline == true) {
-                listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, "Mua tại cửa hàng", "#eb5757", R.drawable.bg_corner_shop_variant_offline))
+                listService.add(ICServiceShopVariant(0, R.drawable.ic_offline_shop_variant_18dp, itemView.context.getString(R.string.mua_tai_cua_hang), "#eb5757", R.drawable.bg_corner_shop_variant_offline))
             }
 
             if (item.verified == true) {
-                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, "Đại lý chính hãng", "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
+                listService.add(ICServiceShopVariant(1, R.drawable.ic_verified_shop_variant_18px, itemView.context.getString(R.string.dai_ly_chinh_hang), "#49aa2d", R.drawable.bg_corner_verified_shop_variant))
             }
 
             if (item.isOnline == true) {
-                listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, "Bán Online", "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
+                listService.add(ICServiceShopVariant(2, R.drawable.ic_online_shop_variant_18px, itemView.context.getString(R.string.ban_online), "#2d9cdb", R.drawable.bg_corner_online_shop_variant))
             }
 
             if (!listService.isNullOrEmpty()) {
@@ -180,6 +191,8 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                 itemView.tv_sale_price?.beInvisible()
                 itemView.tv_price?.beInvisible()
             }
+
+            itemView.viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
         }
 
         private fun initAdapterService() {

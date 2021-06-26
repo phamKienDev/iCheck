@@ -73,7 +73,7 @@ class SelectWardActivity : BaseActivityGame(), ISelectAddressListener<ICWard> {
 
         viewModel.onEmptyString.observe(this, Observer {
             if (it == "ERROR") {
-                object : DialogNotification(this@SelectWardActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), "Ok", false) {
+                object : DialogNotification(this@SelectWardActivity, null, getString(R.string.co_loi_xay_ra_vui_long_thu_lai), getString(R.string.ok), false) {
                     override fun onDone() {
                         onBackPressed()
                     }

@@ -30,6 +30,7 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.*
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.dialog.PermissionDialog
 import vn.icheck.android.screen.user.campaign_onboarding.CampaignOnboardingActivity
@@ -43,6 +44,7 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -81,6 +83,8 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
     private fun initView() {
         ListShakeGridBoxActivity.numberGiftUser--
+
+        btnMyGift.background=ViewHelper.bgWhiteCorners4(this)
     }
 
     private fun setupStatusBar() {
@@ -107,7 +111,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             if (!viewModel.campaign?.businessName.isNullOrEmpty()) {
                 tvThankNhaTaiTro.visibility = View.VISIBLE
                 tvThankNhaTaiTro.text =
-                    Html.fromHtml("<font color=#828282>Nhà tài trợ</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
+                    Html.fromHtml("<font color=#828282>${R.string.nha_tai_tro}</font>" + "<br>" + "${viewModel.campaign?.businessName}" + "</br>")
             }
             layoutTaiApp.visibility = View.VISIBLE
             btnShare.visibility = View.INVISIBLE
@@ -162,9 +166,9 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
     private fun initViewModel() {
         viewModel.objCampaign.observe(this, Observer {
             tvThank.text =
-                Html.fromHtml("<font color=#828282>Cảm ơn bạn đã tham gia sự kiện</font>" + "<br>" + "${it.title}" + "</br>")
+                Html.fromHtml("<font color=#828282>${getString(R.string.cam_on_ban_da_tham_gia_du_kien)}</font>" + "<br>" + "${it.title}" + "</br>")
             if (it.businessName == "iCheck") {
-                imgLogo.borderColor = ContextCompat.getColor(this, R.color.gray)
+                imgLogo.borderColor = ContextCompat.getColor(this, R.color.grayD8)
                 imgLogo.borderWidth = SizeHelper.size2
             } else {
                 imgLogo.borderColor = ContextCompat.getColor(this, R.color.white)
@@ -315,7 +319,7 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
 
                     playAudio()
                     runVibrate()
-                    tvNameGift.text = TextHelper.formatMoney(it.icoin) + "Xu"
+                    tvNameGift.setText(R.string.s_xu, TextHelper.formatMoney(it.icoin))
                     btnMyGift.text = getString(R.string.quan_ly_xu)
                     btnMyGift.setOnClickListener {
                         TrackingAllHelper.tagOpenGiftBoxProceedCtaClicked(
@@ -473,15 +477,15 @@ class ShakeBoxSuccessActivity : BaseActivityMVVM() {
             super.onPostExecute(result)
 
             if (result != null && result.exists()) {
-                val fileprovider = context.getString(R.string.xxx_fileprovider, context.packageName)
-                val contentUri = FileProvider.getUriForFile(context, fileprovider, result)
+                val fileProvider = context.getString(R.string.xxx_fileprovider, context.packageName)
+                val contentUri = FileProvider.getUriForFile(context, fileProvider, result)
 
                 if (contentUri != null) {
                     val intent = Intent(Intent.ACTION_SEND)
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     intent.setDataAndType(contentUri, contentResolver.getType(contentUri))
                     intent.putExtra(Intent.EXTRA_STREAM, contentUri)
-                    startActivity(Intent.createChooser(intent, "iCheck Share"))
+                    startActivity(Intent.createChooser(intent, getString(R.string.icheck_share)))
                 } else {
                     ToastUtils.showShortError(context, R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }

@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICItemCart
 import vn.icheck.android.screen.user.cart.view.ICartChildView
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -74,11 +75,12 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
                 tvStatus.visibility = View.GONE
             }
 
+            tvCount.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(tvCount.context))
             tvCount.text = (CartParentAdapter.quantityCart[obj.item_id] ?: obj.quantity).toString()
 
             itemView.findViewById<AppCompatTextView>(R.id.tvOldPrice)?.run {
                 if (obj.origin_price > obj.price) {
-                    text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.origin_price * tvCount.text.toString().toInt())))
+                    text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.origin_price * tvCount.text.toString().toInt())))
                     paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 } else {
                     text = null
@@ -86,7 +88,7 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
             }
 
 
-            tvProductPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
+            tvProductPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
 
             var attributes = ""
 
@@ -145,7 +147,7 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
                     count -= 1
                     CartParentAdapter.quantityCart[obj.item_id] = count
                     tvCount.text = count.toString()
-                    tvProductPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
+                    tvProductPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
                     listener.onUpdateItemQuantity(obj, count, adapterPosition)
                 }
             }
@@ -157,7 +159,7 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
                     count += 1
                     CartParentAdapter.quantityCart[obj.item_id] = count
                     tvCount.text = count.toString()
-                    tvProductPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
+                    tvProductPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
                     listener.onUpdateItemQuantity(obj, count, adapterPosition)
                 } else {
                     listener.onNotEnoughInStock()
@@ -174,7 +176,7 @@ class CartChildAdapter(val listener: ICartChildView, val listData: MutableList<I
         fun refreshQuantity() {
             val obj = listData[adapterPosition]
             tvCount.text = (CartParentAdapter.quantityCart[obj.item_id] ?: obj.quantity).toString()
-            tvProductPrice.text = itemView.context.getString(R.string.xxx_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
+            tvProductPrice.text = itemView.context.getString(R.string.s_d, TextHelper.formatMoney((obj.price * tvCount.text.toString().toInt())))
         }
 
         private val isSkipAll: Boolean

@@ -3,11 +3,14 @@ package vn.icheck.android.screen.user.option_manger_user_follow
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.item_load_more.view.*
 import kotlinx.android.synthetic.main.item_message_campaign.view.*
 import kotlinx.android.synthetic.main.item_user_follow.view.*
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
@@ -15,13 +18,15 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.MAIN_USER
 import vn.icheck.android.constant.MAIN_USER_FRIEND
 import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -165,6 +170,9 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
 
     private class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: ICUserFollowWall) {
+            itemView.layoutAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
+            itemView.btnDaGuiLoiMoi.background = ViewHelper.bgGrayCorners4(itemView.context)
+
             itemView.imgAvatar.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
             itemView.tvName.apply {
                 text = item.getUserName()
@@ -177,10 +185,12 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
 
             if (item.relateFriendCount > 0) {
                 itemView.tv_related_friend.beVisible()
-                itemView.tv_related_friend simpleText "${item.relateFriendCount} bạn chung"
+                itemView.tv_related_friend.setText(R.string.d_ban_chung, item.relateFriendCount)
             } else {
                 itemView.tv_related_friend.beGone()
             }
+
+            itemView.btnMessenger.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
             if (item.sendAddFriend == true) {
                 itemView.btnMessenger.visibility = View.INVISIBLE
@@ -198,32 +208,49 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                         itemView.tv_related_friend.visibility = View.INVISIBLE
                     }
                     MAIN_USER_NOT_FRIEND -> {
-                        if (RelationshipManager.checkMyFriendInvitation(item.id ?: 0L)) {
-                            itemView.btnMessenger.visibility = View.INVISIBLE
-                            itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
-                            itemView.layoutAddFriend.visibility = View.INVISIBLE
+                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
+                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList, (item.id ?: 0L).toString(), object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.value != null && snapshot.value is Long) {
+                                        itemView.btnMessenger.visibility = View.INVISIBLE
+                                        itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
+                                        itemView.layoutAddFriend.visibility = View.INVISIBLE
+                                    } else {
+                                        checkPrivacyConfig(item)
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    checkPrivacyConfig(item)
+                                }
+                            })
                         } else {
-                            if (item.userPrivacyConfig?.whoInviteFriend == "ONLY_ME") {
-                                itemView.btnMessenger.visibility = View.INVISIBLE
-                                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                                itemView.layoutAddFriend.visibility = View.INVISIBLE
-                                itemView.tv_related_friend.visibility = View.INVISIBLE
-                            } else {
-                                itemView.btnMessenger.visibility = View.INVISIBLE
-                                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                                itemView.layoutAddFriend.visibility = View.VISIBLE
-                                itemView.tv_related_friend.visibility = View.VISIBLE
-                            }
+                            checkPrivacyConfig(item)
                         }
+
                     }
                 }
+            }
+        }
+
+        private fun checkPrivacyConfig(item: ICUserFollowWall) {
+            if (item.userPrivacyConfig?.whoInviteFriend == "ONLY_ME") {
+                itemView.btnMessenger.visibility = View.INVISIBLE
+                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                itemView.layoutAddFriend.visibility = View.INVISIBLE
+                itemView.tv_related_friend.visibility = View.INVISIBLE
+            } else {
+                itemView.btnMessenger.visibility = View.INVISIBLE
+                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                itemView.layoutAddFriend.visibility = View.VISIBLE
+                itemView.tv_related_friend.visibility = View.VISIBLE
             }
         }
     }
 
     private class LoadHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            view.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(itemView.context, R.color.colorPrimary), android.graphics.PorterDuff.Mode.MULTIPLY)
+            view.progressBar.indeterminateDrawable.setColorFilter(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(view.context), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -234,24 +261,24 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
             when (errorCode) {
                 Constant.ERROR_EMPTY_SEARCH -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = "Xin lỗi chúng tôi không thể tìm kiếm được kết quả phù hợp với tìm kiếm của bạn"
+                    itemView.txtMessageDetail.setText(R.string.xin_loi_chung_toi_khong_the_tim_kiem_duoc_ket_qua_phu_hop_voi_tim_kiem_cua_ban)
                 }
                 Constant.ERROR_EMPTY_WATCHING -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.ban_chua_theo_doi_nguoi_nao)
+                    itemView.txtMessageDetail.setText(R.string.ban_chua_theo_doi_nguoi_nao)
                 }
                 Constant.ERROR_EMPTY_FOLLOW -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_group_120dp)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.chua_co_nguoi_nao_theo_doi_ban)
+                    itemView.txtMessageDetail.setText(R.string.chua_co_nguoi_nao_theo_doi_ban)
                 }
                 Constant.ERROR_SERVER -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_request)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                    itemView.txtMessageDetail.setText(R.string.co_loi_xay_ra_vui_long_thu_lai)
                 }
 
                 Constant.ERROR_INTERNET -> {
                     itemView.imgIcon.setImageResource(R.drawable.ic_error_network)
-                    itemView.txtMessageDetail.text = itemView.context.getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    itemView.txtMessageDetail.setText(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
                 }
             }
         }

@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.item_menh_gia.view.*
 import vn.icheck.android.R
 import vn.icheck.android.callback.OnItemClickListener
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.recharge_phone.ICMenhGia
 
 class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : RecyclerView.Adapter<MenhGiaTheAdapter.ViewHolder>() {
@@ -45,12 +47,12 @@ class MenhGiaTheAdapter (private var listInfor: MutableList<ICMenhGia>) : Recycl
             itemView.tvMenhGia.text = TextHelper.formatMoneyComma(item.menhGia.toLong()) + "đ"
 
             if (item.select){
-                itemView.layoutParent.setBackgroundResource(R.drawable.bg_choose_card)
-                itemView.tvMenhGia.setTextColor(Color.parseColor("#212121"))
+                itemView.layoutParent.background = ViewHelper.bgOutlinePrimary1Corners6(itemView.context)
+                itemView.tvMenhGia.setTextColor(ColorManager.getNormalTextColor(itemView.context))
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_semi_bold.ttf")
             }else{
                 itemView.layoutParent.setBackgroundResource(R.drawable.bg_default_card_loyalty)
-                itemView.tvMenhGia.setTextColor(Color.parseColor("#757575"))
+                itemView.tvMenhGia.setTextColor(Color.parseColor(ColorManager.getNormalTextCode(itemView.context)))
                 itemView.tvMenhGia.typeface = Typeface.createFromAsset(itemView.context.assets,"font/barlow_medium.ttf")
             }
 

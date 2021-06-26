@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContextCompat
 import vn.icheck.android.R
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 
 class LayoutFeedAction : ConstraintLayout {
 
@@ -30,7 +30,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvLike
@@ -44,7 +44,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvComment
@@ -58,7 +58,7 @@ class LayoutFeedAction : ConstraintLayout {
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT),
                 ViewHelper.outValue.resourceId,
                 ViewHelper.createTypeface(context, R.font.barlow_medium),
-                ContextCompat.getColor(context, R.color.colorSecondText),
+                ColorManager.getSecondTextColor(context),
                 14f
         ).also {
             it.id = R.id.tvShare

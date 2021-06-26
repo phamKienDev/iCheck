@@ -7,6 +7,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.TextView
+import vn.icheck.android.ichecklibs.view.TextBarlowMedium
 
 /**
  * Text view that auto adjusts text size to fit within the view.

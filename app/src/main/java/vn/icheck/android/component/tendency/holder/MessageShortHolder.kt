@@ -11,7 +11,7 @@ class MessageShortHolder(parent: ViewGroup, val imgEmpty: Int) : BaseViewHolder<
 
     override fun bind(obj: String) {
         if (obj.isEmpty()) {
-            itemView.txtMessage.text = "Không có dữ liệu. Vui lòng thử lại!!!"
+            itemView.txtMessage.setText(R.string.khong_co_du_lieu_vui_long_thu_lai)
             itemView.imgError.setImageResource(imgEmpty)
         } else {
             itemView.txtMessage.text = obj

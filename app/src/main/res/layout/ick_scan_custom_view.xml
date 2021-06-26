@@ -61,15 +61,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_clear_16px" />
 
+    <View
+        android:id="@+id/view_holder"
+        android:layout_width="@dimen/size_40"
+        android:layout_height="@dimen/size_40"
+        app:layout_constraintStart_toEndOf="@+id/btn_clear"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ImageView
         android:id="@+id/img_nmbt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_40"
-        android:layout_marginLeft="@dimen/size_40"
         app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
         app:layout_constraintEnd_toStartOf="@+id/img_help"
-        app:layout_constraintStart_toEndOf="@+id/btn_clear"
+        app:layout_constraintStart_toEndOf="@+id/view_holder"
         app:layout_constraintTop_toTopOf="@+id/btn_clear"
         app:srcCompat="@drawable/ic_nmbt" />
 
@@ -147,7 +154,7 @@
         android:background="@drawable/bg_selected_scan_text"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Quét mã"
+        android:text="@string/quet_ma"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_scan_buy"
@@ -161,7 +168,7 @@
         android:layout_marginBottom="@dimen/size_32"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Scan &amp; buy"
+        android:text="@string/scan_buy"
         android:textColor="@android:color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -178,7 +185,7 @@
         android:layout_marginBottom="@dimen/size_32"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
-        android:text="Mã của tôi"
+        android:text="@string/ma_cua_toi"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

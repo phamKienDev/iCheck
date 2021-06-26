@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/header"
-        layout="@layout/simple_toolbar"
+        layout="@layout/toolbar_blue_v2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,20 +23,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:id="@+id/textView72"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
-            android:text="Phiên bản hiện tại"
+            android:text="@string/phien_ban_hien_tai"
             android:textSize="@dimen/font_12"
             app:layout_constraintBottom_toBottomOf="@+id/tv_version"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_version" />
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,8 +43,6 @@
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_12"
-            android:fontFamily="@font/barlow_medium"
-            android:textColor="#212121"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
         tools:visibility="visible">
 
-        <TextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/textView75"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,9 +80,7 @@
             android:layout_marginTop="@dimen/size_26"
             android:layout_marginEnd="@dimen/size_8"
             android:layout_marginRight="@dimen/size_8"
-            android:fontFamily="@font/barlow_medium"
-            android:text="Đã có bản cập nhật mới cho ứng dụng rồi nhé!"
-            android:textColor="#212121"
+            android:text="@string/da_co_phien_ban_moi_cho_ung_dung_roi_nhe"
             app:layout_constraintEnd_toStartOf="@+id/imageView8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -112,11 +107,10 @@
             android:layout_marginTop="@dimen/size_20"
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/background_button_enable"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:padding="@dimen/size_8"
-            android:text="Cập nhật ngay"
+            android:text="@string/cap_nhat_ngay"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView8"
@@ -124,4 +118,4 @@
             app:layout_constraintTop_toBottomOf="@+id/textView75"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICConstraintLayoutGray>

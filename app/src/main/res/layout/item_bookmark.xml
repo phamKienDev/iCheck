@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/default_product_image" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
         android:id="@+id/tv_name_product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -28,15 +28,13 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_medium"
         android:maxLines="1"
-        android:textColor="#212121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_product"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Giày thể thao cao cổ Converse ( 1 dòng)..." />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tv_barcode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,9 +44,7 @@
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
         android:drawablePadding="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
-        android:textColor="#828282"
         app:drawableLeftCompat="@drawable/ic_barcode_gray_18px"
         app:drawableStartCompat="@drawable/ic_barcode_gray_18px"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_name_product"
         tools:text="8930123456789" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tv_no_review"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -64,8 +60,7 @@
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_4"
         android:fontFamily="@font/barlow_semi_bold_italic"
-        android:text="Chưa có đánh giá"
-        android:textColor="#b4b4b4"
+        android:text="@string/chua_co_danh_gia"
         android:textSize="@dimen/font_12"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/divider38"
@@ -90,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
         app:layout_constraintVertical_bias="0.0" />
 
-    <View
+    <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider38"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1"
@@ -111,7 +106,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider38" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,15 +115,14 @@
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_16"
         android:ellipsize="end"
-        android:fontFamily="@font/barlow_semi_bold"
+        android:fontFamily="@font/barlow_medium"
         android:maxLines="1"
-        android:text="Giá chưa được cập nhật"
-        android:textColor="#b4b4b4"
+        android:text="@string/gia_chua_duoc_cap_nhat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider38" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
         android:id="@+id/tv_gia_niem_yet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,9 +130,7 @@
         android:layout_marginLeft="@dimen/size_8"
         android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
-        android:fontFamily="@font/barlow_medium"
         android:text="(Giá niêm yết)"
-        android:textColor="#3C5A99"
         android:visibility="gone"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
         app:layout_constraintEnd_toStartOf="@+id/btn_like"

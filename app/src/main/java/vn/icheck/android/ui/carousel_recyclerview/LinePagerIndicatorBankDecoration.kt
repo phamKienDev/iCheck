@@ -11,6 +11,8 @@ import android.view.animation.Interpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.ichecklibs.ColorManager
 
 class LinePagerIndicatorBankDecoration : ItemDecoration() {
     private var colorActive = 0
@@ -75,7 +77,7 @@ class LinePagerIndicatorBankDecoration : ItemDecoration() {
     }
 
     private fun drawInactiveIndicators(c: Canvas, indicatorStartX: Float, indicatorPosY: Float, itemCount: Int) {
-        colorInactive = Color.parseColor("#d8d8d8")
+        colorInactive = ColorManager.getLineColor(ICheckApplication.getInstance())
         mPaint.color = colorInactive
 
         // lấy ra chiều rộng của indicator (bao gồm luôn cả padding của item đó )
@@ -88,7 +90,7 @@ class LinePagerIndicatorBankDecoration : ItemDecoration() {
     }
 
     private fun drawHighlights(c: Canvas, indicatorStartX: Float, indicatorPosY: Float, highlightPosition: Int, progress: Float) {
-        colorActive = Color.parseColor("#ffb800")
+        colorActive = ColorManager.getAccentYellowColor(ICheckApplication.getInstance())
         mPaint.color = colorActive
 
         // lấy ra chiều rộng của indicator (bao gồm luôn cả padding của item đó )

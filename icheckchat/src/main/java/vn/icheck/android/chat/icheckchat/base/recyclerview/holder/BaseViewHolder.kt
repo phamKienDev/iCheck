@@ -12,17 +12,13 @@ abstract class BaseViewHolder<T>(viewBinding: ViewBinding) : RecyclerView.ViewHo
 
     abstract fun bind(obj: T)
 
-    fun getString(string: Int): String {
-        return itemView.context.getString(string)
-    }
-
     fun getColor(color: Int): Int{
         return ContextCompat.getColor(itemView.context, color)
     }
 
     val default: String
         get() {
-            return getString(R.string.dang_cap_nhat)
+            return itemView.context.getString(R.string.dang_cap_nhat)
         }
 
     fun checkNullOrEmpty(textView: AppCompatTextView, dataCheck: String?) {

@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.Constant
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.WidgetHelper
 import vn.icheck.android.ichecklibs.databinding.IckBarcodeBottomBinding
 
@@ -37,17 +40,6 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
     }
 
-//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//        return BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme).also { dialog ->
-//            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-//            dialog.setOnShowListener {
-//                val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
-//                bottomSheet?.setBackgroundResource(R.drawable.rounded_dialog)
-//                val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
-//                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//            }
-//        }
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = IckBarcodeBottomBinding.inflate(inflater, container, false)
@@ -61,21 +53,31 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+        binding.submitBarcode.invalidate()
+
         binding.btnClear.setOnClickListener {
             exitEnterBarcode()
         }
-        binding.edtBarcode.setOnKeyListener { v, keyCode, event ->
-            if ((event.action == KeyEvent.ACTION_DOWN) &&
+
+        binding.edtBarcode.apply {
+            setHintTextColor(ColorManager.getDisableTextColor(context))
+
+            binding.submitBarcode.disable()
+
+            setOnKeyListener { v, keyCode, event ->
+                if ((event.action == KeyEvent.ACTION_DOWN) &&
                     (keyCode == KeyEvent.KEYCODE_ENTER) && !binding.edtBarcode.text.isNullOrEmpty()) {
-                submitBarcode()
+                    submitBarcode()
+                }
+                false
             }
-            false
-        }
-        binding.edtBarcode.addTextChangedListener {s ->
-            if (s.toString().isNotBlank()) {
-                binding.submitBarcode.enable()
-            } else {
-                binding.submitBarcode.disable()
+            addTextChangedListener {s ->
+                if (s.toString().isNotBlank()) {
+                    binding.submitBarcode.enable()
+                } else {
+                    binding.submitBarcode.disable()
+                }
             }
         }
 
@@ -86,6 +88,10 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
         }
 
         setupListener()
+    }
+
+    private fun setupView() {
+        binding.root.background = ViewHelper.bgWhiteCornersTop16(requireContext())
     }
 
     private fun setupListener() {

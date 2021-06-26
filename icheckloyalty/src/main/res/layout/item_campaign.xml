@@ -83,7 +83,8 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="8dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv1"
@@ -93,12 +94,13 @@
                 android:layout_marginTop="6dp"
                 android:fontFamily="sans-serif"
                 android:includeFontPadding="false"
-                android:text="Thời gian diễn ra"
+                android:text="@string/thoi_gian_dien_ra"
                 android:textColor="@color/darkGray3"
                 android:textSize="@dimen/font_12"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="8dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/txtDate"
@@ -112,7 +114,8 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/imgAvatar"
                 app:layout_constraintTop_toBottomOf="@id/tv1"
-                tools:text="24/05/2019 - 24/06/2019" />
+                tools:text="24/05/2019 - 24/06/2019"
+                android:layout_marginStart="8dp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgUpcoming"
@@ -144,7 +147,10 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtDate"
-                tools:text="45 Điểm" />
+                tools:text="45 Điểm"
+                android:layout_marginEnd="@dimen/size_8"
+                android:drawableEnd="@drawable/ic_verified_red"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <TextView
                 android:id="@+id/tv_number"

@@ -1,21 +1,15 @@
 package vn.icheck.android.screen.account.icklogin.viewmodel
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.preference.PreferenceManager
 import androidx.work.*
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.messaging.FirebaseMessaging
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
-import vn.icheck.android.base.model.ICError
 import vn.icheck.android.constant.ICK_TOKEN
 import vn.icheck.android.constant.ICK_URI
 import vn.icheck.android.helper.NetworkHelper
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.firebase.LoginDeviceResponse
 import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
 import vn.icheck.android.network.model.icklogin.RequestOtpResponse
@@ -23,7 +17,6 @@ import vn.icheck.android.network.api.ICKApi
 import vn.icheck.android.network.model.icklogin.IckLoginFacebookResponse
 import vn.icheck.android.network.model.icklogin.IckLoginResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
-import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.user.contribute_product.UPLOAD_LIST_IMAGE
 import vn.icheck.android.util.ick.logError
@@ -48,7 +41,7 @@ class IckLoginRepository @Inject constructor(private val ickApi: ICKApi, private
             response
         } catch (e: Exception) {
             if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-                error.postValue(Exception(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+                error.postValue(Exception( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             } else {
                 postErr(e)
             }
@@ -297,7 +290,7 @@ class IckLoginRepository @Inject constructor(private val ickApi: ICKApi, private
 
     private fun postErr(e: Exception) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
-            error.postValue(Exception(ICheckApplication.getInstance().getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            error.postValue(Exception( getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
         } else {
             error.postValue(e)
         }

@@ -3,7 +3,6 @@ package vn.icheck.android.screen.user.contribute_product.holder
 import android.content.Intent
 import android.graphics.Color
 import android.widget.TextView
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.widget.addTextChangedListener
 import com.skydoves.balloon.*
 import kotlinx.coroutines.CoroutineScope
@@ -16,21 +15,24 @@ import vn.icheck.android.constant.ATTRIBUTES_POSITION
 import vn.icheck.android.constant.CONTRIBUTIONS_ACTION
 import vn.icheck.android.constant.PUT_ATTRIBUTES
 import vn.icheck.android.databinding.ItemIntegerBinding
+import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.screen.user.contribute_product.viewmodel.CategoryAttributesModel
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.util.ick.simpleText
+import vn.icheck.android.ichecklibs.util.getString
+import vn.icheck.android.ichecklibs.util.setText
 
 class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.root) {
     var value = 0L
     var balloon: Balloon? = null
     fun bind(categoryAttributesModel: CategoryAttributesModel){
+        setupView()
+
         if (categoryAttributesModel.categoryItem.description.isNullOrEmpty()) {
-//            TooltipCompat.setTooltipText(binding.imgHelp,null)
             binding.imgHelp.beGone()
         } else {
             binding.imgHelp.beVisible()
-//            TooltipCompat.setTooltipText(binding.imgHelp,categoryAttributesModel.categoryItem.description)
             balloon = createBalloon(itemView.context){
                 setLayout(R.layout.item_popup)
                 setHeight(BalloonSizeSpec.WRAP)
@@ -51,10 +53,13 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             }
         }
         if (categoryAttributesModel.categoryItem.required == true) {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name + " (*)"
+            categoryAttributesModel.categoryItem.name?.let {
+                binding.tvTitle.setText(R.string.s_bat_buoc, it)
+            }
         } else {
-            binding.tvTitle simpleText categoryAttributesModel.categoryItem.name
+            binding.tvTitle.text = categoryAttributesModel.categoryItem.name
         }
+
         if (categoryAttributesModel.values != null && categoryAttributesModel.values.toString().isNotEmpty()) {
             if (categoryAttributesModel.values is Double) {
                 binding.tvValue.setText((categoryAttributesModel.values as Double).toInt().toString())
@@ -105,9 +110,7 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
                 }
             }
         }
-//        if (categoryAttributesModel.values is Double) {
-//            value = (categoryAttributesModel.values as Double).toInt()
-//        }
+
         binding.btnAdd.setOnClickListener {
             value++
             val select = binding.tvValue.selectionEnd
@@ -125,9 +128,7 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
                         } else {
                             putExtra(CONTRIBUTIONS_ACTION, PUT_ATTRIBUTES)
                             putExtra(ATTRIBUTES_POSITION, bindingAdapterPosition)
-//                        if (categoryAttributesModel.values is Int) {
-//                            categoryAttributesModel.values = categoryAttributesModel.values as Int + 1
-//                        }
+
                             putExtra(PUT_ATTRIBUTES, value)
                         }
                     })
@@ -143,9 +144,6 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
                         } else {
                             putExtra(CONTRIBUTIONS_ACTION, PUT_ATTRIBUTES)
                             putExtra(ATTRIBUTES_POSITION, bindingAdapterPosition)
-//                        if (categoryAttributesModel.values is Int) {
-//                            categoryAttributesModel.values = categoryAttributesModel.values as Int + 1
-//                        }
                             putExtra(PUT_ATTRIBUTES, value)
                         }
                     })
@@ -165,9 +163,6 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
                         binding.root.context.sendBroadcast(Intent(CONTRIBUTIONS_ACTION).apply {
                             putExtra(CONTRIBUTIONS_ACTION, PUT_ATTRIBUTES)
                             putExtra(ATTRIBUTES_POSITION, bindingAdapterPosition)
-                            //                    if (categoryAttributesModel.values is Int) {
-                            //                        categoryAttributesModel.values = categoryAttributesModel.values as Int - 1
-                            //                    }
                             putExtra(PUT_ATTRIBUTES, value)
                         })
                     }
@@ -177,9 +172,6 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
                         binding.root.context.sendBroadcast(Intent(CONTRIBUTIONS_ACTION).apply {
                             putExtra(CONTRIBUTIONS_ACTION, PUT_ATTRIBUTES)
                             putExtra(ATTRIBUTES_POSITION, bindingAdapterPosition)
-                            //                    if (categoryAttributesModel.values is Int) {
-                            //                        categoryAttributesModel.values = categoryAttributesModel.values as Int - 1
-                            //                    }
                             putExtra(PUT_ATTRIBUTES, value)
                         })
                     }
@@ -187,5 +179,13 @@ class IntegerHolder(val binding:ItemIntegerBinding):CoroutineViewHolder(binding.
             }
 
         }
+    }
+
+    private fun setupView() {
+        binding.tvValue.background = ViewHelper.bgGrayCorners4(binding.tvValue.context)
+        binding.btnSubtract.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnSubtract.context)
+        binding.btnAdd.background = ViewHelper.bgTransparentStrokeLineColor1Corners4(binding.btnAdd.context)
+        binding.btnAdd.fillDrawableColor()
+        binding.btnSubtract.fillDrawableColor()
     }
 }

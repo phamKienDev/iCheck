@@ -74,16 +74,16 @@ class HistoryGuaranteeV5Adapter(val listener: IHistoryGuaranteeV5View) : Recycle
         fun setData(obj: RESP_Log_History_v6) {
             when (obj.type) {
                 0 -> {
-                    itemView.tvStatusName.text = "Đã kích hoạt"
+                    itemView.tvStatusName.setText(R.string.da_kich_hoat)
                 }
                 1 -> {
-                    itemView.tvStatusName.text = "Tiếp nhận bảo hành"
+                    itemView.tvStatusName.setText(R.string.tiep_nhan_bao_hanh)
                 }
                 2 -> {
-                    itemView.tvStatusName.text = "Trả bảo hành"
+                    itemView.tvStatusName.setText(R.string.tra_bao_hanh)
                 }
                 else -> {
-                    itemView.tvStatusName.text = "Từ chối bảo hành"
+                    itemView.tvStatusName.setText(R.string.tu_choi_bao_hanh)
                 }
             }
 

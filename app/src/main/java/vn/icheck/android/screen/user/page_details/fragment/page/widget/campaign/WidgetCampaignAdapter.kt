@@ -12,6 +12,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -40,7 +41,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             itemView.setOnClickListener {
 //                val intent = Intent(itemView.context, DetailCampaignV2Activity::class.java)
-//                intent.putExtra(Constant.DATA_1, obj)
+//                intent.putExtra(ColorManager.DATA_1, obj)
 //                itemView.context.startActivity(intent)
             }
 
@@ -48,16 +49,16 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
                 if (obj.state is String) {
                     when (obj.state) {
                         "running" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorAccentRed))
-                            text = "Đang diễn ra"
+                            setTextColor(ColorManager.getAccentRedColor(itemView.context))
+                            text = context.getString(R.string.dang_dien_ra)
                         }
                         "finished" -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.black_21_v2))
-                            text = "Đã kết thúc"
+                            setTextColor(ColorManager.getNormalTextColor(context))
+                            text = context.getString(R.string.da_ket_thuc)
                             (params.getChildAt(4) as LinearLayout).visibility = View.INVISIBLE
                         }
                         else -> {
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                            setTextColor(ColorManager.getSecondTextColor(itemView.context))
                             text = TimeHelper.convertDateSvToDateVn(obj.startTime)
                         }
                     }
@@ -74,7 +75,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(3) as AppCompatTextView).run {
                 text = if (obj.daysLeft != null && obj.daysLeft != 0) {
-                    "Còn ${obj.daysLeft} ngày"
+                    context.getString(R.string.con_d_ngay, obj.daysLeft)
                 } else {
                     itemView.context.getString(R.string.dang_cap_nhat)
                 }
@@ -82,7 +83,7 @@ class WidgetCampaignAdapter(val listData: MutableList<ICCampaign>) : RecyclerVie
 
             (params.getChildAt(4) as LinearLayout).run {
                 setOnClickListener {
-                    ToastUtils.showLongWarning(itemView.context, "onClickJoin")
+                    ToastUtils.showLongWarning(itemView.context, it.context.getString(R.string.on_click_join))
                 }
             }
         }

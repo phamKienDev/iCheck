@@ -4,19 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICViewGray
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_10"
-        android:background="@color/colorBackgroundGray" />
+        android:layout_height="@dimen/size_10" />
 
-    <vn.icheck.android.ichecklibs.view.TextHeader
+    <vn.icheck.android.ichecklibs.view.secondary.TextHeaderSecondary
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
         android:includeFontPadding="false"
-        android:text="@string/san_pham_danh_cho_ban"
-        android:textColor="@color/colorSecondary" />
+        android:text="@string/san_pham_danh_cho_ban" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_product_for_you"

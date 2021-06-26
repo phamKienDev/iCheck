@@ -12,7 +12,7 @@
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_24"
-        android:src="@drawable/user_placeholder"
+        android:src="@drawable/ic_avatar_default_84dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/avatar"
         app:srcCompat="@drawable/ic_avatar_standard_24dp" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@+id/tv_name_user"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,6 @@
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
         android:fontFamily="@font/barlow_semi_bold"
-        android:textColor="@color/black_21_v2"
         app:layout_constraintBottom_toBottomOf="@+id/avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/avatar"
@@ -53,7 +52,7 @@
         android:layout_marginTop="@dimen/size_10"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginRight="@dimen/size_12"
-        android:background="@color/colorDisableText"
+        android:background="@color/grayB4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar" />

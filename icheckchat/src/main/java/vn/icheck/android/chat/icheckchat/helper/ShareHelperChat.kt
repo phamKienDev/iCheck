@@ -107,8 +107,4 @@ object ShareHelperChat {
         }
         throw NullPointerException("u should init first")
     }
-
-    fun getString(idString: Int): String {
-        return getApplicationByReflect().getString(idString)
-    }
 }

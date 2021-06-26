@@ -116,13 +116,13 @@ internal class HomePageEarnPointsAdapter(private val banner: String?, private va
             WidgetHelper.loadImageUrl(itemView.imgBanner, banner)
 
             val name = if (obj.customer?.name.isNullOrEmpty()) {
-                "Chào ${SessionManager.session.user?.name},"
+                vn.icheck.android.ichecklibs.util.getString(R.string.chao_s, SessionManager.session.user?.name?:"")
             } else {
-                "Chào ${obj.customer?.name},"
+                vn.icheck.android.ichecklibs.util.getString(R.string.chao_s, obj.customer?.name?:"")
             }
 
             itemView.tvNameUser.text = if (name.contains("null")) {
-                "Chào bạn,"
+                vn.icheck.android.ichecklibs.util.getString(R.string.chao_ban)
             } else {
                 name
             }

@@ -52,7 +52,7 @@
             app:layout_constraintStart_toStartOf="@id/imgHorizontalNews"
             tools:text="Được tài Trợ" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
             android:id="@+id/tvTitleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,9 +63,7 @@
             android:maxHeight="@dimen/size_34"
             android:layout_marginBottom="@dimen/size_10"
             android:ellipsize="end"
-            android:fontFamily="@font/barlow_medium"
             android:maxLines="2"
-            android:textColor="#212121"
             android:textSize="@dimen/font_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/imgHorizontalNews"

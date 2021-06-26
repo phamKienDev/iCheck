@@ -61,29 +61,30 @@ class RatingStarComponent : LinearLayout {
         (getChildAt(0) as AppCompatTextView).run {
             when {
                 pointDouble < 6 -> {
-                    text = context.getString(R.string.x_diem_danh_gia, String.format("%.1f", pointDouble))
+                    text = context.getString(R.string.f_diem_danh_gia, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.light_purple))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.light_purple), SizeHelper.size14.toFloat())
                 }
                 pointDouble < 7 -> {
-                    text = context.getString(R.string.x_hai_long, String.format("%.1f", pointDouble))
+                    text = context.getString(R.string.f_hai_long, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.green_v2))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.green_v2), SizeHelper.size14.toFloat())
                 }
                 pointDouble < 8 -> {
-                    text = context.getString(R.string.x_tot, String.format("%.1f", pointDouble))
+                    text = context.getString(R.string.x_tot, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.orange_v2))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.orange_v2), SizeHelper.size14.toFloat())
                 }
                 pointDouble < 9 -> {
-                    text = context.getString(R.string.x_tuyet_voi, String.format("%.1f", pointDouble))
+                    text = context.getString(R.string.x_tuyet_voi, pointDouble)
                     setTextColor(ContextCompat.getColor(context, R.color.red_v2))
                     background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.red_v2), SizeHelper.size14.toFloat())
                 }
                 else -> {
-                    text = context.getString(R.string.x_tren_ca_tuyet_voi, String.format("%.1f", pointDouble))
-                    setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, ContextCompat.getColor(context, R.color.colorPrimary), SizeHelper.size14.toFloat())
+                    val primaryColor = vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context)
+                    text = context.getString(R.string.x_tren_ca_tuyet_voi, pointDouble)
+                    setTextColor(primaryColor)
+                    background = ViewHelper.createShapeDrawable(Color.TRANSPARENT, SizeHelper.size0_5, primaryColor, SizeHelper.size14.toFloat())
                 }
             }
         }

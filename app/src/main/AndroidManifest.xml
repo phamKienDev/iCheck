@@ -79,9 +79,8 @@
         <activity android:name=".screen.scan.MyQrActivity" />
         <activity
             android:name=".screen.scan.V6ScanditActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".TestActivity" />
         <activity
             android:name=".screen.user.listproductecommerce.ListProductsECommerceActivity"
             android:screenOrientation="portrait"
@@ -175,7 +174,7 @@
         <activity android:name=".screen.user.list_trending_products.ListTrendingProductsActivity" />
         <activity
             android:name=".screen.user.shipping.ship.ShipActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
+
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -219,12 +218,14 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.info.AppInfoActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.campaign_onboarding.CampaignOnboardingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.contact.ContactActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.wall.manage_page.my_follow_page.MyFollowPageActivity"
@@ -292,6 +293,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.list_friend_in_wall.ListFriendOfWallActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.wall.IckUserWallActivity"
@@ -327,7 +329,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.share_post_of_page.SharePostActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -454,7 +455,7 @@
         <activity
             android:name=".screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.listnotification.friendrequest.ListFriendRequestActivity"
@@ -525,15 +526,11 @@
         <activity
             android:name=".screen.user.qr_code_marketing.QrCodeMarketingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.chat.sticker.StickerStoreActivity" />
         <activity
             android:name=".screen.user.detail_stamp_v5.detail_history_guarantee_v5.DetaiHistoryGuaranteeV5Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.detail_stamp_v6.detail_history_guarantee_v6.DetaiHistoryGuaranteeV6Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.product.ListDistributorActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.voucher.VoucherActivity"
@@ -545,32 +542,6 @@
         <activity
             android:name=".screen.user.detail_stamp_v6_1.more_information_product.MoreInformationProductActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screen.user.profile.changepassword.ChangePasswordActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.user.profile.confirmphone.ConfirmNewPhoneActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.resetpassword.ResetPasswordActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.registerfacebookphone.RegisterFacebookPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
-        <activity
-            android:name=".screen.account.verifyfacebookphone.VerifyFacebookPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.shopreview.OrderReviewActivity"
             android:exported="true"
@@ -682,13 +653,7 @@
             android:name=".screen.user.detail_stamp_v5.history_guarantee_v5.HistoryGuaranteeV5Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MapActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.product.contribute.SelectCategoryActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.product.contribute.ContributeProductActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.orderhistory.OrderHistoryActivity"
@@ -754,7 +719,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.recharge_phone.RechargePhoneActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -781,11 +745,6 @@
             android:name=".screen.user.selectuseraddress.SelectUserAddressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.verifyforgetpasswordphone.VerifyForgetPasswordPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.detail_stamp_v6_1.otp_information_guarantee.VerifyOTPGuaranteeActivity"
@@ -824,6 +783,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.setting.SettingsActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.missiondetail.MissionDetailActivity"
@@ -851,20 +811,7 @@
             android:exported="true"
             android:theme="@style/AppTheme_White" />
         <activity
-            android:name=".screen.account.registeruser.inputotp.RegisterUserOtpActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".screen.account.registeruser.register.RegisterUserActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".screen.user.listproduct.ListProductActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
@@ -872,7 +819,7 @@
             android:name=".screen.user.createqrcode.home.CreateQrCodeHomeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.createqrcode.content.CreateQrCodeContentActivity"
@@ -883,7 +830,6 @@
             android:name=".screen.user.createqrcode.success.CreateQrCodeSuccessActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_Blue"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.bannersurvey.BannerSurveyActivity"
@@ -891,7 +837,6 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.home.HomeActivity"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|orientation|screenLayout|touchscreen|uiMode"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.OverStatusBar"
@@ -958,7 +903,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
+            android:resource="@drawable/ic_icheck_notification" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />

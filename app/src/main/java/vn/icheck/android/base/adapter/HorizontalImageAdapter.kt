@@ -50,7 +50,9 @@ class HorizontalImageAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>()
                 if (listData.size - 3 > 0) {
                     itemView.bgCover.visibility = View.VISIBLE
                     itemView.tvCoundImage.visibility = View.VISIBLE
-                    itemView.tvCoundImage.text = "+ ${listData.size - 3}"
+                    itemView.tvCoundImage.apply {
+                        text = context.getString(R.string.format_plus_d, listData.size - 3)
+                    }
                 } else {
                     itemView.bgCover.visibility = View.GONE
                     itemView.tvCoundImage.visibility = View.GONE

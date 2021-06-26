@@ -1,84 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
     android:paddingBottom="@dimen/size_8">
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_10"
-        android:fontFamily="@font/barlow_semi_bold"
-        android:text="Bạn có muốn minh bạch thông tin sản phẩm không?"
-        android:textColor="#212121"
+        android:layout_marginEnd="@dimen/size_12"
+        android:gravity="center"
+        android:text="@string/ban_co_muon_minh_bach_thong_tin_san_pham_khong"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/btn_yes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_8"
-        android:layout_marginRight="@dimen/size_8"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
-        android:text="Có"
-        android:textColor="#057dda"
+        android:text="@string/co"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toStartOf="@+id/btn_no"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/btn_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginTop="@dimen/size_16"
-        android:background="@drawable/bg_corners_4_light_blue_no_solid"
-        android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:padding="@dimen/size_8"
-        android:text="Không"
-        android:textColor="#057dda"
+        android:text="@string/khong"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_yes"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/tvPercentYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_16"
-        android:layout_marginLeft="@dimen/size_16"
         android:layout_marginTop="@dimen/size_24"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#057dda"
         android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_yes"
         tools:text="72%" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@+id/tvPercentNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24"
         android:layout_marginEnd="@dimen/size_16"
         android:layout_marginRight="@dimen/size_16"
-        android:fontFamily="@font/barlow_medium"
-        android:textColor="#757575"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_no"
@@ -104,33 +94,29 @@
         android:layout_height="@dimen/size_16"
         android:max="100"
         android:progress="50"
-        android:progressDrawable="@drawable/progress_light_blue_background_transparent_corners_8"
         app:layout_constraintEnd_toEndOf="@id/tvPercentNo"
         app:layout_constraintStart_toStartOf="@id/tvPercentYes"
         app:layout_constraintBottom_toBottomOf="@+id/bgProgress"
         app:layout_constraintTop_toTopOf="@+id/bgProgress" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
         android:id="@+id/textHintYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
-        android:fontFamily="@font/barlow_medium"
-        android:text="Có"
-        android:textColor="#057dda"
+        android:text="@string/co"
         android:textSize="@dimen/font_14"
         app:layout_constraintStart_toStartOf="@id/progressbar"
         app:layout_constraintTop_toBottomOf="@id/progressbar" />
 
-    <TextView
+    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/textHintNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"
         android:fontFamily="@font/barlow_medium"
-        android:text="Không"
-        android:textColor="#b4b4b4"
+        android:text="@string/khong"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/progressbar"
         app:layout_constraintTop_toBottomOf="@id/progressbar" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

@@ -11,6 +11,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICSuggestPage
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.ui.layout.CustomGridLayoutManager
@@ -40,9 +41,12 @@ class SuggestPageActivity : BaseActivityMVVM(), IRecyclerViewCallback {
             onBackPressed()
         }
 
-        btnHome.setOnClickListener {
-            DialogHelper.showLoading(this)
-            viewModel.postFavouriteTopic(adapter.listSelected)
+        btnHome.apply {
+            background = ViewHelper.bgOutlinePrimary1Corners4(context)
+            setOnClickListener {
+                DialogHelper.showLoading(this@SuggestPageActivity)
+                viewModel.postFavouriteTopic(adapter.listSelected)
+            }
         }
     }
 

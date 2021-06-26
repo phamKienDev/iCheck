@@ -13,10 +13,9 @@
         android:id="@id/layoutToolbar"
         layout="@layout/toolbar_blue" />
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_0"
-        android:background="@color/colorBackgroundGray"
         android:descendantFocusability="blocksDescendants"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,32 +39,29 @@
                 android:paddingBottom="@dimen/size_16">
 
                 <TableRow>
-
-                    <vn.icheck.android.ui.view.TextBarlowMedium
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                         android:id="@+id/tvCustomerInfor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_span="2"
                         android:layout_weight="1"
                         android:text="@string/thong_tin_khach_hang"
-                        android:textColor="@color/colorSecondary"
                         android:textSize="@dimen/font_18" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
                         android:drawableStart="@drawable/ic_outline_person_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/ho_va_ten_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvNameCustomer"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
@@ -73,26 +69,23 @@
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
                         android:drawableStart="@drawable/ic_outline_person_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/so_dien_thoai_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvPhoneCustomer"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
@@ -100,26 +93,23 @@
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
                         android:drawableStart="@drawable/ic_outline_local_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/email_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvMailCustomer"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
@@ -127,26 +117,23 @@
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
                         android:drawableStart="@drawable/ic_outline_place_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/dia_chi_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvAddressCustomer"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
@@ -154,8 +141,6 @@
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
@@ -177,19 +162,18 @@
 
                 <TableRow>
 
-                    <vn.icheck.android.ui.view.TextBarlowMedium
+                    <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
                         android:id="@+id/tvWarrantyInfor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_span="2"
                         android:text="@string/thong_tin_bao_hanh"
-                        android:textColor="@color/colorSecondary"
                         android:textSize="@dimen/font_18" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -197,26 +181,23 @@
                         android:drawableStart="@drawable/ic_time_start_blue_18_px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/thoi_gian_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvTimeGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -224,26 +205,23 @@
                         android:drawableStart="@drawable/ic_store_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/diem_bao_hanh_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvNameStoreGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -251,26 +229,23 @@
                         android:drawableStart="@drawable/ic_warranty_blue_18px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/tinh_trang_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvStateGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/size_8">
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.second_text.TextBody1Second
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/size_12"
@@ -278,19 +253,16 @@
                         android:drawableStart="@drawable/ic_time_start_blue_18_px"
                         android:drawablePadding="@dimen/size_8"
                         android:text="@string/ngay_hen_tra_v2"
-                        android:textColor="@color/darkGray3"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <vn.icheck.android.ichecklibs.view.TextBody1
+                    <vn.icheck.android.ichecklibs.view.normal_text.TextBody1Normal
                         android:id="@+id/tvReturnTimeGuarantee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
                         android:hint="@string/dang_cap_nhat"
                         android:textAlignment="gravity"
-                        android:textColor="@color/black2"
-                        android:textColorHint="@color/black2"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintTop_toTopOf="parent" />
                 </TableRow>
@@ -321,11 +293,11 @@
                 android:paddingEnd="@dimen/size_12"
                 android:paddingBottom="@dimen/size_16">
 
-                <vn.icheck.android.ui.view.TextBarlowMedium
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowMediumSecondary
+                    android:id="@+id/tvProgressWarranty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tien_do_bao_hanh"
-                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/font_18" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -334,7 +306,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
     <View
         android:layout_width="match_parent"

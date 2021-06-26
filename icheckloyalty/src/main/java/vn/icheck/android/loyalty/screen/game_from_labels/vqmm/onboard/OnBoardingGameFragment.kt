@@ -66,8 +66,20 @@ class OnBoardingGameFragment : Fragment(), NavigateOnBoardListener {
         } else {
             when (gameListViewModel.state) {
                 "RUNNING" -> {
-                    onBoardRunningAdapter = OnBoardRunningAdapter(childFragmentManager, this, gameListViewModel.landing, gameListViewModel.titleButton, gameListViewModel.schema, gameListViewModel.campaignId.toString())
-                    onboard_running.adapter = onBoardRunningAdapter
+                    val listFragment = mutableListOf<Fragment>()
+                    if (!gameListViewModel.landing.isNullOrEmpty()) {
+                        listFragment.add(LandingPageFragment(gameListViewModel.landing, gameListViewModel.titleButton, gameListViewModel.schema, gameListViewModel.campaignId.toString()))
+                    } else {
+                        listFragment.add(OnBoardFirstFragment(this))
+                        listFragment.add(OnBoardSecondFragment(this))
+                        listFragment.add(OnBoardThirdFragment(this))
+                    }
+
+                    onBoardRunningAdapter = OnBoardRunningAdapter(childFragmentManager, gameListViewModel.landing)
+                    onboard_running.offscreenPageLimit = 3
+                    onboard_running.adapter = onBoardRunningAdapter.apply {
+                        setList(listFragment)
+                    }
                 }
                 "PENDING" -> {
 

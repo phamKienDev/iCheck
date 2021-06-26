@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvRank"
         app:rankSize="@dimen/size_24"
-        tools:src="@drawable/ic_circle_avatar_default" />
+        tools:src="@drawable/ic_user_svg" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@id/tvRank"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@id/imgAvatar"
         tools:drawableEnd="@drawable/ic_notification_comment_20dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvTitle"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
@@ -52,7 +52,6 @@
         android:includeFontPadding="false"
         android:maxLines="2"
         android:ellipsize="end"
-        android:textColor="@color/colorNormalText"
         android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toStartOf="@id/imgOption"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
@@ -69,15 +68,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
         android:id="@id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:fontFamily="@font/barlow_medium"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
-        android:textColor="@color/colorSecondText"
         android:textSize="@dimen/font_12"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"

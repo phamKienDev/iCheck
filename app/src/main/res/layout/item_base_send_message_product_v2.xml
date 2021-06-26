@@ -23,10 +23,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view1">
 
-        <View
+        <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0_5"
-            android:background="@color/gray"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -67,11 +66,10 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/containerComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutImage">
@@ -82,7 +80,7 @@
             android:layout_height="@dimen/size_20"
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginLeft="@dimen/size_12"
-            android:src="@drawable/ic_circle_avatar_default"
+            android:src="@drawable/ic_user_svg"
             app:layout_constraintBottom_toBottomOf="@id/containerEnter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/containerEnter" />
@@ -91,8 +89,8 @@
             android:id="@id/tvArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_arrow_down_blue_24px"
-            android:drawableLeft="@drawable/ic_arrow_down_blue_24px"
+            android:drawableStart="@drawable/ic_arrow_down_blue_24dp"
+            android:drawableLeft="@drawable/ic_arrow_down_blue_24dp"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="@id/imgAvatar" />
@@ -102,10 +100,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_10"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imgSend"
@@ -135,7 +131,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Trả lời  Đặng Trung Đức" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <vn.icheck.android.ichecklibs.view.disable_text.EdittextDisableHint
                 android:id="@id/edtContent"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_30"
@@ -148,7 +144,6 @@
                 android:paddingEnd="@dimen/size_8"
                 android:singleLine="true"
                 android:textColor="@color/darkGray1"
-                android:textColorHint="@color/colorDisableText"
                 android:textSize="@dimen/font_14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/imgCamera"
@@ -192,5 +187,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/containerEnter"
             app:srcCompat="@drawable/ic_chat_send_gray_24_px" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 </androidx.constraintlayout.widget.ConstraintLayout>

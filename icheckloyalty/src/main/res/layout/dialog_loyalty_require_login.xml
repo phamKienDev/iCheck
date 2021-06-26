@@ -82,7 +82,7 @@
                     android:background="@drawable/bg_blue_corners_30_solid_white"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Đăng Ký"
+                    android:text="@string/dang_ky"
                     android:textAllCaps="false"
                     android:textColor="@color/colorSecondary"
                     android:textSize="16sp" />
@@ -98,7 +98,7 @@
                     android:background="@drawable/bg_blue_corners_30"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Đăng Nhập"
+                    android:text="@string/dang_nhap"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -123,7 +123,7 @@
                     android:layout_marginEnd="@dimen/size_8"
                     android:fontFamily="sans-serif"
                     android:includeFontPadding="false"
-                    android:text="Hoặc đăng nhập bằng"
+                    android:text="@string/hoac_dang_nhap_bang"
                     android:textColor="#9197a3"
                     android:textSize="12sp"
                     android:textStyle="italic" />
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="Facebook"
+                    android:text="@string/facebook"
                     android:textColor="@android:color/white" />
             </LinearLayout>
         </LinearLayout>

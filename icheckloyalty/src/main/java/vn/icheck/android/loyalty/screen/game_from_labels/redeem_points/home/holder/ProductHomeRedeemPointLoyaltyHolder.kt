@@ -31,12 +31,12 @@ class ProductHomeRedeemPointLoyaltyHolder(parent: ViewGroup) : BaseViewHolder<IC
          */
         itemView.tvCheck.text = if (!obj.gift?.type.isNullOrEmpty()) {
             when (obj.gift?.type) {
-                "ICOIN" -> "Xu iCheck"
-                "PHONE_CARD" -> "Thẻ cào điện thoại"
-                "RECEIVE_STORE" -> "Nhận tại cửa hàng"
-                "PRODUCT" -> "Giao tận nơi"
-                "VOUCHER" -> "Voucher"
-                else -> "Quà tinh thần"
+                "ICOIN" -> itemView.context.getString(R.string.xu_icheck)
+                "PHONE_CARD" -> itemView.context.getString(R.string.the_cao_dien_thoai)
+                "RECEIVE_STORE" -> itemView.context.getString(R.string.nhan_tai_cua_hang)
+                "PRODUCT" -> itemView.context.getString(R.string.giao_tan_noi)
+                "VOUCHER" -> itemView.context.getString(R.string.voucher)
+                else -> itemView.context.getString(R.string.qua_tinh_than)
             }
         } else {
             itemView.context.getString(R.string.dang_cap_nhat)

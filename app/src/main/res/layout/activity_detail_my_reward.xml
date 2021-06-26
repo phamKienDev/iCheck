@@ -30,11 +30,10 @@
             android:layout_marginEnd="@dimen/size_40"
             android:layout_marginRight="@dimen/size_40"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/background_button_enable"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:padding="@dimen/size_8"
-            android:text="Chia sẻ"
+            android:text="@string/chia_se"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,19 +51,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray
         android:id="@id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#f0f0f0"
         android:clipToPadding="false"
         android:descendantFocusability="blocksDescendants"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/layoutBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +74,6 @@
                 android:id="@+id/group_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/darkGray6"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:visibility="visible">
@@ -136,32 +132,29 @@
                             app:layout_constraintTop_toTopOf="@id/imgLogo"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                             android:id="@id/tvNameProduct"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_24"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:fontFamily="@font/barlow_semi_bold"
-                            android:textColor="@color/colorSecondary"
                             android:textSize="@dimen/font_16"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/imgLogo"
                             app:layout_constraintTop_toTopOf="@id/imgLogo"
                             tools:text="Son kem lì Innissfree (tên quà dài không giới hạn...)" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tvCongty"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_4"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_14"
-                            android:textColor="@color/colorSecondText"
                             android:textSize="@dimen/font_12"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@id/tvNameProduct"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@id/tvNameProduct"
                             app:layout_constraintTop_toBottomOf="@id/tvNameProduct"
                             app:layout_constraintVertical_bias="0.0"
@@ -172,60 +165,53 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/size_32"
                         android:background="@drawable/bg_reward_bottom"
-                     >
+                        android:paddingTop="@dimen/size_32">
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                             android:id="@+id/tvState"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_8"
                             android:layout_marginEnd="@dimen/size_32"
-                            android:fontFamily="@font/barlow_semi_bold"
-                            android:textColor="#057dda"
                             android:textSize="@dimen/font_16"
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_mathecao"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:text="Đang cập nhật"
+                            android:text="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tvRefuse"
                             android:layout_width="@dimen/size_120"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_32"
                             android:layout_marginTop="@dimen/size_10"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_6"
-                            android:textColor="#757575"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_mathecao"
                             tools:text="Lý do"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                             android:id="@+id/tvRefuseDes"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/size_32"
                             android:ellipsize="end"
-                            android:fontFamily="@font/barlow_semi_bold"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
-                            android:textColor="#212121"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintBottom_toBottomOf="@id/tvRefuse"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvRefuse"
                             app:layout_constraintTop_toTopOf="@id/tvRefuse"
-                            android:hint="Đang cập nhật"
+                            android:hint="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tvTime"
                             android:layout_width="@dimen/size_120"
                             android:layout_height="wrap_content"
@@ -233,10 +219,8 @@
                             android:layout_marginTop="@dimen/size_6"
                             android:layout_marginBottom="@dimen/size_45"
                             android:ellipsize="end"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
-                            android:textColor="@color/colorSecondText"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -244,34 +228,30 @@
                             tools:text="Thời gian xác nhận"
                             tools:visibility="visible" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                             android:id="@+id/tvTimeDes"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/size_32"
                             android:ellipsize="end"
-                            android:fontFamily="@font/barlow_semi_bold"
                             android:lineSpacingExtra="@dimen/font_6"
                             android:maxLines="1"
-                            android:textColor="#212121"
                             android:textSize="@dimen/font_14"
                             app:layout_constraintBottom_toBottomOf="@id/tvTime"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tvTime"
                             app:layout_constraintTop_toTopOf="@id/tvTime"
-                            android:text="Đang cập nhật"
+                            android:text="@string/dang_cap_nhat"
                             tools:visibility="visible" />
 
-                        <TextView
+                        <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                             android:id="@+id/tv_mathecao"
                             android:layout_width="@dimen/size_120"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_32"
                             android:layout_marginTop="@dimen/size_8"
-                            android:fontFamily="@font/barlow_medium"
                             android:lineSpacingExtra="@dimen/font_6"
-                            android:text="Mã thẻ cào"
-                            android:textColor="#757575"
+                            android:text="@string/ma_the_cao"
                             android:textSize="@dimen/font_14"
                             android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
@@ -290,27 +270,23 @@
                 android:layout_marginBottom="@dimen/size_20"
                 android:background="@android:color/white"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginLeft="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:text="Địa chỉ đến lấy quà"
-                    android:textColor="@color/colorSecondary"
+                    android:text="@string/dia_chi_den_lay_qua"
                     android:textSize="@dimen/font_14" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginLeft="@dimen/size_12"
-                    android:layout_marginTop="9.5dp"
-                    android:background="#d8d8d8" />
+                    android:layout_marginTop="9.5dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_address"
@@ -321,7 +297,6 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_12"
-                    android:background="@drawable/bg_text_address"
                     android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
                     android:padding="@dimen/size_8"
@@ -330,12 +305,11 @@
                     tools:text="34 Lê Văn Lương, Cầu Giấy, Hà Nội ( không giới hạn dòng)..." />
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
                 android:id="@+id/group_business"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_20"
-                android:background="@color/white"
                 android:paddingBottom="@dimen/size_10"
                 tools:visibility="visible">
 
@@ -361,30 +335,26 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imgLogoSupplier"
                     app:layout_constraintEnd_toEndOf="@+id/imgLogoSupplier" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                     android:id="@+id/appCompatTextView33"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_8"
                     android:layout_marginLeft="@dimen/size_8"
-                    android:fontFamily="@font/barlow_medium"
                     android:lineSpacingExtra="@dimen/font_14"
-                    android:text="Đơn vị tài trợ"
-                    android:textColor="#757575"
+                    android:text="@string/don_vi_tai_tro"
                     android:textSize="@dimen/font_12"
                     app:layout_constraintStart_toEndOf="@id/imgLogoSupplier"
                     app:layout_constraintTop_toTopOf="@id/imgLogoSupplier" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
                     android:id="@+id/tvNameSupplier"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_4"
                     android:layout_marginEnd="@dimen/size_8"
                     android:layout_marginRight="@dimen/size_8"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -392,36 +362,32 @@
                     app:layout_constraintTop_toBottomOf="@+id/appCompatTextView33"
                     tools:text="Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)Công ty Cổ phần Điện Máy Xanh (không giới hạn dòng)" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 
-            <LinearLayout
+            <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
                 android:id="@+id/group_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_10"
-                    android:fontFamily="@font/barlow_semi_bold"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:text="Thông tin quà"
-                    android:textColor="@color/colorSecondary"
+                    android:text="@string/thong_tin_qua"
                     android:textSize="@dimen/font_14" />
 
-                <View
+                <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginStart="@dimen/size_12"
-                    android:layout_marginTop="9.5dp"
-                    android:background="#d8d8d8" />
+                    android:layout_marginTop="9.5dp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
                     android:id="@+id/tvInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -429,9 +395,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:layout_marginEnd="@dimen/size_12"
                     android:layout_marginBottom="@dimen/size_10"
-                    android:fontFamily="@font/barlow_medium"
                     android:lineSpacingExtra="@dimen/font_6"
-                    android:textColor="#212121"
                     android:textSize="@dimen/font_14"
                     tools:text="Bài viết này sẽ cập nhật mã giảm giá Lotte tháng 9/2019 và các chương trình khuyến mãi mới nhất của Lotte. Lưu lại nếu bạn thấy hữu ích, chia sẻ với bạn bè
 Lưu ý: Nếu quà tặng là vật phẩm, iCheck sẽ tiến hành ship hàng đến bạn trong vòng 3 - 9 ngày kể từ khi bạn xác nhận nhận phần quà này.
@@ -440,11 +404,10 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_12"
-                    android:background="@color/darkGray6" />
-            </LinearLayout>
+                    android:layout_height="@dimen/size_12" />
+            </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </vn.icheck.android.ichecklibs.view.appbackground.graybackground.ICNestedScrollViewGray>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgGift"
@@ -475,15 +438,14 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             app:srcCompat="@drawable/ic_back_black_28px" />
     </FrameLayout>
 
-    <FrameLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite
         android:id="@+id/toolbarAlpha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:background="@color/white"
+        android:elevation="@dimen/size_4"
         android:paddingTop="@dimen/size_40"
         android:paddingBottom="@dimen/size_12"
-        android:elevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -494,7 +456,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
                 android:id="@id/imgBack"
                 android:layout_width="@dimen/size_44"
                 android:layout_height="match_parent"
@@ -502,7 +464,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:background="?android:attr/selectableItemBackground"
                 app:srcCompat="@drawable/ic_back_blue_v2_24px" />
 
-            <vn.icheck.android.ichecklibs.view.TextHeader
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
                 android:id="@id/txtTitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -513,10 +475,9 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="#057DDA"
                 tools:text="Tiêu đề" />
         </LinearLayout>
-    </FrameLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
 
     <View
         android:id="@+id/viewShadow"
@@ -525,32 +486,25 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
         android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/toolbarAlpha" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="@dimen/size_35"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/btnRefuse"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_6"
-            android:layout_marginRight="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_no_solid"
-            android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="@string/tu_choi_qua"
-            android:textColor="#057dda"
             android:textSize="@dimen/font_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnAcceptDaLay"
@@ -563,10 +517,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:layout_width="0dp"
             android:layout_height="@dimen/size_36"
             android:layout_marginStart="@dimen/size_6"
-            android:layout_marginLeft="@dimen/size_6"
             android:layout_marginEnd="@dimen/size_12"
-            android:layout_marginRight="@dimen/size_12"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:text="@string/xac_nhan_ship_qua"
@@ -588,7 +539,6 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             android:layout_marginEnd="@dimen/size_12"
             android:layout_marginRight="@dimen/size_12"
             android:layout_marginBottom="@dimen/size_20"
-            android:background="@drawable/bg_corners_4_light_blue_solid"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:textColor="@color/white"
@@ -601,7 +551,7 @@ Phí ship quà: Cửa hàng sẽ chủ động gọi điện để xác nhận t
             tools:text="@string/theo_doi_don_qua"
             tools:visibility="gone" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

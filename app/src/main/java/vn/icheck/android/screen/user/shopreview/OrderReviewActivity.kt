@@ -17,6 +17,7 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.helper.TakePhotoHelper
+import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.ICCriteriaShop
 import vn.icheck.android.screen.user.shopreview.adapter.ShopReviewAdapter
 import vn.icheck.android.screen.user.shopreview.entity.ShopReviewImage
@@ -43,6 +44,7 @@ class OrderReviewActivity : BaseActivityMVVM(), IOrderReviewView, TakePhotoHelpe
 
     fun onInitView() {
         setupToolbar()
+        setupView()
         setupRecyclerView()
         setupListener()
         presenter.getShopID(intent)
@@ -56,6 +58,11 @@ class OrderReviewActivity : BaseActivityMVVM(), IOrderReviewView, TakePhotoHelpe
         imgBack.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    private fun setupView() {
+        edtNote.background = ViewHelper.bgTransparentStrokeLineColor1Corners10(this)
+        tvDone.background = ViewHelper.btnSecondaryCorners26(this)
     }
 
     private fun setupRecyclerView() {

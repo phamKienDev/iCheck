@@ -17,6 +17,8 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TimeHelper
+import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
@@ -133,7 +135,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
         }
 
         if (listData.isNullOrEmpty()) {
-            setError(R.drawable.ic_empty_questions, "Chưa có câu hỏi cho sản phẩm này.\nHãy đặt câu hỏi để được giải đáp thắc mắc ở đây", -1)
+            setError(R.drawable.ic_empty_questions, getString(R.string.chua_co_cau_hoi_cho_san_pham_nay_hay_dat_cau_hoi_de_duoc_giai_dap_thac_mac_o_day), -1)
         }
     }
 
@@ -226,7 +228,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
             }
 
             if (obj.page == null) {
-                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_circle_avatar_default)
+                WidgetUtils.loadImageUrl(itemView.imgAvatar, obj.user?.avatar, R.drawable.ic_user_svg)
                 itemView.imgLevel.setRankUser(obj.user?.rank?.level)
                 itemView.tvTitle.apply {
                     text = obj.user?.getName
@@ -314,7 +316,7 @@ class ListProductQuestionAdapter(val callback: IListProductQuestionView) : Recyc
 
         private fun checkLike(expressived: String?) {
             if (expressived == null) {
-                itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorSecondText))
+                itemView.tvLike.setTextColor(ColorManager.getSecondTextColor(itemView.context))
             } else {
                 itemView.tvLike.setTextColor(ContextCompat.getColor(itemView.context, R.color.red_like_question))
             }

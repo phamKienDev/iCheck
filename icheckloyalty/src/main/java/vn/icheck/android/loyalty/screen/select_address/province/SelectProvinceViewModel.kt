@@ -1,6 +1,7 @@
 package vn.icheck.android.loyalty.screen.select_address.province
 
 import androidx.lifecycle.MutableLiveData
+import vn.icheck.android.loyalty.R
 import vn.icheck.android.loyalty.base.BaseViewModel
 import vn.icheck.android.loyalty.helper.ApplicationHelper
 import vn.icheck.android.loyalty.helper.NetworkHelper
@@ -40,7 +41,7 @@ class SelectProvinceViewModel : BaseViewModel<ICProvince>() {
                     if (!obj.rows.isNullOrEmpty()) {
                         onSetData.postValue(obj.rows)
                     } else {
-                        onEmptyString.postValue("Không có dữ liệu!")
+                        onEmptyString.postValue(vn.icheck.android.ichecklibs.util.getString(R.string.khong_co_du_lieu))
                     }
                 } else {
                     onAddData.postValue(obj.rows ?: mutableListOf())

@@ -20,7 +20,7 @@
             android:layout_marginBottom="@dimen/size_20"
             android:fontFamily="@font/roboto_medium"
             android:includeFontPadding="false"
-            android:text="Thông tin chương trình"
+            android:text="@string/thong_tin_chuong_trinh"
             android:textColor="@color/darkBlue"
             android:textSize="16sp" />
 

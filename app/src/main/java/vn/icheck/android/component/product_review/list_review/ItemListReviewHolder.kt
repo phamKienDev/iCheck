@@ -72,8 +72,8 @@ class ItemListReviewHolder(context: Context) : RecyclerView.ViewHolder(ViewHelpe
             imgAvatar.setData(data.page!!.avatar, null, R.drawable.ic_business_v2, true)
             tvName.text = data.page!!.name
         } else {
-            imgAvatar.setData(data.user?.avatar, data.user?.rank?.level, R.drawable.ic_avatar_default_84px)
-            tvName.text = data.user!!.getName
+            imgAvatar.setData(data.user?.avatar, data.user?.rank?.level, R.drawable.ic_avatar_default_84dp)
+            tvName.text = data.user?.getName ?: ""
         }
 
 
@@ -102,7 +102,7 @@ class ItemListReviewHolder(context: Context) : RecyclerView.ViewHolder(ViewHelpe
         } else {
             tvReview.visibility = View.VISIBLE
             tvReview.text = if (data.content!!.length > 130) {
-                Html.fromHtml(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130)))
+                Html.fromHtml(vn.icheck.android.ichecklibs.ViewHelper.setSecondaryHtmlString(itemView.context.getString(R.string.xxx_xem_them, data.content!!.substring(0, 130)),itemView.context))
             } else {
                 data.content
             }

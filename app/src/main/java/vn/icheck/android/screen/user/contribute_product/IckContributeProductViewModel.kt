@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import vn.icheck.android.ICheckApplication
+import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.model.category.CategoryAttributesResponse
 import vn.icheck.android.network.model.category.CategoryItem
 import vn.icheck.android.network.model.category.IckCategoryResponse
@@ -211,7 +214,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
         for (item in categoryAttributes) {
             if (item.categoryItem.required != null && item.categoryItem.required == true) {
                 if (item.categoryItem.type != "image-single" && item.categoryItem.type != "image" && item.values == null) {
-                    mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
+                    mException.postValue(Exception(getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                     return null
                 }
             }
@@ -278,7 +281,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                             }
                             "select" -> {
                                 if (item.values.toString().toIntOrNull() == 0) {
-                                    mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
+                                    mException.postValue(Exception(getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                                     return@liveData
                                 } else {
                                     hashMap.put("value", item.values)
@@ -302,7 +305,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                                 } else {
                                     hashMap.remove(item.categoryItem.code)
                                     if (item.categoryItem.required != null && item.categoryItem.required == true) {
-                                        mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
+                                        mException.postValue(Exception(getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                                         return@liveData
                                     }
                                 }
@@ -314,7 +317,7 @@ class IckContributeProductViewModel @ViewModelInject constructor(
                         }
                     }
                 } else if (item.categoryItem.required != null && item.categoryItem.required == true) {
-                    mException.postValue(Exception("Không bỏ trống ${item.categoryItem.name}"))
+                    mException.postValue(Exception(getString(R.string.khong_bo_trong_s, item.categoryItem.name?:"")))
                     return@liveData
                 }
             }
