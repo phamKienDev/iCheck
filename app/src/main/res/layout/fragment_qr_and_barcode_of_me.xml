@@ -1,200 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_qrcode_marketing"
     tools:context="vn.icheck.android.screen.user.qr_code_marketing.QrCodeMarketingActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@id/tvClose"
-        android:layout_width="@dimen/size_40"
-        android:layout_height="@dimen/size_40"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_8"
-        android:padding="@dimen/size_12"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_clear_16px" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout20"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/size_16"
-        android:layout_marginTop="@dimen/size_24"
-
-        android:layout_marginEnd="@dimen/size_16"
-        android:layout_marginBottom="@dimen/size_32"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_scan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvClose">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout8"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/group_my_code_top"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_banner"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/size_80"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/img_barcode"
-                android:layout_width="260dp"
-                android:layout_height="@dimen/size_58"
-                android:layout_marginTop="@dimen/size_32"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toTopOf="@+id/img_qr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_banner"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            <ImageView
-                android:id="@+id/img_qr"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="@dimen/size_32"
-                android:layout_marginTop="@dimen/size_12"
-                android:layout_marginEnd="@dimen/size_32"
-                android:layout_marginBottom="@dimen/size_32"
-                android:scaleType="centerInside"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_barcode"
-                tools:srcCompat="@tools:sample/avatars" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@id/tvClose"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_8"
+            android:padding="@dimen/size_12"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_clear_16px" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:background="@drawable/group_my_code_bottom"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout20"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_24"
+            android:layout_marginEnd="@dimen/size_16"
+            android:layout_marginBottom="@dimen/size_32"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btn_scan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvClose">
 
-            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
-                android:id="@+id/tv_default_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_20"
-                android:gravity="center"
-                android:text="@string/day_la_id_cua_ban"
-                android:textSize="@dimen/font_16"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_default_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_6"
-                android:gravity="center"
-                android:paddingStart="@dimen/size_8"
-                android:paddingEnd="@dimen/size_8"
-                android:text="@string/dua_ma_nay_cho_nguoi_khac_quet_de_cung_ket_ban_voi_ho_tren_icheck_nhe"
-                android:visibility="gone" />
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:background="@drawable/group_my_code_top"
+                android:orientation="vertical">
 
-                <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
-                    android:id="@+id/tv_campaign"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/img_banner"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_80"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/img_barcode"
+                    android:layout_width="260dp"
+                    android:layout_height="@dimen/size_58"
+                    android:layout_marginTop="@dimen/size_32"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@+id/img_qr"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_banner"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/img_qr"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="@dimen/size_32"
+                    android:layout_marginTop="@dimen/size_12"
+                    android:layout_marginEnd="@dimen/size_32"
+                    android:layout_marginBottom="@dimen/size_32"
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_barcode"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@drawable/group_my_code_bottom"
+                android:orientation="vertical">
+
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
+                    android:id="@+id/tv_default_1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_16"
-                    android:layout_marginLeft="@dimen/size_16"
-                    android:layout_marginTop="@dimen/size_16"
-                    android:layout_marginEnd="@dimen/size_16"
-                    android:layout_marginBottom="@dimen/size_16"
-                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/size_20"
                     android:gravity="center"
-                    tools:text="Đưa mã barcode hoặc QR này cho nhân viên để kích hoạt" />
+                    android:text="@string/day_la_id_cua_ban"
+                    android:textSize="@dimen/font_16"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/btn_campaign"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_default_2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_16"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/barlow_semi_bold"
-                    android:padding="@dimen/size_8"
-                    android:textColor="@android:color/white"
-                    android:visibility="gone"
-                    tools:text="Tham gia ngay"
-                    tools:visibility="gone" />
+                    android:layout_marginTop="@dimen/size_6"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/size_8"
+                    android:paddingEnd="@dimen/size_8"
+                    android:text="@string/dua_ma_nay_cho_nguoi_khac_quet_de_cung_ket_ban_voi_ho_tren_icheck_nhe"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowSemiBold
+                        android:id="@+id/tv_campaign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_16"
+                        android:layout_marginLeft="@dimen/size_16"
+                        android:layout_marginTop="@dimen/size_16"
+                        android:layout_marginEnd="@dimen/size_16"
+                        android:layout_marginBottom="@dimen/size_16"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        tools:text="Đưa mã barcode hoặc QR này cho nhân viên để kích hoạt" />
+
+                    <TextView
+                        android:id="@+id/btn_campaign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_16"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:padding="@dimen/size_8"
+                        android:textColor="@android:color/white"
+                        android:visibility="gone"
+                        tools:text="Tham gia ngay"
+                        tools:visibility="gone" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/btn_scan"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_36"
-        android:layout_marginStart="@dimen/size_32"
-        android:layout_marginEnd="@dimen/size_32"
-        android:layout_marginBottom="@dimen/size_32"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:text="@string/quet_ma"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/btn_scan"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginStart="@dimen/size_32"
+            android:layout_marginEnd="@dimen/size_32"
+            android:layout_marginBottom="@dimen/size_32"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/quet_ma"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_my_code"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/btn_scan_buy"
-        android:layout_width="@dimen/size_110"
-        android:layout_height="@dimen/size_36"
-        android:layout_marginBottom="@dimen/size_32"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:text="@string/scan_buy"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_scan" />
+        <TextView
+            android:id="@+id/btn_scan_buy"
+            android:layout_width="@dimen/size_110"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginBottom="@dimen/size_32"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/scan_buy"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_scan" />
 
-    <TextView
-        android:id="@+id/btn_my_code"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_36"
-        android:layout_marginEnd="@dimen/size_32"
-        android:layout_marginBottom="@dimen/size_32"
-        android:background="@drawable/bg_selected_scan_text"
-        android:fontFamily="@font/barlow_medium"
-        android:gravity="center"
-        android:text="@string/ma_cua_toi"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_scan" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/btn_my_code"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginEnd="@dimen/size_32"
+            android:layout_marginBottom="@dimen/size_32"
+            android:background="@drawable/bg_selected_scan_text"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/ma_cua_toi"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_scan" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
