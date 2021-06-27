@@ -1,101 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/layoutAnalytic"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/size_10"
-    android:background="@color/white"
-    android:padding="@dimen/size_12">
+    android:background="@drawable/bg_corner_bottom_gray_10"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/imgScanQr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/viewCenter"
+        android:layout_marginStart="@dimen/size_29"
+        android:src="@drawable/ic_qrcode_black_30px"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUserScan"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/imgUserScan" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/imgScan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_qrcode_black_30px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
-            android:id="@id/tvScanCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/tvScanCountTitle"
-            app:layout_constraintStart_toStartOf="@id/tvScanCountTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:includeFontPadding="false"
-            tools:text="0000" />
-
-        <vn.icheck.android.ichecklibs.view.second_text.TextBody2Second
-            android:id="@id/tvScanCountTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_12"
-            android:layout_marginTop="@dimen/size_2"
-            android:text="@string/so_lan_quet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imgScan"
-            app:layout_constraintTop_toBottomOf="@id/tvScanCount"
-            tools:includeFontPadding="false" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
-        android:id="@id/viewCenter"
-        android:layout_width="@dimen/size_0_5"
-        android:layout_height="@dimen/size_0"
-        android:layout_marginTop="@dimen/size_4"
-        android:layout_marginBottom="@dimen/size_4"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@id/view2"
+        android:layout_width="@dimen/size_1"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgUserScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:src="@drawable/ic_group_friend_gray_30_px"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat"
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_19"
+        android:layout_marginEnd="@dimen/size_29"
+        android:layout_marginBottom="@dimen/size_19"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/viewCenter"
+        app:layout_constraintStart_toEndOf="@+id/imgUserScan"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@id/imgPeople"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_group_friend_gray_30_px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
-            android:id="@id/tvPeopleCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/tvPeopleCountTitle"
-            app:layout_constraintStart_toStartOf="@id/tvPeopleCountTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:includeFontPadding="false"
-            tools:text="0000" />
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
+                android:id="@+id/tvPeopleCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/font_12"
+                tools:text="140,842" />
 
-        <vn.icheck.android.ichecklibs.view.second_text.TextBody2Second
-            android:id="@id/tvPeopleCountTitle"
+            <vn.icheck.android.ichecklibs.view.second_text.TextBody2Second
+                android:id="@+id/appCompatTextView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/so_nguoi_quet"
+                android:textColor="#828282"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_16"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imgScanQr"
+        app:layout_constraintEnd_toStartOf="@+id/view2"
+        app:layout_constraintStart_toEndOf="@+id/imgScanQr"
+        app:layout_constraintTop_toTopOf="@+id/imgScanQr">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_12"
-            android:layout_marginTop="@dimen/size_2"
-            android:text="@string/so_nguoi_quet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imgPeople"
-            app:layout_constraintTop_toBottomOf="@id/tvPeopleCount"
-            tools:includeFontPadding="false" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
+                android:id="@+id/tvScanCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/font_12"
+                tools:text="17" />
+
+            <vn.icheck.android.ichecklibs.view.second_text.TextBody2Second
+                android:id="@+id/appCompatTextView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/so_lan_quet"
+                android:textColor="#828282"
+                android:textSize="@dimen/size_12" />
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
