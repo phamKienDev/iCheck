@@ -114,7 +114,7 @@ class IckUserWallAdapter(val postListener: IPostListener, val messageListener: I
             ICViewTypes.FRIEND_WALL -> FriendWallHolder(FriendInWallHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             ICViewTypes.FRIEND_INVITATION_TYPE -> FriendRequestWallHolder(parent)
             ICViewTypes.FRIEND_SUGGESTION_TYPE -> FriendSuggestionComponent(parent)
-            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ICViewTypes.ITEM_CREATE_POST -> CreatePostHolder(parent)
             ICViewTypes.ITEM_USER_POST -> PostHolder(parent, postListener)
             ICViewTypes.MESSAGE_TYPE -> ShortMessageHolder(parent)
             else -> NullHolder(parent)
@@ -473,7 +473,10 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
     }
 }
 
-class CreatePostHolder(val binding: ItemCreatePostBinding) : RecyclerView.ViewHolder(binding.root) {
+class CreatePostHolder(parent: ViewGroup, val binding: ItemCreatePostBinding =
+        ItemCreatePostBinding.inflate(LayoutInflater.from(parent.context), parent, false)) :
+        RecyclerView.ViewHolder(binding.root) {
+
     init {
         binding.userAvatar.loadImageWithHolder(SessionManager.session.user?.avatar, R.drawable.ic_user_svg)
         binding.textView45.setOnClickListener {
