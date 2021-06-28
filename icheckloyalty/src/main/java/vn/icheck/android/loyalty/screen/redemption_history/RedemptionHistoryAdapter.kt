@@ -253,7 +253,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                                         setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                     }
                                     "BUSINESS_LOCKED_VOUCHER", "ADMIN_LOCKED_VOUCHER" -> {
-                                        text = "Đã bị khóa"
+                                        text = context.getText(R.string.da_bi_khoa)
                                         setTextColor(ContextCompat.getColor(itemView.context, R.color.errorColor))
                                         setBackgroundResource(R.drawable.bg_corner_30_red_opacity_02)
                                     }
@@ -270,7 +270,7 @@ internal class RedemptionHistoryAdapter(callback: IRecyclerViewCallback) : Recyc
                             }
                         }
                     } else {
-                        itemView.tvState.setGone()
+                        itemView.tvState.setInvisible()
                     }
                 } else {
                     itemView.tvState.run {
