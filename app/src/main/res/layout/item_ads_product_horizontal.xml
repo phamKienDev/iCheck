@@ -2,21 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="230dp"
     android:id="@+id/constraintLayout"
+    android:layout_width="230dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_corner_gray_solid_white"
     android:layout_marginStart="@dimen/size_7"
-    android:layout_marginEnd="@dimen/size_7">
+    android:layout_marginEnd="@dimen/size_7"
+    android:background="@drawable/bg_corner_gray_solid_white">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/imgImage"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_0"
         android:layout_margin="@dimen/size_0_5"
+        app:layout_constraintDimensionRatio="H, 230:180"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintDimensionRatio="H, 230:180"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -61,11 +61,11 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@id/imgAvatar"
         android:layout_width="@dimen/size_40"
-        app:civ_border_color="@color/grayD8"
-        app:civ_border_width="@dimen/size_0_5"
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_8"
         android:layout_marginLeft="@dimen/size_8"
+        app:civ_border_color="@color/grayD8"
+        app:civ_border_width="@dimen/size_0_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutName" />
 
@@ -74,10 +74,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_4"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/size_6"
+        android:layout_marginEnd="@dimen/size_4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@id/imgImage">
 
@@ -102,35 +101,37 @@
     <vn.icheck.android.ichecklibs.view.normal_text.TextNormal
         android:id="@id/tvContent"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_40"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/size_12"
         android:ellipsize="end"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:maxLines="2"
+        android:minHeight="@dimen/size_40"
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@id/barrier3"
         tools:text="Học cách sáng tạo trên TikTok để nhãn hàng của bạn nổi bật và thu hút khách hàng- Tối đa 2 dòng..." />
 
     <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_40"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/size_12"
         android:fontFamily="@font/barlow_semi_bold"
         android:gravity="center|start"
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
+        android:minHeight="@dimen/size_40"
         android:text="@string/ten_dang_cap_nhat"
         android:textSize="@dimen/font_14"
         android:textStyle="italic"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+        app:layout_constraintTop_toBottomOf="@id/barrier3" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -140,7 +141,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvContent"
         app:layout_constraintStart_toStartOf="@id/tvContent"
-        app:layout_constraintTop_toBottomOf="@id/tvContent">
+        app:layout_constraintTop_toBottomOf="@id/barrier4">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -152,7 +153,7 @@
             <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvPriceUpdating"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/barlow_medium"
                 android:text="@string/gia_dang_cap_nhat"
                 android:textSize="@dimen/font_14"
@@ -227,7 +228,8 @@
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
             android:id="@id/btnAction"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_28"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_28"
             android:layout_marginBottom="@dimen/size_10"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
@@ -240,5 +242,19 @@
             tools:text="Theo dõi" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="imgAvatar, layoutName" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvTenSpUpdating, tvContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
