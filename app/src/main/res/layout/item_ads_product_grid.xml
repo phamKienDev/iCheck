@@ -47,7 +47,8 @@
     <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tvTenSpUpdating"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_40"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_40"
         android:layout_marginStart="@dimen/size_6"
         android:layout_marginTop="@dimen/size_6"
         android:layout_marginEnd="@dimen/size_6"
@@ -76,7 +77,7 @@
             <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
                 android:id="@+id/tvRatingUpdating"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/barlow_medium"
                 android:lineSpacingExtra="@dimen/font_2_7"
                 android:text="@string/chua_co_danh_gia"
@@ -89,14 +90,14 @@
                 android:id="@+id/ratingbar"
                 style="@style/Product_Rating_Bar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:isIndicator="true" />
 
             <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
                 android:id="@+id/tvRatingText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/font_14"
@@ -106,7 +107,7 @@
             <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
                 android:id="@id/tvRatingCount"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/size_6"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="@dimen/font_14"
@@ -117,7 +118,7 @@
         <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
             android:id="@id/tvPriceUpdating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/barlow_medium"
             android:lineSpacingExtra="@dimen/font_14"
             android:text="@string/gia_dang_cap_nhat"
@@ -128,7 +129,7 @@
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@id/tvPrice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_4"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_14"
@@ -137,7 +138,7 @@
         <vn.icheck.android.ichecklibs.view.accent.accentgreen.TextAccentGreen
             android:id="@id/tvVerified"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_2"
             android:layout_marginBottom="@dimen/size_6"
             android:drawableStart="@drawable/ic_home_verify_16dp"
@@ -150,7 +151,8 @@
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondStateEnable
             android:id="@id/tvAction"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_28"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_28"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/size_6"
             android:layout_marginBottom="@dimen/size_8"
