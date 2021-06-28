@@ -2692,6 +2692,7 @@ object ViewHelper {
                 tvName.setTextColor(secondaryColor)
                 tvName.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true
+                tvName.ellipsize = TextUtils.TruncateAt.MIDDLE
                 tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 tvName.includeFontPadding = false
             })
