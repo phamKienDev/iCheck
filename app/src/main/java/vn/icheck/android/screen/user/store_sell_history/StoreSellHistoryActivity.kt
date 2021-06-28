@@ -2,13 +2,11 @@ package vn.icheck.android.screen.user.store_sell_history
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_store_sell_history.*
 import vn.icheck.android.R
@@ -158,11 +156,15 @@ class StoreSellHistoryActivity : BaseActivityMVVM(), StoreSellHistoryView {
     }
 
     override fun onClickItem(listData: MutableList<ICStoreNear>, id: Long?) {
-        val data = JsonHelper.toJson(listData)
-        val intent = Intent(this, MapScanHistoryActivity::class.java)
-        intent.putExtra(Constant.DATA_1, data)
-        intent.putExtra(Constant.DATA_2, viewModel.idProduct)
-        startActivity(intent)
+        MapScanHistoryActivity.start(this,
+                listShop = JsonHelper.toJson(listData),
+                shopID = id
+        )
+
+//        val intent = Intent(this, MapScanHistoryActivity::class.java)
+//        intent.putExtra(Constant.DATA_1, listShop)
+//        intent.putExtra(Constant.DATA_2, viewModel.idProduct)
+//        startActivity(intent)
     }
 
     override fun onLoadMore() {

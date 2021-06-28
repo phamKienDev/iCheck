@@ -108,8 +108,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
         if (obj.numShopSell != null && obj.numShopSell != 0) {
             obj.numShopSell?.let {
                 binding.tvCountShop.setText(
-                    R.string.co_s_cua_hang_ban_san_pham_nay,
-                    it
+                        R.string.co_s_cua_hang_ban_san_pham_nay,
+                        it
                 )
             }
             binding.tvCountShop.visibility = View.VISIBLE
@@ -119,7 +119,7 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
             binding.layoutShop.visibility = View.GONE
         }
 
-        binding.btnSearchNear.background=ViewHelper.bgAccentCyanCornersTop8(binding.btnSearchNear.context)
+        binding.btnSearchNear.background = ViewHelper.bgAccentCyanCornersTop8(binding.btnSearchNear.context)
 
         if (obj.nearestShop?.shop != null) {
             binding.layoutShop.visibility = View.VISIBLE
@@ -130,7 +130,8 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
                 binding.avaShop.setImageResource(R.drawable.ic_error_load_shop_40_px)
             }
 
-            binding.tvNameShop.text = obj.nearestShop?.shop?.name ?: itemView.context.getString(R.string.dang_cap_nhat)
+            binding.tvNameShop.text = obj.nearestShop?.shop?.name
+                    ?: itemView.context.getString(R.string.dang_cap_nhat)
 
             if (obj.nearestShop?.distance != null && obj.nearestShop?.distance != Double.POSITIVE_INFINITY && obj.nearestShop?.distance != Double.NEGATIVE_INFINITY) {
                 TextHelper.convertMtoKm(obj.nearestShop?.distance!!.toLong(), binding.tvDistance)
@@ -162,13 +163,23 @@ class ProductHistoryHolder(parent: ViewGroup, val binding: LayoutProductHistoryH
 
         binding.btnSearchNear.setOnClickListener {
             if (obj.product?.sourceId != null && obj.product?.sourceId != 0L) {
-                ICheckApplication.currentActivity()?.let { activity -> KeyboardUtils.hideSoftInput(activity) }
-                val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
-                intent.putExtra(Constant.DATA_2, obj.product?.sourceId!!)
-                intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)
-                intent.putExtra(Constant.DATA_4, obj.nearestShop?.shop?.location?.lon)
-                intent.putExtra("avatarShop", obj.nearestShop?.shop?.avatar)
-                itemView.context.startActivity(intent)
+                ICheckApplication.currentActivity()?.let { activity ->
+                    KeyboardUtils.hideSoftInput(activity)
+
+                    MapScanHistoryActivity.start(activity,
+                            shopLat = obj.nearestShop?.shop?.location?.lat,
+                            shopLng = obj.nearestShop?.shop?.location?.lon,
+                            productID = obj.product?.sourceId,
+                            shopAvatar = obj.nearestShop?.shop?.avatar
+                    )
+
+//                    val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
+//                    intent.putExtra(Constant.DATA_3, obj.nearestShop?.shop?.location?.lat)
+//                    intent.putExtra(Constant.DATA_4, obj.nearestShop?.shop?.location?.lon)
+//                    intent.putExtra(Constant.DATA_5, obj.product?.sourceId!!)
+//                    intent.putExtra("avatarShop", obj.nearestShop?.shop?.avatar)
+//                    activity.startActivity(intent)
+                }
             }
         }
 

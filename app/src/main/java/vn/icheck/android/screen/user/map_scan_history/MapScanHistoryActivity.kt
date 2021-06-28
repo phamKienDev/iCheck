@@ -1,6 +1,8 @@
 package vn.icheck.android.screen.user.map_scan_history
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -8,7 +10,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_map_scan_history.*
 import kotlinx.android.synthetic.main.item_routes.view.*
@@ -19,6 +20,7 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.PermissionHelper
 import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.history.ICStoreNear
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.map4d.map.annotations.MFMarker
 import vn.map4d.map.annotations.MFMarkerOptions
@@ -31,8 +33,7 @@ import vn.map4d.map.core.OnMapReadyCallback
 import vn.map4d.types.MFLocationCoordinate
 
 class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMapReadyCallback {
-
-    val viewModel: MapScanHistoryViewModel by viewModels()
+    private val viewModel by viewModels<MapScanHistoryViewModel>()
 
     private var adapter = StoreSellMapHistoryAdapter(this)
 
@@ -45,6 +46,24 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
     private var markerView: MFMarker? = null
 
     private val requestLocation = 1
+
+    companion object {
+        fun start(activity: Activity, listShop: String? = null, shopID: Long? = null,
+                  shopLat: Double? = null, shopLng: Double? = null, productID: Long? = null,
+                  isPage: Boolean = false, shopAvatar: String? = null) {
+            val intent = Intent(activity, MapScanHistoryActivity::class.java)
+
+            intent.putExtra(Constant.DATA_1, listShop)
+            intent.putExtra(Constant.DATA_2, shopID)
+            intent.putExtra(Constant.DATA_3, shopLat)
+            intent.putExtra(Constant.DATA_4, shopLng)
+            intent.putExtra(Constant.DATA_5, productID)
+            intent.putExtra("isPage", isPage)
+            intent.putExtra("avatarShop", shopAvatar)
+
+            ActivityUtils.startActivity(activity, intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +87,7 @@ class MapScanHistoryActivity : BaseActivityMVVM(), StoreSellMapHistoryView, OnMa
             listStore.clear()
             listStore.addAll(it)
 
-            adapter.setData(it, viewModel.idProduct).let { selectedPos ->
+            adapter.setData(it, viewModel.shopID).let { selectedPos ->
                 recyclerView.scrollToPosition(selectedPos)
 
                 Handler(Looper.getMainLooper()).postDelayed({
