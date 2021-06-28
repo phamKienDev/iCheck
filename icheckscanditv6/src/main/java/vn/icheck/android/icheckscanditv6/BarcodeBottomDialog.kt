@@ -72,6 +72,7 @@ class BarcodeBottomDialog : BaseBottomSheetDialogFragment() {
                 }
                 false
             }
+
             addTextChangedListener {s ->
                 if (s.toString().isNotBlank()) {
                     binding.submitBarcode.enable()
