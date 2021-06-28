@@ -1,110 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_product"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_product_name"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/roboto_medium"
-        android:maxLines="2"
-        tools:text="Viên uống DHC chống lão hóa 30 (tối đa 2 dòng)..."
-        android:textColor="#212121"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_product"
-        app:layout_constraintTop_toTopOf="@+id/img_product" />
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_12"
+        android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:textColor="#828282"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_gift_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/img_product"
-        app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
-        tools:text="Còn lại: 12" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_product"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_gift_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:background="@drawable/bg_outline_gray_1_corners_4"
-        android:padding="4dp"
-        tools:text="Giao tận nơi"
-        android:textColor="#FF0000"
-        android:textSize="@dimen/font_10"
-        app:layout_constraintBottom_toBottomOf="@+id/img_product"
-        app:layout_constraintStart_toEndOf="@+id/img_product" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/size_12"
+            android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_business_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingBottom="2dp"
-        android:textColor="#B4B4B4"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_product"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Hòa Phát88" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/roboto_medium"
+                android:maxLines="2"
+                android:textColor="#212121"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Viên uống DHC chống lão hóa 30 (tối đa 2 dòng)..." />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginRight="6dp"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="#F1533E"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_product"
-        app:layout_constraintEnd_toStartOf="@+id/tv_business_name"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_gift_type"
-        tools:text="125,000" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5"
+                android:textColor="#828282"
+                android:textSize="@dimen/font_12"
+                android:includeFontPadding="false"
+                app:layout_constraintBottom_toTopOf="@+id/tv_gift_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                tools:text="Còn lại: 12" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_gift_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingTop="@dimen/size_4"
+                android:paddingBottom="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_6"
+                android:background="@drawable/bg_outline_gray_1_corners_4"
+                android:padding="@dimen/size_4"
+                android:textColor="#FF0000"
+                android:textSize="@dimen/font_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_quantity"
+                tools:text="Giao tận nơi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#F1533E"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/font_16"
+                app:layout_constraintBottom_toBottomOf="@id/tv_gift_type"
+                app:layout_constraintEnd_toStartOf="@id/tv_business_name"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/tv_gift_type"
+                app:layout_constraintTop_toTopOf="@id/tv_gift_type"
+                tools:text="125,000" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_business_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_12"
+                android:includeFontPadding="false"
+                android:layout_marginRight="@dimen/size_12"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingBottom="@dimen/size_2"
+                android:textColor="#B4B4B4"
+                android:textSize="@dimen/font_12"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_gift_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_gift_type"
+                tools:text="Hòa Phát88" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <View
         android:id="@+id/divider19"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginEnd="@dimen/size_12"
+        android:layout_marginRight="@dimen/size_12"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_product" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
