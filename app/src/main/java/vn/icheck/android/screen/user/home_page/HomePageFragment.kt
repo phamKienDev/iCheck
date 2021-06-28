@@ -608,6 +608,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
                     View.INVISIBLE
                 }
             }
+            ICMessageEvent.Type.REFRESH_HOME_FRAGMENT->{
+                reloadHomeLoginOrLogout()
+            }
             ICMessageEvent.Type.UPDATE_COIN_AND_RANK -> {
 //                homeAdapter.notifyItemChanged(0)
                 updateHomeHeader()
@@ -616,36 +619,6 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //                val count = event.data as String?
 //                tvCartCount.visibleOrInvisible(count != null)
 //                tvCartCount.text = count
-//            }
-//            ICMessageEvent.Type.ON_LOG_IN -> {
-
-//                lifecycleScope.launch {
-//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-//                    if (file.exists()) {
-//                        FileHelper.deleteTheme(file)
-//                    }
-//                    homeAdapter.notifyDataSetChanged()
-//                    checkTheme()
-//                    delay(400)
-//                    getReminders()
-//                    refreshHomeData()
-//                }
-//            }
-//            ICMessageEvent.Type.ON_LOG_OUT -> {
-//                lifecycleScope.launch {
-//                    val file = File(FileHelper.getPath(requireContext()) + FileHelper.imageFolder)
-//                    if (file.exists()) {
-//                        FileHelper.deleteTheme(file)
-//                    }
-//                    homeAdapter.notifyDataSetChanged()
-//                    checkTheme()
-//                    delay(400)
-//                    getReminders()
-//                }
-//                getCoin()
-//
-//                layoutContainer.setTransition(R.id.no_reminder)
-//                tvCartCount.beGone()
 //            }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
                 if (isOpen) {
@@ -677,6 +650,20 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
             }
             else -> {
             }
+        }
+    }
+
+    private fun reloadHomeLoginOrLogout() {
+        homeAdapter.notifyDataSetChanged()
+        checkTheme()
+
+        if(SessionManager.isUserLogged){
+            refreshHomeData()
+        }else{
+            getReminders()
+            getCoin()
+            layoutContainer.setTransition(R.id.no_reminder)
+            tvCartCount.beGone()
         }
     }
 

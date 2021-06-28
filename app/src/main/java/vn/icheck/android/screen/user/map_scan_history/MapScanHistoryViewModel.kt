@@ -137,10 +137,7 @@ class MapScanHistoryViewModel : ViewModel() {
             if (!isLoadmore)
                 offset = 0
 
-            interactor.getStoreNear(
-                idProduct,
-                offset,
-                object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
+            interactor.getStoreNear(idProduct, offset, object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
                     override fun onSuccess(obj: ICResponse<ICListResponse<ICStoreNear>>) {
                         statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                         if (!isLoadmore) {
