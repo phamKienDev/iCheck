@@ -2,7 +2,6 @@ package vn.icheck.android.component.shopvariant.product_detail
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.CartHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
@@ -26,9 +24,6 @@ import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beGone
-import vn.icheck.android.ichecklibs.util.beInvisible
-import vn.icheck.android.ichecklibs.util.beVisible
-import vn.icheck.android.loyalty.helper.ActivityHelper
 import vn.icheck.android.network.base.ICApiListener
 import vn.icheck.android.network.base.ICBaseResponse
 import vn.icheck.android.network.base.SessionManager
@@ -192,7 +187,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
                         override fun onError(error: ICBaseResponse?) {
                             val message = error?.message
-                                ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
+                                    ?: context.getString(R.string.co_loi_xay_ra_vui_long_thu_lai)
                             ToastUtils.showShortError(context, message)
                         }
                     })
@@ -207,7 +202,7 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
     private fun showMap(obj: ICShopVariantV2) {
         ICheckApplication.currentActivity()?.let { activity ->
-            val json = JsonHelper.toJson(mutableListOf(ICStoreNear().apply {
+            val listShop = JsonHelper.toJson(mutableListOf(ICStoreNear().apply {
                 id = obj.id
                 avatar = obj.avatar
                 name = obj.name
@@ -218,13 +213,21 @@ class ProductDetailShopVariantComponent : LinearLayout {
                 location = obj.location
             }))
 
-            val intent = Intent(activity, MapScanHistoryActivity::class.java)
-            intent.putExtra(Constant.DATA_1, json)
-            intent.putExtra(Constant.DATA_2, obj.id)
-            intent.putExtra(Constant.DATA_3, obj.location?.lat)
-            intent.putExtra(Constant.DATA_4, obj.location?.lon)
-            intent.putExtra("avatarShop", obj.avatar)
-            ActivityHelper.startActivity(activity, intent)
+            MapScanHistoryActivity.start(activity,
+                    listShop = listShop,
+                    shopID = obj.id,
+                    shopLat = obj.location?.lat,
+                    shopLng = obj.location?.lon,
+                    shopAvatar = obj.avatar
+            )
+
+//            val intent = Intent(activity, MapScanHistoryActivity::class.java)
+//            intent.putExtra(Constant.DATA_1, listShop)
+//            intent.putExtra(Constant.DATA_2, obj.id)
+//            intent.putExtra(Constant.DATA_3, obj.location?.lat)
+//            intent.putExtra(Constant.DATA_4, obj.location?.lon)
+//            intent.putExtra("avatarShop", obj.avatar)
+//            ActivityHelper.startActivity(activity, intent)
         }
 
 //        if (obj.location != null) {

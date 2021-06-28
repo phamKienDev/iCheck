@@ -24,14 +24,13 @@ class MapScanHistoryViewModel : ViewModel() {
     val setListData = MutableLiveData<MutableList<ICStoreNear>>()
     val addListData = MutableLiveData<MutableList<ICStoreNear>>()
     val listRoute = MutableLiveData<MutableList<MFLocationCoordinate>>()
-    var idProduct = 0L
 
+    var shopID = 0L
     var latShop = 0.0
     var lonShop = 0.0
-
+    var productID = 0L
     var isPage = false
     var avatarShop = ""
-
     var offset = 0
 
     val statusCode = MutableLiveData<ICMessageEvent.Type>()
@@ -40,21 +39,23 @@ class MapScanHistoryViewModel : ViewModel() {
 
     fun getData(intent: Intent?) {
         val json = intent?.getStringExtra(Constant.DATA_1)
-        idProduct = intent?.getLongExtra(Constant.DATA_2, 0L) ?: 0L
+        shopID = intent?.getLongExtra(Constant.DATA_2, 0L) ?: 0L
         latShop = intent?.getDoubleExtra(Constant.DATA_3, 0.0) ?: 0.0
         lonShop = intent?.getDoubleExtra(Constant.DATA_4, 0.0) ?: 0.0
+        productID = intent?.getLongExtra(Constant.DATA_5, 0) ?: 0L
         isPage = intent?.getBooleanExtra("isPage", false) ?: false
         avatarShop = intent?.getStringExtra("avatarShop") ?: ""
 
-        val data = parseListStoreSellHistory(json)
-        if (!data.isNullOrEmpty()) {
-            setListData.postValue(data!!)
-            offset = data.size
-            for (i in data) {
-                if (i.id == idProduct) {
-                    if (i.id != null && i.location != null) {
-                        latShop = i.location?.lat ?: 0.0
-                        lonShop = i.location?.lon ?: 0.0
+        val listShop = parseListStoreSellHistory(json)
+        if (!listShop.isNullOrEmpty()) {
+            setListData.postValue(listShop!!)
+            offset = listShop.size
+
+            for (shop in listShop) {
+                if (shop.id == shopID) {
+                    if (shop.id != null && shop.location != null) {
+                        latShop = shop.location?.lat ?: 0.0
+                        lonShop = shop.location?.lon ?: 0.0
                         getLocationShop(latShop, lonShop)
                     }
                 }
@@ -138,10 +139,7 @@ class MapScanHistoryViewModel : ViewModel() {
             if (!isLoadmore)
                 offset = 0
 
-            interactor.getStoreNear(
-                idProduct,
-                offset,
-                object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
+            interactor.getStoreNear(productID, offset, object : ICNewApiListener<ICResponse<ICListResponse<ICStoreNear>>> {
                     override fun onSuccess(obj: ICResponse<ICListResponse<ICStoreNear>>) {
                         statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                         if (!isLoadmore) {

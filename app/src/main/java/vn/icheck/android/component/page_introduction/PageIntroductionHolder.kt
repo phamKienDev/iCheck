@@ -1,6 +1,5 @@
 package vn.icheck.android.component.page_introduction
 
-import android.content.Intent
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
@@ -19,8 +18,8 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.databinding.HolderPageIntroductionBinding
 import vn.icheck.android.network.models.ICPageDetail
 import vn.icheck.android.screen.user.map_scan_history.MapScanHistoryActivity
@@ -40,13 +39,22 @@ class PageIntroductionHolder private constructor(val binding: HolderPageIntroduc
                     setMapLocation(pageDetail.location?.lat, pageDetail.location?.lon, it)
                     binding.myMapview.onResume()
                     it.setOnMapClickListener {
-                        val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
-                        intent.putExtra(Constant.DATA_2, pageDetail.id)
-                        intent.putExtra(Constant.DATA_3, pageDetail.location?.lat ?: 0.0)
-                        intent.putExtra(Constant.DATA_4, pageDetail.location?.lon ?: 0.0)
-                        intent.putExtra("isPage", true)
-                        intent.putExtra("avatarShop", pageDetail.icPageOverView?.avatar)
-                        itemView.context.startActivity(intent)
+                        ICheckApplication.currentActivity()?.let { activity ->
+                            MapScanHistoryActivity.start(activity,
+                                    shopID = pageDetail.id,
+                                    shopLat = pageDetail.location?.lat,
+                                    shopLng = pageDetail.location?.lon,
+                                    isPage = true,
+                                    shopAvatar = pageDetail.icPageOverView?.avatar)
+                        }
+
+//                        val intent = Intent(itemView.context, MapScanHistoryActivity::class.java)
+//                        intent.putExtra(Constant.DATA_2, pageDetail.id)
+//                        intent.putExtra(Constant.DATA_3, pageDetail.location?.lat ?: 0.0)
+//                        intent.putExtra(Constant.DATA_4, pageDetail.location?.lon ?: 0.0)
+//                        intent.putExtra("isPage", true)
+//                        intent.putExtra("avatarShop", pageDetail.icPageOverView?.avatar)
+//                        itemView.context.startActivity(intent)
                     }
                 }
             }

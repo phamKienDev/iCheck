@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.list_shop_variant
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -13,7 +12,6 @@ import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICShopVariantV2
@@ -115,16 +113,22 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
     override fun onClickShowMap(item: ICShopVariantV2) {
         if (item.location != null) {
             if (item.location?.lat != null && item.location?.lon != null) {
-                val intent = Intent(this@ListShopVariantActivity, MapScanHistoryActivity::class.java)
-                intent.putExtra(Constant.DATA_2, item.id)
-                item.location?.lat?.let {
-                    intent.putExtra(Constant.DATA_3, it)
-                }
-                item.location?.lon?.let {
-                    intent.putExtra(Constant.DATA_4, it)
-                }
-                intent.putExtra("avatarShop", item.avatar)
-                startActivity(intent)
+                MapScanHistoryActivity.start(this,
+                        shopID = item.id,
+                        shopLat = item.location?.lat,
+                        shopLng = item.location?.lon,
+                        shopAvatar = item.avatar)
+
+//                val intent = Intent(this@ListShopVariantActivity, MapScanHistoryActivity::class.java)
+//                intent.putExtra(Constant.DATA_2, item.id)
+//                item.location?.lat?.let {
+//                    intent.putExtra(Constant.DATA_3, it)
+//                }
+//                item.location?.lon?.let {
+//                    intent.putExtra(Constant.DATA_4, it)
+//                }
+//                intent.putExtra("avatarShop", item.avatar)
+//                startActivity(intent)
             } else {
                 showShortError(getString(R.string.vi_tri_cua_shop_dang_duoc_cap_nhat))
             }

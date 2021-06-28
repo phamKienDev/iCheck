@@ -1,13 +1,9 @@
 package vn.icheck.android.screen.user.suggest_store_history
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_suggest_store_history.*
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -124,12 +120,18 @@ class SuggestStoreHistoryActivity : BaseActivityMVVM(), SuggestStoreHistoryView 
     }
 
     override fun onClickGotoMap(item: ICSuggestStoreHistory) {
-        val intent = Intent(this, MapScanHistoryActivity::class.java)
-        intent.putExtra(Constant.DATA_2, item.id)
-        intent.putExtra(Constant.DATA_3, item.location?.lat)
-        intent.putExtra(Constant.DATA_4, item.location?.lon)
-        intent.putExtra("avatarShop", item.avatar)
-        startActivity(intent)
+        MapScanHistoryActivity.start(this,
+                shopID = item.id,
+                shopLat = item.location?.lat,
+                shopLng = item.location?.lon,
+                shopAvatar = item.avatar)
+
+//        val intent = Intent(this, MapScanHistoryActivity::class.java)
+//        intent.putExtra(Constant.DATA_2,    item.id)
+//        intent.putExtra(Constant.DATA_3,    item.location?.lat)
+//        intent.putExtra(Constant.DATA_4,    item.location?.lon)
+//        intent.putExtra("avatarShop", item.avatar)
+//        startActivity(intent)
     }
 
     override fun onClickShowProduct(item: ICSuggestStoreHistory) {
