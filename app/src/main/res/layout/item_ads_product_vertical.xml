@@ -115,13 +115,13 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="@dimen/font_14"
         android:minHeight="@dimen/size_40"
-        android:text="jcnjsadncjnsjancjsdnajccnjaksncjkcnajsdclncjaksncj"
+        android:text="@string/ten_dang_cap_nhat"
         android:textSize="@dimen/font_14"
         android:textStyle="italic"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/layoutName"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+        app:layout_constraintTop_toBottomOf="@id/barrier2" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
