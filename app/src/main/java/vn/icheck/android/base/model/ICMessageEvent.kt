@@ -104,6 +104,7 @@ data class ICMessageEvent(val type: Type, val data: Any? = null) {
         ON_DISMISS,
         TAKE_IMAGE,
         OPEN_SEARCH_REVIEW_OR_PAGE,
-        REQUEST_MISSION_SUCCESS
+        REQUEST_MISSION_SUCCESS,
+        REFRESH_HOME_FRAGMENT
     }
 }

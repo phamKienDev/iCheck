@@ -45,8 +45,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.ick_left_menu.*
 import kotlinx.android.synthetic.main.right_menu_history.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.withTimeoutOrNull
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
@@ -72,6 +71,7 @@ import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICClientSetting
+import vn.icheck.android.network.models.ICThemeSetting
 import vn.icheck.android.network.models.history.ICBigCorp
 import vn.icheck.android.network.models.history.ICTypeHistory
 import vn.icheck.android.network.util.DeviceUtils
@@ -104,6 +104,7 @@ import vn.icheck.android.screen.user.welcome.WelcomeActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.teko.TekoHelper
 import vn.icheck.android.util.ick.*
+import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.HideWebUtils
 import vn.icheck.android.util.kotlin.StatusBarUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -115,6 +116,8 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var locationCallback: LocationCallback? = null
     private val presenter = HomePresenter(this@HomeActivity)
+    private var isScan = false
+    private var recreateHomeWhenLogin:Boolean? = null
 
     private val requestProfile = 1
     private val requestUpdateProfile = 2
@@ -130,10 +133,8 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     private val requestLoginRank = 13
     private val requestLoginXu = 14
     private val requestManagerPage = 15
+    private val requestLocationPermission = 16
 
-    private val requestLocationPermission = 12
-
-    private var isScan = false
 
     private val historyViewModel: ScanHistoryViewModel by viewModels()
     private val ickLoginViewModel: IckLoginViewModel by viewModels()
@@ -553,8 +554,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         tvHistory.setTextColor(colorTextSelected)
         tvChat.setTextColor(colorTextSelected)
 
-
-
         val path = FileHelper.getPath(this@HomeActivity)
         val homeBitmap = BitmapFactory.decodeFile(path + FileHelper.homeIcon)
         if (homeBitmap != null) {
@@ -616,28 +615,52 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         }
     }
 
+
     private fun checkNewTheme() {
-        lifecycleScope.async {
+        lifecycleScope.launch {
+            val themeSettingRes=withContext(Dispatchers.IO){
+                try {
+                    withTimeoutOrNull(3000L) { CheckThemeViewModel().getThemeSetting() }
+                } catch (e: Exception) {
+                    null
+                }
+            }
+
+            val oldTheme = SettingManager.themeSetting
+            SettingManager.themeSetting = themeSettingRes?.data
+
             val file = File(FileHelper.getPath(this@HomeActivity) + FileHelper.imageFolder)
             if (file.exists()) {
                 FileHelper.deleteTheme(file)
             }
-            SettingManager.setAppThemeColor(null,this@HomeActivity)
-            SettingManager.themeSetting = null
-            setupTheme()
 
-            val themeSettingRes = try {
-                withTimeoutOrNull(10000L) { CheckThemeViewModel().getThemeSetting() }
-            } catch (e: Exception) {
-                null
+            if (compareColorTheme(oldTheme?.theme, themeSettingRes?.data?.theme)) {
+                // refresh màn homepage
+                EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.REFRESH_HOME_FRAGMENT))
+
+                viewModel.downloadTheme()
+
+                tvChatCount.visibility = View.GONE
+                clearFilter()
+            } else {
+                SettingManager.setAppThemeColor(themeSettingRes?.data?.theme, this@HomeActivity)
+
+                ActivityUtils.startActivityWithoutAnimation<HomeActivity>(this@HomeActivity)
+                ActivityUtils.finishActivityWithoutAnimation(this@HomeActivity)
             }
-            SettingManager.themeSetting = themeSettingRes?.data
-            SettingManager.setAppThemeColor(themeSettingRes?.data?.theme,this@HomeActivity)
-
-            viewModel.downloadTheme()
-
-//            recreate()
         }
+    }
+
+    // so sánh mã màu mới với màu đã lưu
+    private fun compareColorTheme(oldTheme: ICThemeSetting.ICTheme?, newTheme: ICThemeSetting.ICTheme?): Boolean {
+        return oldTheme?.lineColor == newTheme?.lineColor &&
+                oldTheme?.primaryColor == newTheme?.primaryColor &&
+                oldTheme?.secondaryColor == newTheme?.secondaryColor &&
+                oldTheme?.normalTextColor == newTheme?.normalTextColor &&
+                oldTheme?.secondTextColor == newTheme?.secondTextColor &&
+                oldTheme?.disableTextColor == newTheme?.disableTextColor &&
+                oldTheme?.appBackgroundColor == newTheme?.appBackgroundColor &&
+                oldTheme?.popupBackgroundColor == newTheme?.popupBackgroundColor
     }
 
     private fun clearFilter() {
@@ -1108,7 +1131,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 presenter.registerNotificationCount()
                 presenter.registerMessageCount()
                 FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-                    ickLoginViewModel.loginDevice(token).observe(this) { _ ->
+                    ickLoginViewModel.loginDevice(token).observe(this) {
                     }
                 }
 
@@ -1121,30 +1144,19 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 )
             }
             ICMessageEvent.Type.ON_LOG_OUT -> {
-//                tvChatCount.visibility = View.GONE
-
-                ChatSdk.shareIntent(null, null, null, null, false)
-
                 RelationshipManager.removeListener()
-                checkNewTheme()
-                clearFilter()
-
+                ChatSdk.shareIntent(null, null, null, null, false)
                 checkLoginOrLogoutChat(false)
-
                 FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
                     ickLoginViewModel.loginDevice(token).observe(this, Observer { })
                 }
+
+                checkNewTheme()
             }
             ICMessageEvent.Type.ON_LOG_IN -> {
-//                tv_username.text = SessionManager.session.user?.getName
-//                tv_user_rank.text = SessionManager.session.user?.phone
-//                Glide.with(this.applicationContext)
-//                    .load(SessionManager.session.user?.avatar)
-//                    .placeholder(R.drawable.ic_avatar_default_84px)
-//                    .error(R.drawable.ic_avatar_default_84px)
-//                    .into(imgAvatar)
                 RelationshipManager.removeListener()
                 RelationshipManager.refreshToken(true)
+                checkLoginOrLogoutChat(true)
                 ChatSdk.shareIntent(
                     SessionManager.session.firebaseToken,
                     SessionManager.session.user?.id,
@@ -1152,9 +1164,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                     DeviceUtils.getUniqueDeviceId(),
                     SessionManager.isUserLogged
                 )
-                checkNewTheme()
-                clearFilter()
-                checkLoginOrLogoutChat(true)
+                recreateHomeWhenLogin=true
             }
             ICMessageEvent.Type.INIT_MENU_HISTORY -> {
                 recyclerViewMenu.layoutManager = LinearLayoutManager(this)
@@ -1163,7 +1173,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             }
             ICMessageEvent.Type.UNREAD_COUNT -> {
                 if (event.data is Long) {
-                    val unread = event.data as Long
+                    val unread = event.data
                     var text = ""
                     text = if (unread > 9) {
                         "9+"
@@ -1231,13 +1241,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 requestUpdateProfile -> {
                     presenter.updateUserInfo()
                 }
-//                ProductDetailActivity.DETAIL_PRODUCT -> {
-//                    if (!isChecked(tvHome)) {
-//                        InsiderHelper.tagHomePageViewed()
-//                        TekoHelper.tagHomepageViewed()
-//                        viewPager.setCurrentItem(0, false)
-//                    }
-//                }
             }
         }
     }
@@ -1251,7 +1254,6 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 super.onBackPressed()
             }
             else -> {
-//                TrackingAllHelper.trackHomePageViewed()
                 viewPager.setCurrentItem(0, false)
             }
         }
@@ -1260,6 +1262,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
     override fun onResume() {
         super.onResume()
         try {
+            recreateHomeWhenLogin?.let { checkNewTheme() }
             presenter.checkVersionApp()
             onUpdateUserInfo()
             startLocationUpdates()
