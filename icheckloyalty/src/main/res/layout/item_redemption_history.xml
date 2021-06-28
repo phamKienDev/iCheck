@@ -10,10 +10,12 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/viewLeft"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
         android:src="@drawable/bg_gift_ware_house_left"
+        app:layout_constraintBottom_toBottomOf="@+id/barrier3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/barrier2" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgGiftFromVendor"
@@ -21,19 +23,20 @@
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/viewCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/viewLeft"
+        app:layout_constraintTop_toTopOf="@id/viewLeft" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/viewRight"
         android:layout_width="@dimen/size_0"
-        android:layout_height="@dimen/size_0"
+        android:layout_height="0dp"
         android:background="@drawable/bg_gift_ware_house_right"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/viewLeft"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/barrier3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/viewLeft"
-        app:layout_constraintTop_toTopOf="@id/viewLeft" />
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
@@ -46,7 +49,7 @@
         android:fontFamily="@font/roboto_medium"
         android:singleLine="true"
         android:textColor="#434343"
-        android:textSize="14sp"
+        android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toEndOf="@id/viewRight"
         app:layout_constraintStart_toStartOf="@id/viewRight"
         app:layout_constraintTop_toTopOf="@id/viewRight"
@@ -56,14 +59,16 @@
         android:id="@+id/tvDate"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_8"
         android:layout_marginTop="@dimen/size_6"
+        android:layout_marginRight="@dimen/size_8"
         android:ellipsize="end"
         android:fontFamily="@font/roboto_regular"
         android:singleLine="true"
         android:textColor="#828282"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        android:textSize="@dimen/font_12"
+        app:layout_constraintEnd_toEndOf="@id/viewRight"
+        app:layout_constraintStart_toStartOf="@id/viewRight"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         tools:text="Thời gian đổi: 14:34, 14/02/2020" />
 
@@ -71,6 +76,8 @@
         android:id="@+id/tvState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="@dimen/size_8"
         android:layout_marginRight="@dimen/size_8"
         android:layout_marginBottom="@dimen/size_12"
         android:fontFamily="@font/roboto_medium"
@@ -78,10 +85,12 @@
         android:paddingLeft="@dimen/size_15"
         android:paddingTop="@dimen/size_4"
         android:paddingRight="@dimen/size_15"
-        android:visibility="invisible"
         android:paddingBottom="@dimen/size_4"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/viewRight"
         app:layout_constraintEnd_toEndOf="@id/viewRight"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:layout_constraintVertical_bias="1.0"
         tools:background="@drawable/bg_corner_30_green_opacity_02"
         tools:text="Đã nhận quà"
         tools:textColor="#49AA2D" />
@@ -90,29 +99,48 @@
         android:id="@+id/btnManagerPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quan_ly_xu"
-        android:drawableRight="@drawable/ic_right_point"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="@dimen/size_4"
+        android:layout_marginBottom="@dimen/size_4"
         android:background="@drawable/bg_corner_10_top_left_bottom_right_yellow"
+        android:drawableRight="@drawable/ic_right_point"
         android:drawablePadding="@dimen/size_5"
-        android:paddingTop="@dimen/size_4"
-        android:paddingBottom="@dimen/size_4"
-        android:textColor="@color/white"
         android:fontFamily="@font/roboto_medium"
-        android:visibility="invisible"
         android:paddingLeft="@dimen/size_12"
+        android:paddingTop="@dimen/size_4"
         android:paddingRight="@dimen/size_12"
+        android:paddingBottom="@dimen/size_4"
+        android:text="@string/quan_ly_xu"
+        android:textColor="@color/white"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/viewRight"
         app:layout_constraintEnd_toEndOf="@id/viewRight"
-        android:layout_marginBottom="@dimen/size_4"
-        android:layout_marginRight="@dimen/size_4"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/viewCenter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginBottom="@dimen/size_12"
         android:background="@drawable/bg_gift_center"
-        app:layout_constraintBottom_toBottomOf="@id/viewLeft"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/viewRight"
         app:layout_constraintStart_toEndOf="@id/viewLeft"
-        app:layout_constraintTop_toTopOf="@id/viewLeft" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="viewLeft,viewRight" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="viewLeft,viewRight" />
 </androidx.constraintlayout.widget.ConstraintLayout>
