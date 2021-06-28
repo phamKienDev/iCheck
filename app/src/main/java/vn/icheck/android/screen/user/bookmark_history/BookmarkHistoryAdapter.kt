@@ -77,7 +77,7 @@ class BookmarkHistoryAdapter : PagingDataAdapter<BookmarkHistoryResponse, Recycl
             holder.binding.tvPrice.textSize = 20f
         } else {
             holder.binding.tvPrice.typeface = Typeface.createFromAsset(holder.binding.root.context.assets, "font/barlow_semi_bold_italic.ttf")
-            holder.binding.tvPrice simpleText "Giá đang cập nhật"
+            holder.binding.tvPrice.setText(R.string.gia_dang_cap_nhat)
             holder.binding.tvPrice.setTextColor(ColorManager.getDisableTextColor(holder.itemView.context))
             holder.binding.tvGiaNiemYet.beGone()
             holder.binding.tvPrice.textSize = 14f
