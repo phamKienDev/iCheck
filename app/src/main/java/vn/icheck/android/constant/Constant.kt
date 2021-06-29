@@ -94,6 +94,9 @@ object Constant {
     const val STICKER = "sticker"
     const val TITLE = "title"
 
+    const val ORDER = "order"
+    const val CONTRIBUTION = "contribution"
+
     const val USER = "user"
     const val PAGE = "page"
     const val PRODUCT = "product"

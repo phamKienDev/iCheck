@@ -15,10 +15,13 @@ import vn.icheck.android.network.base.ICNewApiListener
 import vn.icheck.android.network.base.ICResponse
 import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.feature.order.OrderInteractor
+import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.product.report.ICReportForm
 
 class ReportViewModel : ViewModel() {
-    private val interactor = OrderInteractor()
+    private val orderInteractor = OrderInteractor()
+    private val productInteraction = ProductInteractor()
+
 
     var onData = MutableLiveData<MutableList<ICReportForm>>()
     var onReport = MutableLiveData<Any>()
@@ -31,26 +34,29 @@ class ReportViewModel : ViewModel() {
 
     fun getData(intent: Intent) {
         type = intent.getIntExtra(Constant.DATA_1, 1)
-        id = intent.getLongExtra(Constant.DATA_3, -1)
+        id = intent.getLongExtra(Constant.DATA_2, -1)
 
         when (type) {
-            ReportActivity.order -> {
-                getReportOrder()
+            ReportActivity.ORDER -> {
+                getReasonOrder()
+            }
+            ReportActivity.PRODUCT -> {
+                getReasonProduct()
             }
             else -> {
-                getReportOrder()
+                getReasonOrder()
             }
         }
     }
 
-    private fun getReportOrder() {
+    private fun getReasonOrder() {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
         }
 
         onState.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
-        interactor.getListReportOrder(object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
+        orderInteractor.getListReportOrder(object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICReportForm>>) {
                 onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                 onData.postValue(obj.data?.rows)
@@ -63,7 +69,37 @@ class ReportViewModel : ViewModel() {
         })
     }
 
-    fun putOrder(listIdReason: MutableList<Int>, message: String) {
+    private fun getReasonProduct() {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            return
+        }
+
+        onState.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
+
+        productInteraction.getListReportProductForm(object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
+            override fun onSuccess(obj: ICResponse<ICListResponse<ICReportForm>>) {
+                onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                onData.postValue(obj.data?.rows)
+            }
+
+            override fun onError(error: ICResponseCode?) {
+                onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                onError.postValue(ICError(R.drawable.ic_error_request, getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+            }
+        })
+    }
+
+    fun report(listIdReason: MutableList<Int>, message: String){
+        if(type==ReportActivity.ORDER){
+            reportOrder(listIdReason, message)
+        }else{
+            reportProduct(listIdReason, message)
+        }
+    }
+
+
+    private fun reportOrder(listIdReason: MutableList<Int>, message: String) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
             return
@@ -71,7 +107,7 @@ class ReportViewModel : ViewModel() {
 
         if (id != -1L && id != null) {
             onState.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
-            interactor.postReportOrder(id!!, listIdReason, message, object : ICNewApiListener<ICResponse<Any>> {
+            orderInteractor.postReportOrder(id!!, listIdReason, message, object : ICNewApiListener<ICResponse<Any>> {
                 override fun onSuccess(obj: ICResponse<Any>) {
                     onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
                     if (obj.data is Int || obj.data is Double) {
@@ -88,6 +124,34 @@ class ReportViewModel : ViewModel() {
                 }
             })
         }
-
     }
+
+    private fun reportProduct(listReasonID: MutableList<Int>, otherReason: String?) {
+        if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
+            onError.postValue(ICError(R.drawable.ic_error_network, getString(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)))
+            return
+        }
+
+        if (id == -1L) {
+            onError.postValue(ICError(R.drawable.ic_error_request,getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+            return
+        }
+
+        onState.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
+
+
+        productInteraction.reportProduct(id!!, listReasonID, otherReason, object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
+            override fun onSuccess(obj: ICResponse<ICListResponse<ICReportForm>>) {
+                onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                onReport.postValue(1)
+            }
+
+            override fun onError(error: ICResponseCode?) {
+                onState.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
+                onError.postValue(ICError(R.drawable.ic_error_request, error?.message
+                    ?: getString(R.string.co_loi_xay_ra_vui_long_thu_lai)))
+            }
+        })
+    }
+
 }

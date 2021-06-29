@@ -23,8 +23,8 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.screen.dialog.ReportDialog
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.util.KeyboardUtils
@@ -140,8 +140,8 @@ class ListFriendOfWallActivity : BaseActivityMVVM(), ListFriendListener {
                 dialog.show(supportFragmentManager, dialog.tag)
 
                 dialog.setListener(object : ReportDialog.DialogClickListener {
-                    override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
-                        viewModel.sendReportuser(itemId, listReason, listMessage, message)
+                    override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
+                        viewModel.sendReportuser(itemId, listReasonId, listReasonContent, message)
                     }
                 })
             })

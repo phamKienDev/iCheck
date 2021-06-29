@@ -1,4 +1,4 @@
-package vn.icheck.android.component.report
+package vn.icheck.android.screen.dialog.report
 
 import android.content.Context
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
 
-class ReasonReportAdapter(val listData: MutableList<ICReportForm>) : RecyclerView.Adapter<ReasonReportAdapter.ViewHolder>() {
+class ItemReportSuccessAdapter(val listData: MutableList<ICReportForm>) : RecyclerView.Adapter<ItemReportSuccessAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(parent)
 

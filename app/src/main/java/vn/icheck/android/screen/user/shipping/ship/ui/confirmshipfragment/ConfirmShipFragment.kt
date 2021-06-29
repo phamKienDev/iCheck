@@ -314,7 +314,7 @@ class ConfirmShipFragment : Fragment() {
 
                         }
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
+                            ReportActivity.start(ReportActivity.ORDER, detailOrderResponse.id, requireActivity())
                         }
                     }
                     3, 4 -> {
@@ -326,7 +326,7 @@ class ConfirmShipFragment : Fragment() {
                         binding.tvReport.beVisible()
                         binding.btnConfirm.setOnClickListener(null)
                         binding.tvReport.setOnClickListener {
-                            ReportActivity.start(ReportActivity.order, detailOrderResponse.id, getString(R.string.bao_loi_don_hang), requireActivity())
+                            ReportActivity.start(ReportActivity.ORDER, detailOrderResponse.id, requireActivity())
                         }
                         binding.textView91.setText(R.string.thoi_gian_cap_nhat)
                         binding.tvShipTime simpleText detailOrderResponse.updatedAt?.getHourMinutesTime()

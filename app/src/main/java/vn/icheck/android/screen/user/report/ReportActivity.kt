@@ -22,8 +22,9 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
@@ -37,13 +38,13 @@ class ReportActivity : BaseActivityMVVM() {
     private val listMessage = mutableListOf<String>()
 
     companion object {
-        var order = 1
+        var ORDER = 1
+        var PRODUCT = 2
 
-        fun start(typeReport: Int? = null, id: Long?, title: String? = null, activity: Activity) {
+        fun start(typeReport: Int? = null, id: Long?, activity: Activity) {
             val intent = Intent(activity, ReportActivity::class.java)
             intent.putExtra(Constant.DATA_1, typeReport)
-            intent.putExtra(Constant.DATA_2, title)
-            intent.putExtra(Constant.DATA_3, id)
+            intent.putExtra(Constant.DATA_2, id)
             activity.startActivity(intent)
             activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
         }
@@ -66,7 +67,21 @@ class ReportActivity : BaseActivityMVVM() {
         btnDone.setOnClickListener {
             selectReason()
         }
-        tvTitle.text = intent.getStringExtra(Constant.DATA_2) ?: getString(R.string.bao_cao)
+
+        when (intent.getIntExtra(Constant.DATA_1,1)) {
+            PRODUCT -> {
+                tvTitle.text =  getString(R.string.to_cao_san_pham_nay)
+                btnDone.text = getString(R.string.gui_to_cao)
+            }
+            ORDER -> {
+                tvTitle.text =  getString(R.string.bao_loi_don_hang)
+                btnDone.text = getString(R.string.gui_bao_loi)
+            }
+            else -> {
+                tvTitle.text =  getString(R.string.bao_cao)
+                btnDone.text = getString(R.string.gui_bao_loi)
+            }
+        }
     }
 
     private fun setupView() {
@@ -96,8 +111,8 @@ class ReportActivity : BaseActivityMVVM() {
                         radioButton.typeface = ViewHelper.createTypeface(this, R.font.barlow_medium)
                         radioButton.setBackgroundResource(ViewHelper.outValue.resourceId)
                         radioButton.setTextColor(ViewHelper.createColorStateList(
-                                vn.icheck.android.ichecklibs.ColorManager.getSecondTextColor(this),
-                                vn.icheck.android.ichecklibs.ColorManager.getNormalTextColor(this)))
+                                ColorManager.getSecondTextColor(this),
+                                ColorManager.getNormalTextColor(this)))
                         radioButton.includeFontPadding = false
                         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         radioButton.maxLines = 1
@@ -128,25 +143,28 @@ class ReportActivity : BaseActivityMVVM() {
         viewModel.onReport.observe(this, {
             val list = mutableListOf<ICReportForm>()
             for (item in listMessage) {
-                if (item != "Khác" && item != "Lí do khác")
-                    list.add(ICReportForm(0, item))
+                list.add(ICReportForm(0, item))
             }
             if (edtContent.isVisible) {
                 if (edtContent.text.toString().isEmpty())
-                    list.add(ICReportForm(0, getString(R.string.khac)))
+                    list.add(ICReportForm(0, listData.last().name?:getString(R.string.khac)))
                 else
                     list.add(ICReportForm(0, edtContent.text.toString()))
             }
 
             val dialog = ReportSuccessDialog(this)
-            dialog.show(list, "order", getString(R.string.cam_on_ban_da_bao_loi_don_hang_nay))
+            if (intent.getIntExtra(Constant.DATA_1,1)== ORDER) {
+                dialog.show(list, Constant.ORDER, getString(R.string.cam_on_ban_da_bao_loi_don_hang_nay))
+            }else{
+                dialog.show(list, Constant.PRODUCT, getString(R.string.cam_on_ban_da_to_cao_san_pham_nay))
+            }
             dialog.dialog.setOnDismissListener {
                 finish()
             }
         })
 
         viewModel.onError.observe(this, {
-            if (it.button == -1) {
+            if ((layoutContent.getChildAt(0) as LinearLayout).childCount > 1) {
                 showShortError(it.message ?: "")
             } else {
                 layoutData.beGone()
@@ -208,25 +226,30 @@ class ReportActivity : BaseActivityMVVM() {
 
             if (radioButton.isChecked) {
                 listData[i].id?.let { listReason.add(it) }
-                listData[i].name?.let {
-                    if ((it != "Khác" && it != "Lý do khác")||(it != getString(R.string.khac) && it != getString(R.string.ly_do_khac)))
-                        listMessage.add(it)
+                if(i ==reasonLayout.childCount-1){
+                    if(listData[i].name?.contains(getString(R.string.khac),true)==false){
+                        listData[i].name?.let { listMessage.add(it) }
+                    }
+                }else{
+                    listData[i].name?.let { listMessage.add(it) }
                 }
             }
         }
 
-        if (listReason.isEmpty()) {
-            showShortErrorToast(R.string.vui_long_chon_it_nhat_mot_ly_do)
+        if (listReason.isNotEmpty()||edtContent.isVisible) {
+            viewModel.report(listReason, edtContent.text.toString())
         } else {
-            viewModel.putOrder(listReason, edtContent.text.toString())
+            showShortErrorToast(R.string.vui_long_chon_it_nhat_mot_ly_do)
         }
     }
 
     private val getIconDrawable: StateListDrawable
         get() {
+            val unChecked=vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor(ContextCompat.getDrawable(this, R.drawable.ic_square_unchecked_light_blue_24dp),this,ColorManager.getSecondTextCode(this))
+            val checked=vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor(ContextCompat.getDrawable(this, R.drawable.ic_checkbox_on_24dp),this,ColorManager.getNormalTextCode(this))
             return StateListDrawable().also {
-                it.addState(intArrayOf(-android.R.attr.state_checked), ContextCompat.getDrawable(this, R.drawable.ic_square_unchecked_light_blue_24dp))
-                it.addState(intArrayOf(android.R.attr.state_checked), ContextCompat.getDrawable(this, R.drawable.ic_square_checked_light_blue_24dp))
+                it.addState(intArrayOf(-android.R.attr.state_checked), unChecked)
+                it.addState(intArrayOf(android.R.attr.state_checked), checked)
             }
         }
 }

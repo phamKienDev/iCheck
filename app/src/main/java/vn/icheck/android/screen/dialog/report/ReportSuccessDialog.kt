@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.dialog
+package vn.icheck.android.screen.dialog.report
 
 import android.content.Context
 import android.graphics.Color
@@ -16,10 +16,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
-import vn.icheck.android.component.report.ReasonReportAdapter
 import vn.icheck.android.component.view.ButtonLightBlueCorners4
 import vn.icheck.android.component.view.ButtonWhiteOutlinePrimaryBlueCorners4
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.models.product.report.ICReportForm
@@ -51,8 +51,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     ViewHelper.createTypeface(context, R.font.barlow_semi_bold),
                     ColorManager.getNormalTextColor(context),
                     16f).also {
-                it.text = title
-                        ?: context.getString(R.string.report_wrong_contribution_success_title)
+                it.text = title ?: context.getString(R.string.report_wrong_contribution_success_title)
                 it.gravity = Gravity.CENTER_HORIZONTAL
             })
 
@@ -81,10 +80,13 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     ViewHelper.createTypeface(context, R.font.barlow_medium),
                     ColorManager.getSecondTextColor(context),
                     14f).also {
-                if (type!="order") {
-                    it.setText(R.string.noi_dung_bao_cao_colon)
-                }else{
+                if (type == Constant.ORDER) {
                     it.setText(R.string.noi_dung_bao_loi)
+                }else if(type==Constant.PRODUCT){
+                    it.setText(R.string.noi_dung_to_cao_colon)
+                }else{
+                    it.setText(R.string.noi_dung_bao_cao_colon)
+
                 }
             })
 
@@ -93,7 +95,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
                     params.topMargin = SizeHelper.size4
                 }
                 recyclerView.layoutManager = SafeFlexboxLayoutManager(context, FlexDirection.ROW, FlexWrap.WRAP)
-                recyclerView.adapter = ReasonReportAdapter(listReason)
+                recyclerView.adapter = ItemReportSuccessAdapter(listReason)
 
                 val verticalDecoration = FlexboxItemDecoration(context)
                 verticalDecoration.setDrawable(GradientDrawable().apply { setSize(SizeHelper.size6, SizeHelper.size8) })
@@ -102,7 +104,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
             })
 
             when (type) {
-                "contributor" -> {
+                Constant.CONTRIBUTION -> {
                     layoutParent.addView(LinearLayout(context).also { params ->
                         params.layoutParams = ViewHelper.createLayoutParams().also {
                             it.topMargin = SizeHelper.size20
@@ -111,7 +113,7 @@ class ReportSuccessDialog(val context: Context, isCancelable: Boolean = true, va
 
                         params.addView(ViewHelper.createText(context, ViewHelper.createLayoutParams().also {
                             it.setMargins(SizeHelper.size16, 0, SizeHelper.size16, 0)
-                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), vn.icheck.android.ichecklibs.ColorManager.getSecondaryColor(context), 14f).also {
+                        }, null, ViewHelper.createTypeface(context, R.font.barlow_medium), ColorManager.getSecondaryColor(context), 14f).also {
                             it.setText(R.string.neu_ban_biet_thong_tin_chinh_xac_ve_san_pham_nay_hay_dong_gop_them_nhe)
                             it.gravity = Gravity.CENTER
                         })

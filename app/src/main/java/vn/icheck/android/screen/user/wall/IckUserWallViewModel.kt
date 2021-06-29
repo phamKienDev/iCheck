@@ -10,6 +10,7 @@ import okhttp3.ResponseBody
 import vn.icheck.android.RelationshipManager
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
+import vn.icheck.android.network.base.*
 import vn.icheck.android.network.model.ApiResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
 import vn.icheck.android.network.model.icklogin.RequestOtpResponse
@@ -18,17 +19,15 @@ import vn.icheck.android.network.model.posts.PostViewModel
 import vn.icheck.android.network.model.privacy.UserPrivacyResponse
 import vn.icheck.android.network.model.profile.IckUserFriendModel
 import vn.icheck.android.network.model.profile.IckUserProfileModel
-import vn.icheck.android.network.model.reports.ReportUserCategoryResponse
 import vn.icheck.android.network.model.wall.LayoutResponse
-import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.ICCommentPost
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
+import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.network.models.wall.IcFriendResponse
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.screen.user.wall.option_edit_my_information.TAKE_AVATAR
-import vn.icheck.android.screen.user.wall.report_user.ReportUserViewModel
 import vn.icheck.android.util.ick.logError
 import java.io.File
 import java.util.*
@@ -80,11 +79,7 @@ class IckUserWallViewModel @ViewModelInject constructor(
 
     val mErr = ickUserWallRepository.mErr
     val privacySettings = hashMapOf<String, Any>()
-
-    val reportUserCategory = MutableLiveData<ReportUserCategoryResponse>()
-    var reportCategory: ReportUserCategoryResponse? = null
-    val arrReport = arrayListOf<ReportUserViewModel>()
-    var showSuccessReport = MutableLiveData<Int>()
+    val reportUserCategory = MutableLiveData<ICListResponse<ICReportForm>>()
     var calendar = Calendar.getInstance()
     val currentDate = Calendar.getInstance().time
 
@@ -472,26 +467,20 @@ class IckUserWallViewModel @ViewModelInject constructor(
         }
     }
 
-    fun getReportUserCategory(): LiveData<ReportUserCategoryResponse?> {
+    fun getReportUserCategory(): LiveData<ICResponse<ICListResponse<ICReportForm>>?> {
         return liveData {
             emit(ickUserWallRepository.getReportUserCategory())
         }
     }
 
-    fun sendReportUser(): LiveData<ResponseBody?> {
+    fun sendReportUser(listReasonId:MutableList<Int>,message:String?): LiveData<ResponseBody?> {
         return liveData {
             val request = hashMapOf<String, Any?>()
             request["userId"] = userInfo?.data?.id
-            val arrayId = arrayListOf<Int?>()
-            for (item in arrReport) {
-                if (item.checked) {
-                    arrayId.add(item.data?.id)
-                }
-                if (item.content.isNotEmpty()) {
-                    request["description"] = item.content
-                }
+            request["reportElementIdList"] = listReasonId
+            if (!message.isNullOrEmpty()) {
+                request["description"] = message
             }
-            request["reportElementIdList"] = arrayId
             emit(ickUserWallRepository.postReportUser(request))
         }
     }

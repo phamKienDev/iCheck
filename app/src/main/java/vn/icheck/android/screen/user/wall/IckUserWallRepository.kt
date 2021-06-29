@@ -5,27 +5,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.work.*
 import okhttp3.ResponseBody
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
 import vn.icheck.android.constant.ICK_URI
 import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.network.model.posts.PostResponse
-import vn.icheck.android.network.model.privacy.UserPrivacyResponse
-import vn.icheck.android.network.model.wall.LayoutResponse
 import vn.icheck.android.network.api.ICKApi
-import vn.icheck.android.network.base.*
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.ICListResponse
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.model.ApiResponse
 import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
 import vn.icheck.android.network.model.icklogin.RequestOtpResponse
-import vn.icheck.android.network.model.reports.ReportUserCategoryResponse
+import vn.icheck.android.network.model.posts.PostResponse
+import vn.icheck.android.network.model.privacy.UserPrivacyResponse
+import vn.icheck.android.network.model.wall.LayoutResponse
 import vn.icheck.android.network.models.ICCommentPost
-import vn.icheck.android.util.makeICRequest
-import vn.icheck.android.util.makeSimpleRequest
 import vn.icheck.android.network.models.ICPost
 import vn.icheck.android.network.models.ICSearchUser
 import vn.icheck.android.network.models.ICUser
+import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.network.models.wall.IcFriendResponse
 import vn.icheck.android.screen.user.contribute_product.UPLOAD_LIST_IMAGE
+import vn.icheck.android.util.makeICRequest
+import vn.icheck.android.util.makeSimpleRequest
 import vn.icheck.android.worker.UploadImageWorker
 import java.io.File
 import javax.inject.Inject
@@ -171,8 +173,7 @@ class IckUserWallRepository @Inject constructor(
     }
 
     suspend fun getUserPrivacy(): ApiResponse<UserPrivacyResponse> {
-        val apiResponse: ApiResponse<UserPrivacyResponse>
-        apiResponse = try {
+        val apiResponse: ApiResponse<UserPrivacyResponse> = try {
             val response = ickApi.getUserPrivacy()
             ApiResponse.create(response)
         } catch (e: Exception) {
@@ -265,7 +266,7 @@ class IckUserWallRepository @Inject constructor(
         return workManager.getWorkInfosForUniqueWorkLiveData(UPLOAD_LIST_IMAGE)
     }
 
-    suspend fun getReportUserCategory(): ReportUserCategoryResponse? {
+    suspend fun getReportUserCategory(): ICResponse<ICListResponse<ICReportForm>>? {
         return makeICRequest({
             ickApi.getReportUserCategory()
         }, {

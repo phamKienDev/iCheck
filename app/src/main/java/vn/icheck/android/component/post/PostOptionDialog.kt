@@ -14,13 +14,11 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.notify.base.BaseBottomSheetDialog
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.component.feed.FeedReportSuccessDialog
 import vn.icheck.android.component.privacy_post.PrivacyPostDialog
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.feature.relationship.RelationshipInteractor
@@ -29,9 +27,10 @@ import vn.icheck.android.network.models.ICRelatedPage
 import vn.icheck.android.network.models.ICUserPost
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
-import vn.icheck.android.screen.dialog.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.ichecklibs.util.showShortSuccessToast
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.util.kotlin.ToastUtils
 
 abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottomSheetDialog(context, R.layout.dialog_post_option, true) {
@@ -311,9 +310,9 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                         obj.data?.rows?.let { list ->
                             ReportDialog(list, R.string.bao_cao_bai_viet).apply {
                                 setListener(object : ReportDialog.DialogClickListener {
-                                    override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
+                                    override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
                                         dismiss()
-                                        reportPost(objPost, listReason, message, listMessage)
+                                        reportPost(objPost, listReasonId, message, listReasonContent)
                                     }
                                 })
 
@@ -354,7 +353,7 @@ abstract class PostOptionDialog(context: Context, val post: ICPost) : BaseBottom
                         if (message.isNotEmpty())
                             list.add(ICReportForm(0, message))
 
-                        FeedReportSuccessDialog(activity).show(list)
+                        ReportSuccessDialog(activity).show(list)
                     } else {
                         ToastUtils.showLongSuccess(activity, R.string.bao_cao_bai_viet_thanh_cong)
                     }
