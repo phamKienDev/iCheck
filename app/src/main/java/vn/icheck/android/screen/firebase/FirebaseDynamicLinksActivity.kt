@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Base64
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +40,7 @@ import vn.icheck.android.network.models.ICCampaign
 import vn.icheck.android.network.models.ICClientSetting
 import vn.icheck.android.network.models.ICLink
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
 import vn.icheck.android.screen.scan.MyQrActivity
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.buy_mobile_card.BuyMobileCardV2Activity
@@ -162,6 +164,9 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
     private val utilities = "utilities"
     private val rechargeCardSuccess = "recharge_card_success"
     private val buyCardSuccess = "buy_card_success"
+    private val popupImage = "popup_image"
+    private val popupHtml = "popup_html"
+    private val popupLink = "popup_link"
 
     /**
      * Loyalty
@@ -192,6 +197,8 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
 
     private val requestCamera = 1
     private val requestMyCard = 2
+
+    private var isFinishWhenResume = false
 
     companion object {
         @MainThread
@@ -1241,12 +1248,51 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
             notification -> {
                 ActivityHelper.startActivity<ListNotificationActivity>(this@FirebaseDynamicLinksActivity)
             }
+            popupImage -> {
+                var targetID = deepLink?.getQueryParameter("target_id")
+                if (targetID.isNullOrEmpty()) {
+                    targetID = deepLink?.getQueryParameter("id")
+                }
+
+                val action = deepLink?.getQueryParameter("action")
+
+                showDialogNotification(image = targetID, schema = action)
+
+                isFinishWhenResume = false
+                return
+            }
+            popupHtml -> {
+                var targetID = deepLink?.getQueryParameter("target_id")
+                if (targetID.isNullOrEmpty()) {
+                    targetID = deepLink?.getQueryParameter("id")
+                }
+
+                showDialogNotification(htmlText = targetID)
+
+                isFinishWhenResume = false
+                return
+            }
+            popupLink -> {
+                var targetID = deepLink?.getQueryParameter("target_id")
+                if (targetID.isNullOrEmpty()) {
+                    targetID = deepLink?.getQueryParameter("id")
+                }
+
+                showDialogNotification(link = targetID)
+
+                isFinishWhenResume = false
+                return
+            }
             else -> {
                 checkLink()
             }
         }
 
         finishActivity()
+    }
+
+    private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
+        DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
     }
 
     private fun getListCampaign(id: String) {
@@ -1338,5 +1384,12 @@ class FirebaseDynamicLinksActivity : AppCompatActivity() {
         }
 
         finishActivity()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isFinishWhenResume) {
+            ActivityUtils.finishActivityWithoutAnimation(this)
+        }
     }
 }
