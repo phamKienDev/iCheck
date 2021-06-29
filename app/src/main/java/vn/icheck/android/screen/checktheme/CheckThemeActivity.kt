@@ -225,14 +225,10 @@ class CheckThemeActivity : BaseActivityMVVM() {
     }
 
     private fun onGoToHome() {
-        if (viewModel.appInitScheme.isNotEmpty()) {
-            val intent = Intent(this@CheckThemeActivity, WelcomeActivity::class.java)
-            intent.putExtra(Constant.DATA_2, viewModel.appInitScheme)
-            intent.putExtra(Constant.DATA_3, notificationPath)
-            startActivityAndFinish(intent)
-        } else {
-            startActivityAndFinish<WelcomeActivity>()
-        }
+        val intent = Intent(this@CheckThemeActivity, WelcomeActivity::class.java)
+        intent.putExtra(Constant.DATA_2, viewModel.appInitScheme)
+        intent.putExtra(Constant.DATA_3, notificationPath)
+        startActivityAndFinish(intent)
     }
 
     override fun onResume() {

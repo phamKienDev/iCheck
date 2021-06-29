@@ -15,6 +15,7 @@ import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.tracking.insider.InsiderHelper
+import vn.icheck.android.util.kotlin.ActivityUtils
 
 /**
  * Created by VuLCL on 3/5/2020.
@@ -49,27 +50,16 @@ class SplashScreenActivity : AppCompatActivity() {
                 targetID = intent?.extras?.getString("id")
             }
 
-            when {
-                (targetType ?: "").contains("popup_image") -> {
-                    showDialogNotification(image = targetID, schema = intent?.extras?.getString("action") ?: "")
+            val action = intent?.extras?.getString("action")
+
+            if (targetType.isNullOrEmpty()) {
+                if (HomeActivity.isOpen == true) {
+                    ActivityUtils.finishActivityWithoutAnimation(this)
+                } else {
+                    goToCheckTheme()
                 }
-                (targetType ?: "").contains("popup_html") -> {
-                    showDialogNotification(htmlText = targetID)
-                }
-                (targetType ?: "").contains("popup_link") -> {
-                    showDialogNotification(link = targetID)
-                }
-                else -> {
-                    if (targetType.isNullOrEmpty()) {
-                        if (HomeActivity.isOpen == true) {
-                            finish()
-                        } else {
-                            goToCheckTheme()
-                        }
-                    } else {
-                        goToCheckTheme(null, targetType, targetID)
-                    }
-                }
+            } else {
+                goToCheckTheme(getPath(targetType, targetID, action))
             }
 
             overridePendingTransition(R.anim.none, R.anim.none)
@@ -81,11 +71,20 @@ class SplashScreenActivity : AppCompatActivity() {
         }, 500)
     }
 
-    private fun showDialogNotification(image: String? = null, htmlText: String? = null, link: String? = null, schema: String? = null) {
-        ActivityHelper.startActivityAndFinish<HomeActivity>(this)
-        Handler().postDelayed({
-            DialogFragmentNotificationFirebaseAds.showPopupFirebase(this, image, htmlText, link, schema)
-        }, 2000)
+    private fun getPath(type: String?, id: String?, action: String?): String? {
+        return if (!type.isNullOrEmpty()) {
+            if (!id.isNullOrEmpty()) {
+                if (!action.isNullOrEmpty()) {
+                    "icheck://$type?id=$id&action=$action"
+                } else {
+                    "icheck://$type?id=$id"
+                }
+            } else {
+                "icheck://$type"
+            }
+        } else {
+            null
+        }
     }
 
     private fun goToCheckTheme(path: String? = null, type: String? = null, id: String? = null) {
