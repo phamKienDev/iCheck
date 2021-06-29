@@ -323,8 +323,10 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
                         binding.titleDiv.beVisible()
                         if (ickUserWallViewModel.userInfo?.data?.id ==SessionManager.session.user?.id) {
                             binding.tvNewImage.beVisible()
+                            binding.llNewImage.beVisible()
                             binding.verticalDiv.beVisible()
                             binding.tvNewPost.beVisible()
+                            binding.llNewPost.beVisible()
                         }
                         showToolbar = true
                     }
@@ -340,8 +342,10 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
                         binding.notify.setImageResource(R.drawable.ic_noti_black_28dp)
                     }
                     binding.tvNewImage.beGone()
+                    binding.llNewImage.beGone()
                     binding.verticalDiv.beGone()
                     binding.tvNewPost.beGone()
+                    binding.llNewPost.beGone()
                 }
             }
         })

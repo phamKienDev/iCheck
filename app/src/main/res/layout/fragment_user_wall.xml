@@ -46,23 +46,24 @@
                 android:layout_width="@dimen/size_50"
                 android:layout_height="@dimen/size_50"
                 android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@+id/barrier4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/notify"
+                app:layout_constraintTop_toTopOf="@+id/barrier3"
                 app:srcCompat="@drawable/ic_back_black_28px" />
 
             <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/title"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textSize="@dimen/font_18"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+                app:layout_constraintBottom_toBottomOf="@id/barrier4"
                 app:layout_constraintEnd_toStartOf="@+id/notify"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/barrier3" />
 
             <ImageView
                 android:id="@+id/notify"
@@ -70,8 +71,9 @@
                 android:layout_height="@dimen/size_50"
                 android:layout_weight="0"
                 android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@+id/barrier4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/barrier3"
                 app:srcCompat="@drawable/ic_noti_black_28dp" />
 
             <View
@@ -82,7 +84,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/barrier4" />
 
             <View
                 android:id="@+id/vertical_div"
@@ -97,39 +99,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_div" />
 
-            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
-                android:id="@+id/tv_new_post"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_new_post"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_20"
-                android:layout_marginLeft="@dimen/size_20"
-                android:layout_marginTop="@dimen/size_14"
-                android:layout_marginBottom="@dimen/size_16"
-                android:drawablePadding="@dimen/size_10"
-                android:text="@string/bai_viet_moi"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/size_20"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_create_post_24px"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/vertical_div"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/title_div">
 
-            <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
-                android:id="@+id/tv_new_image"
-                android:layout_width="wrap_content"
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+                    android:id="@+id/tv_new_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/size_10"
+                    android:singleLine="true"
+                    android:text="@string/bai_viet_moi"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_create_post_24px" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_new_image"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_40"
-                android:layout_marginLeft="@dimen/size_40"
-                android:layout_marginTop="@dimen/size_14"
-                android:text="@string/anh_hoac_video"
-                android:drawablePadding="@dimen/size_10"
+                android:layout_marginStart="@dimen/size_20"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_create_img_post_24px"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/vertical_div"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/title_div">
+
+                <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowMedium
+                    android:id="@+id/tv_new_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/size_10"
+                    android:singleLine="true"
+                    android:text="@string/anh_hoac_video"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_create_img_post_24px" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvNotificationCount"
@@ -145,9 +165,23 @@
                 android:textStyle="normal"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/notify"
                 tools:text="9+"
                 tools:visibility="visible" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="btn_back,title,notify" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="btn_back,title,notify" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
