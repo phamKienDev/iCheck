@@ -12,21 +12,19 @@ import kotlinx.android.synthetic.main.item_message_campaign.view.*
 import kotlinx.android.synthetic.main.item_user_follow.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.MAIN_USER
 import vn.icheck.android.constant.MAIN_USER_FRIEND
 import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 
 class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

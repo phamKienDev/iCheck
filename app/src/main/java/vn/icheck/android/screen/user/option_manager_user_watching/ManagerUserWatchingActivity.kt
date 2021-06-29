@@ -101,11 +101,11 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
 
     private fun listenerGetData() {
         runOnUiThread {
-            viewModel.addFriend.observe(this, Observer {
+            viewModel.addFriend.observe(this, {
                 adapter.updateState(positionList!!)
             })
 
-            viewModel.listData.observe(this, Observer {
+            viewModel.listData.observe(this, {
                 swipe_layout.isRefreshing = false
                 tvCount.setText(R.string.d_nguoi_ban_dang_theo_doi, it.count)
                 adapter.addListData(it.rows)
@@ -115,11 +115,11 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.isLoadMoreData.observe(this, Observer {
+            viewModel.isLoadMoreData.observe(this, {
                 adapter.removeDataWithoutUpdate()
             })
 
-            viewModel.statusCode.observe(this, Observer {
+            viewModel.statusCode.observe(this, {
                 when (it) {
                     ICMessageEvent.Type.ON_NO_INTERNET -> {
                         DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
@@ -142,7 +142,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.errorPutData.observe(this, Observer {
+            viewModel.errorPutData.observe(this, {
                 when (it) {
                     Constant.ERROR_INTERNET -> {
                         showShortError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
@@ -156,7 +156,7 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.errorData.observe(this, Observer {
+            viewModel.errorData.observe(this, {
                 swipe_layout.isRefreshing = false
                 when (it) {
                     Constant.ERROR_EMPTY_SEARCH -> {
