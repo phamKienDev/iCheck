@@ -16,28 +16,55 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_12"
-            android:layout_marginLeft="@dimen/size_12"
-            android:layout_marginTop="@dimen/size_10"
             android:src="@drawable/ic_cancel_light_blue_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/textView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/textView" />
+
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+            android:id="@+id/imgCancelHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_12"
+            android:src="@drawable/ic_cancel_light_blue_24dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textView" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
-            android:layout_width="match_parent"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
             android:gravity="center"
             android:text="@string/thu_thach_nhan_them_luot_mo_qua"
-            app:layout_constraintBottom_toBottomOf="@id/imgCancel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imgCancel" />
+            app:layout_constraintBottom_toTopOf="@+id/barrier2"
+            app:layout_constraintEnd_toStartOf="@id/imgCancelHolder"
+            app:layout_constraintStart_toEndOf="@id/imgCancel"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@id/view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_1"
-            android:layout_marginTop="8.6dp"
-            app:layout_constraintTop_toBottomOf="@id/imgCancel" />
+            android:layout_marginTop="@dimen/size_8"
+            app:layout_constraintTop_toBottomOf="@id/barrier2" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="imgCancel,textView,imgCancelHolder" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="imgCancel,textView,imgCancelHolder"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
