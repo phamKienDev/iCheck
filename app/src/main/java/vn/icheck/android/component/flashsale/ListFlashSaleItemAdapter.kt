@@ -1,4 +1,4 @@
-package vn.icheck.android.component.flash_sale
+package vn.icheck.android.component.flashsale
 
 import android.graphics.Paint
 import android.text.Html

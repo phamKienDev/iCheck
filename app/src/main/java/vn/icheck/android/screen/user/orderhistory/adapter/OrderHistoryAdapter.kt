@@ -32,7 +32,6 @@ import vn.icheck.android.screen.user.shipping.ship.ShipActivity
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 
 class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : RecyclerViewAdapter<ICOrderHistoryV2>(callback) {
@@ -131,7 +130,7 @@ class OrderHistoryAdapter(val status: Int, callback: IRecyclerViewCallback) : Re
                 background = ViewHelper.bgOutlinePrimary1Corners4(context)
                 setOnClickListener {
                     ICheckApplication.currentActivity()?.let {
-                        ReportActivity.start(ReportActivity.order, obj.id, it.getString(R.string.bao_loi_don_hang), it)
+                        ReportActivity.start(ReportActivity.ORDER, obj.id, it)
                     }
                 }
             }

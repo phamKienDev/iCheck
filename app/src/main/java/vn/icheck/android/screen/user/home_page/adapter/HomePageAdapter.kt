@@ -22,7 +22,7 @@ import vn.icheck.android.component.collection.vertical.CollectionVerticalHolder
 import vn.icheck.android.component.experience_new_products.ExperienceNewProductsViewHolder
 import vn.icheck.android.component.experience_new_products.ICExperienceNewProducts
 import vn.icheck.android.component.experience_new_products.TrendingProductHolder
-import vn.icheck.android.component.flash_sale.FlashSaleViewHolder
+import vn.icheck.android.component.flashsale.FlashSaleViewHolder
 import vn.icheck.android.component.news.NewsHolder
 import vn.icheck.android.component.product_for_you.ICProductForYouMedia
 import vn.icheck.android.component.product_for_you.ProductForYouViewHolder

@@ -488,11 +488,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".screen.user.report_product.ReportProductActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_White"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".screen.user.product_detail.product.IckProductDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />

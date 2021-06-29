@@ -57,6 +57,7 @@ import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.room.database.AppDatabase
 import vn.icheck.android.room.entity.ICFriendInvitationMeUserId
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
+import vn.icheck.android.screen.dialog.report.ReportDialog
 import vn.icheck.android.screen.scan.V6ScanditActivity
 import vn.icheck.android.screen.user.campaign.calback.IMessageListener
 import vn.icheck.android.screen.user.commentpost.CommentPostActivity
@@ -69,13 +70,12 @@ import vn.icheck.android.screen.user.list_friend_in_wall.ListFriendOfWallActivit
 import vn.icheck.android.screen.user.listnotification.ListNotificationActivity
 import vn.icheck.android.screen.user.listnotification.friendrequest.ListFriendRequestActivity
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.EDIT_MY_PUBLIC_INFO
 import vn.icheck.android.screen.user.wall.IckUserWallViewModel
 import vn.icheck.android.screen.user.wall.OPEN_INFOR
 import vn.icheck.android.screen.user.wall.USER_ID
 import vn.icheck.android.screen.user.wall.friend_wall_setting.FriendWallSettingsDialog
-import vn.icheck.android.screen.user.wall.report_user.ReportUserDialog
 import vn.icheck.android.util.ick.*
 
 class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
@@ -368,9 +368,28 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
             setNotify()
         })
 
+
         ickUserWallViewModel.reportUserCategory.observe(viewLifecycleOwner) {
-            ickUserWallViewModel.reportCategory = it
-            ReportUserDialog().show(childFragmentManager, null)
+            val reportDialog = ReportDialog(it.rows, R.string.bao_cao_nguoi_dung_nay, R.string.mo_ta_noi_dung_bao_cao)
+            reportDialog.show(childFragmentManager, this.tag)
+
+            reportDialog.setListener(object : ReportDialog.DialogClickListener {
+                override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
+                    ickUserWallViewModel.sendReportUser(listReasonId, message).observe(viewLifecycleOwner, {
+                        reportDialog.dismiss()
+                        val reportSuccessDialog=ReportSuccessDialog(requireContext())
+
+                        val listReportSuccess = mutableListOf<ICReportForm>()
+                        for (item in listReasonContent) {
+                            listReportSuccess.add(ICReportForm(null, item))
+                        }
+                        if (message.isNotEmpty()) {
+                            listReportSuccess.add(ICReportForm(null, message))
+                        }
+                        reportSuccessDialog.show(listReportSuccess)
+                    })
+                }
+            })
         }
         ickUserWallViewModel.postsLiveData.observe(viewLifecycleOwner) {
             if (it is ApiSuccessResponse) {
@@ -396,23 +415,6 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
                 ickUserWallAdapter.setError(R.drawable.ic_error_request,it)
             }
         }
-        ickUserWallViewModel.showSuccessReport.observe(viewLifecycleOwner, Observer {
-            val listReason = ickUserWallViewModel.arrReport.filter { it.checked }.map { ICReportForm(null, it.data?.name) }.toMutableList()
-            ickUserWallViewModel.arrReport.lastOrNull()?.content?.let { content ->
-                if (content.isNotEmpty()) {
-                    listReason.add(ICReportForm(null, content))
-                    val ortherIndex = listReason.indexOfFirst {
-                        it.name == "Khác" || it.name == "Lý do khác"
-                    }
-                    if (ortherIndex != -1)
-                        listReason.removeAt(ortherIndex)
-                }
-            }
-
-            ReportSuccessDialog(requireContext()).apply {
-                show(listReason)
-            }
-        })
         binding.tvNewPost.setOnClickListener {
             createPost()
         }

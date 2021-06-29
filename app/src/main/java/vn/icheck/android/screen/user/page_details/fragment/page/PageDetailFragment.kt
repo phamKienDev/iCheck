@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,8 +53,8 @@ import vn.icheck.android.screen.user.edit_review.EditReviewActivity
 import vn.icheck.android.screen.user.home.HomeActivity
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.screen.user.page_details.PageDetailViewModel
-import vn.icheck.android.screen.dialog.ReportDialog
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.startClearTopActivity
 import vn.icheck.android.screen.dialog.DialogFragmentNotificationFirebaseAds
@@ -306,8 +305,8 @@ class PageDetailFragment : BaseFragmentMVVM(), IRecyclerViewCallback, IListRepor
             dialog = ReportDialog(listContributionReport, R.string.bao_cao_trang)
 
             dialog.setListener(object : ReportDialog.DialogClickListener {
-                override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
-                    viewModel.sendReportPage(listReason, message, listMessage)
+                override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
+                    viewModel.sendReportPage(listReasonId, message, listReasonContent)
                 }
             })
             dialog.show(childFragmentManager, dialog.tag)

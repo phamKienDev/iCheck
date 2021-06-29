@@ -16,7 +16,6 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.kotlin.WidgetUtils.loadImageFromVideoFile
 import java.io.File
 
-
 class ListImageSendAdapter(val horizontalListener: IListImageSendListener, val isGridLayout: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var listData = mutableListOf<Any>()
 

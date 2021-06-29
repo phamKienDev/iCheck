@@ -114,7 +114,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
             delayAction({
                 if (SessionManager.isUserLogged) {
                     ickUserWallViewModel.getReportUserCategory().observe(viewLifecycleOwner, {
-                        ickUserWallViewModel.reportUserCategory.postValue(it)
+                        ickUserWallViewModel.reportUserCategory.postValue(it?.data)
                         dismiss()
                     })
                 } else {

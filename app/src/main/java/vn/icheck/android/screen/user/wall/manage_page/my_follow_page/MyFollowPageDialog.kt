@@ -22,8 +22,8 @@ import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.room.dao.PageFollowDao
 import vn.icheck.android.room.database.AppDatabase
-import vn.icheck.android.screen.dialog.ReportDialog
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.util.kotlin.ToastUtils
 
 class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
@@ -62,19 +62,19 @@ class MyFollowPageDialog(val pageId: Long) : BaseBottomSheetDialogFragment() {
                     ICheckApplication.currentActivity()?.let { activity ->
                         val reportDialog = ReportDialog(obj.data?.rows!!, R.string.bao_cao_trang)
                         reportDialog.setListener(object : ReportDialog.DialogClickListener {
-                            override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
+                            override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
                                 DialogHelper.showLoading(this@MyFollowPageDialog)
                                 //sent report
-                                interactor.sendReportPage(pageId, listReason, message, object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
+                                interactor.sendReportPage(pageId, listReasonId, message, object : ICNewApiListener<ICResponse<ICListResponse<ICReportForm>>> {
                                     override fun onSuccess(obj: ICResponse<ICListResponse<ICReportForm>>) {
                                         DialogHelper.closeLoading(this@MyFollowPageDialog)
                                         val listData = mutableListOf<ICReportForm>()
                                         if (message.isNotEmpty()) {
-                                            listMessage.add(message)
+                                            listReasonContent.add(message)
                                         }
-                                        if (!listMessage.isNullOrEmpty()) {
-                                            for (i in 0 until listMessage.size) {
-                                                listData.add(ICReportForm(null, listMessage[i]))
+                                        if (!listReasonContent.isNullOrEmpty()) {
+                                            for (i in 0 until listReasonContent.size) {
+                                                listData.add(ICReportForm(null, listReasonContent[i]))
                                             }
                                         }
                                         reportDialog.dismiss()

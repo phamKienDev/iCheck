@@ -18,6 +18,7 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ListAvatar
 import vn.icheck.android.component.view.ViewHelper
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
@@ -30,8 +31,8 @@ import vn.icheck.android.network.models.feed.ICAvatarOfFriend
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
-import vn.icheck.android.screen.dialog.ReportDialog
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.util.ick.setRankUser
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -293,8 +294,8 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                         dialog = ReportDialog(obj.data?.rows!!)
 
                         dialog?.setListener(object : ReportDialog.DialogClickListener {
-                            override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
-                                sendReportContribute(false, model, listReason, message)
+                            override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
+                                sendReportContribute(false, model, listReasonId, message)
                             }
                         })
                         dialog?.show((it as AppCompatActivity).supportFragmentManager, dialog?.tag)
@@ -335,7 +336,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
                                 }
                                 obj.data?.reports?.add(ICReportForm(obj.data?.reports!!.size + 1, message))
                             }
-                            dialogFragment.show(obj.data?.reports!!, "contributor", null, model.barcode)
+                            dialogFragment.show(obj.data?.reports!!, Constant.CONTRIBUTION, null, model.barcode)
                         }
                     }
 

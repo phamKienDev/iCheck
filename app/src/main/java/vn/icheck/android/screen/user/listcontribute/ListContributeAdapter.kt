@@ -31,10 +31,11 @@ import vn.icheck.android.network.models.ICContribute
 import vn.icheck.android.network.models.product.report.ICReportContribute
 import vn.icheck.android.network.models.product.report.ICReportForm
 import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.constant.Constant
 import vn.icheck.android.screen.user.contribute_product.IckContributeProductActivity
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
-import vn.icheck.android.screen.dialog.ReportDialog
-import vn.icheck.android.screen.dialog.ReportSuccessDialog
+import vn.icheck.android.screen.dialog.report.ReportDialog
+import vn.icheck.android.screen.dialog.report.ReportSuccessDialog
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
 import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.ick.setRankUser
@@ -482,8 +483,8 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                         dialog = ReportDialog(obj.data?.rows!!)
 
                         dialog?.setListener(object : ReportDialog.DialogClickListener {
-                            override fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>) {
-                                sendReportContribute(listReason, message, data, listMessage, view)
+                            override fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>) {
+                                sendReportContribute(listReasonId, message, data, listReasonContent, view)
                             }
                         })
                         dialog?.show(fragmentManager.supportFragmentManager, dialog?.tag)
@@ -531,7 +532,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
                         val dialogFragment = ReportSuccessDialog(itemView.context, true, data.id, isContributed = didContribute)
 
-                        dialogFragment.show(listData, "contributor", null, data.data?.barcode)
+                        dialogFragment.show(listData, Constant.CONTRIBUTION, null, data.data?.barcode)
 
                         postVote(data, false, view)
                     } else {

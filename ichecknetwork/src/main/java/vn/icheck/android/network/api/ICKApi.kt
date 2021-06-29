@@ -1,24 +1,20 @@
 package vn.icheck.android.network.api
 
 import com.google.gson.JsonElement
-import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.*
-import vn.icheck.android.network.model.IckLayoutResponse
+import vn.icheck.android.network.base.APIConstants
+import vn.icheck.android.network.base.ICListResponse
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ListTypeResponse
 import vn.icheck.android.network.model.bookmark.BookmarkHistoryResponse
 import vn.icheck.android.network.model.cart.CartResponse
 import vn.icheck.android.network.model.cart.PurchasedOrderResponse
-import vn.icheck.android.network.model.detail_order.DetailOrderResponse
-import vn.icheck.android.network.models.campaign.CampaignResponse
-import vn.icheck.android.network.models.campaign.CampaignRewardResponse
 import vn.icheck.android.network.model.category.CategoryAttributesResponse
 import vn.icheck.android.network.model.category.IckCategoryResponse
+import vn.icheck.android.network.model.detail_order.DetailOrderResponse
 import vn.icheck.android.network.model.firebase.LoginDeviceResponse
-import vn.icheck.android.network.model.icklogin.ConfirmOtpResponse
-import vn.icheck.android.network.model.icklogin.RequestOtpResponse
-import vn.icheck.android.network.model.icklogin.IckLoginFacebookResponse
-import vn.icheck.android.network.model.icklogin.IckLoginResponse
-import vn.icheck.android.network.model.icklogin.IckUserInfoResponse
+import vn.icheck.android.network.model.icklogin.*
 import vn.icheck.android.network.model.location.CityResponse
 import vn.icheck.android.network.model.loyalty.OpenGiftHistoryResponse
 import vn.icheck.android.network.model.loyalty.ReceivedGiftResponse
@@ -27,16 +23,14 @@ import vn.icheck.android.network.model.page.PageProductResponse
 import vn.icheck.android.network.model.posts.PostResponse
 import vn.icheck.android.network.model.privacy.UserPrivacyResponse
 import vn.icheck.android.network.model.reminders.ReminderResponse
-import vn.icheck.android.network.model.reports.ReportUserCategoryResponse
 import vn.icheck.android.network.model.wall.LayoutResponse
-import vn.icheck.android.network.base.ICListResponse
-import vn.icheck.android.network.base.ICResponse
-import vn.icheck.android.network.models.wall.IcFriendResponse
-import vn.icheck.android.network.base.APIConstants
-import vn.icheck.android.network.base.ListTypeResponse
 import vn.icheck.android.network.models.*
+import vn.icheck.android.network.models.campaign.CampaignResponse
+import vn.icheck.android.network.models.campaign.CampaignRewardResponse
 import vn.icheck.android.network.models.campaign.DetailRewardResponse
 import vn.icheck.android.network.models.firebase.FirebaseToken
+import vn.icheck.android.network.models.product.report.ICReportForm
+import vn.icheck.android.network.models.wall.IcFriendResponse
 
 interface ICKApi {
 
@@ -205,7 +199,7 @@ interface ICKApi {
     suspend fun getUserPosts(@Url url: String?): PostResponse
 
     @GET("/social/api/report/user")
-    suspend fun getReportUserCategory(): ReportUserCategoryResponse
+    suspend fun getReportUserCategory(): ICResponse<ICListResponse<ICReportForm>>
 
     @POST("/social/api/report/user")
     suspend fun postReportUser(@Body requestBody: HashMap<String, Any?>): ResponseBody

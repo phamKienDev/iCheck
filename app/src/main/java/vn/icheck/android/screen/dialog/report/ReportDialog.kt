@@ -1,4 +1,4 @@
-package vn.icheck.android.screen.dialog
+package vn.icheck.android.screen.dialog.report
 
 import android.graphics.Color
 import android.graphics.drawable.StateListDrawable
@@ -33,10 +33,10 @@ import vn.icheck.android.util.KeyboardUtils
 
 class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = null, val inputHint: Int? = null) : BaseBottomSheetDialogFragment() {
 
-    private lateinit var listener: DialogClickListener
+    private var listener: DialogClickListener?=null
 
     interface DialogClickListener {
-        fun buttonClick(position: Int, listReason: MutableList<Int>, message: String, listMessage: MutableList<String>)
+        fun buttonClick(listReasonId: MutableList<Int>, message: String, listReasonContent: MutableList<String>)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -175,27 +175,15 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
             }
         }
 
-
-
         if (isSelected) {
             dialog?.context.apply {
-                DialogHelper.showConfirm(
-                    this,
-                    getString(R.string.ban_muon_bo_bao_cao_nay),
-                    null,
-                    getString(R.string.tiep_tuc_bao_cao),
-                    getString(R.string.bo_bao_cao),
-                    true,
-                    null,
-                    R.color.colorAccentRed,
-                    object : ConfirmDialogListener {
+                DialogHelper.showConfirm(this, getString(R.string.ban_muon_bo_bao_cao_nay), null, getString(R.string.tiep_tuc_bao_cao), getString(R.string.bo_bao_cao), true, null, R.color.colorAccentRed, object : ConfirmDialogListener {
                         override fun onDisagree() {
 
                         }
 
                         override fun onAgree() {
-                            EventBus.getDefault()
-                                .post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
+                            EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.DISMISS_DIALOG))
                             dismiss()
                         }
                     })
@@ -241,7 +229,7 @@ class ReportDialog(val listData: MutableList<ICReportForm>, val title: Int? = nu
             if (inputReason.isVisible && input.isEmpty()) {
                 input = requireContext().getString(R.string.khac)
             }
-            listener.buttonClick(0, listReason, input, listMessage)
+            listener?.buttonClick( listReason, input, listMessage)
         }
     }
 

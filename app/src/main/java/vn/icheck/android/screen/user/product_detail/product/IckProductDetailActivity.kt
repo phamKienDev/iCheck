@@ -68,7 +68,7 @@ import vn.icheck.android.screen.user.listcontribute.ListContributeActivity
 import vn.icheck.android.screen.user.media_in_post.MediaInPostActivity
 import vn.icheck.android.screen.user.product_detail.product.dialog.ContactBusinessDialog
 import vn.icheck.android.screen.user.reason_not_buy_product.BottomSheetWebView
-import vn.icheck.android.screen.user.report_product.ReportProductActivity
+import vn.icheck.android.screen.user.report.ReportActivity
 import vn.icheck.android.screen.user.webview.WebViewActivity
 import vn.icheck.android.tracking.TrackingAllHelper
 import vn.icheck.android.util.ick.beInvisible
@@ -713,7 +713,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
 
         tvReport.setOnClickListener {
             if (SessionManager.isUserLogged) {
-                startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
+//                startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
+                 ReportActivity.start(ReportActivity.PRODUCT,viewModel.productID,this)
                 layoutAction.visibility = View.GONE
             } else {
                 onRequireLogin(requestReportProduct)
@@ -977,7 +978,8 @@ class IckProductDetailActivity : BaseActivityMVVM(), IRecyclerViewCallback, ISub
             if (resultCode == RESULT_OK) {
                 when (requestCode) {
                     requestReportProduct -> {
-                        startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
+//                        startActivity<ReportProductActivity, Long>(Constant.DATA_1, viewModel.productID)
+                        ReportActivity.start(ReportActivity.PRODUCT,viewModel.productID,this)
                         layoutAction.visibility = View.GONE
                     }
                     REQUEST_MMB -> {
