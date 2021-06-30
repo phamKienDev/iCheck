@@ -4,7 +4,7 @@
     android:id="@+id/root_reminder"
     android:layout_marginBottom="@dimen/size_8"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/size_125">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/img_close"
@@ -20,7 +20,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/group_reminders"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginLeft="@dimen/size_12"
         android:layout_marginTop="@dimen/size_8"

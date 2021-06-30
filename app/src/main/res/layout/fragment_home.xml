@@ -18,7 +18,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/group_notification"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_150"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12"
         android:layout_marginBottom="@dimen/size_50"
@@ -34,7 +34,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/root_reminder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView13"
@@ -65,9 +65,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/group_reminders"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_reminder"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView13"
