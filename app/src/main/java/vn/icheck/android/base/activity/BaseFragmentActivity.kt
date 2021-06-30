@@ -156,10 +156,10 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     }
 
     fun addFragment(fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
-        icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment, isAnimation, isAddToBackStack)
+        supportFragmentManager.icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment, isAnimation, isAddToBackStack)
     }
 
     fun replaceFragment(fragment: Fragment) {
-        icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        supportFragmentManager.icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 }

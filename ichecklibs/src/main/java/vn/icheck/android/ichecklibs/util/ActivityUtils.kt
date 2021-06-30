@@ -178,16 +178,16 @@ fun Fragment.icFinishActivity() {
 /*
 * Add Fragment
 * */
-fun AppCompatActivity.icAddFragment(frameID: Int, fragment: Fragment) {
+fun FragmentManager.icAddFragment(frameID: Int, fragment: Fragment) {
     icAddFragment(frameID, fragment, isAnimation = true)
 }
 
-fun AppCompatActivity.icAddFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean) {
+fun FragmentManager.icAddFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean) {
     icAddFragment(frameID, fragment, isAnimation, isAddToBackStack = true)
 }
 
-fun AppCompatActivity.icAddFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
-    supportFragmentManager.inTransaction {
+fun FragmentManager.icAddFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
+    inTransaction {
         if (isAnimation) {
             setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
         }
@@ -196,25 +196,25 @@ fun AppCompatActivity.icAddFragment(frameID: Int, fragment: Fragment, isAnimatio
             addToBackStack(fragment.tag)
         }
 
-        if (supportFragmentManager.findFragmentByTag(fragment.tag) == null) {
+        if (findFragmentByTag(fragment.tag) == null) {
             add(frameID, fragment, fragment.tag)
         }
     }
 }
 
-fun AppCompatActivity.icReplaceFragment(frameID: Int, fragment: Fragment) {
-    supportFragmentManager.inTransaction {
+fun FragmentManager.icReplaceFragment(frameID: Int, fragment: Fragment) {
+    inTransaction {
         setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
         replace(frameID, fragment, fragment.tag)
     }
 }
 
-fun AppCompatActivity.icReplaceFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean) {
+fun FragmentManager.icReplaceFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean) {
     icReplaceFragment(frameID, fragment, isAnimation, isAddToBackStack = true)
 }
 
-fun AppCompatActivity.icReplaceFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
-    supportFragmentManager.inTransaction {
+fun FragmentManager.icReplaceFragment(frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
+    inTransaction {
         if (isAnimation) {
             setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
         }
@@ -227,34 +227,34 @@ fun AppCompatActivity.icReplaceFragment(frameID: Int, fragment: Fragment, isAnim
     }
 }
 
-fun AppCompatActivity.icRemoveFragments(fragment: Fragment) {
-    supportFragmentManager.inTransaction {
+fun FragmentManager.icRemoveFragments(fragment: Fragment) {
+    inTransaction {
         remove(fragment)
     }
 }
 
-fun AppCompatActivity.icRemoveAllFragments() {
-    for (fragment in supportFragmentManager.fragments) {
-        supportFragmentManager.inTransaction {
+fun FragmentManager.icRemoveAllFragments() {
+    for (fragment in fragments) {
+        inTransaction {
             remove(fragment)
-            supportFragmentManager.popBackStack()
+            popBackStack()
         }
     }
 }
 
-fun AppCompatActivity.icRemoveOtherFragment(fragment: Fragment) {
-    for (fragments in supportFragmentManager.fragments) {
-        supportFragmentManager.inTransaction {
+fun FragmentManager.icRemoveOtherFragment(fragment: Fragment) {
+    for (fragments in fragments) {
+        inTransaction {
             if (fragments != fragment) {
                 remove(fragment)
-                supportFragmentManager.popBackStack()
+                popBackStack()
             }
         }
     }
 }
 
-fun AppCompatActivity.icGetFragmentCount(): Int {
-    return supportFragmentManager.fragments.size
+fun FragmentManager.icGetFragmentCount(): Int {
+    return fragments.size
 }
 
 private inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
