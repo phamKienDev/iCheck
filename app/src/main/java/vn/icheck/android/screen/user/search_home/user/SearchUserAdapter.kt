@@ -85,7 +85,6 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
             }
 
             itemView.tvMessage.setOnClickListener {
-//                SocialChatActivity.createRoomChat(it.context, obj.id)
                 ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
             }
 
