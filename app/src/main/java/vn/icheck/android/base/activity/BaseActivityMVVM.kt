@@ -21,6 +21,7 @@ import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.base.model.ICMessageEvent
+import vn.icheck.android.ichecklibs.util.*
 import vn.icheck.android.network.base.*
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.screen.user.home.HomeActivity
@@ -58,8 +59,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
             }
         }
 
-        finish()
-        overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
+        icFinishActivity()
     }
 
     override fun onBackPressed() {
@@ -79,7 +79,7 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
             if (!isHomeActivity()) {
-                ActivityUtils.finishActivity(this)
+                finishActivity()
             }
         }
     }
@@ -355,19 +355,19 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
 
     fun addFragment(fragment: Fragment) {
-        ActivityUtils.addFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 
     fun replaceFragment(fragment: Fragment) {
-        ActivityUtils.replaceFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 
     fun removeFragments(fragment: Fragment) {
-        ActivityUtils.removeFragments(supportFragmentManager, fragment)
+        icRemoveFragments(fragment)
     }
 
     fun removeAllFragments() {
-        ActivityUtils.removeAllFragments(supportFragmentManager)
+        icRemoveAllFragments()
     }
 
     fun hideSoftKeyboard() {
