@@ -10,8 +10,10 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.R
 import vn.icheck.android.base.model.ICMessageEvent
-import vn.icheck.android.chat.icheckchat.screen.conversation.ListConversationFragment
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.util.icAddFragment
+import vn.icheck.android.ichecklibs.util.icFinishActivity
+import vn.icheck.android.ichecklibs.util.icReplaceFragment
 import vn.icheck.android.util.KeyboardUtils
 import vn.icheck.android.util.kotlin.ActivityUtils
 import vn.icheck.android.util.kotlin.ToastUtils
@@ -32,7 +34,7 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onMessageEvent(event: ICMessageEvent) {
         if (event.type == ICMessageEvent.Type.GO_TO_HOME) {
-            ActivityUtils.finishActivity(this)
+            finishActivity()
         }
     }
 
@@ -68,8 +70,7 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     }
 
     fun finishActivity() {
-        finish()
-        overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
+        icFinishActivity()
     }
 
 
@@ -155,10 +156,10 @@ abstract class BaseFragmentActivity : AppCompatActivity(), BaseActivityView {
     }
 
     fun addFragment(fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
-        ActivityUtils.addFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment, isAnimation, isAddToBackStack)
+        icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment, isAnimation, isAddToBackStack)
     }
 
     fun replaceFragment(fragment: Fragment) {
-        ActivityUtils.replaceFragment(supportFragmentManager, WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 }
