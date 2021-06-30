@@ -450,7 +450,7 @@
         <activity
             android:name=".screen.user.listnotification.interactive.ListInteractiveActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.OverStatusBar"
+            android:theme="@style/AppTheme_White"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screen.user.listnotification.friendsuggestion.ListFriendSuggestionActivity"
