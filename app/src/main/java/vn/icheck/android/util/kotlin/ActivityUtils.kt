@@ -141,4 +141,68 @@ object ActivityUtils {
     fun startActivityAndFinish(activity: FragmentActivity, intent: Intent) {
         activity.icStartActivityAndFinish(intent)
     }
+
+    fun replaceFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
+        fragmentManager.inTransaction {
+            if (isAnimation) {
+                setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
+            }
+
+            if (isAddToBackStack) {
+                addToBackStack(fragment.tag)
+            }
+
+            replace(frameID, fragment, fragment.tag)
+        }
+    }
+
+    fun removeFragments(fragmentManager: FragmentManager, fragment: Fragment) {
+        fragmentManager.inTransaction {
+            remove(fragment)
+        }
+    }
+
+    fun removeAllFragments(fragmentManager: FragmentManager) {
+        for (fragment in fragmentManager.fragments) {
+            fragmentManager.inTransaction {
+                remove(fragment)
+                fragmentManager.popBackStack()
+            }
+        }
+    }
+
+    fun removeOtherFragment(fragmentManager: FragmentManager, fragment: Fragment) {
+        for (fragments in fragmentManager.fragments) {
+            fragmentManager.inTransaction {
+                if (fragments != fragment) {
+                    remove(fragment)
+                    fragmentManager.popBackStack()
+                }
+            }
+        }
+    }
+
+    fun getFragmentCount(fragmentManager: FragmentManager): Int {
+        return fragmentManager.fragments.size
+    }
+
+    private inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+        val fragmentTransaction = beginTransaction()
+        fragmentTransaction.func()
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    fun finishActivity(fragmentActivity: FragmentActivity?) {
+        fragmentActivity?.finish()
+        fragmentActivity?.overridePendingTransition(R.anim.none, R.anim.left_to_right_pop_exit)
+    }
+
+    fun finishActivityWithoutAnimation(fragmentActivity: FragmentActivity?) {
+        fragmentActivity?.finish()
+        fragmentActivity?.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+    }
+
 }
+
+
+

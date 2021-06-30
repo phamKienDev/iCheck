@@ -355,19 +355,19 @@ abstract class BaseActivityMVVM : AppCompatActivity(), ICRequireLogin, ICNetwork
 
 
     fun addFragment(fragment: Fragment) {
-        icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        supportFragmentManager.icAddFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 
     fun replaceFragment(fragment: Fragment) {
-        icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
+        supportFragmentManager.icReplaceFragment(WidgetUtils.FRAME_FRAGMENT_ID, fragment)
     }
 
     fun removeFragments(fragment: Fragment) {
-        icRemoveFragments(fragment)
+        supportFragmentManager.icRemoveFragments(fragment)
     }
 
     fun removeAllFragments() {
-        icRemoveAllFragments()
+        supportFragmentManager.icRemoveAllFragments()
     }
 
     fun hideSoftKeyboard() {
