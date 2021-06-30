@@ -8,6 +8,8 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.text.InputType.*
+import android.text.TextPaint
+import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -19,6 +21,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.marginBottom
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.ichecklibs.util.toPx
 
 open class FocusableEditText : AppCompatEditText {
@@ -86,7 +89,7 @@ open class FocusableEditText : AppCompatEditText {
         mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mErrorTextPaint.textSize = 12 * resources.displayMetrics.scaledDensity
+        mErrorTextPaint.textSize = 12f.spToPx()
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
@@ -231,7 +234,7 @@ open class FocusableEditText : AppCompatEditText {
                 mLinePaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
                 drawBitmap(mErrorDrawable!!.toBitmap(), 0f, bottom, mErrorPaint)
-                drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
+                drawText(mError.toString(), 26f.dpToPx(), width.toFloat(), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
                     mLinePaint.color = ColorManager.getPrimaryColor(context)
@@ -239,7 +242,6 @@ open class FocusableEditText : AppCompatEditText {
                     mLinePaint.color = ColorManager.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
-
             }
 
             canvas.translate(0f, 0f)
@@ -247,7 +249,7 @@ open class FocusableEditText : AppCompatEditText {
     }
 
     override fun setError(error: CharSequence?) {
-        mError = error
+        mError = TextUtils.ellipsize(error, paint, measuredWidth.toFloat(), TextUtils.TruncateAt.END)
 
 //        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
 //        requestLayout()
@@ -261,7 +263,7 @@ open class FocusableEditText : AppCompatEditText {
     }
 
     override fun setError(error: CharSequence?, icon: Drawable?) {
-        mError = error
+        mError = TextUtils.ellipsize(error, paint, measuredWidth.toFloat(), TextUtils.TruncateAt.END)
 
 //        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
 //        requestLayout()

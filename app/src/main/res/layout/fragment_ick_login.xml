@@ -110,7 +110,7 @@
                 android:layout_marginLeft="@dimen/size_4"
                 android:ellipsize="end"
                 android:includeFontPadding="false"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@string/ban_gap_van_de_voi_dang_nhap"
                 android:textSize="@dimen/font_12"
                 app:layout_constraintEnd_toEndOf="parent"
