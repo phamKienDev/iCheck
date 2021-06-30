@@ -48,7 +48,7 @@ import vn.icheck.android.util.kotlin.WidgetUtils
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class IckLoginFragment : BaseFragmentMVVM() {
+class  IckLoginFragment : BaseFragmentMVVM() {
     private val ickLoginViewModel: IckLoginViewModel by activityViewModels()
 
     @Inject
