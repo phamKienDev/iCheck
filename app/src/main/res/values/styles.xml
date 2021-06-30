@@ -396,8 +396,6 @@
     <!-- Product -->
     <style name="Product_Rating_Bar" parent="Widget.AppCompat.RatingBar.Small">
         <item name="android:progressDrawable">@drawable/custom_rating_bar_12dp</item>
-        <item name="android:minHeight">@dimen/size_12</item>
-        <item name="android:maxHeight">@dimen/size_12</item>
     </style>
 
     <style name="Product_Rating_Bar_New" parent="Widget.AppCompat.RatingBar.Small">

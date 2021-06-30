@@ -68,9 +68,9 @@
         <LinearLayout
             android:id="@id/layoutRating"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_2"
-            android:gravity="start|center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
@@ -89,8 +89,7 @@
                 android:id="@+id/ratingbar"
                 style="@style/Product_Rating_Bar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="@dimen/size_12"
                 android:isIndicator="true" />
 
             <vn.icheck.android.ichecklibs.view.primary.TextBarlowMediumPrimary
@@ -119,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="@dimen/font_14"
+            android:layout_marginTop="@dimen/size_4"
             android:text="@string/gia_dang_cap_nhat"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
