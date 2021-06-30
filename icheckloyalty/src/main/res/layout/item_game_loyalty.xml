@@ -102,8 +102,9 @@
             <LinearLayout
                 android:id="@+id/layoutRight"
                 android:visibility="invisible"
+                tools:visibility="visible"
                 android:layout_width="@dimen/size_0"
-                android:layout_height="@dimen/size_0"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/size_6"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -153,7 +154,9 @@
                     android:gravity="right|center_vertical"
                     android:includeFontPadding="false"
                     android:singleLine="true"
+                    android:textSize="@dimen/font_14"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     android:textColor="#057DDA"
                     tools:text="1 lượt quay"/>
             </LinearLayout>
