@@ -25,24 +25,23 @@ import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.ichecklibs.util.toPx
 
 open class FocusableEditText : AppCompatEditText {
-    var mErrorDrawable: Drawable? = null
-    var mError: CharSequence? = null
     lateinit var mErrorPaint: Paint
     lateinit var mErrorTextPaint: Paint
     lateinit var mLinePaint: Paint
 
+    private var mErrorDrawable: Drawable? = null
+    private var mError: CharSequence? = null
+
     private val drawableClear = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_delete_gray_vector, null)
-
     private val drawableEyeOff = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_gray_24dp, null)
-
     private val drawableEye = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_on_vector, null)
 
-    //    private val currentHint = hint
     private var currentText = ""
     private var leftDrawable: Drawable? = null
     private var rightDrawable: Drawable? = null
-    var originalPadding = 0
+    private var originalPadding = 0
     var enableRightClick = true
+
     private var isPassword: Boolean? = null
 
     constructor(context: Context) : super(context) {
@@ -86,20 +85,24 @@ open class FocusableEditText : AppCompatEditText {
             }
         }
 
-        mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
+
         mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mErrorTextPaint.textSize = 12f.spToPx()
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
+        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
+
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
-        setBackgroundResource(0)
+        mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
+
         originalPadding = paddingBottom
+        setBackgroundResource(0)
     }
 
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect)
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
         setDrawableFocusable()
     }
@@ -111,12 +114,6 @@ open class FocusableEditText : AppCompatEditText {
             rightDrawable = right
         }
     }
-
-//    override fun setCompoundDrawablesWithIntrinsicBounds(left: Int, top: Int, right: Int, bottom: Int) {
-//        super.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
-//        leftDrawable = ResourcesCompat.getDrawable(resources, left, null)
-//        rightDrawable = ResourcesCompat.getDrawable(resources, right, null)
-//    }
 
     override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
@@ -251,8 +248,6 @@ open class FocusableEditText : AppCompatEditText {
     override fun setError(error: CharSequence?) {
         mError = TextUtils.ellipsize(error, paint, measuredWidth.toFloat(), TextUtils.TruncateAt.END)
 
-//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
-//        requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
 
@@ -265,8 +260,6 @@ open class FocusableEditText : AppCompatEditText {
     override fun setError(error: CharSequence?, icon: Drawable?) {
         mError = TextUtils.ellipsize(error, paint, measuredWidth.toFloat(), TextUtils.TruncateAt.END)
 
-//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
-//        requestLayout()
         setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
         requestLayout()
 
