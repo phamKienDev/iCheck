@@ -183,7 +183,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
                 binding.tvTenSpUpdating.beGone()
             } else {
                 binding.tvTenSpUpdating.beVisible()
-                binding.tvName.beInvisible()
+                binding.tvName.beGone()
             }
 
             binding.surfaceView.addOnLayoutChangeListener { view, i, i2, i3, i4, i5, i6, i7, i8 ->
@@ -374,9 +374,9 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvContent.text = obj.name
                 binding.tvContent.beVisible()
-                binding.tvTenSpUpdating.beInvisible()
+                binding.tvTenSpUpdating.beGone()
             } else {
-                binding.tvContent.beInvisible()
+                binding.tvContent.beGone()
                 binding.tvTenSpUpdating.beVisible()
             }
 
@@ -576,9 +576,9 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
             if (!obj.name.isNullOrEmpty()) {
                 binding.tvContent.text = obj.name
                 binding.tvContent.beVisible()
-                binding.tvTenSpUpdating.beInvisible()
+                binding.tvTenSpUpdating.beGone()
             } else {
-                binding.tvContent.beInvisible()
+                binding.tvContent.beGone()
                 binding.tvTenSpUpdating.beVisible()
             }
 
