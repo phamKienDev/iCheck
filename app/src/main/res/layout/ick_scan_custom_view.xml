@@ -147,7 +147,8 @@
     <TextView
         android:id="@+id/btn_qm"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_36"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_36"
         android:layout_marginStart="@dimen/size_32"
         android:layout_marginEnd="@dimen/size_16"
         android:layout_marginBottom="@dimen/size_32"
@@ -179,7 +180,8 @@
     <TextView
         android:id="@+id/btn_my_code"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_36"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_36"
         android:layout_marginStart="@dimen/size_16"
         android:layout_marginEnd="@dimen/size_32"
         android:layout_marginBottom="@dimen/size_32"

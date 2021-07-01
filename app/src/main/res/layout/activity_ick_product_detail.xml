@@ -21,7 +21,7 @@
             android:id="@id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <FrameLayout
@@ -188,22 +188,26 @@
             <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
                 android:id="@+id/btn_contact_not_found"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_5"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:minHeight="@dimen/size_36"
+                android:padding="@dimen/size_4"
                 android:text="@string/lien_he_icheck"
                 android:textSize="@dimen/font_16" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_contribute"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:layout_weight="1"
                 android:fontFamily="@font/barlow_semi_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:minHeight="@dimen/size_36"
+                android:padding="@dimen/size_4"
                 android:text="@string/dong_gop_thong_tin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_16" />

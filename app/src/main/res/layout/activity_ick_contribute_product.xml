@@ -10,7 +10,8 @@
     <vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
             android:id="@+id/img_back"
@@ -21,8 +22,8 @@
 
         <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/size_50"
             android:layout_marginEnd="@dimen/size_50"
             android:layout_weight="1"
@@ -418,7 +419,8 @@
             <TextView
                 android:id="@+id/btn_continue"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/size_36"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginLeft="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_43"
