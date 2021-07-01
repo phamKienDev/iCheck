@@ -4,6 +4,7 @@ import android.os.Bundle
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.icFinishActivity
 import vn.icheck.android.util.kotlin.ActivityUtils
 
 /**
@@ -22,6 +23,6 @@ class NewsListV2Activity : BaseActivityMVVM() {
     }
 
     override fun onBackPressed() {
-        ActivityUtils.finishActivity(this)
+        icFinishActivity()
     }
 }
