@@ -64,30 +64,53 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                     binding.edtOldPassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtOldPassword.apply {
                             error = context.getString(R.string.ban_chua_nhap_mat_khau_cu)
-                        }
-                    }
-                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtRePassword.apply {
-                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtOldPassword.text?.length ?: 0 < 6 -> {
                         binding.edtOldPassword.apply {
                             error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
+                        }
+                    }
+                    binding.edtPassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtPassword.apply {
+                            error = context.getString(R.string.ban_chua_nhap_mat_khau_moi)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
+                        }
+                    }
+                    binding.edtPassword.text?.length ?: 0 < 6 -> {
+                        binding.edtPassword.apply {
+                            error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
+                        }
+                    }
+                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtRePassword.apply {
+                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.apply {
                             error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.apply {
                             error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     else -> {
-
                         DialogHelper.showLoading(this)
                         ickUserWallViewModel.updatePassword(binding.edtOldPassword.text.toString(), binding.edtPassword.text.toString())
                                 .observe(viewLifecycleOwner, Observer {
@@ -117,30 +140,39 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                     binding.edtPassword.text?.toString().isNullOrEmpty() -> {
                         binding.edtPassword.apply {
                             error = context.getString(R.string.ban_chua_nhap_mat_khau_moi)
-                        }
-                    }
-                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
-                        binding.edtRePassword.apply {
-                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtPassword.text?.length ?: 0 < 6 -> {
                         binding.edtPassword.apply {
                             error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
+                        }
+                    }
+                    binding.edtRePassword.text?.toString().isNullOrEmpty() -> {
+                        binding.edtRePassword.apply {
+                            error = context.getString(R.string.xin_vui_long_xac_nhan_mat_khau)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtRePassword.text?.length ?: 0 < 6 -> {
                         binding.edtRePassword.apply {
                             error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     binding.edtPassword.text.toString() != binding.edtRePassword.text.toString() -> {
                         binding.edtRePassword.apply {
                             error = context.getString(R.string.xac_nhan_mat_khau_khong_trung_khop)
+                            requestFocus()
+                            setSelection(text?.length ?: 0)
                         }
                     }
                     else -> {
-
                         DialogHelper.showLoading(this)
                         ickUserWallViewModel.firstPassword(binding.edtPassword.text.toString())
                                 .observe(viewLifecycleOwner, Observer {
@@ -163,8 +195,6 @@ class IckNewPwFragment : BaseFragmentMVVM() {
                     }
                 }
             }
-
-
         }
 
         setupListener()

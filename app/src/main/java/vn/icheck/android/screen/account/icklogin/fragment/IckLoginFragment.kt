@@ -6,6 +6,7 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -102,16 +103,14 @@ class  IckLoginFragment : BaseFragmentMVVM() {
                     when {
                         binding.edtPassword.text.isNullOrEmpty() -> {
                             binding.edtPassword.apply {
-                                requestFocus()
-                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
                                 error = context.getString(R.string.ban_chua_nhap_mat_khau)
+                                showFocus(this)
                             }
                         }
                         binding.edtPassword.text?.toString()?.length ?: 0 < 6 -> {
                             binding.edtPassword.apply {
-                                requestFocus()
-                                setSelection(binding.edtPassword.text?.toString()?.length ?: 0)
                                 error = context.getString(R.string.mat_khau_phai_lon_hon_hoac_bang_6_ki_tu)
+                                showFocus(this)
                             }
                         }
                         else -> {
@@ -121,10 +120,8 @@ class  IckLoginFragment : BaseFragmentMVVM() {
 
                 }
                 else -> {
-                    showFocus()
-                    binding.edtPhone.apply {
-                        error = context.getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
-                    }
+                    binding.edtPhone.error = getString(R.string.so_dien_thoai_khong_dung_dinh_dang)
+                    showFocus(binding.edtPhone)
                 }
 
             }
@@ -217,20 +214,20 @@ class  IckLoginFragment : BaseFragmentMVVM() {
                         }
                     })
                 } else {
-                    showFocus()
+                    showFocus(binding.edtPhone)
                     requireContext().showShortErrorToast(loginRes?.msg)
                 }
             })
         } catch (e: Exception) {
-            showFocus()
+            showFocus(binding.edtPhone)
             requireContext().showShortErrorToast(e.localizedMessage)
             dismissLoadingScreen()
         }
     }
 
-    private fun showFocus() {
-        binding.edtPhone.requestFocus()
-        binding.edtPhone.setSelection(binding.edtPhone.text?.toString()?.length ?: 0)
+    private fun showFocus(editText: AppCompatEditText) {
+        editText.requestFocus()
+        editText.setSelection(editText.text?.length ?: 0)
     }
 
     private fun checkForm() {
