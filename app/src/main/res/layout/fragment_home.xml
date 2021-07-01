@@ -177,7 +177,8 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/txtAvatar"
@@ -193,7 +194,8 @@
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@id/txtSearch"
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_34"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_34"
             android:layout_marginStart="@dimen/size_7"
             android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_6"
@@ -225,21 +227,22 @@
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@id/tvCartCount"
-            android:layout_width="@dimen/size_22"
-            android:layout_height="@dimen/size_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_24"
             android:fontFamily="@font/barlow_semi_bold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:minWidth="@dimen/size_20"
-            android:minHeight="@dimen/size_20"
+            android:minWidth="@dimen/size_22"
+            android:minHeight="@dimen/size_22"
             android:paddingStart="@dimen/size_4"
             android:paddingEnd="@dimen/size_4"
             android:textAlignment="gravity"
             android:textColor="@color/white"
             android:textSize="@dimen/font_12"
+            android:padding="@dimen/size_2"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/tvViewCart"
+            app:layout_constraintEnd_toEndOf="@+id/tvViewCart"
             app:layout_constraintTop_toTopOf="@+id/tvViewCart"
             tools:text="9"
             tools:visibility="visible" />
@@ -257,17 +260,19 @@
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@id/tvNotificationCount"
-            android:layout_width="@dimen/size_22"
-            android:layout_height="@dimen/size_22"
-            android:layout_marginStart="@dimen/size_18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:includeFontPadding="false"
+            android:minWidth="@dimen/size_22"
+            android:minHeight="@dimen/size_22"
             android:textAlignment="gravity"
             android:textColor="@color/white"
             android:textSize="@dimen/font_12"
+            android:padding="@dimen/size_2"
             android:textStyle="normal"
             android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@+id/tvViewCart"
+            app:layout_constraintEnd_toEndOf="@+id/txtNotification"
             app:layout_constraintTop_toTopOf="@+id/txtNotification"
             tools:text="9+"
             tools:visibility="visible" />
