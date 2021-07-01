@@ -69,9 +69,9 @@
         <LinearLayout
             android:id="@id/layoutRating"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_2"
-            android:gravity="start|center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/barlow_medium"
-            android:lineSpacingExtra="@dimen/font_14"
+            android:layout_marginTop="@dimen/size_4"
             android:text="@string/gia_dang_cap_nhat"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
