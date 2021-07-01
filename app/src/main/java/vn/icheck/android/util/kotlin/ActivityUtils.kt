@@ -1,239 +1,145 @@
 package vn.icheck.android.util.kotlin
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
+import vn.icheck.android.ichecklibs.util.icStartActivity
+import vn.icheck.android.ichecklibs.util.icStartActivityAndFinish
+import vn.icheck.android.ichecklibs.util.icStartActivityForResult
+import vn.icheck.android.ichecklibs.util.icStartActivityWithoutAnimation
 import java.io.Serializable
 
 object ActivityUtils {
 
     inline fun <reified T : FragmentActivity> startActivityWithoutAnimation(activity: Activity) {
-        activity.startActivity(Intent(activity, T::class.java))
-        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+        activity.icStartActivityWithoutAnimation<T>()
     }
 
     fun startActivityWithoutAnimation(activity: Activity, intent: Intent) {
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+        activity.icStartActivityWithoutAnimation(intent)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivityWithoutAnimation(activity: Activity, key: String, value: O) {
-        activity.startActivity(Intent(activity, T::class.java).apply {
-            putExtra(key, value)
-        })
-        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+        activity.icStartActivityWithoutAnimation<T, O>(key, value)
     }
 
-    inline fun <reified T : FragmentActivity, O : Serializable> startActivityWithoutAnimation(activity: Activity, key: String, value: O,requestCode: Int) {
-        activity.startActivityForResult(Intent(activity, T::class.java).apply {
-            putExtra(key, value)
-        },requestCode)
-        activity.overridePendingTransition(R.anim.none_no_time, R.anim.none_no_time)
+    inline fun <reified T : FragmentActivity, O : Serializable> startActivityWithoutAnimation(activity: Activity, key: String, value: O, requestCode: Int) {
+        activity.icStartActivityWithoutAnimation<T, O>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivity(fragment: Fragment) {
-        fragment.startActivity(Intent(fragment.context, T::class.java))
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivity<T>()
     }
 
     inline fun <reified T : FragmentActivity> startActivity(fragment: Fragment, key: String, value: String) {
-        startActivity<T, String>(fragment, key, value)
+        fragment.icStartActivity<T>(key, value)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivity(fragment: Fragment, key: String, value: O) {
-        val intent = Intent(fragment.context, T::class.java)
-        intent.putExtra(key, value)
-        fragment.startActivity(intent)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivity<T, O>(key, value)
     }
 
     fun startActivityForResult(fragment: Fragment, intent: Intent, requestCode: Int) {
-        fragment.startActivityForResult(intent, requestCode)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivityForResult(intent, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityForResult(fragment: Fragment, requestCode: Int) {
-        fragment.startActivityForResult(Intent(fragment.context, T::class.java), requestCode)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivityForResult<T>(requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityForResult(fragment: Fragment, key: String, value: String, requestCode: Int) {
-        startActivityForResult<T, String>(fragment, key, value, requestCode)
+        fragment.icStartActivityForResult<T>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivityForResult(fragment: Fragment, key: String, value: O, requestCode: Int) {
-        val intent = Intent(fragment.context, T::class.java)
-        intent.putExtra(key, value)
-        fragment.startActivityForResult(intent, requestCode)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivityForResult<T, O>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityAndFinish(fragment: Fragment) {
-        fragment.startActivity(Intent(fragment.context, T::class.java))
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        fragment.activity?.finish()
+        fragment.icStartActivityAndFinish<T>()
     }
 
     fun startActivityAndFinish(fragment: Fragment, intent: Intent) {
-        fragment.startActivity(intent)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        fragment.activity?.finish()
+        fragment.icStartActivityAndFinish(intent)
     }
 
 
     inline fun <reified T : FragmentActivity> startActivity(activity: FragmentActivity) {
-        activity.startActivity(Intent(activity, T::class.java))
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T>()
     }
 
     inline fun <reified T : FragmentActivity> startActivity(activity: FragmentActivity, key: String, value: String) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T>(key, value)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivity(activity: FragmentActivity, key: String, value: O) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T, O>(key, value)
     }
 
     fun startActivity(activity: FragmentActivity, intent: Intent) {
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity(intent)
     }
 
 
     inline fun <reified T : FragmentActivity> startActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, T::class.java))
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T>()
     }
 
     inline fun <reified T : FragmentActivity> startActivity(activity: Activity, key: String, value: String) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T>(key, value)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivity(activity: Activity, key: String, value: O) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity<T, O>(key, value)
     }
 
     fun startActivity(activity: Activity, intent: Intent) {
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivity(intent)
     }
 
 
     fun startActivity(fragment: Fragment, intent: Intent) {
-        fragment.startActivity(intent)
-        fragment.activity?.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        fragment.icStartActivity(intent)
     }
 
     fun startActivityForResult(activity: Activity, intent: Intent, requestCode: Int) {
-        activity.startActivityForResult(intent, requestCode)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivityForResult(intent, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityForResult(activity: FragmentActivity, requestCode: Int) {
-        activity.startActivityForResult(Intent(activity, T::class.java), requestCode)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivityForResult<T>(requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityForResult(activity: FragmentActivity, key: String, value: String, requestCode: Int) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivityForResult(intent, requestCode)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivityForResult<T>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivityForResult(activity: FragmentActivity, key: String, value: O, requestCode: Int) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivityForResult(intent, requestCode)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivityForResult<T, O>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivityForResult(activity: Activity, key: String, value: O, requestCode: Int) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivityForResult(intent, requestCode)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
+        activity.icStartActivityForResult<T, O>(key, value, requestCode)
     }
 
     inline fun <reified T : FragmentActivity> startActivityAndFinish(activity: FragmentActivity) {
-        activity.startActivity(Intent(activity, T::class.java))
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        activity.finish()
+        activity.icStartActivityAndFinish<T>()
     }
 
     inline fun <reified T : Activity> startActivityAndFinish(activity: Activity) {
-        activity.startActivity(Intent(activity, T::class.java))
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        activity.finish()
+        activity.icStartActivityAndFinish<T>()
     }
 
     inline fun <reified T : FragmentActivity, O : Serializable> startActivityAndFinish(activity: FragmentActivity, key: String, value: O) {
-        val intent = Intent(activity, T::class.java)
-        intent.putExtra(key, value)
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        activity.finish()
+        activity.icStartActivityAndFinish<T, O>(key, value)
     }
 
     fun startActivityAndFinish(activity: FragmentActivity, intent: Intent) {
-        activity.startActivity(intent)
-        activity.overridePendingTransition(R.anim.right_to_left_enter, R.anim.none)
-        activity.finish()
-    }
-
-    fun addFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment) {
-        addFragment(fragmentManager, frameID, fragment, isAnimation = true)
-    }
-
-    fun addFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment, isAnimation: Boolean) {
-        addFragment(fragmentManager, frameID, fragment, isAnimation, isAddToBackStack = true)
-    }
-
-    fun addFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {
-        fragmentManager.inTransaction {
-            if (isAnimation) {
-                setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
-            }
-
-            if (isAddToBackStack) {
-                addToBackStack(fragment.tag)
-            }
-
-            if (fragmentManager.findFragmentByTag(fragment.tag) == null) {
-                add(frameID, fragment, fragment.tag)
-            }
-        }
-    }
-
-    fun replaceFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment) {
-        fragmentManager.inTransaction {
-            setCustomAnimations(R.anim.right_to_left_enter, R.anim.right_to_left_exit, R.anim.left_to_right_pop_enter, R.anim.left_to_right_pop_exit)
-            replace(frameID, fragment, fragment.tag)
-        }
-    }
-
-    fun replaceFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment, isAnimation: Boolean) {
-        replaceFragment(fragmentManager, frameID, fragment, isAnimation, isAddToBackStack = true)
+        activity.icStartActivityAndFinish(intent)
     }
 
     fun replaceFragment(fragmentManager: FragmentManager, frameID: Int, fragment: Fragment, isAnimation: Boolean, isAddToBackStack: Boolean) {

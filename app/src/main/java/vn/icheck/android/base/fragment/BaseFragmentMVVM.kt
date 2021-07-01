@@ -18,6 +18,7 @@ import vn.icheck.android.R
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
 import vn.icheck.android.constant.Constant
+import vn.icheck.android.ichecklibs.util.icRemoveOtherFragment
 import vn.icheck.android.network.base.ICRequireLogin
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
 import vn.icheck.android.util.FragmentUtils
@@ -301,7 +302,7 @@ abstract class BaseFragmentMVVM : Fragment(), ICRequireLogin {
             }
 
             KeyboardUtils.hideSoftInput(it)
-            ActivityUtils.removeOtherFragment(it.supportFragmentManager, this)
+            it.supportFragmentManager.icRemoveOtherFragment(this)
         }
     }
     /**
