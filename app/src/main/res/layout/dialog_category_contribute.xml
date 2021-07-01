@@ -16,17 +16,21 @@
             android:layout_height="@dimen/size_50"
             android:background="@android:color/transparent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barrier4"
+            app:layout_constraintBottom_toBottomOf="@id/barrier5"
             app:srcCompat="@drawable/ic_cancel_blue_24px" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
             android:text="@string/danh_muc"
+            app:layout_constraintBottom_toBottomOf="@id/barrier5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/barrier4" />
 
         <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
             android:id="@+id/view9"
@@ -34,17 +38,19 @@
             android:layout_height="@dimen/size_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
+            app:layout_constraintTop_toBottomOf="@+id/barrier5" />
 
         <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/btn_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_12"
             android:text="@string/xong"
-            app:layout_constraintBottom_toTopOf="@+id/view9"
+            app:layout_constraintBottom_toTopOf="@+id/barrier5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/barrier4" />
 
         <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
             android:id="@+id/edt_search"
@@ -67,7 +73,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_category_title"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_30"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_30"
             android:layout_marginTop="@dimen/size_8"
             android:descendantFocusability="afterDescendants"
             android:orientation="horizontal"
@@ -77,6 +84,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_search"
             tools:listitem="@layout/item_category_title" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_clear,btn_done,textView" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="btn_clear,btn_done,textView" />
 
     </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutBgWhiteRadiusTop16>
 
