@@ -3,7 +3,6 @@ package vn.icheck.android.ichecklibs.view.normal_text
 import android.content.Context
 import android.util.AttributeSet
 import vn.icheck.android.ichecklibs.ColorManager
-import vn.icheck.android.ichecklibs.Constant
 import vn.icheck.android.ichecklibs.FocusableEditText
 
 open class FocusableEdittextNormal:FocusableEditText {

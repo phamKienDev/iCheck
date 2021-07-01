@@ -6,8 +6,9 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.text.InputType
 import android.text.InputType.*
+import android.text.TextPaint
+import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -19,28 +20,28 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.marginBottom
 import vn.icheck.android.ichecklibs.util.dpToPx
+import vn.icheck.android.ichecklibs.util.spToPx
 import vn.icheck.android.ichecklibs.util.toPx
 
 open class FocusableEditText : AppCompatEditText {
-    var mErrorDrawable: Drawable? = null
-    var mError: CharSequence? = null
-    lateinit var mErrorPaint: Paint
-    lateinit var mErrorTextPaint: Paint
-    lateinit var mLinePaint: Paint
+    private lateinit var mErrorPaint: Paint
+    private lateinit var mErrorTextPaint: TextPaint
+    private lateinit var mLinePaint: Paint
+
+    private var mErrorDrawable: Drawable? = null
+    private var mError: CharSequence? = null
 
     private val drawableClear = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_delete_gray_vector, null)
-
     private val drawableEyeOff = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_off_gray_24dp, null)
-
     private val drawableEye = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_eye_on_vector, null)
 
-    //    private val currentHint = hint
     private var currentText = ""
     private var leftDrawable: Drawable? = null
     private var rightDrawable: Drawable? = null
-    var originalPadding = 0
-    var enableRightClick = true
     private var isPassword: Boolean? = null
+
+    var enableRightClick = true
+    var originalPadding = 0
 
     constructor(context: Context) : super(context) {
         initFont()
@@ -83,17 +84,20 @@ open class FocusableEditText : AppCompatEditText {
             }
         }
 
-        mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
         mErrorPaint = Paint()
-        mErrorTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mErrorTextPaint.textSize = 12 * resources.displayMetrics.scaledDensity
+
+        mErrorTextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+        mErrorTextPaint.textSize = 12f.spToPx()
         mErrorTextPaint.typeface = Typeface.createFromAsset(context.assets, "font/barlow_medium.ttf")
+        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
+
         mLinePaint = Paint()
         mLinePaint.strokeWidth = 1f.toPx()
 
-        mErrorTextPaint.color = ColorManager.getAccentRedColor(context)
-        setBackgroundResource(0)
+        mErrorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_red_18dp, null)
+
         originalPadding = paddingBottom
+        setBackgroundResource(0)
     }
 
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
@@ -108,12 +112,6 @@ open class FocusableEditText : AppCompatEditText {
             rightDrawable = right
         }
     }
-
-//    override fun setCompoundDrawablesWithIntrinsicBounds(left: Int, top: Int, right: Int, bottom: Int) {
-//        super.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
-//        leftDrawable = ResourcesCompat.getDrawable(resources, left, null)
-//        rightDrawable = ResourcesCompat.getDrawable(resources, right, null)
-//    }
 
     override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
@@ -143,15 +141,13 @@ open class FocusableEditText : AppCompatEditText {
         if (rightDrawable == null) {
             if (currentText.isNotEmpty() && isFocused) {
                 if (!isInputPassword) {
-                    setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable
-                            ?: drawableClear, null)
+                    setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable ?: drawableClear, null)
                 } else {
                     if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEyeOff, null)
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                     }
-
                 }
             } else {
                 if (currentText.isNotEmpty()) {
@@ -167,7 +163,6 @@ open class FocusableEditText : AppCompatEditText {
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
                 }
-
             } else {
                 setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, rightDrawable, null)
             }
@@ -198,7 +193,7 @@ open class FocusableEditText : AppCompatEditText {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
-            if (event.rawX > right - totalPaddingRight) {
+            if (event.rawX > right - compoundDrawables[2].bounds.width()) {
                 if (isInputPassword) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
@@ -231,7 +226,8 @@ open class FocusableEditText : AppCompatEditText {
                 mLinePaint.color = ContextCompat.getColor(context, R.color.colorAccentRed)
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
                 drawBitmap(mErrorDrawable!!.toBitmap(), 0f, bottom, mErrorPaint)
-                drawText(mError.toString(), 26.dpToPx().toFloat(), (bottom + 15f.toPx()), mErrorTextPaint)
+                val icError = TextUtils.ellipsize(mError, mErrorTextPaint, width.toFloat(), TextUtils.TruncateAt.END)
+                drawText(icError.toString(), 26f.dpToPx(), (bottom + 12f.spToPx()), mErrorTextPaint)
             } else {
                 if (hasFocus()) {
                     mLinePaint.color = ColorManager.getPrimaryColor(context)
@@ -239,38 +235,35 @@ open class FocusableEditText : AppCompatEditText {
                     mLinePaint.color = ColorManager.getLineColor(context)
                 }
                 drawLine(0f, bottom, width.toFloat(), bottom, mLinePaint)
-
             }
 
             canvas.translate(0f, 0f)
         }
     }
 
-    override fun setError(error: CharSequence?) {
-        mError = error
-
-//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//    override fun setError(error: CharSequence?) {
+//        super.setError(error)
+//        mError = error
+//
+//        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
 //        requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
-        requestLayout()
+//
+//        checkCenterViewMarginBottom()
+//        centerView?.let { view ->
+//            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+//        }
+//    }
 
-        checkCenterViewMarginBottom()
-        centerView?.let { view ->
-            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
-        }
-    }
-
-    override fun setError(error: CharSequence?, icon: Drawable?) {
-        mError = error
-
-//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom)
+//    override fun setError(error: CharSequence?, icon: Drawable?) {
+//        super.setError(error)
+//        mError = error
+//
+//        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
 //        requestLayout()
-        setPadding(paddingLeft, paddingTop, paddingRight, originalPadding + 20.dpToPx())
-        requestLayout()
-
-        checkCenterViewMarginBottom()
-        centerView?.let { view ->
-            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
-        }
-    }
+//
+//        checkCenterViewMarginBottom()
+//        centerView?.let { view ->
+//            (view.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin = centerViewMarginBottom + SizeHelper.size20
+//        }
+//    }
 }
