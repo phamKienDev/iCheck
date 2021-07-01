@@ -153,11 +153,14 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@id/tvNotificationCount"
-                android:layout_width="@dimen/size_22"
-                android:layout_height="@dimen/size_22"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/size_22"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/size_22"
                 android:layout_marginTop="@dimen/size_3"
                 android:layout_marginEnd="@dimen/size_6"
                 android:layout_marginRight="@dimen/size_6"
+                android:padding="@dimen/size_2"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:textColor="@color/white"
