@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_6"
-        android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxHeight="@dimen/size_40"
         android:maxLines="2"
@@ -122,6 +121,7 @@
             android:fontFamily="@font/barlow_medium"
             android:layout_marginTop="@dimen/size_4"
             android:text="@string/gia_dang_cap_nhat"
+            android:singleLine="true"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
             android:visibility="gone" />
