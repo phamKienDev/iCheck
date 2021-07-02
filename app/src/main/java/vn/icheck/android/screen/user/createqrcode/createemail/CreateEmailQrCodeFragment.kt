@@ -68,17 +68,17 @@ class CreateEmailQrCodeFragment : BaseFragmentMVVM(), ICreateEmailQrCodeView {
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
 
-        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
-            edtEmail.background=this
-            edtTitle.background=this
-            edtContent.background=this
-        }
+        edtEmail.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtTitle.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtContent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
     }
 
     private fun initListener() {
         btnCreate.setOnClickListener {
-            presenter.validData(edtEmail.text.toString().trim(), edtTitle.text.toString().trim(),
-                    edtContent.text.toString().trim())
+            presenter.validData(
+                edtEmail.text.toString().trim(), edtTitle.text.toString().trim(),
+                edtContent.text.toString().trim()
+            )
         }
     }
 

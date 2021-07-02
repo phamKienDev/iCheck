@@ -66,11 +66,9 @@ class CreateWifiQrCodeFragment : BaseFragmentMVVM(), ICreateWifiQrCodeView {
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
 
-         ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
-             edtName.background=this
-             edtPassword.background=this
-             edtType.background=this
-         }
+        edtName.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtPassword.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtType.background=ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
     }
 
     private fun initSecurityView() {

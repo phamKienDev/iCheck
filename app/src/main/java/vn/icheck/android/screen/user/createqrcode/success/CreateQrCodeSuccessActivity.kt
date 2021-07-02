@@ -30,11 +30,12 @@ class CreateQrCodeSuccessActivity : BaseActivityMVVM(), ICreateQrCodeSuccessView
     private val requestSave = 1
     private val requestShare = 2
 
-    val presenter = CreateQrCodeSuccessPresenter(this@CreateQrCodeSuccessActivity)
+    lateinit var presenter :CreateQrCodeSuccessPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_create_qr_code_success)
+        presenter= CreateQrCodeSuccessPresenter(this@CreateQrCodeSuccessActivity)
         onInitView()
     }
 

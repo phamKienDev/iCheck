@@ -70,7 +70,7 @@
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtEmail"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
@@ -110,7 +110,7 @@
             <vn.icheck.android.ichecklibs.view.normal_text.EdittextNormalHintDisable
                 android:id="@id/edtTitle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_36"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_12"
                 android:layout_marginTop="@dimen/size_6"
                 android:layout_marginEnd="@dimen/size_12"
@@ -183,7 +183,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@id/btnCreate"
-        style="@style/Button_Blue_Corners_6"
+        style="@style/Button_Blue_Corners_6_Create_Qr"
         android:layout_margin="@dimen/size_12"
         android:text="@string/tao_ma_qr" />
 </vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICLinearLayoutWhite>
