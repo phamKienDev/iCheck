@@ -547,6 +547,7 @@ class FragmentLuckyWheelGame : Fragment() {
                 it.startAnimation(scaleAnimation)
                 lifecycleScope.launch {
 //                    delay(240)
+                    btnThemLuot.isEnabled = false
                     if (SharedLoyaltyHelper(requireContext()).getBoolean(ConstantsLoyalty.HAS_CHANGE_CODE_VQMM)) {
                         val action = FragmentLuckyWheelGameDirections.actionFragmentLuckyWheelGameToNmdtDialogFragment(args.campaignId, luckyGameViewModel.currentCount)
                         findNavController().navigate(action)
@@ -769,5 +770,6 @@ class FragmentLuckyWheelGame : Fragment() {
         btnQA.isEnabled = true
         btnHistory.isEnabled = true
         btnDSQua.isEnabled = true
+        btnThemLuot.isEnabled = true
     }
 }
