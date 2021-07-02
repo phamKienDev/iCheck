@@ -93,7 +93,8 @@ class ProductNotVerifiedHolder(parent: ViewGroup) : BaseViewHolder<ProductNotVer
 
                 // Layout bottom
                 layoutParent.addView(LinearLayout(context).also { layoutBottom ->
-                    layoutBottom.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, SizeHelper.size40)
+                    layoutBottom.layoutParams = ViewHelper.createLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                    layoutBottom.minimumHeight = SizeHelper.size40
                     layoutBottom.orientation = LinearLayout.HORIZONTAL
                     layoutBottom.setBackgroundColor(ColorManager.getAppBackgroundWhiteColor(layoutBottom.context))
                     layoutBottom.setPadding(SizeHelper.size12, 0, SizeHelper.size12, 0)
