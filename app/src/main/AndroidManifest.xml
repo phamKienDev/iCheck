@@ -510,6 +510,7 @@
             android:theme="@style/AppTheme_White" />
         <activity
             android:name=".screen.user.list_shop_variant.ListShopVariantActivity"
+            android:theme="@style/AppTheme_White"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screen.user.newsdetailv2.NewDetailV2Activity"

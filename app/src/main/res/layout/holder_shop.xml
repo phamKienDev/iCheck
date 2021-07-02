@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
+<vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,26 +7,68 @@
     android:layout_marginTop="@dimen/size_5"
     android:layout_marginBottom="@dimen/size_5">
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/viewBorder"
+        android:layout_marginTop="@dimen/size_5"
+        app:layout_constraintTop_toTopOf="@id/vg_shop_top"
+        app:layout_constraintStart_toStartOf="@id/vg_shop_top"
+        app:layout_constraintEnd_toEndOf="@id/vg_shop_top"
+        app:layout_constraintBottom_toBottomOf="@id/vg_shop_top"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vg_shop_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
         android:layout_marginEnd="@dimen/size_12">
 
+        <LinearLayout
+            android:id="@+id/linearLayoutRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/size_12"
+            android:background="@drawable/bg_rating_shop_variant"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+                android:id="@+id/tv_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_16"
+                android:textStyle="bold"
+                tools:text="4,3" />
+
+            <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_6"
+                android:text="/5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12" />
+        </LinearLayout>
+
         <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
             android:id="@+id/tv_shop_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_64"
-            android:layout_marginTop="@dimen/size_5"
+            android:layout_marginTop="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_14"
             android:ellipsize="end"
             android:maxLines="2"
+            android:layout_marginStart="@dimen/size_10"
             android:textSize="@dimen/font_16"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/linearLayoutRating"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Công ty TNHH Kính Mắt Quang Hưng fsd lkjfd jklafds  jklafsdljk asfdljk; asdf ;klafsd lkjafds ;lka ;fweljk" />
 
@@ -109,9 +151,9 @@
             <LinearLayout
                 android:id="@+id/layoutLocation"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_32"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center|end"
-                android:layout_marginStart="@dimen/size_55"
+                android:layout_marginStart="@dimen/size_30"
                 android:gravity="center"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -120,6 +162,8 @@
                     android:id="@+id/tvChiDuong"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:paddingTop="@dimen/size_6"
+                    android:paddingBottom="@dimen/size_6"
                     android:drawableStart="@drawable/ic_location_item_shop_variant"
                     android:drawablePadding="@dimen/size_8"
                     android:gravity="center_vertical"
@@ -171,33 +215,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_20"
-        android:layout_marginLeft="@dimen/size_20"
-        android:background="@drawable/bg_rating_shop_variant"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
-            android:id="@+id/tv_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_5"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_16"
-            android:textStyle="bold"
-            tools:text="4,3" />
-
-        <vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_6"
-            android:text="/5"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_12" />
-    </LinearLayout>
-</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICFrameLayoutWhite>
+</vn.icheck.android.ichecklibs.view.appbackground.whitebackground.ICConstraintLayoutWhite>

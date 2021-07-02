@@ -11,6 +11,7 @@ import vn.icheck.android.adapters.base.BaseHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableEndText
 import vn.icheck.android.ichecklibs.view.TextBarlowSemiBold
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.ICShopVariantV2
@@ -46,18 +47,19 @@ class ListShopHolder(parent: View) : BaseHolder(ViewHelper.createProductShopVari
 
             if (obj.size > 2)
                 addView(LinearLayout(context).also { layoutMoreShop ->
-                    layoutMoreShop.layoutParams = ViewHelper.createLayoutParams32Dp(SizeHelper.size28, SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
+                    layoutMoreShop.layoutParams = ViewHelper.createLayoutParams32Dp(LinearLayout.LayoutParams.WRAP_CONTENT, SizeHelper.size12, SizeHelper.size10, SizeHelper.size12, SizeHelper.size10)
                     layoutMoreShop.orientation = LinearLayout.VERTICAL
                     layoutMoreShop.gravity = Gravity.CENTER
                     layoutMoreShop.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
                     layoutMoreShop.addView(TextBarlowSemiBold(context).also { text ->
                         text.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                        text.setPadding(0,SizeHelper.size4,0,SizeHelper.size4)
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
                         text.setTextColor(vn.icheck.android.ichecklibs.ColorManager.getPrimaryColor(context))
                         text.gravity = Gravity.CENTER
                         text.setText(R.string.xem_tat_ca_diem_ban)
-                        text.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue_24dp, 0)
+                        text.fillDrawableEndText(R.drawable.ic_arrow_down_blue_24dp)
                     })
 
                     layoutMoreShop.setOnClickListener {

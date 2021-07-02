@@ -15,6 +15,7 @@ import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableColor
 import vn.icheck.android.network.base.SessionManager
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.screen.account.icklogin.IckLoginActivity
@@ -44,7 +45,7 @@ class ListShopVariantActivity : BaseActivityMVVM(), IListShopVariantView {
     private fun setupToolbar() {
         txtTitle.setText(R.string.diem_ban_gan_day)
         imgAction.visibility = View.VISIBLE
-        imgAction.setImageResource(R.drawable.ic_home_blue_v2_24px)
+        imgAction.fillDrawableColor(R.drawable.ic_home_blue_v2_24px)
 
         imgBack.setOnClickListener {
             onBackPressed()
