@@ -21,7 +21,6 @@
         android:layout_height="@dimen/size_40"
         android:layout_marginStart="@dimen/size_12"
         android:layout_marginTop="@dimen/size_14"
-        app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,13 +48,13 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="@dimen/font_16"
+            android:textSize="@dimen/size_16"
             tools:text="Công ty Cổ phần ViviDa" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPageCategory"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_3"
         android:ellipsize="end"
@@ -65,7 +64,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="@dimen/font_14"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@id/linearLayout"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         tools:text="Doanh nghiệp sở hữu" />
@@ -88,7 +87,7 @@
         android:background="@color/gray_ef"
         app:layout_constraintEnd_toEndOf="@id/imgDetail"
         app:layout_constraintStart_toStartOf="@id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
+        app:layout_constraintTop_toBottomOf="@id/tvPageCategory" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -115,6 +114,8 @@
             android:drawablePadding="@dimen/size_2"
             android:fontFamily="@font/barlow_regular"
             android:gravity="center_vertical"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:includeFontPadding="false"
             android:textSize="@dimen/font_14"
             android:textStyle="italic"
