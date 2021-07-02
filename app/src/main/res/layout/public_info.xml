@@ -154,7 +154,8 @@
                     <RadioButton
                         android:id="@id/rbMale"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/size_30"
                         android:background="@drawable/bg_update_male"
                         android:button="@null"
                         android:checked="false"
@@ -174,7 +175,8 @@
                     <RadioButton
                         android:id="@id/rbFemale"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/size_30"
                         android:background="@drawable/bg_update_gender_female"
                         android:button="@null"
                         android:checked="false"
@@ -194,7 +196,8 @@
                     <RadioButton
                         android:id="@+id/rbGay"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_30"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/size_30"
                         android:background="@drawable/bg_update_gender_gay"
                         android:button="@null"
                         android:checked="false"
