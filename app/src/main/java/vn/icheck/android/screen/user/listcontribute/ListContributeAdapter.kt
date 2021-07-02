@@ -259,7 +259,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
                 text = if (obj.upVotes > 0) {
                     context.getString(R.string.dung_d, obj.upVotes)
                 } else {
-                    context.getString(R.string.dung_d)
+                    context.getString(R.string.dung)
                 }
 
 
