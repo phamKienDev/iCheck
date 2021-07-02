@@ -193,7 +193,7 @@ open class FocusableEditText : AppCompatEditText {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_UP && enableRightClick) {
-            if (event.rawX > right - compoundDrawables[2].bounds.width()) {
+            if (event.rawX > right - (compoundDrawables[2]?.bounds?.width() ?: 0)) {
                 if (isInputPassword) {
                     transformationMethod = if (transformationMethod == null) {
                         setCompoundDrawablesWithIntrinsicBounds(leftDrawable, null, drawableEye, null)
