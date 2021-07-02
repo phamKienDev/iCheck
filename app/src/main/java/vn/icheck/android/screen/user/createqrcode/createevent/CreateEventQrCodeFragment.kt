@@ -65,13 +65,11 @@ class CreateEventQrCodeFragment : BaseFragmentMVVM(), ICreateEventQrCodeView {
     private fun setupView() {
         btnCreate.background = ViewHelper.btnPrimaryCorners4(requireContext())
 
-        ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext()).apply {
-            edtStartDate.background=this
-            edtEndDate.background=this
-            edtEvent.background=this
-            edtAddress.background=this
-            edtEventLink.background=this
-        }
+        edtStartDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtEndDate.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtEvent.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtAddress.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
+        edtEventLink.background = ViewHelper.bgWhiteStrokeLineColor0_5Corners4(requireContext())
 
         vn.icheck.android.ichecklibs.ColorManager.getDisableTextColor(requireContext()).apply {
             edtStartDate.setHintTextColor(this)
@@ -97,9 +95,11 @@ class CreateEventQrCodeFragment : BaseFragmentMVVM(), ICreateEventQrCodeView {
         }
 
         btnCreate.setOnClickListener {
-            presenter.validData(edtEvent.text.toString().trim(), edtAddress.text.toString().trim(),
-                    edtEventLink.text.toString().trim(), edtStartDate.text.toString().trim(),
-                    edtEndDate.text.toString().trim())
+            presenter.validData(
+                edtEvent.text.toString().trim(), edtAddress.text.toString().trim(),
+                edtEventLink.text.toString().trim(), edtStartDate.text.toString().trim(),
+                edtEndDate.text.toString().trim()
+            )
         }
     }
 
