@@ -1,7 +1,6 @@
 package vn.icheck.android.component.ads.product
 
 import android.graphics.Paint
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,14 +20,12 @@ import vn.icheck.android.databinding.ItemAdsProductSlideBinding
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.network.base.SettingManager
 import vn.icheck.android.network.models.ICAdsData
 import vn.icheck.android.screen.firebase.FirebaseDynamicLinksActivity
 import vn.icheck.android.ui.RoundedCornersTransformation
 import vn.icheck.android.util.ick.beGone
-import vn.icheck.android.util.ick.beInvisible
 import vn.icheck.android.util.ick.beVisible
 import vn.icheck.android.util.kotlin.WidgetUtils
 import vn.icheck.android.util.text.ReviewPointText
@@ -359,10 +356,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
 
 
             if (obj.owner?.verified == true) {
-                itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
-                Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
-                }, 100)
+                itemView.tvName.setDrawableNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
             } else {
                 binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {
                     itemView.context.getString(R.string.dang_cap_nhat)
@@ -558,13 +552,7 @@ class AdsProductAdapter(var fullScreen: Boolean = false) :
 
 
             if (obj.owner?.verified == true) {
-                itemView.tvName.setDrawbleNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
-                Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(
-                        obj.owner?.name,
-                        R.drawable.ic_verified_16px
-                    )
-                }, 100)
+                itemView.tvName.setDrawableNextEndText(obj.owner?.name, R.drawable.ic_verified_16px)
             } else {
                 binding.tvName.text = if (obj.owner?.name.isNullOrEmpty()) {
                     itemView.context.getString(R.string.dang_cap_nhat)

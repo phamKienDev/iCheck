@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.listcontribute
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,6 @@ import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.TextHelper
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.feature.product.ProductInteractor
 import vn.icheck.android.network.models.ICContribute
@@ -186,10 +184,7 @@ class ListContributeAdapter(val listener: IRecyclerViewCallback, val fragmentMan
 
             itemView.tvName.run {
                 if (obj.user?.kycStatus == 2) {
-                    setDrawbleNextEndText(obj.user?.getName, R.drawable.ic_verified_user_16dp)
-                    Handler().postDelayed({
-                      setDrawbleNextEndText(text?.toString(), R.drawable.ic_verified_user_16dp)
-                    }, 100)
+                    setDrawableNextEndText(obj.user?.getName, R.drawable.ic_verified_user_16dp)
                 } else {
                     text = obj.user?.getName
                 }

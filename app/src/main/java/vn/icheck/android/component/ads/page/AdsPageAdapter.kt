@@ -1,6 +1,5 @@
 package vn.icheck.android.component.ads.page
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.ICNewApiListener
@@ -327,10 +325,7 @@ class AdsPageAdapter(val fullScreen:Boolean=false) : RecyclerView.Adapter<Recycl
 
             WidgetUtils.loadImageUrl(binding.imgAvatar, obj.avatar?.content, R.drawable.ic_business_v2,R.drawable.ic_business_v2)
             if (obj.isVerify == true) {
-                binding.tvName.setDrawbleNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
-                Handler().postDelayed({
-                    binding.tvName.setDrawbleNextEndText(binding.tvName.text.toString(), R.drawable.ic_verified_16px)
-                }, 100)
+                binding.tvName.setDrawableNextEndText(obj.name ?: "", R.drawable.ic_verified_16px)
             } else {
                 binding.tvName.text = obj.name
             }
