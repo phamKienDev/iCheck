@@ -52,38 +52,44 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_name_product"
         tools:text="8930123456789" />
 
-    <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
-        android:id="@+id/tv_no_review"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayoutRating"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_12"
-        android:layout_marginLeft="@dimen/size_12"
-        android:layout_marginTop="@dimen/size_4"
-        android:fontFamily="@font/barlow_semi_bold_italic"
-        android:text="@string/chua_co_danh_gia"
-        android:textSize="@dimen/font_12"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/divider38"
         app:layout_constraintStart_toEndOf="@+id/img_product"
         app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
-        app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible" />
+        android:orientation="horizontal">
 
-    <include
-        android:id="@+id/item_review_root"
-        layout="@layout/item_review_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginLeft="@dimen/size_8"
-        android:layout_marginTop="@dimen/size_4"
-        android:layout_marginEnd="@dimen/size_12"
-        android:layout_marginRight="@dimen/size_12"
-        app:layout_constraintBottom_toTopOf="@+id/divider38"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_no_review"
-        app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
-        app:layout_constraintVertical_bias="0.0" />
+        <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
+            android:id="@+id/tv_no_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginLeft="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_4"
+            android:fontFamily="@font/barlow_semi_bold_italic"
+            android:text="@string/chua_co_danh_gia"
+            android:textSize="@dimen/font_12"
+            android:visibility="gone"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/item_review_root"
+            layout="@layout/item_review_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:layout_marginLeft="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_12"
+            android:layout_marginRight="@dimen/size_12"
+            app:layout_constraintBottom_toTopOf="@+id/divider38"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_no_review"
+            app:layout_constraintTop_toBottomOf="@+id/tv_barcode"
+            app:layout_constraintVertical_bias="0.0" />
+    </LinearLayout>
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
         android:id="@+id/divider38"
@@ -93,18 +99,18 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_product" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutRating" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/btn_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_14"
         android:layout_marginEnd="@dimen/size_14"
         android:layout_marginRight="@dimen/size_14"
         android:button="@drawable/checkbox_like"
+        app:layout_constraintBottom_toBottomOf="@id/tv_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider38" />
+        app:layout_constraintTop_toTopOf="@id/tv_price" />
 
     <vn.icheck.android.ichecklibs.view.disable_text.TextDisable
         android:id="@+id/tv_price"
