@@ -271,4 +271,12 @@ class IckLoginActivity : BaseActivityMVVM() {
         binding.btnLogin.beVisible()
         binding.btnRegister.beVisible()
     }
+
+    override fun onBackPressed() {
+        if (findNavController(R.id.nav_host_fragment_login).currentDestination?.id == R.id.ickLoginOtpFragment) {
+            chooseLogin()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
