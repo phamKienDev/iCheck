@@ -20,7 +20,22 @@
             android:paddingBottom="8.6dp"
             android:src="@drawable/ic_cancel_light_blue_24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/barrier2"
+            app:layout_constraintBottom_toBottomOf="@id/barrier3"/>
+
+        <vn.icheck.android.ichecklibs.view.primary.ImageButtonPrimary
+            android:id="@+id/imgHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_12"
+            android:paddingTop="@dimen/size_12"
+            android:paddingEnd="@dimen/size_12"
+            android:paddingBottom="8.6dp"
+            android:src="@drawable/ic_cancel_light_blue_24dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barrier2"
+            app:layout_constraintBottom_toBottomOf="@id/barrier3"/>
 
         <vn.icheck.android.ichecklibs.view.primary.TextHeaderPrimary
             android:id="@+id/tvTitle"
@@ -28,10 +43,23 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/lien_he_doanh_nghiep"
-            app:layout_constraintBottom_toBottomOf="@id/imgCancel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imgCancel" />
+            app:layout_constraintEnd_toStartOf="@id/imgHolder"
+            app:layout_constraintStart_toEndOf="@id/imgCancel"
+            app:layout_constraintTop_toTopOf="@id/barrier2"
+            app:layout_constraintBottom_toBottomOf="@id/barrier3"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="imgCancel,tvTitle,imgHolder" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="imgCancel,tvTitle,imgHolder" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <vn.icheck.android.ichecklibs.view.line_color.ICViewLineColor
@@ -51,8 +79,9 @@
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_20"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_20"
+            android:layout_weight="4"
             android:drawableStart="@drawable/ic_contact_22dp"
             android:drawablePadding="@dimen/size_6"
             android:gravity="center|start"
@@ -63,8 +92,9 @@
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvPhone"
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_20"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_20"
+            android:layout_weight="6"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
             android:textSize="@dimen/font_14"
@@ -91,8 +121,9 @@
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_20"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_20"
+            android:layout_weight="4"
             android:drawableStart="@drawable/ic_contact_mail_22dp"
             android:drawablePadding="@dimen/size_6"
             android:gravity="center|start"
@@ -103,8 +134,9 @@
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/tvEmail"
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_20"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_20"
+            android:layout_weight="6"
             android:gravity="center|end"
             android:lineSpacingExtra="@dimen/font_6"
             android:textSize="@dimen/font_14"
@@ -130,9 +162,10 @@
         android:paddingBottom="@dimen/size_24">
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowMedium
-            android:layout_width="0dp"
-            android:layout_height="@dimen/size_20"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_20"
+            android:layout_weight="4"
             android:drawableStart="@drawable/ic_contact_chat_20_px"
             android:drawablePadding="@dimen/size_6"
             android:gravity="center|start"
@@ -142,8 +175,10 @@
 
         <vn.icheck.android.ichecklibs.view.primary.TextBarlowSemiBoldPrimary
             android:id="@+id/btnChat"
-            android:layout_width="@dimen/size_100"
-            android:layout_height="@dimen/size_28"
+            android:layout_width="wrap_content"
+            android:minWidth="@dimen/size_100"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/size_28"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/font_6"
             android:text="@string/nhan_tin"
