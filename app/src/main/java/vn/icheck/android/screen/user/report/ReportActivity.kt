@@ -115,8 +115,6 @@ class ReportActivity : BaseActivityMVVM() {
                                 ColorManager.getNormalTextColor(this)))
                         radioButton.includeFontPadding = false
                         radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                        radioButton.maxLines = 1
-                        radioButton.ellipsize = TextUtils.TruncateAt.END
                         radioButton.gravity = Gravity.CENTER_VERTICAL
                         radioButton.buttonDrawable = null
                         radioButton.compoundDrawablePadding = SizeHelper.size8

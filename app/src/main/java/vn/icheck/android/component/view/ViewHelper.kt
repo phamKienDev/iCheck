@@ -712,6 +712,8 @@ object ViewHelper {
             tvTitle.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
             tvTitle.setTextColor(ColorManager.getSecondaryColor(context))
             tvTitle.includeFontPadding = false
+            tvTitle.isSingleLine=true
+            tvTitle.ellipsize = TextUtils.TruncateAt.END
             tvTitle.isSingleLine = true
             tvTitle.setPadding(0, 0, SizeHelper.size12, 0)
             layoutTitle.addView(tvTitle)
@@ -2687,8 +2689,9 @@ object ViewHelper {
             val secondaryColor = ColorManager.getSecondaryColor(context)
 
             it.addView(AppCompatTextView(context).also { tvName ->
-                tvName.layoutParams =
-                        createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                tvName.layoutParams = createLayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+                    setMargins(0,0,SizeHelper.size8,0)
+                }
                 tvName.setTextColor(secondaryColor)
                 tvName.typeface = Typeface.createFromAsset(context.assets, "font/barlow_semi_bold.ttf")
                 tvName.isSingleLine = true

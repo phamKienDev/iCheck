@@ -60,9 +60,10 @@ class ProductDetailShopVariantComponent : LinearLayout {
 
     @SuppressLint("SetTextI18n")
     fun bind(productRow: ICShopVariantV2) {
-        vg_shop_top.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
+        viewBorder.background = vn.icheck.android.ichecklibs.ViewHelper.bgTransparentStrokeLineColor0_5Corners4(context)
         layoutLocation.background = vn.icheck.android.ichecklibs.ViewHelper.bgWhiteStrokePrimary1Corners4(context)
         tvChiDuong.fillDrawableStartText(R.drawable.ic_location_item_shop_variant)
+        viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
 
         tv_shop_name.text = productRow.name
 
@@ -155,7 +156,6 @@ class ProductDetailShopVariantComponent : LinearLayout {
             tv_price?.beInvisible()
         }
 
-        viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(context)
 
         vg_shop_top.setOnClickListener {
 

@@ -10,31 +10,18 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.holder_list_shop_variant.view.*
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutAddToCart
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.layoutLocation2
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.recyclerView
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tvSubAddToCart
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_distance
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_price
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_sale_price
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_score
-import kotlinx.android.synthetic.main.holder_list_shop_variant.view.tv_shop_name
 import vn.icheck.android.R
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
+import vn.icheck.android.ichecklibs.ViewHelper.fillDrawableStartText
 import vn.icheck.android.ichecklibs.util.beGone
-import vn.icheck.android.ichecklibs.util.beInvisible
-import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.ichecklibs.util.beInvisible
 import vn.icheck.android.ichecklibs.util.beVisible
 import vn.icheck.android.network.models.ICShopVariantV2
 import vn.icheck.android.network.models.detail_stamp_v6_1.ICServiceShopVariant
 import vn.icheck.android.screen.user.detail_stamp_v6_1.home.adapter.ServiceShopVariantAdapter
 import vn.icheck.android.screen.user.list_shop_variant.view.IListShopVariantView
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.util.text.ICheckTextUtils
 
 class ListShopVariantAdapter constructor(val view: IListShopVariantView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -92,10 +79,13 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
     inner class ViewHolder constructor(val view: View) : RecyclerView.ViewHolder(view) {
         @SuppressLint("SetTextI18n")
         fun bind(item: ICShopVariantV2) {
+            itemView.viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
+            itemView.tvChiDuong.fillDrawableStartText(R.drawable.ic_location_item_shop_variant)
+
             if (listData.isNotEmpty()) {
                 if (adapterPosition == 0) {
                     itemView.tvCount.visibility = View.VISIBLE
-                    itemView.tvCount.setText(R.string.d_diem_ban_gan_day, listData.size)
+                    itemView.tvCount.setText(itemView.context.getString(R.string.d_diem_ban_gan_day, listData.size))
                 } else {
                     itemView.tvCount.visibility = View.GONE
                 }
@@ -106,7 +96,6 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
             if (item.distance != null) {
                 TextHelper.convertMtoKm(item.distance!!, itemView.tv_distance, itemView.context.getString(R.string.khoang_cach))
             }
-//            itemView.tv_distance.text = "Khoảng cách: " + String.format("%.0f%s", icShopVariant.distance.value, icShopVariant.distance.unit)
 
             itemView.tv_score.text = String.format("%.1f", item.rating).replace(",", ".")
 
@@ -192,7 +181,6 @@ class ListShopVariantAdapter constructor(val view: IListShopVariantView) : Recyc
                 itemView.tv_price?.beInvisible()
             }
 
-            itemView.viewLocation2.background = vn.icheck.android.ichecklibs.ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
         }
 
         private fun initAdapterService() {
