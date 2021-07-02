@@ -338,7 +338,11 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     private fun handleNewUrl(view: WebView?, uri: Uri) {
-        if (uri.scheme.equals("http") || uri.scheme.equals("https")) {
+        if (uri.scheme?.startsWith("http") == true) {
+            if (uri.toString().contains("play.google.com/store")) {
+                openChrome(uri.toString())
+            }
+
             view?.loadUrl(uri.toString())
         } else if (uri.toString().contains("icheck://")) {
             FirebaseDynamicLinksActivity.startDestinationUrl(this@WebViewActivity, uri.toString().replace("unsafe:", ""))
