@@ -2,7 +2,6 @@ package vn.icheck.android.screen.user.ads_more
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.ExoPlayerManager
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.loyalty.base.BaseViewHolder
 import vn.icheck.android.loyalty.base.ICKViewType
@@ -160,10 +158,7 @@ class AdsMoreAdapter : RecyclerViewCustomAdapter<ICAdsData>() {
 
 
             if (obj.owner?.verified == true) {
-                itemView.tvName.setDrawbleNextEndText(obj.owner?.name ?: "",R.drawable.ic_verified_16px)
-                Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(obj.owner?.name ?: "",R.drawable.ic_verified_16px)
-                },100)
+                itemView.tvName.setDrawableNextEndText(obj.owner?.name ?: "",R.drawable.ic_verified_16px)
             } else {
                 itemView.tvName.text = obj.owner?.name ?: ""
             }

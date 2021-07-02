@@ -1,6 +1,5 @@
 package vn.icheck.android.screen.user.wall.manage_page.my_follow_page
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,6 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.helper.TextHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.network.models.ICPage
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.util.ick.beGone
@@ -58,10 +56,7 @@ class MyFollowPageAdapter(val typeHome: Boolean, callback: IRecyclerViewCallback
             if (!obj.isVerify) {
                 itemView.tvName.text = obj.name
             } else {
-                itemView.tvName.setDrawbleNextEndText(obj.name, R.drawable.ic_verified_16px)
-                Handler().postDelayed({
-                    itemView.tvName.setDrawbleNextEndText(itemView.tvName.text.toString(), R.drawable.ic_verified_16px)
-                }, 100)
+                itemView.tvName.setDrawableNextEndText(obj.name, R.drawable.ic_verified_16px)
             }
 
 

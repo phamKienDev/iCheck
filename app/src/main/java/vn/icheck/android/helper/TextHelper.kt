@@ -370,15 +370,4 @@ object TextHelper {
         spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         this.text = spannableString
     }
-
-    fun TextNormalMiddleMultiline.setDrawbleNextEndText(text: String?, icon: Int) {
-        val drawable = ContextCompat.getDrawable(this.context, icon)
-        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-
-        val spannableString = SpannableString("$text  ") // cộng thêm khoảng trắng
-        val imageSpan = ImageSpan(drawable!!, ImageSpan.ALIGN_BASELINE)
-
-        spannableString.setSpan(imageSpan, (text?:"").length + 1, (text?:"").length + 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-        this.text = spannableString
-    }
 }

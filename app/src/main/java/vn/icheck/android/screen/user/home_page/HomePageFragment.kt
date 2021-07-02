@@ -625,7 +625,9 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
 //            }
             ICMessageEvent.Type.ON_UPDATE_AUTO_PLAY_VIDEO -> {
                 if (isOpen) {
-                    ExoPlayerManager.checkPlayVideoBase(recyclerView, layoutToolbarAlpha.height)
+                    layoutToolbarAlpha?.let {
+                        ExoPlayerManager.checkPlayVideoBase(recyclerView, it.height)
+                    }
                 }
             }
             ICMessageEvent.Type.UPDATE_REMINDER -> {
