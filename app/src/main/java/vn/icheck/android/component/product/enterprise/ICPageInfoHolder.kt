@@ -93,9 +93,9 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.recyclerView.apply {
             if (list.isNullOrEmpty()) {
-                beVisible()
-            } else {
                 beGone()
+            } else {
+                beVisible()
                 layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = SocialNetworkAdapter("Linear").apply {
                     setData(list)
@@ -177,9 +177,9 @@ class ICPageInfoHolder(parent: ViewGroup, val binding: ItemPageInfoBinding = Ite
 
         binding.recyclerView.apply {
             if (list.isNullOrEmpty()) {
-                beVisible()
-            } else {
                 beGone()
+            } else {
+                beVisible()
                 layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = SocialNetworkAdapter("Linear").apply {
                     setData(list)

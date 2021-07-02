@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,8 +17,6 @@ import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.View
 import android.webkit.*
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
@@ -201,52 +198,6 @@ class WebViewActivity : BaseActivityMVVM() {
             setGeolocationEnabled(true)
         }
 
-        if (url.startsWith("http") || url.startsWith("https")) {
-            if (intent?.getBooleanExtra(Constant.DATA_4, false) == true) {
-                val header = hashMapOf<String, String>()
-                val urlBuilder = Uri.parse(url).buildUpon()
-
-                header["source"] = "icheck"
-                urlBuilder.appendQueryParameter("source", "icheck")
-
-                SessionManager.session.user?.let { user ->
-                    header["userId"] = user.id.toString()
-                    urlBuilder.appendQueryParameter("userId", user.id.toString())
-
-                    header["icheckId"] = "i-${user.id}"
-                    urlBuilder.appendQueryParameter("icheckId", "i-${user.id}")
-
-                    if (!user.name.isNullOrEmpty()) {
-                        header["name"] = user.name.toString()
-                        urlBuilder.appendQueryParameter("name", user.name.toString())
-                    }
-
-                    if (!user.phone.isNullOrEmpty()) {
-                        header["phone"] = user.phone.toString()
-                        urlBuilder.appendQueryParameter("phone", user.phone.toString())
-                    }
-
-                    if (!user.email.isNullOrEmpty()) {
-                        header["email"] = user.email.toString()
-                        urlBuilder.appendQueryParameter("email", user.email.toString())
-                    }
-                }
-                if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 0.0) {
-                    header["lat"] = APIConstants.LATITUDE.toString()
-                    urlBuilder.appendQueryParameter("lat", APIConstants.LATITUDE.toString())
-                    header["lon"] = APIConstants.LONGITUDE.toString()
-                    urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
-                }
-
-                binding.webView.loadUrl(urlBuilder.build().toString(), header)
-            } else {
-                binding.webView.loadUrl(url)
-            }
-        } else {
-            binding.webView.settings.defaultFontSize = 14f.spToPx().toInt()
-            binding.webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
-        }
-
         binding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -301,7 +252,6 @@ class WebViewActivity : BaseActivityMVVM() {
 
                     override fun onAgree() {
                         callback?.invoke(origin, true, true)
-
                     }
                 })
             }
@@ -318,6 +268,52 @@ class WebViewActivity : BaseActivityMVVM() {
                 }
                 return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
             }
+        }
+
+        if (url.startsWith("http") || url.startsWith("https")) {
+            if (intent?.getBooleanExtra(Constant.DATA_4, false) == true) {
+                val header = hashMapOf<String, String>()
+                val urlBuilder = Uri.parse(url).buildUpon()
+
+                header["source"] = "icheck"
+                urlBuilder.appendQueryParameter("source", "icheck")
+
+                SessionManager.session.user?.let { user ->
+                    header["userId"] = user.id.toString()
+                    urlBuilder.appendQueryParameter("userId", user.id.toString())
+
+                    header["icheckId"] = "i-${user.id}"
+                    urlBuilder.appendQueryParameter("icheckId", "i-${user.id}")
+
+                    if (!user.name.isNullOrEmpty()) {
+                        header["name"] = user.name.toString()
+                        urlBuilder.appendQueryParameter("name", user.name.toString())
+                    }
+
+                    if (!user.phone.isNullOrEmpty()) {
+                        header["phone"] = user.phone.toString()
+                        urlBuilder.appendQueryParameter("phone", user.phone.toString())
+                    }
+
+                    if (!user.email.isNullOrEmpty()) {
+                        header["email"] = user.email.toString()
+                        urlBuilder.appendQueryParameter("email", user.email.toString())
+                    }
+                }
+                if (APIConstants.LATITUDE != 0.0 && APIConstants.LONGITUDE != 0.0) {
+                    header["lat"] = APIConstants.LATITUDE.toString()
+                    urlBuilder.appendQueryParameter("lat", APIConstants.LATITUDE.toString())
+                    header["lon"] = APIConstants.LONGITUDE.toString()
+                    urlBuilder.appendQueryParameter("lon", APIConstants.LONGITUDE.toString())
+                }
+
+                binding.webView.loadUrl(urlBuilder.build().toString(), header)
+            } else {
+                binding.webView.loadUrl(url)
+            }
+        } else {
+            binding.webView.settings.defaultFontSize = 14
+            binding.webView.loadData(Constant.getHtmlData(url), "text/html; charset=utf-8", "UTF-8")
         }
     }
 
@@ -338,7 +334,17 @@ class WebViewActivity : BaseActivityMVVM() {
     }
 
     private fun handleNewUrl(view: WebView?, uri: Uri) {
-        if (uri.scheme.equals("http") || uri.scheme.equals("https")) {
+        if (uri.scheme?.startsWith("http") == true) {
+            if (uri.host?.contains("play.app.goo.gl") == true) {
+                binding.webView.goBack()
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
+                return
+            }
+
+            if (uri.toString().contains("play.google.com/store")) {
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
+            }
+
             view?.loadUrl(uri.toString())
         } else if (uri.toString().contains("icheck://")) {
             FirebaseDynamicLinksActivity.startDestinationUrl(this@WebViewActivity, uri.toString().replace("unsafe:", ""))
