@@ -1,7 +1,6 @@
 package vn.icheck.android.component.infomation_contribution
 
 import android.os.Build
-import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -21,7 +20,6 @@ import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.TextHelper.setDrawbleNextEndText
 import vn.icheck.android.ichecklibs.MiddleMultilineTextView
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.network.base.*
@@ -103,10 +101,7 @@ class ContributionHolder(parent: ViewGroup) : BaseViewHolder<ContributrionModel>
             } else {
                 WidgetUtils.loadImageUrl(imgAvatarUser, obj.data!!.contribution?.user?.avatar, R.drawable.ic_avatar_default_84dp, R.drawable.ic_avatar_default_84dp)
                 if (obj.data!!.contribution?.user?.kycStatus == 2) {
-                    tvNameUser.setDrawbleNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
-                    Handler().postDelayed({
-                        tvNameUser.setDrawbleNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
-                    }, 100)
+                    tvNameUser.setDrawableNextEndText(obj.data!!.contribution?.user?.getName, R.drawable.ic_verified_user_16dp)
                 } else {
                     tvNameUser.text = obj.data!!.contribution?.user?.getName
                 }
