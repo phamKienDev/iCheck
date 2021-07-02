@@ -7,12 +7,15 @@
 
     <vn.icheck.android.ichecklibs.view.secondary.TextBarlowSemiBoldSecondary
         android:id="@id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginHorizontal="@dimen/size_12"
         android:layout_marginTop="@dimen/size_12"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="@string/thuong_mai_dien_tu"
         android:textSize="@dimen/font_18"
+        app:layout_constraintEnd_toStartOf="@id/tvViewMore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -12,9 +12,9 @@
         android:layout_width="@dimen/size_40"
         android:layout_height="@dimen/size_40"
         android:src="@drawable/ic_business_v2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layoutBottom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/tvName" />
 
     <vn.icheck.android.ichecklibs.view.normal_text.TextNormalBarlowSemiBold
         android:id="@id/tvName"
@@ -26,16 +26,19 @@
         android:textSize="@dimen/font_14"
         app:layout_constraintEnd_toStartOf="@id/imgImage"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toTopOf="@id/imgAvatar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Tiki.vn" />
 
     <LinearLayout
+        android:id="@id/layoutBottom"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_2"
         android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tvName"
-        app:layout_constraintStart_toStartOf="@id/tvName">
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName">
 
         <vn.icheck.android.ichecklibs.view.second_text.TextSecondBarlowRegular
             android:id="@id/tvOldPrice"
