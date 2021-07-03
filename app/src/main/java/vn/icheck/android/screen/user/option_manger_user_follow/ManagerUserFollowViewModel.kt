@@ -17,7 +17,6 @@ class ManagerUserFollowViewModel : ViewModel() {
     private var page = 0
 
     val listData = MutableLiveData<ICListResponse<ICUserFollowWall>>()
-    val addFriend = MutableLiveData<Boolean>()
     val isLoadMoreData = MutableLiveData<Boolean>()
     val errorData = MutableLiveData<Int>()
     val errorPutData = MutableLiveData<Int>()
@@ -62,7 +61,7 @@ class ManagerUserFollowViewModel : ViewModel() {
         })
     }
 
-    fun addFriend(id: Long?) {
+    fun addFriend(id: Long?,status:Int?) {
         if (NetworkHelper.isNotConnected(ICheckApplication.getInstance())) {
             errorPutData.postValue(Constant.ERROR_INTERNET)
             return
@@ -75,14 +74,9 @@ class ManagerUserFollowViewModel : ViewModel() {
 
         statusCode.postValue(ICMessageEvent.Type.ON_SHOW_LOADING)
 
-        interactor.putAddFriend(id, null, object : ICNewApiListener<ICResponse<Boolean>> {
+        interactor.putAddFriend(id, status, object : ICNewApiListener<ICResponse<Boolean>> {
             override fun onSuccess(obj: ICResponse<Boolean>) {
                 statusCode.postValue(ICMessageEvent.Type.ON_CLOSE_LOADING)
-                if (obj.statusCode == "200") {
-                    addFriend.postValue(true)
-                } else {
-                    errorPutData.postValue(Constant.ERROR_SERVER)
-                }
             }
 
             override fun onError(error: ICResponseCode?) {

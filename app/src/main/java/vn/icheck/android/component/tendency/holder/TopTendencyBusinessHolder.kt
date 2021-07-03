@@ -14,12 +14,18 @@ import vn.icheck.android.base.holder.BaseViewHolder
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.helper.RelationshipHelper
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.helper.SizeHelper
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.screen.user.page_details.PageDetailActivity
 import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.base.ICNewApiListener
+import vn.icheck.android.network.base.ICResponse
+import vn.icheck.android.network.base.ICResponseCode
+import vn.icheck.android.network.base.SessionManager
+import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.util.kotlin.ActivityUtils
+import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
 
 class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>(ViewHelper.createItemBusinessTopTendency(parent.context)) {
@@ -115,13 +121,33 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
         }
     }
 
-    private fun followPage(tvFollow: AppCompatTextView, pageID: Long, isFollow: Boolean, obj: ICPageTrend) {
-        RelationshipHelper.postFollowPage(pageID, object : RelationshipHelper.ClickFollowPage {
-            override fun onClickFollowPage() {
-                obj.isFollow = !isFollow
-                checkFollow(tvFollow, !isFollow)
+    private fun followPage(tvFollow: AppCompatTextView, page: ICPageTrend) {
+        ICheckApplication.currentActivity()?.let { activity ->
+            if (!SessionManager.isLoggedAnyType) {
+                DialogHelper.showLoginPopup(activity)
+                return
             }
-        })
+
+            if (NetworkHelper.isNotConnected(activity)) {
+                ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                return
+            }
+
+            DialogHelper.showLoading(activity)
+
+            PageRepository().followPage(page.id, object : ICNewApiListener<ICResponse<Boolean>> {
+                override fun onSuccess(obj: ICResponse<Boolean>) {
+                    DialogHelper.closeLoading(activity)
+                    page.isFollow = !page.isFollow
+                    checkFollow(tvFollow, page.isFollow)
+                }
+
+                override fun onError(error: ICResponseCode?) {
+                    DialogHelper.closeLoading(activity)
+                    ToastUtils.showLongError(activity, error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                }
+            })
+        }
     }
 
     fun initListener(tvFollow: AppCompatTextView, obj: ICPageTrend) {
@@ -134,12 +160,12 @@ class TopTendencyBusinessHolder(parent: ViewGroup) : BaseViewHolder<ICPageTrend>
                             override fun onDisagree() {}
 
                             override fun onAgree() {
-                                followPage(tvFollow, obj.id, obj.isFollow, obj)
+                                followPage(tvFollow, obj)
                             }
                         })
             }
         } else {
-            followPage(tvFollow, obj.id, obj.isFollow, obj)
+            followPage(tvFollow,obj)
         }
     }
 }

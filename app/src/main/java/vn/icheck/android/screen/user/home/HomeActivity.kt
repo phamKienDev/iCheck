@@ -50,7 +50,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.adapter.ViewPagerAdapter
 import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
@@ -1054,7 +1054,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
             } else {
                 ickLoginViewModel.logoutDevice("unknown")
             }
-            RelationshipManager.removeListener()
+            RelationshipHelper.removeListener()
 
             ickLoginViewModel.logout()
             //                        ickLoginViewModel.loginAnonymous()
@@ -1123,7 +1123,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 
                 ChatSdk.shareIntent(null, null, null, null, false)
 
-                RelationshipManager.removeListener()
+                RelationshipHelper.removeListener()
                 checkNewTheme()
                 clearFilter()
 
@@ -1141,8 +1141,8 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 //                    .placeholder(R.drawable.ic_avatar_default_84px)
 //                    .error(R.drawable.ic_avatar_default_84px)
 //                    .into(imgAvatar)
-                RelationshipManager.removeListener()
-                RelationshipManager.refreshToken(true)
+                RelationshipHelper.removeListener()
+                RelationshipHelper.refreshToken(true)
                 ChatSdk.shareIntent(
                     SessionManager.session.firebaseToken,
                     SessionManager.session.user?.id,
@@ -1183,7 +1183,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
                 setupTheme()
             }
             ICMessageEvent.Type.UPDATE_CONVERSATION -> {
-                val unread = RelationshipManager.unreadNotify
+                val unread = RelationshipHelper.unreadNotify
                 var text = ""
                 text = if (unread > 9) {
                     "9+"
@@ -1268,7 +1268,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
 
     override fun onStart() {
         super.onStart()
-        RelationshipManager.refreshToken()
+        RelationshipHelper.refreshToken()
 //        FirebaseAuth.getInstance().signInWithCustomToken(SessionManager.session.firebaseToken.toString())
 //                .addOnSuccessListener {
 //                    FirebaseDatabase.getInstance().goOnline()
@@ -1281,7 +1281,7 @@ class HomeActivity : BaseActivityMVVM(), IHomeView, IScanHistoryView, View.OnCli
         stopLocationUpdates()
         isOpen = false
         viewModelStore.clear()
-        RelationshipManager.removeListener()
+        RelationshipHelper.removeListener()
         INSTANCE = null
     }
 }

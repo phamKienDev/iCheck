@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.animation.AnimationUtils
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -26,14 +25,12 @@ import vn.icheck.android.constant.Constant
 import vn.icheck.android.constant.ICK_TOKEN
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.helper.FileHelper
-import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.loyalty.helper.StatusBarHelper
 import vn.icheck.android.network.base.*
 import vn.icheck.android.network.models.*
 import vn.icheck.android.network.util.DeviceUtils
 import vn.icheck.android.screen.user.welcome.WelcomeActivity
-import vn.icheck.android.util.ick.logDebug
 import vn.icheck.android.util.ick.openAppInGooglePlay
 import java.io.File
 
@@ -122,7 +119,6 @@ class CheckThemeActivity : BaseActivityMVVM() {
             var domainVerifyRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var appInitRes: ICResponse<ICListResponse<ICClientSetting>>? = null
             var productContactRes: ICResponse<ICListResponse<ICClientSetting>>? = null
-            var relationshipInformationRes: ICResponse<ICRelationshipsInformation>? = null
             var configUpdateAppRes: ICResponse<ICConfigUpdateApp>? = null
 
             listOf(
@@ -153,12 +149,6 @@ class CheckThemeActivity : BaseActivityMVVM() {
                     lifecycleScope.async {
                         try {
                             productContactRes = withTimeoutOrNull(5000L) { viewModel.getClientSetting("product-contact") }
-                        } catch (e: Exception) {
-                        }
-                    },
-                    lifecycleScope.async {
-                        try {
-                            relationshipInformationRes = withTimeoutOrNull(5000L) { viewModel.getRelationshipInformation() }
                         } catch (e: Exception) {
                         }
                     },
@@ -199,11 +189,6 @@ class CheckThemeActivity : BaseActivityMVVM() {
             }
             productContactRes?.data?.rows?.let {
                 SettingManager.productContact = it
-            }
-            relationshipInformationRes?.let {
-                if (it.data != null) {
-                    RelationshipHelper.saveData(it.data!!)
-                }
             }
             SettingManager.configUpdateApp = configUpdateAppRes?.data
 

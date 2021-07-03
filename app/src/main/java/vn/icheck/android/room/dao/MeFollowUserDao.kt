@@ -1,5 +1,6 @@
 package vn.icheck.android.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -18,7 +19,7 @@ interface MeFollowUserDao {
     fun getUserByID(id: Long): ICMeFollowUser?
 
     @Query("SELECT * FROM me_follow_user")
-    fun getAll(): MutableList<ICMeFollowUser>
+    fun getAll(): LiveData<MutableList<ICMeFollowUser>>
 
     @Query("DELETE FROM me_follow_user")
     fun deleteAll()

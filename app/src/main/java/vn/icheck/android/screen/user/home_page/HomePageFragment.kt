@@ -37,7 +37,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.fragment.BaseFragmentMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.view.ViewHelper
@@ -755,11 +755,11 @@ class HomePageFragment : BaseFragmentMVVM(), IBannerV2Listener, IMessageListener
         }
 
 //        viewModel.getAds(true)
-        tvNotificationCount.visibility = if (RelationshipManager.unreadNotify > 0) {
-            if (RelationshipManager.unreadNotify > 9) {
+        tvNotificationCount.visibility = if (RelationshipHelper.unreadNotify > 0) {
+            if (RelationshipHelper.unreadNotify > 9) {
                 tvNotificationCount simpleText "9+"
             } else {
-                tvNotificationCount simpleText RelationshipManager.unreadNotify.toString()
+                tvNotificationCount simpleText RelationshipHelper.unreadNotify.toString()
             }
             View.VISIBLE
         } else {

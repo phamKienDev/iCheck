@@ -441,7 +441,6 @@ open class PageDetailViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICRelatedPage>>) {
                 finishRequest(true)
                 if (!obj.data?.rows.isNullOrEmpty()) {
-                    RelationshipHelper.isFollowPage(obj.data?.rows!!)
                     layout.data = obj.data?.rows
                 }
                 onUpdateData.value = layout

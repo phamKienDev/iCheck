@@ -12,21 +12,15 @@ import kotlinx.android.synthetic.main.item_message_campaign.view.*
 import kotlinx.android.synthetic.main.item_user_follow.view.*
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.constant.Constant
-import vn.icheck.android.constant.MAIN_USER
-import vn.icheck.android.constant.MAIN_USER_FRIEND
-import vn.icheck.android.constant.MAIN_USER_NOT_FRIEND
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.loyalty.base.setGone
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.wall.IckUserWallActivity
-import vn.icheck.android.util.checkTypeUser
 import vn.icheck.android.util.ick.beGone
 import vn.icheck.android.util.ick.beVisible
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 
 class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -39,11 +33,6 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
     private val itemType = 1
     private val showType = 2
     private val loadType = 3
-
-    fun updateState(positionList: Int?) {
-        listData[positionList!!].sendAddFriend = true
-        notifyItemChanged(positionList)
-    }
 
     fun setListData(list: MutableList<ICUserFollowWall>) {
         isLoadMore = list.size >= Constant.DEFAULT_ITEM_COUNT
@@ -143,11 +132,14 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 }
 
                 holder.itemView.layoutAddFriend.setOnClickListener {
-                    view.addFriend(item, position)
+                    if (holder.itemView.btnActionFriend.text==holder.itemView.context.getString(R.string.ket_ban)) {
+                        view.addFriend(item, position)
+                    }else{
+                        view.acceptFriend(item, position)
+                    }
                 }
 
                 holder.itemView.btnMessenger.setOnClickListener {
-//                    SocialChatActivity.createRoomChat(holder.itemView.context, item.id)
                     ChatSocialDetailActivity.createRoomChat(holder.itemView.context, item.id ?: -1, "user")
                 }
             }
@@ -169,9 +161,13 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
     }
 
     private class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
+        private var isMyFriendInvitationUser: Boolean? = null
+        private var isMyFriend: Boolean? = null
+        private var isFriendInvitationMe: Boolean? = null
         fun bind(item: ICUserFollowWall) {
             itemView.layoutAddFriend.background = ViewHelper.bgPrimaryCorners4(itemView.context)
             itemView.btnDaGuiLoiMoi.background = ViewHelper.bgGrayCorners4(itemView.context)
+            itemView.btnMessenger.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
 
             itemView.imgAvatar.setData(item.avatar, item.rank?.level, R.drawable.ic_square_avatar_default)
             itemView.tvName.apply {
@@ -190,47 +186,7 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 itemView.tv_related_friend.beGone()
             }
 
-            itemView.btnMessenger.background = ViewHelper.bgOutlinePrimary1Corners4(itemView.context)
-
-            if (item.sendAddFriend == true) {
-                itemView.btnMessenger.visibility = View.INVISIBLE
-                itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
-                itemView.layoutAddFriend.visibility = View.INVISIBLE
-            } else {
-                when (checkTypeUser(item.id!!)) {
-                    MAIN_USER -> {
-
-                    }
-                    MAIN_USER_FRIEND -> {
-                        itemView.btnMessenger.visibility = View.VISIBLE
-                        itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                        itemView.layoutAddFriend.visibility = View.INVISIBLE
-                        itemView.tv_related_friend.visibility = View.INVISIBLE
-                    }
-                    MAIN_USER_NOT_FRIEND -> {
-                        if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
-                            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList, (item.id ?: 0L).toString(), object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value != null && snapshot.value is Long) {
-                                        itemView.btnMessenger.visibility = View.INVISIBLE
-                                        itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
-                                        itemView.layoutAddFriend.visibility = View.INVISIBLE
-                                    } else {
-                                        checkPrivacyConfig(item)
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    checkPrivacyConfig(item)
-                                }
-                            })
-                        } else {
-                            checkPrivacyConfig(item)
-                        }
-
-                    }
-                }
-            }
+            checkPrivacyConfig(item)
         }
 
         private fun checkPrivacyConfig(item: ICUserFollowWall) {
@@ -240,10 +196,83 @@ class UserFollowAdapter constructor(val view: IUserFollowWallView) : RecyclerVie
                 itemView.layoutAddFriend.visibility = View.INVISIBLE
                 itemView.tv_related_friend.visibility = View.INVISIBLE
             } else {
-                itemView.btnMessenger.visibility = View.INVISIBLE
-                itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
-                itemView.layoutAddFriend.visibility = View.VISIBLE
-                itemView.tv_related_friend.visibility = View.VISIBLE
+                checkStatusFirebase(item)
+            }
+        }
+
+
+        private fun checkStatusFirebase(obj: ICUserFollowWall) {
+            if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
+                //người khác gửi kết bạn cho mình
+                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.friendInvitationMeUserIdList, obj.id.toString(), object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isFriendInvitationMe = snapshot.value != null && snapshot.value is Long
+                        checkStatus()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isFriendInvitationMe = false
+                        checkStatus()
+                    }
+                })
+
+                //mình gửi kết bạn đến người khác
+                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendInvitationUserIdList, obj.id.toString(), object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isMyFriendInvitationUser = snapshot.value != null && snapshot.value is Long
+                        checkStatus()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isMyFriendInvitationUser = false
+                        checkStatus()
+                    }
+                })
+
+                //friend của mình
+                ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myFriendIdList, obj.id.toString(), object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        isMyFriend = snapshot.value != null && snapshot.value is Long
+                        checkStatus()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        isMyFriend = false
+                        checkStatus()
+                    }
+                })
+            }
+        }
+
+        private fun checkStatus() {
+            if (isFriendInvitationMe != null && isMyFriend != null && isMyFriendInvitationUser != null) {
+                when {
+                    isMyFriend!! -> {
+                        itemView.btnMessenger.visibility = View.VISIBLE
+                        itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                        itemView.layoutAddFriend.visibility = View.INVISIBLE
+                        itemView.tv_related_friend.visibility = View.INVISIBLE
+                    }
+                    isMyFriendInvitationUser!! -> {
+                        itemView.btnMessenger.visibility = View.INVISIBLE
+                        itemView.btnDaGuiLoiMoi.visibility = View.VISIBLE
+                        itemView.layoutAddFriend.visibility = View.INVISIBLE
+                    }
+                    isFriendInvitationMe!! -> {
+                        itemView.btnMessenger.visibility = View.INVISIBLE
+                        itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                        itemView.tv_related_friend.visibility = View.VISIBLE
+                        itemView.layoutAddFriend.visibility = View.VISIBLE
+                        itemView.btnActionFriend.setText(R.string.dong_y_ket_ban)
+                    }
+                    else -> {
+                        itemView.btnMessenger.visibility = View.INVISIBLE
+                        itemView.btnDaGuiLoiMoi.visibility = View.INVISIBLE
+                        itemView.tv_related_friend.visibility = View.VISIBLE
+                        itemView.layoutAddFriend.visibility = View.VISIBLE
+                        itemView.btnActionFriend.setText(R.string.ket_ban)
+                    }
+                }
             }
         }
     }

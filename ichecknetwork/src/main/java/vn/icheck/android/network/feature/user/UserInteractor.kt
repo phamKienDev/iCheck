@@ -155,7 +155,7 @@ class UserInteractor : BaseInteractor() {
         body["userId"] = id
 
         if (status != null) {
-            body["status"] = status
+            body["status"] = status //null:gửi kết bạn, 2: đồng ý kết bạn
         }
 
         requestNewApi(ICNetworkClient.getNewSocialApi().putUnOrAddFriend(body), listener)

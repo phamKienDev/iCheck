@@ -58,7 +58,7 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
         private var isFriendInvitationMeUser: Boolean? = null
 
         override fun bind(obj: ICSearchUser) {
-            itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = vn.icheck.android.ichecklibs.ViewHelper.bgPrimaryCorners4(itemView.context)
+            itemView.findViewById<AppCompatTextView>(R.id.btnConfirm)?.background = ViewHelper.bgPrimaryCorners4(itemView.context)
             itemView.tvMessage.background=ViewHelper.btnWhiteStrokePrimary1Corners4(itemView.context)
             itemView.layoutAvatar.setData(obj.avatar, obj.rank?.level, R.drawable.ic_avatar_default_84dp)
             itemView.tvTitle.apply {
@@ -85,7 +85,6 @@ class SearchUserAdapter(val typeView: Int, val callback: IRecyclerViewSearchCall
             }
 
             itemView.tvMessage.setOnClickListener {
-//                SocialChatActivity.createRoomChat(it.context, obj.id)
                 ChatSocialDetailActivity.createRoomChat(it.context, obj.id, "user")
             }
 

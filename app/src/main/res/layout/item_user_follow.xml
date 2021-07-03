@@ -28,6 +28,7 @@
         tools:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnActionFriend"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/size_8"

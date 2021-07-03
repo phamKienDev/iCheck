@@ -15,12 +15,12 @@ import vn.icheck.android.callback.IRecyclerViewCallback
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.component.view.ViewHelper
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.helper.RelationshipHelper
-import vn.icheck.android.ichecklibs.Constant
-import vn.icheck.android.network.base.APIConstants
 import vn.icheck.android.network.models.ICPageTrend
 import vn.icheck.android.base.holder.LoadingHolder
+import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.ColorManager
+import vn.icheck.android.network.base.*
+import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.screen.user.page_details.fragment.page.widget.message.MessageHolder
 import vn.icheck.android.util.kotlin.ToastUtils
 import vn.icheck.android.util.kotlin.WidgetUtils
@@ -177,11 +177,11 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
                             if (obj.followers?.get(0)?.name.isNullOrEmpty()) {
                                 context.getString(R.string.d_ban_khac_thich_trang_nay, obj.likeCount)
                             } else {
-                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name?:"", obj.likeCount)
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name ?: "", obj.likeCount)
                             }
                         } else {
                             if (!obj.followers?.get(0)?.name.isNullOrEmpty()) {
-                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name?:"", obj.followers!!.size - 1)
+                                context.getString(R.string.s_va_s_ban_khac_thich_trang_nay, obj.followers?.get(0)?.name ?: "", obj.followers!!.size - 1)
                             } else {
                                 itemView.context.getString(R.string.dang_cap_nhat)
                             }
@@ -225,31 +225,53 @@ class BrandPageAdapter(val listener: IRecyclerViewCallback) : RecyclerView.Adapt
             }
         }
 
-        private fun followPage(tvFollow: AppCompatTextView, pageID: Long, isFollow: Boolean, obj: ICPageTrend) {
-            RelationshipHelper.postFollowPage(pageID, object : RelationshipHelper.ClickFollowPage {
-                override fun onClickFollowPage() {
-                    obj.isFollow = !isFollow
-                    checkFollow(tvFollow, !isFollow)
+        private fun followPage(tvFollow: AppCompatTextView, page: ICPageTrend) {
+            ICheckApplication.currentActivity()?.let { activity ->
+                if (!SessionManager.isLoggedAnyType) {
+                    DialogHelper.showLoginPopup(activity)
+                    return
                 }
-            })
+
+                if (NetworkHelper.isNotConnected(activity)) {
+                    ToastUtils.showLongError(activity, R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
+                    return
+                }
+
+                DialogHelper.showLoading(activity)
+
+                PageRepository().followPage(page.id, object : ICNewApiListener<ICResponse<Boolean>> {
+                    override fun onSuccess(obj: ICResponse<Boolean>) {
+                        DialogHelper.closeLoading(activity)
+                        page.isFollow = !page.isFollow
+                        checkFollow(tvFollow, page.isFollow)
+                    }
+
+                    override fun onError(error: ICResponseCode?) {
+                        DialogHelper.closeLoading(activity)
+                        ToastUtils.showLongError(activity, error?.message ?: activity.getString(R.string.co_loi_xay_ra_vui_long_thu_lai))
+                    }
+                })
+            }
+
         }
 
         fun initListener(tvFollow: AppCompatTextView, obj: ICPageTrend) {
             if (obj.isFollow) {
                 ICheckApplication.currentActivity()?.let { activity ->
-                    DialogHelper.showConfirm(activity,
-                            activity.getString(R.string.bo_theo_doi_trang),
-                            activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_s_chu, obj.name),
-                            object : ConfirmDialogListener {
-                                override fun onDisagree() {}
+                    DialogHelper.showConfirm(
+                        activity,
+                        activity.getString(R.string.bo_theo_doi_trang),
+                        activity.getString(R.string.ban_chac_chan_bo_theo_doi_trang_s_chu, obj.name),
+                        object : ConfirmDialogListener {
+                            override fun onDisagree() {}
 
-                                override fun onAgree() {
-                                    followPage(tvFollow, obj.id, obj.isFollow, obj)
-                                }
-                            })
+                            override fun onAgree() {
+                                followPage(tvFollow, obj)
+                            }
+                        })
                 }
             } else {
-                followPage(tvFollow, obj.id, obj.isFollow, obj)
+                followPage(tvFollow, obj)
             }
         }
     }

@@ -7,7 +7,7 @@ import androidx.work.WorkInfo
 import com.google.firebase.database.*
 import kotlinx.coroutines.*
 import okhttp3.ResponseBody
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.component.ICViewModel
 import vn.icheck.android.component.ICViewTypes
 import vn.icheck.android.network.model.ApiResponse
@@ -161,7 +161,7 @@ class IckUserWallViewModel @ViewModelInject constructor(
         }?.let {
             it as IckUserFriendModel
             for (item in it.listFriend.data?.rows ?: arrayListOf()) {
-                if (!RelationshipManager.checkFriend(item.id ?: -1)) {
+                if (!RelationshipHelper.checkMyFriend(item.id ?: -1)) {
                     it.listFriend.data?.rows?.remove(item)
                 }
             }
@@ -264,7 +264,6 @@ class IckUserWallViewModel @ViewModelInject constructor(
                                     if (id != SessionManager.session.user?.id) {
                                         showBottomBar.postValue(false)
                                     }
-                                    this.sendInvitation = AppDatabase.getDatabase().friendInvitationMeUserIdDao().getUserByID(this.id) != null
                                 })
                             }
                         }
@@ -277,16 +276,15 @@ class IckUserWallViewModel @ViewModelInject constructor(
                                     if (id != SessionManager.session.user?.id) {
                                         showBottomBar.postValue(false)
                                     }
-                                    this.sendInvitation = AppDatabase.getDatabase().friendInvitationMeUserIdDao().getUserByID(this.id) != null
                                 })
                             }
                         }
                         "general-friend-list-1" -> {
                             arrResponse.filterIsInstance<IcFriendResponse>().let { list ->
                                 for (item in list.filter { it.type == 2 }) {
-                                    if ((item as IcFriendResponse).data?.count ?: 0 > 0) {
-                                        totalFriend = (item as IcFriendResponse).data?.count ?: 0
-                                        addView(IckUserFriendModel(item as IcFriendResponse).apply {
+                                    if (item.data?.count ?: 0 > 0) {
+                                        totalFriend = item.data?.count ?: 0
+                                        addView(IckUserFriendModel(item).apply {
                                             type = 2
                                             this.wallUserId = userInfo?.data?.id
                                         })
@@ -297,9 +295,9 @@ class IckUserWallViewModel @ViewModelInject constructor(
                         "user-friend-list-1" -> {
                             arrResponse.filterIsInstance<IcFriendResponse>().let { list ->
                                 for (item in list.filter { it.type == 1 }) {
-                                    if ((item as IcFriendResponse).data?.count ?: 0 > 0) {
-                                        totalFriend = (item as IcFriendResponse).data?.count ?: 0
-                                        addView(IckUserFriendModel(item as IcFriendResponse).apply {
+                                    if (item.data?.count ?: 0 > 0) {
+                                        totalFriend = item.data?.count ?: 0
+                                        addView(IckUserFriendModel(item).apply {
                                             type = 1
                                             this.wallUserId = userInfo?.data?.id
                                         })

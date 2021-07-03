@@ -39,7 +39,7 @@ class RelationshipInteractor : BaseInteractor() {
         val body = hashMapOf<String, Any>()
         body["userId"] = id
         if (status != null) {
-            body["status"] = status
+            body["status"] = status //null:gửi kết bạn, 2: đồng ý kết bạn
         }
 
         requestNewApi(ICNetworkClient.getSocialApi().updateFriendInvitation(url, body), listener)

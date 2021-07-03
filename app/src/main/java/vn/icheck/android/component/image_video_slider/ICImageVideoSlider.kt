@@ -125,8 +125,7 @@ class ICImageVideoSlider(val view: View) : RecyclerView.ViewHolder(view) {
         }
 
         if (ICheckApplication.getInstance().mFirebase.auth.currentUser != null) {
-            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myOwnerPageIdList, (icImageVideoSliderModel.getPageId
-                    ?: -1).toString(), object : ValueEventListener {
+            ICheckApplication.getInstance().mFirebase.registerRelationship(Constant.myOwnerPageIdList, (icImageVideoSliderModel.getPageId ?: -1).toString(), object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value != null && snapshot.value is Long) {
                         view.imgEditCover.beVisible()
