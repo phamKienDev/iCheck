@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.dialog.notify.confirm.ConfirmDialog
 import vn.icheck.android.base.fragment.CoroutineBottomSheetDialogFragment
 import vn.icheck.android.base.model.ICMessageEvent
@@ -57,7 +57,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
         super.onViewCreated(view, savedInstanceState)
         if (SessionManager.isUserLogged) {
             when {
-                RelationshipManager.checkFriend(ickUserWallViewModel.userInfo?.data?.id ?: 0L) -> {
+                RelationshipHelper.checkMyFriend(ickUserWallViewModel.userInfo?.data?.id ?: 0L) -> {
                     if (AppDatabase.getDatabase().meFollowUserDao().getUserByID(ickUserWallViewModel.userInfo?.data?.id!!) != null) {
                         ickUserWallViewModel.userInfo?.data?.getName()?.let {
                             binding.tvUnfolow.setText(R.string.bo_theo_doi_s, it)
@@ -142,7 +142,7 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.UNFRIEND))
                                     AppDatabase.getDatabase().myFriendIdDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
                                     AppDatabase.getDatabase().meFollowUserDao().deleteUserById(ickUserWallViewModel.userInfo?.data?.id!!)
-                                    RelationshipManager.removeFriendInvitationMe(ickUserWallViewModel.userInfo?.data?.id!!)
+                                    RelationshipHelper.removeFriendInvitationMe(ickUserWallViewModel.userInfo?.data?.id!!)
                                 } else {
                                     EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ERROR_SERVER))
                                 }
@@ -157,8 +157,8 @@ class FriendWallSettingsDialog( val ickUserWallViewModel: IckUserWallViewModel, 
                     dismiss()
                 } else {
                     ickUserWallViewModel.removeFriendRequest().observe{
-                        RelationshipManager.removeMyFriendInvitation(ickUserWallViewModel.id)
-                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.FRIEND_LIST_UPDATE, RelationshipManager.FRIEND_LIST_UPDATE))
+                        RelationshipHelper.removeMyInvitation(ickUserWallViewModel.id)
+                        EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.FRIEND_LIST_UPDATE, RelationshipHelper.FRIEND_LIST_UPDATE))
                         dismiss()
                         ickUserWallViewModel.inAction = false
                     }

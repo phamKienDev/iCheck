@@ -6,4 +6,5 @@ interface IUserFollowWallView {
     fun onRefresh()
     fun onLoadMore()
     fun addFriend(item: ICUserFollowWall, position: Int)
+    fun acceptFriend(item: ICUserFollowWall, position: Int)
 }

@@ -1145,11 +1145,6 @@ interface ICNetworkAPI {
     @GET
     suspend fun getCoin(@Url url: String): ICResponse<ICSummary>
 
-    @GET(APIConstants.Page.RELATIONSHIP_CURRENT_USER)
-    fun getRelationshipCurrentUser(): Observable<ICResponse<ICRelationshipsInformation>>
-
-    @GET(APIConstants.Page.RELATIONSHIP_CURRENT_USER)
-    suspend fun getRelationshipInformation(): ICResponse<ICRelationshipsInformation>
 
     @GET(APIConstants.Campaign.GET_CAMPAIGN_REWARD)
     fun getCampaignReward(@Path("id") id: String, @QueryMap params: HashMap<String, Any>): Observable<ICResponse<ICListResponse<ICGiftOfCampaign>>>

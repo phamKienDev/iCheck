@@ -1,18 +1,14 @@
 package vn.icheck.android.screen.user.option_manger_user_follow
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_manager_user_follow.*
-import kotlinx.android.synthetic.main.activity_manager_user_follow.imgBack
-import kotlinx.android.synthetic.main.activity_manager_user_follow.txtTitle
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -20,9 +16,8 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
-import vn.icheck.android.network.models.wall.ICUserFollowWall
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
+import vn.icheck.android.network.models.wall.ICUserFollowWall
 import java.util.concurrent.TimeUnit
 
 class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
@@ -33,7 +28,6 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
 
     private var key: String? = null
 
-    private var positionList: Int? = null
 
     private var disposable: Disposable? = null
 
@@ -96,7 +90,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
 
     private fun listenerGetData() {
         runOnUiThread {
-            viewModel.listData.observe(this, Observer {
+            viewModel.listData.observe(this, {
                 swipe_layout.isRefreshing = false
                 tvCount.setText(R.string.d_nguoi_dang_theo_doi_ban, it.count)
                 adapter.addListData(it.rows)
@@ -105,15 +99,11 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.isLoadMoreData.observe(this, Observer {
+            viewModel.isLoadMoreData.observe(this, {
                 adapter.removeDataWithoutUpdate()
             })
 
-            viewModel.addFriend.observe(this, Observer {
-                adapter.updateState(positionList!!)
-            })
-
-            viewModel.statusCode.observe(this, Observer {
+            viewModel.statusCode.observe(this, {
                 when (it) {
                     ICMessageEvent.Type.ON_NO_INTERNET -> {
                         DialogHelper.showConfirm(this, R.string.khong_co_ket_noi_mang_vui_long_thu_lai_sau, R.string.huy_bo, R.string.thu_lai, object : ConfirmDialogListener {
@@ -136,7 +126,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.errorPutData.observe(this, Observer {
+            viewModel.errorPutData.observe(this, {
                 when (it) {
                     Constant.ERROR_INTERNET -> {
                         showShortError(R.string.khong_co_ket_noi_mang_vui_long_kiem_tra_va_thu_lai)
@@ -150,7 +140,7 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
                 }
             })
 
-            viewModel.errorData.observe(this, Observer {
+            viewModel.errorData.observe(this, {
                 swipe_layout.isRefreshing = false
                 when (it) {
                     Constant.ERROR_EMPTY_SEARCH -> {
@@ -175,8 +165,11 @@ class  ManagerUserFollowActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     override fun addFriend(item: ICUserFollowWall, position: Int) {
-        positionList = position
-        viewModel.addFriend(item.id)
+        viewModel.addFriend(item.id,null)
+    }
+
+    override fun acceptFriend(item: ICUserFollowWall, position: Int) {
+        viewModel.addFriend(item.id,2)
     }
 
     override fun onLoadMore() {

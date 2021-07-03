@@ -12,7 +12,7 @@ import vn.icheck.android.room.entity.ICOwnerPage
 interface OwnerPageDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPageFollow(obj: ICOwnerPage)
+    fun insertPageOwner(obj: ICOwnerPage)
 
     @Query("SELECT * FROM owner_page")
     fun getAllOwnerPage(): Single<List<ICOwnerPage>>

@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.holder.ShortMessageHolder
 import vn.icheck.android.chat.icheckchat.screen.detail.ChatSocialDetailActivity
 import vn.icheck.android.component.ICViewModel
@@ -267,8 +267,8 @@ class ProfileUserHolder(val binding: ItemUserProfileWallBinding) : RecyclerView.
                 binding.tvId.setText(R.string.ic_d, it)
             }
             if (SessionManager.session.user?.id == ickUserProfileModel.id) {
-                binding.tvFollow.text = "${RelationshipManager.getTotalFollowed()}"
-                binding.tvWatch.text = "${RelationshipManager.getTotalFollow()}"
+                binding.tvFollow.text = "${RelationshipHelper.getTotalFollowed()}"
+                binding.tvWatch.text = "${RelationshipHelper.getTotalFollow()}"
                 binding.groupFollowing.beVisible()
             } else {
                 binding.tvFollow.text = "${data?.userFollowingMeCount ?: 0}"

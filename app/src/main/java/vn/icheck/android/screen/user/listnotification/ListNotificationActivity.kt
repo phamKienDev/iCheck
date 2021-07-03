@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_list_notification.recyclerView
 import kotlinx.android.synthetic.main.activity_list_notification.swipeLayout
 import kotlinx.android.synthetic.main.toolbar_light_blue.*
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.component.ICViewTypes
@@ -138,7 +138,7 @@ class ListNotificationActivity : BaseActivityMVVM(), IMessageListener {
 
     override fun onResume() {
         super.onResume()
-        if (RelationshipManager.unreadNotify > 0L) {
+        if (RelationshipHelper.unreadNotify > 0L) {
             imgAction.beVisible()
         } else {
             imgAction.beInvisible()

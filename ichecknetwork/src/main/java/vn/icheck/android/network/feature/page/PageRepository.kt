@@ -192,14 +192,6 @@ class PageRepository : BaseInteractor() {
         requestNewApi(ICNetworkClient.getSocialApi().getListUserFollowPage(id, query), listener)
     }
 
-    fun getRelationshipCurrentUser(listener: ICNewApiListener<ICResponse<ICRelationshipsInformation>>) {
-        requestNewApi(ICNetworkClient.getSocialApi().getRelationshipCurrentUser(), listener)
-    }
-
-    suspend fun getRelationshipInformation(): ICResponse<ICRelationshipsInformation> {
-        return ICNetworkClient.getSocialApi().getRelationshipInformation()
-    }
-
     fun getListDistributor(url: String, offset: Int, listener: ICNewApiListener<ICResponse<ICListResponse<ICPage>>>) {
 
         val urlRequest = APIConstants.PATH + url.replace("offset=0", "offset=$offset")

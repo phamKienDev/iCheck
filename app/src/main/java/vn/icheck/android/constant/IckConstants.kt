@@ -57,10 +57,6 @@ const val BIRTH_DAY = "birthday"
 const val CITY_ID = "cityId"
 const val DISTRICT_ID = "districtId"
 const val WARD_ID = "wardId"
-// User type
-const val MAIN_USER = 1
-const val MAIN_USER_FRIEND = 2
-const val MAIN_USER_NOT_FRIEND = 3
 
 const val SIMPLE_ERROR_MESSAGE = "Hệ thống đang có lỗi xảy ra vui lòng thử lại sau!"
 

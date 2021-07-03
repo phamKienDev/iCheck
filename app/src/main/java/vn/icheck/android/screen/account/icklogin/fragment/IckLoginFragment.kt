@@ -20,22 +20,14 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.callback.ISettingListener
 import vn.icheck.android.databinding.FragmentIckLoginBinding
 import vn.icheck.android.helper.CartHelper
-import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.SettingHelper
 import vn.icheck.android.helper.ShareSessionToModule
 import vn.icheck.android.ichecklibs.ColorManager
 import vn.icheck.android.ichecklibs.ViewHelper
 import vn.icheck.android.ichecklibs.util.dpToPx
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.ichecklibs.util.showShortErrorToast
-import vn.icheck.android.network.base.ICNewApiListener
-import vn.icheck.android.network.base.ICResponse
-import vn.icheck.android.network.base.ICResponseCode
 import vn.icheck.android.network.base.SessionManager
-import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.models.ICClientSetting
-import vn.icheck.android.network.models.ICRelationshipsInformation
 import vn.icheck.android.network.models.ICSessionData
 import vn.icheck.android.screen.account.icklogin.FORGOT_PW
 import vn.icheck.android.screen.account.icklogin.LOGIN_OTP
@@ -196,18 +188,6 @@ class  IckLoginFragment : BaseFragmentMVVM() {
                             ShareSessionToModule.setSession(loginRes.data ?: ICSessionData())
                             CartHelper().getCartSocial()
                             InsiderHelper.onLogin()
-
-                            PageRepository().getRelationshipCurrentUser(object : ICNewApiListener<ICResponse<ICRelationshipsInformation>> {
-                                override fun onSuccess(obj: ICResponse<ICRelationshipsInformation>) {
-                                    if (obj.data != null) {
-                                        RelationshipHelper.saveData(obj.data!!)
-                                    }
-                                }
-
-                                override fun onError(error: ICResponseCode?) {
-
-                                }
-                            })
 
                             EventBus.getDefault().post(ICMessageEvent(ICMessageEvent.Type.ON_LOG_IN))
                             requireActivity().finish()

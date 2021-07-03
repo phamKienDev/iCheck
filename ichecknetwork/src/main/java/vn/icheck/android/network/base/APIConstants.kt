@@ -400,7 +400,6 @@ object APIConstants {
         const val SHARE_LINK = "${PATH}/posts/{id}/share-link"
         const val LIST_POST = "${PATH}/pages/{id}/posts"
         const val REPORT_POST = "${PATH}/report/post"
-        const val RELATIONSHIP_CURRENT_USER = "${PATH}/relationships/information"
         const val GET_FRIEND_NOFOLLOW_PAGE = "social/api/users/friend-nofollow-page/{pageId}"
         const val POST_FOLLOW_PAGE_INVITATION = "social/api/relationships/follow-page-invitation"
         const val UNSUBCRIBE_PAGE = "${PATH}/notifications/unsubscribe"

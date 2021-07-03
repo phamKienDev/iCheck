@@ -7,13 +7,10 @@ import vn.icheck.android.R
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.helper.NetworkHelper
-import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
-import vn.icheck.android.network.feature.page.PageRepository
 import vn.icheck.android.network.feature.search.SearchInteractor
 import vn.icheck.android.network.models.ICCategorySearch
-import vn.icheck.android.network.models.ICRelationshipsInformation
 
 class SearchHomeViewModel : ViewModel() {
     private val searchInteractor = SearchInteractor()
@@ -35,7 +32,6 @@ class SearchHomeViewModel : ViewModel() {
             return
         }
 
-        getID()
         getPopularSearch()
     }
 
@@ -143,20 +139,6 @@ class SearchHomeViewModel : ViewModel() {
 
             override fun onError(error: ICResponseCode?) {
 
-            }
-        })
-    }
-
-    fun getID() {
-        PageRepository().getRelationshipCurrentUser(object : ICNewApiListener<ICResponse<ICRelationshipsInformation>> {
-            override fun onSuccess(obj: ICResponse<ICRelationshipsInformation>) {
-                if (obj.data != null) {
-                    RelationshipHelper.saveData(obj.data!!)
-                }
-            }
-
-            override fun onError(error: ICResponseCode?) {
-                error.toString()
             }
         })
     }

@@ -9,7 +9,6 @@ import vn.icheck.android.base.dialog.notify.callback.NotificationDialogListener
 import vn.icheck.android.base.model.ICError
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
-import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.helper.NetworkHelper
 import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.network.base.*
@@ -58,7 +57,6 @@ class BrandPageViewModel : ViewModel() {
             override fun onSuccess(obj: ICResponse<ICListResponse<ICPageTrend>>) {
                 offset += APIConstants.LIMIT
 
-                RelationshipHelper.isFollowBrand(obj.data?.rows!!)
 
                 liveData.postValue(
                         BaseModelList(isLoadMore, obj.data?.rows ?: mutableListOf(), null, null))

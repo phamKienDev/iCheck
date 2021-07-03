@@ -1,21 +1,13 @@
 package vn.icheck.android.screen.user.option_manager_user_watching
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_manager_user_watching.edtSearch
-import kotlinx.android.synthetic.main.activity_manager_user_watching.imgBack
-import kotlinx.android.synthetic.main.activity_manager_user_watching.rcv_follow
-import kotlinx.android.synthetic.main.activity_manager_user_watching.swipe_layout
-import kotlinx.android.synthetic.main.activity_manager_user_watching.tvCount
-import kotlinx.android.synthetic.main.activity_manager_user_watching.txtTitle
+import kotlinx.android.synthetic.main.activity_manager_user_watching.*
 import vn.icheck.android.R
 import vn.icheck.android.base.activity.BaseActivityMVVM
 import vn.icheck.android.base.dialog.notify.callback.ConfirmDialogListener
@@ -23,11 +15,10 @@ import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.constant.Constant
 import vn.icheck.android.helper.DialogHelper
 import vn.icheck.android.ichecklibs.ViewHelper
+import vn.icheck.android.ichecklibs.util.setText
 import vn.icheck.android.network.models.wall.ICUserFollowWall
 import vn.icheck.android.screen.user.option_manger_user_follow.IUserFollowWallView
 import vn.icheck.android.screen.user.option_manger_user_follow.UserFollowAdapter
-import vn.icheck.android.ichecklibs.util.getString
-import vn.icheck.android.ichecklibs.util.setText
 import java.util.concurrent.TimeUnit
 
 class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
@@ -37,8 +28,6 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     private val adapter = UserFollowAdapter(this)
 
     private var key: String? = null
-
-    private var positionList: Int? = null
 
     private var disposable: Disposable? = null
 
@@ -101,10 +90,6 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
 
     private fun listenerGetData() {
         runOnUiThread {
-            viewModel.addFriend.observe(this, {
-                adapter.updateState(positionList!!)
-            })
-
             viewModel.listData.observe(this, {
                 swipe_layout.isRefreshing = false
                 tvCount.setText(R.string.d_nguoi_ban_dang_theo_doi, it.count)
@@ -181,8 +166,11 @@ class ManagerUserWatchingActivity : BaseActivityMVVM(), IUserFollowWallView {
     }
 
     override fun addFriend(item: ICUserFollowWall, position: Int) {
-        positionList = position
-        viewModel.addFriend(item.id)
+        viewModel.addFriend(item.id,null)
+    }
+
+    override fun acceptFriend(item: ICUserFollowWall, position: Int) {
+        viewModel.addFriend(item.id,null)
     }
 
     override fun onLoadMore() {

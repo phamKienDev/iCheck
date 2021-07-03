@@ -1,5 +1,7 @@
 package vn.icheck.android.room.dao
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,7 +17,7 @@ interface MyFriendInvitationUserIdDao {
     fun getUserByID(id: Long): ICMyFriendInvitationUserId?
 
     @Query("SELECT * FROM my_friend_invitation_user_id")
-    fun getAll(): MutableList<ICMyFriendInvitationUserId>
+    fun getAll(): LiveData<MutableList<ICMyFriendInvitationUserId>>
 
     @Query("DELETE FROM my_friend_invitation_user_id")
     fun deleteAll()

@@ -30,7 +30,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import vn.icheck.android.ICheckApplication
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.WrapContentLinearLayoutManager
 import vn.icheck.android.base.dialog.reward_login.RewardLoginCallback
 import vn.icheck.android.base.dialog.reward_login.RewardLoginDialog
@@ -172,7 +172,7 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
                                     ickUserWallViewModel.reachedEnd = false
                                     ickUserWallViewModel.currentOffsetPost = 10
                                     getLayout()
-                                    RelationshipManager.removeFriendInvitationMe(ickUserWallViewModel.id)
+                                    RelationshipHelper.removeFriendInvitationMe(ickUserWallViewModel.id)
                                 }
 
                                 override fun onError(error: ICResponseCode?) {
@@ -444,13 +444,13 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
             binding.tvNotificationCount.beInvisible()
         } else {
             when {
-                RelationshipManager.unreadNotify > 9 -> {
+                RelationshipHelper.unreadNotify > 9 -> {
                     binding.tvNotificationCount.beVisible()
                     binding.tvNotificationCount.setText(R.string.count_9)
                 }
-                RelationshipManager.unreadNotify > 0 -> {
+                RelationshipHelper.unreadNotify > 0 -> {
                     binding.tvNotificationCount.beVisible()
-                    binding.tvNotificationCount.text = RelationshipManager.unreadNotify.toString()
+                    binding.tvNotificationCount.text = RelationshipHelper.unreadNotify.toString()
                 }
                 else -> binding.tvNotificationCount.beInvisible()
             }
@@ -461,7 +461,7 @@ class IckUserWallFragment : Fragment(), IPostListener,IMessageListener {
     fun onMessageEvent(event: ICMessageEvent) {
         when (event.type) {
             ICMessageEvent.Type.FRIEND_LIST_UPDATE -> {
-                if (event.data as Int == RelationshipManager.FRIEND_LIST_UPDATE) {
+                if (event.data as Int == RelationshipHelper.FRIEND_LIST_UPDATE) {
                     getLayout()
                 }
             }

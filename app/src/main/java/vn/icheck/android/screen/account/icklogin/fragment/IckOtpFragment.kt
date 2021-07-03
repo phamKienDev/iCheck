@@ -32,7 +32,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import vn.icheck.android.R
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.base.model.ICMessageEvent
 import vn.icheck.android.databinding.FragmentOtpBinding
 import vn.icheck.android.helper.CartHelper
@@ -52,7 +52,6 @@ import vn.icheck.android.tracking.insider.InsiderHelper
 import vn.icheck.android.util.ick.dismissLoadingScreen
 import vn.icheck.android.util.ick.forceHideKeyboard
 import vn.icheck.android.util.ick.showLoadingTimeOut
-import vn.icheck.android.ichecklibs.util.getString
 import vn.icheck.android.ichecklibs.util.setText
 
 
@@ -251,7 +250,7 @@ class IckOtpFragment : Fragment() {
                         toastError(it)
                     } else {
                         SessionManager.session.firebaseToken = it.data?.firebaseToken
-                        RelationshipManager.refreshToken(true)
+                        RelationshipHelper.refreshToken(true)
                         TrackingAllHelper.trackSignupSuccess()
                         hideKeyboard()
                         ickLoginViewModel.hideLoginRegister()
@@ -332,7 +331,7 @@ class IckOtpFragment : Fragment() {
                         toastError(it)
                     } else {
                         SessionManager.session.firebaseToken = it.data?.firebaseToken
-                        RelationshipManager.refreshToken(true)
+                        RelationshipHelper.refreshToken(true)
                         hideKeyboard()
                         it.data?.token?.let { token ->
                             ickLoginViewModel.getUserInfo().observe(viewLifecycleOwner) { res ->

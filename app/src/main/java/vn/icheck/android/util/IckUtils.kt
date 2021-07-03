@@ -1,7 +1,6 @@
 package vn.icheck.android.util
 
 import android.content.Context
-import android.os.Build
 import android.text.SpannableStringBuilder
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -10,9 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.FragmentActivity
-import vn.icheck.android.BuildConfig
-import vn.icheck.android.ICheckApplication
-import vn.icheck.android.RelationshipManager
+import vn.icheck.android.helper.RelationshipHelper
 import vn.icheck.android.constant.*
 import vn.icheck.android.network.base.SessionManager
 
@@ -46,14 +43,6 @@ fun isValidEmail(string: String): Boolean {
 fun hideKeyboard(activity: FragmentActivity?, view: View?) {
     val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     imm?.hideSoftInputFromWindow(view?.windowToken, 0)
-}
-
-fun checkTypeUser(id: Long?): Int {
-    return when {
-        RelationshipManager.checkFriend(id ?: 0L) -> MAIN_USER_FRIEND
-        id == SessionManager.session.user?.id -> MAIN_USER
-        else -> MAIN_USER_NOT_FRIEND
-    }
 }
 
 
